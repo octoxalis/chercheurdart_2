@@ -195,17 +195,84 @@ const IMG_o =
     }
     
     return (
-      [
-        hueLookup_a,
-        hue_a
-          .flat(),
-        lumLookup_a,
-        lum_a
-          .flat()
-      ]
+      IMG_o
+        .concat__a
+        (
+          [
+            hueLookup_a,
+            hue_a
+              .flat(),
+            lumLookup_a,
+            lum_a
+              .flat()
+          ]
+        )
     )
   }
   ,
+
+
+
+
+  concat__a:
+  (
+    arg_a
+  ) =>
+  {
+    let size_n = 0
+
+    for
+    (
+      const array_a
+      of
+      arg_a
+    )
+    {
+      size_n +=
+        array_a
+          .length
+    }
+
+    //;console.log( size_n )
+
+    const buffer_a =
+      new ArrayBuffer
+      (
+        size_n
+        *
+        Uint32Array
+          .BYTES_PER_ELEMENT
+      )
+  
+    const view_a =
+      new Uint32Array( buffer_a )
+
+    let at_n = 0
+
+    for
+    (
+      const array_a
+      of
+      arg_a
+    )
+    {
+      for
+      (
+        const unit_n
+        of
+        array_a
+      )
+      {
+        view_a
+          [at_n++] =
+            unit_n
+      }
+    }
+
+    return view_a
+  }
+  ,
+
 
 
 
@@ -226,6 +293,23 @@ const IMG_o =
 
 
 
+  path__s:
+  (
+    dir_s,
+    id_s,
+    default_a
+  ) =>
+    `${dir_s}${id_s}/`
+    + default_a
+        .slice( 0, -1 )    // skip format
+        .join( '/' )
+    + '.'
+    + default_a
+        .slice( -1 )    // add format after dot
+  ,
+
+
+
 
   create__v: async function
   (
@@ -233,30 +317,28 @@ const IMG_o =
   )
   {
     const src_s =
-      `${IMG_o.inputDir_s}${ior_o.id_s}/`
-      + C_o
-          .IMG_DEFAULT_a
-            .slice( 0, -1 )    // skip format
-            .join( '/' )
-      + '.'
-      + C_o
-          .IMG_DEFAULT_a
-            .slice( -1 )    // add format after dot
-
-    //;console.log( src_s )
+      IMG_o
+        .path__s
+        (
+          IMG_o
+            .inputDir_s,
+          ior_o
+            .id_s,
+          C_o
+            .IMG_DEFAULT_a
+        )
 
     const dest_s =
-      `${IMG_o.outputDir_s}${ior_o.id_s}/`
-      + C_o
-          .SCAN_DEFAULT_a
-            .slice( 0, -1 )    // skip format
-            .join( '/' )
-      + '.'
-      + C_o
-          .SCAN_DEFAULT_a
-            .slice( -1 )    // add format after dot
-
-    //;console.log( dest_s )
+      IMG_o
+        .path__s
+        (
+          IMG_o
+            .outputDir_s,
+          ior_o
+            .id_s,
+          C_o
+            .SCAN_DEFAULT_a
+        )
 
     const data_o =
       await IMG_o
@@ -274,8 +356,6 @@ const IMG_o =
       return    //>
     }
 
-    //;console.log( data_o )
-
     const scan_a =
       IMG_o
         .scan__a
@@ -287,14 +367,14 @@ const IMG_o =
           )
         )
 
+    //..................................
     ;console.log( scan_a )
     return
-
     IMG_o
       .write__v
       (
         dest_s,
-        new Uint8Array( scan_a[0] )
+        scan_a
       )
   }
   ,
