@@ -86,8 +86,9 @@ const C_o =
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
   U_IMAGE_OF_s:    '\u22B7',    //: unicode 'image of'
 
-  IMG_DEFAULT_a: [ 'full', 'max', '0', 'color',   'jpeg' ],  //: region/size/rotation/quality/format
-  IOR_DEFAULT_a: [ 'full', 'max', '0', 'default', 'avif' ],  //: idem
+  IMG_DEFAULT_a:  [ 'full', 'max', '0', 'color',   'jpeg' ],  //: region/size/rotation/quality/format
+  SCAN_DEFAULT_a: [ 'full', 'max', '0', 'scan',    'bin' ],   //: idem
+  IOR_DEFAULT_a:  [ 'full', 'max', '0', 'default', 'avif' ],  //: idem
 
   IOR_TRIPLE_a:
     [

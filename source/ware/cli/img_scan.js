@@ -76,47 +76,19 @@ const IMG_o =
 
 
 
-  path__s:
-  (
-    ior_o
-  ) =>
-  {
-    let src_s =
-      `${IMG_o.inputDir_s}${ior_o.id_s}/`
-      + C_o
-          .IMG_DEFAULT_a
-            .slice( 0, -1 )    // skip format
-            .join( '/' )
-      + '.'
-      + C_o
-          .IMG_DEFAULT_a
-            .slice( -1 )    // add format after dot
-
-    ;console.log( src_s )
-
-    return (
-      `${IMG_o.inputDir_s}${ior_o.id_s}/full/max/0/`
-    )
-  }
-  ,
-
-
-
-
   load__a: async function
   (
-    path_s
+    src_s,
+    dest_s
   )
   {
-    console.log( `loading path:\t${path_s}` )
-
     return (
       F_o
-        .exist__b( `${path_s}scan.bin` )
+        .exist__b( dest_s )
       ?
-        void console.log( `Already there:\t${path_s}scan.bin` )
+        void console.log( `Already there:\t${dest_s}` )
       :
-        await SHA_o( `${path_s}color.jpeg` )
+        await SHA_o( src_s )
           .raw()
           .toBuffer()
     )
@@ -136,7 +108,7 @@ const IMG_o =
     const hue_a =
       new Array( capacity_n )
     
-    const lookupHue_a =
+    const hueLookup_a =
       new Array( capacity_n )
     
     while
@@ -146,7 +118,7 @@ const IMG_o =
     {
       hue_a
         [capacity_n] = []
-      lookupHue_a
+      hueLookup_a
         [capacity_n] = 0
     }
     
@@ -155,7 +127,7 @@ const IMG_o =
     const lum_a =
       new Array( capacity_n )
     
-    const lookupLum_a =
+    const lumLookup_a =
       new Array( capacity_n )
     
     while
@@ -165,7 +137,7 @@ const IMG_o =
     {
       lum_a
         [capacity_n] = []
-      lookupLum_a
+      lumLookup_a
         [capacity_n] = 0
     }
     
@@ -201,7 +173,7 @@ const IMG_o =
         [hue_n]
           .push( capacity_n )              // : imageData pointer
     
-      lookupHue_a
+      hueLookup_a
         [hue_n] += 1
     
       let lum_n =
@@ -218,24 +190,18 @@ const IMG_o =
         [lum_n]
           .push( capacity_n )  // : idem
     
-      lookupLum_a
+      lumLookup_a
         [lum_n] += 1
     }
     
     return (
       [
-        lookupHue_a
-          .concat
-          (
-            hue_a
-              .flat()
-          ),
-        lookupLum_a
-          .concat
-          (
-            lum_a
-              .flat()
-          )
+        hueLookup_a,
+        hue_a
+          .flat(),
+        lumLookup_a,
+        lum_a
+          .flat()
       ]
     )
   }
@@ -266,19 +232,39 @@ const IMG_o =
     ior_o
   )
   {
-    const path_s =
-      IMG_o
-        .path__s( ior_o )
+    const src_s =
+      `${IMG_o.inputDir_s}${ior_o.id_s}/`
+      + C_o
+          .IMG_DEFAULT_a
+            .slice( 0, -1 )    // skip format
+            .join( '/' )
+      + '.'
+      + C_o
+          .IMG_DEFAULT_a
+            .slice( -1 )    // add format after dot
 
+    //;console.log( src_s )
+
+    const dest_s =
+      `${IMG_o.outputDir_s}${ior_o.id_s}/`
+      + C_o
+          .SCAN_DEFAULT_a
+            .slice( 0, -1 )    // skip format
+            .join( '/' )
+      + '.'
+      + C_o
+          .SCAN_DEFAULT_a
+            .slice( -1 )    // add format after dot
+
+    //;console.log( dest_s )
 
     const data_o =
       await IMG_o
         .load__a
         (
-          path_s
+          src_s,
+          dest_s
         )
-
-    ;console.log( '1' )
 
     if
     (
@@ -288,7 +274,7 @@ const IMG_o =
       return    //>
     }
 
-    ;console.log( '2' )
+    //;console.log( data_o )
 
     const scan_a =
       IMG_o
@@ -301,13 +287,14 @@ const IMG_o =
           )
         )
 
-    ;console.log( '3' )
+    ;console.log( scan_a )
+    return
 
     IMG_o
       .write__v
       (
-        `${path_s}scan.bin`,
-        scan_a
+        dest_s,
+        new Uint8Array( scan_a[0] )
       )
   }
   ,
