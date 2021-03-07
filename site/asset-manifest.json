@@ -1,0 +1,10 @@
+{
+  "name":"chercheurdart",
+  "short_name":"chercheurdart",
+  "start_url": "/",
+  "description": "",
+  "icons": [{ "src": "https://127.0.0.1:8080/assets/media/img/png/google-touch-icon.png", "sizes": "512x512" }],
+  "theme_color":"#064ec1",
+  "background_color":"#ffffff",
+  "display":"standalone"
+}

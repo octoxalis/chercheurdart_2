@@ -1,0 +1,12 @@
+/*=== SVG ===*/
+#svg_symbols,
+__                     {display: none}
+
+svg,
+__                     {stroke-width:1; stroke-linecap:round; stroke-linejoin:round}
+
+svg,
+__                     {stroke:var(--highlight)}
+
+svg[data-icon],
+__                     {width:2em; height: 2em}

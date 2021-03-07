@@ -1,0 +1,9 @@
+node_modules
+chercheurdart_2.code-workspace
+_workspace_
+_perf.js
+pnpm-lock.yaml
+env
+cli.txt
+source/.cache
+source/img

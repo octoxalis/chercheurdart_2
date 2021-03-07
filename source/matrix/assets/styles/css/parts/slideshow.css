@@ -1,0 +1,38 @@
+/* ------- Slideshow ------- */
+
+.slides {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: {{C_o.FULL_HEIGHT}};
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.slides figure {
+  height: {{C_o.FULL_HEIGHT}};
+  padding: 0 5vw;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  scroll-snap-align: center;
+}
+
+.slides figure img {
+  max-height: 88vh; /* Adjust if needed */
+}
+
+.slides figure.cover {
+  padding: 0;
+}
+
+.slides figure.cover img {
+  z-index: -1;
+  position: absolute;
+  width: {{C_o.FULL_WIDTH}};
+  height: {{C_o.FULL_HEIGHT}};
+  max-height: none;
+  object-fit: cover;
+}

@@ -1,0 +1,33 @@
+/* === links === */
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+/* Internal links */
+section *:not(ins) > a:not([name]):not([href*="//"]):after {
+  content: "\{{C_o.INT_ARROW_s}}";
+}
+
+/* External links */
+section a[href*="//"]:after {
+  content: "\{{C_o.EXT_ARROW_s}}";
+}
+
+
+
+
+/* === interactivity ===*/
+header a:hover,
+header a:focus,
+section a:hover,
+section a:focus {
+  border-bottom: 1px solid;
+  filter: brightness(.75);
+}
+
+section a:hover:after,
+section a:focus:after {
+  color: var(--highlight);
+  opacity: 1;
+}

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+User-agent: *
+Disallow:
+
+Sitemap: https://127.0.0.1:8080/sitemap.xml

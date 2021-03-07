@@ -1,0 +1,28 @@
+/* === scrollbar ===*/
+*::-webkit-scrollbar-thumb,
+__                     {border:1px solid var(--bgcolor)}
+
+
+
+/*=== RADIUS ===*/
+*::-webkit-scrollbar-thumb,
+__                     {border-radius:.5rem}
+
+*::-webkit-scrollbar-track,
+__                     {background:var(--bgcolor)}
+
+*::-webkit-scrollbar-thumb,
+__                     {background:var(--bg_lower)}
+
+*,
+__                     {scrollbar-width:thin;scrollbar-color:var(--bg_lower) var(--bgcolor)}
+
+*::-webkit-scrollbar,
+__                     {width:.5em}
+
+*::-webkit-scrollbar-track,
+__                     {background:var(--bgcolor)}
+
+*::-webkit-scrollbar-thumb,
+__                     {background-color:var(--bg_lower);border:.2em solid var(--bgcolor);border-radius: .5em}
+

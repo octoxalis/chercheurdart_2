@@ -1,0 +1,40 @@
+/* === blocks === */
+blockquote {
+  position: relative;
+  margin-bottom: {{C_o.PAD_3}};
+  padding-left: {{C_o.PAD_4}};
+  opacity: .7;
+}
+
+blockquote:before {
+  content: '';
+  position:absolute;
+  left: 0;
+  top: {{C_o.PAD_1}};
+  bottom: .3em;
+  width: 1px;
+  background: currentColor;
+  opacity: .2;
+}
+
+
+hr {
+  margin-bottom: 3em;
+  height: 0;
+  border-style: outset;
+  opacity: .25;
+  box-shadow: 0 1px 1px currentColor,
+              0 2px 2px currentColor,
+              0 4px 4px currentColor;
+  filter: brightness(.3);
+}
+
+
+
+/* === media === */
+img, svg, video, audio {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  fill: currentColor;
+}

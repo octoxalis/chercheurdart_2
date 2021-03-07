@@ -1,0 +1,87 @@
+/* === section === */
+section {
+  content-visibility: auto;   /* ?????????????? */
+  display: none;
+  position: absolute;
+  width: {{C_o.FULL_WIDTH}};
+  min-height: {{C_o.FULL_HEIGHT}};
+  background: var(--bgcolor);
+}
+
+section > p,
+section > ol,
+section > ul
+{
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+h2 {
+  --font_size-min: 3rem;
+  --font_size-max: 4rem;
+
+  margin-top: {{C_o.PAD_12}};
+  max-width: 60ch;
+  text-align: center;
+  line-height: 0.7;
+  filter: brightness(.4);
+}
+
+
+/* ------- Slideshow ------- */
+section > aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+figure[id^="{{C_o.SLIDE_ID_s}}"]
+{
+  position: relative;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  /*align-content: center;*/
+  scroll-snap-align: center;
+  cursor: all-scroll;
+}
+
+figure[id^="{{C_o.SLIDE_ID_s}}"] > img
+{
+  max-height: 100vh;
+}
+
+figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption
+{
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: 5vh;
+  padding: 2em;
+  border: 1px solid var(--textcolor);
+  border-radius: 8px;
+  background: var(--bgcolor);
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption:hover
+{
+  box-shadow: 0 0 0 100vmax var(--shadow_hi);
+  opacity: 1;
+  transition: opacity .5s ease;
+}
+
+
+
+/* === interactivity ===*/
+section#{{C_o.SEC_AUTO_s}},    /* default */
+section:target
+ {
+  display: block;
+}
