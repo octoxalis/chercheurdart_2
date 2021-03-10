@@ -6,6 +6,7 @@ const C_o =   require( '../../make/data/C_o.js' )
 const F_o =   require( '../../make/data/F_o.js' )
 const REX_o = require( '../../make/lib/regex.js' )
 const IOR_o = require( '../../make/lib/ior.js' )
+//~~const UVB_o = require( '../../make/lib/uint_compress.js' )  //: compression gain < 8%
 
 
 
@@ -63,7 +64,6 @@ const RGB_L__n =
   b_n
 ) =>
   ( Math.min( r_n, g_n, b_n ) + Math.max( r_n, g_n, b_n ) )  / 510
-
 
 
 
@@ -214,6 +214,24 @@ const IMG_o =
 
 
 
+  path__s:
+  (
+    dir_s,
+    id_s,
+    default_a
+  ) =>
+    `${dir_s}${id_s}/`
+    + default_a
+        .slice( 0, -1 )    // skip format
+        .join( '/' )
+    + '.'
+    + default_a
+        .slice( -1 )    // add format after dot
+  ,
+
+
+
+
   concat__a:
   (
     arg_a
@@ -293,24 +311,6 @@ const IMG_o =
 
 
 
-  path__s:
-  (
-    dir_s,
-    id_s,
-    default_a
-  ) =>
-    `${dir_s}${id_s}/`
-    + default_a
-        .slice( 0, -1 )    // skip format
-        .join( '/' )
-    + '.'
-    + default_a
-        .slice( -1 )    // add format after dot
-  ,
-
-
-
-
   create__v: async function
   (
     ior_o
@@ -367,14 +367,13 @@ const IMG_o =
           )
         )
 
-    //..................................
-    ;console.log( scan_a )
-    return
     IMG_o
       .write__v
       (
         dest_s,
         scan_a
+        //~~UVB_o
+        //~~  .compress__a( scan_a )
       )
   }
   ,
