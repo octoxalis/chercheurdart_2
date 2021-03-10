@@ -86,31 +86,6 @@ const C_o =
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
   U_IMAGE_OF_s:    '\u22B7',    //: unicode 'image of'
 
-  IMG_DEFAULT_a:  [ 'full', 'max', '0', 'color',   'jpeg' ],  //: region/size/rotation/quality/format
-  SCAN_DEFAULT_a: [ 'full', 'max', '0', 'scan',    'bin' ],   //: idem
-  IOR_DEFAULT_a:  [ 'full', 'max', '0', 'default', 'avif' ],  //: idem
-
-  IOR_TRIPLE_a:
-    [
-      '/full/_128/0/gray.avif',
-      '/full/_1024/0/gray.avif',
-      '/full/max/0/color.avif',
-    ],
-
-  IMG_SIZE_a:
-    [
-      128,    //: height pixels
-      1024,   //: height pixels
-      1       //: height ratio
-    ],
-
-
-  IMG_SIZE_ALT_a:
-    [
-      'small size in grayscale',
-      'medium size in grayscale',
-      'full size in color'
-    ],
 
 
   //=== CSS ===
@@ -145,5 +120,5 @@ const C_o =
 
 }
 
-module.exports = C_o
 
+module.exports = C_o

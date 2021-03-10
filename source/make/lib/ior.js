@@ -1,4 +1,4 @@
-const C_o = require('../data/C_o.js')
+const I_o = require('../data/I_o.js')
 const DB_o =  require( '../lib/db.js' )
 
 
@@ -31,7 +31,7 @@ const IOR_o =
             [`${id_s}`]
               .default_a
       ??
-      C_o
+      I_o
         .IOR_DEFAULT_a
   
     ior_o

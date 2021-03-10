@@ -2,6 +2,7 @@ const KS_o  = require( 'klaw-sync' )
 const SHA_o = require('sharp')
 
 const C_o =   require( '../../make/data/C_o.js' )
+const I_o =   require( '../../make/data/I_o.js' )
 const F_o =   require( '../../make/data/F_o.js' )
 const REX_o = require( '../../make/lib/regex.js' )
 const IOR_o = require( '../../make/lib/ior.js' )
@@ -54,12 +55,12 @@ const IMG_o =
   {
     let src_s =
       `${IMG_o.inputDir_s}${ior_o.id_s}/`
-      + C_o
+      + I_o
           .IMG_DEFAULT_a
             .slice( 0, -1 )    // skip format
             .join( '/' )
       + '.'
-      + C_o
+      + I_o
           .IMG_DEFAULT_a
             .slice( -1 )    // add format after dot
       
@@ -67,7 +68,7 @@ const IMG_o =
     (
       size_n
       of
-      C_o
+      I_o
         .IMG_SIZE_a
     )
     {

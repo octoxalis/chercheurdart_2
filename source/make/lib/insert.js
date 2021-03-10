@@ -2,6 +2,7 @@ const DB_o = require( './db.js' )
 const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
 const C_o   = require( '../data/C_o.js' )
+const I_o   = require( '../data/I_o.js' )
 
 
 
@@ -383,8 +384,8 @@ textLine__v:
     INS_o
       .image_s =
         `<a href="#${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}">`
-        + `<img src="${C_o.IMG_DIR_s}${imgId_s}${C_o.IOR_TRIPLE_a[at_n]}"`
-        + ` alt="${alt_s} (${C_o.IMG_SIZE_ALT_a[at_n++]})"`        //: increment at_n
+        + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
+        + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n++]})"`        //: increment at_n
         + ` width="${width_n}" height="${height_n}"`
         + ` loading="lazy">`
         + `</a>`
@@ -400,8 +401,8 @@ textLine__v:
           `<figure id="${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}">`
 
           + `<a href="#${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
-          +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${C_o.IOR_TRIPLE_a[at_n]}"`
-          +   ` alt="${alt_s} (${C_o.IMG_SIZE_ALT_a[at_n++]})"`        //: increment at_n
+          +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
+          +   ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n++]})"`        //: increment at_n
           +   ` width="${width_n}" height="${height_n}"`
           +   ` loading="lazy">`
           + `</a>`
@@ -419,8 +420,8 @@ textLine__v:
           `<figure id="${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
 
           + `<a href="#${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}">`
-          +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${C_o.IOR_TRIPLE_a[at_n]}"`
-          +   ` alt="${alt_s} (${C_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
+          +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
+          +   ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
           +   ` width="${width_n}" height="${height_n}"`
           +   ` loading="lazy">`
           + `</a>`
@@ -434,8 +435,8 @@ textLine__v:
         (
           `<figure id="${C_o.SLIDE_ID_s}${INS_o.index_n}">`
           
-          + `<img src="${C_o.IMG_DIR_s}${imgId_s}${C_o.IOR_TRIPLE_a[at_n]}"`
-          + ` alt="${alt_s} (${C_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
+          + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
+          + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
           + ` width="${width_n}" height="${height_n}"`
           + ` loading="lazy">`
 
@@ -511,7 +512,7 @@ textLine__v:
     (
       size_n
       of
-      C_o
+      I_o
         .IMG_SIZE_a
     )
     {
@@ -520,7 +521,7 @@ textLine__v:
         >
         1
         ?
-          C_o
+          I_o
             .IMG_SIZE_a[at_n++]
           /
           height_n

@@ -3,6 +3,7 @@ const KS_o  = require( 'klaw-sync' )
 const SHA_o = require('sharp')
 
 const C_o =   require( '../../make/data/C_o.js' )
+const I_o =   require( '../../make/data/I_o.js' )
 const F_o =   require( '../../make/data/F_o.js' )
 const REX_o = require( '../../make/lib/regex.js' )
 const IOR_o = require( '../../make/lib/ior.js' )
@@ -17,33 +18,33 @@ const RGB_H__n =
   b_n
 ) =>
 {
-  const min__n =
+  const min_n =
     Math
       .min( r_n, g_n, b_n )
 
-  const max__n =
+  const max_n =
     Math
       .max( r_n, g_n, b_n )
 
   if
   (
-    max__n === min__n
+    max_n === min_n
   )
   {
     return 0 // achromatic
   }
 
   const max_min_n =
-    max__n - min__n
+    max_n - min_n
 
   const h_n =
-    max__n === r_n
+    max_n === r_n
     ?
       ( (g_n - b_n) / max_min_n )
       +
       ( g_n < b_n ? 6 : 0 )
     :
-      max__n === g_n
+      max_n === g_n
       ?
         ( (b_n - r_n) / max_min_n ) + 2
       :
@@ -76,22 +77,80 @@ const IMG_o =
 
 
 
-  load__a: async function
+  write__v:
   (
-    src_s,
-    dest_s
-  )
+    dest_s,
+    view_a
+  ) =>
+    FS_o
+      .writeFile
+      (
+        dest_s,
+        view_a,
+        'utf8',
+        out_o => console.log( `-- Writing ${dest_s}: ${out_o}` )
+      )
+  ,
+
+
+
+
+  view__a:
+  (
+    arg_a
+  ) =>
   {
-    return (
-      F_o
-        .exist__b( dest_s )
-      ?
-        void console.log( `Already there:\t${dest_s}` )
-      :
-        await SHA_o( src_s )
-          .raw()
-          .toBuffer()
+    let size_n = 0
+
+    for
+    (
+      const array_a
+      of
+      arg_a
     )
+    {
+      size_n +=
+        array_a
+          .length
+    }
+
+    //;console.log( size_n )
+
+    const buffer_a =
+      new ArrayBuffer
+      (
+        size_n
+        *
+        Uint32Array
+          .BYTES_PER_ELEMENT
+      )
+  
+    const view_a =
+      new Uint32Array( buffer_a )
+
+    let at_n = 0
+
+    for
+    (
+      const array_a
+      of
+      arg_a
+    )
+    {
+      for
+      (
+        const unit_n
+        of
+        array_a
+      )
+      {
+        view_a
+          [at_n++] =
+            unit_n
+      }
+    }
+
+    return view_a
   }
   ,
 
@@ -196,7 +255,7 @@ const IMG_o =
     
     return (
       IMG_o
-        .concat__a
+        .view__a
         (
           [
             hueLookup_a,
@@ -207,6 +266,28 @@ const IMG_o =
               .flat()
           ]
         )
+    )
+  }
+  ,
+
+
+
+
+  data__a: async function
+  (
+    src_s,
+    dest_s
+  )
+  {
+    return (
+      F_o
+        .exist__b( dest_s )
+      ?
+        void console.log( `Already there:\t${dest_s}` )
+      :
+        await SHA_o( src_s )
+          .raw()
+          .toBuffer()
     )
   }
   ,
@@ -232,85 +313,6 @@ const IMG_o =
 
 
 
-  concat__a:
-  (
-    arg_a
-  ) =>
-  {
-    let size_n = 0
-
-    for
-    (
-      const array_a
-      of
-      arg_a
-    )
-    {
-      size_n +=
-        array_a
-          .length
-    }
-
-    //;console.log( size_n )
-
-    const buffer_a =
-      new ArrayBuffer
-      (
-        size_n
-        *
-        Uint32Array
-          .BYTES_PER_ELEMENT
-      )
-  
-    const view_a =
-      new Uint32Array( buffer_a )
-
-    let at_n = 0
-
-    for
-    (
-      const array_a
-      of
-      arg_a
-    )
-    {
-      for
-      (
-        const unit_n
-        of
-        array_a
-      )
-      {
-        view_a
-          [at_n++] =
-            unit_n
-      }
-    }
-
-    return view_a
-  }
-  ,
-
-
-
-
-  write__v:
-  (
-    dest_s,
-    buffer_a
-  ) =>
-    FS_o
-      .writeFile
-      (
-        dest_s,
-        buffer_a,
-        'utf8',
-        out_o => console.log( `-- Writing ${dest_s}: ${out_o}` )
-      )
-  ,
-
-
-
   create__v: async function
   (
     ior_o
@@ -324,7 +326,7 @@ const IMG_o =
             .inputDir_s,
           ior_o
             .id_s,
-          C_o
+          I_o
             .IMG_DEFAULT_a
         )
 
@@ -336,13 +338,13 @@ const IMG_o =
             .outputDir_s,
           ior_o
             .id_s,
-          C_o
+          I_o
             .SCAN_DEFAULT_a
         )
 
     const data_o =
       await IMG_o
-        .load__a
+        .data__a
         (
           src_s,
           dest_s
