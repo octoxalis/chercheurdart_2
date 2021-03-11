@@ -33,6 +33,7 @@
 
 
 [Renaissance][0]
+[F. Boucher Arion 1748][1]
 
 
 <footer>
@@ -59,3 +60,4 @@ En effet, toutes les images du site sont au format AVIF, une technique d'encodag
 {{U_o.E11TY_R_s}}
 
 [0]: renaissance.html#Introduction
+[1]: 1703_boucher-princeton_university-1748_arion.html#Introduction
