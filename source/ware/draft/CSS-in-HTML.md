@@ -48,14 +48,14 @@
     
 
 
-`HTML comment with =`
-### current HTML tag CSS declaration
-```
-<body>
-<!--=
-background: var(--bgcolor);
--->
-```
+`HTML comment open followed by =`
+### CSS declaration for current HTML tag
+  + `<!--=  background: var(--bgcolor);  -->`
+    ```
+    {
+      background: var(--bgcolor);
+    }
+    ```
 ----
 
 
@@ -118,7 +118,7 @@ _mutiple_
 
 `<tag:pseudo>`
 ### pseudo selector
-_mutiple pseudo are separated by space_
+_mutiple_
   + `<p:hover>`
     ```
     p:hover
