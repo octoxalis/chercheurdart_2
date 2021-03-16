@@ -2,7 +2,7 @@
 {
   layout:    'frame.njk',
   permalink: 'renaissance.html',
-  tags:      [ 'notag' ],
+  tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 

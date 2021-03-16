@@ -2,7 +2,7 @@
 {
   layout:    'frame.njk',
   permalink: '1703_boucher-princeton_university-1748_arion.html',
-  tags:      [ 'notag' ],
+  tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
@@ -34,6 +34,10 @@
 ---
 [comment]: # (======================== Introduction ========================)
 {% section section_a[0] %}
+
+Analyse de l'oeuvre...
+
+
 {% end_section %}
 
 
@@ -42,6 +46,15 @@
 [comment]: # (======================== Étude ========================)
 
 {% section section_a[1] %}
+
+{% anchor "### Colorimétrie" %}
+
++  [scan][0]
++  [burst][1]
+
+{% anchor "### Composition" %}
+
+
 {% end_section %}
 
 
@@ -55,3 +68,5 @@
 
 
 [comment]: # (======================== Links ========================)
+[0]: 1703_boucher-princeton_university-1748_arion__scan.html
+[1]: 1703_boucher-princeton_university-1748_arion__burst.html

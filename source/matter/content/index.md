@@ -2,7 +2,7 @@
 {
   layout:    'frame.njk',
   permalink: 'index.html',
-  tags:      [ 'notag' ],
+  tags:      [ 'index' ],
   eleventyExcludeFromCollections: false,
   //--expires_n: 10,
 
@@ -59,5 +59,5 @@ En effet, toutes les images du site sont au format AVIF, une technique d'encodag
 
 {{U_o.E11TY_R_s}}
 
-[0]: renaissance.html#Introduction
-[1]: 1703_boucher-princeton_university-1748_arion.html#Introduction
+[0]: renaissance.html
+[1]: 1703_boucher-princeton_university-1748_arion.html
