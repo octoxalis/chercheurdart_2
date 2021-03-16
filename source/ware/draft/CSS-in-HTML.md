@@ -1,22 +1,24 @@
+`HTML comment`
+### HTML comment
+  + `<!-- a comment -->`
+    ```
+    <!--
+      a multiline
+      comment
+    -->
+    ```
+----
+
+
+
 `CSS comment`
 ### CSS rule comment
-  + `/* a comment */`
+  + `<body /* a comment */>`
     ```
-    /* a comment */
+    <body /* a comment */>
     ```
 ----
 
-
-
-`HTML comment WITHOUT indentation`
-### current HTML tag CSS declaration
-```
-<body>
-<!--
-background: var(--bgcolor);
--->
-```
-----
 
 
 `def identifier`
@@ -46,9 +48,20 @@ background: var(--bgcolor);
     
 
 
-`<tag|>`
+`HTML comment with =`
+### current HTML tag CSS declaration
+```
+<body>
+<!--=
+background: var(--bgcolor);
+-->
+```
+----
+
+
+`< tag >`
 ### standalone selector
-  + `<a|>`
+  + `< a >`
     ```
     a
     {...}
@@ -57,9 +70,9 @@ background: var(--bgcolor);
 
 
 
-`<tag>`
+`<|tag>`
 ### parent child selector
-  + `<body>    <header>`
+  + `<body>    <|header>`
     ```
     body > header
       {...}
@@ -68,20 +81,9 @@ background: var(--bgcolor);
 
 
 
-`<tag[*]>`
-### universal descendant selector
-  + `<body *>`
-    ```
-    body > header
-      {...}
-    ```
-----
-
-
-
-`<tag[ ]>`
+`<| tag>`
 ### descendant selector
-  + `<p>    <em [ ]>`
+  + `<p>    <| em>`
   ```
   p em
     {...}
@@ -90,48 +92,24 @@ background: var(--bgcolor);
 
 
 
-`<tag[+]>`
+`<|+tag>`
 ### adjacent sibling selector
 ----
 
 
 
-`<tag[~]>`
+`<|~tag>`
 ### general sibling selector
-  + `<ins [~]`
-----
-
-
-
-`<tag[.class]>`
-### class selector
-_mutiple classes are separated by space_
-  + `<p [.wide .dark]`
-    ```
-    p.wide.dark
-      {...}
-----
-
-
-
-`[attribute=value]`
-### attribute selector
-_mutiple attributes are separated by space_
-  + `<use [href="#icon_close"]>`
-    ```
-    [href="#icon_close"]
-      {...}
-    ```
 ----
 
 
 
 `<tag[attribute=value]>`
 ### attribute selector
-_mutiple attributes are separated by space_
-  + `aside[id="gray]"`
+_mutiple_
+  + `<aside[data--="gray]">`
     ```
-    <aside id="gray">
+    aside[data--="gray"]
       {...}
     ```
 ----
