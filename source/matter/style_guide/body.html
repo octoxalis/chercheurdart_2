@@ -1,20 +1,25 @@
-</html>
+<html>
+  <!--=
   margin:0;
   padding:0;
   box-sizing:border-box;
+  -->
 
   <body>
+    <!--=
     position:relative;
-    font-family:Cantarell Regular, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif;
-    font-weight:300;
-    line-height:1.5;
     color:var(--textcolor);
     background:var(--bgcolor);
+    font-family:Cantarell Regular, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif;
     font-size:clamp( var(--font_size-min, 1rem ),
                       calc(1rem + var(--font_size-target, 3vw) ),
                       var(--font_size-max, 1.3rem) );
+    font-weight:300;
+    line-height:1.5;
+    -->
 
     <header>
+      <!--=
       z-index:2;
       position:absolute;
       display:flex;
@@ -23,23 +28,32 @@
       width:100%;
       background:var(--bgcolor);
       line-height:1;
+      -->
     </header>
 
     <main id="main">
     </main>
 
     <aside id="gray">
+      <!--= > *
+      display: none;
+      -->
     </aside>
 
     <aside id="color">
+      <!--= > *
+      display: none;
+      -->
     </aside>
 
     <svg id="svg_symbols">
+      <!--=
       display: none;
       stroke:var(--highlight);
       stroke-width:1;
       stroke-linecap:round;
-      stroke-linejoin:round
+      stroke-linejoin:round;
+      -->
     </svg>
 
   </body>
