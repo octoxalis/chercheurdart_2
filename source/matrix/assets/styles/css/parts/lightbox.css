@@ -24,7 +24,6 @@ a > button {
   z-index: 5;
   width:  1.5em;
   height: 1.5em;
-  
   border: 0;
   border-radius: 50%;
   color: var(--highlight);
