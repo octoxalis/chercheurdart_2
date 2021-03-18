@@ -1,0 +1,10 @@
+CONDITION = (condition)
+
+condition = :pseudo |
+            [attribute=value] |
+            #ID |
+            ~ |          //: General Sibling Selector
+            + |          //: Adjacent Sibling Selector
+            > |          //: Child Selector
+            \s           //: Descendant Selector  (default)
+
