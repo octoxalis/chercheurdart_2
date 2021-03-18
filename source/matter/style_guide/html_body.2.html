@@ -1,8 +1,5 @@
 <html>
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  <body>
+  <body>    <!--body-->
     position:relative;
     color:var(--textcolor);
     background:var(--bgcolor);
@@ -12,7 +9,7 @@
                      var(--font_size-max, 1.3rem) );
     font-weight:300;
     line-height:1.5;
-    <header>
+    <header>    <!--body > header-->
       z-index:2;
       position:absolute;
       display:flex;
@@ -22,14 +19,14 @@
       background:var(--bgcolor);
       line-height:1;
     </header>
-    <main id="main"></main>
-    <aside id="gray">
+    <main></main>
+    <aside id="gray">    <!--body > aside#gray-->
       display: none;
     </aside>
-    <aside id="color">
+    <aside id="color">    <!--body > aside#color-->
       display: none;
     </aside>
-    <svg id="svg_symbols">
+    <svg>    <!--body > svg-->
       display: none;
       stroke:var(--highlight);
       stroke-width:1;
