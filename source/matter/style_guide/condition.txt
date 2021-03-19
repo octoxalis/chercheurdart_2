@@ -1,10 +1,28 @@
-CONDITION = (condition)
+<outer_tag>
+  background:blue;      <!--outer_tag-->
+:target                 <!--outer_tag:target-->
+  background:green;
+[attribute]             <!--outer_tag[attribute]-->
+  background:red;
+  <nested_tag1>            <!--outer_tag > nested_tag1-->
+    background:white;
+  </nested_tag1>
+  ~
+  <nested_tag2>            <!--nested_tag1 ~ nested_tag2-->
+    background:black;
+  </nested_tag2>
+  +                     <!--precedence: more specific-->
+  <nested_tag3>            <!--nested_tag2 + nested_tag3-->
+    background:gray;
+  </nested_tag3>
+</outer_tag>
 
-condition = :pseudo |
-            [attribute=value] |
-            #ID |
-            ~ |          //: General Sibling Selector
-            + |          //: Adjacent Sibling Selector
-            > |          //: Child Selector
-            \s           //: Descendant Selector  (default)
+<rule>
+  :condition,
+  [condition]
+      nested in tag, at same indentation
 
+  +,
+  ~
+  between previous and following tag, same indentation
+</rule>

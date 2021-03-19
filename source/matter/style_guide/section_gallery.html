@@ -1,0 +1,54 @@
+<section>
+  <aside>
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    <figure>
+    [id^="{{C_o.SLIDE_ID_s}}"]
+        position: relative;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        /*align-content: center;*/
+        scroll-snap-align: center;
+        cursor: all-scroll;
+      <img>
+          max-height: 100vh;
+      <figcaption>
+          z-index: 4;
+          display: grid;
+          place-items: center;
+          position: absolute;
+          bottom: 5vh;
+          padding: 2em;
+          border: 1px solid var(--textcolor);
+          border-radius: 8px;
+          background: var(--bgcolor);
+          opacity: 0;
+          transition: opacity .5s ease;
+      :hover
+          box-shadow: 0 0 0 100vmax var(--shadow_hi);
+          opacity: 1;
+          transition: opacity .5s ease;
+        <b>
+            display: table;
+        :nth-of-type(1)
+            --font_size-max: 1.5rem;
+            font-weight: 600;
+        :nth-of-type(2)
+            --font_size-max: 1.25rem;
+            font-weight: 400;
+          <i>
+          :first-of-type::after
+              content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
+          </i>
+        </b>
+      </figcaption>
+    </figure>
+  </aside>
+</section>
