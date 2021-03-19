@@ -1,16 +1,15 @@
 <aside>
+#gray
+    --cursor_svg:cursor_gray.svg;
+#color
+    --cursor_svg:cursor_color.svg;
   <figure>
       display:none;
   </figure>
-  <a>
+  +
+  <a>    <!--aside > figure + a-->
       display:none;
   </a>
-</aside>
-
-
-
-
-<aside>
   <figure>
   :target
       z-index:3;
@@ -22,12 +21,22 @@
       bottom:0;
       left:0;
       background:var(--bgcolor);
-    <a>
+    <a>    <!--aside > figure:targert > a-->
+        z-index: 3;
+        position: fixed;
+        display: block;
+        top: {{C_o.PAD_2}};
+        left: 50%;
       <img>
+          z-index: 4;
+          max-width: {{C_o.FULL_WIDTH}};
+          max-height: {{C_o.FULL_HEIGHT}};
+          object-fit: scale-down;
+          cursor: url(var(--cursor_svg)), auto;
     </a>
   </figure>
   +
-  <a>
+  <a>    <!--aside > figure:targert + a-->
       position:fixed;
       z-index:3;
     <button>

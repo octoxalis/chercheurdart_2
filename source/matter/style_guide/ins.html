@@ -1,0 +1,49 @@
+<p>
+  <label>    <!--⊷: open insert-->
+  [for^="I"]
+      --font_size-max: .75rem;
+      z-index: 5;
+      margin-right: {{C_o.PAD_2}};
+      vertical-align: middle;
+      cursor: pointer;
+  :hover
+      color: var(--highlight);
+  </label>
+  +
+  <input>
+  [id^="I"]
+      display: none;
+  +
+  <ins>
+      display: none;
+  </ins>
+</p>
+
+
+
+
+<p>
+  <label>
+  [for^="I"]
+  </label>
+  +
+  <input>
+  [id^="I"]
+  :checked
+  +
+  <ins>
+      display: block;
+      --font_size-max: .95rem;
+      position: relative;
+      margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
+      padding: {{C_o.PAD_4}};
+      background: var(--insert);
+      text-decoration: none;
+      border-radius: 4px;
+      /*
+      box-shadow: 0 1px 1px var(--shadow),
+                  0 2px 2px var(--shadow),
+                  0 4px 4px var(--shadow);
+      */
+  </ins>
+</p>
