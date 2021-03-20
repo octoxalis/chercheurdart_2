@@ -1,20 +1,21 @@
 <p>
-  <label>    <!--⊷: open insert-->
+  <label>
   [for^="I"]
-      --font_size-max: .75rem;
       z-index: 5;
       margin-right: {{C_o.PAD_2}};
       vertical-align: middle;
+      --font_size-max: .75rem;
       cursor: pointer;
+  :hover
+      color: var(--highlight);
   </label>
   +
   <input>
   [id^="I"]
       display: none;
-      +
+  +
   <ins>
       display: none;
-      --font_size-max: .95rem;
       position: relative;
       margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
       padding: {{C_o.PAD_4}};
@@ -26,46 +27,18 @@
                   0 2px 2px var(--shadow),
                   0 4px 4px var(--shadow);
       */
-    <label for="I9112" tabindex="0">    <!--×: close insert-->
-    [for^="I"]
-    </label>
-                                        <!--...text insertion...-->
+      --font_size-max: .95rem;
   </ins>
-</p>
-
-
-
-
-<p>
-  <label>    <!--⊷: open insert-->
+  <!-- || -->
+  <label>
   [for^="I"]
   </label>
   +
-  <input type="checkbox">
+  <input>
   [id^="I"]
+  :checked
   +
-  <ins>        <!--p > label + input + ins-->
-    <label>    <!--×: close insert-->
-    [for^="I"]
-    </label>
-    +
-    <a>
-    [href^="#"]
-      <img>
-    </a>
-    +
-    <b>
-        display: table;
-    :nth-of-type(1)
-        --font_size-max: 1.5rem;
-        font-weight: 600;
-    :nth-of-type(2)
-        --font_size-max: 1.25rem;
-        font-weight: 400;
-      <i>
-      :first-of-type::after
-          content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
-      </i>
-    </b>
+  <ins>
+      display: block;
   </ins>
 </p>

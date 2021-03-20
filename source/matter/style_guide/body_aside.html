@@ -1,42 +1,59 @@
-<aside>            <!--id="gray"-->
-  <figure>            <!--id="G9164"-->
-    <!--=
-    display: none;
-    -->
-    <!--= :target
-    position: fixed;
-    z-index: 3;
-    display: grid;
-    place-items: center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: var(--bgcolor);
-    -->
-    <a>            <!-- href="#C9164"-->
-      <img>
+<aside>
+#gray
+    --cursor_svg:cursor_gray.svg;
+#color
+    --cursor_svg:cursor_color.svg;
+  <figure>    <!-- /+/ -->
+      display:none;
+      z-index:3;
+      position:fixed;
+      top:0;
+      right:0;
+      bottom:0;
+      left:0;
+      background:var(--bgcolor);
+  </figure>
+  +
+  <a>    <!-- /+/ -->
+      display:none;
+      z-index: 3;
+      position: fixed;
+      top: {{C_o.PAD_2}};
+      left: 50%;
+    <img>
+        z-index: 4;
+        max-width: {{C_o.FULL_WIDTH}};
+        max-height: {{C_o.FULL_HEIGHT}};
+        object-fit: scale-down;
+        cursor: url(var(--cursor_svg)), auto;
+  </a>
+  <!-- || -->
+  <figure>    <!-- /+/ -->
+  :target
+      display:grid;
+      place-items:center;
+    <a>
+        display: block;
     </a>
   </figure>
-  <a>            <!-- href="#Étude"-->
-    <!--= figure:target ~
-    z-index: 3;
-    position: fixed;
-    -->
-    <button>            <!--×-->
-      <!--=
-      z-index: 5;
-      width:  1.5em;
-      height: 1.5em;
-      
-      border: 0;
-      border-radius: 50%;
-      color: var(--highlight);
-      background: var(--bg_lower);
-      font-size: 2em;
-      opacity: .5;
-      cursor: pointer;
-      -->
+  +
+  <a>    <!-- /+/ -->
+      position:fixed;
+      z-index:3;
+    <button>
+        z-index:5;
+        width:1.5em;
+        height:1.5em;
+        border:0;
+        border-radius:50%;
+        color:var(--highlight);
+        background:var(--bg_lower);
+        font-size:2em;
+        opacity:.5;
+        cursor:pointer;
+    :hover
+        opacity:1;
+        filter:brightness(2);
     </button>
   </a>
 </aside>
