@@ -3,7 +3,7 @@
     --cursor_svg:cursor_gray.svg;
 #color
     --cursor_svg:cursor_color.svg;
-  <figure>    <!-- /+/ -->
+  <figure>    <!--  /+/  -->
       display:none;
       z-index:3;
       position:fixed;
@@ -12,9 +12,12 @@
       bottom:0;
       left:0;
       background:var(--bgcolor);
-  </figure>
+    <a>
+      <img>
+    </a>
+    </figure>
   +
-  <a>    <!-- /+/ -->
+  <a>    <!--  /+/  -->
       display:none;
       z-index: 3;
       position: fixed;
@@ -27,19 +30,17 @@
         object-fit: scale-down;
         cursor: url(var(--cursor_svg)), auto;
   </a>
-
-  ||
-  
-  <figure>    <!-- /+/ -->
+  <!--  ||  -->
+  <figure>    <!--  /+/  -->
   :target
       display:grid;
       place-items:center;
     <a>
-        display: block;
+      <img>
     </a>
   </figure>
   +
-  <a>    <!-- /+/ -->
+  <a>    <!--  /+/  -->
       position:fixed;
       z-index:3;
     <button>
