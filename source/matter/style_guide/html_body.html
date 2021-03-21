@@ -46,7 +46,8 @@
         width:{{C_o.FULL_WIDTH}};
         min-height:{{C_o.FULL_HEIGHT}};
         background:var(--bgcolor);
-    :first-of-type
+    :first-of-type,
+    :target
         display:block;
       <h2>
           margin-top:{{C_o.PAD_12}};
@@ -67,13 +68,13 @@
                       0 2px 2px currentColor,
                       0 4px 4px currentColor;
           filter: brightness(.3);
-      <!--=== includes main_section.html === -->
     </section>
-    <!--=== includes section_aside.html === -->
+    url( main_section.html )
+    url( section_aside.html )
   </main>
   <aside>    <!--  /+/  -->
     display:none;
-  <!--=== includes body_aside.html === -->
+  url( body_aside.html )
   </aside>
   <svg>
     display:none;
