@@ -83,7 +83,7 @@ module.exports =
           (
             match_a[0],    //: <ins data--="...">...</ins>
             `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.U_IMAGE_OF_s}</label>`
-            + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox">`
+            + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
             + `<ins>`      //: remove ins tag data-- attribute
             + `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.CLOSE_CHAR_s}</label>`
             + insert_s
@@ -387,7 +387,7 @@ textLine__v:
         + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
         + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n++]})"`        //: increment at_n
         + ` width="${width_n}" height="${height_n}"`
-        + ` loading="lazy">`
+        + ` loading="lazy" />`
         + `</a>`
         + INS_o.legend_s
 
@@ -404,7 +404,7 @@ textLine__v:
           +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
           +   ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n++]})"`        //: increment at_n
           +   ` width="${width_n}" height="${height_n}"`
-          +   ` loading="lazy">`
+          +   ` loading="lazy" />`
           + `</a>`
 
           + `</figure>`
@@ -423,7 +423,7 @@ textLine__v:
           +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
           +   ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
           +   ` width="${width_n}" height="${height_n}"`
-          +   ` loading="lazy">`
+          +   ` loading="lazy" />`
           + `</a>`
           
           + `</figure>`
@@ -438,7 +438,7 @@ textLine__v:
           + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
           + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
           + ` width="${width_n}" height="${height_n}"`
-          + ` loading="lazy">`
+          + ` loading="lazy" />`
 
           + `<figcaption>`
           +   INS_o
