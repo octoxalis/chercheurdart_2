@@ -87,22 +87,11 @@ const CSS_o =
       
       if
       (
-        atMethod_s
-        !==
         method_s
       )
       {
-        atMethod_s =
-          method_s
-      }
-
-      if
-      (
-        atMethod_s
-      )
-      {
         CSS_o
-          [ `process${atMethod_s}__v` ]( line_s )
+          [ `process${method_s}__v` ]( line_s )
       }
 
       ++line_n
@@ -408,8 +397,6 @@ const CSS_o =
     line_s
   ) =>
   {
-    console.log( CSS_o.tagStack_a )
-
     const url_a =
       line_s
           .match( /url\s?\(\s?([\w.]+?)\s?\)/i )
