@@ -261,12 +261,12 @@ const CSS_o =
               'RuleTail'
         )
     
-      case
-        char_s
-        ===
-        ':'
-      :
-        return 'Pseudo'
+      //~~case
+      //~~  char_s
+      //~~  ===
+      //~~  ':'
+      //~~:
+      //~~  return 'Pseudo'
     
       case
         char_s
@@ -348,8 +348,8 @@ const CSS_o =
     CSS_o
       .add__v()
 
-    CSS_o
-      .popPseudo__v()
+    //~~CSS_o
+    //~~  .popPseudo__v()
 
     CSS_o
       .popSelfClose__v()
@@ -380,8 +380,8 @@ const CSS_o =
     CSS_o
       .add__v()
 
-    CSS_o
-      .popPseudo__v()
+    //~~CSS_o
+    //~~  .popPseudo__v()
 
     CSS_o
       .popSelfClose__v()
@@ -517,18 +517,18 @@ const CSS_o =
         }
 
         selector_s +=
-          part_s
-            .charAt( 0 )
-          ===
-          ':'
-          ?
-            `${part_s}`
-          :
+          //~~part_s
+          //~~  .charAt( 0 )
+          //~~===
+          //~~':'
+          //~~?
+          //~~  `${part_s}`
+          //~~:
             selector_s
             ?
             ` > ${part_s}`
             :
-            `${part_s}`
+            `${part_s}`    //: root selector
       }
   
       const ruleset_s =
@@ -549,43 +549,43 @@ const CSS_o =
 
 
 
-  popPseudo__v:
-  () =>
-  {
-    //;console.log( CSS_o.tagStack_a[CSS_o.tagStack_a.length - 1] )
-
-   if
-   (
-     CSS_o
-       .tagStack_a
-         .length
-     >
-     2    //: tag + pseudo
-   )
-   {
-      let last_s =
-        CSS_o
-          .lastTag__s()
-  
-      while
-      (
-        last_s
-          .charAt( 0 )
-        ===
-        ':'
-      )
-      {
-        CSS_o
-          .tagStack_a
-            .pop()         //: remove previous pseudo rule
-  
-        last_s =
-          CSS_o
-            .lastTag__s()
-      }
-    }
-  }
-  ,
+  //~~popPseudo__v:
+  //~~() =>
+  //~~{
+  //~~  //;console.log( CSS_o.tagStack_a[CSS_o.tagStack_a.length - 1] )
+  //~~
+  //~~ if
+  //~~ (
+  //~~   CSS_o
+  //~~     .tagStack_a
+  //~~       .length
+  //~~   >
+  //~~   2    //: tag + pseudo
+  //~~ )
+  //~~ {
+  //~~    let last_s =
+  //~~      CSS_o
+  //~~        .lastTag__s()
+  //~~
+  //~~    while
+  //~~    (
+  //~~      last_s
+  //~~        .charAt( 0 )
+  //~~      ===
+  //~~      ':'
+  //~~    )
+  //~~    {
+  //~~      CSS_o
+  //~~        .tagStack_a
+  //~~          .pop()         //: remove previous pseudo rule
+  //~~
+  //~~      last_s =
+  //~~        CSS_o
+  //~~          .lastTag__s()
+  //~~    }
+  //~~  }
+  //~~}
+  //~~,
 
 
 

@@ -48,10 +48,6 @@ min-height:{{C_o.FULL_HEIGHT}};
 background:var(--bgcolor);
 }
 
-body > main > section:target {
-display:block;
-}
-
 body > main > section > h2 {
 margin-top:{{C_o.PAD_12}};
 max-width:60ch;
@@ -69,6 +65,14 @@ border-style: outset;
 opacity: .25;
 box-shadow: 0 1px 1px currentColor, 0 2px 2px currentColor, 0 4px 4px currentColor;
 filter: brightness(.3);
+}
+
+body > main > section:target {
+display:block;
+}
+
+body > main > section:first-of-type {
+display:block;
 }
 
 body > aside {

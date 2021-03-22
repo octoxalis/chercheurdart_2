@@ -35,7 +35,9 @@
     <li>
         margin-bottom: {{C_o.PAD_1}};
         padding-left: {{C_o.PAD_8}};
-    :before
+    </li>
+    <!--=== || ===-->
+    <li:before>
         content: "XX";
         position: relative;
         left: 1ch;
@@ -45,7 +47,7 @@
         opacity: .4;
     </li>
   </ul>
-  =
+  <!-- = -->
   <ol>
       list-style-type: decimal;
   </ol>
@@ -59,25 +61,27 @@
     <a>
         text-decoration: none;
         color: currentColor;
-    :hover
+    </a>
+    <!--=== || ===-->
+    <a:hover>
         border-bottom: 1px solid;
         filter: brightness(.75);
-    :hover:after
+    </a>
+    <!--=== || ===-->
+    <a:hover:after>
         color: var(--highlight);
         opacity: 1;
     </a>
 
   <!--=== || ===-->
 
-    <a>
-    [a:not([name]):not([href*="//"]):after]
+    <a:not([name]):not([href*="//"]):after>
         content: "\{{C_o.INT_ARROW_s}}";
     </a>
 
   <!--=== || ===-->
 
-    <a>
-    [href*="//"]:after]
+    <a[href*="//"]:after]>
         content: "\{{C_o.EXT_ARROW_s}}";
     </a>
   </p>
@@ -94,19 +98,18 @@
   <!--=== || ===-->
 
   <p>
-    <label>
-    [for^="I"]
+    <label[for^="I"]>
         z-index: 5;
         margin-right: {{C_o.PAD_2}};
         vertical-align: middle;
         --font_size-max: .75rem;
         cursor: pointer;
-    :hover
+    </label>
+    <label[for^="I"]:hover>
         color: var(--highlight);
     </label>
     +
-    <input/>
-    [id^="I"]
+    <input[id^="I"]/>
         display: none;
     +
     <ins>
@@ -127,13 +130,10 @@
 
     <!--=== || ===-->
 
-    <label>
-    [for^="I"]
+    <label[for^="I"]>
     </label>
     +
-    <input/>
-    [id^="I"]
-    :checked
+    <input[id^="I"]:checked/>
     +
     <ins>
         display: block;

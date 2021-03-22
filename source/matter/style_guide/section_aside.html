@@ -30,23 +30,28 @@
           background: var(--bgcolor);
           opacity: 0;
           transition: opacity .5s ease;
-      :hover
-          box-shadow: 0 0 0 100vmax var(--shadow_hi);
-          opacity: 1;
-          transition: opacity .5s ease;
         <b>    <!--  /+/  -->
             display: table;
-        :nth-of-type(1)
-            --font_size-max: 1.5rem;
-            font-weight: 600;
-        :nth-of-type(2)
-            --font_size-max: 1.25rem;
-            font-weight: 400;
-          <i>
-          :first-of-type::after
+          <i:first-of-type::after>
               content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
           </i>
         </b>
+        <!--=== || ===-->
+        <b:nth-of-type(1)>
+            --font_size-max: 1.5rem;
+            font-weight: 600;
+        </b>
+        <!--=== || ===-->
+        <b:nth-of-type(2)>
+            --font_size-max: 1.25rem;
+            font-weight: 400;
+        </b>
+      </figcaption>
+      <!--=== || ===-->
+      <figcaption:hover>
+        box-shadow: 0 0 0 100vmax var(--shadow_hi);
+        opacity: 1;
+        transition: opacity .5s ease;
       </figcaption>
     </figure>
   </aside>

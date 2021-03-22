@@ -32,8 +32,7 @@
       </a>
     </h1>
     <nav>
-      <a>    <!--  /+/  -->
-      :not(:last-of-type))
+      <a:not(:last-of-type))>    <!--  /+/  -->
           margin-right:{{C_o.PAD_8}};
       </a>
     </nav>
@@ -46,9 +45,6 @@
         width:{{C_o.FULL_WIDTH}};
         min-height:{{C_o.FULL_HEIGHT}};
         background:var(--bgcolor);
-    <!--...:first-of-type,-->
-    :target
-        display:block;
       <h2>
           margin-top:{{C_o.PAD_12}};
           max-width:60ch;
@@ -69,6 +65,14 @@
                       0 2px 2px currentColor,
                       0 4px 4px currentColor;
           filter: brightness(.3);
+    </section>
+    <!--=== || ===-->
+    <section:target>
+        display:block;
+    </section>
+    <!--=== || ===-->
+    <section:first-of-type>
+        display:block;
     </section>
     <!--...url( main_section.html ) -->
     <!--...url( section_aside.html )-->
