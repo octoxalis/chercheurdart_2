@@ -12,6 +12,8 @@ const CSS_o =
 
   tagStack_a: [],
 
+  lastTag_s: '',
+
   lastRuleset: '',
 
   css_s : '',
@@ -386,10 +388,11 @@ const CSS_o =
     CSS_o
       .popSelfClose__v()
 
-    const tag_s =
-      CSS_o
-        .tagStack_a
-          .pop()
+    CSS_o
+      .lastTag_s =
+        CSS_o
+          .tagStack_a
+            .pop()
 
     ;console.log( CSS_o.tagStack_a )
   }
@@ -410,25 +413,25 @@ const CSS_o =
 
 
 
-  processPseudo__v:
-  (
-    line_s
-  ) =>
-  {
-    //;console.log( `processPseudo__v: ${line_s}` )
-
-    CSS_o
-      .add__v()
-
-    CSS_o
-      .tagStack_a
-        .push
-        (
-          line_s
-            .trim()            //: strip possible space
-        )
-  }
-  ,
+  //~~processPseudo__v:
+  //~~(
+  //~~  line_s
+  //~~) =>
+  //~~{
+  //~~  //;console.log( `processPseudo__v: ${line_s}` )
+  //~~
+  //~~  CSS_o
+  //~~    .add__v()
+  //~~
+  //~~  CSS_o
+  //~~    .tagStack_a
+  //~~      .push
+  //~~      (
+  //~~        line_s
+  //~~          .trim()            //: strip possible space
+  //~~      )
+  //~~}
+  //~~,
     
 
 
@@ -451,6 +454,16 @@ const CSS_o =
   ) =>
   {
     //;console.log( `processGeneralSibling__v: ${line_s}` )
+
+    CSS_o
+      .tagStack_a
+        .push
+        (
+          CSS_o
+            .lastTag_s
+          +
+          ' ~ '
+        )
   }
   ,
     
@@ -463,6 +476,16 @@ const CSS_o =
   ) =>
   {
     //;console.log( `processAdjacentSibling__v: ${line_s}` )
+
+    CSS_o
+      .tagStack_a
+        .push
+        (
+          CSS_o
+            .lastTag_s
+          +
+          ' + '
+        )
   }
   ,
     
@@ -525,6 +548,9 @@ const CSS_o =
           //~~  `${part_s}`
           //~~:
             selector_s
+            &&
+            ! selector_s
+              .endsWith( '+ ' )
             ?
             ` > ${part_s}`
             :

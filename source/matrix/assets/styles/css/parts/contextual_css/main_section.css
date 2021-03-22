@@ -77,11 +77,11 @@ section > p > label[for^="I"]:hover {
 color: var(--highlight);
 }
 
-section > p > input[id^="I"] {
+section > p > label[for^="I"]:hover + input[id^="I"] > label[for^="I"]:hover +  {
 display: none;
 }
 
-section > p > ins {
+section > p > label[for^="I"]:hover + input[id^="I"] > label[for^="I"]:hover + ins {
 display: none;
 position: relative;
 margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
@@ -92,7 +92,7 @@ border-radius: 4px;
 --font_size-max: .95rem;
 }
 
-section > p > ins {
+section > p > label[for^="I"]:hover + input[id^="I"] > label[for^="I"]:hover + label[for^="I"] + input[id^="I"]:checked > label[for^="I"] + ins {
 display: block;
 }
 
