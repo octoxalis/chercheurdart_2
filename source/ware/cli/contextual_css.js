@@ -263,20 +263,6 @@ const CSS_o =
               'RuleTail'
         )
     
-      //~~case
-      //~~  char_s
-      //~~  ===
-      //~~  ':'
-      //~~:
-      //~~  return 'Pseudo'
-    
-      case
-        char_s
-        ===
-        '['
-      :
-        return 'Attribute'
-    
       case
         char_s
         ===
@@ -350,9 +336,6 @@ const CSS_o =
     CSS_o
       .add__v()
 
-    //~~CSS_o
-    //~~  .popPseudo__v()
-
     CSS_o
       .popSelfClose__v()
 
@@ -365,7 +348,7 @@ const CSS_o =
             .trim()            //: strip possible space
         )
 
-    ;console.log( CSS_o.tagStack_a )
+    //;console.log( CSS_o.tagStack_a )
   }
   ,
     
@@ -382,9 +365,6 @@ const CSS_o =
     CSS_o
       .add__v()
 
-    //~~CSS_o
-    //~~  .popPseudo__v()
-
     CSS_o
       .popSelfClose__v()
 
@@ -394,7 +374,7 @@ const CSS_o =
           .tagStack_a
             .pop()
 
-    ;console.log( CSS_o.tagStack_a )
+    //;console.log( CSS_o.tagStack_a )
   }
   ,
     
@@ -407,41 +387,6 @@ const CSS_o =
   ) =>
   {
     //;console.log( `processUrl__v: ${line_s}` )
-  }
-  ,
-    
-
-
-
-  //~~processPseudo__v:
-  //~~(
-  //~~  line_s
-  //~~) =>
-  //~~{
-  //~~  //;console.log( `processPseudo__v: ${line_s}` )
-  //~~
-  //~~  CSS_o
-  //~~    .add__v()
-  //~~
-  //~~  CSS_o
-  //~~    .tagStack_a
-  //~~      .push
-  //~~      (
-  //~~        line_s
-  //~~          .trim()            //: strip possible space
-  //~~      )
-  //~~}
-  //~~,
-    
-
-
-
-  processAttribute__v:
-  (
-    line_s
-  ) =>
-  {
-    //;console.log( `processAttribute__v: ${line_s}` )
   }
   ,
     
@@ -462,7 +407,7 @@ const CSS_o =
           CSS_o
             .lastTag_s
           +
-          ' ~ '
+          ' ~ '  //!!!  endsWith space
         )
   }
   ,
@@ -484,7 +429,7 @@ const CSS_o =
           CSS_o
             .lastTag_s
           +
-          ' + '
+          ' + '  //!!! endsWith space
         )
   }
   ,
@@ -518,43 +463,46 @@ const CSS_o =
   
       for
       (
-        let part_s
+        let at_s
         of
         CSS_o
           .tagStack_a
       )
       {
+        //;console.log( `stack: --${at_s}--` )
+
+        //~~const atStack_s =
+        //~~  at_s
+
         if
         (
-          part_s
+          at_s
             .endsWith( '/' )    //: self-closing tag
         )
         {
-          part_s =
-            part_s
+          at_s =
+            at_s
               .slice
               (
                 0,
                 -1    //: strip '/'
               )
         }
+        
+        ;console.log( `selector: --${selector_s}--` )
 
         selector_s +=
-          //~~part_s
-          //~~  .charAt( 0 )
-          //~~===
-          //~~':'
-          //~~?
-          //~~  `${part_s}`
-          //~~:
-            selector_s
-            &&
-            ! selector_s
-              .endsWith( '+ ' )
-            ?
-            ` > ${part_s}`
-            :
-            `${part_s}`    //: root selector
+          ! selector_s    //: root selector
+          ||
+          selector_s
+            .endsWith( ' ' )  //: sibling selector (endsWith space)
+          //~~||
+          //~~atStack_s
+          //~~  .endsWith( '+' )  //: self-closing selector
+          ?
+            `${at_s}`
+          :
+            ` > ${at_s}`
       }
   
       const ruleset_s =
@@ -627,8 +575,32 @@ const CSS_o =
     {
       CSS_o
         .tagStack_a
-          .pop()         //: remove previous pseudo rule
-}
+          .pop()
+    }
+  }
+  ,
+
+
+
+
+  popSibling__v:
+  () =>
+  {
+    if
+    (
+      CSS_o
+        .lastTag__s()
+          ?.endsWith( '+ ' )  //: Adjacent sibling
+      ||
+      CSS_o
+        .lastTag__s()
+          ?.endsWith( '~ ' )  //: General sibling
+    )
+    {
+      CSS_o
+        .tagStack_a
+          .pop()
+    }
   }
   ,
 

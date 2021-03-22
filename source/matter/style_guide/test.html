@@ -1,0 +1,64 @@
+<body>
+<!--# OK-->
+  <section>
+    <p>
+        color:red;
+    </p>
+    <p:after>
+        color:blue;
+    </p>
+    <p[class="flex"]>
+        color:green;
+    </p>
+  </section>
+  <!--=== SELF CLOSE ===-->
+<!--# OK-->
+  <section>
+    <img/>
+        color:white;
+    <input/>
+        color:black;
+  </section>
+  <!--=== SIBLING ===-->
+  <!--# OK-->
+  <section>
+    <p>
+        background:red;
+    </p>
+    +
+    <ins>
+        background:blue;
+    </ins>
+    ~
+    <div>
+        background:green;
+      <p>
+          display:none;
+      </p>
+      +
+      <label>
+        position:absolute;
+        <em>
+          position:fixed;
+        </em>
+        ~
+        <i>
+          position:sticky;
+        </i>
+      </label>
+    </div>
+  </section>
+
+
+
+  
+  <section>
+    <input/>
+      color:red;
+    +
+    <label>
+      color:blue;
+    </label>
+      
+  </section>
+</body>

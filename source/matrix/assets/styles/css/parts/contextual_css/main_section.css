@@ -65,6 +65,10 @@ font-weight: 600;
 font-style: normal;
 }
 
+section > p > label[for^="I"]:hover {
+color: var(--highlight);
+}
+
 section > p > label[for^="I"] {
 z-index: 5;
 margin-right: {{C_o.PAD_2}};
@@ -73,15 +77,11 @@ vertical-align: middle;
 cursor: pointer;
 }
 
-section > p > label[for^="I"]:hover {
-color: var(--highlight);
-}
-
-section > p > label[for^="I"]:hover + input[id^="I"] > label[for^="I"]:hover +  {
+section > p > label[for^="I"] + input[id^="I"] > label[for^="I"] +  {
 display: none;
 }
 
-section > p > label[for^="I"]:hover + input[id^="I"] > label[for^="I"]:hover + ins {
+section > p > label[for^="I"] + input[id^="I"] > label[for^="I"] + ins {
 display: none;
 position: relative;
 margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
@@ -92,7 +92,7 @@ border-radius: 4px;
 --font_size-max: .95rem;
 }
 
-section > p > label[for^="I"]:hover + input[id^="I"] > label[for^="I"]:hover + label[for^="I"] + input[id^="I"]:checked > label[for^="I"] + ins {
+section > p > label[for^="I"] + p > label[for^="I"] + input[id^="I"]:checked > label[for^="I"] + ins {
 display: block;
 }
 
