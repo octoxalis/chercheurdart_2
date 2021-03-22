@@ -8,11 +8,11 @@ const CSS_o =
 
   path_a: [],
 
-  //XX css_s : '',
-  //XX line_a: [],
-  //XX ruleStack_a: [],
-  //XX tagStack_a: [],
-  //XX lastTag_s: '',
+  //-- css_s : '',
+  //-- line_a: [],
+  //-- ruleStack_a: [],
+  //-- tagStack_a: [],
+  //-- lastTag_s: '',
 
 
 
@@ -41,7 +41,7 @@ const CSS_o =
             )
           }
           //>
-          ;console.log( `-- Processing: ${CSS_o.path_s}` )
+          console.log( `-- Processing: ${CSS_o.path_s}` )
 
           CSS_o
             .process__s( ccss_s )
@@ -58,7 +58,7 @@ const CSS_o =
   ) =>
   {
     CSS_o
-      .clean__v( ccss_s )        //;console.table( CSS_o.line_a )
+      .clean__v( ccss_s )
 
     let line_n = 0
 
@@ -123,7 +123,6 @@ const CSS_o =
         )
     }
 
-    //;console.table( CSS_o.path_a )
     if
     (
       CSS_o
@@ -462,8 +461,6 @@ const CSS_o =
           .tagStack_a
       )
       {
-        //.........;console.log( `selector: --${selector_s}--` )
-
         selector_s +=
           ! selector_s    //: root selector
           ||
@@ -520,7 +517,7 @@ void function
   const arg_a =
     process
       .argv
-      .slice( 2 )    //;console.table( arg_a )
+      .slice( 2 )
 
   if
   (
@@ -549,5 +546,4 @@ void function
 
   CSS_o
     .read__s()
-
 }()
