@@ -1,8 +1,7 @@
-section > img {
+body > section > input + label > img {
 color:white;
 }
 
-section > input {
+body > section > input + label > area {
 color:black;
 }
-

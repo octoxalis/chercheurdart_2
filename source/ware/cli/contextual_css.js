@@ -12,6 +12,7 @@ const CSS_o =
   //-- line_a: [],
   //-- ruleStack_a: [],
   //-- tagStack_a: [],
+  //-- newStack_a: [],
   //-- lastTag_s: '',
 
 
@@ -130,11 +131,20 @@ const CSS_o =
           .length
     )
     {
+      const path_o =
+        CSS_o
+          .path_a
+            .pop()
+
       CSS_o
         .path_s =
-          CSS_o
-            .path_a
-              .pop()
+          path_o
+            .path_s
+  
+      CSS_o
+        .newStack_a =
+          path_o
+            .stack_a
   
       CSS_o
         .read__s()
@@ -154,7 +164,9 @@ const CSS_o =
       .ruleStack_a = []  //: reset
 
     CSS_o
-      .tagStack_a = []  //: reset
+      .tagStack_a =      //: inherit caller stack
+        CSS_o
+          .newStack_a
     
     CSS_o
       .lastTag_s = ''    //: reset
@@ -396,13 +408,23 @@ const CSS_o =
     line_s
   ) =>
   {
+    console.log( CSS_o.tagStack_a )
+
     const url_a =
       line_s
           .match( /url\s?\(\s?([\w.]+?)\s?\)/i )
 
     CSS_o
       .path_a
-        .push( `${CSS_o.dir_s}${url_a[1]}` )
+        .push
+        ( 
+          {
+            path_s: `${CSS_o.dir_s}${url_a[1]}`,
+            stack_a: CSS_o
+                       .tagStack_a
+                       .slice()
+          }
+        )
   }
   ,
     
@@ -543,6 +565,9 @@ void function
   CSS_o
     .path_s =
       arg_a[0]
+
+  CSS_o
+    .newStack_a = []
 
   CSS_o
     .read__s()
