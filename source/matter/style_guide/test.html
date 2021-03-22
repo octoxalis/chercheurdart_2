@@ -1,5 +1,6 @@
 <body>
-<!--# OK-->
+  <!--=== pseudo + attribute ===--><!--# OK-->
+  <!---->
   <section>
     <p>
         color:red;
@@ -10,55 +11,17 @@
     <p[class="flex"]>
         color:green;
     </p>
-  </section>
-  <!--=== SELF CLOSE ===-->
-<!--# OK-->
-  <section>
-    <img/>
-        color:white;
-    <input/>
-        color:black;
-  </section>
-  <!--=== SIBLING ===-->
-  <!--# OK-->
-  <section>
-    <p>
-        background:red;
-    </p>
-    +
-    <ins>
-        background:blue;
-    </ins>
-    ~
-    <div>
-        background:green;
-      <p>
-          display:none;
-      </p>
-      +
-      <label>
-        position:absolute;
-        <em>
-          position:fixed;
-        </em>
-        ~
-        <i>
-          position:sticky;
-        </i>
-      </label>
-    </div>
-  </section>
 
-
-
-  
-  <section>
-    <input/>
+    url( sibling.html )
+    url( self_close.html )
+    
+    <input>
       color:red;
+    </input>
     +
     <label>
       color:blue;
     </label>
-      
   </section>
+  
 </body>

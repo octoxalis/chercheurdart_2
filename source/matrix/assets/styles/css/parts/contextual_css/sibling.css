@@ -1,0 +1,28 @@
+section > p {
+background:red;
+}
+
+section > p + ins {
+background:blue;
+}
+
+section > p + ins ~ div {
+background:green;
+}
+
+section > p + ins ~ div > p {
+display:none;
+}
+
+section > p + ins ~ div > p + label {
+position:absolute;
+}
+
+section > p + ins ~ div > p + label > em {
+position:fixed;
+}
+
+section > p + ins ~ div > p + label > em ~ i {
+position:sticky;
+}
+

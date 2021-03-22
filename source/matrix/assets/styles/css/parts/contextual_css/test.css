@@ -10,47 +10,11 @@ body > section > p[class="flex"] {
 color:green;
 }
 
-body > section > img {
-color:white;
-}
-
 body > section > input {
-color:black;
-}
-
-body > section > p {
-background:red;
-}
-
-body > section > p + ins {
-background:blue;
-}
-
-body > section > p + ins ~ div {
-background:green;
-}
-
-body > section > p + ins ~ div > p {
-display:none;
-}
-
-body > section > p + ins ~ div > p + label {
-position:absolute;
-}
-
-body > section > p + ins ~ div > p + label > em {
-position:fixed;
-}
-
-body > section > p + ins ~ div > p + label > em ~ i {
-position:sticky;
-}
-
-body > section > p + ins ~ div > section > input > p +  +  {
 color:red;
 }
 
-body > section > p + ins ~ div > section > input > p +  + label {
+body > section > input + label {
 color:blue;
 }
 

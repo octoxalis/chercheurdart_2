@@ -6,17 +6,13 @@ const CSS_o =
 {
   path_s: '',
 
-  line_a: [],
+  path_a: [],
 
-  ruleStack_a: [],
-
-  tagStack_a: [],
-
-  lastTag_s: '',
-
-  lastRuleset: '',
-
-  css_s : '',
+  //XX css_s : '',
+  //XX line_a: [],
+  //XX ruleStack_a: [],
+  //XX tagStack_a: [],
+  //XX lastTag_s: '',
 
 
 
@@ -45,6 +41,8 @@ const CSS_o =
             )
           }
           //>
+          ;console.log( `-- Processing: ${CSS_o.path_s}` )
+
           CSS_o
             .process__s( ccss_s )
         }
@@ -109,17 +107,6 @@ const CSS_o =
       ++line_n
     }
 
-    let path_s =
-      CSS_o
-        .path_s      //;console.log( path_s )
-
-    //.............. TEMPORARY
-    //XXCSS_o
-    //XX  .css_s =
-    //XX    CSS_o
-    //XX      .path__s()
-    //...............
-
     if
     (
       CSS_o
@@ -135,6 +122,24 @@ const CSS_o =
             .css_s
         )
     }
+
+    //;console.table( CSS_o.path_a )
+    if
+    (
+      CSS_o
+        .path_a
+          .length
+    )
+    {
+      CSS_o
+        .path_s =
+          CSS_o
+            .path_a
+              .pop()
+  
+      CSS_o
+        .read__s()
+    }
   }
   ,
 
@@ -147,17 +152,29 @@ const CSS_o =
   ) =>
   {
     CSS_o
+      .ruleStack_a = []  //: reset
+
+    CSS_o
+      .tagStack_a = []  //: reset
+    
+    CSS_o
+      .lastTag_s = ''    //: reset
+    
+    CSS_o
+      .css_s = ''        //: reset
+      
+    CSS_o
       .line_a =
         ccss_s
           .trim()
           .replace
           (
-            /<!--[\s\S]+?-->/gm,  //: strip HTML comments
+            /<!--[\s\S]*?-->/gm,  //: strip HTML comments
             ''
           )
           .replace
           (
-            /\/\*[\s\S]+?\*\//gm,  //: strip CSS comments
+            /\/\*[\s\S]*?\*\//gm,  //: strip CSS comments
             ''
           )
           .split( '\n' )
@@ -268,14 +285,12 @@ const CSS_o =
         ===
         '+'
       :
-        return 'AdjacentSibling'
-    
       case
         char_s
         ===
         '~'
       :
-        return 'GeneralSibling'
+      return 'Sibling'
     
       case
         char_s
@@ -298,8 +313,6 @@ const CSS_o =
     line_s
   ) =>
   {
-    //;console.log( `processRule__v: ${line_s}` )
-
     CSS_o
       .ruleStack_a
         .push( line_s )
@@ -314,8 +327,6 @@ const CSS_o =
     line_s
   ) =>
   {
-    //;console.log( `processRuleTail__v: ${line_s}` )
-
     CSS_o
       .ruleStack_a
         [CSS_o.ruleStack_a.length - 1] +=
@@ -331,13 +342,8 @@ const CSS_o =
     line_s
   ) =>
   {
-    //;console.log( `processOpen__v: ${line_s}` )
-
     CSS_o
       .add__v()
-
-    CSS_o
-      .popSelfClose__v()
 
     CSS_o
       .tagStack_a
@@ -347,8 +353,6 @@ const CSS_o =
             .slice( 1, -1 )    //: strip '<' and '>'
             .trim()            //: strip possible space
         )
-
-    //;console.log( CSS_o.tagStack_a )
   }
   ,
     
@@ -360,13 +364,8 @@ const CSS_o =
     line_s
   ) =>
   {
-    //;console.log( `processClose__v: ${line_s}` )
-
     CSS_o
       .add__v()
-
-    CSS_o
-      .popSelfClose__v()
 
     CSS_o
       .lastTag_s =
@@ -374,7 +373,19 @@ const CSS_o =
           .tagStack_a
             .pop()
 
-    //;console.log( CSS_o.tagStack_a )
+    while
+    (
+      CSS_o
+        .lastTag_s
+          .endsWith( ' ' )    //: flush sibling on stack
+    )
+    {
+      CSS_o
+        .lastTag_s =
+          CSS_o
+            .tagStack_a
+              .pop()
+    }
   }
   ,
     
@@ -386,20 +397,24 @@ const CSS_o =
     line_s
   ) =>
   {
-    //;console.log( `processUrl__v: ${line_s}` )
+    const url_a =
+      line_s
+          .match( /url\s?\(\s?([\w.]+?)\s?\)/i )
+
+    CSS_o
+      .path_a
+        .push( `${CSS_o.dir_s}${url_a[1]}` )
   }
   ,
     
 
 
 
-  processGeneralSibling__v:
+  processSibling__v:
   (
     line_s
   ) =>
   {
-    //;console.log( `processGeneralSibling__v: ${line_s}` )
-
     CSS_o
       .tagStack_a
         .push
@@ -407,36 +422,14 @@ const CSS_o =
           CSS_o
             .lastTag_s
           +
-          ' ~ '  //!!!  endsWith space
+          ` ${line_s} `  //!!! endsWith space
         )
   }
   ,
     
 
 
-
-  processAdjacentSibling__v:
-  (
-    line_s
-  ) =>
-  {
-    //;console.log( `processAdjacentSibling__v: ${line_s}` )
-
-    CSS_o
-      .tagStack_a
-        .push
-        (
-          CSS_o
-            .lastTag_s
-          +
-          ' + '  //!!! endsWith space
-        )
-  }
-  ,
-    
-
-
-
+  /*........................................
   processSimilar__v:
   (
     line_s
@@ -445,7 +438,7 @@ const CSS_o =
     //;console.log( `processSimilar__v: ${line_s}` )
   }
   ,
-    
+  */
 
 
 
@@ -469,36 +462,13 @@ const CSS_o =
           .tagStack_a
       )
       {
-        //;console.log( `stack: --${at_s}--` )
-
-        //~~const atStack_s =
-        //~~  at_s
-
-        if
-        (
-          at_s
-            .endsWith( '/' )    //: self-closing tag
-        )
-        {
-          at_s =
-            at_s
-              .slice
-              (
-                0,
-                -1    //: strip '/'
-              )
-        }
-        
-        ;console.log( `selector: --${selector_s}--` )
+        //.........;console.log( `selector: --${selector_s}--` )
 
         selector_s +=
           ! selector_s    //: root selector
           ||
           selector_s
             .endsWith( ' ' )  //: sibling selector (endsWith space)
-          //~~||
-          //~~atStack_s
-          //~~  .endsWith( '+' )  //: self-closing selector
           ?
             `${at_s}`
           :
@@ -520,100 +490,6 @@ const CSS_o =
   }
   ,
 
-
-
-
-  //~~popPseudo__v:
-  //~~() =>
-  //~~{
-  //~~  //;console.log( CSS_o.tagStack_a[CSS_o.tagStack_a.length - 1] )
-  //~~
-  //~~ if
-  //~~ (
-  //~~   CSS_o
-  //~~     .tagStack_a
-  //~~       .length
-  //~~   >
-  //~~   2    //: tag + pseudo
-  //~~ )
-  //~~ {
-  //~~    let last_s =
-  //~~      CSS_o
-  //~~        .lastTag__s()
-  //~~
-  //~~    while
-  //~~    (
-  //~~      last_s
-  //~~        .charAt( 0 )
-  //~~      ===
-  //~~      ':'
-  //~~    )
-  //~~    {
-  //~~      CSS_o
-  //~~        .tagStack_a
-  //~~          .pop()         //: remove previous pseudo rule
-  //~~
-  //~~      last_s =
-  //~~        CSS_o
-  //~~          .lastTag__s()
-  //~~    }
-  //~~  }
-  //~~}
-  //~~,
-
-
-
-  popSelfClose__v:
-  () =>
-  {
-    if
-    (
-      CSS_o
-        .lastTag__s()
-          ?.endsWith( '/' )
-    )
-    {
-      CSS_o
-        .tagStack_a
-          .pop()
-    }
-  }
-  ,
-
-
-
-
-  popSibling__v:
-  () =>
-  {
-    if
-    (
-      CSS_o
-        .lastTag__s()
-          ?.endsWith( '+ ' )  //: Adjacent sibling
-      ||
-      CSS_o
-        .lastTag__s()
-          ?.endsWith( '~ ' )  //: General sibling
-    )
-    {
-      CSS_o
-        .tagStack_a
-          .pop()
-    }
-  }
-  ,
-
-
-
-
-  lastTag__s:
-  () =>
-    CSS_o
-      .tagStack_a
-        [CSS_o.tagStack_a.length - 1]
-  ,
-    
 
 
 
@@ -658,9 +534,20 @@ void function
   }
 
   CSS_o
+    .dir_s =
+      arg_a[0]
+        .slice
+        (
+          0,
+          arg_a[0]
+            .lastIndexOf( '/' ) + 1
+        )
+
+  CSS_o
     .path_s =
       arg_a[0]
 
   CSS_o
     .read__s()
+
 }()

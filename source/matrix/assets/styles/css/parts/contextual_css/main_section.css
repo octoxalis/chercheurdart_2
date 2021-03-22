@@ -77,11 +77,11 @@ vertical-align: middle;
 cursor: pointer;
 }
 
-section > p > label[for^="I"] + input[id^="I"] > label[for^="I"] +  {
+section > p > label[for^="I"] + input[id^="I"]/ > label[for^="I"] +  {
 display: none;
 }
 
-section > p > label[for^="I"] + input[id^="I"] > label[for^="I"] + ins {
+section > p > label[for^="I"] + input[id^="I"]/ > label[for^="I"] + ins {
 display: none;
 position: relative;
 margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
@@ -92,7 +92,7 @@ border-radius: 4px;
 --font_size-max: .95rem;
 }
 
-section > p > label[for^="I"] + p > label[for^="I"] + input[id^="I"]:checked > label[for^="I"] + ins {
+section > p > label[for^="I"] + p > label[for^="I"] + input[id^="I"]:checked/ > label[for^="I"] + ins {
 display: block;
 }
 
