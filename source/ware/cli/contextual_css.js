@@ -245,7 +245,6 @@ const CSS_o =
         ===
         '<'
       :
-      {
         return (
           line_s
            .charAt( 1 )
@@ -256,7 +255,6 @@ const CSS_o =
           :
             'Open'
         )
-      }
     
       case
         /[\w-]/i
@@ -271,13 +269,20 @@ const CSS_o =
             'Rule'
           :
             line_s
-              .indexOf( 'url(' )
+              .indexOf( 'url' )
             >
             -1
             ?
               'Url'
             :
-              'RuleTail'
+              line_s
+                .indexOf( 'context' )
+              >
+              -1
+              ?
+                'Context'
+              :
+                'RuleTail'
         )
     
       case
@@ -290,7 +295,7 @@ const CSS_o =
         ===
         '~'
       :
-      return 'Sibling'
+        return 'Sibling'
     
       case
         char_s
@@ -392,32 +397,6 @@ const CSS_o =
 
 
 
-  processUrl__v:
-  (
-    line_s
-  ) =>
-  {
-    const url_a =
-      line_s
-          .match( /url\s?\(\s?([\w.]+?)\s?\)/i )
-
-    CSS_o
-      .path_a
-        .push
-        ( 
-          {
-            path_s: `${CSS_o.dir_s}${url_a[1]}`,
-            stack_a: CSS_o
-                       .tagStack_a
-                       .slice()
-          }
-        )
-  }
-  ,
-    
-
-
-
   processSibling__v:
   (
     line_s
@@ -450,7 +429,94 @@ const CSS_o =
 
 
 
-  add__v:
+ processUrl__v:
+ (
+   line_s
+ ) =>
+ {
+   const url_a =
+     line_s
+         .match( /url\s?\(\s?([^\)]+?)\s?\)/i )
+
+    if
+    (
+      ! url_a
+    )
+    {
+      return void (
+        console.log( `Error: url() is not valid` )
+      )
+    }
+
+   CSS_o
+     .path_a
+       .push
+       ( 
+         {
+           path_s: `${CSS_o.dir_s}${url_a[1]}`,
+           stack_a: CSS_o
+                      .tagStack_a
+                      .slice()
+         }
+       )
+ }
+ ,
+   
+
+
+
+ processContext__v:
+ (
+   line_s
+ ) =>
+ {
+    //;console.log( `processContext__v: ${line_s}` )
+
+    const context_a =
+    line_s
+        .match( /context\s?\(\s?([^\)]+?)\s?\)/i )
+
+    if
+    (
+      ! context_a
+    )
+    {
+      return void (
+        console.log( `Error: context() is not valid` )
+      )
+    }
+
+    const context_s =
+      context_a[1]      //;console.log( `processContext__v: --${context_s}--` )
+
+    switch
+    (
+      true
+    )
+    {
+      case
+        context_s
+          .startsWith( 'resetStack' )
+      :
+      {
+        const param_a =
+          context_s
+            .split( ',' )
+
+        ;console.table( param_a )
+      }
+
+      default:
+        return ''
+    }
+
+  }
+ ,
+   
+
+
+
+add__v:
   () =>
   {
     if
