@@ -548,6 +548,8 @@ const CSS_o =
                            .slice()
               }
             )
+
+        return
       }
 
       case
@@ -560,6 +562,14 @@ const CSS_o =
           CSS_o
             .lastTag_s
 
+        if
+        (
+          ! lastTag_s
+        )
+        {
+          return ''
+        }
+        //>
         let lastTag_n =
           CSS_o
             .css_s
@@ -614,9 +624,7 @@ const CSS_o =
           .css_s =
             css_s
 
-
-
-
+        return
       }
 
       //...case
@@ -624,10 +632,11 @@ const CSS_o =
       //...    .startsWith( 'resetStack' )
       //...:
       //...{
+      //...   return
       //...}
 
       default:
-        return ''
+        return
     }
 
   }

@@ -72,14 +72,20 @@
     </section>
     <!--=== || ===-->
     <section:first-of-type>
-        display:block;
+      context( copy )
     </section>
-    <!--...url( main_section.html ) -->
-    <!--...url( section_aside.html )-->
+    context( url, main_section.html )
+    context( url, section_aside.html )
   </main>
   <aside>    <!--  /+/  -->
     display:none;
-  <!--...url( body_aside.html )-->
+    context( url, body_aside.html )
+  </aside>
+  <aside#gray>
+      --cursor_svg:cursor_gray.svg;
+  </aside>
+  <aside#color>
+      --cursor_svg:cursor_color.svg;
   </aside>
   <svg>
     display:none;

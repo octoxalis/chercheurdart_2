@@ -3,8 +3,8 @@ position:relative;
 color:var(--textcolor);
 background:var(--bgcolor);
 font-family:Cantarell Regular, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif;
-font-size:clamp( var(--font_size-min, 1rem ), calc(1rem + var(--font_size-target, 3vw) ), var(--font_size-max, 1.3rem) );
-font-weight:300;
+font-size:clamp( var(--font_size-min, 1rem ),
+ calc(1rem + var(--font_size-target, 3vw) ), var(--font_size-max, 1.3rem) );font-weight:300;
 line-height:1.5;
 }
 
@@ -63,23 +63,28 @@ margin-bottom: 3em;
 height: 0;
 border-style: outset;
 opacity: .25;
-box-shadow: 0 1px 1px currentColor, 0 2px 2px currentColor, 0 4px 4px currentColor;
-filter: brightness(.3);
+box-shadow: 0 1px 1px currentColor,
+ 0 2px 2px currentColor, 0 4px 4px currentColor;filter: brightness(.3);
 }
 
-body > main > section:target {
-display:block;
-}
-
+body > main > section:target,
 body > main > section:first-of-type {
 display:block;
 }
 
-body > aside {
+aside {
 display:none;
 }
 
-body > svg {
+aside#gray {
+--cursor_svg:cursor_gray.svg;
+}
+
+aside#color {
+--cursor_svg:cursor_color.svg;
+}
+
+svg {
 display:none;
 stroke:var(--highlight);
 stroke-width:1;
