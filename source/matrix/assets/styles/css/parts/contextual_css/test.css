@@ -14,7 +14,7 @@ body > section > input {
 color:red;
 }
 
-body > section > input + label {
+body > section + label {
 color:blue;
 }
 

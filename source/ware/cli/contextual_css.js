@@ -4,17 +4,26 @@ const FS_o  = require( 'fs-extra' )
 
 const CSS_o =
 {
+  selfClose_a:
+    [
+      'img', 'input', 'br', 'hr', 'area', 'base', 'col', 'command', 'embed', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'
+    ],
+
   path_s: '',
 
   path_a: [],
 
   //-- css_s : '',
   //-- line_a: [],
-  //-- ruleStack_a: [],
+  //-- ruleset_s
   //-- tagStack_a: [],
   //-- newStack_a: [],
   //-- lastTag_s: '',
+  //-- selfClose_b
 
+  ruleDelimiter_s: '\n',                //: '' to minify
+  rulesetDelimiter_s: '}\n\n',          //: '}' to minify
+  selectorRulesetDelimiter_s: ' {\n',   //: '{' to minify
 
 
 
@@ -73,6 +82,7 @@ const CSS_o =
         .line_a
     )
     {
+
       if
       (
         ! line_s
@@ -95,6 +105,16 @@ const CSS_o =
       }
 
       ++line_n
+    }
+
+    if
+    (
+      CSS_o
+        .ruleset_s    //: last ruleset has not been flushed
+    )
+    {
+      CSS_o
+        .processClose__v()
     }
 
     if
@@ -150,9 +170,6 @@ const CSS_o =
   ) =>
   {
     CSS_o
-      .ruleStack_a = []  //: reset
-
-    CSS_o
       .tagStack_a =      //: inherit caller stack
         CSS_o
           .newStack_a
@@ -161,7 +178,13 @@ const CSS_o =
       .lastTag_s = ''    //: reset
     
     CSS_o
+      .ruleset_s = ''  //: reset
+
+    CSS_o
       .css_s = ''        //: reset
+      
+    CSS_o
+      .selfClose_b = false        //: reset
       
     CSS_o
       .line_a =
@@ -319,8 +342,8 @@ const CSS_o =
   ) =>
   {
     CSS_o
-      .ruleStack_a
-        .push( line_s )
+      .ruleset_s +=
+        `${line_s}${CSS_o.ruleDelimiter_s}`
   }
   ,
     
@@ -333,9 +356,8 @@ const CSS_o =
   ) =>
   {
     CSS_o
-      .ruleStack_a
-        [CSS_o.ruleStack_a.length - 1] +=
-          ` ${line_s}`
+      .ruleset_s +=
+        ` ${line_s}`
   }
   ,
     
@@ -347,17 +369,39 @@ const CSS_o =
     line_s
   ) =>
   {
+    let tag_s =
+      line_s
+        .slice( 1, -1 )    //: strip '<' and '>'
+        .trim()            //: strip possible space
+
+    if
+    (
+      tag_s
+        .endsWith( '/' )
+      ||
+      CSS_o
+        .selfClose_a
+          .includes( tag_s )  //: self closing tag missing closing '/'
+    )
+    {
+      CSS_o
+        .selfClose_b = true
+
+      tag_s =
+        tag_s
+          .replace
+          (
+            '/',
+            ''
+          )
+    }
+
     CSS_o
       .add__v()
 
     CSS_o
       .tagStack_a
-        .push
-        (
-          line_s
-            .slice( 1, -1 )    //: strip '<' and '>'
-            .trim()            //: strip possible space
-        )
+        .push( tag_s )
   }
   ,
     
@@ -366,34 +410,17 @@ const CSS_o =
 
   processClose__v:
   (
-    line_s
+    line_s    //!!! not used
   ) =>
   {
     CSS_o
       .add__v()
 
     CSS_o
-      .lastTag_s =
-        CSS_o
-          .tagStack_a
-            .pop()
-
-    while
-    (
-      CSS_o
-        .lastTag_s
-          .endsWith( ' ' )    //: flush sibling on stack
-    )
-    {
-      CSS_o
-        .lastTag_s =
-          CSS_o
-            .tagStack_a
-              .pop()
-    }
+      .flushStack__v()
   }
   ,
-    
+
 
 
 
@@ -503,7 +530,7 @@ const CSS_o =
           context_s
             .split( ',' )
 
-        ;console.table( param_a )
+        //....;console.table( param_a )
       }
 
       default:
@@ -522,8 +549,7 @@ add__v:
     if
     (
       CSS_o
-        .ruleStack_a
-          .length
+        .ruleset_s
     )
     {
       let selector_s = ''
@@ -547,20 +573,57 @@ add__v:
             ` > ${at_s}`
       }
   
-      const ruleset_s =
-        CSS_o
-          .ruleStack_a
-            .join( '\n' )
-  
       CSS_o
         .css_s +=
-          `${selector_s} {\n${ruleset_s}\n}\n\n`
+          `${selector_s}${CSS_o.selectorRulesetDelimiter_s}${CSS_o.ruleset_s}${CSS_o.rulesetDelimiter_s}`
     
       CSS_o
-        .ruleStack_a = []    //: reset
+        .ruleset_s = ''    //: reset
+
+      if
+      (
+        CSS_o
+          .selfClose_b
+      )
+      {
+        CSS_o
+          .flushStack__v()    //: line_s arg not needed
+
+        CSS_o
+          .selfClose_b =
+            false    //: reset
+      }
     }
   }
   ,
+
+
+
+
+  flushStack__v:
+  () =>
+  {
+    CSS_o
+      .lastTag_s =
+        CSS_o
+          .tagStack_a
+            .pop()
+
+    while
+    (
+      CSS_o
+        .lastTag_s
+          ?.endsWith( ' ' )    //: flush sibling on stack
+    )
+    {
+      CSS_o
+        .lastTag_s =
+          CSS_o
+            .tagStack_a
+              .pop()
+    }
+  }
+  ,    
 
 
 
