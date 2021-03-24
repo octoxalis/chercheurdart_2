@@ -2,7 +2,11 @@ body > section + label > img {
 color:white;
 }
 
-body > section + label > area {
+body > section + label > area:hover {
 color:black;
+}
+
+body > section + label > img[class="full"] {
+color:blue;
 }
 

@@ -378,22 +378,32 @@ const CSS_o =
     (
       tag_s
         .endsWith( '/' )
-      ||
+    )
+    {
+      tag_s =
+        tag_s
+          .slice
+          (
+            0,
+            -1    //: strip end '/'
+          )
+    }
+
+    const name_a =
+      tag_s
+        .match( /^([^:\[]+)/i )    //: exclude pseudo or attribute: name only
+
+    if
+    (
+      name_a
+      &&
       CSS_o
         .selfClose_a
-          .includes( tag_s )  //: self closing tag missing closing '/'
+          .includes( name_a[1] )  //: self closing tag missing closing '/'
     )
     {
       CSS_o
         .selfClose_b = true
-
-      tag_s =
-        tag_s
-          .replace
-          (
-            '/',
-            ''
-          )
     }
 
     CSS_o
