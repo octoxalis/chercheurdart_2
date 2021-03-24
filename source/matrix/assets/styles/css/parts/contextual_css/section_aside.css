@@ -1,4 +1,4 @@
-body > section > aside {
+body > main > section > aside {
 position: fixed;
 top: 0;
 left: 0;
@@ -9,7 +9,7 @@ overflow-y: scroll;
 scroll-snap-type: y mandatory;
 }
 
-body > section > aside > figure {
+body > main > section > aside > figure {
 display: grid;
 place-items: center;
 position: relative;
@@ -18,11 +18,11 @@ scroll-snap-align: center;
 cursor: all-scroll;
 }
 
-body > section > aside > img {
+body > main > section > aside > img {
 max-height: 100vh;
 }
 
-body > section > aside > img > figcaption {
+body > main > section > aside > img > figcaption {
 display: grid;
 place-items: center;
 z-index: 4;
@@ -36,25 +36,25 @@ opacity: 0;
 transition: opacity .5s ease;
 }
 
-body > section > aside > img > figcaption > b {
+body > main > section > aside > img > figcaption > b {
 display: table;
 }
 
-body > section > aside > img > figcaption > b > i:first-of-type::after {
+body > main > section > aside > img > figcaption > b > i:first-of-type::after {
 content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 }
 
-body > section > aside > img > figcaption > b:nth-of-type(1) {
+body > main > section > aside > img > figcaption > b:nth-of-type(1) {
 --font_size-max: 1.5rem;
 font-weight: 600;
 }
 
-body > section > aside > img > figcaption > b:nth-of-type(2) {
+body > main > section > aside > img > figcaption > b:nth-of-type(2) {
 --font_size-max: 1.25rem;
 font-weight: 400;
 }
 
-body > section > aside > img > figcaption:hover {
+body > main > section > aside > img > figcaption:hover {
 box-shadow: 0 0 0 100vmax var(--shadow_hi);
 opacity: 1;
 transition: opacity .5s ease;

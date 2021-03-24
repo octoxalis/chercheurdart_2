@@ -72,19 +72,19 @@ body > main > section:first-of-type {
 display:block;
 }
 
-aside {
+body > aside {
 display:none;
 }
 
-aside#gray {
+body > aside#gray {
 --cursor_svg:cursor_gray.svg;
 }
 
-aside#color {
+body > aside#color {
 --cursor_svg:cursor_color.svg;
 }
 
-svg {
+body > svg {
 display:none;
 stroke:var(--highlight);
 stroke-width:1;

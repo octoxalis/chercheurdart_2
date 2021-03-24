@@ -424,6 +424,19 @@ const CSS_o =
     CSS_o
       .add__v()
 
+    if
+    (
+      CSS_o
+        .copy_b
+    )
+    {
+      CSS_o
+        .copy_b =
+          false
+      
+      return    //: skip flushStack__v after copy
+    }
+
     CSS_o
       .flushStack__v()
   }
@@ -570,6 +583,9 @@ const CSS_o =
           return ''
         }
         //>
+        CSS_o
+          .copy_b =
+            true
         let lastTag_n =
           CSS_o
             .css_s
