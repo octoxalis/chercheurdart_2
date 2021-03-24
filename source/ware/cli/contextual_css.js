@@ -25,6 +25,7 @@ const CSS_o =
   ruleDelimiter_s: '\n',                //: '' to minify
   rulesetDelimiter_s: '}\n\n',          //: '}' to minify
   selectorRulesetDelimiter_s: ' {\n',   //: '{' to minify
+  copyRulesetDelimiter_s: ', ',        //: ',' to minify
 
 
 
@@ -295,21 +296,14 @@ const CSS_o =
           ?
             'Rule'
           :
-            //line_s
-            //  .indexOf( 'url' )
-            //>
-            //-1
-            //?
-            //  'Url'
-            //:
-              line_s
-                .indexOf( 'context' )
-              >
-              -1
-              ?
-                'Context'
-              :
-                'RuleTail'
+            line_s
+              .indexOf( 'context' )
+            >
+            -1
+            ?
+              'Context'
+            :
+              'RuleTail'
         )
     
       case
@@ -532,8 +526,6 @@ const CSS_o =
       context_s
         .split( ',' )
 
-    ;console.table( param_a )
-
     switch
     (
       true
@@ -564,13 +556,45 @@ const CSS_o =
         'copy'
       :
       {
-        CSS_o
-          .ruleset_s =
+        const lastTag_s =
           CSS_o
-            .lastRuleset_s
+            .lastTag_s
+
+        const copyTag_s =
+          CSS_o
+            .tagStack_a
+              .pop()
+
+        const insert_n =
+          CSS_o
+            .css_s
+              .lastIndexOf( lastTag_s )
+          +
+          lastTag_s
+            .length
+
+        const css_s =
+          CSS_o
+            .css_s
+              .slice
+              (
+                0,
+                insert_n
+              )
+          +
+          `${CSS_o.copyRulesetDelimiter_s}${copyTag_s}`
+          +
+          CSS_o
+            .css_s
+              .slice( insert_n )
 
         CSS_o
-          .add__v()
+          .css_s =
+            css_s
+
+
+
+
       }
 
       //...case

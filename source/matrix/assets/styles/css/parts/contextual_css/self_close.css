@@ -1,16 +1,12 @@
-body > section + label > img {
+img {
 color:white;
 }
 
-body > section + label > area:hover {
+area:hover, img[class="wide"] {
 color:black;
 }
 
-body > section + label > img[class="full"] {
-color:blue;
-}
-
-body > section + label > img[class="wide"] {
+img[class="full"] {
 color:blue;
 }
 
