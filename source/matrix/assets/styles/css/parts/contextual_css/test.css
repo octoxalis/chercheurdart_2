@@ -10,7 +10,15 @@ body > section > p[class="flex"] {
 color:green;
 }
 
+body > section {
+color:green;
+}
+
 body > section > input {
+color:red;
+}
+
+body > section + label {
 color:red;
 }
 

@@ -16,6 +16,7 @@ const CSS_o =
   //-- css_s : '',
   //-- line_a: [],
   //-- ruleset_s
+  //-- lastRuleset_s
   //-- tagStack_a: [],
   //-- newStack_a: [],
   //-- lastTag_s: '',
@@ -181,6 +182,9 @@ const CSS_o =
       .ruleset_s = ''  //: reset
 
     CSS_o
+      .lastRuleset_s = ''  //: reset
+
+    CSS_o
       .css_s = ''        //: reset
       
     CSS_o
@@ -291,13 +295,13 @@ const CSS_o =
           ?
             'Rule'
           :
-            line_s
-              .indexOf( 'url' )
-            >
-            -1
-            ?
-              'Url'
-            :
+            //line_s
+            //  .indexOf( 'url' )
+            //>
+            //-1
+            //?
+            //  'Url'
+            //:
               line_s
                 .indexOf( 'context' )
               >
@@ -507,11 +511,9 @@ const CSS_o =
    line_s
  ) =>
  {
-    //;console.log( `processContext__v: ${line_s}` )
-
     const context_a =
-    line_s
-        .match( /context\s?\(\s?([^\)]+?)\s?\)/i )
+      line_s
+          .match( /context\s?\(\s?([^\)]+?)\s?\)/i )
 
     if
     (
@@ -524,7 +526,13 @@ const CSS_o =
     }
 
     const context_s =
-      context_a[1]      //;console.log( `processContext__v: --${context_s}--` )
+      context_a[1]
+
+    const param_a =
+      context_s
+        .split( ',' )
+
+    ;console.table( param_a )
 
     switch
     (
@@ -532,16 +540,45 @@ const CSS_o =
     )
     {
       case
-        context_s
-          .startsWith( 'resetStack' )
+        param_a[0]
+        ===
+        'url'
       :
       {
-        const param_a =
-          context_s
-            .split( ',' )
-
-        //....;console.table( param_a )
+        CSS_o
+        .path_a
+            .push
+            ( 
+              {
+                path_s: `${CSS_o.dir_s}${param_a[1].trim()}`,
+                stack_a: CSS_o
+                           .tagStack_a
+                           .slice()
+              }
+            )
       }
+
+      case
+        param_a[0]
+        ===
+        'copy'
+      :
+      {
+        CSS_o
+          .ruleset_s =
+          CSS_o
+            .lastRuleset_s
+
+        CSS_o
+          .add__v()
+      }
+
+      //...case
+      //...  param_a[0]
+      //...    .startsWith( 'resetStack' )
+      //...:
+      //...{
+      //...}
 
       default:
         return ''
@@ -587,6 +624,11 @@ add__v:
         .css_s +=
           `${selector_s}${CSS_o.selectorRulesetDelimiter_s}${CSS_o.ruleset_s}${CSS_o.rulesetDelimiter_s}`
     
+      CSS_o
+        .lastRuleset_s =
+        CSS_o
+          .ruleset_s
+
       CSS_o
         .ruleset_s = ''    //: reset
 

@@ -10,3 +10,7 @@ body > section + label > img[class="full"] {
 color:blue;
 }
 
+body > section + label > img[class="wide"] {
+color:blue;
+}
+
