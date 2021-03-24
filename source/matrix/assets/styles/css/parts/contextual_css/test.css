@@ -6,23 +6,17 @@ body > section > p:after {
 color:blue;
 }
 
-body > section > p[class="flex"] {
+body > section > p[class="flex"],
+body > section > section {
 color:green;
 }
 
-body > section {
-color:green;
-}
-
-body > section > input {
+body,
+ label > input {
 color:red;
 }
 
-body > section + label {
-color:red;
-}
-
-body > section + label {
+body +  {
 color:blue;
 }
 

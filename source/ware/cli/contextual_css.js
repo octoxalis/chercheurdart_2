@@ -25,7 +25,7 @@ const CSS_o =
   ruleDelimiter_s: '\n',                //: '' to minify
   rulesetDelimiter_s: '}\n\n',          //: '}' to minify
   selectorRulesetDelimiter_s: ' {\n',   //: '{' to minify
-  copyRulesetDelimiter_s: ', ',        //: ',' to minify
+  copyRulesetDelimiter_s: ',\n',        //: ',' to minify
 
 
 
@@ -560,18 +560,40 @@ const CSS_o =
           CSS_o
             .lastTag_s
 
+        let lastTag_n =
+          CSS_o
+            .css_s
+              .lastIndexOf( lastTag_s )
+
+        const lastSelector_n =
+          CSS_o
+            .css_s
+              .lastIndexOf
+              (
+                '}',
+                lastTag_n
+              )
+
+        const lastSelector_s =
+          CSS_o
+            .css_s
+              .slice
+              (
+                lastSelector_n + 1,
+                lastTag_n
+              )
+              .trim()
+
+        const insert_n =
+          lastTag_n
+          +
+          lastTag_s
+            .length
+
         const copyTag_s =
           CSS_o
             .tagStack_a
               .pop()
-
-        const insert_n =
-          CSS_o
-            .css_s
-              .lastIndexOf( lastTag_s )
-          +
-          lastTag_s
-            .length
 
         const css_s =
           CSS_o
@@ -582,7 +604,7 @@ const CSS_o =
                 insert_n
               )
           +
-          `${CSS_o.copyRulesetDelimiter_s}${copyTag_s}`
+          `${CSS_o.copyRulesetDelimiter_s}${lastSelector_s} ${copyTag_s}`
           +
           CSS_o
             .css_s

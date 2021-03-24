@@ -1,12 +1,13 @@
-img {
+body + label > img {
 color:white;
 }
 
-area:hover, img[class="wide"] {
+body + label > area:hover,
+body + label > img[class="wide"] {
 color:black;
 }
 
-img[class="full"] {
+body + label > img[class="full"] {
 color:blue;
 }
 
