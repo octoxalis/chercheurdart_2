@@ -1,3 +1,4 @@
+context( cssComment )
 <body>
     position:relative;
     color:var(--textcolor);
@@ -32,13 +33,13 @@
       </a>
     </h1>
     <nav>
-      <a:not(:last-of-type))>    <!--  /+/  -->
+      <a:not(:last-of-type))>
           margin-right:{{C_o.PAD_8}};
-      </a>
+      </a> <!--# + #-->
     </nav>
   </header>
   <main>
-    <section>    <!--  /+/  -->
+    <section>
         display:none;
         content-visibility:auto;
         position:absolute;
@@ -65,22 +66,22 @@
                       0 2px 2px currentColor,
                       0 4px 4px currentColor;
           filter: brightness(.3);
-    </section>
-    <!--=== || ===-->
+    </section> <!--# + #-->
+    <!--~ || ~-->
     <section:target>
         display:block;
     </section>
-    <!--=== || ===-->
+    <!--~ || ~-->
     <section:first-of-type>
       context( copy )
     </section>
     context( url, main_section.html )
     context( url, section_aside.html )
   </main>
-  <aside>    <!--  /+/  -->
+  <aside>
     display:none;
     context( url, body_aside.html )
-  </aside>
+  </aside> <!--# + #-->
   <aside#gray>
       --cursor_svg:cursor_gray.svg;
   </aside>
@@ -93,7 +94,7 @@
     stroke-width:1;
     stroke-linecap:round;
     stroke-linejoin:round;
-    <symbol>    <!--  /+/  -->
-    </symbol>
+    <symbol>
+    </symbol> <!--# + #-->
   </svg>
 </body>

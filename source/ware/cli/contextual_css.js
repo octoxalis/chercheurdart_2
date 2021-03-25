@@ -53,7 +53,7 @@ const CSS_o =
             )
           }
           //>
-          console.log( `-- Processing: ${CSS_o.path_s}` )
+          //--console.log( `-- Processing: ${CSS_o.path_s}` )
 
           CSS_o
             .process__s( ccss_s )
@@ -191,20 +191,35 @@ const CSS_o =
     CSS_o
       .selfClose_b = false        //: reset
       
-    CSS_o
-      .line_a =
+    ccss_s =
+      ccss_s
+        .trim()
+        .replace
+        (
+          /<!--[\s\S]*?-->/gm,  //: strip HTML comments (before css comments)
+          ''
+        )
+
+    if
+    (
+      ccss_s
+        .indexOf( 'cssComment' )  //: as context( cssComment )
+      ===
+      -1  //: already removed if html commented out
+    )
+    {
+      ccss_s =
         ccss_s
-          .trim()
-          .replace
-          (
-            /<!--[\s\S]*?-->/gm,  //: strip HTML comments
-            ''
-          )
           .replace
           (
             /\/\*[\s\S]*?\*\//gm,  //: strip CSS comments
             ''
           )
+    }
+
+    CSS_o
+      .line_a =
+        ccss_s
           .split( '\n' )
 
     let at_n =
@@ -318,14 +333,7 @@ const CSS_o =
       :
         return 'Sibling'
     
-      case
-        char_s
-        ===
-        '='
-      :
-        return 'Similar'
-    
-      default
+      default    //: skip context( cssComment )
       :
         return ''
     }
@@ -451,66 +459,18 @@ const CSS_o =
   ) =>
   {
     CSS_o
+      .stack_s =
+      CSS_o
+        .lastTag_s
+      +
+      ` ${line_s} `  //!!! endsWith space
+
+    CSS_o
       .tagStack_a
-        .push
-        (
-          CSS_o
-            .lastTag_s
-          +
-          ` ${line_s} `  //!!! endsWith space
-        )
+        .push( CSS_o.stack_s )
   }
   ,
     
-
-
-  /*........................................
-  processSimilar__v:
-  (
-    line_s
-  ) =>
-  {
-    //;console.log( `processSimilar__v: ${line_s}` )
-  }
-  ,
-  */
-
-
-
- processUrl__v:
- (
-   line_s
- ) =>
- {
-   const url_a =
-     line_s
-         .match( /url\s?\(\s?([^\)]+?)\s?\)/i )
-
-    if
-    (
-      ! url_a
-    )
-    {
-      return void (
-        console.log( `Error: url() is not valid` )
-      )
-    }
-
-   CSS_o
-     .path_a
-       .push
-       ( 
-         {
-           path_s: `${CSS_o.dir_s}${url_a[1]}`,
-           stack_a: CSS_o
-                      .tagStack_a
-                      .slice()
-         }
-       )
- }
- ,
-   
-
 
 
  processContext__v:
@@ -643,13 +603,16 @@ const CSS_o =
         return
       }
 
-      //...case
-      //...  param_a[0]
-      //...    .startsWith( 'resetStack' )
-      //...:
-      //...{
-      //...   return
-      //...}
+      case
+        param_a[0]
+          .startsWith( 'resetStack' )    //: 
+      :
+      {
+        CSS_o
+          .tagStack_a = []
+
+        return
+      }
 
       default:
         return
@@ -726,6 +689,9 @@ add__v:
   flushStack__v:
   () =>
   {
+    ;console.log( CSS_o.stack_s )
+    ;console.table( CSS_o.tagStack_a )
+
     CSS_o
       .lastTag_s =
         CSS_o
@@ -763,7 +729,7 @@ add__v:
         path_s,
         css_s,
         'utf8',
-        out_o => console.log( `-- Writing ${path_s}: ${out_o}` )
+        out_o => console.log( ''/*`-- Writing ${path_s}: ${out_o}`*/ )
       )
   }
   ,

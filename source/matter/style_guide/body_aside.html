@@ -1,4 +1,5 @@
-  <figure>    <!--  /+/  -->
+  <!--context( resetStack )-->
+  <figure>
       display:none;
       z-index:3;
       position:fixed;
@@ -7,12 +8,14 @@
       bottom:0;
       left:0;
       background:var(--bgcolor);
+    <!--
     <a>
       <img/>
     </a>
-  </figure>
+    -->
+  </figure>  <!--# + #-->
   +
-  <a>    <!--  /+/  -->
+  <a>
       display:none;
       z-index: 3;
       position: fixed;
@@ -24,19 +27,19 @@
         max-height: {{C_o.FULL_HEIGHT}};
         object-fit: scale-down;
         cursor: url(var(--cursor_svg)), auto;
-  </a>
-
-  <!--=== || ===-->
-
-  <figure:target>    <!--  /+/  -->
+  </a>    <!--# + #-->
+  <!--~ || ~-->
+  <figure:target>
       display:grid;
       place-items:center;
+    <!--
     <a>
       <img/>
     </a>
-  </figure>
+    -->
+  </figure>  <!--# + #-->
   +
-  <a>    <!--  /+/  -->
+  <a>
       position:fixed;
       z-index:3;
     <button>
@@ -51,9 +54,9 @@
         opacity:.5;
         cursor:pointer;
     </button>
-    <!--=== || ===-->
+    <!--~ || ~-->
     <button:hover>
         opacity:1;
         filter:brightness(2);
     </button>
-  </a>
+  </a>  <!--# + #-->
