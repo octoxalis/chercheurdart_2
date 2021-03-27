@@ -579,25 +579,10 @@ const CSS_o =
         .ruleset_s
     )
     {
-      let selector_s = ''
-
-      for
-      (
-        copy_s
-        of
+      let selector_s =
         CSS_o
-          .copyStack_a
-      )
-      {
-        selector_s +=
-          `${copy_s}${CSS_o.copyRulesetDelimiter_s}`
-      }
-
-      CSS_o
-        .copyStack_a = []    //: reset
-
-
-      selector_s +=
+          .copySelector__s()
+        +
         CSS_o
           .selector__s()
   
@@ -658,6 +643,43 @@ const CSS_o =
         :
           ` > ${tag_s}`
     }
+
+    return selector_s
+  }
+  ,    
+
+
+
+
+  copySelector__s:
+  () =>
+  {
+    if
+    (
+      ! CSS_o
+        .copyStack_a
+          .length
+    )
+    {
+      return ''
+    }
+
+    let selector_s = ''
+
+    for
+    (
+      copy_s
+      of
+      CSS_o
+        .copyStack_a
+    )
+    {
+      selector_s +=
+        `${copy_s}${CSS_o.copyRulesetDelimiter_s}`
+    }
+
+    CSS_o
+      .copyStack_a = []    //: reset
 
     return selector_s
   }
