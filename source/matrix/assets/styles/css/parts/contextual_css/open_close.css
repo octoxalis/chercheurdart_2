@@ -1,0 +1,12 @@
+img {
+color:white;
+}
+
+area:hover {
+color:black;
+}
+
+img[class="full"] {
+color:blue;
+}
+

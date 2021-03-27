@@ -4,12 +4,6 @@ const FS_o  = require( 'fs-extra' )
 
 const CSS_o =
 {
-  //XXselfClose_a:
-  //XX  [
-  //XX    'img', 'input', 'br', 'hr',  //: used tags only
-  //XX    //-- 'area', 'base', 'col', 'command', 'embed', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'
-  //XX  ],
-
   path_s: '',
 
   path_a: [],
@@ -86,7 +80,7 @@ const CSS_o =
         .line_a
     )
     {
-      ;console.log( line_s )
+      //;console.log( line_s )
 
       if
       (
@@ -352,7 +346,7 @@ const CSS_o =
 
     //XXif
     //XX(
-    //XX  ! context_a
+    //XX  ! context_s
     //XX)
     //XX{
     //XX  return void (
@@ -466,6 +460,22 @@ const CSS_o =
     line_s
   ) =>
   {
+    CSS_o
+      .add__v()    //: if previous tag ruleset still there
+
+    if
+    (
+      CSS_o
+        .selfClose_b    //: previous enclosed tag was self-closing
+    )
+    {
+      CSS_o
+        .flushStack__v()
+        
+      CSS_o
+        .selfClose_b = false    //: reset
+    }
+  
     let tag_s =
       line_s
         .slice( 1, -1 )    //: strip '<' and '>'
@@ -489,29 +499,21 @@ const CSS_o =
           )
     }
 
-    //XXconst name_a =
-    //XX  tag_s
-    //XX    .match( /^([^:\[]+)/i )    //: exclude pseudo or attribute: name only
-
-    //XXif
-    //XX(
-    //XX  name_a
-    //XX  &&
-    //XX  CSS_o
-    //XX    .selfClose_a
-    //XX      .includes( name_a[1] )  //: self closing tag missing closing '/'
-    //XX)
-    //XX{
-    //XX  CSS_o
-    //XX    .selfClose_b = true
-    //XX}
-
-    CSS_o
-      .add__v()
-
     CSS_o
       .tagStack_a
         .push( tag_s )
+
+    if
+    (
+      CSS_o
+        .selfClose_b    //: previous tag was self-closing
+    )
+    {
+      CSS_o
+        .add__v()
+    }
+
+
   }
   ,
     
@@ -525,19 +527,6 @@ const CSS_o =
   {
     CSS_o
       .add__v()
-
-    if
-    (
-      CSS_o
-        .copy_b
-    )
-    {
-      CSS_o
-        .copy_b =
-          false
-      
-      return    //: skip flushStack__v after copy
-    }
 
     CSS_o
       .flushStack__v()
@@ -578,7 +567,7 @@ const CSS_o =
       CSS_o
         .ruleset_s
     )
-    {
+    {      
       let selector_s =
         CSS_o
           .copySelector__s()
@@ -597,23 +586,7 @@ const CSS_o =
 
       CSS_o
         .ruleset_s = ''    //: reset
-
-      if
-      (
-        CSS_o
-          .selfClose_b
-      )
-      {
-        CSS_o
-          .flushStack__v()    //: line_s arg not needed
-
-        CSS_o
-          .selfClose_b =
-            false    //: reset
-      }
-      //;console.table( CSS_o.tagStack_a )
-  
-      }
+    }
   }
   ,
 
@@ -691,14 +664,16 @@ const CSS_o =
   flushStack__v:
   () =>
   {
-    ;console.table( CSS_o.tagStack_a )
+    //;console.table( CSS_o.tagStack_a )
     CSS_o
       .lastTag_s =
         CSS_o
           .tagStack_a
             .pop()
-    ;console.table( CSS_o.tagStack_a )
+    //;console.table( CSS_o.tagStack_a )
 
+    return
+    //.......................................
     while
     (
       CSS_o

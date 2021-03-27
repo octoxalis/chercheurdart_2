@@ -1,0 +1,19 @@
+body,
+body > div {
+color:green;
+}
+
+body > p,
+body > area {
+color:blue;
+}
+
+body > i {
+color:coral;
+}
+
+body > i > img,
+body > em {
+color:cyan;
+}
+

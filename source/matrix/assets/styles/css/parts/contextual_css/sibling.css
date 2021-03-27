@@ -6,7 +6,7 @@ p + ins {
 background:blue;
 }
 
-p + div {
-background:green;
+p + em {
+background:olive;
 }
 

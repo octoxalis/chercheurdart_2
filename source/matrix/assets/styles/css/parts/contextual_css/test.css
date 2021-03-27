@@ -1,22 +1,20 @@
+body > div {
+color:green;
+}
+
 body > section > p {
 color:red;
 }
 
-body > section > p:after {
-color:blue;
+body > section > p > div {
+color:white;
 }
 
-body > section > p[class="flex"],
-body > section > section {
-color:green;
+body > section > area {
+color:violet;
 }
 
-body,
- label > input {
-color:red;
-}
-
-body +  {
+body > section > img {
 color:blue;
 }
 
