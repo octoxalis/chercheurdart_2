@@ -1,4 +1,4 @@
-figure {
+body > aside > figure {
 display:none;
 z-index:3;
 position:fixed;
@@ -9,7 +9,7 @@ left:0;
 background:var(--bgcolor);
 }
 
-figure + a {
+body > aside > figure + a {
 display:none;
 z-index: 3;
 position: fixed;
@@ -17,7 +17,7 @@ top: {{C_o.PAD_2}};
 left: 50%;
 }
 
-figure + img {
+body > aside > figure + img {
 z-index: 4;
 max-width: {{C_o.FULL_WIDTH}};
 max-height: {{C_o.FULL_HEIGHT}};
@@ -25,17 +25,17 @@ object-fit: scale-down;
 cursor: url(var(--cursor_svg)), auto;
 }
 
-figure + figure:target {
+body > aside > figure + figure:target {
 display:grid;
 place-items:center;
 }
 
-figure + figure:target + a {
+body > aside > figure + figure:target + a {
 position:fixed;
 z-index:3;
 }
 
-figure + figure:target + a > button {
+body > aside > figure + figure:target + a > button {
 z-index:5;
 width:1.5em;
 height:1.5em;
@@ -48,7 +48,7 @@ opacity:.5;
 cursor:pointer;
 }
 
-figure + figure:target + a > button:hover {
+body > aside > figure + figure:target + a > button:hover {
 opacity:1;
 filter:brightness(2);
 }

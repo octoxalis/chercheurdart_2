@@ -1,28 +1,12 @@
-body > section > p {
+p {
 background:red;
 }
 
-body > section > p + ins {
+p + ins {
 background:blue;
 }
 
-body > section > p + ins ~ div {
+p + div {
 background:green;
-}
-
-body > section > p + ins ~ div > p {
-display:none;
-}
-
-body > section > p + ins ~ div > p + label {
-position:absolute;
-}
-
-body > section > p + ins ~ div > p + label > em {
-position:fixed;
-}
-
-body > section > p + ins ~ div > p + label > em ~ i {
-position:sticky;
 }
 

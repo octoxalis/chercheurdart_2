@@ -4,11 +4,11 @@ const FS_o  = require( 'fs-extra' )
 
 const CSS_o =
 {
-  //XXselfClose_a:
-  //XX  [
-  //XX    'img', 'input', 'br', 'hr',  //: used tags only
-  //XX    //-- 'area', 'base', 'col', 'command', 'embed', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'
-  //XX  ],
+  selfClose_a:
+    [
+      'img', 'input', 'br', 'hr',  //: used tags only
+      //-- 'area', 'base', 'col', 'command', 'embed', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'
+    ],
 
   path_s: '',
 
@@ -21,8 +21,7 @@ const CSS_o =
   //-- tagStack_a: [],
   //-- newStack_a: [],
   //-- lastTag_s: '',
-  //-- selfClose_b,
-  //-- copyStack_a: [],
+  //-- selfClose_b
 
   ruleDelimiter_s: '\n',                //: '' to minify
   rulesetDelimiter_s: '}\n\n',          //: '}' to minify
@@ -179,9 +178,6 @@ const CSS_o =
         CSS_o
           .newStack_a
     
-    CSS_o
-      .copyStack_a = []     //: reset
-
     CSS_o
       .lastTag_s = ''    //: reset
     
@@ -346,10 +342,10 @@ const CSS_o =
     line_s
   ) =>
   {
-    const [ nouse_s, context_s ] =
+    const context_a =
       line_s
           .match( /context\s?\(\s?([^\)]+?)\s?\)/i )
-
+ 
     //XXif
     //XX(
     //XX  ! context_a
@@ -360,32 +356,30 @@ const CSS_o =
     //XX  )
     //XX}
  
-    let [ function_s, arg_s ] =
+    const context_s =
+      context_a[1]
+ 
+    const param_a =
       context_s
-        .replace
-        (
-          ' ',
-          ''
-        )
         .split( ',' )
-
+ 
     switch
     (
       true
     )
     {
       case
-        function_s
+        param_a[0]
         ===
         'url'
       :
       {
         CSS_o
-          .path_a
+        .path_a
             .push
             ( 
               {
-                path_s: `${CSS_o.dir_s}${arg_s}`,
+                path_s: `${CSS_o.dir_s}${param_a[1].trim()}`,
                 stack_a: CSS_o
                           .tagStack_a
                             .slice()
@@ -396,24 +390,85 @@ const CSS_o =
       }
  
       case
-        function_s
+        param_a[0]
         ===
         'copy'
       :
       {
+        const lastTag_s =
+          CSS_o
+            .lastTag_s
+ 
+        if
+        (
+          ! lastTag_s
+        )
+        {
+          return ''
+        }
+        //>
         CSS_o
-          .copyStack_a
-            .push
-            (
-              CSS_o
-                .selector__s()
-            )
-
+          .copy_b =
+            true
+        let lastTag_n =
+          CSS_o
+            .css_s
+              .lastIndexOf( lastTag_s )
+ 
+        const lastSelector_n =
+          CSS_o
+            .css_s
+              .lastIndexOf
+              (
+                '}',
+                lastTag_n
+              )
+ 
+        const lastSelector_s =
+          CSS_o
+            .css_s
+              .slice
+              (
+                lastSelector_n + 1,
+                lastTag_n
+              )
+              .trim()
+ 
+        const insert_n =
+          lastTag_n
+          +
+          lastTag_s
+            .length
+ 
+        const copyTag_s =
+          CSS_o
+            .tagStack_a
+              .pop()
+ 
+        const css_s =
+          CSS_o
+            .css_s
+              .slice
+              (
+                0,
+                insert_n
+              )
+          +
+          `${CSS_o.copyRulesetDelimiter_s}${lastSelector_s} ${copyTag_s}`
+          +
+          CSS_o
+            .css_s
+              .slice( insert_n )
+ 
+        CSS_o
+          .css_s =
+            css_s
+ 
         return
       }
  
       case
-        function_s
+        param_a[0]
           .startsWith( 'resetStack' )    //: 
       :
       {
@@ -477,9 +532,6 @@ const CSS_o =
         .endsWith( '/' )
     )
     {
-      CSS_o
-        .selfClose_b = true
-
       tag_s =
         tag_s
           .slice
@@ -489,22 +541,22 @@ const CSS_o =
           )
     }
 
-    //XXconst name_a =
-    //XX  tag_s
-    //XX    .match( /^([^:\[]+)/i )    //: exclude pseudo or attribute: name only
+    const name_a =
+      tag_s
+        .match( /^([^:\[]+)/i )    //: exclude pseudo or attribute: name only
 
-    //XXif
-    //XX(
-    //XX  name_a
-    //XX  &&
-    //XX  CSS_o
-    //XX    .selfClose_a
-    //XX      .includes( name_a[1] )  //: self closing tag missing closing '/'
-    //XX)
-    //XX{
-    //XX  CSS_o
-    //XX    .selfClose_b = true
-    //XX}
+    if
+    (
+      name_a
+      &&
+      CSS_o
+        .selfClose_a
+          .includes( name_a[1] )  //: self closing tag missing closing '/'
+    )
+    {
+      CSS_o
+        .selfClose_b = true
+    }
 
     CSS_o
       .add__v()
@@ -580,26 +632,25 @@ const CSS_o =
     )
     {
       let selector_s = ''
-
+  
       for
       (
-        copy_s
+        let at_s
         of
         CSS_o
-          .copyStack_a
+          .tagStack_a
       )
       {
         selector_s +=
-          `${copy_s}${CSS_o.copyRulesetDelimiter_s}`
+          ! selector_s    //: root selector
+          ||
+          selector_s
+            .endsWith( ' ' )  //: sibling selector (endsWith space)
+          ?
+            `${at_s}`
+          :
+            ` > ${at_s}`
       }
-
-      CSS_o
-        .copyStack_a = []    //: reset
-
-
-      selector_s +=
-        CSS_o
-          .selector__s()
   
       CSS_o
         .css_s +=
@@ -631,37 +682,6 @@ const CSS_o =
       }
   }
   ,
-
-
-
-
-  selector__s:
-  () =>
-  {
-    let selector_s = ''
-  
-    for
-    (
-      let tag_s
-      of
-      CSS_o
-        .tagStack_a
-    )
-    {
-      selector_s +=
-        ! selector_s    //: root selector
-        ||
-        selector_s
-          .endsWith( ' ' )  //: sibling selector (endsWith space)
-        ?
-          `${tag_s}`
-        :
-          ` > ${tag_s}`
-    }
-
-    return selector_s
-  }
-  ,    
 
 
 

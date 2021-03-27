@@ -1,0 +1,4 @@
++   One rule per line only
++   Siblings one line apart
++   Self-closing tags MUST be closed
++   context copy tag(s) before ruleset tag copied
