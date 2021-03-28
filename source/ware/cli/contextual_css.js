@@ -4,6 +4,8 @@ const FS_o  = require( 'fs-extra' )
 
 const CSS_o =
 {
+  minify_b: false,
+
   path_s: '',
 
   path_a: [],
@@ -340,19 +342,19 @@ const CSS_o =
     line_s
   ) =>
   {
-    const [ nouse_s, context_s ] =
+    const [ , context_s ] =    //: ignore match[0]
       line_s
           .match( /context\s?\(\s?([^\)]+?)\s?\)/i )
 
-    //XXif
-    //XX(
-    //XX  ! context_s
-    //XX)
-    //XX{
-    //XX  return void (
-    //XX    console.log( `Error: context() is not valid` )
-    //XX  )
-    //XX}
+    if
+    (
+      ! context_s
+    )
+    {
+      return void (
+        console.log( `Error: context() is not valid` )
+      )
+    }
  
     let [ function_s, arg_s ] =
       context_s
@@ -434,7 +436,17 @@ const CSS_o =
   {
     CSS_o
       .ruleset_s +=
-        `${line_s}${CSS_o.ruleDelimiter_s}`
+        line_s
+    
+    if
+    (
+      ! CSS_o
+        .minify_b
+    )
+    {
+      CSS_o
+        .ruleset_s += '\n'
+    }
   }
   ,
     
@@ -499,9 +511,23 @@ const CSS_o =
           )
     }
 
+
+    //...CSS_o
+    //...  .tagStack_a
+    //...    []
+
+
+
+
     CSS_o
       .tagStack_a
-        .push( tag_s )
+        .push
+        (
+          {
+            tag_s: tag_s,
+            tie_s: '>'
+          }
+        )
 
     if
     (
@@ -567,17 +593,40 @@ const CSS_o =
       CSS_o
         .ruleset_s
     )
-    {      
-      let selector_s =
-        CSS_o
-          .copySelector__s()
-        +
-        CSS_o
-          .selector__s()
-  
+    {
       CSS_o
         .css_s +=
-          `${selector_s}${CSS_o.selectorRulesetDelimiter_s}${CSS_o.ruleset_s}${CSS_o.rulesetDelimiter_s}`
+          CSS_o
+            .copySelector__s()
+          +
+          CSS_o
+            .selector__s()
+          +
+            ' {'
+
+      if
+      (
+        ! CSS_o
+          .minify_b
+      )
+      {
+        CSS_o
+          .css_s += '\n'
+      }
+
+      CSS_o
+        .css_s +=
+          `${CSS_o.ruleset_s}}`
+
+      if
+      (
+        ! CSS_o
+          .minify_b
+      )
+      {
+        CSS_o
+          .css_s += '\n\n'
+      }
     
       CSS_o
         .lastRuleset_s =
@@ -600,7 +649,7 @@ const CSS_o =
   
     for
     (
-      let tag_s
+      let stack_o
       of
       CSS_o
         .tagStack_a
@@ -608,13 +657,16 @@ const CSS_o =
     {
       selector_s +=
         ! selector_s    //: root selector
-        ||
-        selector_s
-          .endsWith( ' ' )  //: sibling selector (endsWith space)
         ?
-          `${tag_s}`
+          stack_o
+            .tag_s
         :
-          ` > ${tag_s}`
+          ` ${stack_o.tie_s} `  //: space before and after
+            +
+          stack_o
+            .tag_s
+          
+
     }
 
     return selector_s
@@ -627,16 +679,6 @@ const CSS_o =
   copySelector__s:
   () =>
   {
-    if
-    (
-      ! CSS_o
-        .copyStack_a
-          .length
-    )
-    {
-      return ''
-    }
-
     let selector_s = ''
 
     for
@@ -689,7 +731,50 @@ const CSS_o =
     //;console.table( CSS_o.tagStack_a )
     }
   }
-  ,    
+  ,
+
+
+
+
+  endStack__v:
+  (
+    tag_s,
+    tie_s
+  ) =>
+  {
+    let end_n =
+      CSS_o
+        .tagStack_a
+          .length
+
+    CSS_o
+      .tagStack_a
+        [end_n - 1] =
+          {
+            tag_s: tag_s,
+            tie_s: tie_s
+          }
+  }
+  ,
+
+
+
+
+  endStack__o:
+  () =>
+  {
+    let end_n =
+      CSS_o
+        .tagStack_a
+          .length
+
+    return (
+      CSS_o
+        .tagStack_a
+          [end_n - 1]
+    )
+  }
+  ,
 
 
 
