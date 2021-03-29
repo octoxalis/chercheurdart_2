@@ -1,28 +1,28 @@
-body {
-color:black;
-}
-
-body > div {
-color:green;
-}
-
-body > p {
+p {
 color:red;
 }
 
-body > area {
-color:blue;
+ol {
+color:cyan;
 }
 
-body > i {
-color:coral;
-}
-
-body > i > img {
+ol > li {
 color:olive;
 }
 
-body > em {
-color:cyan;
+ul > li {
+color:coral;
+}
+
+area {
+color:blue;
+}
+
+i {
+color:pink;
+}
+
+img {
+color:red;
 }
 

@@ -10,20 +10,15 @@ const CSS_o =
 
   path_a: [],
 
+  //-- close_b: false,    //: self-closing tag
   //-- css_s : '',
   //-- line_a: [],
-  //-- ruleset_s
+  //-- ruleset_s: '',
+  //-- lastTag_s: '',
   //-- lastRuleset_s
   //-- tagStack_a: [],
   //-- newStack_a: [],
-  //-- lastTag_s: '',
-  //-- selfClose_b,
   //-- copyStack_a: [],
-
-  ruleDelimiter_s: '\n',                //: '' to minify
-  rulesetDelimiter_s: '}\n\n',          //: '}' to minify
-  selectorRulesetDelimiter_s: ' {\n',   //: '{' to minify
-  copyRulesetDelimiter_s: ',\n',        //: ',' to minify
 
 
 
@@ -71,8 +66,6 @@ const CSS_o =
       .clean__v( ccss_s )
 
     let line_n = 0
-
-    let atMethod_s
 
     for
     (
@@ -134,6 +127,17 @@ const CSS_o =
         )
     }
 
+    CSS_o
+      .proceed__v()
+  }
+  ,
+
+
+
+
+  proceed__v:
+  () =>
+  {
     if
     (
       CSS_o
@@ -191,7 +195,7 @@ const CSS_o =
       .css_s = ''        //: reset
       
     CSS_o
-      .selfClose_b = false        //: reset
+      .close_b = false        //: reset
       
     ccss_s =
       ccss_s
@@ -473,52 +477,25 @@ const CSS_o =
   ) =>
   {
     CSS_o
-      .add__v()    //: if previous tag ruleset still there
+      .add__v()    //: hanging previous tag ruleset
 
     if
     (
       CSS_o
-        .selfClose_b    //: previous enclosed tag was self-closing
+        .close_b    //: previous enclosed tag was self-closing
     )
     {
       CSS_o
-        .flushStack__v()
+        .flush__v()
         
       CSS_o
-        .selfClose_b = false    //: reset
+        .close_b = false    //: reset
     }
-  
-    let tag_s =
-      line_s
-        .slice( 1, -1 )    //: strip '<' and '>'
-        .trim()            //: strip possible space
 
-    if
-    (
-      tag_s
-        .endsWith( '/' )
-    )
-    {
+    const tag_s =
       CSS_o
-        .selfClose_b = true
-
-      tag_s =
-        tag_s
-          .slice
-          (
-            0,
-            -1    //: strip end '/'
-          )
-    }
-
-
-    //...CSS_o
-    //...  .tagStack_a
-    //...    []
-
-
-
-
+        .tag__s( line_s )
+      
     CSS_o
       .tagStack_a
         .push
@@ -528,18 +505,6 @@ const CSS_o =
             tie_s: '>'
           }
         )
-
-    if
-    (
-      CSS_o
-        .selfClose_b    //: previous tag was self-closing
-    )
-    {
-      CSS_o
-        .add__v()
-    }
-
-
   }
   ,
     
@@ -555,7 +520,7 @@ const CSS_o =
       .add__v()
 
     CSS_o
-      .flushStack__v()
+      .flush__v()
   }
   ,
 
@@ -571,12 +536,21 @@ const CSS_o =
       .stack_s =
       CSS_o
         .lastTag_s
-      +
-      ` ${line_s} `  //!!! endsWith space
+      //XX+
+      //XX` ${line_s} `  //!!! endsWith space
 
+    //XXCSS_o
+    //XX  .tagStack_a
+    //XX    .push( CSS_o.stack_s )
     CSS_o
       .tagStack_a
-        .push( CSS_o.stack_s )
+        .push
+        (
+          {
+            tag_s: tag_s,
+            tie_s: '>'
+          }
+        )
   }
   ,
     
@@ -690,7 +664,16 @@ const CSS_o =
     )
     {
       selector_s +=
-        `${copy_s}${CSS_o.copyRulesetDelimiter_s}`
+        `${copy_s},`
+        
+      if
+      (
+        ! CSS_o
+          .minify_b
+      )
+      {
+        selector_s += '\n'
+      }
     }
 
     CSS_o
@@ -703,33 +686,51 @@ const CSS_o =
 
 
 
-  flushStack__v:
+  tag__s:
+  (
+    line_s
+  ) =>
+  {
+    let tag_s =
+      line_s
+        .slice( 1, -1 )    //: strip '<' and '>'
+
+    if
+    (
+      tag_s
+        .endsWith( '/' )
+    )
+    {
+      CSS_o
+        .close_b = true
+
+      tag_s =
+        tag_s
+          .slice
+          (
+            0,
+            -1    //: strip end '/'
+          )
+    }
+
+    return (
+      tag_s
+        .trim()
+    )
+  }
+  ,    
+
+
+
+
+  flush__v:
   () =>
   {
-    //;console.table( CSS_o.tagStack_a )
     CSS_o
       .lastTag_s =
         CSS_o
           .tagStack_a
             .pop()
-    //;console.table( CSS_o.tagStack_a )
-
-    return
-    //.......................................
-    while
-    (
-      CSS_o
-        .lastTag_s
-          ?.endsWith( ' ' )    //: flush sibling on stack
-    )
-    {
-      CSS_o
-        .lastTag_s =
-          CSS_o
-            .tagStack_a
-              .pop()
-    //;console.table( CSS_o.tagStack_a )
-    }
   }
   ,
 
@@ -840,3 +841,11 @@ void function
   CSS_o
     .read__s()
 }()
+
+
+
+/*
+
+ ;console.table( CSS_o.tagStack_a )
+
+ */

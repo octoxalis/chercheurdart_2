@@ -1,12 +1,12 @@
-img{
+img {
 color:white;
 }
 
-area:hover{
+area:hover {
 color:black;
 }
 
-img[class="full"]{
+img[class="full"] {
 color:blue;
 }
 
