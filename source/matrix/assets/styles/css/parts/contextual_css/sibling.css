@@ -1,12 +1,20 @@
 p {
-background:red;
+color:red;
 }
 
 p + ins {
-background:blue;
+color:blue;
 }
 
-p + em {
-background:olive;
+p + ins > ul {
+color: black;
+}
+
+p + ins + em {
+color: cyan;
+}
+
+p + ins + i {
+color:olive;
 }
 

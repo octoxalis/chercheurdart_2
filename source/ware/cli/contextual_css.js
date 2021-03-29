@@ -10,11 +10,17 @@ const CSS_o =
 
   path_a: [],
 
+  sibling_a:
+  [
+    '+',
+    '~',
+  ],
+
   //-- close_b: false,    //: self-closing tag
   //-- css_s : '',
   //-- line_a: [],
   //-- ruleset_s: '',
-  //-- lastTag_s: '',
+  //-- lastTag_o: {},
   //-- lastRuleset_s
   //-- tagStack_a: [],
   //-- newStack_a: [],
@@ -183,7 +189,7 @@ const CSS_o =
       .copyStack_a = []     //: reset
 
     CSS_o
-      .lastTag_s = ''    //: reset
+      .lastTag_o = {}    //: reset
     
     CSS_o
       .ruleset_s = ''  //: reset
@@ -476,6 +482,8 @@ const CSS_o =
     line_s
   ) =>
   {
+    //;console.log( line_s )
+
     CSS_o
       .add__v()    //: hanging previous tag ruleset
 
@@ -492,19 +500,47 @@ const CSS_o =
         .close_b = false    //: reset
     }
 
+    //;console.table( CSS_o.tagStack_a )
+
     const tag_s =
       CSS_o
         .tag__s( line_s )
+
+    const newStack_o =
+      {
+        tag_s: tag_s,
+        tie_s: '>'
+      }
       
+    const previousStack_o =
+      CSS_o
+        .endStack__o()
+
+    if
+    (
+      previousStack_o
+      &&
+      CSS_o
+      .sibling_a
+        .includes
+        (
+          previousStack_o
+            .tie_s
+        )
+)
+    {
+      newStack_o
+        .sibling_s =
+          previousStack_o
+            .tie_s
+    }
+
     CSS_o
       .tagStack_a
-        .push
-        (
-          {
-            tag_s: tag_s,
-            tie_s: '>'
-          }
-        )
+        .push( newStack_o )
+
+    ;console.log( line_s )
+    ;console.table( CSS_o.tagStack_a )
   }
   ,
     
@@ -519,8 +555,25 @@ const CSS_o =
     CSS_o
       .add__v()
 
+    const endStack_o =
+      CSS_o
+        .endStack__o()
+
     CSS_o
       .flush__v()
+
+    if
+    (
+      endStack_o
+        .sibling_s
+    )
+    {
+      //CSS_o
+      //  .flush__v()
+    }
+    ;console.log( line_s )
+    ;console.table( CSS_o.tagStack_a )
+    ;console.log( '----------------------------------' )
   }
   ,
 
@@ -533,27 +586,36 @@ const CSS_o =
   ) =>
   {
     CSS_o
-      .stack_s =
-      CSS_o
-        .lastTag_s
-      //XX+
-      //XX` ${line_s} `  //!!! endsWith space
+      .add__v()    //: hanging previous tag ruleset
 
-    //XXCSS_o
-    //XX  .tagStack_a
-    //XX    .push( CSS_o.stack_s )
+    if
+    (
+      CSS_o
+        .close_b    //: previous enclosed tag was self-closing
+    )
+    {
+      CSS_o
+        .flush__v()
+        
+      CSS_o
+        .close_b = false    //: reset
+    }
+
+    const lastTag_o =
+      CSS_o
+        .lastTag_o
+
+    lastTag_o
+      .tie_s =
+        line_s
+
     CSS_o
       .tagStack_a
-        .push
-        (
-          {
-            tag_s: tag_s,
-            tie_s: '>'
-          }
-        )
+        .push( lastTag_o )
+
   }
   ,
-    
+  
 
 
   add__v:
@@ -621,6 +683,8 @@ const CSS_o =
   {
     let selector_s = ''
   
+    let tie_s = ''
+
     for
     (
       let stack_o
@@ -635,14 +699,16 @@ const CSS_o =
           stack_o
             .tag_s
         :
-          ` ${stack_o.tie_s} `  //: space before and after
-            +
+          ` ${tie_s} `  //: space before and after
+          +
           stack_o
             .tag_s
           
-
+      tie_s =
+        stack_o.tie_s
     }
 
+    //;console.log( selector_s )
     return selector_s
   }
   ,    
@@ -727,7 +793,7 @@ const CSS_o =
   () =>
   {
     CSS_o
-      .lastTag_s =
+      .lastTag_o =
         CSS_o
           .tagStack_a
             .pop()
@@ -747,7 +813,6 @@ const CSS_o =
       CSS_o
         .tagStack_a
           .length
-
     CSS_o
       .tagStack_a
         [end_n - 1] =
@@ -770,9 +835,13 @@ const CSS_o =
           .length
 
     return (
-      CSS_o
-        .tagStack_a
-          [end_n - 1]
+      ! end_n
+      ?
+        null
+      :
+        CSS_o
+          .tagStack_a
+            [end_n - 1]
     )
   }
   ,
