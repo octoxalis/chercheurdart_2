@@ -500,7 +500,8 @@ const CSS_o =
         .close_b = false    //: reset
     }
 
-    //;console.table( CSS_o.tagStack_a )
+    ;console.log( line_s )
+    ;console.table( CSS_o.tagStack_a )
 
     const tag_s =
       CSS_o
@@ -539,8 +540,7 @@ const CSS_o =
       .tagStack_a
         .push( newStack_o )
 
-    ;console.log( line_s )
-    ;console.table( CSS_o.tagStack_a )
+    //;console.table( CSS_o.tagStack_a )
   }
   ,
     
