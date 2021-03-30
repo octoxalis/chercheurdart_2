@@ -513,27 +513,21 @@ const CSS_o =
         tie_s: '>'
       }
       
-    const previousStack_o =
+    let end_n =
       CSS_o
-        .endStack__o()
+        .tagStack_a
+          .length
 
     if
     (
-      previousStack_o
-      &&
-      CSS_o
-      .sibling_a
-        .includes
-        (
-          previousStack_o
-            .tie_s
-        )
-)
+      end_n
+    )
     {
-      newStack_o
-        .sibling_s =
-          previousStack_o
-            .tie_s
+      //............. DO SOMETHING
+      CSS_o
+        .tagStack_a
+          [end_n - 1]
+            .sibling_s = ''    //: reset
     }
 
     CSS_o
@@ -609,6 +603,10 @@ const CSS_o =
 
     lastTag_o
       .tie_s =
+        line_s
+
+    lastTag_o
+      .sibling_s =
         line_s
 
     CSS_o
@@ -817,13 +815,20 @@ const CSS_o =
       CSS_o
         .tagStack_a
           .length
-    CSS_o
-      .tagStack_a
-        [end_n - 1] =
-          {
-            tag_s: tag_s,
-            tie_s: tie_s
-          }
+
+    if
+    (
+      end_n
+    )
+    {
+      CSS_o
+        .tagStack_a
+          [end_n - 1] =
+            {
+              tag_s: tag_s,
+              tie_s: tie_s
+            }
+    }
   }
   ,
 
