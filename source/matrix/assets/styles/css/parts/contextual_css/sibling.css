@@ -10,11 +10,19 @@ p + ins > ul {
 color: black;
 }
 
-p + ins + em {
+p + ins > ul > li {
+color: crimson;
+}
+
+p + ins > ul > li ~ li {
+color: pink;
+}
+
+p + ins > ul + em {
 color: cyan;
 }
 
-p + ins + i {
+p + ins > ul + i {
 color:olive;
 }
 
