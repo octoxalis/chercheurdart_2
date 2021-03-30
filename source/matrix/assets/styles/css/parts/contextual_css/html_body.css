@@ -67,24 +67,24 @@ box-shadow: 0 1px 1px currentColor,
  0 2px 2px currentColor, 0 4px 4px currentColor;filter: brightness(.3);
 }
 
-body > main > section:target,
-body > main > section:first-of-type {
+body > section:target,
+body > section:first-of-type {
 display:block;
 }
 
-body > aside {
+aside {
 display:none;
 }
 
-body > aside#gray {
+aside#gray {
 --cursor_svg:cursor_gray.svg;
 }
 
-body > aside#color {
+aside#color {
 --cursor_svg:cursor_color.svg;
 }
 
-body > svg {
+svg {
 display:none;
 stroke:var(--highlight);
 stroke-width:1;

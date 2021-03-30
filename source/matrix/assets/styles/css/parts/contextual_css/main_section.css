@@ -1,23 +1,23 @@
-section > h3 {
+body > section > h3 {
 margin: {{C_o.PAD_12}} 0 {{C_o.PAD_3}} 0;
 --font_size-min: 1.5rem;
 --font_size-max: 2.5rem;
 font-weight: 600;
 }
 
-section > ul {
+body > section > ul {
 margin: 0 auto {{C_o.PAD_4}} auto;
 max-width: 60ch;
 --font_size-max: .95rem;
 list-style-type: none;
 }
 
-section > ul > li {
+body > section > ul > li {
 margin-bottom: {{C_o.PAD_1}};
 padding-left: {{C_o.PAD_8}};
 }
 
-section > ul > li:before {
+body > section > ul > li:before {
 content: "XX";
 position: relative;
 left: 1ch;
@@ -27,41 +27,41 @@ border-right: hidden;
 opacity: .4;
 }
 
-section > p {
+body > section > p {
 margin: 0 auto {{C_o.PAD_4}} auto;
 padding: 0 {{C_o.PAD_2}};
 max-width: 60ch;
 }
 
-section > p > a {
+body > section > p > a {
 text-decoration: none;
 color: currentColor;
 }
 
-section > p > a:hover {
+body > section > p > a:hover {
 border-bottom: 1px solid;
 filter: brightness(.75);
 }
 
-section > p > a:hover:after {
+body > section > p > a:hover:after {
 color: var(--highlight);
 opacity: 1;
 }
 
-section > p > a:not([name]):not([href*="//"]):after {
+body > section > p > a:not([name]):not([href*="//"]):after {
 content: "\{{C_o.INT_ARROW_s}}";
 }
 
-section > p > a[href*="//"]:after] {
+body > section > p > a[href*="//"]:after] {
 content: "\{{C_o.EXT_ARROW_s}}";
 }
 
-section > p > em {
+body > section > p > em {
 font-weight: 600;
 font-style: normal;
 }
 
-section > p > label[for^="I"] {
+body > section > p > label[for^="I"] {
 z-index: 5;
 margin-right: {{C_o.PAD_2}};
 vertical-align: middle;
@@ -69,11 +69,11 @@ vertical-align: middle;
 cursor: pointer;
 }
 
-section > p > label[for^="I"] + input[id^="I"] {
+body > section > p > label[for^="I"] + input[id^="I"] {
 display: none;
 }
 
-section > p > label[for^="I"] + input[id^="I"] + ins {
+body > section > p > label[for^="I"] + input[id^="I"] + ins {
 display: none;
 position: relative;
 margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
@@ -84,11 +84,11 @@ border-radius: 4px;
 --font_size-max: .95rem;
 }
 
-section > p > label[for^="I"]:hover {
+body > section > p > label[for^="I"]:hover {
 color: var(--highlight);
 }
 
-section > p > label[for^="I"] + input[id^="I"]:checked + ins {
+body > section > p > label[for^="I"] + input[id^="I"]:checked + ins {
 display: block;
 }
 

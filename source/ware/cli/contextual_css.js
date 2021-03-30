@@ -16,15 +16,16 @@ const CSS_o =
     '~',
   ],
 
-  //-- close_b: false,    //: self-closing tag
   //-- css_s : '',
-  //-- line_a: [],
   //-- ruleset_s: '',
-  //-- lastTag_o: {},
-  //-- lastRuleset_s
+  //-- lastRuleset_s: '',
+  //-- line_a: [],
   //-- tagStack_a: [],
   //-- newStack_a: [],
   //-- copyStack_a: [],
+  //-- lastTag_o: {},
+  //-- close_b: false,    //: self-closing tag
+  //-- minify_b: false,
 
 
 
@@ -52,7 +53,7 @@ const CSS_o =
             )
           }
           //>
-          //--console.log( `-- Processing: ${CSS_o.path_s}` )
+          console.log( `-- Processing: ${CSS_o.path_s}` )
 
           CSS_o
             .process__s( ccss_s )
@@ -68,6 +69,11 @@ const CSS_o =
     ccss_s
   ) =>
   {
+    //====================
+    console.time('timestampId')
+    //====================
+
+
     CSS_o
       .clean__v( ccss_s )
 
@@ -81,8 +87,6 @@ const CSS_o =
         .line_a
     )
     {
-      //;console.log( line_s )
-
       if
       (
         ! line_s
@@ -110,12 +114,16 @@ const CSS_o =
     if
     (
       CSS_o
-        .ruleset_s    //: last ruleset has not been flushed
+        .ruleset_s    //: last ruleset not yet flushed
     )
     {
       CSS_o
         .processClose__v()
     }
+
+    //====================
+    console.timeEnd('timestampId')
+    //====================
 
     if
     (
@@ -189,19 +197,19 @@ const CSS_o =
       .copyStack_a = []     //: reset
 
     CSS_o
-      .lastTag_o = {}    //: reset
+      .lastTag_o = {}       //: reset
     
     CSS_o
-      .ruleset_s = ''  //: reset
+      .ruleset_s = ''       //: reset
 
     CSS_o
-      .lastRuleset_s = ''  //: reset
+      .lastRuleset_s = ''   //: reset
 
     CSS_o
-      .css_s = ''        //: reset
+      .css_s = ''           //: reset
       
     CSS_o
-      .close_b = false        //: reset
+      .close_b = false      //: reset
       
     ccss_s =
       ccss_s
@@ -482,8 +490,6 @@ const CSS_o =
     line_s
   ) =>
   {
-    //;console.log( line_s )
-
     CSS_o
       .add__v()    //: hanging previous tag ruleset
 
@@ -499,9 +505,6 @@ const CSS_o =
       CSS_o
         .close_b = false    //: reset
     }
-
-    ;console.log( line_s )
-    ;console.table( CSS_o.tagStack_a )
 
     let endStack_o =
       CSS_o
@@ -553,7 +556,6 @@ const CSS_o =
       end_n
     )
     {
-      //............. DO SOMETHING
       CSS_o
         .tagStack_a
           [end_n - 1]
@@ -563,8 +565,6 @@ const CSS_o =
     CSS_o
       .tagStack_a
         .push( newStack_o )
-
-    //;console.table( CSS_o.tagStack_a )
   }
   ,
     
@@ -573,7 +573,7 @@ const CSS_o =
 
   processClose__v:
   (
-    line_s    //!!! not used
+    line_s
   ) =>
   {
     CSS_o
@@ -612,8 +612,6 @@ const CSS_o =
       CSS_o
         .flush__v()
     }
-    ;console.log( line_s )
-    ;console.table( CSS_o.tagStack_a )
   }
   ,
 
@@ -641,9 +639,6 @@ const CSS_o =
         .close_b = false    //: reset
     }
 
-    //;console.log( '\n\n----------------------------------' )
-    //;console.table( CSS_o.tagStack_a )
-    
     const lastTag_o =
       CSS_o
         .lastTag_o
@@ -660,8 +655,6 @@ const CSS_o =
       .tagStack_a
         .push( lastTag_o )
 
-    //;console.table( CSS_o.tagStack_a )
-    //;console.log( '++++++++++++++++++++++++++++++++++\n\n' )
   }
   ,
   
@@ -670,9 +663,6 @@ const CSS_o =
   add__v:
   () =>
   {
-    //;console.log( CSS_o.stack_s )
-    //;console.table( CSS_o.tagStack_a )
-
     if
     (
       CSS_o
@@ -757,7 +747,6 @@ const CSS_o =
         stack_o.tie_s
     }
 
-    //;console.log( selector_s )
     return selector_s
   }
   ,    
@@ -977,11 +966,3 @@ void function
   CSS_o
     .read__s()
 }()
-
-
-
-/*
-
- ;console.table( CSS_o.tagStack_a )
-
- */
