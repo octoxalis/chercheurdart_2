@@ -594,8 +594,8 @@ const CSS_o =
         .close_b = false    //: reset
     }
 
-    ;console.log( '\n\n----------------------------------' )
-    ;console.table( CSS_o.tagStack_a )
+    //;console.log( '\n\n----------------------------------' )
+    //;console.table( CSS_o.tagStack_a )
     
     const lastTag_o =
       CSS_o
@@ -613,8 +613,8 @@ const CSS_o =
       .tagStack_a
         .push( lastTag_o )
 
-    ;console.table( CSS_o.tagStack_a )
-    ;console.log( '++++++++++++++++++++++++++++++++++\n\n' )
+    //;console.table( CSS_o.tagStack_a )
+    //;console.log( '++++++++++++++++++++++++++++++++++\n\n' )
   }
   ,
   
