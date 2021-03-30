@@ -592,14 +592,8 @@ const CSS_o =
 
     if
     (
-      ! endStack_o
-    )
-    {
-      return
-    }
-    //>
-    if
-    (
+      endStack_o
+      &&
       (
         tag_s
         ===
