@@ -18,11 +18,11 @@ p + ins > ul > li ~ li {
 color: pink;
 }
 
-p + ins > ul + em {
+p + ins + em {
 color: cyan;
 }
 
-p + ins > ul + i {
+p + ins + i {
 color:olive;
 }
 

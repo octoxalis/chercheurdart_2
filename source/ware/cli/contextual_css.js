@@ -549,21 +549,44 @@ const CSS_o =
     CSS_o
       .add__v()
 
-    const endStack_o =
-      CSS_o
-        .endStack__o()
-
     CSS_o
       .flush__v()
 
+    const tag_s =
+      CSS_o
+        .tag__s( line_s )
+
+    let endStack_o =
+      CSS_o
+        .endStack__o()
+
     if
     (
-      endStack_o
-        .sibling_s
+      ! endStack_o
     )
     {
-      //CSS_o
-      //  .flush__v()
+      return
+    }
+    //>
+    if
+    (
+      (
+        tag_s
+        ===
+        endStack_o
+          .tag_s
+      )
+      &&
+      (
+        endStack_o
+          .tie_s
+        ===
+        '>'
+      )
+    )
+    {
+      CSS_o
+        .flush__v()
     }
     ;console.log( line_s )
     ;console.table( CSS_o.tagStack_a )
@@ -779,6 +802,17 @@ const CSS_o =
             0,
             -1    //: strip end '/'
           )
+    }
+
+    if
+    (
+      tag_s
+        .startsWith( '/' )
+    )
+    {
+      tag_s =
+        tag_s
+          .slice( 1 )    //: strip start '/'
     }
 
     return (
