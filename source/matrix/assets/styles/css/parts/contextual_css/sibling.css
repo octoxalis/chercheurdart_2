@@ -22,7 +22,7 @@ p + ins + em {
 color: cyan;
 }
 
-p + ins + i {
+i {
 color:olive;
 }
 

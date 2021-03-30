@@ -503,6 +503,36 @@ const CSS_o =
     ;console.log( line_s )
     ;console.table( CSS_o.tagStack_a )
 
+    let endStack_o =
+      CSS_o
+        .endStack__o()
+
+      while
+      (
+        endStack_o
+        &&
+        (
+          ! endStack_o
+            .sibling_s
+        )
+        &&
+        (
+          endStack_o
+            .tie_s
+          !==
+          '>'
+        )
+      )
+      {
+        CSS_o
+          .flush__v()
+
+        endStack_o =
+          CSS_o
+            .endStack__o()
+      }
+
+
     const tag_s =
       CSS_o
         .tag__s( line_s )
