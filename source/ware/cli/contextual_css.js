@@ -4,28 +4,27 @@ const FS_o  = require( 'fs-extra' )
 
 const CSS_o =
 {
-  minify_b: false,
-
   path_s: '',
 
-  path_a: [],
+  proceed_a: [],
 
   sibling_a:
   [
-    '+',
-    '~',
+    '+',    //: adjacent sibling
+    '~',    //: general sibling
   ],
+
+  minify_b: false,    //: use context( minify ) to minify output
 
   //-- css_s : '',
   //-- ruleset_s: '',
   //-- lastRuleset_s: '',
   //-- line_a: [],
   //-- tagStack_a: [],
-  //-- newStack_a: [],
   //-- copyStack_a: [],
+  //-- initStack_a: [],
   //-- lastTag_o: {},
   //-- close_b: false,    //: self-closing tag
-  //-- minify_b: false,
 
 
 
@@ -56,7 +55,7 @@ const CSS_o =
           console.log( `-- Processing: ${CSS_o.path_s}` )
 
           CSS_o
-            .process__s( ccss_s )
+            .parse__s( ccss_s )
         }
       )
   ,
@@ -64,20 +63,39 @@ const CSS_o =
 
 
 
-  process__s:
+  write__v:
+  (
+    path_s,
+    css_s
+  ) =>
+  {
+    FS_o
+      .writeFile
+      (
+        path_s,
+        css_s,
+        'utf8',
+        out_o => console.log( `-- Writing ${path_s}: ${out_o}` )
+      )
+  }
+  ,
+
+
+
+
+
+  parse__s:
   (
     ccss_s
   ) =>
   {
-    //====================
-    console.time('timestampId')
-    //====================
+    //======================
+    console.time('parse__s')
+    //======================
 
 
     CSS_o
       .clean__v( ccss_s )
-
-    let line_n = 0
 
     for
     (
@@ -105,10 +123,8 @@ const CSS_o =
       )
       {
         CSS_o
-          [ `process${method_s}__v` ]( line_s )
+          [ `${method_s}__v` ]( line_s )
       }
-
-      ++line_n
     }
 
     if
@@ -118,12 +134,12 @@ const CSS_o =
     )
     {
       CSS_o
-        .processClose__v()
+        .close__v()
     }
 
-    //====================
-    console.timeEnd('timestampId')
-    //====================
+    //=========================
+    console.timeEnd('parse__s')
+    //=========================
 
     if
     (
@@ -155,23 +171,23 @@ const CSS_o =
     if
     (
       CSS_o
-        .path_a
+        .proceed_a
           .length
     )
     {
-      const path_o =
+      const proceed_o =
         CSS_o
-          .path_a
+          .proceed_a
             .pop()
 
       CSS_o
         .path_s =
-          path_o
+          proceed_o
             .path_s
   
       CSS_o
-        .newStack_a =
-          path_o
+        .initStack_a =
+          proceed_o
             .stack_a
   
       CSS_o
@@ -191,7 +207,7 @@ const CSS_o =
     CSS_o
       .tagStack_a =      //: inherit caller stack
         CSS_o
-          .newStack_a
+          .initStack_a
     
     CSS_o
       .copyStack_a = []     //: reset
@@ -314,9 +330,9 @@ const CSS_o =
           ===
           '/'
           ?
-            'Close'
+            'close'
           :
-            'Open'
+            'open'
         )
     
       case
@@ -329,13 +345,13 @@ const CSS_o =
         ===
         '~'
       :
-        return 'Sibling'
+        return 'sibling'
     
       case
         /context\s?\(\s?([^\)]+?)\s?\)/i
           .test( line_s )
       :
-        return 'Context'
+        return 'context'
     
       default
       :
@@ -345,9 +361,9 @@ const CSS_o =
           >
           -1
           ?
-            'RuleHead'
+            'ruleHead'
           :
-            'RuleTail'
+            'ruleTail'
         )
     }
   }
@@ -355,7 +371,7 @@ const CSS_o =
 
 
 
-  processContext__v:
+  context__v:
   (
     line_s
   ) =>
@@ -395,7 +411,7 @@ const CSS_o =
       :
       {
         CSS_o
-          .path_a
+          .proceed_a
             .push
             ( 
               {
@@ -428,11 +444,24 @@ const CSS_o =
  
       case
         function_s
-          .startsWith( 'resetStack' )    //: 
+        ===
+        'standalone'    //: no stack context from proceeding function
       :
       {
         CSS_o
           .tagStack_a = []
+ 
+        return
+      }
+ 
+      case
+        function_s
+        ===
+        'minify'    //: minify output
+      :
+      {
+        CSS_o
+          .minify_b = true
  
         return
       }
@@ -447,7 +476,7 @@ const CSS_o =
  
  
  
-   processRuleHead__v:
+   ruleHead__v:
   (
     line_s
   ) =>
@@ -471,7 +500,7 @@ const CSS_o =
 
 
 
-  processRuleTail__v:
+  ruleTail__v:
   (
     line_s
   ) =>
@@ -485,32 +514,19 @@ const CSS_o =
 
 
 
-  processOpen__v:
+  open__v:
   (
     line_s
   ) =>
   {
     CSS_o
-      .add__v()    //: hanging previous tag ruleset
-
-    if
-    (
-      CSS_o
-        .close_b    //: previous enclosed tag was self-closing
-    )
-    {
-      CSS_o
-        .flush__v()
-        
-      CSS_o
-        .close_b = false    //: reset
-    }
+      .sweep__v()
 
     let endStack_o =
       CSS_o
         .endStack__o()
 
-      while
+      while    //: stack popping
       (
         endStack_o
         &&
@@ -535,17 +551,6 @@ const CSS_o =
             .endStack__o()
       }
 
-
-    const tag_s =
-      CSS_o
-        .tag__s( line_s )
-
-    const newStack_o =
-      {
-        tag_s: tag_s,
-        tie_s: '>'
-      }
-      
     let end_n =
       CSS_o
         .tagStack_a
@@ -562,22 +567,32 @@ const CSS_o =
             .sibling_s = ''    //: reset
     }
 
+    const tag_s =
+      CSS_o
+        .tag__s( line_s )
+
+    const tagStack_o =
+      {
+        tag_s: tag_s,
+        tie_s: '>'
+      }
+      
     CSS_o
       .tagStack_a
-        .push( newStack_o )
+        .push( tagStack_o )
   }
   ,
     
 
 
 
-  processClose__v:
+  close__v:
   (
     line_s
   ) =>
   {
     CSS_o
-      .add__v()
+      .takeUp__v()
 
     CSS_o
       .flush__v()
@@ -618,13 +633,40 @@ const CSS_o =
 
 
 
-  processSibling__v:
+  sibling__v:
   (
     line_s
   ) =>
   {
     CSS_o
-      .add__v()    //: hanging previous tag ruleset
+      .sweep__v()
+
+    const tagStack_o =
+      CSS_o
+        .lastTag_o
+
+    tagStack_o
+      .tie_s =
+        line_s
+
+    tagStack_o
+      .sibling_s =
+        line_s
+
+    CSS_o
+      .tagStack_a
+        .push( tagStack_o )
+
+  }
+  ,
+  
+
+
+  sweep__v:
+  () =>
+  {
+    CSS_o
+      .takeUp__v()    //: hanging previous tag ruleset
 
     if
     (
@@ -639,28 +681,13 @@ const CSS_o =
         .close_b = false    //: reset
     }
 
-    const lastTag_o =
-      CSS_o
-        .lastTag_o
-
-    lastTag_o
-      .tie_s =
-        line_s
-
-    lastTag_o
-      .sibling_s =
-        line_s
-
-    CSS_o
-      .tagStack_a
-        .push( lastTag_o )
-
   }
   ,
-  
 
 
-  add__v:
+
+
+  takeUp__v:
   () =>
   {
     if
@@ -851,7 +878,7 @@ const CSS_o =
 
 
 
-
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXX
   endStack__v:
   (
     tag_s,
@@ -878,7 +905,7 @@ const CSS_o =
     }
   }
   ,
-
+*/
 
 
 
@@ -901,28 +928,7 @@ const CSS_o =
     )
   }
   ,
-
-
-
-
-  write__v:
-  (
-    path_s,
-    css_s
-  ) =>
-  {
-    FS_o
-      .writeFile
-      (
-        path_s,
-        css_s,
-        'utf8',
-        out_o => console.log( ''/*`-- Writing ${path_s}: ${out_o}`*/ )
-      )
-  }
-  ,
 }
-
 
 
 
@@ -961,7 +967,7 @@ void function
       path_s
 
   CSS_o
-    .newStack_a = []
+    .initStack_a = []
 
   CSS_o
     .read__s()
