@@ -848,7 +848,7 @@ const CSS_o =
     if
     (
       tag_s
-        .endsWith( '/' )
+        .endsWith( '/' )    //: self-closing tag
     )
     {
       CSS_o
@@ -866,7 +866,7 @@ const CSS_o =
     if
     (
       tag_s
-        .startsWith( '/' )
+        .startsWith( '/' )    //: closing tag
     )
     {
       tag_s =
@@ -876,7 +876,7 @@ const CSS_o =
 
     return (
       tag_s
-        .trim()
+        .trim()    //: if space before or after tag name
     )
   }
   ,    
