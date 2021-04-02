@@ -14,6 +14,7 @@ display: grid;
 place-items: center;
 position: relative;
 height: 100vh;
+/*align-content: center;*/
 scroll-snap-align: center;
 cursor: all-scroll;
 }

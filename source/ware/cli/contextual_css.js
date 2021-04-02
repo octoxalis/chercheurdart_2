@@ -8,23 +8,16 @@ const CSS_o =
 
   proceed_a: [],
 
-  //??sibling_a:
-  //??[
-  //??  CSS_o.ADJACENT_SIBLING_SELECTOR_s,
-  //??  CSS_o.GENERAL_SIBLING_SELECTOR_s,
-  //??],
-
   minify_b: false,    //: use context( minify ) to minify output
 
+  //-- close_b: false,    //: self-closing tag
   //-- css_s : '',
   //-- ruleset_s: '',
-  //-- lastRuleset_s: '',
   //-- line_a: [],
   //-- tagStack_a: [],
   //-- copyStack_a: [],
   //-- initStack_a: [],
   //-- lastTag_o: {},
-  //-- close_b: false,    //: self-closing tag
 
   CHILD_SELECTOR_s: '>',
   GENERAL_SIBLING_SELECTOR_s: '~',
@@ -225,9 +218,6 @@ const CSS_o =
     
     CSS_o
       .ruleset_s = ''       //: reset
-
-    CSS_o
-      .lastRuleset_s = ''   //: reset
 
     CSS_o
       .css_s = ''           //: reset
@@ -743,11 +733,6 @@ const CSS_o =
           .css_s += '\n\n'
       }
     
-      CSS_o
-        .lastRuleset_s =
-        CSS_o
-          .ruleset_s
-
       CSS_o
         .ruleset_s = ''    //: reset
     }
