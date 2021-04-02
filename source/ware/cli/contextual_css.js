@@ -8,11 +8,11 @@ const CSS_o =
 
   proceed_a: [],
 
-  sibling_a:
-  [
-    '+',    //: adjacent sibling
-    '~',    //: general sibling
-  ],
+  //??sibling_a:
+  //??[
+  //??  CSS_o.ADJACENT_SIBLING_SELECTOR_s,
+  //??  CSS_o.GENERAL_SIBLING_SELECTOR_s,
+  //??],
 
   minify_b: false,    //: use context( minify ) to minify output
 
@@ -26,6 +26,9 @@ const CSS_o =
   //-- lastTag_o: {},
   //-- close_b: false,    //: self-closing tag
 
+  CHILD_SELECTOR_s: '>',
+  GENERAL_SIBLING_SELECTOR_s: '~',
+  ADJACENT_SIBLING_SELECTOR_s: '+',
 
 
   read__s:
@@ -52,7 +55,8 @@ const CSS_o =
             )
           }
           //>
-          console.log( `-- Processing: ${CSS_o.path_s}` )
+          console
+            .log( `-- Processing: ${CSS_o.path_s}` )
 
           CSS_o
             .parse__s( ccss_s )
@@ -75,7 +79,9 @@ const CSS_o =
         path_s,
         css_s,
         'utf8',
-        out_o => console.log( `-- Writing ${path_s}: ${out_o}` )
+        out_o =>    //: callback
+          console
+            .log( `-- Writing ${path_s}: ${out_o}` )
       )
   }
   ,
@@ -90,7 +96,8 @@ const CSS_o =
   ) =>
   {
     //======================
-    console.time('parse__s')
+    console
+      .time('parse__s')
     //======================
 
 
@@ -138,7 +145,8 @@ const CSS_o =
     }
 
     //=========================
-    console.timeEnd('parse__s')
+    console
+      .timeEnd('parse__s')
     //=========================
 
     if
@@ -239,9 +247,7 @@ const CSS_o =
     if
     (
       ccss_s
-        .indexOf( 'cssComment' )  //: as context( cssComment )
-      ===
-      -1  //: already removed if html commented out
+        .includes( 'cssComment' )  //: as context( cssComment )
     )
     {
       ccss_s =
@@ -311,8 +317,7 @@ const CSS_o =
   ) =>
   {
     const char_s =
-      line_s
-        .charAt( 0 )
+      line_s[0]
       
     switch
     (
@@ -325,8 +330,7 @@ const CSS_o =
         '<'
       :
         return (
-          line_s
-           .charAt( 1 )
+          line_s[1]
           ===
           '/'
           ?
@@ -338,12 +342,14 @@ const CSS_o =
       case
         line_s
         ===
-        '+'
+        CSS_o
+          .ADJACENT_SIBLING_SELECTOR_s
       :
       case
         line_s
         ===
-        '~'
+        CSS_o
+          .GENERAL_SIBLING_SELECTOR_s
       :
         return 'sibling'
     
@@ -357,9 +363,7 @@ const CSS_o =
       :
         return (
           line_s
-            .indexOf( ':' )
-          >
-          -1
+            .includes( ':' )    //: colon after ruleset property
           ?
             'ruleHead'
           :
@@ -386,7 +390,8 @@ const CSS_o =
     )
     {
       return void (
-        console.log( `Error: context() is not valid` )
+        console
+          .log( `Error: context() is not valid` )
       )
     }
  
@@ -507,7 +512,9 @@ const CSS_o =
   {
     CSS_o
       .ruleset_s +=
-        ` ${line_s}`
+        ' '            //: space before
+        +
+        line_s
   }
   ,
     
@@ -526,7 +533,7 @@ const CSS_o =
       CSS_o
         .endStack__o()
 
-      while    //: stack popping
+      while    //: stack popping to find opening tag
       (
         endStack_o
         &&
@@ -539,7 +546,8 @@ const CSS_o =
           endStack_o
             .tie_s
           !==
-          '>'
+          CSS_o
+            .CHILD_SELECTOR_s
         )
       )
       {
@@ -574,7 +582,8 @@ const CSS_o =
     const tagStack_o =
       {
         tag_s: tag_s,
-        tie_s: '>'
+        tie_s: CSS_o
+          .CHILD_SELECTOR_s
       }
       
     CSS_o
@@ -620,7 +629,8 @@ const CSS_o =
         endStack_o
           .tie_s
         ===
-        '>'
+        CSS_o
+          .CHILD_SELECTOR_s
       )
     )
     {
@@ -704,7 +714,7 @@ const CSS_o =
           CSS_o
             .selector__s()
           +
-            ' {'
+            ' {'      //: space before
 
       if
       (
@@ -718,7 +728,10 @@ const CSS_o =
 
       CSS_o
         .css_s +=
-          `${CSS_o.ruleset_s}}`
+          CSS_o
+            .ruleset_s
+          +
+          '}'
 
       if
       (
@@ -795,7 +808,9 @@ const CSS_o =
     )
     {
       selector_s +=
-        `${copy_s},`
+        copy_s
+        +
+        ','      //: rulesset selector separator
         
       if
       (
@@ -824,7 +839,11 @@ const CSS_o =
   {
     let tag_s =
       line_s
-        .slice( 1, -1 )    //: strip '<' and '>'
+        .slice
+        (
+          1,    //: strip starting '<'
+          -1    //: strip ending '>'
+        )
 
     if
     (
@@ -840,7 +859,7 @@ const CSS_o =
           .slice
           (
             0,
-            -1    //: strip end '/'
+            -1    //: strip ending '/'
           )
     }
 
@@ -852,7 +871,7 @@ const CSS_o =
     {
       tag_s =
         tag_s
-          .slice( 1 )    //: strip start '/'
+          .slice( 1 )    //: strip starting '/'
     }
 
     return (

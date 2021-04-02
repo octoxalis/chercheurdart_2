@@ -1,23 +1,23 @@
-body > section > h3 {
+section > h3 {
 margin: {{C_o.PAD_12}} 0 {{C_o.PAD_3}} 0;
 --font_size-min: 1.5rem;
 --font_size-max: 2.5rem;
 font-weight: 600;
 }
 
-body > section > ul {
+section > ul {
 margin: 0 auto {{C_o.PAD_4}} auto;
 max-width: 60ch;
 --font_size-max: .95rem;
 list-style-type: none;
 }
 
-body > section > ul > li {
+section > ul > li {
 margin-bottom: {{C_o.PAD_1}};
 padding-left: {{C_o.PAD_8}};
 }
 
-body > section > ul > li:before {
+section > ul > li:before {
 content: "XX";
 position: relative;
 left: 1ch;
@@ -27,41 +27,41 @@ border-right: hidden;
 opacity: .4;
 }
 
-body > section > p {
+section > p {
 margin: 0 auto {{C_o.PAD_4}} auto;
 padding: 0 {{C_o.PAD_2}};
 max-width: 60ch;
 }
 
-body > section > p > a {
+section > p > a {
 text-decoration: none;
 color: currentColor;
 }
 
-body > section > p > a:hover {
+section > p > a:hover {
 border-bottom: 1px solid;
 filter: brightness(.75);
 }
 
-body > section > p > a:hover:after {
+section > p > a:hover:after {
 color: var(--highlight);
 opacity: 1;
 }
 
-body > section > p > a:not([name]):not([href*="//"]):after {
+section > p > a:not([name]):not([href*="//"]):after {
 content: "\{{C_o.INT_ARROW_s}}";
 }
 
-body > section > p > a[href*="//"]:after] {
+section > p > a[href*="//"]:after] {
 content: "\{{C_o.EXT_ARROW_s}}";
 }
 
-body > section > p > em {
+section > p > em {
 font-weight: 600;
 font-style: normal;
 }
 
-body > section > p > label[for^="I"] {
+section > p > label[for^="I"] {
 z-index: 5;
 margin-right: {{C_o.PAD_2}};
 vertical-align: middle;
@@ -69,11 +69,11 @@ vertical-align: middle;
 cursor: pointer;
 }
 
-body > section > p > label[for^="I"] + input[id^="I"] {
+section > p > label[for^="I"] + input[id^="I"] {
 display: none;
 }
 
-body > section > p > label[for^="I"] + input[id^="I"] + ins {
+section > p > label[for^="I"] + input[id^="I"] + ins {
 display: none;
 position: relative;
 margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
@@ -81,14 +81,15 @@ padding: {{C_o.PAD_4}};
 background: var(--insert);
 text-decoration: none;
 border-radius: 4px;
---font_size-max: .95rem;
+ /*box-shadow: 0 1px 1px var(--shadow),
+ 0 2px 2px var(--shadow), 0 4px 4px var(--shadow); */--font_size-max: .95rem;
 }
 
-body > section > p > label[for^="I"]:hover {
+section > p > label[for^="I"]:hover {
 color: var(--highlight);
 }
 
-body > section > p > label[for^="I"] + input[id^="I"]:checked + ins {
+section > p > label[for^="I"] + input[id^="I"]:checked + ins {
 display: block;
 }
 
