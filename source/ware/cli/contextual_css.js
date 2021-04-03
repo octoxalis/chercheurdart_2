@@ -8,7 +8,11 @@ const CSS_o =
 
   proceed_a: [],
 
+  class_s: '',        //: replace sector by defined context class
+
   minify_b: false,    //: use context( minify ) to minify output
+
+  verbose_b: false,
 
   //-- close_b: false,    //: self-closing tag
   //-- css_s : '',
@@ -48,8 +52,15 @@ const CSS_o =
             )
           }
           //>
-          console
-            .log( `-- Processing: ${CSS_o.path_s}` )
+          if
+          (
+            CSS_o
+              .verbose_b
+          )
+          {
+            console
+              .log( `-- Processing: ${CSS_o.path_s}` )
+          }
 
           CSS_o
             .parse__s( ccss_s )
@@ -73,93 +84,18 @@ const CSS_o =
         css_s,
         'utf8',
         out_o =>    //: callback
-          console
-            .log( `-- Writing ${path_s}: ${out_o}` )
+          {
+            if
+            (
+              CSS_o
+                .verbose_b
+            )
+            {
+              console
+                .log( `-- Writing ${path_s}: ${out_o}` )
+            }
+          }
       )
-  }
-  ,
-
-
-
-
-
-  parse__s:
-  (
-    ccss_s
-  ) =>
-  {
-    //======================
-    console
-      .time('parse__s')
-    //======================
-
-
-    CSS_o
-      .clean__v( ccss_s )
-
-    for
-    (
-      line_s
-      of
-      CSS_o
-        .line_a
-    )
-    {
-      if
-      (
-        ! line_s
-      )
-      {
-        continue
-      }
-
-      const method_s =
-        CSS_o
-          .method__s( line_s )
-      
-      if
-      (
-        method_s
-      )
-      {
-        CSS_o
-          [ `${method_s}__v` ]( line_s )
-      }
-    }
-
-    if
-    (
-      CSS_o
-        .ruleset_s    //: last ruleset not yet flushed
-    )
-    {
-      CSS_o
-        .close__v()
-    }
-
-    //=========================
-    console
-      .timeEnd('parse__s')
-    //=========================
-
-    if
-    (
-      CSS_o
-        .css_s
-    )
-    {
-      CSS_o
-        .write__v
-        (
-          CSS_o
-            .path__s(),
-          CSS_o
-            .css_s
-        )
-    }
-
-    CSS_o
-      .proceed__v()
   }
   ,
 
@@ -194,6 +130,107 @@ const CSS_o =
       CSS_o
         .read__s()
     }
+  }
+  ,
+
+
+
+
+  parse__s:
+  (
+    ccss_s
+  ) =>
+  {
+    //======================
+    if
+    (
+      CSS_o
+        .verbose_b
+    )
+    {
+      console
+        .time('parse__s')
+    }
+    //======================
+
+
+    CSS_o
+      .clean__v( ccss_s )
+
+    for
+    (
+      let line_s
+      of
+      CSS_o
+        .line_a
+    )
+    {
+      line_s =
+        line_s
+          .trim()
+
+      if
+      (
+        ! line_s
+      )
+      {
+        continue
+      }
+
+      const method_s =
+        CSS_o
+          .method__s( line_s )
+      
+      if
+      (
+        method_s
+      )
+      {
+        CSS_o
+          [ `${method_s}__v` ]( line_s )
+      }
+    }
+
+    if
+    (
+      CSS_o
+        .ruleset_s    //: last ruleset not yet flushed
+    )
+    {
+      CSS_o
+        .close__v()
+    }
+
+    //=========================
+    if
+    (
+      CSS_o
+        .verbose_b
+    )
+    {
+      console
+        .timeEnd('parse__s')
+    }
+    //=========================
+
+    if
+    (
+      CSS_o
+        .css_s
+    )
+    {
+      CSS_o
+        .write__v
+        (
+          CSS_o
+            .path__s(),
+          CSS_o
+            .css_s
+        )
+    }
+
+    CSS_o
+      .proceed__v()
   }
   ,
 
@@ -253,25 +290,6 @@ const CSS_o =
       .line_a =
         ccss_s
           .split( '\n' )
-
-    let at_n =
-      CSS_o
-        .line_a
-          .length
-
-    while
-    (
-      --at_n
-    )
-    {
-      CSS_o
-        .line_a
-          [at_n] =
-            CSS_o
-              .line_a
-                [at_n]
-                  .trim()
-      }
   }
   ,
 
@@ -434,6 +452,22 @@ const CSS_o =
                 .selector__s()
             )
 
+        return
+      }
+ 
+      case
+        function_s
+        ===
+        'class'
+      :
+      {
+        console.log( 'selector -> class: ' + arg_s )
+        console.log( CSS_o.selector__s() )
+
+        CSS_o
+          .class_s =
+            `.${arg_s}`
+ 
         return
       }
  
@@ -702,7 +736,7 @@ const CSS_o =
             .copySelector__s()
           +
           CSS_o
-            .selector__s()
+            .class__s()
           +
             ' {'      //: space before
 
@@ -813,6 +847,38 @@ const CSS_o =
     return selector_s
   }
   ,    
+
+
+
+
+  class__s:
+  (
+    class_s
+  ) =>
+  {
+    let selector_s =
+      CSS_o
+        .selector__s()
+
+    if
+    (
+      CSS_o
+        .class_s
+    )
+    {
+      selector_s =
+        `/*${selector_s}*/\n`
+        +
+        CSS_o
+         .class_s
+
+      CSS_o
+        .class_s = ''    //: reset
+    }
+
+    return selector_s
+  }
+  ,
 
 
 
