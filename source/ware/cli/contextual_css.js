@@ -736,7 +736,7 @@ const CSS_o =
             .copySelector__s()
           +
           CSS_o
-            .class__s()
+            .classSelector__s()
           +
             ' {'      //: space before
 
@@ -851,7 +851,7 @@ const CSS_o =
 
 
 
-  class__s:
+  classSelector__s:
   (
     class_s
   ) =>
