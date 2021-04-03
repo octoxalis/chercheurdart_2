@@ -1,0 +1,24 @@
+main > div {
+background:green;
+width: 100px;
+height: 100px;
+}
+
+main > p {
+color: blue;
+font-size: 4rem;
+}
+
+main > p > em {
+color:red;
+font-size: 1rem;
+}
+
+.paragraph {
+color: black;
+}
+
+.paragraph > em {
+color:pink;
+}
+

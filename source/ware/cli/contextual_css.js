@@ -455,26 +455,26 @@ const CSS_o =
         return
       }
  
+      //??case
+      //??  function_s
+      //??  ===
+      //??  'class'
+      //??:
+      //??{
+      //??  console.log( 'selector -> class: ' + arg_s )
+      //??  console.log( CSS_o.selector__s() )
+      //??
+      //??  CSS_o
+      //??    .class_s =
+      //??      `.${arg_s}`
+      //??
+      //??  return
+      //??}
+ 
       case
         function_s
         ===
-        'class'
-      :
-      {
-        console.log( 'selector -> class: ' + arg_s )
-        console.log( CSS_o.selector__s() )
-
-        CSS_o
-          .class_s =
-            `.${arg_s}`
- 
-        return
-      }
- 
-      case
-        function_s
-        ===
-        'standalone'    //: no stack context from proceeding function
+        'newstack'    //: reset tagStack_a (must be invoqued between two tags at the same level)
       :
       {
         CSS_o
@@ -925,10 +925,46 @@ const CSS_o =
           .slice( 1 )    //: strip starting '/'
     }
 
-    return (
+    tag_s =
       tag_s
         .trim()    //: if space before or after tag name
+
+    /*................................................
+    const tag_a =
+      tag_s
+        .split( ' ' )    //: space between tag name and possible class attribure
+
+    if
+    (
+      tag_a
+        .length    //: has a class
     )
+    {
+
+    }
+    */
+    const match_a =
+      tag_s
+        .match( /[a-z1-6]+?\s+class\s*=\s*(?:"|')([^"']+?)(?:"|')/i )
+    
+    if
+    (
+      match_a
+        ?.length
+    )
+    {
+      //??CSS_o
+      //??  .class_s =
+      //??    `.${match_a[1]}`
+
+      tag_s =
+        `.${match_a[1]}`
+
+      //??CSS_o
+      //??  .tagStack_a = []    //: reset
+    }
+
+    return tag_s
   }
   ,    
 
