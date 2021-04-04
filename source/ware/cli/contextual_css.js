@@ -4,24 +4,22 @@ const FS_o  = require( 'fs-extra' )
 
 const CSS_o =
 {
-  path_s: '',
-
+  
   proceed_a: [],
-
-  class_s: '',        //: replace sector by defined context class
-
-  minify_b: false,    //: use context( minify ) to minify output
-
-  verbose_b: false,
-
-  //-- close_b: false,    //: self-closing tag
-  //-- css_s : '',
-  //-- ruleset_s: '',
+  
   //-- line_a: [],
   //-- tagStack_a: [],
   //-- copyStack_a: [],
   //-- initStack_a: [],
+  //-- path_s: '',
+  //-- css_s : '',
+  //-- ruleset_s: '',
   //-- lastTag_o: {},
+  //-- close_b: false,    //: self-closing tag
+  //-- class_s: '',        //: replace selector by defined context class
+  
+  minify_b: false,    //: use context( minify ) to minify output
+  verbose_b: false,
 
   CHILD_SELECTOR_s: '>',
   GENERAL_SIBLING_SELECTOR_s: '~',
@@ -1069,12 +1067,16 @@ void function
         )
 
   CSS_o
-    .path_s =
-      path_s
+    .proceed_a
+        .push
+        ( 
+          {
+            path_s: path_s,
+            stack_a: []
+          }
+        )
 
   CSS_o
-    .initStack_a = []
+    .proceed__v()
 
-  CSS_o
-    .read__s()
 }()
