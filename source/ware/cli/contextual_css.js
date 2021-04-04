@@ -12,6 +12,7 @@ const CSS_o =
   //-- copyStack_a: [],
   //-- initStack_a: [],
   //-- path_s: '',
+  //-- outputDir_s: ''        //: output directory
   //-- css_s : '',
   //-- ruleset_s: '',
   //-- lastTag_o: {},
@@ -310,7 +311,7 @@ const CSS_o =
             .lastIndexOf( '.' )
         )
 
-    return `source/matrix/assets/styles/css/parts/contextual_css/${file_s}.css`    //...TEMPORARY
+    return `${CSS_o.outputDir_s}${file_s}.css`
   }
   ,
 
@@ -1043,16 +1044,26 @@ void function
     process
       .argv
         .slice( 2 )
-          [0]
+          [0]      //: input file (HTML)
+
+  CSS_o
+    .outputDir_s =
+      process
+        .argv
+          .slice( 2 )
+            [1]    //: output file (CSS) directory
 
   if
   (
     ! path_s
+    ||
+    ! CSS_o
+        .outputDir_s
   )
   {
     return void (
       console
-        .log( `ERROR: CLI file path argument missing` )
+        .log( `ERROR: Invalid CLI arguments (input file path, output directory path)` )
     )
   }
 
