@@ -1,5 +1,4 @@
 const FS_o  = require( 'fs-extra' )
-const C_o =   require( '../../make/data/C_o.js' )
 
 
 
@@ -17,7 +16,6 @@ const CSS_o =
   //-- css_s : '',
   //-- ruleset_s: '',
   //-- lastTag_o: {},
-  //-- stackState_s: '',    //: keep stack in selector
   //-- close_b: false,    //: self-closing tag
   //-- class_s: '',        //: replace selector by defined context class
   
@@ -252,10 +250,6 @@ const CSS_o =
       .copyStack_a = []     //: reset
 
     CSS_o
-      .stackState_s = ''    //: reset
-
-
-    CSS_o
       .lastTag_o = {}       //: reset
     
     CSS_o
@@ -436,7 +430,7 @@ const CSS_o =
                 path_s: `${CSS_o.dir_s}${arg_s}`,
                 stack_a: CSS_o
                           .tagStack_a
-                            .slice()    //: copy
+                            .slice()
               }
             )
  
@@ -479,11 +473,11 @@ const CSS_o =
       case
         function_s
         ===
-        'stack'    //: ?? must be invoqued between two tags at the same level
+        'newstack'    //: reset tagStack_a (must be invoqued between two tags at the same level)
       :
       {
         CSS_o
-          .stack__v( arg_s )
+          .tagStack_a = []
  
         return
       }
@@ -500,8 +494,8 @@ const CSS_o =
         return
       }
  
-      //--default:
-      //--  return
+      default:
+        return
     }
  
    }
@@ -510,59 +504,7 @@ const CSS_o =
  
  
  
-   stack__v:
-  (
-    arg_s
-  ) =>
-  {
-    switch
-    (
-      arg_s
-    )
-    {
-      case
-        'keep'
-      :
-      {
-        CSS_o
-          .stackState_s = ''    //: default state
-  
-        return
-      }
-    
-      case
-        'ignore'
-      :
-      {
-        CSS_o
-          .stackState_s = 'ignore'
-  
-        return
-      }
-    
-      case
-        'new'    //: reset stack
-      :
-      {
-        CSS_o
-          .tagStack_a = []
-  
-        CSS_o
-          .stackState_s = ''    //: default state
-  
-        return
-      }
-    
-      //--default:
-      //--  return
-    }
-  }
-  ,
-    
-
-
-
-  ruleHead__v:
+   ruleHead__v:
   (
     line_s
   ) =>
@@ -836,25 +778,8 @@ const CSS_o =
   selector__s:
   () =>
   {
-    
-    if
-    (
-      CSS_o
-      .stackState_s
-      ===
-      'ignore'
-    )
-    {
-      return (
-        CSS_o
-        .endStack__o()
-          .tag_s
-        ||
-        ''
-        )
-    }
-        
     let selector_s = ''
+  
     let tie_s = ''
 
     for
@@ -1120,9 +1045,6 @@ void function
       .argv
         .slice( 2 )
           [0]      //: input file (HTML)
-    ||
-    C_o
-      .CONTEXTUAL_INPUT_s
 
   CSS_o
     .outputDir_s =
@@ -1130,30 +1052,33 @@ void function
         .argv
           .slice( 2 )
             [1]    //: output file (CSS) directory
-  ||
-  C_o
-    .CONTEXTUAL_OUTPUT_s
 
   if
   (
-    path_s
-    &&
-    CSS_o
-    .outputDir_s
+    ! path_s
+    ||
+    ! CSS_o
+        .outputDir_s
   )
   {
-    CSS_o
-      .dir_s =
-        path_s
-          .slice
-          (
-            0,
-            path_s
-              .lastIndexOf( '/' ) + 1
-          )
-  
-    CSS_o
-      .proceed_a
+    return void (
+      console
+        .log( `Invalid arguments: 1. input file path, 2. output directory path)` )
+    )
+  }
+
+  CSS_o
+    .dir_s =
+      path_s
+        .slice
+        (
+          0,
+          path_s
+            .lastIndexOf( '/' ) + 1
+        )
+
+  CSS_o
+    .proceed_a
         .push
         ( 
           {
@@ -1161,13 +1086,8 @@ void function
             stack_a: []
           }
         )
-  
-    CSS_o
-      .proceed__v()
 
-    return
-  }
+  CSS_o
+    .proceed__v()
 
-  console
-    .log( `Invalid arguments: 1. input file path, 2. output directory path)` )
 }()

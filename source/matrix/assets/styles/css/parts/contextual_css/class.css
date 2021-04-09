@@ -1,4 +1,4 @@
-main > div {
+div {
 background:green;
 width: 100px;
 height: 100px;
@@ -18,7 +18,11 @@ font-size: 1rem;
 color: black;
 }
 
-.paragraph > em {
+em {
 color:pink;
+}
+
+main > span {
+color: yellow;
 }
 
