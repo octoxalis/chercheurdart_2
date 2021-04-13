@@ -1,0 +1,25 @@
+context( comment )
+context( stack, ignore )
+<html>
+  <uni>
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+  </uni>
+  context( stack, new )
+  <body>
+          position:relative;
+          color:var(--textcolor);
+          background:var(--bgcolor);
+          font-family:Cantarell Regular, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif;
+          font-size:clamp( var(--font_size-min, 1rem ),
+                           calc(1rem + var(--font_size-target, 3vw) ),
+                           var(--font_size-max, 1.3rem) );
+          font-weight:300;
+          line-height:1.5;
+  context( url, body_header.context.html )
+  context( url, body_main.context.html )
+  context( url, body_aside.context.html )
+  context( url, body_svg.cgitontext.html )
+  </body>
+</html>

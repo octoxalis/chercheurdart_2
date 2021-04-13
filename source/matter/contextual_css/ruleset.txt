@@ -1,4 +1,0 @@
-+   One rule per line only
-+   Siblings one line apart
-+   Self-closing tags MUST be closed
-+   context( copy ) before copied tag

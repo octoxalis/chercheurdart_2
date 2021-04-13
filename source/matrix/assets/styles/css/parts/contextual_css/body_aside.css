@@ -1,4 +1,8 @@
-aside > figure {
+body > aside {
+display:none;
+}
+
+body > aside > figure {
 display:none;
 z-index:3;
 position:fixed;
@@ -9,7 +13,7 @@ left:0;
 background:var(--bgcolor);
 }
 
-aside > figure + a {
+body > aside > figure + a {
 display:none;
 z-index: 3;
 position: fixed;
@@ -17,7 +21,7 @@ top: {{C_o.PAD_2}};
 left: 50%;
 }
 
-aside > figure + a > img {
+body > aside > figure + a > img {
 z-index: 4;
 max-width: {{C_o.FULL_WIDTH}};
 max-height: {{C_o.FULL_HEIGHT}};
@@ -25,17 +29,17 @@ object-fit: scale-down;
 cursor: url(var(--cursor_svg)), auto;
 }
 
-aside > figure:target {
+body > aside > figure:target {
 display:grid;
 place-items:center;
 }
 
-aside > figure:target + a {
+body > aside > figure:target + a {
 position:fixed;
 z-index:3;
 }
 
-aside > figure:target + a > button {
+body > aside > figure:target + a > button {
 z-index:5;
 width:1.5em;
 height:1.5em;
@@ -48,8 +52,16 @@ opacity:.5;
 cursor:pointer;
 }
 
-aside > figure:target + a > button:hover {
+body > aside > figure:target + a > button:hover {
 opacity:1;
 filter:brightness(2);
+}
+
+body > aside#gray {
+--cursor_svg:cursor_gray.svg;
+}
+
+body > aside#color {
+--cursor_svg:cursor_color.svg;
 }
 
