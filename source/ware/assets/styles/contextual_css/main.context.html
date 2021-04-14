@@ -27,7 +27,7 @@ context( stack, new )
                         0 2px 2px currentColor,
                         0 4px 4px currentColor;
             filter: brightness(.3);
-    <nope><!-- !!! TEMPORARY: self-closing tag and closing tag -->
+    <nope><!-- !!! TEMPORARY: self-closing tag followed by closing tag bug -->
     </nope>
   </section>
    <!-- variant --><section:target>
@@ -36,8 +36,8 @@ context( stack, new )
   <!-- variant --><section:first-of-type>
                           display:block;
                   </section>
-  <!-- variant --><section>
-                    <aside>
+  <!-- variant --><section#Galerie>
+                    <!--<aside>-->
                             position: fixed;
                             top: 0;
                             left: 0;
@@ -89,7 +89,7 @@ context( stack, new )
                               transition: opacity .5s ease;
                         </figcaption>
                       </figure>
-                    </aside>
+                    <!--</aside>-->
                   </section>
   <!-- variant --><section>
                     <h3>
