@@ -107,7 +107,8 @@ module.exports =
           (
             '</main>',  //: insertion after <main> end
             `<section id="${C_o.GALLERY_TITLE_s}">`
-            + `<aside>${INS_o.gallery_a.join( '\n' )}</aside>`
+            //XX + `<aside>${INS_o.gallery_a.join( '\n' )}</aside>`
+            + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
             + `</main>`
             + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`

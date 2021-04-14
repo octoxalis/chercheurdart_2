@@ -13,9 +13,9 @@
 
   section_a:
   [
-    'Introduction',
+    'Sommaire',
     'Étude',
-    //--'Références',
+    'Références',
     //...
   ],
 
@@ -31,12 +31,13 @@
   ],
 }
 ---
-[comment]: # (======================== Introduction ========================)
+[comment]: # (======================== Sommaire ========================)
 {% section section_a[0] %}
 
-{% anchor "### TITLE" %}
+{% anchor "### Sommaire" %}
 
-ANCHOR paragraphe with a link to [index page](index.html)
+[Étude][a]
+[Références][b]
 
 {% end_section %}
 
@@ -49,9 +50,9 @@ ANCHOR paragraphe with a link to [index page](index.html)
 
 Insérons une note
 {% _ins %}
-le contenu de l'insertion
+ceci est une note
 {% end_ins %}
-au milieu d'une phrase complète dont la suite se poursuit...
+au milieu d'une phrase complète...
 
 
 L'_Arion_
@@ -77,10 +78,13 @@ Et la _Jeune fille_
 
 [comment]: # (======================== Références ========================)
 
-{#% section section_a[2] %}
-{% end_section %#}
+{% section section_a[2] %}
+{% end_section %}
 
 
 
 
 [comment]: # (======================== Links ========================)
+
+[a]: #Étude
+[b]: #Références

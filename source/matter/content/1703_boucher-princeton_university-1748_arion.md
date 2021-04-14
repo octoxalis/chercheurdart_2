@@ -13,8 +13,9 @@
 
   section_a:
   [
-    'Introduction',
+    'Sommaire',
     'Étude',
+    'Références',
     //...
   ],
 
@@ -30,11 +31,13 @@
   ],
 }
 ---
-[comment]: # (======================== Introduction ========================)
+[comment]: # (======================== Sommaire ========================)
 {% section section_a[0] %}
 
-Analyse de l'oeuvre...
+{% anchor "### Sommaire" %}
 
+[Étude][a]
+[Références][b]
 
 {% end_section %}
 
@@ -66,5 +69,9 @@ Analyse de l'oeuvre...
 
 
 [comment]: # (======================== Links ========================)
+
+[a]: #Étude
+[b]: #Références
+
 [0]: 1703_boucher-princeton_university-1748_arion__scan.html
 [1]: 1703_boucher-princeton_university-1748_arion__burst.html
