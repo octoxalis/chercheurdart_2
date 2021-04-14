@@ -14,7 +14,7 @@
   section_a:
   [
     'Introduction',
-    'Étude',
+    'Article',
     'Galerie',
     //...
   ],
@@ -42,7 +42,7 @@
 
 
 
-[comment]: # (======================== Étude ========================)
+[comment]: # (======================== Article ========================)
 
 {% section section_a[1] %}
 

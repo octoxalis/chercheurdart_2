@@ -13,10 +13,8 @@
 
   section_a:
   [
-    'Sommaire',
-    'Étude',
-    'Références',
-    //...
+    'Article',
+    //--'Galerie',
   ],
 
   script_a:
@@ -31,22 +29,17 @@
   ],
 }
 ---
-[comment]: # (======================== Sommaire ========================)
+[comment]: # (======================== Article ========================)
+
 {% section section_a[0] %}
 
 {% anchor "### Sommaire" %}
 
-[Étude][a]
+[Article][a]
 [Références][b]
 
-{% end_section %}
 
-
-
-
-[comment]: # (======================== Étude ========================)
-
-{% section section_a[1] %}
+{% anchor "### Renaissance" %}
 
 Insérons une note
 {% _ins %}
@@ -72,19 +65,13 @@ Et la _Jeune fille_
 {% end_ins %}
  de A. de Coster
 
+{% anchor "### Références" %}
+
+
 {% end_section %}
-
-
-
-[comment]: # (======================== Références ========================)
-
-{% section section_a[2] %}
-{% end_section %}
-
-
 
 
 [comment]: # (======================== Links ========================)
 
-[a]: #Étude
+[a]: #Article
 [b]: #Références

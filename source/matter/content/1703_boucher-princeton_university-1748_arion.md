@@ -14,7 +14,7 @@
   section_a:
   [
     'Sommaire',
-    'Étude',
+    'Article',
     'Références',
     //...
   ],
@@ -36,7 +36,7 @@
 
 {% anchor "### Sommaire" %}
 
-[Étude][a]
+[Article][a]
 [Références][b]
 
 {% end_section %}
@@ -44,7 +44,7 @@
 
 
 
-[comment]: # (======================== Étude ========================)
+[comment]: # (======================== Article ========================)
 
 {% section section_a[1] %}
 
@@ -70,7 +70,7 @@
 
 [comment]: # (======================== Links ========================)
 
-[a]: #Étude
+[a]: #Article
 [b]: #Références
 
 [0]: 1703_boucher-princeton_university-1748_arion__scan.html
