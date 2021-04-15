@@ -3,7 +3,7 @@
 label {
   --font_size-max: .75rem;
   z-index: 5;
-  margin-right: {{C_o.PAD_2}};
+  /*margin-right: {{C_o.PAD_2}};*/
   vertical-align: middle;
   cursor: pointer;
 }

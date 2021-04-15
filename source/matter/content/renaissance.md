@@ -7,7 +7,7 @@
   //-- expires_n: 10,
 
   doc_n:      1,
-  title_s:    'Renaissance',
+  title_s:    `Renaissance`,
   subtitle_s: `Un nouveau modèle pour Chercheur d'Art`,
   abstract_s: `Après un an d'absence, Chercheur d'Art revient sous une nouvelle forme`,
 
@@ -21,25 +21,27 @@
   [
     'ior.min.js',
   ],
+
   css_a:
   [
     'lightbox.min.css',   //: uncomment to use lightbox
     //-'video.min.css',      //: uncomment to use video
     //-'print.min.css',      //: uncomment to use print
   ],
+  
+  chapter_a:
+  [
+    'Renaissance',
+    'Références',
+  ]
+
 }
 ---
 [comment]: # (======================== Article ========================)
-
 {% section section_a[0] %}
 
-{% anchor "### Sommaire" %}
 
-[Article][a]
-[Références][b]
-
-
-{% anchor "### Renaissance" %}
+{% anchor '##' + chapter_a[0] %}
 
 Insérons une note
 {% _ins %}
@@ -49,7 +51,7 @@ au milieu d'une phrase complète...
 
 
 L'_Arion_
-{% _ins section_a[1] %}
+{% _ins section_a[0] %}
 ! 1703_boucher-princeton_university-1748_arion
 //---------\ Commentaire de l'oeuvre \ sur une seule ligne \ mais en plusieurs parties
 //---------[ Index == index.html
@@ -58,15 +60,14 @@ peint par F. Boucher en 1750.
 
 
 Et la _Jeune fille_
-{% _ins section_a[1] %}
+{% _ins section_a[0] %}
 ! 1586_de~coster-new~york_sothebys-1625_young~woman
 //---------\ Cette peinture est passée \ chez Sothebys à New York
 //---------[ Index == index.html
 {% end_ins %}
  de A. de Coster
 
-{% anchor "### Références" %}
-
+{% anchor '##' + chapter_a[1] %}
 
 {% end_section %}
 

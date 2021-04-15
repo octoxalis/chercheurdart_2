@@ -19,7 +19,8 @@ const CODES_o =
     return (    //--HTML
       `<section id="${section_s}">`
       +
-      `<h2>${section_s}<a name="${slug_s}"></a></h2><hr/>\n`  //: \n is mandatory
+      //`<h2>${section_s}<a name="${slug_s}"></a></h2><hr/>\n`  //: \n is mandatory
+      `<a name="${slug_s}"></a><hr/>\n`  //: \n is mandatory
     )
   }
   ,

@@ -1,0 +1,70 @@
+context( stack, new )
+<header>
+  position: sticky; top: 0;
+  <nav>
+          display: flex;
+          width: 100%;
+    <a><!--Chercheur d'Art-->
+            font-weight: 600;
+            filter: brightness(.4);
+    </a>
+    <div><!-- class="select"-->
+            display: grid; justify-items: center;
+            margin: 0 auto;
+            cursor: pointer;
+      <button><!--Sommaire-->
+              padding: 0 {{C_o.PAD_8}};
+              border: none;
+              color: currentColor; background: transparent;
+              font-weight: 600;
+      </button>
+      +
+      <div>
+              max-height: 0;
+              overflow: hidden;
+              background: var(--bgcolor);
+              transition: .3s;
+        <input/>
+                display: none;
+        <label>
+                display: grid;
+                justify-items: center;
+                width: 50vw;
+                padding: .5em;
+                background: var(--bgcolor);
+          <a><!--Renaissance-->
+                  /*color: hsla(210 50% 94%/1);*/
+                  text-decoration: none;
+          </a>
+          <!-- variant --><a:hover>
+                                  text-decoration: none;
+                          </a>
+        </label>
+        <!-- variant --><input/>
+                        +
+                        <label:hover>
+                                filter: brightness(1.5);
+                        </label>
+        <!-- variant --><input:checked/>
+                        +
+                        <label>
+                                color: var(--highlight); background: var(--bgcolor)
+                                
+                        </label>
+      </div>
+      <!-- variant --><button:hover>
+                              color: var(--highlight);
+                              opacity: 1;
+                      </button>
+      <!-- variant --><button:focus>
+                      </button>
+                      ~
+                      <div>
+                              max-height: 100vh;    /* can take up all vertical space */
+                      </div>
+    <!--
+    <a href="#Galerie">
+    </a>
+    -->
+  </nav>
+</header>
