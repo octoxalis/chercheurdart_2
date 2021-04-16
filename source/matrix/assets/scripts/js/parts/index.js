@@ -49,7 +49,7 @@ const IND_o =
           )
 
     ;[...document
-          .querySelectorAll( 'body > aside > a[href="#article"]' )  //!!! TEMPORARY #article
+          .querySelectorAll( 'body > aside > a[href="#{{F_o.slug__s( C_o.SEC_AUTO_s )}}"]' )
     ]
       .forEach
       (
