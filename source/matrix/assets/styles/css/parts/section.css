@@ -16,16 +16,35 @@ section > ul
   margin: 0 auto;
 }
 
+h1,
 h2 {
-  --font_size-min: 2rem;
-  --font_size-max: 3rem;
-
   margin: {{C_o.PAD_2}} 0;
   max-width: 60ch;
   text-align: center;
   font-weight: 200;
   line-height: 0.7;
-  filter: brightness(.4);
+  filter: brightness( var(--brigtness_lo) );
+}
+
+h1 {
+  --font_size-min: 3rem;
+  --font_size-max: 4rem;
+}
+
+h2 {
+  --font_size-min: 2rem;
+  --font_size-max: 3rem;
+}
+
+section > h1 + input,
+section > h2 + input,
+section > h2 + input + div {
+  display: none;
+}
+
+section > h1 + input + div,
+section > h2 + input:checked + div {
+  display: block;
 }
 
 
@@ -81,7 +100,7 @@ figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption:hover
 
 
 /* === interactivity ===*/
-section#{{C_o.SEC_AUTO_s}},    /* default */
+section#{{F_o.slug__s( C_o.SEC_AUTO_s )}},    /* default */
 section:target
  {
   display: block;

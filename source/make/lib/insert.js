@@ -108,15 +108,14 @@ module.exports =
           (
             '</main>',  //: insertion after <main> end
             `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
-            //XX + `<aside>${INS_o.gallery_a.join( '\n' )}</aside>`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
             + `</main>`
             + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`
-            + `<a href="#${INS_o.section_s}"><button>${C_o['CLOSE_CHAR_s']}</button></a>`
+            + `<a href="#${F_o.slug__s( INS_o.section_s )}"><button>${C_o['CLOSE_CHAR_s']}</button></a>`
             +`</aside>`
             + `<aside id="color">${INS_o.color_a.join( '\n' )}`
-            + `<a href="#${INS_o.section_s}"><button>${C_o['CLOSE_CHAR_s']}</button></a>`
+            + `<a href="#${F_o.slug__s( INS_o.section_s )}"><button>${C_o['CLOSE_CHAR_s']}</button></a>`
             + `</aside>`
           )
       :
@@ -354,12 +353,14 @@ textLine__v:
 
     INS_o
       .legend_s =
-        `<${C_o.TABLE_TAG_s}>${work_o.subject_s}</${C_o.TABLE_TAG_s}>`
+        `<span class="cartel">`
+        + `<${C_o.TABLE_TAG_s}>${work_o.subject_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${year_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${collect_o.place_s}${C_o.LEGEND_DELIM_s}${collect_o.country_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${collect_o.location_s}</${C_o.TABLE_TAG_s}>`
+        + `</span>`
   }
   ,
 

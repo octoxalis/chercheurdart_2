@@ -34,7 +34,7 @@
 [comment]: # (======================== Sommaire ========================)
 {% section section_a[0] %}
 
-{% anchor "### Sommaire" %}
+{% chapter "### Sommaire" %}
 
 [Article][a]
 [Références][b]
@@ -48,12 +48,12 @@
 
 {% section section_a[1] %}
 
-{% anchor "### Colorimétrie" %}
+{% chapter "## Colorimétrie" %}
 
 +  [scan][0]
 +  [burst][1]
 
-{% anchor "### Composition" %}
+{% chapter "## Composition" %}
 
 
 {% end_section %}

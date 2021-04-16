@@ -1,0 +1,209 @@
+context( stack, new )
+<main>
+  <section>
+          display:none;
+          content-visibility:auto;
+          position:absolute;
+          width:{{C_o.FULL_WIDTH}};
+          min-height:{{C_o.FULL_HEIGHT}};
+          background:var(--bgcolor);
+    <h2>
+            margin-top:{{C_o.PAD_12}};
+            max-width:60ch;
+            text-align:center;
+            --font_size-min:3rem;
+            --font_size-max:4rem;
+            line-height:0.7;
+            filter:brightness( var(--brigtness_lo) );
+      <a>
+      </a>
+    </h2>
+    <hr/>
+            margin-bottom: 3em;
+            height: 0;
+            border-style: outset;
+            opacity: .25;
+            box-shadow: 0 1px 1px currentColor,
+                        0 2px 2px currentColor,
+                        0 4px 4px currentColor;
+            filter: brightness(.3);
+    <NOP><!-- !!! TEMPORARY: self-closing tag followed by closing tag bug -->
+    </NOP>
+  </section>
+   <!-- variant --><section:target>
+                  context( copy, next )
+                  </section>
+  <!-- variant --><section:first-of-type><!-- article -->
+                          display:block;
+                  </section>
+  <!-- variant --><section:last-of-type><!-- galerie -->
+                    <!--<aside>-->
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            margin: 0;
+                            height: 100vh;
+                            overflow-y: scroll;
+                            scroll-snap-type: y mandatory;
+                      <figure>
+                              display: grid;
+                              place-items: center;
+                              position: relative;
+                              height: 100vh;
+                              /*align-content: center;*/
+                              scroll-snap-align: center;
+                              cursor: all-scroll;
+                        <img/>
+                                max-height: 100vh;
+                        <figcaption>
+                                display: grid;
+                                place-items: center;
+                                z-index: 4;
+                                position: absolute;
+                                bottom: 5vh;
+                                padding: 2em;
+                                border: 1px solid var(--textcolor);
+                                border-radius: 8px;
+                                background: var(--bgcolor);
+                                opacity: 0;
+                                transition: opacity .5s ease;
+                          <b>
+                                  display: table;
+                            <i:first-of-type::after>
+                                    content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
+                            </i>
+                          </b>
+                          <b:nth-of-type(1)>
+                                  --font_size-max: 1.5rem;
+                                  font-weight: 600;
+                          </b>
+                          <b:nth-of-type(2)>
+                                  --font_size-max: 1.25rem;
+                                  font-weight: 400;
+                          </b>
+                        </figcaption>
+                        <figcaption:hover>
+                              box-shadow: 0 0 0 100vmax var(--shadow_hi);
+                              opacity: 1;
+                              transition: opacity .5s ease;
+                        </figcaption>
+                      </figure>
+                    <!--</aside>-->
+                  </section>
+  <!-- variant --><section>
+                    <h3>
+                            margin: {{C_o.PAD_12}} 0 {{C_o.PAD_3}} 0;
+                            --font_size-min: 1.5rem;
+                            --font_size-max: 2.5rem;
+                            font-weight: 600;
+                      <a[name]>
+                      </a>
+                    </h3>
+                    <h4>
+                      <a[name]>
+                      </a>
+                    </h4>
+                    <h5>
+                      <a[name]>
+                      </a>
+                    </h5>
+                    <ul>
+                            margin: 0 auto {{C_o.PAD_4}} auto;
+                            max-width: 60ch;
+                            --font_size-max: .95rem;
+                            list-style-type: none;
+                      <li>
+                              margin-bottom: {{C_o.PAD_1}};
+                              padding-left: {{C_o.PAD_8}};
+                      </li>
+                      <li:before>
+                              content: "XX";
+                              position: relative;
+                              left: 1ch;
+                              color:transparent;
+                              border: 1px solid var(--textcolor);
+                              border-right: hidden;
+                              opacity: .4;
+                      </li>
+                    </ul>
+                    <!-- DOESN'T WORK with nested selectors
+                    <ol>
+                    context( copy, next )
+                    </ol>
+                    <ol>
+                        list-style-type: decimal;
+                    </ol>
+                    -->
+                    <p>
+                            margin: 0 auto {{C_o.PAD_4}} auto;
+                            padding: 0 {{C_o.PAD_2}};
+                            max-width: 60ch;
+                      <a>
+                              text-decoration: none;
+                              color: currentColor;
+                      </a>
+                      <a:hover>
+                              border-bottom: 1px solid;
+                              filter: brightness(.75);
+                      </a>
+                      <a:hover:after>
+                              color: var(--highlight);
+                              opacity: 1;
+                      </a>
+                      <a:not([name]):not([href*="//"]):after>
+                              content: "\{{C_o.INT_ARROW_s}}";
+                      </a>
+                      <a[href*="//"]:after]>
+                              content: "\{{C_o.EXT_ARROW_s}}";
+                      </a>
+                    </p>
+                    <p>
+                      <em>
+                            font-weight: 600;
+                            font-style: normal;
+                      </em>
+                    </p>
+                    <p>
+                      <label[for^="I"]>
+                              z-index: 5;
+                              margin-right: {{C_o.PAD_2}};
+                              vertical-align: middle;
+                              --font_size-max: .75rem;
+                              cursor: pointer;
+                      </label>
+                      +
+                      <input[id^="I"]/>
+                              display: none;
+                      +
+                      <ins>
+                              display: none;
+                              position: relative;
+                              margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
+                              padding: {{C_o.PAD_4}};
+                              background: var(--insert);
+                              text-decoration: none;
+                              border-radius: 4px;
+                              /*
+                              box-shadow: 0 1px 1px var(--shadow),
+                                          0 2px 2px var(--shadow),
+                                          0 4px 4px var(--shadow);
+                              */
+                              --font_size-max: .95rem;
+                      </ins>
+                      <label[for^="I"]:hover>
+                              color: var(--highlight);
+                      </label>
+                    </p>
+                    <p>
+                      <label[for^="I"]>
+                      </label>
+                      +
+                      <input[id^="I"]:checked/>
+                      +
+                      <ins>
+                              display: block;
+                      </ins>
+                    </p>
+                  </section>
+</main>

@@ -13,7 +13,7 @@ header {
 
 header a {
   font-weight: 600;
-  filter: brightness(.4);
+  filter: brightness( var(--brigtness_lo) );
 }
 
 nav a:not(:last-of-type) {

@@ -32,6 +32,7 @@
   chapter_a:
   [
     'Renaissance',
+    'Nouvelle version du site',
     'Références',
   ]
 
@@ -41,7 +42,14 @@
 {% section section_a[0] %}
 
 
-{% anchor '##' + chapter_a[0] %}
+{% chapter '#' + chapter_a[0] %}
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
+It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+{% chapter '##' + chapter_a[1] %}
 
 Insérons une note
 {% _ins %}
@@ -67,7 +75,13 @@ Et la _Jeune fille_
 {% end_ins %}
  de A. de Coster
 
-{% anchor '##' + chapter_a[1] %}
+{% chapter '##' + chapter_a[2] %}
+
+Ref. 1: biblio entry
+
+Ref. 2: work entry
+
+### Alinea
 
 {% end_section %}
 

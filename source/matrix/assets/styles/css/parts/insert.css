@@ -56,29 +56,26 @@ figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption *
   font-weight: 200;
 }
 
-input[id^="{{C_o.INSERT_ID_s}}"] + ins > b,
-figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption > b
+.cartel > b
 {
   display: table;
 }
 
-input[id^="{{C_o.INSERT_ID_s}}"] + ins > b:nth-of-type(1),
-figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption > b:nth-of-type(1)
+.cartel > b:nth-of-type(1)
 {
   --font_size-max: 1.5rem;
 
   font-weight: 600;
 }
-input[id^="{{C_o.INSERT_ID_s}}"] + ins > b:nth-of-type(2),
-figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption > b:nth-of-type(2)
+
+.cartel > b:nth-of-type(2)
 {
   --font_size-max: 1.25rem;
 
   font-weight: 400;
 }
 
-input[id^="{{C_o.INSERT_ID_s}}"] + ins > b > {{C_o.IOR_DIM_TAG_s}}:first-of-type::after,
-figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption > b > {{C_o.IOR_DIM_TAG_s}}:first-of-type::after
+.cartel > b > {{C_o.IOR_DIM_TAG_s}}:first-of-type::after
 {
   content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 }

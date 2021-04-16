@@ -35,7 +35,7 @@
 [comment]: # (======================== Introduction ========================)
 {% section section_a[0] %}
 
-{% anchor "### Header title" %}
+{% chapter "### Header title" %}
 
 {% end_section %}
 

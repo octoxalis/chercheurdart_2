@@ -1,13 +1,20 @@
 context( stack, new )
 <header>
-  /*position: sticky; top: 0;*/
+        position: sticky; top: 0;
+  <!--
+  <uni>
+          font-size: clamp( var(--font_size-min, 1rem ),
+                            calc(1rem + var(--font_size-target, 3vw) ),
+                            var(--font_size-max, 1.3rem) );
+  </uni>
+  -->
   <nav>
           display: flex;
           justify-content: space-between;
           width: 100%;
     <a><!--Chercheur d'Art-->
             font-weight: 400;
-            filter: brightness(.4);
+            filter: brightness( var(--brigtness_lo) );
     </a>
     <!--
     <a href="#galerie">

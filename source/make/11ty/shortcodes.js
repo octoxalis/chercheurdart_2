@@ -19,40 +19,66 @@ const CODES_o =
 
   end_section__s:    //=== only close section tag
   () =>    //--HTML
-    `</section>\n`  //: \n is mandatory
+    `</div>\n`        //: first close last chapter div
+    + `</section>\n`  //: \n is mandatory
   ,
 
 
 
 
-  anchor__s:    //=== create an anchor header
+  chapter__s:    //=== create an chapter header
   (
-    anchor_s
+    chapter_s
   ) =>
   {
     let at_n = 0
 
     while
     (
-      anchor_s.charAt( at_n ) === '#'
+      chapter_s.charAt( at_n ) === '#'
       &&
-      at_n++ < anchor_s.length    //: skiped if no more '#', therefore no increment
+      at_n++ < chapter_s.length    //: skiped if no more '#', therefore no increment
     ) ;
 
     const name_s =
-      anchor_s
+      chapter_s
         .slice( at_n )
 
     const slug_s =
       F_o
         .slug__s( name_s )
+    
+    let close_s = ''
+    
+    let label_s = name_s
+    
+    let input_s = ''
+    
+    if
+    (
+      at_n
+      ===
+      2        //: chapter (h2)
+    )
+    {
+      close_s =
+        '</div>\n'        //: first close last chapter div
+
+      label_s =
+        `<label for="${slug_s}" tabindex="-1">${name_s}</label>`
+
+      input_s =
+        `<input id="${slug_s}" type="checkbox" />`  //: chapter always closed
+    }
 
     return (  //--HTML
-      `<h${at_n}>${name_s}`
-      //??+
-      //??`<a name="${slug_s}"></a>`
-      +
-      `</h${at_n}>\n`  //: \n is mandatory
+      close_s
+      + `<h${at_n}>`
+      + label_s
+      + `</h${at_n}>\n`  //: \n is mandatory
+      + input_s
+      + `<div class="chapter">\n`    //: open chapter content
+      
     )
   }
   ,
@@ -82,7 +108,7 @@ module.exports =
       [
         'section',
         'end_section',
-        'anchor',
+        'chapter',
       ]
     )
     {

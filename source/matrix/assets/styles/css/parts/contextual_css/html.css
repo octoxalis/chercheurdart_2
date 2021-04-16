@@ -1,17 +1,14 @@
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
 body {
-position:relative;
-color:var(--textcolor);
-background:var(--bgcolor);
-font-family:Cantarell Regular, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif;
-font-size:clamp( var(--font_size-min, 1rem ),
+--brigtness_lo: .5;
+--brigtness_full: 1;
+--brigtness_hi: 2;
+position: relative;
+color: var(--textcolor);
+background: var(--bgcolor);
+font-family: Cantarell Regular, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif;
+font-size: clamp( var(--font_size-min, 1rem ),
  calc(1rem + var(--font_size-target, 3vw) ), var(--font_size-max, 1.3rem) );
-font-weight:300;
-line-height:1.5;
+font-weight: 300;
+line-height: 1.5;
 }
 

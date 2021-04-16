@@ -1,3 +1,7 @@
+header {
+position: sticky; top: 0;
+}
+
 header > nav {
 display: flex;
 justify-content: space-between;
@@ -6,6 +10,6 @@ width: 100%;
 
 header > nav > a {
 font-weight: 400;
-filter: brightness(.4);
+filter: brightness( var(--brigtness_lo) );
 }
 

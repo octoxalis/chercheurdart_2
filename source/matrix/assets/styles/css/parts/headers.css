@@ -3,5 +3,5 @@ h3, h4 {
   --font_size-max: 2.5rem;
 
   margin: {{C_o.PAD_12}} 0 {{C_o.PAD_3}} 0;
-  font-weight: 600;
+  font-weight: 300;
 }
