@@ -17,12 +17,13 @@ section > ul
 }
 
 h2 {
-  --font_size-min: 3rem;
-  --font_size-max: 4rem;
+  --font_size-min: 2rem;
+  --font_size-max: 3rem;
 
-  margin-top: {{C_o.PAD_12}};
+  margin: {{C_o.PAD_2}} 0;
   max-width: 60ch;
   text-align: center;
+  font-weight: 200;
   line-height: 0.7;
   filter: brightness(.4);
 }

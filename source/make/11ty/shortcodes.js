@@ -1,6 +1,6 @@
-const C_o = require( '../data/C_o.js' )
+//?? const C_o = require( '../data/C_o.js' )
 const F_o = require( '../data/F_o.js' )
-const IOR_o = require('../lib/ior.js')
+//?? const IOR_o = require('../lib/ior.js')
 
 
 
@@ -11,18 +11,7 @@ const CODES_o =
   (
     section_s
   ) =>
-  {
-    const slug_s =
-      F_o
-        .slug__s( section_s )
-
-    return (    //--HTML
-      `<section id="${section_s}">`
-      +
-      //`<h2>${section_s}<a name="${slug_s}"></a></h2><hr/>\n`  //: \n is mandatory
-      `<a name="${slug_s}"></a><hr/>\n`  //: \n is mandatory
-    )
-  }
+  `<section id="${F_o.slug__s( section_s )}">`
   ,
 
 
@@ -60,8 +49,8 @@ const CODES_o =
 
     return (  //--HTML
       `<h${at_n}>${name_s}`
-      +
-      `<a name="${slug_s}"></a>`
+      //??+
+      //??`<a name="${slug_s}"></a>`
       +
       `</h${at_n}>\n`  //: \n is mandatory
     )

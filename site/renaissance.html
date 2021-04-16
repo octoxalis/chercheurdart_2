@@ -141,79 +141,15 @@
       background: var(--bgcolor)
     }
 
-    header {
-      position: sticky;
-      top: 0
-    }
-
     header>nav {
       display: flex;
+      justify-content: space-between;
       width: 100%
     }
 
     header>nav>a {
-      font-weight: 600;
+      font-weight: 400;
       filter: brightness(.4)
-    }
-
-    header>nav>div {
-      display: grid;
-      justify-items: center;
-      margin: 0 auto;
-      cursor: pointer
-    }
-
-    header>nav>div>button {
-      padding: 0 2em;
-      border: none;
-      color: currentColor;
-      background: 0 0;
-      font-weight: 600
-    }
-
-    header>nav>div>button+div {
-      max-height: 0;
-      overflow: hidden;
-      background: var(--bgcolor);
-      transition: .3s
-    }
-
-    header>nav>div>button+div>input {
-      display: none
-    }
-
-    header>nav>div>button+div>label {
-      display: grid;
-      justify-items: center;
-      width: 50vw;
-      padding: .5em;
-      background: var(--bgcolor)
-    }
-
-    header>nav>div>button+div>label>a {
-      text-decoration: none
-    }
-
-    header>nav>div>button+div>label>a:hover {
-      text-decoration: none
-    }
-
-    header>nav>div>button+div>input+label:hover {
-      filter: brightness(1.5)
-    }
-
-    header>nav>div>button+div>input:checked+label {
-      color: var(--highlight);
-      background: var(--bgcolor)
-    }
-
-    header>nav>div>button:hover {
-      color: var(--highlight);
-      opacity: 1
-    }
-
-    header>nav>div>button:focus~div {
-      max-height: 100vh
     }
 
     section {
@@ -233,11 +169,12 @@
     }
 
     h2 {
-      --font_size-min: 3rem;
-      --font_size-max: 4rem;
-      margin-top: 3em;
+      --font_size-min: 2rem;
+      --font_size-max: 3rem;
+      margin: .5em 0;
       max-width: 60ch;
       text-align: center;
+      font-weight: 200;
       line-height: .7;
       filter: brightness(.4)
     }
@@ -506,60 +443,44 @@
 </head>
 
 <body>
-
-
-
   <header>
     <nav>
-      <a href="index.html#Article">Chercheur d'Art</a>
-      <div class="select">
-        <button>Sommaire</button>
-        <div> <input type="radio" id="summary_0" name="summary" />
-          <label for="summary_0">
-            <a href="#Article">Renaissance</a>
-          </label> <input type="radio" id="summary_1" name="summary" />
-          <label for="summary_1">
-            <a href="#Article">Références</a>
-          </label> </div>
-      </div>
-
-      <a href="#Galerie">Galerie</a>
+      <a href="index.html#article">Chercheur d'Art</a> <a href="#article">Article</a> <a href="#galerie">Galerie</a>
     </nav>
   </header>
   <main id="main">
-    <section id="Article"><a name="article"></a>
-      <hr />
-      <h2>Renaissance<a name="renaissance"></a></h2>
+    <section id="article">
+      <h2>Renaissance</h2>
       <p>Insérons une note
-        <label for="I8802" tabindex="0">⊷</label><input id="I8802" type="checkbox" /><ins><label for="I8802"
+        <label for="I7623" tabindex="0">⊷</label><input id="I7623" type="checkbox" /><ins><label for="I7623"
             tabindex="0">×</label>ceci est une note</ins>au milieu d’une phrase complète…</p>
       <p>L’<em>Arion</em>
-        <label for="I8907" tabindex="0">⊷</label><input id="I8907" type="checkbox" /><ins><label for="I8907"
-            tabindex="0">×</label><a href="#G8907"><img
+        <label for="I7728" tabindex="0">⊷</label><input id="I7728" type="checkbox" /><ins><label for="I7728"
+            tabindex="0">×</label><a href="#G7728"><img
               src="assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif"
               alt="François Boucher:Arion chevauchant son dauphin (small size in grayscale)" width="199" height="128"
               loading="lazy" /></a><b>Arion chevauchant son dauphin</b><b>François Boucher
           </b><b>1748 — 1750</b><b><i>86</i><i>135₅</i></b><b>Princeton ∙ United States of America</b><b>Princeton
             University Art Museum</b></ins>peint par F. Boucher en 1750.</p>
       <p>Et la <em>Jeune fille</em>
-        <label for="I9166" tabindex="0">⊷</label><input id="I9166" type="checkbox" /><ins><label for="I9166"
-            tabindex="0">×</label><a href="#G9166"><img
+        <label for="I7987" tabindex="0">⊷</label><input id="I7987" type="checkbox" /><ins><label for="I7987"
+            tabindex="0">×</label><a href="#G7987"><img
               src="assets/media/img/1586_de~coster-new~york_sothebys-1625_young~woman/full/_128/0/gray.avif"
               alt="Adam de Coster:A young woman holding a distaff before a lit candle (small size in grayscale)"
               width="88" height="128" loading="lazy" /></a><b>A young woman holding a distaff before a lit
             candle</b><b>Adam de Coster </b><b>1625 — 1630</b><b><i>134</i><i>94₉</i></b><b>New~York ∙ United States of
             America</b><b>Sothebys</b></ins> de A. de Coster</p>
-      <h2>Références<a name="references"></a></h2>
+      <h2>Références</h2>
     </section>
-    <section id="Galerie">
-      <figure id="S8907"><img src="assets/media/img/1703_boucher-princeton_university-1748_arion/full/max/0/color.avif"
+    <section id="galerie">
+      <figure id="S7728"><img src="assets/media/img/1703_boucher-princeton_university-1748_arion/full/max/0/color.avif"
           alt="François Boucher:Arion chevauchant son dauphin (full size in color)" width="2000" height="1283"
           loading="lazy" />
         <figcaption><b>Arion chevauchant son dauphin</b><b>François Boucher
           </b><b>1748 — 1750</b><b><i>86</i><i>135₅</i></b><b>Princeton ∙ United States of America</b><b>Princeton
             University Art Museum</b></figcaption>
       </figure>
-      <figure id="S9166"><img
+      <figure id="S7987"><img
           src="assets/media/img/1586_de~coster-new~york_sothebys-1625_young~woman/full/max/0/color.avif"
           alt="Adam de Coster:A young woman holding a distaff before a lit candle (full size in color)" width="1388"
           height="2000" loading="lazy" />
@@ -570,21 +491,21 @@
     </section>
   </main>
   <aside id="gray">
-    <figure id="G8907"><a href="#C8907"><img
+    <figure id="G7728"><a href="#C7728"><img
           src="assets/media/img/1703_boucher-princeton_university-1748_arion/full/_1024/0/gray.avif"
           alt="François Boucher:Arion chevauchant son dauphin (medium size in grayscale)" width="1596" height="1024"
           loading="lazy" /></a></figure>
-    <figure id="G9166"><a href="#C9166"><img
+    <figure id="G7987"><a href="#C7987"><img
           src="assets/media/img/1586_de~coster-new~york_sothebys-1625_young~woman/full/_1024/0/gray.avif"
           alt="Adam de Coster:A young woman holding a distaff before a lit candle (medium size in grayscale)"
           width="710" height="1024" loading="lazy" /></a></figure><a href="#Article"><button>×</button></a>
   </aside>
   <aside id="color">
-    <figure id="C8907"><a href="#G8907"><img
+    <figure id="C7728"><a href="#G7728"><img
           src="assets/media/img/1703_boucher-princeton_university-1748_arion/full/max/0/color.avif"
           alt="François Boucher:Arion chevauchant son dauphin (full size in color)" width="2000" height="1283"
           loading="lazy" /></a></figure>
-    <figure id="C9166"><a href="#G9166"><img
+    <figure id="C7987"><a href="#G7987"><img
           src="assets/media/img/1586_de~coster-new~york_sothebys-1625_young~woman/full/max/0/color.avif"
           alt="Adam de Coster:A young woman holding a distaff before a lit candle (full size in color)" width="1388"
           height="2000" loading="lazy" /></a></figure><a href="#Article"><button>×</button></a>

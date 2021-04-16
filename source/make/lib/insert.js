@@ -2,6 +2,7 @@ const DB_o = require( './db.js' )
 const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
 const C_o   = require( '../data/C_o.js' )
+const F_o   = require( '../data/F_o.js' )
 const I_o   = require( '../data/I_o.js' )
 
 
@@ -100,13 +101,13 @@ module.exports =
           .replace
           (
             '</nav>',  //: insertion before <nav> end
-            `<a href="#${C_o.GALLERY_TITLE_s}">${C_o.GALLERY_TITLE_s}</a>`
+            `<a href="#${F_o.slug__s( C_o.GALLERY_TITLE_s )}">${C_o.GALLERY_TITLE_s}</a>`
             + '</nav>'
           )
           .replace
           (
             '</main>',  //: insertion after <main> end
-            `<section id="${C_o.GALLERY_TITLE_s}">`
+            `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
             //XX + `<aside>${INS_o.gallery_a.join( '\n' )}</aside>`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`

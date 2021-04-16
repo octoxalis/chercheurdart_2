@@ -1,29 +1,8 @@
-{% set _summary %}
-<div class="select">
-  <button>{{C_o.NAV_TITLE_s}}</button>
-  <div>
-{%- for _chapter in chapter_a %}
-  {% set _id = "summary_" + loop.index0 %}
-    <input type="radio" id="{{_id}}" name="summary" />
-    <label for="{{_id}}">
-      <a href="#{{section_a[0]}}">{{_chapter}}</a>
-    </label>
-{%- endfor %}
-  </div>
-</div>
-{% endset%}
-
-
-
 <header>
   <nav>
-    <a href="index.html#{{C_o.SEC_AUTO_s}}">{{A_o.NAME_s}}</a>
+    <a href="index.html#{{F_o.slug__s( C_o.SEC_AUTO_s )}}">{{A_o.NAME_s}}</a>
 {%- for _section in section_a %}
-  {% if loop.first %}
-    {{ _summary }}
-  {% else %}
-    <a href="#{{_section}}">{{ _section }}</a>
-  {% endif %}
+    <a href="#{{F_o.slug__s( _section )}}">{{ _section }}</a>
 {%- endfor %}
   </nav>
 </header>
