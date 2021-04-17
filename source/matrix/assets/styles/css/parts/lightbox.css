@@ -42,12 +42,15 @@ aside > figure:target ~ a {
 }
 
 aside > figure:target {
+  /*
   display: grid;
   place-items: center;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  */
+  display: block;
   background: var(--bgcolor);
 }
 

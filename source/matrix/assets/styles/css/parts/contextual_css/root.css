@@ -19,8 +19,9 @@
 --bg_lower:  hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_1) /1);
 --highlight: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_lo_2) /1);
 --insert:    hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_4) /.15);
---shadow:    hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.3);
---shadow_hi: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.8);
+--shadow_hi: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.75);
+--shadow:    hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.5);
+--shadow_lo: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.25);
 --brigtness_hi: 2;
 --brigtness_ne: 1;
 --brigtness_lo: .5;

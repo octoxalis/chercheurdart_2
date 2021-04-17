@@ -4,12 +4,12 @@ context( stack, new )
           display: none;
           content-visibility: auto;   /* ?????????????? */
           position: absolute; top: 0;
+          padding-top: {{C_o.PAD_8}};
           width: {{C_o.FULL_WIDTH_s}};
           min-height: {{C_o.FULL_HEIGHT_s}};
           background: var(--bgcolor);
     <h1>
             margin-bottom: {{C_o.PAD_2}};
-            padding-top: {{C_o.PAD_8}};
     </h1>
     <!-- variant --><h1>
                     context( copy, next )
@@ -82,22 +82,42 @@ context( stack, new )
     </div>
   </section>
   context( stack, new )
-  <!-- variant --><section#{{F_o.slug__s( C_o.SEC_AUTO_s )}}>
+  <!-- variant --><section#{{F_o.slug__s( C_o.SEC_TEXT_s )}}>
                   context( copy, next )
                   </section>
   <!-- variant --><section:target>
                           display: block;
                   </section>
-  <!-- variant --><section>
+  <!-- variant --><section[id="galerie"]>
+                          column-count: 3;
+                          margin: 0 auto;
+                          padding: {{C_o.PAD_8}};
+                          max-width: 100vw;
+                          column-gap: 0;
                     <figure>
+                          position: relative;
+                          padding: 1vmin;  /* better than PAD_X */
                       <img/>
+                              /*
+                              width: 100%;
+                              object-fit: scale-down;
+                              */
                       <figcaption>
+                        position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+                        padding: 2vmin;  /* better than PAD_X */
+                        width: 100%;
+                        background: var(--shadow);
+                        opacity: 1;
                         <span><!-- class="cartel" -->
                         </span>
                       </figcaption>
+                      <!-- variant --><figcaption:hover>
+                                              opacity: 0;
+                                              transition: opacity .5s ease;
+                                      </figcaption>
                     </figure>
                   </section>
-
+<!-- header related -->
   <!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target>
                   </section>
                   ~

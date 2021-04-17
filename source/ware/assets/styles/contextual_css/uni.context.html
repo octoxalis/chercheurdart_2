@@ -2,5 +2,15 @@ context( stack, ignore )
 <*>
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
+</*>
+  <!-- variant --><*>
+                  context( copy, next )
+                  </*>
+<*>
+  <*:before>
+  context( copy, next )
+  </*:before>
+  <*:after>
+          box-sizing: inherit;
+  </*:after>
 </*>

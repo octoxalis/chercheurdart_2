@@ -54,7 +54,6 @@ const C_o =
   
   //=== SECTIONS ===
   URL_INDEX_s:    'index.html',
-  SEC_AUTO_s:     'Article',
   SEC_TEXT_s:     'Article',
   SEC_MEDIA_s:    'Galerie',
 

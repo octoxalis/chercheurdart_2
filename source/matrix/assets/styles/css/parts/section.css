@@ -60,13 +60,13 @@ section > aside {
   scroll-snap-type: y mandatory;
 }
 
+/*
 figure[id^="{{C_o.SLIDE_ID_s}}"]
 {
   position: relative;
   height: 100vh;
   display: grid;
   place-items: center;
-  /*align-content: center;*/
   scroll-snap-align: center;
   cursor: all-scroll;
 }
@@ -75,14 +75,16 @@ figure[id^="{{C_o.SLIDE_ID_s}}"] > img
 {
   max-height: 100vh;
 }
+*/
 
+/*
 figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption
 {
   z-index: 4;
   display: grid;
   place-items: center;
   position: absolute;
-  bottom: 5vh;
+  bottom: 0;
   padding: 2em;
   border: 1px solid var(--textcolor);
   border-radius: 8px;
@@ -96,11 +98,12 @@ figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption:hover
   opacity: 1;
   transition: opacity .5s ease;
 }
+*/
 
 
 
 /* === interactivity ===*/
-section#{{F_o.slug__s( C_o.SEC_AUTO_s )}},    /* default */
+section#{{F_o.slug__s( C_o.SEC_TEXT_s )}},    /* default */
 section:target
  {
   display: block;
