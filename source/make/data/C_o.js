@@ -55,7 +55,8 @@ const C_o =
   //=== SECTIONS ===
   URL_INDEX_s:    'index.html',
   SEC_AUTO_s:     'Article',
-  NAV_TITLE_s:    'Sommaire',
+  SEC_TEXT_s:     'Article',
+  SEC_MEDIA_s:    'Galerie',
 
 
   //=== HTML ===
@@ -66,6 +67,7 @@ const C_o =
 
   TABLE_TAG_s:      'b',
   IOR_DIM_TAG_s:    'i',
+  CHAPTER_TAG_s:    'h2',
 
   GALLERY_TITLE_s: 'Galerie',
   CLOSE_CHAR_s:    '\u00D7',
@@ -96,11 +98,11 @@ const C_o =
   INT_ARROW_s:     '2304',
   DIM_SEPARATOR_s: '00D7',
   
-  FULL_WIDTH:  '100vw',
-  FULL_HEIGHT: '100vh',
+  FULL_WIDTH_s:  '100vw',
+  FULL_HEIGHT_s: '100vh',
   
-  FONT_BODY: `'Cantarell Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif`,
-  FONT_MONO: `'JetBrains Mono Light', system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace`,
+  FONT_BODY_s: `'Cantarell Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif`,
+  FONT_MONO_s: `'JetBrains Mono Light', system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace`,
 
 
   //=== CSS constants to avoid calc(): can be changed in configure.js ===  

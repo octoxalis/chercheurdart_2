@@ -1,34 +1,33 @@
 context( stack, new )
-<main>
-  <!-- ??
-  <uni>
-          font-size: clamp( var(--font_size-min, 1rem ),
-                            calc(1rem + var(--font_size-target, 3vw) ),
-                            var(--font_size-max, 1.3rem) );
-  </uni>
-  -->
+<!--main>-->
   <section>
           display: none;
           content-visibility: auto;   /* ?????????????? */
-          position: absolute;
-          width: {{C_o.FULL_WIDTH}};
-          min-height: {{C_o.FULL_HEIGHT}};
+          position: absolute; top: 0;
+          width: {{C_o.FULL_WIDTH_s}};
+          min-height: {{C_o.FULL_HEIGHT_s}};
           background: var(--bgcolor);
     <h1>
+            margin-bottom: {{C_o.PAD_2}};
+            padding-top: {{C_o.PAD_8}};
     </h1>
     <!-- variant --><h1>
                     context( copy, next )
                     </h1>
     <h2>
-            margin: {{C_o.PAD_2}} 0;
             max-width: 60ch;
             text-align: center;
             font-weight: 200;
             line-height: 0.7;
             filter: brightness( var(--brigtness_lo) );
       <label><!--chapter title-->
+              border-bottom: 1px solid var(--shadow);
+
       </label>
     </h2>
+    <!-- variant --><h2>
+                            margin: {{C_o.PAD_4}} 0 {{C_o.PAD_2}};
+                    </h2>
     +
     <input/>
             display: none;
@@ -99,4 +98,24 @@ context( stack, new )
                     </figure>
                   </section>
 
-</main>
+  <!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target>
+                  </section>
+                  ~
+                  <header>
+                    <nav>
+                      <a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]>
+                              visibility: hidden;
+                      </a>
+                    </nav>
+                  </header>
+  <!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]:target>
+                  </section>
+                  ~
+                  <header>
+                    <nav>
+                      <a[href="#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]>
+                              visibility: hidden;
+                      </a>
+                    </nav>
+                  </header>
+<!--</main>-->

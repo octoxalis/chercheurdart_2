@@ -106,11 +106,10 @@ module.exports =
           )
           .replace
           (
-            '</main>',  //: insertion after <main> end
+            '<main/>',  //: insertion after pseudo <main/>
             `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
-            + `</main>`
             + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`
             + `<a href="#${F_o.slug__s( INS_o.section_s )}"><button>${C_o['CLOSE_CHAR_s']}</button></a>`
             +`</aside>`

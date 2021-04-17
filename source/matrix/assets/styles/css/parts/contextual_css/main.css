@@ -1,15 +1,19 @@
-main > section {
+section {
 display: none;
 content-visibility: auto;
-position: absolute;
-width: {{C_o.FULL_WIDTH}};
-min-height: {{C_o.FULL_HEIGHT}};
+position: absolute; top: 0;
+width: {{C_o.FULL_WIDTH_s}};
+min-height: {{C_o.FULL_HEIGHT_s}};
 background: var(--bgcolor);
 }
 
-main > section > h1,
-main > section > h2 {
-margin: {{C_o.PAD_2}} 0;
+section > h1 {
+margin-bottom: {{C_o.PAD_2}};
+padding-top: {{C_o.PAD_8}};
+}
+
+section > h1,
+section > h2 {
 max-width: 60ch;
 text-align: center;
 font-weight: 200;
@@ -17,7 +21,15 @@ line-height: 0.7;
 filter: brightness( var(--brigtness_lo) );
 }
 
-main > section > h2 + input {
+section > h2 > label {
+border-bottom: 1px solid var(--shadow);
+}
+
+section > h2 {
+margin: {{C_o.PAD_4}} 0 {{C_o.PAD_2}};
+}
+
+section > h2 + input {
 display: none;
 }
 
@@ -47,5 +59,13 @@ content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 section#{{F_o.slug__s( C_o.SEC_AUTO_s )}},
 section:target {
 display: block;
+}
+
+section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target ~ header > nav > a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"] {
+visibility: hidden;
+}
+
+section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]:target ~ header > nav > a[href="#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"] {
+visibility: hidden;
 }
 

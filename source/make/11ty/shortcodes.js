@@ -1,4 +1,4 @@
-//?? const C_o = require( '../data/C_o.js' )
+const C_o = require( '../data/C_o.js' )
 const F_o = require( '../data/F_o.js' )
 //?? const IOR_o = require('../lib/ior.js')
 
@@ -58,14 +58,15 @@ const CODES_o =
     (
       at_n
       ===
-      2        //: chapter (h2)
+      +C_o                       //: number cast
+        .CHAPTER_TAG_s[1]        //: 2 (from h2)
     )
     {
-      close_s =
-        '</div>\n'        //: first close last chapter div
-
       label_s =
         `<label for="${slug_s}" tabindex="-1">${name_s}</label>`
+
+      close_s =
+        '</div>\n'        //: first close last chapter div
 
       input_s =
         `<input id="${slug_s}" type="checkbox" />`  //: chapter always closed

@@ -71,6 +71,8 @@ const IND_o =
 void function
 ()
 {
+  return //!!! TEMPORARY
+  
   IND_o
     .service__v()
 

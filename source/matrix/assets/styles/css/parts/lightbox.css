@@ -8,8 +8,8 @@ aside > figure {*/
 aside > figure img {
   object-fit: scale-down;
   z-index: 4;
-  max-width: {{C_o.FULL_WIDTH}};
-  max-height: {{C_o.FULL_HEIGHT}};
+  max-width: {{C_o.FULL_WIDTH_s}};
+  max-height: {{C_o.FULL_HEIGHT_s}};
 }
 
 

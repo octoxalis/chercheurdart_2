@@ -1,13 +1,9 @@
 context( stack, new )
 <header>
         position: sticky; top: 0;
-  <!--
-  <uni>
-          font-size: clamp( var(--font_size-min, 1rem ),
-                            calc(1rem + var(--font_size-target, 3vw) ),
-                            var(--font_size-max, 1.3rem) );
-  </uni>
-  -->
+        z-index: 5;
+        opacity: .1;
+        transition: opacity 5s;
   <nav>
           display: flex;
           justify-content: space-between;
@@ -22,3 +18,7 @@ context( stack, new )
     -->
   </nav>
 </header>
+<!-- variant --><header:hover>
+                        opacity: 1;
+                        transition: opacity .1s;
+                </header>

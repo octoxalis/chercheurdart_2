@@ -1,5 +1,8 @@
 header {
 position: sticky; top: 0;
+z-index: 5;
+opacity: .1;
+transition: opacity 5s;
 }
 
 header > nav {
@@ -11,5 +14,10 @@ width: 100%;
 header > nav > a {
 font-weight: 400;
 filter: brightness( var(--brigtness_lo) );
+}
+
+header:hover {
+opacity: 1;
+transition: opacity .1s;
 }
 

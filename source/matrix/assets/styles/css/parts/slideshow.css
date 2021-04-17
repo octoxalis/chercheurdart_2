@@ -5,13 +5,13 @@
   top: 0;
   left: 0;
   right: 0;
-  height: {{C_o.FULL_HEIGHT}};
+  height: {{C_o.FULL_HEIGHT_s}};
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
 
 .slides figure {
-  height: {{C_o.FULL_HEIGHT}};
+  height: {{C_o.FULL_HEIGHT_s}};
   padding: 0 5vw;
   margin: 0;
   display: grid;
@@ -31,8 +31,8 @@
 .slides figure.cover img {
   z-index: -1;
   position: absolute;
-  width: {{C_o.FULL_WIDTH}};
-  height: {{C_o.FULL_HEIGHT}};
+  width: {{C_o.FULL_WIDTH_s}};
+  height: {{C_o.FULL_HEIGHT_s}};
   max-height: none;
   object-fit: cover;
 }

@@ -3,8 +3,8 @@ section {
   content-visibility: auto;   /* ?????????????? */
   display: none;
   position: absolute;
-  width: {{C_o.FULL_WIDTH}};
-  min-height: {{C_o.FULL_HEIGHT}};
+  width: {{C_o.FULL_WIDTH_s}};
+  min-height: {{C_o.FULL_HEIGHT_s}};
   background: var(--bgcolor);
 }
 
@@ -18,7 +18,7 @@ section > ul
 
 h1,
 h2 {
-  margin: {{C_o.PAD_2}} 0;
+  margin: {{C_o.PAD_}} 0;
   max-width: 60ch;
   text-align: center;
   font-weight: 200;
