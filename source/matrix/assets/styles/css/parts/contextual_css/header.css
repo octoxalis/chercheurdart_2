@@ -1,17 +1,14 @@
 header {
-position: sticky; top: 0;
 z-index: 5;
+display: flex;
+justify-content: space-between;
+position: sticky; top: 0;
+width: 100%;
 opacity: .1;
 transition: opacity 5s;
 }
 
-header > nav {
-display: flex;
-justify-content: space-between;
-width: 100%;
-}
-
-header > nav > a {
+header > a {
 font-weight: 400;
 filter: brightness( var(--brigtness_lo) );
 }

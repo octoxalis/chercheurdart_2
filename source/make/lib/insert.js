@@ -100,9 +100,9 @@ module.exports =
         content_s
           .replace
           (
-            '</nav>',  //: insertion before <nav> end
+            '</header>',  //: insertion before <header> end
             `<a href="#${F_o.slug__s( C_o.GALLERY_TITLE_s )}">${C_o.GALLERY_TITLE_s}</a>`
-            + '</nav>'
+            + '</header>'
           )
           .replace
           (
@@ -441,11 +441,13 @@ textLine__v:
           + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
           + ` width="${width_n}" height="${height_n}"`
           + ` loading="lazy" />`
-
+          
+          + `<a href="#${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
           + `<figcaption>`
           +   INS_o
                 .legend_s
           + `</figcaption>`
+          + `</a>`
 
           + `</figure>`
         )

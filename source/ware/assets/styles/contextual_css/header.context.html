@@ -1,22 +1,16 @@
 context( stack, new )
 <header>
-        position: sticky; top: 0;
         z-index: 5;
+        display: flex;
+        justify-content: space-between;
+        position: sticky; top: 0;
+        width: 100%;
         opacity: .1;
         transition: opacity 5s;
-  <nav>
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
     <a><!--Chercheur d'Art-->
             font-weight: 400;
             filter: brightness( var(--brigtness_lo) );
     </a>
-    <!--
-    <a href="#galerie">
-    </a>
-    -->
-  </nav>
 </header>
 <!-- variant --><header:hover>
                         opacity: 1;
