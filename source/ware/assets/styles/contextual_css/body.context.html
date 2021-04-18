@@ -3,14 +3,15 @@ context( stack, new )
 context( url, main.context.html )
 context( url, header.context.html )
 context( url, aside.context.html )
+context( url, footer.context.html )
 context( url, svg.context.html )
         position: relative;
         color: var(--textcolor);
         background: var(--bgcolor);
         font-family: {{C_o.FONT_BODY_s}};
-        font-size: clamp( var(--font_size-min, 1rem ),
-                         calc(1rem + var(--font_size-target, 3vw) ),
-                         var(--font_size-max, 1.3rem) );
+        font-size: clamp( var(--font_size_min, .75rem ),
+                         calc(1rem + var(--font_size_target, 1vh) ),
+                         var(--font_size_max, 1.25rem) );
         font-weight: 300;
-        line-height: 1.5;
+        line-height: 1.4;
 </body>

@@ -86,7 +86,6 @@ module.exports =
             `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.U_IMAGE_OF_s}</label>`
             + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
             + `<ins>`      //: remove ins tag data-- attribute
-            //XX + `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.CLOSE_CHAR_s}</label>`
             + insert_s
             +`</ins>`
           )
@@ -111,10 +110,8 @@ module.exports =
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
             + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`
-            //XX + `<a href="#${F_o.slug__s( INS_o.section_s )}"><button>${C_o['CLOSE_CHAR_s']}</button></a>`
             +`</aside>`
             + `<aside id="color">${INS_o.color_a.join( '\n' )}`
-            //XX + `<a href="#${F_o.slug__s( INS_o.section_s )}"><button>${C_o['CLOSE_CHAR_s']}</button></a>`
             + `</aside>`
           )
       :

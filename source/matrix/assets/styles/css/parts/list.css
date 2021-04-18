@@ -1,5 +1,5 @@
 ul, ol {
-  --font_size-max: .95rem;  /*font-size: .85em;*/
+  --font_size_max: .95rem;  /*font-size: .85em;*/
 
   margin-bottom: .6em;
 }

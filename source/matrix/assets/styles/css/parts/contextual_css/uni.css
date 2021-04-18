@@ -1,11 +1,28 @@
 * {
 margin: 0;
 padding: 0;
+box-sizing: border-box;
 }
 
-*,
 *:before,
 *:after {
 box-sizing: inherit;
+}
+
+*::-webkit-scrollbar {
+width:.5em;
+}
+
+*::-webkit-scrollbar-thumb {
+border-radius:.5rem;
+background:var(--bgcolor);
+background:var(--bg_lower);
+background-color:var(--bg_lower);
+border:.2em solid var(--bgcolor);
+border-radius: .5em;
+}
+
+*::-webkit-scrollbar-track {
+background:var(--bgcolor);
 }
 

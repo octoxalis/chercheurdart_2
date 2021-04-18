@@ -21,9 +21,9 @@ nav a:not(:last-of-type) {
 }
 
 h1 {
-  --font_size-min: 1rem;
-  --font_size-max: 1.5rem;
-  --font_size-target: 5vw;
+  --font_size_min: 1rem;
+  --font_size_max: 1.5rem;
+  --font_size_target: 5vw;
 
   flex: 1; /* pushes nav to the right */
   margin-bottom: {{C_o.PAD_4}};

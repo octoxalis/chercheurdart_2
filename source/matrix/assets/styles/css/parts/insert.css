@@ -2,7 +2,7 @@
 
 /*
 label {
-  --font_size-max: .75rem;
+  --font_size_max: .75rem;
   z-index: 5;
   margin-right: {{C_o.PAD_2}};
   vertical-align: middle;
@@ -18,7 +18,7 @@ input[id^="{{C_o.INSERT_ID_s}}"] + ins {
 /*
 input[id^="{{C_o.INSERT_ID_s}}"] + ins
 {
-  --font_size-max: .95rem;
+  --font_size_max: .95rem;
 
   position: relative;
   margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
@@ -50,8 +50,8 @@ input[id^="{{C_o.INSERT_ID_s}}"] + ins > a:hover::before
 input[id^="{{C_o.INSERT_ID_s}}"] + ins *,
 figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption *
 {
-  --font_size-min: .75rem;
-  --font_size-max: 1rem;
+  --font_size_min: .75rem;
+  --font_size_max: 1rem;
   font-style: normal;
   font-weight: 200;
 }
@@ -64,14 +64,14 @@ figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption *
 
 .cartel > b:nth-of-type(1)
 {
-  --font_size-max: 1.5rem;
+  --font_size_max: 1.5rem;
 
   font-weight: 600;
 }
 
 .cartel > b:nth-of-type(2)
 {
-  --font_size-max: 1.25rem;
+  --font_size_max: 1.25rem;
 
   font-weight: 400;
 }
@@ -104,15 +104,16 @@ input[id^="{{C_o.INSERT_ID_s}}"] + ins > img
 }
 */
 
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 input[id^="{{C_o.INSERT_ID_s}}"] + ins > label
 {
-  --font_size-max: 1.5rem;
+  --font_size_max: 1.5rem;
 
   display: grid;
   place-items: center;
   position: absolute;
   top:   {{C_o.PAD_2}};
-  right: 0;    /* padding-right: {{C_o.PAD_2}} */
+  right: 0;
 
   width:  1.5em;
   height: 1.5em;
@@ -129,16 +130,19 @@ input[id^="{{C_o.INSERT_ID_s}}"] + ins > label:hover
   opacity: 1;
   filter: brightness(2);
 }
-
+*/
 
 
 /* === interactivity ===*/
+/*
 label:hover {
   color: var(--highlight);
 }
+*/
 
 
-
+/*
 input[id^="{{C_o.INSERT_ID_s}}"]:checked + ins {
   display: block;
 }
+*/
