@@ -75,33 +75,12 @@ Et la _Jeune fille_
 {% end_ins %}
  de A. de Coster
 
-{% _ins section_a[0] %}
-! 1703_boucher-princeton_university-1748_arion
-//---------\ Commentaire de l'oeuvre \ sur une seule ligne \ mais en plusieurs parties
-//---------[ Index == index.html
-{% end_ins %}
-
-{% _ins section_a[0] %}
-! 1703_boucher-princeton_university-1748_arion
-//---------\ Commentaire de l'oeuvre \ sur une seule ligne \ mais en plusieurs parties
-//---------[ Index == index.html
-{% end_ins %}
-
-{% _ins section_a[0] %}
-! 1586_de~coster-new~york_sothebys-1625_young~woman
-//---------\ Cette peinture est passée \ chez Sothebys à New York
-//---------[ Index == index.html
-{% end_ins %}
-
-
 
 {% chapter '##' + chapter_a[2] %}
 
 Ref. 1: biblio entry
 
 Ref. 2: work entry
-
-### Alinea
 
 {% end_section %}
 

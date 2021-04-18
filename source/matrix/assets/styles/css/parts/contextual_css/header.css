@@ -9,12 +9,21 @@ transition: opacity 5s;
 }
 
 header > a {
+text-decoration: none;
+color: currentColor;
 font-weight: 400;
 filter: brightness( var(--brigtness_lo) );
 }
 
+header > a:focus,
+header > a:hover {
+border-bottom: 1px solid;
+filter: brightness( var(--brigtness_hi) );
+transition: opacity .2s;
+}
+
 header:hover {
 opacity: 1;
-transition: opacity .1s;
+transition: opacity .2s;
 }
 

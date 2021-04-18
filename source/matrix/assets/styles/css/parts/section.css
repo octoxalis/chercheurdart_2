@@ -36,7 +36,7 @@ h2 {
   --font_size-max: 3rem;
 }
 
-section > h1 + input,
+/*section > h1 + input,*/
 section > h2 + input,
 section > h2 + input + div {
   display: none;

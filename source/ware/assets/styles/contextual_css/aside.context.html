@@ -1,60 +1,24 @@
 context( stack, new )
 <aside>
-        display:none;
         background:var(--bgcolor);
   <figure>
           display:none;
-          z-index:3;
-          position:fixed;
-          top:0;
-          right:0;
-          bottom:0;
-          left:0;
+    <a>
+      <img/>
+              width: 100%;
+              max-width: {{C_o.FULL_WIDTH_s}};
+              max-height: calc( {{C_o.FULL_HEIGHT_s}} - {{C_o.PAD_8}} );    /* header height */
+              object-fit: scale-down;
+              cursor: url(var(--cursor_svg)), auto;
+    </a>
   </figure>
-  +
-  <a>
-          display:none;
-          z-index: 3;
-          position: fixed;
-          top: {{C_o.PAD_2}};
-          left: 50%;
-    <img/>
-            z-index: 4;
-            max-width: {{C_o.FULL_WIDTH_s}};
-            max-height: {{C_o.FULL_HEIGHT_s}};
-            object-fit: scale-down;
-            cursor: url(var(--cursor_svg)), auto;
-  </a>
   <!-- variant --><figure:target>
-                          display:grid;
-                          place-items:center;
-                    <!--
-                    <a>
-                      <img/>
-                    </a>
-                    -->
-                  </figure>
-                  +
-                  <a>
                           position:fixed;
-                          z-index:3;
-                    <button>
-                            z-index:5;
-                            width:1.5em;
-                            height:1.5em;
-                            border:0;
-                            border-radius:50%;
-                            color:var(--highlight);
-                            background:var(--bg_lower);
-                            font-size:2em;
-                            opacity:.5;
-                            cursor:pointer;
-                    </button>
-                    <!-- variant --><button:hover>
-                                            opacity:1;
-                                            filter:brightness(2);
-                                    </button>
-                  </a>
+                          top:{{C_o.PAD_8}};    /* header height */
+                          right:0;
+                          bottom:0;
+                          left:0;
+                  </figure>
 </aside>
 <!-- variant --><aside#gray>
                   --cursor_svg:cursor_gray.svg;

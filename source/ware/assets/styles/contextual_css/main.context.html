@@ -3,7 +3,8 @@ context( stack, new )
   <section>
           display: none;
           content-visibility: auto;   /* ?????????????? */
-          position: absolute; top: 0;
+          position: absolute;
+          top: 0;
           padding-top: {{C_o.PAD_8}};
           width: {{C_o.FULL_WIDTH_s}};
           min-height: {{C_o.FULL_HEIGHT_s}};
@@ -11,27 +12,25 @@ context( stack, new )
     <h1>
             --font_size-min: 3rem;
             --font_size-max: 4rem;
-            margin-bottom: {{C_o.PAD_2}};
+            margin: 0 auto {{C_o.PAD_2}};
     </h1>
     <!-- variant --><h1>
                     context( copy, next )
                     </h1>
     <h2>
-            margin: {{C_o.PAD_2}} 0;
             max-width: 60ch;
             text-align: center;
             font-weight: 200;
             line-height: 0.7;
             filter: brightness( var(--brigtness_lo) );
       <label><!--chapter title-->
-              border-bottom: 1px solid var(--shadow);
-
+              /*border-bottom: 1px solid var(--shadow);*/
       </label>
     </h2>
     <!-- variant --><h2>
                             --font_size-min: 2rem;
                             --font_size-max: 3rem;
-                            margin: {{C_o.PAD_4}} 0 {{C_o.PAD_2}};
+                            margin: {{C_o.PAD_4}} auto {{C_o.PAD_2}};
                     </h2>
     +
     <input/>
@@ -42,45 +41,68 @@ context( stack, new )
     <div class="chapter">
             max-width: 60ch;
             margin: 0 auto;
-      <!---->
-      <p>Insérons une note
-        <label>⊷
-        </label>
-        <input/>
-        <ins>
-          <label for="I8589" tabindex="0">×
-          </label>ceci est une note
-        </ins>au milieu d’une phrase complète…
-      </p>
       <p>
         <label><!-- ⊷ -->
+                --font_size-max: .75rem;
+                z-index: 5;
+                margin: 0 {{C_o.PAD_1}};
+                vertical-align: middle;
+                cursor: pointer;
         </label>
         <input/>
+                display: none;
         <ins>
-          <label><!-- × -->
+                display: none;
+                --font_size-max: .95rem;
+                position: relative;
+                margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
+                padding: {{C_o.PAD_4}};
+                background: var(--insert);
+                text-decoration: none;
+                border-radius: 4px;
+        <!--
+          <label> close
           </label>
+        -->
           <a>
+                  position: absolute;
+                  top:    {{C_o.PAD_1}};
+                  right:  {{C_o.PAD_1}};
+                  bottom: {{C_o.PAD_1}};    /* avoid masking legend 1st line */
+                  border: {{C_o.PAD_1}};
+                  cursor: zoom-in;
             <img/>
+                    max-height: 128px;
+                    border-radius: 4px;
           </a>
           context( stack, new )
           <span class="cartel">
+            <*>
+                    --font_size-min: .75rem;
+                    --font_size-max: 1rem;
+                    font-style: normal;
+                    font-weight: 200;
+            </*>
             <b>
-                  display: table;
+                    display: table;
+              <*>
+                      font-style: normal;
+              </*>
             </b>
             <b:nth-of-type(1)>
                     --font_size-max: 1.5rem;
-                    font-weight: 600;
+                    font-weight: 400;
+                    font-style: italic;
             </b>
             <b:nth-of-type(2)>
                     --font_size-max: 1.25rem;
-                    font-weight: 400;
-            </b>
-            <b>
+                    font-weight: 600;
             </b>
             <b>
               <i:first-of-type::after>
                       content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
               </i>
+            </b>
           </span>
         </ins>
       </p>
@@ -93,40 +115,34 @@ context( stack, new )
   <!-- variant --><section:target>
                           display: block;
                   </section>
-  <!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]>
-                          column-count: 3;
-                          margin: 0 auto;
-                          padding: {{C_o.PAD_8}};
-                          max-width: 100vw;
-                          column-gap: 0;
-                  </section>
   <!-- variant --><section><!--[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]-->
                     <figure>
-                          position: relative;
-                          padding: 1vmin;  /* better than PAD_X */
+                            position: relative;
+                            margin: 1vmin;
                       <img/>
-                              /*
-                              width: 100%;
-                              object-fit: scale-down;
-                              */
-                              cursor: pointer;
                       <a>
+                              text-decoration: none;
+                              color: currentColor;
                         <figcaption>
-                          position: absolute; top: 0; right: 0; bottom: 0; left: 0;
-                          padding: 2vmin;  /* better than PAD_X */
-                          width: 100%;
-                          background: var(--shadow);
-                          opacity: 1;
+                                position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+                                padding: 1vmin;
+                                width: 100%;
+                                background: var(--shadow_hi);
                           <span><!-- class="cartel" -->
+                            position: absolute; bottom: 1vmin;
                           </span>
                         </figcaption>
                         <!-- variant --><figcaption:hover>
-                                                pointer-events: none;  /* let img respond to events */
                                                 opacity: 0;
-                                                /*transition: opacity .5s ease;*/
+                                                transition: opacity .4s ease;
                                         </figcaption>
                       </a>
                     </figure>
+                  </section>
+  <!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]>
+                          column-count: 3;
+                          column-gap: 0;
+                          max-width: 100vw;
                   </section>
 <!-- header related -->
   <!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target>

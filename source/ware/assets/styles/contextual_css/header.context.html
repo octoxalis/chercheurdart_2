@@ -6,13 +6,23 @@ context( stack, new )
         position: sticky; top: 0;
         width: 100%;
         opacity: .1;
-        transition: opacity 5s;
-    <a><!--Chercheur d'Art-->
+        transition: opacity 5s;  /* long fading out */
+    <a>
+            text-decoration: none;
+            color: currentColor;
             font-weight: 400;
             filter: brightness( var(--brigtness_lo) );
     </a>
+    <!-- variant --><a:focus>
+                    context( copy, next )
+                    </a>
+                    <a:hover>
+                            border-bottom: 1px solid;
+                            filter: brightness( var(--brigtness_hi) );
+                            transition: opacity .2s;
+                    </a>
 </header>
 <!-- variant --><header:hover>
                         opacity: 1;
-                        transition: opacity .1s;
+                        transition: opacity .2s;  /* short fading in */
                 </header>

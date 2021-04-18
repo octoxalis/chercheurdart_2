@@ -1,18 +1,21 @@
 /* === inline insert ===*/
 
+/*
 label {
   --font_size-max: .75rem;
   z-index: 5;
-  /*margin-right: {{C_o.PAD_2}};*/
+  margin-right: {{C_o.PAD_2}};
   vertical-align: middle;
   cursor: pointer;
 }
-
+*/
+/*
 input[id^="{{C_o.INSERT_ID_s}}"],
 input[id^="{{C_o.INSERT_ID_s}}"] + ins {
   display: none;
 }
-
+*/
+/*
 input[id^="{{C_o.INSERT_ID_s}}"] + ins
 {
   --font_size-max: .95rem;
@@ -23,12 +26,8 @@ input[id^="{{C_o.INSERT_ID_s}}"] + ins
   background: var(--insert);
   text-decoration: none;
   border-radius: 4px;
-  /*
-  box-shadow: 0 1px 1px var(--shadow),
-              0 2px 2px var(--shadow),
-              0 4px 4px var(--shadow);
-              */
 }
+*/
 
 /*
 input[id^="{{C_o.INSERT_ID_s}}"] + ins > a::before
@@ -47,6 +46,7 @@ input[id^="{{C_o.INSERT_ID_s}}"] + ins > a:hover::before
 }
 */
 
+/*
 input[id^="{{C_o.INSERT_ID_s}}"] + ins *,
 figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption *
 {
@@ -55,7 +55,8 @@ figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption *
   font-style: normal;
   font-weight: 200;
 }
-
+*/
+/*
 .cartel > b
 {
   display: table;
@@ -79,17 +80,19 @@ figure[id^="{{C_o.SLIDE_ID_s}}"] > figcaption *
 {
   content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 }
-
+*/
+/*
 input[id^="{{C_o.INSERT_ID_s}}"] + ins > a
 {
   position: absolute;
-  bottom: {{C_o.PAD_3}};    /* avoid masking legend 1st line */
+  bottom: {{C_o.PAD_3}};
   right:  {{C_o.PAD_3}};
   border: 0;
   cursor: zoom-in;
 }
+*/
 
-
+/*
 input[id^="{{C_o.INSERT_ID_s}}"] + ins > img
 {
   max-height: 128px;
@@ -99,7 +102,7 @@ input[id^="{{C_o.INSERT_ID_s}}"] + ins > img
               0 4px 4px var(--shadow),
               0 8px 8px var(--shadow);
 }
-
+*/
 
 input[id^="{{C_o.INSERT_ID_s}}"] + ins > label
 {
