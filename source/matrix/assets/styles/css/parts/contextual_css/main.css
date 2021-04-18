@@ -10,9 +10,12 @@ background: var(--bgcolor);
 }
 
 section > h1 {
---font_size_min: 6rem;
---font_size_max: 10rem;
+font-size: 2.5rem;
 font-weight: 500;
+}
+
+section > h1 + div:first-of-type {
+margin: {{C_o.PAD_8}} auto {{C_o.PAD_16}};
 }
 
 section > h1,

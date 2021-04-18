@@ -9,11 +9,18 @@ context( stack, new )
         min-height: {{C_o.FULL_HEIGHT_s}};
         background: var(--bgcolor);
   <h1>
+          /*
           --font_size_min: 6rem;
           --font_size_max: 10rem;
+          */
+          font-size: 2.5rem;
           font-weight: 500;
   </h1>
-  <!-- variant --><h1>
+  +
+  <div:first-of-type>
+          margin: {{C_o.PAD_8}} auto {{C_o.PAD_16}};
+  </div>
+<!-- variant --><h1>
                   context( copy, next )
                   </h1>
   <h2>
