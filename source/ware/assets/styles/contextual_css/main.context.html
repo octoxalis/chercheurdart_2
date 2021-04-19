@@ -9,20 +9,13 @@ context( stack, new )
         min-height: {{C_o.FULL_HEIGHT_s}};
         background: var(--bgcolor);
   <h1>
-          /*
-          --font_size_min: 6rem;
-          --font_size_max: 10rem;
-          */
-          font-size: 2.5rem;
+          --font_max: 40px;
+          --font_scale: 5vw;
           font-weight: 500;
   </h1>
-  +
-  <div:first-of-type>
-          margin: {{C_o.PAD_8}} auto {{C_o.PAD_16}};
-  </div>
 <!-- variant --><h1>
-                  context( copy, next )
-                  </h1>
+                context( copy, next )
+                </h1>
   <h2>
           margin: 0 auto;
           max-width: 60ch;
@@ -37,9 +30,11 @@ context( stack, new )
                     </label>
   </h2>
   <!-- variant --><h2>
-                          --font_size_min: 2rem;
-                          --font_size_max: 3rem;
-                          font-weight: 300;
+                    <label>
+                            --font_max: 32px;
+                            --font_scale: 3.5vw;
+                            font-weight: 300;
+                    </label>
                   </h2>
                   +
                   <input/>
@@ -61,16 +56,14 @@ context( stack, new )
   <div class="chapter">
           max-width: 60ch;
           margin: {{C_o.PAD_8}} auto {{C_o.PAD_4}};
+    <hr/><!-- !!! occurs at chapter end -->
+            margin: {{C_o.PAD_8}} auto {{C_o.PAD_12}};
+            width: 20%;
+            height: 1px;
+            background: var(--shadow);
+            border: 0;
     <p>
       <label>
-              --font_size_max: .75rem;
-              z-index: 5;
-              margin: 0 {{C_o.PAD_1}};
-              vertical-align: middle;
-              cursor: pointer;
-      </label>
-      <label>
-              --font_size_max: .75rem;
               z-index: 5;
               margin: 0 {{C_o.PAD_1}};
               vertical-align: middle;
@@ -80,32 +73,37 @@ context( stack, new )
               display: none;
       <ins>
               display: none;
-              --font_size_max: .95rem;
+                            --font_max: 18px;
+                            --font_scale: 2.1vw;
               position: relative;
-              margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
+              margin: {{C_o.PAD_1}} 0;
               padding: {{C_o.PAD_4}};
               background: var(--insert);
               text-decoration: none;
               border-radius: 4px;
         <a>
                 position: absolute;
-                top:    {{C_o.PAD_1}};
-                right:  {{C_o.PAD_1}};
-                bottom: {{C_o.PAD_1}};    /* avoid masking legend 1st line */
-                border: {{C_o.PAD_1}};
+                top:    0;
+                right:  0;
+                bottom: 0;    /* avoid masking legend 1st line */
                 cursor: zoom-in;
           <img/>
-                  max-height: 128px;
+          max-height: 128px;
+                  /*..................
+                  height: auto;
+                  */
                   border-radius: 4px;
         </a>
         context( stack, new )
         <span class="cartel">
+          height: fit-content;
+          min-height: 128px;
           <*>
-                  --font_size_min: .6rem;
-                  --font_size_max: .9rem;
+                            --font_max: 18px;
+                            --font_scale: 2.1vw;
                   font-style: normal;
                   font-weight: 200;
-                  line-height: 1.2;
+                  line-height: 1.3;
           </*>
           <b>
                   display: table;
@@ -114,12 +112,15 @@ context( stack, new )
             </*>
           </b>
           <b:nth-of-type(1)>
-                  --font_size_max: 1rem;
+                            --font_max: 18px;
+                            --font_scale: 2.2vw;
                   font-weight: 400;
                   font-style: italic;
+                  line-height: 1.6;
           </b>
           <b:nth-of-type(2)>
-                  --font_size_max: .75rem;
+                            --font_max: 20px;
+                            --font_scale: 2.4vw;
                   font-weight: 600;
           </b>
           <b>
@@ -134,10 +135,17 @@ context( stack, new )
                       <ins>
                         display: block;
                       </ins>
-
     </p>
   </div>
-</section>
+  <div[class="chapter"]:last-of-type::after><!-- short hz rule simulation -->
+    content: "-";
+    position: absolute;
+    left:48%;
+    width: 4%;
+    color: transparent;
+    border-bottom: 1px solid var(--shadow);
+  </div>
+  </section>
 context( stack, new )
 <!-- variant --><section#{{F_o.slug__s( C_o.SEC_TEXT_s )}}>
                 context( copy, next )

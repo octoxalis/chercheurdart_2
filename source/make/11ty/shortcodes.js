@@ -66,7 +66,8 @@ const CODES_o =
         `<label for="${slug_s}" tabindex="-1">${name_s}</label>`
 
       close_s =
-        '</div>\n'        //: first close last chapter div
+        `<hr/>`
+        + '</div>\n'        //: first close last chapter div
 
       input_s =
         `<input id="${slug_s}" type="checkbox" />`  //: chapter always closed
@@ -79,7 +80,6 @@ const CODES_o =
       + `</h${at_n}>\n`  //: \n is mandatory
       + input_s
       + `<div class="chapter">\n`    //: open chapter content
-      
     )
   }
   ,

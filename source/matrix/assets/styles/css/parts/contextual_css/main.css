@@ -10,12 +10,9 @@ background: var(--bgcolor);
 }
 
 section > h1 {
-font-size: 2.5rem;
+--font_max: 40px;
+--font_scale: 5vw;
 font-weight: 500;
-}
-
-section > h1 + div:first-of-type {
-margin: {{C_o.PAD_8}} auto {{C_o.PAD_16}};
 }
 
 section > h1,
@@ -29,9 +26,9 @@ section > h2 > label:hover {
 border-bottom: 1px solid var(--highlight);
 }
 
-section > h2 {
---font_size_min: 2rem;
---font_size_max: 3rem;
+section > h2 > label {
+--font_max: 32px;
+--font_scale: 3.5vw;
 font-weight: 300;
 }
 
@@ -50,16 +47,15 @@ max-width: 60ch;
 margin: {{C_o.PAD_8}} auto {{C_o.PAD_4}};
 }
 
-.chapter > p > label {
---font_size_max: .75rem;
-z-index: 5;
-margin: 0 {{C_o.PAD_1}};
-vertical-align: middle;
-cursor: pointer;
+.chapter > hr {
+margin: {{C_o.PAD_8}} auto {{C_o.PAD_12}};
+width: 20%;
+height: 1px;
+background: var(--shadow);
+border: 0;
 }
 
 .chapter > p > label {
---font_size_max: .75rem;
 z-index: 5;
 margin: 0 {{C_o.PAD_1}};
 vertical-align: middle;
@@ -72,9 +68,10 @@ display: none;
 
 .chapter > p > ins {
 display: none;
---font_size_max: .95rem;
+--font_max: 18px;
+--font_scale: 2.1vw;
 position: relative;
-margin: {{C_o.PAD_1}} 0 {{C_o.PAD_4}} 0;
+margin: {{C_o.PAD_1}} 0;
 padding: {{C_o.PAD_4}};
 background: var(--insert);
 text-decoration: none;
@@ -83,10 +80,9 @@ border-radius: 4px;
 
 .chapter > p > ins > a {
 position: absolute;
-top:    {{C_o.PAD_1}};
-right:  {{C_o.PAD_1}};
-bottom: {{C_o.PAD_1}};
-border: {{C_o.PAD_1}};
+top:    0;
+right:  0;
+bottom: 0;
 cursor: zoom-in;
 }
 
@@ -95,12 +91,17 @@ max-height: 128px;
 border-radius: 4px;
 }
 
+.cartel {
+height: fit-content;
+min-height: 128px;
+}
+
 .cartel > * {
---font_size_min: .6rem;
---font_size_max: .9rem;
+--font_max: 18px;
+--font_scale: 2.1vw;
 font-style: normal;
 font-weight: 200;
-line-height: 1.2;
+line-height: 1.3;
 }
 
 .cartel > b {
@@ -112,13 +113,16 @@ font-style: normal;
 }
 
 .cartel > b:nth-of-type(1) {
---font_size_max: 1rem;
+--font_max: 18px;
+--font_scale: 2.2vw;
 font-weight: 400;
 font-style: italic;
+line-height: 1.6;
 }
 
 .cartel > b:nth-of-type(2) {
---font_size_max: .75rem;
+--font_max: 20px;
+--font_scale: 2.4vw;
 font-weight: 600;
 }
 
@@ -128,6 +132,15 @@ content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 
 input:checked + ins {
 display: block;
+}
+
+div[class="chapter"]:last-of-type::after {
+content: "-";
+position: absolute;
+left:48%;
+width: 4%;
+color: transparent;
+border-bottom: 1px solid var(--shadow);
 }
 
 section#{{F_o.slug__s( C_o.SEC_TEXT_s )}},

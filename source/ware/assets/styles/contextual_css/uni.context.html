@@ -3,6 +3,12 @@ context( stack, ignore )
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        --font_min: 12px;
+        --font_max: 24px;
+        --font_scale: 2.3vw;
+        font-size: clamp( var(--font_min), var(--font_scale), var(--font_max) );
+        font-weight: 300;
+        line-height: 1.4;
 </*>
 <*:before>
 context( copy, next )
@@ -11,16 +17,16 @@ context( copy, next )
         box-sizing: inherit;
 </*:after>
 <*::-webkit-scrollbar>
-width:.5em;
+        width:.5em;
 <*>
 <*::-webkit-scrollbar-thumb>
-border-radius:.5rem;
-background:var(--bgcolor);
-background:var(--bg_lower);
-background-color:var(--bg_lower);
-border:.2em solid var(--bgcolor);
-border-radius: .5em;
+        border-radius:.5rem;
+        background:var(--bgcolor);
+        background:var(--bg_lower);
+        background-color:var(--bg_lower);
+        border:.2em solid var(--bgcolor);
+        border-radius: .5em;
 <*>
 <*::-webkit-scrollbar-track>
-background:var(--bgcolor);
+        background:var(--bgcolor);
 <*>
