@@ -20,20 +20,17 @@ context( stack, new )
           margin: 0 auto;
           max-width: 60ch;
           text-align: center;
-    <!--
     <label>
-            /*margin: {{C_o.PAD_4}} {{C_o.PAD_8}};*/
+            --font_max: 32px;
+            --font_scale: 3.5vw;
+            font-weight: 300;
     </label>
-    -->
     <!-- variant --><label:hover><!--chapter title-->
                             border-bottom: 1px solid var(--highlight);
                     </label>
   </h2>
   <!-- variant --><h2>
                     <label>
-                            --font_max: 32px;
-                            --font_scale: 3.5vw;
-                            font-weight: 300;
                     </label>
                   </h2>
                   +
@@ -69,71 +66,76 @@ context( stack, new )
               vertical-align: middle;
               cursor: pointer;
       </label>
+      +
       <input/>
-              display: none;
+      context( copy, next )
+      +
       <ins>
               display: none;
-                            --font_max: 18px;
-                            --font_scale: 2.1vw;
-              position: relative;
-              margin: {{C_o.PAD_1}} 0;
-              padding: {{C_o.PAD_4}};
-              background: var(--insert);
-              text-decoration: none;
-              border-radius: 4px;
-        <a>
-                position: absolute;
-                top:    0;
-                right:  0;
-                bottom: 0;    /* avoid masking legend 1st line */
-                cursor: zoom-in;
-          <img/>
-          max-height: 128px;
-                  /*..................
-                  height: auto;
-                  */
-                  border-radius: 4px;
-        </a>
-        context( stack, new )
-        <span class="cartel">
-          height: fit-content;
-          min-height: 128px;
-          <*>
-                            --font_max: 18px;
-                            --font_scale: 2.1vw;
-                  font-style: normal;
-                  font-weight: 200;
-                  line-height: 1.3;
-          </*>
-          <b>
-                  display: table;
-            <*>
-                    font-style: normal;
-            </*>
-          </b>
-          <b:nth-of-type(1)>
-                            --font_max: 18px;
-                            --font_scale: 2.2vw;
-                  font-weight: 400;
-                  font-style: italic;
-                  line-height: 1.6;
-          </b>
-          <b:nth-of-type(2)>
-                            --font_max: 20px;
-                            --font_scale: 2.4vw;
-                  font-weight: 600;
-          </b>
-          <b>
-            <i:first-of-type::after>
-                    content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
-            </i>
-          </b>
-        </span>
       </ins>
-      <!-- variant --><input:checked/>
+      <!-- variant --><label>
+                      </label>
+                      +
+                      <input:checked/>
                       +
                       <ins>
-                        display: block;
+                              --font_max: 18px;
+                              --font_scale: 1.9vw;
+                              display: block;
+                              position: relative;
+                              height: fit-content;
+                              margin: {{C_o.PAD_1}} 0;
+                              padding: {{C_o.PAD_4}};
+                              background: var(--insert);
+                              text-decoration: none;
+                              border-radius: 4px;
+                        <a>
+                                position: absolute;
+                                top:    0;
+                                right:  0;
+                                bottom: 0;    /* avoid masking legend 1st line */
+                                cursor: zoom-in;
+                          <img/>
+                                  max-height: 128px;
+                                  height: 100%;
+                                  border-radius: 4px;
+                        </a>
+                        context( stack, new )
+                        <span class="cartel">
+                                top: 0;
+                                height: fit-content;
+                                min-height: 128px;
+                          <*>
+                                  --font_max: 18px;
+                                  --font_scale: 1.9w;
+                                  font-style: normal;
+                                  font-weight: 200;
+                                  line-height: 1.3;
+                          </*>
+                          <b>
+                                  display: table;
+                            <*>
+                                    font-style: normal;
+                            </*>
+                          </b>
+                          <b:nth-of-type(1)>
+                                            --font_max: 18px;
+                                            --font_scale: 2vw;
+                                  font-weight: 400;
+                                  font-style: italic;
+                                  line-height: 1.6;
+                          </b>
+                          <b:nth-of-type(2)>
+                                            --font_max: 20px;
+                                            --font_scale: 2.2vw;
+                                  font-weight: 600;
+                          </b>
+                          <b>
+                            <i:first-of-type::after>
+                                    content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
+                            </i>
+                          </b>
+                        </span>
                       </ins>
     </p>
   </div>
@@ -145,15 +147,17 @@ context( stack, new )
     color: transparent;
     border-bottom: 1px solid var(--shadow);
   </div>
-  </section>
-context( stack, new )
-<!-- variant --><section#{{F_o.slug__s( C_o.SEC_TEXT_s )}}>
+</section>
+<!-- variant --><section:target>
                 context( copy, next )
                 </section>
-<!-- variant --><section:target>
+<!-- variant --><section#{{F_o.slug__s( C_o.SEC_TEXT_s )}}><!-- default section -->
                         display: block;
                 </section>
-<!-- variant --><section><!--[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]-->
+<!-- variant --><section#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}>
+                        column-count: 3;
+                        column-gap: 0;
+                        max-width: 100vw;
                   <figure>
                           position: relative;
                           margin: 1vmin;
@@ -178,9 +182,4 @@ context( stack, new )
                                       </figcaption>
                     </a>
                   </figure>
-                </section>
-<!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]>
-                        column-count: 3;
-                        column-gap: 0;
-                        max-width: 100vw;
                 </section>
