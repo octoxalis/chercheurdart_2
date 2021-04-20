@@ -1,2 +1,34 @@
 
-.slides{position:fixed;top:0;left:0;right:0;height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory}.slides figure{height:100vh;padding:0 5vw;margin:0;display:grid;place-items:center;align-content:center;scroll-snap-align:center}.slides figure img{max-height:88vh}.slides figure.cover{padding:0}.slides figure.cover img{z-index:-1;position:absolute;width:100vw;height:100vh;max-height:none;object-fit:cover}
+
+.slides {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ height: 100vh;
+ overflow-y: scroll;
+ scroll-snap-type: y mandatory;
+}
+.slides figure {
+ height: 100vh;
+ padding: 0 5vw;
+ margin: 0;
+ display: grid;
+ place-items: center;
+ align-content: center;
+ scroll-snap-align: center;
+}
+.slides figure img {
+ max-height: 88vh; 
+}
+.slides figure.cover {
+ padding: 0;
+}
+.slides figure.cover img {
+ z-index: -1;
+ position: absolute;
+ width: 100vw;
+ height: 100vh;
+ max-height: none;
+ object-fit: cover;
+}
