@@ -175,11 +175,6 @@ padding: 1vmin;
 background: var(--shadow_hi);
 }
 
-section#{{F_o.slug__s( C_o.SEC_MEDIA_s )}} > figure > a > figcaption > span {
-position: absolute;
-bottom: 1vmin;
-}
-
 section#{{F_o.slug__s( C_o.SEC_MEDIA_s )}} > figure > a > figcaption:hover {
 opacity: 0;
 transition: opacity .4s ease;

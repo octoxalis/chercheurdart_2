@@ -24,7 +24,6 @@
 
   css_a:
   [
-    'lightbox.min.css',   //: uncomment to use lightbox
     //-'video.min.css',      //: uncomment to use video
     //-'print.min.css',      //: uncomment to use print
   ],

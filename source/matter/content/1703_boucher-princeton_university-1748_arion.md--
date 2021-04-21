@@ -13,7 +13,6 @@
 
   section_a:
   [
-    'Sommaire',
     'Article',
     'Références',
     //...
@@ -25,25 +24,11 @@
   ],
   css_a:
   [
-    //'lightbox.min.css',   //: uncomment to use lightbox
     //-'video.min.css',      //: uncomment to use video
     //-'print.min.css',      //: uncomment to use print
   ],
 }
 ---
-[comment]: # (======================== Sommaire ========================)
-{% section section_a[0] %}
-
-{% chapter "### Sommaire" %}
-
-[Article][a]
-[Références][b]
-
-{% end_section %}
-
-
-
-
 [comment]: # (======================== Article ========================)
 
 {% section section_a[1] %}
