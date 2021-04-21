@@ -15,11 +15,13 @@ cursor: url(var(--cursor_svg)), auto;
 }
 
 figure:target {
+display: block;
 position:fixed;
 top:{{C_o.PAD_8}};
 right:0;
 bottom:0;
 left:0;
+background: var(--bgcolor);
 }
 
 aside#gray {

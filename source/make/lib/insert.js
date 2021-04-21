@@ -105,7 +105,7 @@ module.exports =
           )
           .replace
           (
-            '<main/>',  //: insertion after pseudo <main/>
+            `<${C_o.SEC_MEDIA_s}/>`,    //: custom tag deleted after section insertion
             `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`

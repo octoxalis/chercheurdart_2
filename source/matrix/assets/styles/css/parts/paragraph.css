@@ -1,9 +1,0 @@
-p {
-  margin-bottom: {{C_o.PAD_4}};
-  padding: 0 {{C_o.PAD_2}};
-}
-
-em {
-  font-weight: 600;
-  font-style: normal;
-}

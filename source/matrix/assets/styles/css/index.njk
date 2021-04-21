@@ -1,26 +1,9 @@
-{% set _path = './parts/' %}
 {% set _css %}
-{% include _path + "contextual_css/uni.css" %}
-{% include _path + "contextual_css/root.css" %}
-{% include _path + "contextual_css/body.css" %}
-{% include _path + "contextual_css/header.css" %}
-{% include _path + "contextual_css/main.css" %}
-{% include _path + "contextual_css/aside.css" %}
-{% include _path + "contextual_css/svg.css" %}
-
-{#......% include _path + "headers.css" %#}
-{#......% include _path + "paragraph.css" %#}
-{#......% include _path + "list.css" %#}
+{% include "./parts/html.css" %}
+{% include "./parts/body.css" %}
+{% include "./parts/header.css" %}
+{% include "./parts/main.css" %}
+{% include "./parts/aside.css" %}
+{% include "./parts/svg.css" %}
 {% endset %}
 {% include "assets/styles/css/minify.njk" %}
-
-
-
-{#% include _path + "global.css" %#}
-{#% include _path + "scrollbar.css" %#}
-{#% include _path + "svg.css" %#}
-{#% include _path + "font.css" %#}
-{#% include _path + "body.css" %#}
-{#% include _path + "nav.css" %#}
-{#% include _path + "section.css" %#}
-{#% include _path + "footer.css" %#}

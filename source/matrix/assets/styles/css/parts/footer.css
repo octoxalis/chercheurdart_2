@@ -1,6 +1,0 @@
-footer {
-  --font_size_max: .85rem;  /*font-size: .85em;*/
-
-  position: absolute;
-  bottom: {{C_o.PAD_4}};
-}

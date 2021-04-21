@@ -132,6 +132,22 @@ font-weight: 600;
 content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 }
 
+ul > li {
+color: currentColor;
+list-style: none;
+}
+
+ul > li > a {
+color: currentColor;
+text-decoration: none;
+}
+
+ul > li > a:hover {
+border-bottom: 1px solid;
+filter: brightness( var(--brigtness_hi) );
+transition: opacity .2s;
+}
+
 div[class="chapter"]:last-of-type::after {
 content: "-";
 position: absolute;
@@ -163,8 +179,8 @@ height: auto;
 }
 
 section#{{F_o.slug__s( C_o.SEC_MEDIA_s )}} > figure > a {
-text-decoration: none;
 color: currentColor;
+text-decoration: none;
 }
 
 section#{{F_o.slug__s( C_o.SEC_MEDIA_s )}} > figure > a > figcaption {

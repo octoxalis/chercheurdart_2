@@ -17,24 +17,20 @@
     //--'Galerie',
   ],
 
-  script_a:
-  [
-    'ior.min.js',
-  ],
-
-  css_a:
-  [
-    //-'video.min.css',      //: uncomment to use video
-    //-'print.min.css',      //: uncomment to use print
-  ],
-  
   chapter_a:
   [
     'Renaissance',
     'Nouvelle version du site',
     'Références',
-  ]
+  ],
 
+  script_a:
+  [
+  ],
+
+  css_a:
+  [
+  ],
 }
 ---
 [comment]: # (======================== Article ========================)

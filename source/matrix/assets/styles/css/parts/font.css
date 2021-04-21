@@ -1,7 +1,0 @@
-header *,
-main *
-{
-  font-size: clamp( var(--font_size_min, 1rem ),
-                    calc(1rem + var(--font_size_target, 3vw) ),
-                    var(--font_size_max, 1.3rem) );
-}
