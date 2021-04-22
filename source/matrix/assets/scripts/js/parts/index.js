@@ -76,5 +76,15 @@ void function
   //... IND_o
   //...   .listener__v()
 
+  if
+  (
+    ! location
+      .hash
+  )
+  {
+    location +=
+      `#{{F_o.slug__s( C_o.SEC_TEXT_s )}}`
+  }
+
   ;console.log( 'index.js' )
 } ()

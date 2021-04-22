@@ -56,7 +56,6 @@ border: 0;
 }
 
 .chapter > p > label {
-z-index: 5;
 margin: 0 {{C_o.PAD_1}};
 vertical-align: middle;
 cursor: pointer;
@@ -157,8 +156,7 @@ color: transparent;
 border-bottom: 1px solid var(--shadow);
 }
 
-section:target,
-section#{{F_o.slug__s( C_o.SEC_TEXT_s )}} {
+section:target {
 display: block;
 }
 
