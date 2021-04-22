@@ -14,8 +14,14 @@
   section_a:
   [
     'Article',
+    //--'Galerie',
+  ],
+
+  chapter_a:
+  [
+    'Colorimétrie',
+    'Composition',
     'Références',
-    //...
   ],
 
   script_a:
@@ -28,9 +34,9 @@
 ---
 [comment]: # (======================== Article ========================)
 
-{% section section_a[1] %}
+{% section section_a[0] %}
 
-{% chapter "## Colorimétrie" %}
+{% chapter "# Colorimétrie" %}
 
 +  [scan][0]
 +  [burst][1]
@@ -38,22 +44,14 @@
 {% chapter "## Composition" %}
 
 
+{% chapter "## Références" %}
+
+
 {% end_section %}
 
 
 
-[comment]: # (======================== Références ========================)
-
-{#% section section_a[2] %}
-{% end_section %#}
-
-
-
-
 [comment]: # (======================== Links ========================)
-
-[a]: #Article
-[b]: #Références
 
 [0]: 1703_boucher-princeton_university-1748_arion__scan.html
 [1]: 1703_boucher-princeton_university-1748_arion__burst.html

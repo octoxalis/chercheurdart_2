@@ -34,7 +34,7 @@
 }
 ---
 [comment]: # (======================== Article ========================)
-{% section section_a[0] %}
+{% section section_a[0], 1234 %}
 
 
 {% chapter '#' + chapter_a[0] %}
@@ -81,6 +81,3 @@ Ref. 2: work entry
 
 
 [comment]: # (======================== Links ========================)
-
-[a]: #Article
-[b]: #Références

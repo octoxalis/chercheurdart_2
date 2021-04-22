@@ -5,7 +5,7 @@ context( stack, new )
         justify-content: space-between;
         position: sticky; top: 0;
         width: 100%;
-        opacity: .1;
+        opacity: .25;
         transition: opacity 5s;  /* long fading out */
     <a>
             text-decoration: none;
@@ -32,10 +32,10 @@ context( stack, new )
                 ~
                 <header>
                   <a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]>
-                          visibility: hidden;
+                        context( copy, next )
                   </a>
                 </header>
-                <!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]:target>
+<!-- variant --><section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]:target>
                 </section>
                 ~
                 <header>

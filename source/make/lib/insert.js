@@ -116,6 +116,11 @@ module.exports =
           )
       :
         content_s
+          .replace
+          (
+            `<${C_o.SEC_MEDIA_s}/>`,    //: custom tag deleted after section insertion
+            ''    //: remove it
+          )
     )
   }
 ,

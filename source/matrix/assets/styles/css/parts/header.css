@@ -4,7 +4,7 @@ display: flex;
 justify-content: space-between;
 position: sticky; top: 0;
 width: 100%;
-opacity: .1;
+opacity: .25;
 transition: opacity 5s;
 }
 
@@ -27,10 +27,7 @@ opacity: 1;
 transition: opacity .2s;
 }
 
-section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target ~ header > a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"] {
-visibility: hidden;
-}
-
+section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target ~ header > a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"],
 section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]:target ~ header > a[href="#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"] {
 visibility: hidden;
 }

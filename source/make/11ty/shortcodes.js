@@ -11,7 +11,7 @@ const CODES_o =
   (
     section_s
   ) =>
-  `<section id="${F_o.slug__s( section_s )}">`
+    `<section id="${F_o.slug__s( section_s )}">`
   ,
 
 
@@ -117,11 +117,13 @@ module.exports =
         .addNunjucksShortcode
         (
           `${code_s}`,        //: simple shortcodes have no leading underscore
-          arg_ =>
+          (
+            ...arg_
+          ) =>
             CODES_o
               [ `${code_s}__s` ]
               (
-                arg_
+                ...arg_
               )
         )
     }
@@ -141,13 +143,13 @@ module.exports =
           `_${code_s}`,        //: paired shortcodes have a leading underscore
           (
             content_s,
-            arg_
+            ...arg_
           ) =>
             CODES_o
               [ `${code_s}__s` ]
               (
                 content_s,
-                arg_
+                ...arg_
               )
         )
     }

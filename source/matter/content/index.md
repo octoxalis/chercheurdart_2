@@ -15,15 +15,14 @@
   section_a:
   [
     `Article`,
-    `Colophon`,
   ],
 
   chapter_a:
   [
-    `Avant-propos`,    //: section[0]
-    `Liste des articles`,
+    `En ligne`,
     `Guide de navigation`,
-    `Technologies Web`,    //: section[1]
+    `Technologies Web`,
+    `Colophon`,
   ],
 
   script_a:
@@ -42,26 +41,21 @@
 
 {% chapter '#' + chapter_a[0] %}
 
-Ce site étant délibéremment expérimental, tant par sa forme que par son contenu, certains de ses éléments, et en tout premier lieu les images, ne sont accessibles qu'en utilisant les navigateurs Internet Google Chrome ou Mozilla Firefox dans leurs versions les plus récentes.
-
-En effet, toutes les images du site sont au format AVIF, une technique d'encodage des images qui permet de réduire de façon très significative la taille de leurs fichiers numériques et, par voie de conséquence, le temps nécessaire à leur chargement.
-
-{% chapter '##' + chapter_a[1] %}
-
 +   [Renaissance][0]
 +   [F. Boucher Arion 1748][1]
 
 
+{% chapter '##' + chapter_a[1] %}
+
+Ce site étant délibéremment expérimental, tant par sa forme que par son contenu, certains de ses éléments, et en tout premier lieu les images, ne sont accessibles qu'en utilisant les navigateurs Internet Google Chrome ou Mozilla Firefox dans leurs versions les plus récentes.
+
+En effet, toutes les images du site sont au format AVIF, une technique d'encodage des images qui permet de réduire de façon très significative la taille de leurs fichiers numériques et, par voie de conséquence, le temps nécessaire à leur chargement.
+
 {% chapter '##' + chapter_a[2] %}
 
-{{A_o.NAME_s}} est un site Web mono-page...
+...
 
-{% end_section %}
-
-
-{% section section_a[1] %}
-
-{% chapter '#' + chapter_a[3] %}
+{% chapter '##' + chapter_a[3] %}
 
 {{A_o.NAME_s}} est construit avec le générateur de site statique  {{U_o.E11TY_s}}
 
@@ -71,5 +65,5 @@ En effet, toutes les images du site sont au format AVIF, une technique d'encodag
 
 {{U_o.E11TY_R_s}}
 
-[0]: renaissance.html
-[1]: 1703_boucher-princeton_university-1748_arion.html
+[0]: renaissance.html#{{F_o.slug__s( C_o.SEC_TEXT_s )}}
+[1]: 1703_boucher-princeton_university-1748_arion.html#{{F_o.slug__s( C_o.SEC_TEXT_s )}}
