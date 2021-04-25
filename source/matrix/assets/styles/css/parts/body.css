@@ -1,4 +1,5 @@
 body {
+min-height: 200vh;
 position: relative;
 color: var(--textcolor);
 background: var(--bgcolor);
