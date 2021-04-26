@@ -51,7 +51,7 @@ margin: {{C_o.PAD_8}} auto {{C_o.PAD_4}};
 width: 20%;
 height: 1px;
 margin: {{C_o.PAD_8}} auto {{C_o.PAD_12}};
-background: var(--shadow);
+background: var(--shadow_ne);
 border: 0;
 }
 
@@ -88,8 +88,7 @@ cursor: zoom-in;
 }
 
 .chapter > p > label + input:checked + ins > a > img {
-height: 100%;
-max-height: 128px;
+height: 100%; max-height: 128px;
 border-radius: 4px;
 }
 
@@ -153,7 +152,7 @@ position: absolute;
 left:48%;
 width: 4%;
 color: transparent;
-border-bottom: 1px solid var(--shadow);
+border-bottom: 1px solid var(--shadow_ne);
 }
 
 section:target {

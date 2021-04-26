@@ -4,8 +4,9 @@ z-index: 1;
 display: flex;
 justify-content: space-between;
 width: 100%;
+background: var(--bgcolor);
 opacity: .25;
-transition: opacity 5s;
+transition: all 5s;
 }
 
 header > a {
@@ -23,8 +24,9 @@ transition: opacity .2s;
 }
 
 header:hover {
+filter: saturate(5);
 opacity: 1;
-transition: opacity .2s;
+transition: all .2s;
 }
 
 section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target ~ header > a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"],

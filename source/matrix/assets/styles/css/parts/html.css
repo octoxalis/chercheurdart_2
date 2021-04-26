@@ -20,7 +20,7 @@ html {
 --highlight: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_lo_2) /1);
 --insert:    hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_1) /.25);
 --shadow_hi: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.75);
---shadow:    hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.5);
+--shadow_ne: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.5);
 --shadow_lo: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.25);
 --brigtness_hi: 2;
 --brigtness_ne: 1;
@@ -48,6 +48,10 @@ box-sizing: inherit;
 width:.5em;
 }
 
+*::-webkit-scrollbar-track {
+background:var(--bgcolor);
+}
+
 *::-webkit-scrollbar-thumb {
 border-radius:.5rem;
 background:var(--bgcolor);
@@ -55,9 +59,5 @@ background:var(--bg_lower);
 background-color:var(--bg_lower);
 border:.2em solid var(--bgcolor);
 border-radius: .5em;
-}
-
-*::-webkit-scrollbar-track {
-background:var(--bgcolor);
 }
 
