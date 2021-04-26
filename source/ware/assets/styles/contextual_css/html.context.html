@@ -31,37 +31,37 @@
         --brigtness_ne: 1;
         --brigtness_lo: .5;
         
-context( stack, ignore )
-<*>
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        --font_min: 12px;
-        --font_max: 24px;
-        --font_scale: 2vw;
-        font-size: clamp( var(--font_min), var(--font_scale), var(--font_max) );
-        font-weight: 300;
-        line-height: 1.4;
-</*>
-<*:before>
-context( copy, next )
-</*:before>
-<*:after>
-        box-sizing: inherit;
-</*:after>
-<*::-webkit-scrollbar>
-        width:.5em;
-<*>
-<*::-webkit-scrollbar-track>
-        background:var(--bgcolor);
-<*>
-<*::-webkit-scrollbar-thumb>
-        border-radius:.5rem;
-        background:var(--bgcolor);
-        background:var(--bg_lower);
-        background-color:var(--bg_lower);
-        border:.2em solid var(--bgcolor);
-        border-radius: .5em;
-<*>
-context( url, body.context.html )
+  context( stack, ignore )
+  <*>
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          --font_min: 12px;
+          --font_max: 24px;
+          --font_scale: 2vw;
+          font-size: clamp( var(--font_min), var(--font_scale), var(--font_max) );
+          font-weight: 300;
+          line-height: 1.4;
+  </*>
+  <*:before>
+    context( copy, next )
+  </*:before>
+  <*:after>
+          box-sizing: inherit;
+  </*:after>
+  <*::-webkit-scrollbar>
+          width:.5em;
+  </*>
+  <*::-webkit-scrollbar-track>
+          background:var(--bgcolor);
+  </*>
+  <*::-webkit-scrollbar-thumb>
+          border-radius:.5rem;
+          background:var(--bgcolor);
+          background:var(--bg_lower);
+          background-color:var(--bg_lower);
+          border:.2em solid var(--bgcolor);
+          border-radius: .5em;
+  </*>
+  context( url, body.context.html )
 </html>
