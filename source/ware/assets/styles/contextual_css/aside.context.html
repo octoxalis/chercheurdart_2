@@ -1,12 +1,3 @@
-<block figure_target>
-        display: block;
-        position:fixed;
-        top:{{C_o.PAD_8}};    /* header height */
-        right:0;
-        bottom:0;
-        left:0;
-        background: var(--bgcolor);
-</block>
 context( stack, new )
 <aside>
         background:var(--bgcolor);
@@ -14,12 +5,21 @@ context( stack, new )
           display:none;
     <a>
       <img/>
-          context( block, figure_img )
+              width: 100%; max-width: {{C_o.FULL_WIDTH_s}};
+              max-height: calc( {{C_o.FULL_HEIGHT_s}} - {{C_o.PAD_8}} );    /* header height */
+              object-fit: scale-down;
+              cursor: url(var(--cursor_svg)), auto;
     </a>
   </figure>
   <!----------variant---------->
   <figure:target>
-          context( block, figure_target )
+          display: block;
+          position:fixed;
+          top:{{C_o.PAD_8}};    /* header height */
+          right:0;
+          bottom:0;
+          left:0;
+          background: var(--bgcolor);
   </figure>
 </aside>
 <!----------variant---------->

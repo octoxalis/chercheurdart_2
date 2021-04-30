@@ -28,7 +28,17 @@ const UNIVERSAL_SELECTOR_s = 'uni'
 
 const DECLARATION_BLOCK_s = 'block'
 
+const AT_RULE_s = '@'
 
+const AT_RULE_a =
+  [
+    'keyframes',
+    'font-face',
+    'namespace',
+    'media',
+    'supports',
+  ]
+  
 const CSS_o =
 {
   
@@ -43,6 +53,8 @@ const CSS_o =
   //-- outputDir_s: ''        //: output directory
   //-- css_s : '',
   //-- ruleset_s: '',
+  //-- atRule_o: {},
+  //-- atRuleDeclare_s: '',
   //-- lastTag_o: {},
   //-- stackState_s: '',    //: stack in selector
   //-- close_b: false,      //: self-closing tag
@@ -76,8 +88,6 @@ const CSS_o =
           proceed_o
             .path_s
 
-      ;console.log( CSS_o.path_s )
-  
       CSS_o
         .initStack_a =
           proceed_o
@@ -86,8 +96,6 @@ const CSS_o =
       CSS_o
         .read__v()
     }
-
-    //;console.table( CSS_o.block_a )
   }
   ,
 
@@ -118,31 +126,6 @@ const CSS_o =
             )
           }
           //>
-          /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-          if
-          (
-            CSS_o
-              .verbose_b
-          )
-          {
-            console
-              .log( `-- Processing: ${CSS_o.path_s}` )
-          }
-
-          if
-          (
-            ccss_s
-              .includes
-              (
-                `<${DECLARATION_BLOCK_s} `
-              )
-          )
-          {
-            return void CSS_o
-              .declaration__v( ccss_s )
-          }
-          //>
-          */
           CSS_o
             .parse__v( ccss_s )
         }
@@ -295,67 +278,6 @@ const CSS_o =
 
 
 
-/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-  declaration__v:
-  (
-    ccss_s
-  ) =>
-  {
-    //======================
-    if
-    (
-      CSS_o
-        .verbose_b
-    )
-    {
-      console
-        .time('declaration__v')
-    }
-    //======================
-
-    CSS_o
-      .init__v( ccss_s )
-
-    for
-    (
-      let line_s
-      of
-      CSS_o
-        .line_a
-    )
-    {
-      line_s =
-        line_s
-          .trim()
-
-      if
-      (
-        ! line_s
-      )
-      {
-        continue
-      }
-
-      //................
-
-      //=========================
-      if
-      (
-        CSS_o
-          .verbose_b
-      )
-      {
-        console
-          .timeEnd('declaration__v')
-      }
-      //=========================
-    }
-  }
-  ,
-*/
-
-
-
   init__v:
   (
     ccss_s
@@ -426,6 +348,12 @@ const CSS_o =
     
     CSS_o
       .ruleset_s = ''       //: reset
+
+    CSS_o
+      .atRule_o = {}       //: reset
+
+    CSS_o
+      .atRuleDeclare_s = '' //: reset
 
     CSS_o
       .css_s = ''           //: reset
@@ -505,6 +433,20 @@ const CSS_o =
           :
             'open'
         )
+    
+      case
+        char_s
+        ===
+        AT_RULE_s
+      :
+        return 'atRule'
+
+      case
+        CSS_o
+          .atRule_o
+            .at_s
+      :
+        return 'atRuleDEclare'
     
       case
         line_s
@@ -856,7 +798,7 @@ const CSS_o =
 
     const tag_s =
       CSS_o
-        .tag__s( line_s )    //;console.log( tag_s )
+        .tag__s( line_s )
 
     if
     (
@@ -868,8 +810,6 @@ const CSS_o =
         .declaration_s =
           CSS_o
             .declaration__s( line_s )
-
-      //;console.log( CSS_o.declaration_s )
     }
 
     const tagStack_o =
@@ -984,9 +924,60 @@ const CSS_o =
     CSS_o
       .tagStack_a
         .push( tagStack_o )
-
   }
   ,
+  
+
+
+  atRule__v:
+  (
+    line_s
+  ) =>
+  {
+    if
+    (
+      line_s
+        .length
+      == 1        //: line_s === '@': end of at-rule
+    )
+    {
+      //....
+
+      CSS_o
+        .atRule_o = {}       //: reset
+      
+      return
+    }
+    //>
+    line_s =
+      line_s
+        .slice( 1 )    //: skip AT_RULE_s
+
+    if
+    (
+      AT_RULE_a
+        .includes( line_s )
+    )
+    {
+      CSS_o
+        .atRule_o
+          .at_s =
+            line_s
+    }
+  }
+  ,
+
+
+
+  atRuleDEclare__v:
+  (
+    line_s
+  ) =>
+  {
+    
+  }
+  ,
+
   
 
 
@@ -1239,8 +1230,6 @@ const CSS_o =
           .declaration_s
       )
       {
-        //;console.log( CSS_o.declaration_s )
-
         CSS_o
           .block_a
             [CSS_o.declaration_s] =
