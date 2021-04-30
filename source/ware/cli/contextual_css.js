@@ -26,13 +26,14 @@ const ADJACENT_SIBLING_SELECTOR_s = '+'
 
 const UNIVERSAL_SELECTOR_s = 'uni'
 
-
+const DECLARATION_BLOCK_s = 'block'
 
 
 const CSS_o =
 {
   
   proceed_a: [],
+  block_a: [],
   
   //-- line_a: [],
   //-- tagStack_a: [],
@@ -74,6 +75,8 @@ const CSS_o =
         .path_s =
           proceed_o
             .path_s
+
+      ;console.log( CSS_o.path_s )
   
       CSS_o
         .initStack_a =
@@ -81,15 +84,17 @@ const CSS_o =
             .stack_a
   
       CSS_o
-        .read__s()
+        .read__v()
     }
+
+    //;console.table( CSS_o.block_a )
   }
   ,
 
 
 
 
-  read__s:
+  read__v:
   () =>
     FS_o
       .readFile
@@ -113,6 +118,7 @@ const CSS_o =
             )
           }
           //>
+          /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           if
           (
             CSS_o
@@ -123,8 +129,22 @@ const CSS_o =
               .log( `-- Processing: ${CSS_o.path_s}` )
           }
 
+          if
+          (
+            ccss_s
+              .includes
+              (
+                `<${DECLARATION_BLOCK_s} `
+              )
+          )
+          {
+            return void CSS_o
+              .declaration__v( ccss_s )
+          }
+          //>
+          */
           CSS_o
-            .parse__s( ccss_s )
+            .parse__v( ccss_s )
         }
       )
   ,
@@ -175,7 +195,7 @@ const CSS_o =
 
 
 
-  parse__s:
+  parse__v:
   (
     ccss_s
   ) =>
@@ -188,7 +208,7 @@ const CSS_o =
     )
     {
       console
-        .time('parse__s')
+        .time('parse__v')
     }
     //======================
 
@@ -248,7 +268,7 @@ const CSS_o =
     )
     {
       console
-        .timeEnd('parse__s')
+        .timeEnd('parse__v')
     }
     //=========================
 
@@ -275,39 +295,72 @@ const CSS_o =
 
 
 
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  declaration__v:
+  (
+    ccss_s
+  ) =>
+  {
+    //======================
+    if
+    (
+      CSS_o
+        .verbose_b
+    )
+    {
+      console
+        .time('declaration__v')
+    }
+    //======================
+
+    CSS_o
+      .init__v( ccss_s )
+
+    for
+    (
+      let line_s
+      of
+      CSS_o
+        .line_a
+    )
+    {
+      line_s =
+        line_s
+          .trim()
+
+      if
+      (
+        ! line_s
+      )
+      {
+        continue
+      }
+
+      //................
+
+      //=========================
+      if
+      (
+        CSS_o
+          .verbose_b
+      )
+      {
+        console
+          .timeEnd('declaration__v')
+      }
+      //=========================
+    }
+  }
+  ,
+*/
+
+
 
   init__v:
   (
     ccss_s
   ) =>
   {
-    CSS_o
-      .tagStack_a =      //: inherit caller stack
-        CSS_o
-          .initStack_a
-    
-    CSS_o
-      .copyStack_a = []     //: reset
-
-    CSS_o
-      .stackState_s = ''    //: reset
-
-
-    CSS_o
-      .lastTag_o = {}       //: reset
-    
-    CSS_o
-      .ruleset_s = ''       //: reset
-
-    CSS_o
-      .css_s = ''           //: reset
-      
-    CSS_o
-      .close_b = false      //: reset
-      
-    CSS_o
-      .minify_b = false     //: reset
-
     ccss_s =
       ccss_s
         .trim()
@@ -355,6 +408,34 @@ const CSS_o =
       .line_a =
         ccss_s
           .split( '\n' )
+
+    CSS_o
+      .tagStack_a =      //: inherit caller stack
+        CSS_o
+          .initStack_a
+    
+    CSS_o
+      .copyStack_a = []     //: reset
+
+    CSS_o
+      .stackState_s = ''    //: reset
+
+
+    CSS_o
+      .lastTag_o = {}       //: reset
+    
+    CSS_o
+      .ruleset_s = ''       //: reset
+
+    CSS_o
+      .css_s = ''           //: reset
+      
+    CSS_o
+      .close_b = false      //: reset
+      
+    CSS_o
+      .minify_b = false     //: reset
+
   }
   ,
 
@@ -532,6 +613,38 @@ const CSS_o =
               }
             )
  
+        return
+      }
+ 
+      case
+        function_s
+        ===
+        'block'
+      :
+      {
+        let declaration_s =
+          CSS_o
+            .block_a
+              [arg_s]
+
+        if
+        (
+          ! declaration_s
+        )
+        {
+          const error_s =
+            `ERROR: "${arg_s}" declaration block is missing`
+            
+          console.log( error_s )
+
+          declaration_s =
+          `/* ${error_s} */\n`
+        }
+
+        CSS_o
+          .ruleset_s +=
+            declaration_s
+
         return
       }
  
@@ -743,7 +856,21 @@ const CSS_o =
 
     const tag_s =
       CSS_o
-        .tag__s( line_s )
+        .tag__s( line_s )    //;console.log( tag_s )
+
+    if
+    (
+      tag_s
+        .startsWith( DECLARATION_BLOCK_s )
+    )
+    {
+      CSS_o
+        .declaration_s =
+          CSS_o
+            .declaration__s( line_s )
+
+      //;console.log( CSS_o.declaration_s )
+    }
 
     const tagStack_o =
       {
@@ -757,6 +884,32 @@ const CSS_o =
   }
   ,
     
+
+
+  declaration__s:
+  (
+    line_s
+  ) =>
+  {
+    line_s =
+      line_s
+        .slice
+        (
+          1,    //: strip starting '<'
+          -1    //: strip ending '>'
+        )
+
+    return (
+      line_s
+        .replace
+        (
+          DECLARATION_BLOCK_s,
+          ''
+        )
+        .trim()
+    )
+  }
+  ,
 
 
 
@@ -1080,41 +1233,61 @@ const CSS_o =
         .ruleset_s
     )
     {
-      CSS_o
-        .css_s +=
-          CSS_o
-            .copySelector__s()
-          +
-          CSS_o
-            .classSelector__s()
-          +
-          ' {'      //: space before
-
       if
       (
-        ! CSS_o
-            .minify_b
+        CSS_o
+          .declaration_s
       )
       {
+        //;console.log( CSS_o.declaration_s )
+
         CSS_o
-          .css_s += '\n'
+          .block_a
+            [CSS_o.declaration_s] =
+              CSS_o
+                .ruleset_s
+
+        CSS_o
+          .declaration_s = ''    //: reset
       }
-
-      CSS_o
-        .css_s +=
-          CSS_o
-            .ruleset_s
-          +
-          '}'
-
-      if
-      (
-        ! CSS_o
-          .minify_b
-      )
+      else
       {
         CSS_o
-          .css_s += '\n\n'
+          .css_s +=
+            CSS_o
+              .copySelector__s()
+            +
+            CSS_o
+              .classSelector__s()
+            +
+            ' {'      //: space before
+  
+        if
+        (
+          ! CSS_o
+              .minify_b
+        )
+        {
+          CSS_o
+            .css_s += '\n'
+        }
+  
+        CSS_o
+          .css_s +=
+            CSS_o
+              .ruleset_s
+            +
+            '}'
+  
+        if
+        (
+          ! CSS_o
+            .minify_b
+        )
+        {
+          CSS_o
+            .css_s += '\n\n'
+        }
       }
     
       CSS_o
