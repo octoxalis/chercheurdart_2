@@ -81,11 +81,25 @@ screen
 and (max-width: 900px)
 and  (min-height: 500px)
 
-context( stack, new )
+context( stack, keep )
 <ol>
         --col_count: 2;
   <li>
           color: red;
   </li>
+</ol>
+@
+
+
+
+@supports
+(display: grid)
+
+context( stack, keep )
+<ol>
+  display: grid;
+<li>
+    color: red;
+</li>
 </ol>
 @

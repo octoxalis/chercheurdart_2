@@ -22,16 +22,22 @@ inherits: false;
 0% { opacity: 0 }
 100% { opacity: 1 }
 }
+
 @media screen
 and (max-width: 900px)
 and  (min-height: 500px) {
 body > ol {
 --col_count: 2;
 }
-
 body > ol > li {
 color: red;
 }
-
-
+}
+@supports (display: grid) {
+body > ol {
+display: grid;
+}
+body > ol > li {
+color: red;
+}
 }

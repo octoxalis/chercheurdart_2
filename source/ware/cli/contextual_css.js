@@ -962,9 +962,12 @@ const CSS_o =
     {
       CSS_o
         .css_s +=
-          `@${CSS_o.atRule_o.id_s} `      //: space
+          `\n`                            //: need new line
+          + `@${CSS_o.atRule_o.id_s} `    //: space
           + `${CSS_o.atRule_o.arg_s} `    //: space
-          + `{\n${CSS_o.atRule_o.css_s}\n}`
+          + `{\n`
+          + `${CSS_o.atRule_o.css_s}`
+          + `}`
 
       CSS_o
         .atRule_o = {}    //: reset
@@ -1541,7 +1544,7 @@ const CSS_o =
             .minify_b
         )
         {
-          css_s += '\n\n'
+          css_s += '\n'
         }
 
         if
