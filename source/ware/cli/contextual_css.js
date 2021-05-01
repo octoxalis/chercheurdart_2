@@ -32,15 +32,15 @@ const AT_RULE_s = '@'
 
 const AT_RULE_a =
   [
-    'import',
-    'charset',
-    'namespace',
-    'viewport',
+    'charset',        //: 0 argument
+    'viewport',       //: idem
+    'font-face',      //: idem
 
-    'font-face',
-    'counter-style',
-    'property',
-    'keyframes',
+    'import',         //: 1 argument
+    'namespace',      //: idem
+    'counter-style',  //: idem
+    'property',       //: idem
+    'keyframes',      //: idem
 
     'media',
     'supports',
