@@ -1,3 +1,58 @@
+@import
+print
+
+  url( 'fineprint.css' )
+@
+
+@charset
+.
+
+  'utf-8'
+@
+
+@viewport
+.
+
+  width: 320px auto;
+@
+
+@namespace
+svg
+
+  'http://www.w3.org/2000/svg'
+@  
+
+@font-face
+.
+
+  font-family: Headline;
+  src: local(Futura-Medium), url('fonts.svg#MyGeometricModern') format('svg');
+@  
+
+@counter-style
+triangle
+
+  system: cyclic;
+  symbols: ‣;
+  suffix: " ";
+@
+
+@property
+--my-color
+
+  syntax: '<color>';
+  initial-value: magenta;
+  inherits: false;
+@
+
+@keyframes
+animation
+
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+@
+
+
 context( stack, new )
 <section>
         display: none;
@@ -170,7 +225,11 @@ context( stack, new )
 </section>
 <!----------variant---------->
 <section#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}>
-        column-count: 3;
+        --col_count: 3;
+</section>
+<!----------variant---------->
+<section#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}>
+        column-count: var(--col_count);
         column-gap: 0;
         max-width: 100vw;
   <figure>

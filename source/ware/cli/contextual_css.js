@@ -32,9 +32,16 @@ const AT_RULE_s = '@'
 
 const AT_RULE_a =
   [
-    'keyframes',
-    'font-face',
+    'import',
+    'charset',
     'namespace',
+    'viewport',
+
+    'font-face',
+    'counter-style',
+    'property',
+    'keyframes',
+
     'media',
     'supports',
   ]
@@ -46,6 +53,7 @@ const CSS_o =
   block_a: [],
   
   //-- line_a: [],
+  //-- atLine_n: 0,    //: line_a iterator index
   //-- tagStack_a: [],
   //-- copyStack_a: [],
   //-- initStack_a: [],
@@ -199,17 +207,31 @@ const CSS_o =
     CSS_o
       .init__v( ccss_s )
 
-    for
+    //XX for
+    //XX (
+    //XX   let line_s
+    //XX   of
+    //XX   CSS_o
+    //XX     .line_a
+    //XX )
+    while
     (
-      let line_s
-      of
+      CSS_o
+        .atLine_n
+      <
       CSS_o
         .line_a
+          .length
     )
     {
-      line_s =
-        line_s
-          .trim()
+      //XX line_s =
+      //XX   line_s
+      //XX     .trim()
+      let line_s =
+        CSS_o
+          .line_a
+            [CSS_o.atLine_n++]
+              .trim()
 
       if
       (
@@ -332,6 +354,9 @@ const CSS_o =
           .split( '\n' )
 
     CSS_o
+      .atLine_n = 0
+
+    CSS_o
       .tagStack_a =      //: inherit caller stack
         CSS_o
           .initStack_a
@@ -441,13 +466,6 @@ const CSS_o =
       :
         return 'atRule'
 
-      case
-        CSS_o
-          .atRule_o
-            .at_s
-      :
-        return 'atRuleDEclare'
-    
       case
         line_s
         ===
@@ -928,57 +946,309 @@ const CSS_o =
   ,
   
 
-
   atRule__v:
   (
     line_s
   ) =>
   {
+    const id_s =
+      line_s
+        .slice( 1 )      //: skip AT_RULE_s
+
     if
     (
-      line_s
-        .length
-      == 1        //: line_s === '@': end of at-rule
+      ! id_s    //: at-rule close
     )
     {
-      //....
+      CSS_o
+        .css_s +=
+          `@${CSS_o.atRule_o.id_s} `      //: space
+          + `${CSS_o.atRule_o.arg_s} `    //: space
+          + `{\n${CSS_o.atRule_o.css_s}\n}`
 
       CSS_o
-        .atRule_o = {}       //: reset
-      
+        .atRule_o = {}    //: reset
+
       return
     }
     //>
-    line_s =
-      line_s
-        .slice( 1 )    //: skip AT_RULE_s
+    let arg_s = ''    //: condition or name
 
-    if
+    let arg_b = false
+
+    let declare_s = ''
+
+    while
     (
-      AT_RULE_a
-        .includes( line_s )
+      CSS_o
+        .atLine_n
+      <
+      CSS_o
+        .line_a
+          .length
     )
     {
-      CSS_o
-        .atRule_o
-          .at_s =
-            line_s
+      let line_s =
+        CSS_o
+          .line_a
+            [CSS_o.atLine_n++]
+              .trim()
+
+      if
+      (
+        line_s
+        ===
+        AT_RULE_s    //: end of at-rule
+      )
+      {
+        if
+        (
+          declare_s
+        )
+        {
+          CSS_o
+            .css_s +=
+              CSS_o
+                .atRule__s
+                (
+                  id_s,
+                  arg_s,
+                  declare_s
+                )
+        }
+
+        break
+      }
+
+      if
+      (
+        ! arg_s
+      )
+      {
+        arg_b =
+          true
+
+        arg_s =
+          `${line_s}\n`
+
+        continue
+      }
+
+      if
+      (
+        ! line_s    //: empty line...
+        && arg_b    //: ending arg_s list
+      )
+      {
+        arg_s =
+          arg_s
+            .slice
+            (
+              0,
+              -1    //: remove last '\n'
+            )
+
+        arg_b =
+          false
+
+        continue
+      }
+
+      if
+      (
+        arg_b
+      )
+      {
+        arg_s +=
+          `${line_s}\n`
+
+        continue
+      }
+
+      if
+      (
+        id_s
+        ===
+        'media'
+        ||
+        id_s
+        ===
+        'supports'
+      )
+      {
+        CSS_o
+          .atRule_o =
+            {
+              id_s: id_s,
+              arg_s: arg_s,
+              declare_s: declare_s,
+              css_s: ''
+            }
+
+        return
+      }
+      //>
+      declare_s +=
+        line_s
     }
   }
   ,
 
 
-
-  atRuleDEclare__v:
+  atRule__s:
   (
-    line_s
+    id_s,
+    arg_s,
+    declare_s
   ) =>
   {
+    let rule_s
+
+    switch
+    (
+      true
+    )
+    {
+      case
+      id_s
+      ===
+      'import'
+      :
+        rule_s =
+          `@${id_s} ${declare_s} ${arg_s}`
+
+        if
+        (
+          ! rule_s
+              .endsWith( ';' )
+        )
+        {
+          rule_s +=
+            ';'
+        }
+
+        break
     
+      case
+      id_s
+      ===
+      'charset'
+      :
+        rule_s =
+          `@${id_s} ${declare_s}`
+
+        if
+        (
+          ! rule_s
+              .endsWith( ';' )
+        )
+        {
+          rule_s +=
+            ';'
+        }
+
+        break
+    
+      case
+      id_s
+      ===
+      'namespace'
+      :
+        rule_s =
+          `@${id_s} ${arg_s} ${declare_s}`
+
+        if
+        (
+          ! rule_s
+              .endsWith( ';' )
+        )
+        {
+          rule_s +=
+            ';'
+        }
+
+        break
+    
+      case
+      id_s
+      ===
+      'viewport'
+      :
+      case
+      id_s
+      ===
+      'font-face'
+      :
+        declare_s =
+          declare_s
+            .replaceAll
+            (
+              ';',
+              ';\n'
+            )
+            .trim()
+
+        rule_s =
+          `@${id_s} {\n${declare_s}\n}`
+
+        break
+    
+      case
+      id_s
+      ===
+      'counter-style'
+      :
+      case
+      id_s
+      ===
+      'property'
+      :
+        declare_s =
+          declare_s
+            .replaceAll
+            (
+              ';',
+              ';\n'
+            )
+            .trim()
+
+        rule_s =
+          `@${id_s} ${arg_s} {\n${declare_s}\n}`
+
+        break
+    
+      case
+      id_s
+      ===
+      'keyframes'
+      :
+        declare_s =
+          declare_s
+            .replaceAll
+            (
+              '}',
+              '}\n'
+            )
+            .trim()
+
+        rule_s =
+          `@${id_s} ${arg_s} {\n${declare_s}\n}`
+
+        break
+    
+      default
+      :
+        rule_s =
+        `@${id_s} ${arg_s} {\n${declare_s}\n}`
+
+        break
+    }
+
+    return `${rule_s}\n`
   }
   ,
 
-  
+
 
 
   selector__s:
@@ -1241,15 +1511,14 @@ const CSS_o =
       }
       else
       {
-        CSS_o
-          .css_s +=
-            CSS_o
-              .copySelector__s()
-            +
-            CSS_o
-              .classSelector__s()
-            +
-            ' {'      //: space before
+        let css_s =
+          CSS_o
+            .copySelector__s()
+          +
+          CSS_o
+            .classSelector__s()
+          +
+          ' {'      //: space before
   
         if
         (
@@ -1257,16 +1526,14 @@ const CSS_o =
               .minify_b
         )
         {
-          CSS_o
-            .css_s += '\n'
+          css_s += '\n'
         }
   
-        CSS_o
-          .css_s +=
-            CSS_o
-              .ruleset_s
-            +
-            '}'
+        css_s +=
+          CSS_o
+            .ruleset_s
+          +
+          '}'
   
         if
         (
@@ -1274,8 +1541,26 @@ const CSS_o =
             .minify_b
         )
         {
+          css_s += '\n\n'
+        }
+
+        if
+        (
           CSS_o
-            .css_s += '\n\n'
+            .atRule_o
+              .id_s
+        )
+        {
+          CSS_o
+            .atRule_o
+              .css_s +=
+                css_s
+        }
+        else
+        {
+          CSS_o
+            .css_s +=
+              css_s
         }
       }
     
