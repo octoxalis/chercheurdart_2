@@ -24,13 +24,13 @@ const GENERAL_SIBLING_SELECTOR_s = '~'
 
 const ADJACENT_SIBLING_SELECTOR_s = '+'
 
-const UNIVERSAL_SELECTOR_s = 'uni'
+//XX const UNIVERSAL_SELECTOR_s = 'uni'
 
 const DECLARATION_BLOCK_s = 'block'
 
 const AT_RULE_s = '@'
 
-const AT_RULE_a =
+const KEYWORD_a =    //: at-rule keywords
   [
     'charset',        //: 0 argument
     'viewport',       //: idem
@@ -53,7 +53,7 @@ const CSS_o =
   block_a: [],
   
   //-- line_a: [],
-  //-- atLine_n: 0,    //: line_a iterator index
+  //-- line_n: 0,    //: line_a iterator index
   //-- tagStack_a: [],
   //-- copyStack_a: [],
   //-- initStack_a: [],
@@ -61,12 +61,11 @@ const CSS_o =
   //-- outputDir_s: ''        //: output directory
   //-- css_s : '',
   //-- ruleset_s: '',
-  //-- atRule_o: {},
-  //-- atRuleDeclare_s: '',
   //-- lastTag_o: {},
+  //-- atRule_o: {},
   //-- stackState_s: '',    //: stack in selector
-  //-- close_b: false,      //: self-closing tag
   //-- class_s: '',         //: replace selector by defined context class
+  //-- close_b: false,      //: self-closing tag
 
   
   minify_b: false,    //: use context( minify ) to minify output
@@ -120,7 +119,7 @@ const CSS_o =
         'utf8' ,
         (            //: callback_f
           error_o,
-          ccss_s
+          parse_s
         ) =>
         {
           if
@@ -135,7 +134,7 @@ const CSS_o =
           }
           //>
           CSS_o
-            .parse__v( ccss_s )
+            .parse__v( parse_s )
         }
       )
   ,
@@ -188,7 +187,7 @@ const CSS_o =
 
   parse__v:
   (
-    ccss_s
+    parse_s
   ) =>
   {
     //======================
@@ -205,32 +204,22 @@ const CSS_o =
 
 
     CSS_o
-      .init__v( ccss_s )
+      .init__v( parse_s )
 
-    //XX for
-    //XX (
-    //XX   let line_s
-    //XX   of
-    //XX   CSS_o
-    //XX     .line_a
-    //XX )
     while
     (
       CSS_o
-        .atLine_n
+        .line_n
       <
       CSS_o
         .line_a
           .length
     )
     {
-      //XX line_s =
-      //XX   line_s
-      //XX     .trim()
       let line_s =
         CSS_o
           .line_a
-            [CSS_o.atLine_n++]
+            [CSS_o.line_n++]
               .trim()
 
       if
@@ -283,6 +272,7 @@ const CSS_o =
         .css_s
     )
     {
+      //;console.log( CSS_o.path__s() )
       CSS_o
         .write__v
         (
@@ -302,11 +292,11 @@ const CSS_o =
 
   init__v:
   (
-    ccss_s
+    parse_s
   ) =>
   {
-    ccss_s =
-      ccss_s
+    parse_s =
+      parse_s
         .trim()
         .replace
         (
@@ -331,11 +321,11 @@ const CSS_o =
           \s?            //: optional space before closing parenthesis
           \)             //: function closing parenthesis
           `              //: pattern:  `context( comment )`
-            .test( ccss_s )
+            .test( parse_s )
     )
     {
-      ccss_s =
-        ccss_s
+      parse_s =
+        parse_s
           .replace
           (
             GM_re
@@ -350,11 +340,11 @@ const CSS_o =
 
     CSS_o
       .line_a =
-        ccss_s
+        parse_s
           .split( '\n' )
 
     CSS_o
-      .atLine_n = 0
+      .line_n = 0
 
     CSS_o
       .tagStack_a =      //: inherit caller stack
@@ -375,10 +365,7 @@ const CSS_o =
       .ruleset_s = ''       //: reset
 
     CSS_o
-      .atRule_o = {}       //: reset
-
-    CSS_o
-      .atRuleDeclare_s = '' //: reset
+      .atRule_o = {}        //: reset
 
     CSS_o
       .css_s = ''           //: reset
@@ -661,12 +648,12 @@ const CSS_o =
  
    stack__v:
   (
-    arg_s
+    state_s
   ) =>
   {
     switch
     (
-      arg_s
+      state_s
     )
     {
       case
@@ -844,33 +831,6 @@ const CSS_o =
     
 
 
-  declaration__s:
-  (
-    line_s
-  ) =>
-  {
-    line_s =
-      line_s
-        .slice
-        (
-          1,    //: strip starting '<'
-          -1    //: strip ending '>'
-        )
-
-    return (
-      line_s
-        .replace
-        (
-          DECLARATION_BLOCK_s,
-          ''
-        )
-        .trim()
-    )
-  }
-  ,
-
-
-
   close__v:
   (
     line_s
@@ -946,25 +906,55 @@ const CSS_o =
   ,
   
 
-  atRule__v:
+
+  declaration__s:
   (
     line_s
   ) =>
   {
-    const id_s =
+    line_s =
+      line_s
+        .slice
+        (
+          1,    //: strip starting '<'
+          -1    //: strip ending '>'
+        )
+
+    return (
+      line_s
+        .replace
+        (
+          DECLARATION_BLOCK_s,
+          ''
+        )
+        .trim()
+    )
+  }
+  ,
+
+
+
+
+atRule__v:
+  (
+    line_s
+  ) =>
+  {
+    const keyword_s =
       line_s
         .slice( 1 )      //: skip AT_RULE_s
+        
 
     if
     (
-      ! id_s    //: at-rule close
+      ! keyword_s    //: closing @media || @supports -> takeup
     )
     {
       CSS_o
         .css_s +=
-          `\n`                            //: need new line
-          + `@${CSS_o.atRule_o.id_s} `    //: space
-          + `${CSS_o.atRule_o.arg_s} `    //: space
+          `\n`                               //: need new line
+          + `@${CSS_o.atRule_o.keyword_s} `  //: space
+          + `${CSS_o.atRule_o.target_s} `    //: space
           + `{\n`
           + `${CSS_o.atRule_o.css_s}`
           + `}`
@@ -975,16 +965,17 @@ const CSS_o =
       return
     }
     //>
-    let arg_s = ''    //: condition or name
+    
+    let target_s = ''    //: target, condition, name
 
-    let arg_b = false
+    let target_b = false
 
-    let declare_s = ''
+    let statement_s = ''
 
     while
     (
       CSS_o
-        .atLine_n
+        .line_n
       <
       CSS_o
         .line_a
@@ -994,19 +985,22 @@ const CSS_o =
       let line_s =
         CSS_o
           .line_a
-            [CSS_o.atLine_n++]
+            [CSS_o.line_n++]
               .trim()
 
       if
       (
         line_s
         ===
-        AT_RULE_s    //: end of at-rule
+        AT_RULE_s    //: closing at-rule
       )
       {
         if
         (
-          declare_s
+          KEYWORD_a
+              .includes( keyword_s )
+          &&
+          statement_s
         )
         {
           CSS_o
@@ -1014,9 +1008,9 @@ const CSS_o =
               CSS_o
                 .atRule__s
                 (
-                  id_s,
-                  arg_s,
-                  declare_s
+                  keyword_s,
+                  target_s,
+                  statement_s
                 )
         }
 
@@ -1025,13 +1019,13 @@ const CSS_o =
 
       if
       (
-        ! arg_s
+        ! target_s    //: start target_s parsing
       )
       {
-        arg_b =
+        target_b =
           true
 
-        arg_s =
+        target_s =
           `${line_s}\n`
 
         continue
@@ -1039,30 +1033,30 @@ const CSS_o =
 
       if
       (
-        ! line_s    //: empty line...
-        && arg_b    //: ending arg_s list
+        ! line_s       //: empty line ending target_s list
+        && target_b    //: target_s parsing finished
       )
       {
-        arg_s =
-          arg_s
+        target_s =
+          target_s
             .slice
             (
               0,
               -1    //: remove last '\n'
             )
 
-        arg_b =
-          false
+        target_b =
+          false      //: reset
 
         continue
       }
 
       if
       (
-        arg_b
+        target_b    //: still parsing target_s - test after previous one
       )
       {
-        arg_s +=
+        target_s +=
           `${line_s}\n`
 
         continue
@@ -1070,28 +1064,28 @@ const CSS_o =
 
       if
       (
-        id_s
+        keyword_s
         ===
         'media'
         ||
-        id_s
+        keyword_s
         ===
-        'supports'
+        'supports'    //: let html parse at-rule statements
       )
       {
         CSS_o
           .atRule_o =
             {
-              id_s: id_s,
-              arg_s: arg_s,
-              declare_s: declare_s,
+              keyword_s: keyword_s,
+              target_s: target_s,
+              statement_s: statement_s,
               css_s: ''
             }
 
         return
       }
       //>
-      declare_s +=
+      statement_s +=      //: follow on parsing statements
         line_s
     }
   }
@@ -1100,12 +1094,12 @@ const CSS_o =
 
   atRule__s:
   (
-    id_s,
-    arg_s,
-    declare_s
+    keyword_s,
+    target_s,
+    statement_s
   ) =>
   {
-    let rule_s
+    let atRule_s
 
     switch
     (
@@ -1113,77 +1107,77 @@ const CSS_o =
     )
     {
       case
-      id_s
+      keyword_s
       ===
       'import'
       :
-        rule_s =
-          `@${id_s} ${declare_s} ${arg_s}`
+        atRule_s =
+          `@${keyword_s} ${statement_s} ${target_s}`
 
         if
         (
-          ! rule_s
+          ! atRule_s
               .endsWith( ';' )
         )
         {
-          rule_s +=
+          atRule_s +=
             ';'
         }
 
         break
     
       case
-      id_s
+      keyword_s
       ===
       'charset'
       :
-        rule_s =
-          `@${id_s} ${declare_s}`
+        atRule_s =
+          `@${keyword_s} ${statement_s}`
 
         if
         (
-          ! rule_s
+          ! atRule_s
               .endsWith( ';' )
         )
         {
-          rule_s +=
+          atRule_s +=
             ';'
         }
 
         break
     
       case
-      id_s
+      keyword_s
       ===
       'namespace'
       :
-        rule_s =
-          `@${id_s} ${arg_s} ${declare_s}`
+        atRule_s =
+          `@${keyword_s} ${target_s} ${statement_s}`
 
         if
         (
-          ! rule_s
+          ! atRule_s
               .endsWith( ';' )
         )
         {
-          rule_s +=
+          atRule_s +=
             ';'
         }
 
         break
     
       case
-      id_s
+      keyword_s
       ===
       'viewport'
       :
       case
-      id_s
+      keyword_s
       ===
       'font-face'
       :
-        declare_s =
-          declare_s
+        statement_s =
+          statement_s
             .replaceAll
             (
               ';',
@@ -1191,23 +1185,23 @@ const CSS_o =
             )
             .trim()
 
-        rule_s =
-          `@${id_s} {\n${declare_s}\n}`
+        atRule_s =
+          `@${keyword_s} {\n${statement_s}\n}`
 
         break
     
       case
-      id_s
+      keyword_s
       ===
       'counter-style'
       :
       case
-      id_s
+      keyword_s
       ===
       'property'
       :
-        declare_s =
-          declare_s
+        statement_s =
+          statement_s
             .replaceAll
             (
               ';',
@@ -1215,18 +1209,18 @@ const CSS_o =
             )
             .trim()
 
-        rule_s =
-          `@${id_s} ${arg_s} {\n${declare_s}\n}`
+        atRule_s =
+          `@${keyword_s} ${target_s} {\n${statement_s}\n}`
 
         break
     
       case
-      id_s
+      keyword_s
       ===
       'keyframes'
       :
-        declare_s =
-          declare_s
+        statement_s =
+          statement_s
             .replaceAll
             (
               '}',
@@ -1234,20 +1228,20 @@ const CSS_o =
             )
             .trim()
 
-        rule_s =
-          `@${id_s} ${arg_s} {\n${declare_s}\n}`
+        atRule_s =
+          `@${keyword_s} ${target_s} {\n${statement_s}\n}`
 
         break
     
       default
       :
-        rule_s =
-        `@${id_s} ${arg_s} {\n${declare_s}\n}`
+        atRule_s =
+        `@${keyword_s} ${target_s} {\n${statement_s}\n}`
 
         break
     }
 
-    return `${rule_s}\n`
+    return `${atRule_s}\n`
   }
   ,
 
@@ -1425,20 +1419,20 @@ const CSS_o =
       tag_s
         .trim()    //: if space before or after tag name
 
-    if
-    (
-      tag_s
-        .startsWith( UNIVERSAL_SELECTOR_s )
-    )
-    {
-      tag_s =
-        tag_s
-          .replace
-          (
-            UNIVERSAL_SELECTOR_s,
-            '*'
-          )
-    }
+    //XX if
+    //XX (
+    //XX   tag_s
+    //XX     .startsWith( UNIVERSAL_SELECTOR_s )
+    //XX )
+    //XX {
+    //XX   tag_s =
+    //XX     tag_s
+    //XX       .replace
+    //XX       (
+    //XX         UNIVERSAL_SELECTOR_s,
+    //XX         '*'
+    //XX       )
+    //XX }
 
     const match_a =
       tag_s
@@ -1551,7 +1545,7 @@ const CSS_o =
         (
           CSS_o
             .atRule_o
-              .id_s
+              .keyword_s
         )
         {
           CSS_o
