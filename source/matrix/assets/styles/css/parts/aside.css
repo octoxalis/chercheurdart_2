@@ -1,27 +1,28 @@
 aside {
-background:var(--bgcolor);
+  background: var(--bgcolor);
 }
 aside > figure {
-display:none;
+  display: none;
 }
 aside > figure > a > img {
-width: 100%; max-width: {{C_o.FULL_WIDTH_s}};
-max-height: calc( {{C_o.FULL_HEIGHT_s}} - {{C_o.PAD_8}} );
-object-fit: scale-down;
-cursor: url(var(--cursor_svg)), auto;
+  width: 100%;
+  max-width: {{C_o.FULL_WIDTH_s}};
+  max-height: calc( {{C_o.FULL_HEIGHT_s}} - {{C_o.PAD_8}} );
+  object-fit: scale-down;
+  cursor: url(var(--cursor_svg)), auto;
 }
 figure:target {
-display: block;
-position:fixed;
-top:{{C_o.PAD_8}};
-right:0;
-bottom:0;
-left:0;
-background: var(--bgcolor);
+  display: block;
+  position: fixed;
+  top: {{C_o.PAD_8}};
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--bgcolor);
 }
 aside#gray {
---cursor_svg:cursor_gray.svg;
+  --cursor_svg: cursor_gray.svg;
 }
 aside#color {
---cursor_svg:cursor_color.svg;
+  --cursor_svg: cursor_color.svg;
 }

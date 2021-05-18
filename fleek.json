@@ -1,0 +1,11 @@
+{
+ "build": {
+   "image": "node:alpine",
+   "command": "echo $SOME_ENV",
+   "publicDir": "site",
+   "baseDir": "source",
+   "environment": {
+     "SOME_ENV": "Build finished!"
+   }
+ }
+}
