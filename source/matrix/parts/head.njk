@@ -1,3 +1,9 @@
+{% if _nodb_b %}
+{% set _path_s = '' %}
+{% else %}
+{% set _path_s = '../../' %}
+{% endif %}
+
 <head>
 {% include "parts/head/title.njk" %}
 {% include "parts/head/seo.njk" %}
@@ -6,9 +12,9 @@
 {% include "parts/head/base_url.njk" %}
 {#% include "parts/head/inline_style.njk" %#}
 
-<link rel="stylesheet" href="assets/styles/css/index.min.css" />
+<link rel="stylesheet" href="{{_path_s}}assets/styles/css/index.min.css" />
 {% for _css in css_a %}
-<link rel="stylesheet" href="assets/styles/css/{{_css}}" />
+<link rel="stylesheet" href="{{_path_s}}assets/styles/css/{{_css}}" />
 {% endfor %}
 
 </head>
