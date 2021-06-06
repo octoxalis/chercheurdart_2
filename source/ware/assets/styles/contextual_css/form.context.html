@@ -1,0 +1,33 @@
+<block input>
+        color: inherit;
+        background:var(--bg_lower);
+        font-size:110%;
+        font-weight:600;
+        border:none;
+</block>
+context( stack, new )
+<form>
+        display:flex;
+        flex-direction: column;
+  <label>
+          margin-top: 1.5rem;
+          color: inherit;
+          font-size:95%;
+          font-weight:200;
+  </label>
+  <label:first-of-type><!--variant-->
+          font-weight:600;
+  </label>
+  <input />
+          context( block, input )
+  <button[id$=_save]>
+          margin-top:2rem;
+          padding:.5em;
+          context( block, input )
+          text-transform:uppercase;
+          filter:saturate(200%);
+  </button>
+  <button[id$=_save]:hover>
+          filter:brightness(1.5);
+  </button>
+</form>

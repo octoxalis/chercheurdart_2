@@ -1,0 +1,15 @@
+{% for section_s in section_a %}
+{% set schema_s = F_o.slug__s( section_s ) %}
+<section id="{{schema_s}}">
+  <h2><label for="{{schema_s}}_entry" tabindex="-1">Entry</label></h2>
+  <input id="{{schema_s}}_entry" type="checkbox">
+  <div class="chapter">
+    {{  DB_o.form__s( schema_s ) }}
+  </div>
+  <h2><label for="{{schema_s}}_list" tabindex="-1">List</label></h2>
+  <input id="{{schema_s}}_list" type="checkbox">
+  <div class="chapter">
+    {{  DB_o.list__s( schema_s ) }}
+  </div>
+</section>
+{% endfor %}

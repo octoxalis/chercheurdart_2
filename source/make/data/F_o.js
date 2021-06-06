@@ -4,7 +4,7 @@ const KS_o  = require('klaw-sync')
 
 const REX_o = require( '../lib/regex.js' )
 
-const U_o = require( './U_o.js' )
+//XXconst U_o = require( './U_o.js' )
 const C_o = require( './C_o.js' )
 
 
@@ -262,5 +262,4 @@ module.exports =
           { recursive: true }
         )
   ,
-
 }

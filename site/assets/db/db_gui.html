@@ -17,43 +17,106 @@
 
 
 <link rel="stylesheet" href="../../assets/styles/css/index.min.css" />
+<link rel="stylesheet" href="../../assets/styles/css/db_gui.min.css" />
 
 </head>
 <body>
-<section id="artists">
-<hr/></div>
-<h2><label for="add-artist" tabindex="-1">Add artist</label></h2>
-<input id="add-artist" type="checkbox" /><div class="chapter">
-<hr/></div>
-<h2><label for="artists-list" tabindex="-1">Artists list</label></h2>
-<input id="artists-list" type="checkbox" /><div class="chapter">
-</div>
+<section id="artist">
+  <h2><label for="artist_entry" tabindex="-1">Entry</label></h2>
+  <input id="artist_entry" type="checkbox">
+  <div class="chapter">
+    <form id=artist_form>
+<label>artist_id_s</label>
+<input id=artist_id_s type=text />
+<label>forename_s</label>
+<input id=forename_s type=text />
+<label>lastname_s</label>
+<input id=lastname_s type=text />
+<label>nickname_s</label>
+<input id=nickname_s type=text title="empty if unknown or none"/>
+<label>birth_date_n</label>
+<input id=birth_date_n type=number title="float for range (1600.1610)"/>
+<label>death_date_n</label>
+<input id=death_date_n type=number title="float for range (1600.1610)"/>
+<label>birth_place_s</label>
+<input id=birth_place_s type=text title="empty if unknown"/>
+<label>death_place_s</label>
+<input id=death_place_s type=text title="empty if unknown"/>
+<button id=artist_save>save</button>
+</form>
+
+  </div>
+  <h2><label for="artist_list" tabindex="-1">List</label></h2>
+  <input id="artist_list" type="checkbox">
+  <div class="chapter">
+    artist list
+  </div>
 </section>
-<section id="collections">
-<hr/></div>
-<h2><label for="add-collection" tabindex="-1">Add collection</label></h2>
-<input id="add-collection" type="checkbox" /><div class="chapter">
-<hr/></div>
-<h2><label for="collections-list" tabindex="-1">Collections list</label></h2>
-<input id="collections-list" type="checkbox" /><div class="chapter">
-</div>
+<section id="collection">
+  <h2><label for="collection_entry" tabindex="-1">Entry</label></h2>
+  <input id="collection_entry" type="checkbox">
+  <div class="chapter">
+    <form id=collection_form>
+<label>collection_id_s</label>
+<input id=collection_id_s type=text />
+<label>location_s</label>
+<input id=location_s type=text />
+<label>place_s</label>
+<input id=place_s type=text />
+<label>country_s</label>
+<input id=country_s type=text />
+<button id=collection_save>save</button>
+</form>
+
+  </div>
+  <h2><label for="collection_list" tabindex="-1">List</label></h2>
+  <input id="collection_list" type="checkbox">
+  <div class="chapter">
+    collection list
+  </div>
 </section>
-<section id="works">
-<hr/></div>
-<h2><label for="add-work" tabindex="-1">Add work</label></h2>
-<input id="add-work" type="checkbox" /><div class="chapter">
-<hr/></div>
-<h2><label for="works-list" tabindex="-1">Works list</label></h2>
-<input id="works-list" type="checkbox" /><div class="chapter">
-</div>
+<section id="work">
+  <h2><label for="work_entry" tabindex="-1">Entry</label></h2>
+  <input id="work_entry" type="checkbox">
+  <div class="chapter">
+    <form id=work_form>
+<label>work_id_s</label>
+<input id=work_id_s type=text />
+<label>artist_s</label>
+<input id=artist_s type=text />
+<label>year_n</label>
+<input id=year_n type=number  title="float for range (1703.1705)"/>
+<label>subject_s</label>
+<input id=subject_s type=text />
+<label>w_height_n</label>
+<input id=w_height_n type=number  title="0 if unknown"/>
+<label>w_width_n</label>
+<input id=w_width_n type=number  title="0 if unknown"/>
+<label>height_n</label>
+<input id=height_n type=number />
+<label>width_n</label>
+<input id=width_n type=number />
+<label>default_a</label>
+<input id=default_a type=text />
+<button id=work_save>save</button>
+</form>
+
+  </div>
+  <h2><label for="work_list" tabindex="-1">List</label></h2>
+  <input id="work_list" type="checkbox">
+  <div class="chapter">
+    work list
+  </div>
 </section>
+
 <header>
-  <a href="#artists">Artists</a>
-  <a href="#collections">Collections</a>
-  <a href="#works">Works</a>
+  <a href="#artist">Artist</a>
+  <a href="#collection">Collection</a>
+  <a href="#work">Work</a>
 </header>
 
 <script src="../../assets/scripts/js/index.min.js" defer></script>
+<script src="../../assets/scripts/js/db_gui.min.js" defer></script>
 </body>
 
 </html>

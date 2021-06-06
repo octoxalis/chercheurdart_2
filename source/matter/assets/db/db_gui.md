@@ -14,57 +14,25 @@
 
   section_a:
   [
-    `Artists`,
-    `Collections`,
-    `Works`,
+    `Artist`,
+    `Collection`,
+    `Work`,
   ],
 
   chapter_a:
   [
-    `Add artist`,
-    `Artists list`,
-    `Add collection`,
-    `Collections list`,
-    `Add work`,
-    `Works list`,
   ],
 
   script_a:
   [
+    'db_gui.min.js'
   ],
 
   css_a:
   [
+    'db_gui.min.css'
   ],
 
 }
 ---
-[comment]: # (======================== Avant-propos ========================)
-
-{% section section_a[0] %}
-
-{% chapter '##' + chapter_a[0] %}
-
-{% chapter '##' + chapter_a[1] %}
-
-{% end_section %}
-
-
-{% section section_a[1] %}
-
-{% chapter '##' + chapter_a[2] %}
-
-{% chapter '##' + chapter_a[3] %}
-
-{% end_section %}
-
-
-{% section section_a[2] %}
-
-{% chapter '##' + chapter_a[4] %}
-
-{% chapter '##' + chapter_a[5] %}
-
-{% end_section %}
-
 [comment]: # (======================== Links ========================)
