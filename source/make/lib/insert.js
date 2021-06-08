@@ -314,7 +314,7 @@ textLine__v:
     imgId_s
   ) =>
   {
-    const [ artist_s, collect_s ] =
+    const [ artist_s, collection_s ] =
       imgId_s
         .split( C_o.ID_DELIM_s )
     
@@ -324,11 +324,11 @@ textLine__v:
           .artist
             [`${artist_s}`]
     
-    const collect_o =
+    const collection_o =
       INS_o
         .db_o
-          .collect
-            [`${collect_s}`]
+          .collection
+            [`${collection_s}`]
     
     const work_o =
       INS_o
@@ -359,8 +359,8 @@ textLine__v:
         + `<${C_o.TABLE_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${year_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${collect_o.place_s}${C_o.LEGEND_DELIM_s}${collect_o.country_s}</${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${collect_o.location_s}</${C_o.TABLE_TAG_s}>`
+        + `<${C_o.TABLE_TAG_s}>${collection_o.place_s}${C_o.LEGEND_DELIM_s}${collection_o.country_s}</${C_o.TABLE_TAG_s}>`
+        + `<${C_o.TABLE_TAG_s}>${collection_o.location_s}</${C_o.TABLE_TAG_s}>`
         + `</span>`
   }
   ,

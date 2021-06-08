@@ -1,1 +1,45 @@
-form {display:flex;flex-direction: column;}form > label {margin-top: 1.5rem;color: inherit;font-size:95%;font-weight:200;}form > label:first-of-type {font-weight:600;}form > input {color: inherit;background:var(--bg_lower);font-size:110%;font-weight:600;border:none;}form > button[id$=_save] {margin-top:2rem;padding:.5em;color: inherit;background:var(--bg_lower);font-size:110%;font-weight:600;border:none;text-transform:uppercase;filter:saturate(200%);}form > button[id$=_save]:hover {filter:brightness(1.5);}
+.db_list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .5em;
+  border: 1px solid var(--highlight);
+}
+.db_list > dt {
+  padding: .25em;
+  flex: 0 25%;
+  color: inherit;
+  font-size: 95%;
+  font-weight: 200;
+}
+.db_list > dd {
+  padding: .25em;
+  flex: 0 75%;
+  color: inherit;
+  background: var(--bg_lower);
+}
+.db_list > dd > input {
+  width: 100%;
+  padding-left: .25em;
+  color: inherit;
+  background: var(--bg_lower);
+  font-size: 110%;
+  font-weight: 600;
+  border: none;
+}
+dt:not(:last-of-type), dd:not(:last-of-type) {
+  margin-bottom: .25em;
+}
+button[id$=_save] {
+  margin-top: 1em;
+  padding: .5em 3em;
+  color: inherit;
+  background: var(--bg_lower);
+  font-size: 110%;
+  font-weight: 600;
+  border: none;
+  text-transform: uppercase;
+  filter: saturate(200%);
+}
+button[id$=_save]:hover {
+  filter: brightness(1.5);
+}

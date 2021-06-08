@@ -25,87 +25,189 @@
   <h2><label for="artist_entry" tabindex="-1">Entry</label></h2>
   <input id="artist_entry" type="checkbox">
   <div class="chapter">
-    <form id=artist_form>
-<label>artist_id_s</label>
-<input id=artist_id_s type=text />
-<label>forename_s</label>
-<input id=forename_s type=text />
-<label>lastname_s</label>
-<input id=lastname_s type=text />
-<label>nickname_s</label>
-<input id=nickname_s type=text title="empty if unknown or none"/>
-<label>birth_date_n</label>
-<input id=birth_date_n type=number title="float for range (1600.1610)"/>
-<label>death_date_n</label>
-<input id=death_date_n type=number title="float for range (1600.1610)"/>
-<label>birth_place_s</label>
-<input id=birth_place_s type=text title="empty if unknown"/>
-<label>death_place_s</label>
-<input id=death_place_s type=text title="empty if unknown"/>
+    <h3>artist</h3>
+<dl id=artist_form class=db_list>
+<!--<dt>artist</dt>-->
+<dt>artist_id_s</dt>
+<dd><input id=artist_id_s type=text /></dd>
+<dt>forename_s</dt>
+<dd><input id=forename_s type=text autocomplete=off /></dd>
+<dt>lastname_s</dt>
+<dd><input id=lastname_s type=text autocomplete=off /></dd>
+<dt>nickname_s</dt>
+<dd><input id=nickname_s type=text title="empty if unknown or none" /></dd>
+<dt>birth_date_n</dt>
+<dd><input id=birth_date_n type=number title="float for range (1600.1610)" /></dd>
+<dt>death_date_n</dt>
+<dd><input id=death_date_n type=number title="float for range (1600.1610)" /></dd>
+<dt>birth_place_s</dt>
+<dd><input id=birth_place_s type=text title="empty if unknown" /></dd>
+<dt>death_place_s</dt>
+<dd><input id=death_place_s type=text title="empty if unknown" /></dd>
+</dl>
 <button id=artist_save>save</button>
-</form>
 
   </div>
   <h2><label for="artist_list" tabindex="-1">List</label></h2>
   <input id="artist_list" type="checkbox">
   <div class="chapter">
-    artist list
+    <dl class=db_list>
+          <dt>artist_id_s</dt>
+          <dd>1586_de~coster</dd>
+          <dt>forename_s</dt>
+          <dd>Adam</dd>
+          <dt>lastname_s</dt>
+          <dd>de Coster</dd>
+          <dt>nickname_s</dt>
+          <dd></dd>
+          <dt>birth_date_n</dt>
+          <dd>1586</dd>
+          <dt>death_date_n</dt>
+          <dd>1643</dd>
+          <dt>birth_place_s</dt>
+          <dd>Mechelen</dd>
+          <dt>death_place_s</dt>
+          <dd>Antwerpen</dd>
+          </dl>
+          <dl class=db_list>
+          <dt>artist_id_s</dt>
+          <dd>1703_boucher</dd>
+          <dt>forename_s</dt>
+          <dd>François</dd>
+          <dt>lastname_s</dt>
+          <dd>Boucher</dd>
+          <dt>nickname_s</dt>
+          <dd></dd>
+          <dt>birth_date_n</dt>
+          <dd>1703</dd>
+          <dt>death_date_n</dt>
+          <dd>1770</dd>
+          <dt>birth_place_s</dt>
+          <dd>Paris</dd>
+          <dt>death_place_s</dt>
+          <dd>Paris</dd>
+          </dl>
+          
   </div>
 </section>
 <section id="collection">
   <h2><label for="collection_entry" tabindex="-1">Entry</label></h2>
   <input id="collection_entry" type="checkbox">
   <div class="chapter">
-    <form id=collection_form>
-<label>collection_id_s</label>
-<input id=collection_id_s type=text />
-<label>location_s</label>
-<input id=location_s type=text />
-<label>place_s</label>
-<input id=place_s type=text />
-<label>country_s</label>
-<input id=country_s type=text />
+    <h3>collection</h3>
+<dl id=collection_form class=db_list>
+<!--<dt>collection</dt>-->
+<dt>collection_id_s</dt>
+<dd><input id=collection_id_s type=text /></dd>
+<dt>location_s</dt>
+<dd><input id=location_s type=text /></dd>
+<dt>place_s</dt>
+<dd><input id=place_s type=text /></dd>
+<dt>country_s</dt>
+<dd><input id=country_s type=text /></dd>
+</dl>
 <button id=collection_save>save</button>
-</form>
 
   </div>
   <h2><label for="collection_list" tabindex="-1">List</label></h2>
   <input id="collection_list" type="checkbox">
   <div class="chapter">
-    collection list
+    <dl class=db_list>
+          <dt>collection_id_s</dt>
+          <dd>new~york_sothebys</dd>
+          <dt>location_s</dt>
+          <dd>Sothebys</dd>
+          <dt>place_s</dt>
+          <dd>New~York</dd>
+          <dt>country_s</dt>
+          <dd>United States of America</dd>
+          </dl>
+          <dl class=db_list>
+          <dt>collection_id_s</dt>
+          <dd>princeton_university</dd>
+          <dt>location_s</dt>
+          <dd>Princeton University Art Museum</dd>
+          <dt>place_s</dt>
+          <dd>Princeton</dd>
+          <dt>country_s</dt>
+          <dd>United States of America</dd>
+          </dl>
+          
   </div>
 </section>
 <section id="work">
   <h2><label for="work_entry" tabindex="-1">Entry</label></h2>
   <input id="work_entry" type="checkbox">
   <div class="chapter">
-    <form id=work_form>
-<label>work_id_s</label>
-<input id=work_id_s type=text />
-<label>artist_s</label>
-<input id=artist_s type=text />
-<label>year_n</label>
-<input id=year_n type=number  title="float for range (1703.1705)"/>
-<label>subject_s</label>
-<input id=subject_s type=text />
-<label>w_height_n</label>
-<input id=w_height_n type=number  title="0 if unknown"/>
-<label>w_width_n</label>
-<input id=w_width_n type=number  title="0 if unknown"/>
-<label>height_n</label>
-<input id=height_n type=number />
-<label>width_n</label>
-<input id=width_n type=number />
-<label>default_a</label>
-<input id=default_a type=text />
+    <h3>work</h3>
+<dl id=work_form class=db_list>
+<!--<dt>work</dt>-->
+<dt>work_id_s</dt>
+<dd><input id=work_id_s type=text /></dd>
+<dt>artist_s</dt>
+<dd><input id=artist_s type=text /></dd>
+<dt>year_n</dt>
+<dd><input id=year_n type=number  title="float for range (1703.1705)" /></dd>
+<dt>subject_s</dt>
+<dd><input id=subject_s type=text /></dd>
+<dt>w_height_n</dt>
+<dd><input id=w_height_n type=number  title="0 if unknown" /></dd>
+<dt>w_width_n</dt>
+<dd><input id=w_width_n type=number  title="0 if unknown" /></dd>
+<dt>height_n</dt>
+<dd><input id=height_n type=number /></dd>
+<dt>width_n</dt>
+<dd><input id=width_n type=number /></dd>
+<dt>default_a</dt>
+<dd><input id=default_a type=text /></dd>
+</dl>
 <button id=work_save>save</button>
-</form>
 
   </div>
   <h2><label for="work_list" tabindex="-1">List</label></h2>
   <input id="work_list" type="checkbox">
   <div class="chapter">
-    work list
+    <dl class=db_list>
+          <dt>work_id_s</dt>
+          <dd>1586_de~coster-new~york_sothebys-1625_young~woman</dd>
+          <dt>artist_s</dt>
+          <dd>1586_de~coster</dd>
+          <dt>year_n</dt>
+          <dd>1625.163</dd>
+          <dt>subject_s</dt>
+          <dd>A young woman holding a distaff before a lit candle</dd>
+          <dt>w_height_n</dt>
+          <dd>134</dd>
+          <dt>w_width_n</dt>
+          <dd>94.9</dd>
+          <dt>height_n</dt>
+          <dd>2000</dd>
+          <dt>width_n</dt>
+          <dd>1388</dd>
+          <dt>default_a</dt>
+          <dd>null</dd>
+          </dl>
+          <dl class=db_list>
+          <dt>work_id_s</dt>
+          <dd>1703_boucher-princeton_university-1748_arion</dd>
+          <dt>artist_s</dt>
+          <dd>1703_boucher</dd>
+          <dt>year_n</dt>
+          <dd>1748.175</dd>
+          <dt>subject_s</dt>
+          <dd>Arion chevauchant son dauphin</dd>
+          <dt>w_height_n</dt>
+          <dd>86</dd>
+          <dt>w_width_n</dt>
+          <dd>135.5</dd>
+          <dt>height_n</dt>
+          <dd>1283</dd>
+          <dt>width_n</dt>
+          <dd>2000</dd>
+          <dt>default_a</dt>
+          <dd>null</dd>
+          </dl>
+          
   </div>
 </section>
 
@@ -116,6 +218,7 @@
 </header>
 
 <script src="../../assets/scripts/js/index.min.js" defer></script>
+<script src="../../assets/scripts/js/dexie.js" defer></script>
 <script src="../../assets/scripts/js/db_gui.min.js" defer></script>
 </body>
 

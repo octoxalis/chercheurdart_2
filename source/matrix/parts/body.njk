@@ -1,12 +1,12 @@
 <body>
-{% if _nodb_b %}
-{% include "parts/body/main.njk" %}
-{% else %}
+{% if _db_b %}
 {% include "parts/body/db_gui/main.njk" %}
+{% else %}
+{% include "parts/body/main.njk" %}
 {% endif %}
 
 {% include "parts/body/header.njk" %}
-{% if _nodb_b %}
+{% if not _db_b %}
 {% include "parts/body/svg_inline.njk" %}
 {% endif %}
 {% if C_o.SERVICE_b === true %}
