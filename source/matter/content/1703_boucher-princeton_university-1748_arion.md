@@ -34,21 +34,22 @@
 ---
 [comment]: # (======================== Article ========================)
 
-{% section section_a[0] %}
+{% section section_a[0] %}{% _adoc %}
+= Traitements de l'image
 
-{% chapter "# Colorimétrie" %}
+Différents traitements...
 
-+  [scan][0]
-+  [burst][1]
+== Colorimétrie
 
-{% chapter "## Composition" %}
+*  link:1703_boucher-princeton_university-1748_arion__scan.html[scan]
+*  link:1703_boucher-princeton_university-1748_arion__burst.html[burst]
+
+== Composition
 
 
-{% chapter "## Références" %}
+== Références
 
-
-{% end_section %}
-
+{% end_adoc %}{% end_section %}
 
 
 [comment]: # (======================== Links ========================)

@@ -1,4 +1,7 @@
 const DB_o = require( '../lib/db.js' )
+//??const C_o = require( './C_o.js' )
+
+
 
 
 module.exports =
@@ -8,6 +11,10 @@ module.exports =
     schema_s
   ) =>
   {
+    //...............
+    //...DB_o
+    //...  .initDB__v()
+    //...............
     if
     (
       schema_s
@@ -28,9 +35,9 @@ module.exports =
 <dt>nickname_s</dt>
 <dd><input id=nickname_s type=text title="empty if unknown or none" /></dd>
 <dt>birth_date_n</dt>
-<dd><input id=birth_date_n type=number title="float for range (1600.1610)" /></dd>
+<dd><input id=birth_date_n type=number title="delta float for range (1600.10)" /></dd>
 <dt>death_date_n</dt>
-<dd><input id=death_date_n type=number title="float for range (1600.1610)" /></dd>
+<dd><input id=death_date_n type=number title="delta float for range (1600.10)" /></dd>
 <dt>birth_place_s</dt>
 <dd><input id=birth_place_s type=text title="empty if unknown" /></dd>
 <dt>death_place_s</dt>
@@ -81,7 +88,7 @@ module.exports =
 <dt>artist_s</dt>
 <dd><input id=artist_s type=text /></dd>
 <dt>year_n</dt>
-<dd><input id=year_n type=number  title="float for range (1703.1705)" /></dd>
+<dd><input id=year_n type=number  title="delta float for range (1703.02)" /></dd>
 <dt>subject_s</dt>
 <dd><input id=subject_s type=text /></dd>
 <dt>w_height_n</dt>
@@ -99,7 +106,7 @@ module.exports =
 `
       )
     }
-}
+  }
   ,
 
 
@@ -246,4 +253,6 @@ module.exports =
     }
   }
   ,
+
+
 }

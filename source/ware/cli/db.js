@@ -4,6 +4,16 @@ const FS_o  = require( 'fs-extra' )
 
 const DB_o =
 {
+  VERSION_n: 1,
+
+
+
+
+  table_a: [],    //: Dexie tables
+  
+
+
+
   json__s:
   (
     dir_s
@@ -52,6 +62,65 @@ const DB_o =
     return json_o
   }
   ,
+
+
+/*
+-----------------------------------------------
+  initDB__v:
+  () =>
+  {
+    DB_o
+      .table_a
+      [ 'artist' ] =
+        new Dexie( 'artist' )
+
+    DB_o
+      .table_a
+      [ 'artist' ]
+        .version
+        (  
+          DB_o
+            .VERSION_n
+        )
+        .stores
+        (
+          {
+            artist:
+              `
+              id_s,        
+              forename_s,  
+              lastname_s,  
+              nickname_s,  
+              birth_date_n,
+              death_date_n,
+              birth_place_s:
+              death_place_s
+              `,
+            collection:
+              `
+              id_s,
+              location_s,
+              place_s,
+              country_s,
+              `,
+            work:
+              `
+              id_s,
+              artist_s,
+              year_n,
+              subject_s,
+              w_height_n,
+              w_width_n,
+              height_n,
+              width_n,
+              default_a
+              `
+          }
+        )
+  }
+  ,
+  ------------------------------
+  */
 }
 
 

@@ -4,6 +4,7 @@
   "description": "l'œil technologique de la peinture",
   "main": "source/make/11ty/make.js",
   "dependencies": {
+    "asciidoctor": "^2.2.4",
     "clean-css": "^5.1.2",
     "dayjs": "^1.10.4",
     "dotenv": "^8.2.0",

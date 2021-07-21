@@ -7,6 +7,4 @@ Referrer-Policy: same-origin
 Feature-Policy: fullscreen 'self';midi 'self';sync-xhr 'self';microphone 'self';camera 'self';magnetometer 'self';gyroscope 'self';
 X-Frame-Options: SAMEORIGIN
 X-XSS-Protection: 1;mode=block
-Timing-Allow-Origin: "https://chercheurdart-2.netlify.app/"
-Content-Security-Policy: default-src https://chercheurdart-2.netlify.app/ ; base-uri https://chercheurdart-2.netlify.app/ ; font-src https://chercheurdart-2.netlify.app/ ; connect-src https://chercheurdart-2.netlify.app/ ; prefetch-src https://chercheurdart-2.netlify.app/ ; img-src https://chercheurdart-2.netlify.app/ ; frame-src https://chercheurdart-2.netlify.app/ ; frame-ancestors https://chercheurdart-2.netlify.app/ ; form-action https://chercheurdart-2.netlify.app/ ; manifest-src https://chercheurdart-2.netlify.app/ ; script-src-elem https://chercheurdart-2.netlify.app/ ; script-src https://chercheurdart-2.netlify.app/ ; object-src https://chercheurdart-2.netlify.app/ ; style-src https://chercheurdart-2.netlify.app/ 'unsafe-inline';
-
+Timing-Allow-Origin: "https://127.0.0.1:8080/"

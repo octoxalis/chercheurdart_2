@@ -338,10 +338,10 @@ textLine__v:
 
     let year_s =
       NUM_o
-        .floatToRange__s
+        .rangeFromFloat__s
         (
-          work_o.year_n,
-          4
+          work_o
+            .year_n
         )
 
     const height_s =

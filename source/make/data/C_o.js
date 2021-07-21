@@ -50,6 +50,8 @@ const C_o =
   CONTEXTUAL_INPUT_s: CONF_o.CONTEXTUAL_INPUT_s,
   CONTEXTUAL_OUTPUT_s: CONF_o.CONTEXTUAL_OUTPUT_s,
 
+  ADOC_TEMPLATES_s: CONF_o.ADOC_TEMPLATES_s,
+
 
   
   //=== SECTIONS ===
@@ -89,6 +91,15 @@ const C_o =
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
   U_IMAGE_OF_s:    '\u22B7',    //: unicode 'image of'
+
+  //???SUB_SPACE_s:     '₌',    //: unicode ₌
+
+  //=== ADOC ===
+  MACRO_INSERT_s:    'ins',
+  
+  BLOCK_PREAMBLE_s:  'preamble',
+  BLOCK_SECTION_s:   'section_level',
+  BLOCK_PARAGRAPH_s: 'paragraph',
 
 
 

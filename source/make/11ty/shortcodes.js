@@ -1,3 +1,11 @@
+const ADOC_o = require( 'asciidoctor' )()
+const registry_o = ADOC_o.Extensions.create()
+require('../lib/adoc/ins-inline-macro-processor.js')(registry_o)
+
+
+
+
+
 const C_o = require( '../data/C_o.js' )
 const F_o = require( '../data/F_o.js' )
 //?? const IOR_o = require('../lib/ior.js')
@@ -20,13 +28,13 @@ const CODES_o =
   end_section__s:    //=== only close section tag
   () =>    //--HTML
     `</div>\n`        //: first close last chapter div
-    + `</section>\n`  //: \n is mandatory
+    + 
+    `</section>\n`  //: \n is mandatory
   ,
 
 
 
-
-  chapter__s:    //=== create an chapter header
+  /*REMOVE*/chapter__s:    //=== create an chapter header
   (
     chapter_s
   ) =>
@@ -94,6 +102,25 @@ const CODES_o =
   ) =>  //--HTML
     `<ins data--="${section_s}">${content_s}</ins>`
   ,
+
+
+  
+  adoc__s:    //=== Embed AsciiDoc
+  (
+    content_s
+  ) =>
+    ADOC_o
+      .convert
+      (
+        content_s,
+        {
+          safe: 'safe',
+          backend: 'html5',
+          template_dirs: [ C_o.ADOC_TEMPLATES_s ],
+          extension_registry: registry_o
+        }
+      )
+  ,
 }
 
 
@@ -109,7 +136,7 @@ module.exports =
       [
         'section',
         'end_section',
-        'chapter',
+        /*REMOVE*/'chapter',
       ]
     )
     {
@@ -130,10 +157,11 @@ module.exports =
     
     for        //=== paired shortcodes
     (
-      code_s
+      const code_s
       of
       [ 
-        'ins',
+        /*REMOVE*/'ins',
+        'adoc',
       ]
     )
     {

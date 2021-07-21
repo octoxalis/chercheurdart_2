@@ -45,9 +45,12 @@ const BUI_o =
     data_o
   )
   {
+    //;console.log( `${data_o.permalink} ----\n${input_s}` )
+
     //~~let slash_n = data_o.permalink.lastIndexOf( '/')
     //~~const id_s = data_o.permalink.slice( slash_n + 1, '.html'.length * -1 )
     //~~const path_s = ( slash_n < 0 ) ? '' : data_o.permalink.slice( 0, slash_n )
+
     let start_s = input_s
     //... what else?
     return start_s
@@ -61,6 +64,8 @@ const BUI_o =
     data_o
   )
   {
+    //;console.log( `${data_o.permalink} ----\n${input_s}` )
+
     HEAD_o
       .add__v( data_o )
 

@@ -4,27 +4,49 @@ const STR_o = require( './string.js' )
 
 const NUM_o =
 {
-  floatToRange__s:
+  rangeFromFloat__s:
   (
     number_n,
     pad_n
   ) =>
   {
-    return (
+    if
+    (
       Number
         .isInteger( number_n )
-      ?
-        number_n
-      :
+    )
+    {
+      return number_n
+    }
 
-        Number
-          .parseFloat( number_n )
-          .toFixed( pad_n )
-          .replace
+    const low_n =
+      Math
+        .trunc( number_n )
+
+    const fraction_n =
+      number_n
+      -
+      low_n
+
+    const high_n =
+      Math
+        .trunc
+        (
+          low_n
+          +
           (
-            '.',
-            '\u00A0\u2014\u00A0'
+            fraction_n
+            *
+            10
           )
+        )
+    
+    return (
+      low_n//.toString()
+      +
+      '\u00A0\u2014\u00A0'  //non brakable space, em dash
+      +
+      high_n//.toString()
     )
   }
   ,

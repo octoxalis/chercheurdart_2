@@ -11,7 +11,7 @@ module.exports =
 {
   id_s:        ID_a.join( '-' ),
   artist_s:    ID_a[0],
-  year_n:      1748.1750,    //: float for range
+  year_n:      1748.2,    //: delta float for range
   subject_s:   'Arion chevauchant son dauphin',
   w_height_n:  86,      //: 0 for unknown
   w_width_n:   135.5,   //: 0 for unknown

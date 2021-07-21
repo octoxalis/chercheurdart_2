@@ -11,7 +11,7 @@ module.exports =
 {
   id_s:        ID_a.join( '-' ),
   artist_s:    ID_a[0],
-  year_n:      1625.1630,    //: float for range
+  year_n:      1625.5,    //: delta float for range
   subject_s:   'A young woman holding a distaff before a lit candle',
   w_height_n:  134,      //: 0 for unknown
   w_width_n:   94.9,     //: 0 for unknown
