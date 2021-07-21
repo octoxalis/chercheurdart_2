@@ -17,12 +17,12 @@
     //--'Galerie',
   ],
 
-  chapter_a:
-  [
-    'Colorimétrie',
-    'Composition',
-    'Références',
-  ],
+  //XX chapter_a:
+  //XX [
+  //XX   'Colorimétrie',
+  //XX   'Composition',
+  //XX   'Références',
+  //XX ],
 
   script_a:
   [
@@ -53,6 +53,3 @@ Différents traitements...
 
 
 [comment]: # (======================== Links ========================)
-
-[0]: 1703_boucher-princeton_university-1748_arion__scan.html
-[1]: 1703_boucher-princeton_university-1748_arion__burst.html

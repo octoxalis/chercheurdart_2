@@ -34,9 +34,7 @@
 }
 ---
 [comment]: # (======================== Article ========================)
-{% section section_a[0], 1234 %}
-
-{% _adoc %}
+{% section section_a[0], 1234 %}{% _adoc %}
 = Renaissance
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -60,9 +58,7 @@ Ref. 1: biblio entry
 
 Ref. 2: work entry
 
-{% end_adoc %}
-
-{% end_section %}
+{% end_adoc %}{% end_section %}
 
 
 [comment]: # (======================== Links ========================)

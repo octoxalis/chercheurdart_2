@@ -8,3 +8,5 @@ Feature-Policy: fullscreen 'self';midi 'self';sync-xhr 'self';microphone 'self';
 X-Frame-Options: SAMEORIGIN
 X-XSS-Protection: 1;mode=block
 Timing-Allow-Origin: "https://127.0.0.1:8080/"
+Content-Security-Policy: default-src https://127.0.0.1:8080/ ; base-uri https://127.0.0.1:8080/ ; font-src https://127.0.0.1:8080/ ; connect-src https://127.0.0.1:8080/ ; prefetch-src https://127.0.0.1:8080/ ; img-src https://127.0.0.1:8080/ ; frame-src https://127.0.0.1:8080/ ; frame-ancestors https://127.0.0.1:8080/ ; form-action https://127.0.0.1:8080/ ; manifest-src https://127.0.0.1:8080/ ; script-src-elem https://127.0.0.1:8080/ ; script-src https://127.0.0.1:8080/ ; object-src https://127.0.0.1:8080/ ; style-src https://127.0.0.1:8080/ 'unsafe-inline';
+
