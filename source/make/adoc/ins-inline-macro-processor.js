@@ -24,11 +24,12 @@ module
                 attribute_a
               ) =>
               {
+                console.table( attribute_a )
                 if
                 (
                   target_s
                   ===
-                  'text'
+                  'TXT'
                 )
                 {
                   return (
@@ -39,11 +40,11 @@ module
                 (
                   target_s
                   ===
-                  'img'
+                  'IMG'
                 )
                 {
                   return (
-                    `<ins data--="Article">! ${attribute_a.url_s}</ins>`    //!!! quote needed for regexp
+                    `<ins data--="${C_o.SEC_TEXT_s}">₀ ${attribute_a.id_s}</ins>`    //!!! quote needed for regexp
                     )
                 }
               }

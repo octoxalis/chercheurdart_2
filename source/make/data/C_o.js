@@ -81,11 +81,11 @@ const C_o =
   ID_PART_DELIM_s: '_',    //: between subparts
   ID_WORD_DELIM_s: '~',    //: between multi word subpart
 
-  INSERT_CHAR_a:    ['/', '!', '[', '\\' ],
-  COMMENT_START_s:  '/',    //: comment line 1sr char (can use // or /* */)
-  IMG_START_s:      '!',    //: img insert
-  LINK_START_s:     '[',    //: img link insert
-  TEXT_START_s:     '\\',   //: img text insert
+  INSERT_CHAR_a:    ['/', '₀', '₁', '₂' ],
+  COMMENT_START_s:  '/',   //: comment line 1rst char (can use // or /* */)
+  IMG_START_s:      '₀',   //: img insert
+  LINK_START_s:     '₁',   //: img link insert
+  TEXT_START_s:     '₂',   //: img text insert
 
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet

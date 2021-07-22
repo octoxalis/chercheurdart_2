@@ -148,9 +148,9 @@ const INS_o =
 /**
  * IOR image insert content (order = image + (links) + (text) )
 / comment_s
-! ID_s == url_s           //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
-[ link_s == url_s         //: link
-\ text_s \ multiline_s    //: text
+₀ ID_s == url_s           //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
+₁ link_s == url_s         //: link
+₂ text_s \ multiline_s    //: text
 */
 parse__s:
 (
