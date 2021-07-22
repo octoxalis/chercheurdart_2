@@ -1,6 +1,6 @@
 const ADOC_o = require( 'asciidoctor' )()
 const registry_o = ADOC_o.Extensions.create()
-require('../lib/adoc/ins-inline-macro-processor.js')(registry_o)
+require('../adoc/ins-inline-macro-processor.js')(registry_o)
 
 
 
@@ -15,100 +15,14 @@ const F_o = require( '../data/F_o.js' )
 
 const CODES_o =
 {
-  section__s:    //== only open section tag
-  (
-    section_s
-  ) =>
-    `<section id="${F_o.slug__s( section_s )}">`
-  ,
 
-
-
-
-  end_section__s:    //=== only close section tag
-  () =>    //--HTML
-    `</div>\n`        //: first close last chapter div
-    + 
-    `</section>\n`  //: \n is mandatory
-  ,
-
-
-
-  /*REMOVE*/chapter__s:    //=== create an chapter header
-  (
-    chapter_s
-  ) =>
-  {
-    let at_n = 0
-
-    while
-    (
-      chapter_s.charAt( at_n ) === '#'
-      &&
-      at_n++ < chapter_s.length    //: skiped if no more '#', therefore no increment
-    ) ;
-
-    const name_s =
-      chapter_s
-        .slice( at_n )
-
-    const slug_s =
-      F_o
-        .slug__s( name_s )
-    
-    let close_s = ''
-    
-    let label_s = name_s
-    
-    let input_s = ''
-    
-    if
-    (
-      at_n
-      ===
-      +C_o                       //: number cast
-        .CHAPTER_TAG_s[1]        //: 2 (from h2)
-    )
-    {
-      label_s =
-        `<label for="${slug_s}" tabindex="-1">${name_s}</label>`
-
-      close_s =
-        `<hr/>`
-        + '</div>\n'        //: first close last chapter div
-
-      input_s =
-        `<input id="${slug_s}" type="checkbox" />`  //: chapter always closed
-    }
-
-    return (  //--HTML
-      close_s
-      + `<h${at_n}>`
-      + label_s
-      + `</h${at_n}>\n`  //: \n is mandatory
-      + input_s
-      + `<div class="chapter">\n`    //: open chapter content
-    )
-  }
-  ,
-
-
-
-  
-  ins__s:    //=== only set up insert block to be processed at template end
+  adoc__s:    //=== Embed AsciiDoc
   (
     content_s,
     section_s
-  ) =>  //--HTML
-    `<ins data--="${section_s}">${content_s}</ins>`
-  ,
-
-
-  
-  adoc__s:    //=== Embed AsciiDoc
-  (
-    content_s
   ) =>
+    `<section id="${F_o.slug__s( section_s )}">`
+    +
     ADOC_o
       .convert
       (
@@ -120,6 +34,10 @@ const CODES_o =
           extension_registry: registry_o
         }
       )
+    +
+    `</div>\n`        //: first close last chapter div
+    + 
+    `</section>\n`  //: \n is mandatory
   ,
 }
 
@@ -128,39 +46,12 @@ const CODES_o =
 
 module.exports =
   make_o =>
-  {  
-    for        //=== simple shortcodes
-    (
-      const code_s
-      of
-      [
-        'section',
-        'end_section',
-        /*REMOVE*/'chapter',
-      ]
-    )
-    {
-      make_o
-        .addNunjucksShortcode
-        (
-          `${code_s}`,        //: simple shortcodes have no leading underscore
-          (
-            ...arg_
-          ) =>
-            CODES_o
-              [ `${code_s}__s` ]
-              (
-                ...arg_
-              )
-        )
-    }
-    
+  {
     for        //=== paired shortcodes
     (
       const code_s
       of
-      [ 
-        /*REMOVE*/'ins',
+      [
         'adoc',
       ]
     )

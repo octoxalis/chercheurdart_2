@@ -13,16 +13,9 @@
 
   section_a:
   [
-    'Article',
-    //--'Galerie',
+    `Article`,
+    //--`Galerie`,
   ],
-
-  //XX chapter_a:
-  //XX [
-  //XX   'Colorimétrie',
-  //XX   'Composition',
-  //XX   'Références',
-  //XX ],
 
   script_a:
   [
@@ -32,9 +25,7 @@
   ],
 }
 ---
-[comment]: # (======================== Article ========================)
-
-{% section section_a[0] %}{% _adoc %}
+{% _adoc section_a[0] %}
 = Traitements de l'image
 
 Différents traitements...
@@ -49,7 +40,4 @@ Différents traitements...
 
 == Références
 
-{% end_adoc %}{% end_section %}
-
-
-[comment]: # (======================== Links ========================)
+{% end_adoc %}

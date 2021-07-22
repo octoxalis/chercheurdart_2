@@ -1,5 +1,5 @@
-const C_o = require( '../../../make/data/C_o.js' )
-const F_o = require( '../../../make/data/F_o.js' )
+const C_o = require( '../../data/C_o.js' )
+const F_o = require( '../../data/F_o.js' )
 
 
 
