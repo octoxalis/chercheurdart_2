@@ -15,7 +15,6 @@
   section_a:
   [
     `Article`,
-    //--`Galerie`,
   ],
 
   script_a:

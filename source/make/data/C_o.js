@@ -92,7 +92,7 @@ const C_o =
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
   U_IMAGE_OF_s:    '\u22B7',    //: unicode 'image of'
 
-  //???SUB_SPACE_s:     '₌',    //: unicode ₌
+  //???SUB_SPACE_s:     '₊',    //: unicode ₊
 
   //=== ADOC ===
   MACRO_INSERT_s:    'ins',

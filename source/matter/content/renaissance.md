@@ -14,7 +14,6 @@
   section_a:
   [
     `Article`,
-    `Galerie`,
   ],
 
   script_a:
@@ -41,7 +40,7 @@ Insérons une note ins:text[note_s=ceci est une note] au milieu d'une phrase com
 
 L'_Arion_ ins:img[url_s=1703_boucher-princeton_university-1748_arion] peint par F. Boucher en 1750.
 
-//Et la _Jeune fille_ ins:img[url_s=1586_de~coster-new~york_sothebys-1625_young~woman] de A. de Coster
+Et la _Jeune fille_ ins:img[url_s=1586_de₊coster-new₊york_sothebys-1625_young₊woman] de A. de Coster
 
 
 == Références
