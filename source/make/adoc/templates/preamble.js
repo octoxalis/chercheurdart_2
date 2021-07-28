@@ -25,7 +25,7 @@ module
       1    //: h1: level 0
 
     return (
-      `<h${header_n} data-adoc=${C_o.BLOCK_PREAMBLE_s}>`
+      `<h${header_n} data-${C_o.ADOC_DATA_s}=${C_o.BLOCK_PREAMBLE_s}>`
       + title_s
       + `</h${header_n}>\n`  //: \n is mandatory
       + chapter_s

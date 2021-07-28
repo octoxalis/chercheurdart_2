@@ -17,5 +17,5 @@ module.exports =
   w_width_n:   135.5,   //: 0 for unknown
   height_n:    1283,
   width_n:     2000,
-  default_a:   null
+  default_a:   null,
 }

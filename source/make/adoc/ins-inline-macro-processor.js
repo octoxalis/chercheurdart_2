@@ -24,7 +24,7 @@ module
                 attribute_a
               ) =>
               {
-                console.table( attribute_a )
+                // ;console.table( attribute_a )
                 if
                 (
                   target_s
@@ -33,7 +33,7 @@ module
                 )
                 {
                   return (
-                    `<ins data--="${C_o.SEC_TEXT_s}">${attribute_a.note_s}</ins>`    //!!! quote needed for regexp
+                    `<ins data--="${C_o.SEC_TEXT_s}">${attribute_a.ins_s}</ins>`    //!!! quote needed for regexp
                     )
                 }
                 if
@@ -44,7 +44,7 @@ module
                 )
                 {
                   return (
-                    `<ins data--="${C_o.SEC_TEXT_s}">₀ ${attribute_a.id_s}</ins>`    //!!! quote needed for regexp
+                    `<ins data--="${C_o.SEC_TEXT_s}">₀ ${attribute_a.ins_s}</ins>`    //!!! quote needed for regexp
                     )
                 }
               }

@@ -4,18 +4,61 @@ require('../adoc/ins-inline-macro-processor.js')(registry_o)
 
 
 
-
-
 const C_o = require( '../data/C_o.js' )
 const F_o = require( '../data/F_o.js' )
 //?? const IOR_o = require('../lib/ior.js')
+const REX_o = require( '../lib/regex.js' )
 
+
+const process_ins__s =
+  content_s =>
+  {
+    for
+    (
+      const match_a
+      of
+      [ ...
+        content_s
+          .matchAll
+          (
+            REX_o
+              .new__re( 'gms' )
+                `${C_o.INS_OPEN_s}
+                ([^${C_o.INS_SEPARATOR_s}]+?)   //: note caller
+                ${C_o.INS_SEPARATOR_s}
+                ([^${C_o.INS_CLOSE_s}]+?)       //: note callee
+                ${C_o.INS_CLOSE_s}`
+          )
+      ]
+    )
+    {
+      const src_s =
+        match_a[1]
+          .charAt( 0 )
+          ===
+          '_'    //: IMG caller MUST begin and end by an underscore (i.e. emphasis)
+          ?
+            'IMG'
+          :
+            'TXT'
+
+      content_s =
+        content_s
+          .replace
+          (
+            match_a[0],
+            `${match_a[1]} ins:${src_s}[ins_s="${match_a[2]}"]`
+          )
+    }
+
+    // ;console.log( content_s )
+    return content_s
+  }
 
 
 
 const CODES_o =
 {
-
   adoc__s:    //=== Embed AsciiDoc
   (
     content_s,
@@ -26,7 +69,7 @@ const CODES_o =
     ADOC_o
       .convert
       (
-        content_s,
+        process_ins__s( content_s ),
         {
           safe: 'safe',
           backend: 'html5',

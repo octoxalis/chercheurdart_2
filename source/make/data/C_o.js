@@ -87,6 +87,10 @@ const C_o =
   LINK_START_s:     '₁',   //: img link insert
   TEXT_START_s:     '₂',   //: img text insert
 
+  INS_OPEN_s:      '₍',    //: ins delimiter
+  INS_CLOSE_s:     '₎',    //: ins delimiter
+  INS_SEPARATOR_s:  '==',  //: ins separator
+
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
@@ -95,6 +99,7 @@ const C_o =
   //???SUB_SPACE_s:     '₊',    //: unicode ₊
 
   //=== ADOC ===
+  ADOC_DATA_s:       'ad',
   MACRO_INSERT_s:    'ins',
   
   BLOCK_PREAMBLE_s:  'preamble',

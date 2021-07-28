@@ -23,28 +23,24 @@
   css_a:
   [
   ],
+
+
 }
 ---
 {% _adoc section_a[0] %}
-= Renaissance
+= {{title_s}}
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+{{abstract_s}}.
 
 
 == Nouvelle version du site
 
-Insérons une note ins:TXT[note_s="ceci est une note"] au milieu d'une phrase complète...
+Insérons une ₍précision importante==ceci est une note₎ au milieu d'une phrase complète.
+
+₍_Arion_==1703_boucher-princeton_university-1748_arion₎ peint par F. Boucher en 1750.
 
 
-L'_Arion_
-ins:IMG[id_s=1703_boucher-princeton_university-1748_arion, url_s=media.com/fineimg.jpg, tip_s="this image is fine"]
-peint par F. Boucher en 1750.
-
-Et la _Jeune fille_
-ins:IMG[id_s=1586_de₊coster-new₊york_sothebys-1625_young₊woman]
-de A. de Coster
+Et la ₍_Jeune femme_==1586_de₊coster-new₊york_sothebys-1625_young₊woman₎ de A. de Coster
 
 
 == Références

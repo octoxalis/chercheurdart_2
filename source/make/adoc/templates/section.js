@@ -56,7 +56,7 @@ module
 
     return (
       close_s
-      + `<h${header_n} data-adoc=${C_o.BLOCK_SECTION_s}_${level_n}>`
+      + `<h${header_n} data-${C_o.ADOC_DATA_s}=${C_o.BLOCK_SECTION_s}_${level_n}>`
       + title_s
       + `</h${header_n}>\n`  //: \n is mandatory
       + input_s
