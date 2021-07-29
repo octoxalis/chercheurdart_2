@@ -27,7 +27,7 @@
 
 }
 ---
-{% _adoc section_a[0] %}
+{% _doc section_a[0] %}
 
 = En ligne
 
@@ -48,4 +48,4 @@ En effet, toutes les images du site sont au format AVIF, une technique d'encodag
 
 {{A_o.NAME_s}} est construit avec le générateur de site statique  {{U_o.E11TY_s}}
 
-{% end_adoc %}
+{% end_doc %}

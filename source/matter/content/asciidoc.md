@@ -27,7 +27,7 @@
 
 }
 ---
-{% _adoc section_a[0] %}
+{% _doc section_a[0] %}
 = {{title_s}}
 
 {{abstract_s}}
@@ -65,7 +65,7 @@ A common alinea
 
 [quote, Nietzsche, Aurore]
 ____
-La musique
+Sans la musique, la vie serait une erreur
 ____
 
 //----------------------------------------
@@ -87,8 +87,8 @@ Reference point
 xref:article-anchor_1234[Reference]
 
 .note
-Insérons une ₍précision importante==ceci est une note₎ au milieu d'une phrase complète.
+Insérons une ₍₀¯précision importante¯ceci est une note₎ au milieu d'une phrase complète.
 
 .image
-₍_Arion_==1703_boucher-princeton_university-1748_arion₎ peint par F. Boucher en 175
-{% end_adoc %}
+Il faut analyser ₍₁¯_Arion_¯1703_boucher-princeton_university-1748_arion₎ peint par F. Boucher en 1750
+{% end_doc %}

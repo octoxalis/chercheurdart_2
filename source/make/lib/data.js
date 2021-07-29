@@ -34,7 +34,8 @@ module.exports =
        collection_a
     )
     {
-      //;console.log( collection_o.data )
+      // ;console.log( collection_o.data )  //: dump all 11ty data
+
       const data_o =
         collection_o
           .data

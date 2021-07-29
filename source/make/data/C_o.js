@@ -87,9 +87,11 @@ const C_o =
   LINK_START_s:     '₁',   //: img link insert
   TEXT_START_s:     '₂',   //: img text insert
 
-  INS_OPEN_s:      '₍',    //: ins delimiter
-  INS_CLOSE_s:     '₎',    //: ins delimiter
-  INS_SEPARATOR_s:  '==',  //: ins separator
+  PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
+  PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
+  PRE_DELIM_s:     '¯',    //: document preprocessor separator
+  PRE_TXT_s:       '₀',
+  PRE_IMG_s:       '₁',
 
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet

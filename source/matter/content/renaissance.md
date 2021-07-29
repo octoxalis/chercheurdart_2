@@ -27,7 +27,7 @@
 
 }
 ---
-{% _adoc section_a[0] %}
+{% _doc section_a[0] %}
 = {{title_s}}
 
 {{abstract_s}}.
@@ -35,12 +35,11 @@
 
 == Nouvelle version du site
 
-Insérons une ₍précision importante==ceci est une note₎ au milieu d'une phrase complète.
+Insérons une ₍₀¯précision importante¯ceci est une note₎ au milieu d'une phrase complète.
 
-₍_Arion_==1703_boucher-princeton_university-1748_arion₎ peint par F. Boucher en 1750.
+₍₁¯_Arion_¯1703_boucher-princeton_university-1748_arion₎ peint par F. Boucher en 1750.
 
-
-Et la ₍_Jeune femme_==1586_de₊coster-new₊york_sothebys-1625_young₊woman₎ de A. de Coster
+Et la ₍₁¯_Jeune femme_¯1586_de₊coster-new₊york_sothebys-1625_young₊woman₎ de A. de Coster
 
 
 == Références
@@ -49,4 +48,4 @@ Ref. 1: biblio entry
 
 Ref. 2: work entry
 
-{% end_adoc %}
+{% end_doc %}

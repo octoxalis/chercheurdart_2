@@ -24,7 +24,7 @@
   ],
 }
 ---
-{% _adoc section_a[0] %}
+{% _doc section_a[0] %}
 = Traitements de l'image
 
 Différents traitements...
@@ -39,4 +39,4 @@ Différents traitements...
 
 == Références
 
-{% end_adoc %}
+{% end_doc %}
