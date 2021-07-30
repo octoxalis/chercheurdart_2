@@ -87,8 +87,24 @@ Reference point
 xref:article-anchor_1234[Reference]
 
 .note
-Insérons une ₍₀¯précision importante¯ceci est une note₎ au milieu d'une phrase complète.
+les blocs insérés en ligne sont composés de deux parties:
 
-.image
-Il faut analyser ₍₁¯_Arion_¯1703_boucher-princeton_university-1748_arion₎ peint par F. Boucher en 1750
+* appel (prinpipal_s)
+* référence (subsid_s)
+
+TEXTE (TXT)::
+ordinal_n = 0
+
+₍₀  appel (prinpipal_s)
+  parenthèse ouverte (caractère substring) + ordinal_n: 0-99 (caractères substring)₎
+₍₀  référence (subsid_s)
+  newline + indentation (espaces) + référence (mono ou multiligne) + parenthèse fermée (caractère substring)₎
+suite du texte.
+
+IMAGE (IMG)::
+ordinal_n = 1
+
+₍₁  _Arion_
+  1703_boucher-princeton_university-1748_arion₎
+.
 {% end_doc %}

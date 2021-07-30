@@ -35,12 +35,6 @@
 
 == Nouvelle version du site
 
-Insérons une ₍₀¯précision importante¯ceci est une note₎ au milieu d'une phrase complète.
-
-₍₁¯_Arion_¯1703_boucher-princeton_university-1748_arion₎ peint par F. Boucher en 1750.
-
-Et la ₍₁¯_Jeune femme_¯1586_de₊coster-new₊york_sothebys-1625_young₊woman₎ de A. de Coster
-
 
 == Références
 

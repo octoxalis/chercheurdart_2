@@ -89,7 +89,9 @@ const C_o =
 
   PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
   PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
-  PRE_DELIM_s:     '¯',    //: document preprocessor separator
+  //XX PRE_DELIM_s:     '¯',    //: document preprocessor separator
+  PRE_ORDINAL_n:   3,       //: ex. ₀₁ + space
+  PRE_DELIM_s:     '\n',    //: document preprocessor separator
   PRE_TXT_s:       '₀',
   PRE_IMG_s:       '₁',
 

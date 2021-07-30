@@ -13,8 +13,6 @@ const PRE_o =
       content_s
     ) =>
     {
-      //;console.log( content_s )
-    
       const match_a =
         content_s
           .matchAll
@@ -28,7 +26,6 @@ const PRE_o =
                 ${C_o.PRE_CLOSE_s}`
           )
 
-      // ;console.log( [...match_a] )
       return match_a
     }
 
@@ -49,7 +46,7 @@ module
       {
         for
         (
-          const match_a  //: ₍ordinal_s¯principal_s¯subsid_s₎
+          const match_a  //: ₍ordinal_s principal_s\n  subsid_s₎
           of
           [ ...
             PRE_o
@@ -60,8 +57,14 @@ module
           const [ replace_s, match_s ] =
             match_a
 
-          const [ ordinal_s, principal_s, subsid_s ] =
+          const ordinal_s =
             match_s
+              .slice( 0, C_o.PRE_ORDINAL_n )
+              .trim()    //: if ordinal_s < ₁₀
+
+          const [ principal_s, subsid_s ] =
+            match_s
+              .slice( C_o.PRE_ORDINAL_n )    //: skip ordinal_s
               .split( C_o.PRE_DELIM_s )
 
           const type_s =
@@ -78,7 +81,7 @@ module
               .replace
               (
                 replace_s,
-                `${principal_s} ins:${type_s}[ins_s="${subsid_s}"]`
+                `${principal_s} ins:${type_s}[ins_s="${subsid_s.trim()}"]`
               )
         }
     
