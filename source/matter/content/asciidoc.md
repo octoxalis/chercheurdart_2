@@ -28,7 +28,7 @@
 }
 ---
 {% _doc section_a[0] %}
-= {{title_s}}
+= {{title_s}} (h1)
 
 {{abstract_s}}
 
@@ -60,7 +60,7 @@ Alinea_6
 == Alinea
 
 .paragraph
-A common alinea
+A common alinea...
 
 
 [quote, Nietzsche, Aurore]
@@ -79,12 +79,7 @@ ____
 * tertio
 
 //----------------------------------------
-== Links
-
-[[article-anchor_1234]]
-Reference point
-
-xref:article-anchor_1234[Reference]
+== Insert
 
 .note
 les blocs insérés en ligne sont composés de deux parties:
@@ -95,8 +90,10 @@ les blocs insérés en ligne sont composés de deux parties:
 TEXTE (TXT)::
 ordinal_n = 0
 
+Le texte précédent l'
 ₍₀  appel (prinpipal_s)
   parenthèse ouverte (caractère substring) + ordinal_n: 0-99 (caractères substring)₎
+est suivi de la
 ₍₀  référence (subsid_s)
   newline + indentation (espaces) + référence (mono ou multiligne) + parenthèse fermée (caractère substring)₎
 suite du texte.
@@ -107,4 +104,21 @@ ordinal_n = 1
 ₍₁  _Arion_
   1703_boucher-princeton_university-1748_arion₎
 .
+
+REFERENCE (REF)::
+ordinal_n = 2
+
+₍₂  2010_loire
+  p.123 f.123₎
+.
+
+
+//----------------------------------------
+== Links
+
+[[article-anchor_1234]]
+Reference point
+
+xref:article-anchor_1234[Reference]
+
 {% end_doc %}

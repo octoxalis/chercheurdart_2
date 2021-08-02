@@ -79,21 +79,23 @@ const C_o =
   LINE_DELIM_s:    '\n',
   ID_DELIM_s:      '-',    //: between parts
   ID_PART_DELIM_s: '_',    //: between subparts
-  ID_WORD_DELIM_s: '~',    //: between multi word subpart
-
-  INSERT_CHAR_a:    ['/', '₀', '₁', '₂' ],
-  COMMENT_START_s:  '/',   //: comment line 1rst char (can use // or /* */)
-  IMG_START_s:      '₀',   //: img insert
-  LINK_START_s:     '₁',   //: img link insert
-  TEXT_START_s:     '₂',   //: img text insert
+  ID_WORD_DELIM_s: '₊',    //: between multi word subpart
 
   PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
   PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
-  //XX PRE_DELIM_s:     '¯',    //: document preprocessor separator
   PRE_ORDINAL_n:   3,       //: ex. ₀₁ + space
   PRE_DELIM_s:     '\n',    //: document preprocessor separator
-  PRE_TXT_s:       '₀',
-  PRE_IMG_s:       '₁',
+
+  INS_TXT_s:      '₀',     //: text insert
+  INS_IMG_s:      '₁',     //: img insert
+  INS_REF_s:      '₂',     //: reference insert
+
+  INS_METHOD_o:
+  {
+    '₀': 'txt',
+    '₁': 'img',
+    '₂': 'ref',
+  },
 
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet

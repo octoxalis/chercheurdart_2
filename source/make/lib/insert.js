@@ -16,7 +16,7 @@ module.exports =
   )
   {
     INS_o
-      .gray_a = []    //: create stack
+      .gray_a = []       //: create stack
 
     INS_o
       .color_a = []      //: create stack
@@ -34,17 +34,17 @@ module.exports =
           .matchAll
           (
             REX_o
-              .new__re( 'gms' )
+              .new__re( 'gms' )    //: collect all <ins> tags
                 `<ins
                 \s+?
-                (             //: open optional data attribute
+                (             //: open optional data attribute group
                 data--=
                 "
-                ([^"]+?)      //: section_s (everything inside apos)
+                ([^"]+?)      //: section_s (everything inside apos) group
                 "
-                )?            //: close optional data attribute
+                )?            //: close optional data attribute group
                 >
-                ([\s\S]+?)    //: everything inside ins element
+                ([\s\S]+?)    //: everything inside <ins> element group
                 </ins>`
           )
       ]
@@ -59,24 +59,12 @@ module.exports =
           match_a[2]
 
       let insert_s =
-        match_a[3]
-          .trim()
-
-      if         //: lightbox image
-      (
-        C_o
-          .INSERT_CHAR_a
-            .includes
-            (
-              insert_s
-                .charAt( 0 )
-            )
-      )
-      {
-        insert_s =
-          INS_o
-            .parse__s( insert_s )
-      }
+        INS_o
+          .parse__s
+          (
+            match_a[3]
+              .trim()
+          )
       
       content_s =
         content_s
@@ -97,13 +85,13 @@ module.exports =
           .length
       ?
         content_s
-          .replace
+          .replace    //: add GALLERY_TITLE_s link to header
           (
             '</header>',  //: insertion before <header> end
             `<a href="#${F_o.slug__s( C_o.GALLERY_TITLE_s )}">${C_o.GALLERY_TITLE_s}</a>`
             + '</header>'
           )
-          .replace
+          .replace    //: add gallery asides (gray and color)
           (
             `<${C_o.SEC_MEDIA_s}/>`,    //: custom tag deleted after section insertion
             `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
@@ -116,10 +104,10 @@ module.exports =
           )
       :
         content_s
-          .replace
+          .replace    //: remove SEC_MEDIA_s custom tag after section insertion
           (
-            `<${C_o.SEC_MEDIA_s}/>`,    //: custom tag deleted after section insertion
-            ''    //: remove it
+            `<${C_o.SEC_MEDIA_s}/>`,
+            ''
           )
     )
   }
@@ -147,10 +135,9 @@ const INS_o =
 
 /**
  * IOR image insert content (order = image + (links) + (text) )
-/ comment_s
-₀ ID_s == url_s           //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
-₁ link_s == url_s         //: link
-₂ text_s \ multiline_s    //: text
+₀ text_s \ multiline_s    //: text
+₁ ID_s ==  DB work ID     //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
+₂ ref_s == DB ref ID      //: ref
 */
 parse__s:
 (
@@ -158,12 +145,20 @@ parse__s:
 ) =>
 {
   INS_o
+    .text_s = ''
+
+  INS_o
     .image_s = ''
+
   INS_o
     .legend_s = ''
 
   INS_o
     .aside_n = 1    //: post increment
+
+  const specifier_s =
+    insert_s
+      .charAt( 0 )    //: [₀-₉]
 
   for
   (
@@ -173,35 +168,10 @@ parse__s:
       .split( C_o.LINE_DELIM_s )
     )
   {
-    let method_s
-
-    switch
-    (
-      line_s
-        .charAt( 0 )
-    )
-    {
-      case C_o.IMG_START_s:    //: comes 1st
-        {
-          method_s = 'img'
-          break
-        }
-        
-      case C_o.LINK_START_s:   //: after IMG_START_s
-        {
-          method_s = 'link'
-          break
-        }
-        
-      case C_o.TEXT_START_s:   //: after LINK_START_s
-        {
-          method_s = 'text'
-          break
-        }
-        
-      default:    //: comment or unrecognised token
-        break
-    }
+    let method_s =
+      C_o.
+        INS_METHOD_o
+          [ specifier_s ]
 
     if ( method_s )
     {
@@ -209,103 +179,106 @@ parse__s:
         [`${method_s}Line__v`]
         (
           line_s
-            .slice( 1 )    //: skip IMG_START_s
+            .slice( 1 )    //: skip specifier
             .trim()
   
         )
     }
   }
 
-  return (
-    INS_o
-      .gray_a
-        .length
-        ?
+  switch
+  (
+    specifier_s
+  )
+  {
+    case C_o.INS_TXT_s:
+    case C_o.INS_REF_s:
+      return (
+        INS_o
+          .text_s
+      )
+  
+    case C_o.INS_IMG_s:
+      return (
         INS_o
           .image_s
-        :
-          'parse__s: NOTHING TO INSERT'    //: should not occur!
       )
+
+  }
 }
 ,
 
 
 
 
-imgLine__v:
-  (
+txtLine__v:    //: ₀
+(
+  line_s
+) =>
+{
+  const text_a =
     line_s
-  ) =>
-  {
-    let imgId_s = line_s
+      .split( C_o.INS_TXT_s )
+      .map
+      (
+        text_s =>
+          text_s
+            .trim()
+      )                      //;console.log( text_a )
+      
+  INS_o
+    .text_s =
+        //... TODO wrap
+        `<span><${C_o.TABLE_TAG_s}>`
+        + text_a
+          .join( `</${C_o.TABLE_TAG_s}><${C_o.TABLE_TAG_s}>` )
+        + `</${C_o.TABLE_TAG_s}></span>`
+}
+,
 
-    INS_o
-      .legend__v( imgId_s )
-        
-    INS_o
-      .image__v( imgId_s )
-  }
-  ,
 
 
+imgLine__v:    //: ₁
+(
+  line_s
+) =>
+{
+  let imgId_s = line_s
 
-
-  linkLine__v:
-  (
-    line_s
-  ) =>
-  {
-    let
-    [
-      key_s,
-      url_s
-    ] =
-      INS_o
-        .keyVal__a( line_s )
-
-    INS_o
-      .gray_a
-        .push
-        (
-          //... TODO wrap
-          `<a id="${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}"`
-          + ` href="${url_s}">`
-          + `${key_s}</a>`
-        )
-  }
-  ,
+  INS_o
+    .legend__v( imgId_s )
+      
+  INS_o
+    .image__v( imgId_s )
+}
+,
 
 
 
 
+refLine__v:    //: ₂
+(
+  line_s
+) =>
+{
+  //XXlet
+  //XX[
+  //XX  key_s,
+  //XX  url_s
+  //XX] =
+  //XX  INS_o
+  //XX    .keyVal__a( line_s )
 
-textLine__v:
-  (
-    line_s
-  ) =>
-  {
-    const text_a =
+  INS_o
+    .text_s =
+      //XX  `<a id="${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}"`
+      //XX  + ` href="${url_s}">`
+      //XX  + `${key_s}</a>`
+      //... TODO get DB for biblio
       line_s
-        .split( C_o.TEXT_START_s )
-        .map
-        (
-          text_s =>
-            text_s
-              .trim()
-        )
-        
-    INS_o
-      .color_a
-        .push
-        (
-          //... TODO wrap
-          `<span><${C_o.TABLE_TAG_s}>`
-          + text_a
-            .join( `</${C_o.TABLE_TAG_s}><${C_o.TABLE_TAG_s}>` )
-          + `</${C_o.TABLE_TAG_s}></span>`
-        )
-  }
-  ,
+}
+,
+
 
 
 
@@ -550,16 +523,16 @@ textLine__v:
 
 
 
-  keyVal__a:
-  line_s =>
-    line_s
-      .slice( 1 )    //: skip START_s char
-      .split( C_o.KEYVAL_DELIM_s )
-      .map
-      (
-        split_s =>
-          split_s
-            .trim()
-      )
-  ,
+  //XX keyVal__a:
+  //XX line_s =>
+  //XX   line_s
+  //XX     .slice( 1 )    //: skip START_s char
+  //XX     .split( C_o.KEYVAL_DELIM_s )
+  //XX     .map
+  //XX     (
+  //XX       split_s =>
+  //XX         split_s
+  //XX           .trim()
+  //XX     )
+  //XX ,
 }

@@ -25,28 +25,27 @@ module
               ) =>
               {
                 // ;console.table( attribute_a )
-                if
-                (
-                  target_s
-                  ===
-                  'TXT'
-                )
-                {
-                  return (
-                    `<ins data--="${C_o.SEC_TEXT_s}">${attribute_a.ins_s}</ins>`    //!!! quote needed for regexp
-                    )
-                }
-                if
-                (
-                  target_s
-                  ===
-                  'IMG'
-                )
-                {
-                  return (
-                    `<ins data--="${C_o.SEC_TEXT_s}">₀ ${attribute_a.ins_s}</ins>`    //!!! quote needed for regexp
-                    )
-                }
+                //XXlet specifier_s = ''    //: default is TXT
+//XX
+                //XXswitch ( target_s )
+                //XX{
+                //XX  case 'IMG':
+                //XX    specifier_s =
+                //XX      '₀'
+                //XX    break;
+                //XX
+                //XX  case 'REF':
+                //XX    specifier_s =
+                //XX      '₁'
+                //XX    break;
+                //XX
+                //XX  default:
+                //XX    break;
+                //XX}
+
+                return (
+                  `<ins data--="${C_o.SEC_TEXT_s}">${target_s} ${attribute_a.ins_s}</ins>`    //!!! quote needed for regexp
+                  )
               }
             )
         }

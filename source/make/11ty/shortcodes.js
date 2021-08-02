@@ -16,15 +16,16 @@ const CODES_o =
     section_s
   ) =>
   {
-    const doc_s =
+                                    //;console.log( content_s )
+    content_s =
       PRE_o
-        .ins__s( content_s )        //;console.log( doc_s )
+        .ins__s( content_s )        //;console.log( content_s )
 
     return (
       `<section id="${F_o.slug__s( section_s )}">`
       +
       ADOC_o
-        .convert__s( doc_s )
+        .convert__s( content_s )
       +
       `</div>\n`        //: first close last chapter div
       + 
