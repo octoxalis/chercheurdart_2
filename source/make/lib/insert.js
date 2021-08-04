@@ -134,9 +134,8 @@ const INS_o =
 
 
 /**
- * IOR image insert content (order = image + (links) + (text) )
-₀ text_s \ multiline_s    //: text
-₁ ID_s ==  DB work ID     //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
+₀ text_s multiline_s      //: text
+₁ img_s ==  DB work ID    //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
 ₂ ref_s == DB ref ID      //: ref
 */
 parse__s:
@@ -156,9 +155,13 @@ parse__s:
   INS_o
     .aside_n = 1    //: post increment
 
+  const specifier_n =
+    insert_s
+      .indexOf( C_o.INS_SPECIF_DELIM_s )
+
   const specifier_s =
     insert_s
-      .charAt( 0 )    //: [₀-₉]
+      .slice( 0, specifier_n )
 
   for
   (
@@ -224,7 +227,7 @@ txtLine__v:    //: ₀
         text_s =>
           text_s
             .trim()
-      )                      //;console.log( text_a )
+      )
       
   INS_o
     .text_s =
@@ -261,19 +264,8 @@ refLine__v:    //: ₂
   line_s
 ) =>
 {
-  //XXlet
-  //XX[
-  //XX  key_s,
-  //XX  url_s
-  //XX] =
-  //XX  INS_o
-  //XX    .keyVal__a( line_s )
-
   INS_o
     .text_s =
-      //XX  `<a id="${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}"`
-      //XX  + ` href="${url_s}">`
-      //XX  + `${key_s}</a>`
       //... TODO get DB for biblio
       line_s
 }
@@ -523,16 +515,16 @@ refLine__v:    //: ₂
 
 
 
-  //XX keyVal__a:
-  //XX line_s =>
-  //XX   line_s
-  //XX     .slice( 1 )    //: skip START_s char
-  //XX     .split( C_o.KEYVAL_DELIM_s )
-  //XX     .map
-  //XX     (
-  //XX       split_s =>
-  //XX         split_s
-  //XX           .trim()
-  //XX     )
-  //XX ,
+  //?? keyVal__a:
+  //?? line_s =>
+  //??   line_s
+  //??     .slice( 1 )    //: skip START_s char
+  //??     .split( C_o.KEYVAL_DELIM_s )
+  //??     .map
+  //??     (
+  //??       split_s =>
+  //??         split_s
+  //??           .trim()
+  //??     )
+  //?? ,
 }

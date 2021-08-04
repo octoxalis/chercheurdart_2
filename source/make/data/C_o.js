@@ -75,7 +75,7 @@ const C_o =
 
 
   //=== JS ===
-  KEYVAL_DELIM_s:  '==',  //: _ior_spot shortcode
+  //?? KEYVAL_DELIM_s:  '==',  //: _ior_spot shortcode
   LINE_DELIM_s:    '\n',
   ID_DELIM_s:      '-',    //: between parts
   ID_PART_DELIM_s: '_',    //: between subparts
@@ -83,9 +83,9 @@ const C_o =
 
   PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
   PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
-  PRE_ORDINAL_n:   3,       //: ex. ₀₁ + space
   PRE_DELIM_s:     '\n',    //: document preprocessor separator
 
+  INS_SPECIF_DELIM_s: ' ',
   INS_TXT_s:      '₀',     //: text insert
   INS_IMG_s:      '₁',     //: img insert
   INS_REF_s:      '₂',     //: reference insert
