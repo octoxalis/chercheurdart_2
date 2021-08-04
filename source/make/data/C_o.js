@@ -83,9 +83,10 @@ const C_o =
 
   PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
   PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
-  PRE_DELIM_s:     '\n',    //: document preprocessor separator
+  PRE_DELIM_s:     '\n',   //: document preprocessor separator
 
   INS_SPECIF_DELIM_s: ' ',
+  INS_BREAK_DELIM_s:  ' + ',  //: line break inside insert
   INS_TXT_s:      '₀',     //: text insert
   INS_IMG_s:      '₁',     //: img insert
   INS_REF_s:      '₂',     //: reference insert

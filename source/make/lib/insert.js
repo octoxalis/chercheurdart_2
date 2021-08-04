@@ -182,7 +182,7 @@ parse__s:
         [`${method_s}Line__v`]
         (
           line_s
-            .slice( 1 )    //: skip specifier
+            .slice( specifier_n )    //: skip specifier
             .trim()
   
         )
@@ -227,6 +227,11 @@ txtLine__v:    //: ₀
         text_s =>
           text_s
             .trim()
+            .replaceAll
+            (
+              C_o.INS_BREAK_DELIM_s,
+              '<br>'
+            )
       )
       
   INS_o
@@ -268,6 +273,12 @@ refLine__v:    //: ₂
     .text_s =
       //... TODO get DB for biblio
       line_s
+      .trim()
+        .replaceAll
+        (
+          C_o.INS_BREAK_DELIM_s,
+          '<br>'
+        )
 }
 ,
 

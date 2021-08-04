@@ -29,7 +29,8 @@
 ---
 {% _doc section_a[0] %}
 = {{title_s}} (h1)
-:list-marker: &mdash;
+//: no break for insert a line start
+:NB: &#x2060;
 
 {{abstract_s}}
 
@@ -88,44 +89,37 @@ les blocs insérés en ligne sont composés de deux parties:
 * appel (prinpipal_s)
 * référence (subsid_s)
 
+
 TEXTE (TXT) specifier_s = ₀
 
 Le texte précédent l'
 ₍₀ appel (prinpipal_s)
-  parenthèse ouverte (caractère substring) + specifier_s: 0-99 (caractères substring)₎
+  parenthèse ouverte (caractère substring)
+  specifier_s: 0-99 (caractères substring)₎
 est suivi de la
 ₍₀ référence (subsid_s)
-  newline + indentation (espaces) + référence (mono ou multiligne) + parenthèse fermée (caractère substring)₎
+  newline
+  indentation (espaces)
+  référence (mono ou multiligne)
+  parenthèse fermée (caractère substring)₎
 suite du texte.
-
-// Le texte précédent l'appel (prinpipal_s)
-// ins:₀[ins_s="parenthèse ouverte (caractère substring) + specifier_s: 0-99 (caractères substring)"]
-// est suivi de la référence (subsid_s)
-// ins:₀[ins_s="newline + indentation (espaces) + référence (mono ou multiligne) + parenthèse fermée (caractère substring)"]
-// suite du texte.
 
 
 IMAGE (IMG) specifier_s = ₁
 
-
-Avec
 ₍₁ _Arion_
   1703_boucher-princeton_university-1748_arion₎
-, F. Boucher élabore un cycle.
-
-{list-marker}
-₍₁ _Arion_
-  1703_boucher-princeton_university-1748_arion₎
-
+de F. Boucher fait partie du cycle décoratif.
 
 // _Arion_ ins:₁[ins_s="1703_boucher-princeton_university-1748_arion"]
 
-REFERENCE (REF) specifier_s = ₂
 
+REFERENCE (REF) specifier_s = ₂
 
 Dans le catalogue
 ₍₂ 2010_loire
-  p.123 f.123₎
+  p.123
+  f.123₎
  de la collection Mottais, ce tableau.
 
 // Référence bibliographique:
