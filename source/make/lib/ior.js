@@ -1,5 +1,5 @@
+const DB_o =  require( './db.js' )
 const I_o = require('../data/I_o.js')
-const DB_o =  require( '../lib/db.js' )
 
 
 
@@ -26,10 +26,9 @@ const IOR_o =
         .format
     ] =
       DB_o
-        .db__s()
-          .work
-            [`${id_s}`]
-              .default_a
+        .work
+          [`${id_s}`]
+            .default_a
       ??
       I_o
         .IOR_DEFAULT_a

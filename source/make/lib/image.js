@@ -1,8 +1,5 @@
-const DB_o = require( './db.js' )
-
-const C_o   = require('../data/C_o.js')
 const REX_o = require( './regex.js' )
-const IOR_o = require( '../lib/ior.js' )
+const IOR_o = require( './ior.js' )
 
 
 

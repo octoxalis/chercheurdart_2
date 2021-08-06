@@ -29,10 +29,9 @@
 ---
 {% _doc section_a[0] %}
 = {{title_s}} (h1)
-//: no break for insert a line start
-:NB: &#x2060;
 
 {{abstract_s}}
+
 
 //----------------------------------------
 == Headers (h2)
@@ -58,6 +57,7 @@ Alinea_6
 .horizontal line
 '''
 
+
 //----------------------------------------
 == Alinea
 
@@ -70,6 +70,7 @@ ____
 Sans la musique, la vie serait une erreur
 ____
 
+
 //----------------------------------------
 == List
 
@@ -80,11 +81,11 @@ ____
   - deux
 * tertio
 
+
 //----------------------------------------
 == Insert
 
-.note
-les blocs insérés en ligne sont composés de deux parties:
+Les blocs insérés en ligne se composent de deux parties:
 
 * appel (prinpipal_s)
 * référence (subsid_s)
@@ -122,8 +123,6 @@ Dans le catalogue
   f.123₎
  de la collection Mottais, ce tableau.
 
-// Référence bibliographique:
-// 2010_loire ins:₂[ins_s="p.123 f.123"]
 
 //----------------------------------------
 == Links

@@ -1,4 +1,4 @@
-const DB_o = require( './db.js' )
+const DB_o  = require( './db.js' )
 const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
 const C_o   = require( '../data/C_o.js' )

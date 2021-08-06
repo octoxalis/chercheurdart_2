@@ -105,6 +105,16 @@ const C_o =
 
   //???SUB_SPACE_s:     '₊',    //: unicode ₊
 
+  //=== DB ===
+  DB_a:
+  [
+    'artist',
+    'work',
+    'collection',
+    'biblio',
+  ],
+
+
   //=== ADOC ===
   ADOC_DATA_s:       'ad',
   MACRO_INSERT_s:    'ins',
