@@ -1,8 +1,7 @@
 const HEAD_o = require( './header.js' )
-const INS_o = require( './insert.js' )
-const CSP_o = require( './csp.js' )
-const C_o =   require( '../data/C_o.js' )
-const IMG_o = require( './image.js' )
+const CSP_o  = require( './csp.js' )
+const INS_o  = require( './ins.js' )
+const C_o    = require( '../data/C_o.js' )
 
 
 
@@ -45,12 +44,6 @@ const BUI_o =
     data_o
   )
   {
-    //;console.log( `${data_o.permalink} ----\n${input_s}` )
-
-    //~~let slash_n = data_o.permalink.lastIndexOf( '/')
-    //~~const id_s = data_o.permalink.slice( slash_n + 1, '.html'.length * -1 )
-    //~~const path_s = ( slash_n < 0 ) ? '' : data_o.permalink.slice( 0, slash_n )
-
     let start_s = input_s
     //... what else?
     return start_s
@@ -64,7 +57,7 @@ const BUI_o =
     data_o
   )
   {
-    //;console.log( `${data_o.permalink} ----\n${input_s}` )
+    //;console.log( `${data_o.permalink}` )
 
     HEAD_o
       .add__v( data_o )
@@ -103,7 +96,7 @@ const BUI_o =
   )
   {
     let body_s = input_s
-
+    //... what else?
     return body_s
   }
 ,
@@ -123,8 +116,26 @@ module.exports =
     data_o
   )
   {
-    if ( BUI_o.current_n === 0 && BUI_o.file_a ) BUI_o.buildStart__v( data_o )
-    let start_s = BUI_o.templateStart__s( input_s, data_o )
+    if
+    (
+      BUI_o.current_n
+      === 0
+      &&
+      BUI_o.file_a
+      )
+      {
+        BUI_o
+          .buildStart__v( data_o )
+      }
+
+    let start_s =
+      BUI_o
+        .templateStart__s
+        (
+          input_s,
+          data_o
+          )
+
     return start_s
   }
 ,
@@ -137,9 +148,37 @@ module.exports =
     data_o
   )
   {
-    ++BUI_o.current_n    //;console.log( `${BUI_o.current_n} / ${BUI_o.count_n}`)
-    let end_s = BUI_o.templateEnd__s( input_s, data_o )
-    if ( BUI_o.file_a && BUI_o.current_n === BUI_o.count_n - 1 ) BUI_o.buildEnd__v( end_s, data_o )
+    ++BUI_o.current_n
+
+    let end_s =
+      BUI_o
+        .templateEnd__s
+        (
+          input_s,
+          data_o
+        )
+
+    if
+    (
+      BUI_o
+        .file_a
+      &&
+      BUI_o
+        .current_n
+       ===
+       BUI_o
+         .count_n
+         - 1
+    )
+    {
+      BUI_o
+        .buildEnd__v
+        (
+          end_s,
+          data_o
+        )
+    }
+
     return end_s
   }
 ,
@@ -151,7 +190,16 @@ module.exports =
     input_s,
     data_o
   )
-  { return BUI_o.headEnd__s( input_s, data_o ) }
+  {
+    return (
+      BUI_o
+        .headEnd__s
+        (
+          input_s,
+          data_o
+        )
+    )
+  }
 ,
 
 
@@ -161,7 +209,16 @@ module.exports =
     input_s,
     data_o
   )
-  { return BUI_o.bodyEnd__s( input_s, data_o ) }
+  {
+    return (
+      BUI_o
+        .bodyEnd__s
+        (
+          input_s,
+          data_o
+        )
+    )
+  }
 ,
 
 
@@ -180,11 +237,26 @@ void function ()
   const DEPTH_n  = 2
 
   BUI_o
-    .file_a = require( 'klaw-sync' )( MD_DIR_s, { nodir: true, depthLimit: DEPTH_n } )
+    .file_a =
+      require( 'klaw-sync' )
+      (
+        MD_DIR_s,
+        {
+          nodir: true,
+          depthLimit: DEPTH_n
+        }
+      )
 
-  if ( BUI_o.file_a )
+  if
+  (
+    BUI_o
+      .file_a
+  )
   {
     BUI_o
-      .count_n = BUI_o.file_a.length
+      .count_n =
+        BUI_o
+          .file_a
+            .length
   }
 } ()

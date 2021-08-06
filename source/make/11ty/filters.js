@@ -63,8 +63,4 @@ module.exports = make_o =>
   make_o.addFilter( 'body_end', ( body_s, ...args_ ) => BUI_o.body__s( body_s, ...args_ ) )
   make_o.addFilter( 'template_start', ( start_s, ...args_ ) => BUI_o.start__s( start_s, ...args_ ) )
   make_o.addFilter( 'template_end', ( end_s, ...args_ ) => BUI_o.end__s( end_s, ...args_ ) )
-  
-  const CSS_o = require('../lib/css.js')
-  make_o.addFilter( 'strip', ( css_s, ...args_ ) => CSS_o.strip__s( css_s, ...args_ ) )
-  
 }

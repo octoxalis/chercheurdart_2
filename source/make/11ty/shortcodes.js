@@ -1,9 +1,6 @@
-const PRE_o  = require( '../lib/preprocessor.js' )
+const PREP_o = require( '../lib/prep.js' )
 const ADOC_o = require( '../lib/adoc.js' )
-
-//XX const C_o = require( '../data/C_o.js' )
-const F_o = require( '../data/F_o.js' )
-//?? const IOR_o = require('../lib/ior.js')
+const F_o    = require( '../data/F_o.js' )
 
 
 
@@ -17,8 +14,8 @@ const CODES_o =
   ) =>
   {
     content_s =
-      PRE_o
-        .ins__s( content_s )        //;console.log( content_s )
+      PREP_o
+        .ins__s( content_s )
 
     return (
       `<section id="${F_o.slug__s( section_s )}">`
@@ -40,11 +37,11 @@ const CODES_o =
 module.exports =
   make_o =>
   {
-    for        //=== paired shortcodes
+    for
     (
       const code_s
       of
-      [
+      [        //=== paired shortcodes
         'doc',
       ]
     )

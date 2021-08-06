@@ -60,7 +60,7 @@ module
               const content_s =
                 item_o
                   .getBlocks()
-                  .length
+                    .length
                 ?
                   item_o
                     .getContent()
@@ -87,7 +87,8 @@ module
   
     if
     (
-      role_a.length
+      role_a
+        .length
     )
     {
       data_s =

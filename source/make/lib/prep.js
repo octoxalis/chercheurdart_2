@@ -6,7 +6,7 @@ const C_o =
 
 
 
-const PRE_o =
+const PREP_o =
   {
     pre_re:
       REX_o
@@ -35,7 +35,7 @@ module
           of
           [ ...
             content_s
-              .matchAll( PRE_o.pre_re )
+              .matchAll( PREP_o.pre_re )
           ]
         )
         {
