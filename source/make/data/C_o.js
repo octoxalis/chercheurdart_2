@@ -106,7 +106,7 @@ const C_o =
   //???SUB_SPACE_s:     '₊',    //: unicode ₊
 
   //=== DB ===
-  DB_a:
+  DB_a:    //: db tables names
   [
     'artist',
     'work',

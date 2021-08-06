@@ -20,19 +20,6 @@ const DB_o =
         .DB_a
     )
     {
-      let buffer_s =
-        FS_o
-          .readFileSync
-          (
-            PATH_o
-              .resolve
-                (
-                  __dirname,
-                  `../db/${table_s}.json`
-                ),
-            { encoding:'utf-8', flag:'r' }
-          )
-
       db_o
         [ table_s ] = {}
 
@@ -41,7 +28,20 @@ const DB_o =
         let row_o
         of
         JSON
-          .parse( buffer_s )
+          .parse
+          (
+            FS_o
+              .readFileSync
+              (
+                PATH_o
+                  .resolve
+                    (
+                      __dirname,
+                      `../db/${table_s}.json`
+                    ),
+                { encoding:'utf-8', flag:'r' }
+              )
+          )
       )
       {
         db_o
@@ -51,7 +51,6 @@ const DB_o =
       }
     }
 
-    //;console.log( db_o )
     return db_o
   },
 
