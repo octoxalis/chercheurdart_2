@@ -1,13 +1,4 @@
-{% if _db_b %}
-{% set _path_s = '../../' %}
-{% else %}
-{% set _path_s = '' %}
-{% endif %}
-
-<script src="{{_path_s}}assets/scripts/js/index.min.js" defer></script>
-{% if _db_b %}
-<script src="{{_path_s}}assets/scripts/js/dexie.js" defer></script>
-{% endif %}
+<script src="assets/scripts/js/index.min.js" defer></script>
 {% for _script in script_a %}
-<script src="{{_path_s}}assets/scripts/js/{{_script}}" defer></script>
+<script src="assets/scripts/js/{{_script}}" defer></script>
 {% endfor %}

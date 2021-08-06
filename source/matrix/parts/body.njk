@@ -1,14 +1,7 @@
 <body>
-{% if _db_b %}
-{% include "parts/body/db_gui/main.njk" %}
-{% else %}
 {% include "parts/body/main.njk" %}
-{% endif %}
-
 {% include "parts/body/header.njk" %}
-{% if not _db_b %}
 {% include "parts/body/svg_inline.njk" %}
-{% endif %}
 {% if C_o.SERVICE_b === true %}
 {% include "parts/body/script.njk" %}
 {% endif %}
