@@ -9,116 +9,6 @@ const I_o   = require( '../data/I_o.js' )
 
 
 
-module.exports =
-{
-  insert__s
-  (
-    content_s
-  )
-  {
-    INS_o
-      .gray_a = []       //: create stack
-
-    INS_o
-      .color_a = []      //: create stack
-
-    INS_o
-      .gallery_a = []    //: create stack
-
-    for
-    (
-      const match_a
-      of
-      [ ...
-        content_s
-          .trim()
-          .matchAll
-          (
-            REX_o
-              .new__re( 'gms' )    //: collect all <ins> tags
-                `<ins
-                \s+?
-                (             //: open optional data attribute group
-                data--=
-                "
-                ([^"]+?)      //: section_s (everything inside apos) group
-                "
-                )?            //: close optional data attribute group
-                >
-                ([\s\S]+?)    //: everything inside <ins> element group
-                </ins>`
-          )
-      ]
-    )
-    {
-      INS_o
-        .index_n =
-          match_a.index    //: index with prefix yields a unique ID, e.g. G1234
-
-      INS_o
-        .section_s =
-          match_a[2]
-
-      let insert_s =
-        INS_o
-          .parse__s
-          (
-            match_a[3]
-              .trim()
-          )
-      
-      content_s =
-        content_s
-          .replace
-          (
-            match_a[0],    //: <ins data--="...">...</ins>
-            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.U_IMAGE_OF_s}</label>`
-            + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
-            + `<ins>`      //: remove ins tag data-- attribute
-            + insert_s
-            +`</ins>`
-          )
-    }
-    
-    return (
-      INS_o
-        .gray_a
-          .length
-      ?
-        content_s
-          .replace    //: add GALLERY_TITLE_s link to header
-          (
-            '</header>',  //: insertion before <header> end
-            `<a href="#${F_o.slug__s( C_o.GALLERY_TITLE_s )}">${C_o.GALLERY_TITLE_s}</a>`
-            + '</header>'
-          )
-          .replace    //: add gallery asides (gray and color)
-          (
-            `<${C_o.SEC_MEDIA_s}/>`,    //: custom tag deleted after section insertion
-            `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
-            + `${INS_o.gallery_a.join( '\n' )}`
-            + `</section>`
-            + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`
-            +`</aside>`
-            + `<aside id="color">${INS_o.color_a.join( '\n' )}`
-            + `</aside>`
-          )
-      :
-        content_s
-          .replace    //: remove SEC_MEDIA_s custom tag after section insertion
-          (
-            `<${C_o.SEC_MEDIA_s}/>`,
-            ''
-          )
-    )
-  }
-,
-
-}
-
-
-
-
 const INS_o =
 {
   //--index_n,
@@ -133,10 +23,9 @@ const INS_o =
   
 
 
-
 /**
 ₀ text_s multiline_s      //: text
-₁ img_s ==  DB work ID    //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
+₁ img_s == DB work ID     //: image: url_s = (C_o.IMG_DIR_s implied) img_id + (iiif_s || C_o.IOR_FULL_s)
 ₂ ref_s == DB ref ID      //: ref
 */
 parse__s:
@@ -539,4 +428,114 @@ refLine__v:    //: ₂
   //??           .trim()
   //??     )
   //?? ,
+}
+
+
+
+
+module.exports =
+{
+  insert__s
+  (
+    content_s
+  )
+  {
+    INS_o
+      .gray_a = []       //: create stack
+
+    INS_o
+      .color_a = []      //: create stack
+
+    INS_o
+      .gallery_a = []    //: create stack
+
+    for
+    (
+      const match_a
+      of
+      [ ...
+        content_s
+          .trim()
+          .matchAll
+          (
+            REX_o
+              .new__re( 'gms' )    //: collect all <ins> tags
+                `<ins
+                \s+?
+                (             //: open optional data attribute group
+                data--=
+                "
+                ([^"]+?)      //: section_s (everything inside apos) group
+                "
+                )?            //: close optional data attribute group
+                >
+                ([\s\S]+?)    //: everything inside <ins> element group
+                </ins>`
+          )
+      ]
+    )
+    {
+      INS_o
+        .index_n =
+          match_a.index    //: index with prefix yields a unique ID, e.g. G1234
+
+      INS_o
+        .section_s =
+          match_a[2]
+
+      let insert_s =
+        INS_o
+          .parse__s
+          (
+            match_a[3]
+              .trim()
+          )
+      
+      content_s =
+        content_s
+          .replace
+          (
+            match_a[0],    //: <ins data--="...">...</ins>
+            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.U_IMAGE_OF_s}</label>`
+            + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
+            + `<ins>`      //: remove ins tag data-- attribute
+            + insert_s
+            +`</ins>`
+          )
+    }
+    
+    return (
+      INS_o
+        .gray_a
+          .length
+      ?
+        content_s
+          .replace    //: add GALLERY_TITLE_s link to header
+          (
+            '</header>',  //: insertion before <header> end
+            `<a href="#${F_o.slug__s( C_o.GALLERY_TITLE_s )}">${C_o.GALLERY_TITLE_s}</a>`
+            + '</header>'
+          )
+          .replace    //: add gallery asides (gray and color)
+          (
+            `<${C_o.SEC_MEDIA_s}/>`,    //: custom tag deleted after section insertion
+            `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
+            + `${INS_o.gallery_a.join( '\n' )}`
+            + `</section>`
+            + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`
+            +`</aside>`
+            + `<aside id="color">${INS_o.color_a.join( '\n' )}`
+            + `</aside>`
+          )
+      :
+        content_s
+          .replace    //: remove SEC_MEDIA_s custom tag after section insertion
+          (
+            `<${C_o.SEC_MEDIA_s}/>`,
+            ''
+          )
+    )
+  }
+,
+
 }

@@ -25,6 +25,7 @@ module.exports =
 
 
   //=== DIR ===     relative to site || source/ware dir
+  WARE_DIR_s:          'source/ware/',
   IMG_DIR_s:           './assets/media/img/',
   CONTEXTUAL_INPUT_s:  '../assets/styles/contextual_css/html.context.html',
   CONTEXTUAL_OUTPUT_s: '../../matrix/assets/styles/css/parts/',

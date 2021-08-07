@@ -39,7 +39,10 @@ const DB_o =
                       __dirname,
                       `../db/${table_s}.json`
                     ),
-                { encoding:'utf-8', flag:'r' }
+                {
+                  encoding:'utf-8',
+                  flag:'r'
+                }
               )
           )
       )

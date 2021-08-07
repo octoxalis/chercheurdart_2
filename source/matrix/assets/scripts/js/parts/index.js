@@ -63,6 +63,61 @@ const IND_o =
           )
   }
   ,
+
+
+
+
+  anchor__v:
+  () =>
+  {
+    console.log( location )
+
+    const hash_s =
+      location
+        .hash
+        .slice( 1 )       ;console.log( hash_s )    //: skip '#'
+
+    const section_n =
+        hash_s
+          .indexOf( '_' )
+
+    if
+    (
+      section_n
+      >
+      -1
+    )
+    {
+      const section_s =
+        hash_s
+          .slice
+          (
+            0,
+            section_n
+          )       ;console.log( section_s )
+
+      if
+      (
+        hash_s
+        !==
+        section_s
+      )
+      {
+        location
+          .hash = section_s
+        
+        const anchor_e =
+          document
+            .getElementById( hash_s )
+
+        anchor_e
+        &&
+        anchor_e
+          .scrollIntoView( {behavior: "smooth", block: "start", inline: "nearest"} )
+      }
+    }
+  }
+  ,
 }
 
 
@@ -70,6 +125,8 @@ const IND_o =
 void function
 ()
 {
+  //;console.log( 'index.js' )
+
   IND_o
     .service__v()
 
@@ -79,12 +136,26 @@ void function
   if
   (
     ! location
-      .hash
+        .hash
   )
   {
     location +=
       `#{{F_o.slug__s( C_o.SEC_TEXT_s )}}`
   }
 
-  ;console.log( 'index.js' )
+  window
+    .addEventListener
+    (
+      'load',
+      IND_o.anchor__v,
+      false
+    )
+
+  window
+    .addEventListener
+    (
+      'hashchange',
+      IND_o.anchor__v,
+      false
+    )
 } ()

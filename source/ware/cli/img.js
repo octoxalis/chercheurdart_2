@@ -16,8 +16,8 @@ const IOR_o = require( '../../make/lib/ior.js' )
 
 const IMG_o =
 {
-  inputDir_s:  `source/ware/${C_o.IMG_DIR_s}`,
-  outputDir_s: `source/ware/static/${C_o.IMG_DIR_s}`,
+  inputDir_s:  `${C_o.WARE_DIR_s}${C_o.IMG_DIR_s}`,
+  outputDir_s: `${C_o.WARE_DIR_s}static/${C_o.IMG_DIR_s}`,
 
 
 

@@ -27,11 +27,11 @@
 
 }
 ---
+{% set _section_0 = permalink + '#' + F_o.slug__s( section_a[0] ) %}
 {% _doc section_a[0] %}
 = {{title_s}} (h1)
 
 {{abstract_s}}
-
 
 //----------------------------------------
 == Headers (h2)
@@ -70,6 +70,9 @@ ____
 Sans la musique, la vie serait une erreur
 ____
 
+
+anchor:article_anchor_1234[]
+Voici une référence
 
 //----------------------------------------
 == List
@@ -127,9 +130,6 @@ Dans le catalogue
 //----------------------------------------
 == Links
 
-[[article-anchor_1234]]
-Reference point
-
-xref:article-anchor_1234[Reference]
+link:#article_anchor_1234[Reference]
 
 {% end_doc %}

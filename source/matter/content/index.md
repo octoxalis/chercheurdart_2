@@ -44,6 +44,9 @@ En effet, toutes les images du site sont au format AVIF, une technique d'encodag
 
 ...
 
+link:asciidoc.html#article_anchor_1234[Reference]
+
+
 == Colophon
 
 {{A_o.NAME_s}} est construit avec le générateur de site statique  {{U_o.E11TY_s}}
