@@ -1,0 +1,195 @@
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+:root {
+    --bkgd: #fff;
+    --frgd: #333;
+    --accent: #fc4;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bkgd: #1a1a1a;
+        --frgd: #fff;
+        --accent: #626;
+    }
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 10rem;
+}
+body {
+    --gap: 2rem;
+    margin: 0;
+    font-family: Lora, serif;
+    line-height: 1.5;
+    color: var(--frgd);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bkgd);
+}
+a {
+    color: currentColor;
+}
+main h2 a {
+    text-decoration: none;
+    color: var(--accent);
+    opacity: 0;
+    transition: 0.218s ease;
+}
+main h2 a:before {
+    content: "#";
+    margin-inline-end: 0.25em;
+}
+main h2:hover a {
+    opacity: 1;
+}
+main :not(h2) a:not([href^="http"]):after,
+main a[href*="donniedamato"]:after {
+    content: "\002192";
+    display: inline-block;
+    margin-inline-start: 1ch;
+}
+main img {
+    max-width: 150px;
+    display: block;
+    margin-top: 10rem;
+    margin-bottom: 1rem;
+}
+h1,
+h2,
+h3 {
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+}
+header {
+    padding: 0 var(--gap);
+    border-bottom: 1rem solid var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    transition: transform 0.5s ease;
+    transform: translateY(0);
+    z-index: 1;
+}
+.hide-header {
+    transform: translateY(-100%);
+}
+header > * {
+    padding: 1rem 0;
+}
+header > a {
+    text-decoration: none;
+}
+h1 {
+    display: flex;
+    align-items: center;
+    font-size: min(2rem, 10vw);
+}
+h1 svg {
+    margin-inline-end: 0.25em;
+}
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding-inline-start: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+header li:not(:last-child) {
+    margin-inline-end: 1rem;
+}
+header ul a {
+    color: currentColor;
+}
+main {
+    --max-width: 900px;
+    --col-width: 60%;
+    --threshold: calc(var(--max-width) - 100px);
+    max-width: var(--max-width);
+    margin: auto;
+    padding: var(--gap) var(--gap) 4rem;
+    align-self: center;
+    font-size: 1.1em;
+    line-height: 2;
+}
+main > h2 {
+    min-width: calc(100% - var(--col-width) - var(--gap));
+    max-width: 100%;
+    width: calc((var(--threshold) - 100%) * 1000);
+    text-align: end;
+    font-size: min(3rem, 8vw);
+    float: left;
+    padding-bottom: var(--gap);
+}
+main > :not(h2) {
+    margin: 0;
+    max-width: 100%;
+    min-width: var(--col-width);
+    width: calc((var(--threshold) - 100%) * 1000);
+    margin-left: auto;
+}
+main > hr {
+    border: 0;
+    border-top: 1px solid;
+    height: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: calc(var(--gap) * 2) 0;
+}
+main p,
+main ul {
+    margin-top: 0;
+    margin-bottom: var(--gap);
+}
+main code {
+    padding: 0.25em 0.5em;
+    line-height: 1;
+    background: var(--accent);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+main blockquote {
+    font-size: 1.5em;
+    line-height: 1.5;
+    font-style: italic;
+}
+main .example {
+    border: 1px solid;
+    max-width: 100%;
+    margin-bottom: var(--gap);
+    padding: 1rem;
+    border-radius: 1rem;
+    direction: rtl;
+    resize: both;
+    overflow: auto;
+}
+main .example > p {
+    display: contents;
+    direction: ltr;
+}
+#back-to-top {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+    padding: 1rem;
+    transform: translateY(calc(100% + 1rem));
+    opacity: 0;
+    transition: 0.218s ease;
+    z-index: 1;
+    background: inherit;
+    border: 1px solid;
+}
+#back-to-top.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
