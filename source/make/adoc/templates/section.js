@@ -41,14 +41,15 @@ module
     )
     {
       close_s =
-        `<hr/>`
-        + '</div>\n'        //: first close previous chapter div
+      '</div>\n'        //: first close previous chapter div
+      + `<hr/>`
 
       title_s =
         `<label for="${slug_s}" tabindex="-1">${title_s}</label>`
 
       input_s =
-        `<input id="${slug_s}" type="checkbox" checked/>`  //: chapter always open
+        //XX `<input id="${slug_s}" type="checkbox" checked/>`  //: chapter always open
+        ''
 
       chapter_s =
         `<div class="chapter">\n`    //: open chapter content

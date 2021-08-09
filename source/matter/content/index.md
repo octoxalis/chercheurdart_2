@@ -44,7 +44,7 @@ En effet, toutes les images du site sont au format AVIF, une technique d'encodag
 
 ...
 
-link:asciidoc.html#article_anchor_1234[Reference]
+link:asciidoc.html#article__anchor_1234[Reference]
 
 
 == Colophon

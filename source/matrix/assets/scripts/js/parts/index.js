@@ -70,16 +70,14 @@ const IND_o =
   anchor__v:
   () =>
   {
-    console.log( location )
-
-    const hash_s =
+    const hash_s =       //: schema: section__anchor_id
       location
         .hash
-        .slice( 1 )       ;console.log( hash_s )    //: skip '#'
+          .slice( 1 )    //: skip '#'
 
     const section_n =
-        hash_s
-          .indexOf( '_' )
+      hash_s
+        .indexOf( '{{C_o.ANCHOR_SEPARATOR_s}}' )
 
     if
     (
@@ -88,33 +86,22 @@ const IND_o =
       -1
     )
     {
-      const section_s =
-        hash_s
-          .slice
-          (
-            0,
-            section_n
-          )       ;console.log( section_s )
-
-      if
-      (
-        hash_s
-        !==
-        section_s
-      )
-      {
-        location
-          .hash = section_s
-        
-        const anchor_e =
-          document
-            .getElementById( hash_s )
-
-        anchor_e
-        &&
-        anchor_e
-          .scrollIntoView( {behavior: "smooth", block: "start", inline: "nearest"} )
-      }
+      location
+        .hash =
+          hash_s
+            .slice
+            (
+              0,
+              section_n
+            )
+      
+      const anchor_e =
+        document
+          .getElementById( hash_s )
+      anchor_e
+      &&
+      anchor_e
+        .scrollIntoView( {behavior: "smooth", block: "start", inline: "nearest"} )
     }
   }
   ,
@@ -136,26 +123,19 @@ void function
   if
   (
     ! location
-        .hash
+      .hash
   )
   {
     location +=
-      `#{{F_o.slug__s( C_o.SEC_TEXT_s )}}`
+      `#{{F_o.slug__s( C_o.SEC_TEXT_s )}}`    //: display article section by default
   }
 
   window
-    .addEventListener
-    (
-      'load',
-      IND_o.anchor__v,
-      false
-    )
-
+    .onload
+  =
   window
-    .addEventListener
-    (
-      'hashchange',
-      IND_o.anchor__v,
-      false
-    )
+    .onhashchange
+  =
+    IND_o
+      .anchor__v
 } ()

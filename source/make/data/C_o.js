@@ -60,6 +60,8 @@ const C_o =
   SEC_TEXT_s:     'Article',
   SEC_MEDIA_s:    'Galerie',
 
+  ANCHOR_SEPARATOR_s : '__',
+
 
   //=== HTML ===
   INSERT_ID_s:      'I',
