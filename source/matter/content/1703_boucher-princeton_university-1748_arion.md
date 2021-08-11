@@ -13,7 +13,7 @@
 
   section_a:
   [
-    `Article`,
+    `article`,
   ],
 
   script_a:

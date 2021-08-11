@@ -49,7 +49,7 @@ const IND_o =
           )
 
     ;[...document
-          .querySelectorAll( 'body > aside > a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]' )
+          .querySelectorAll( 'body > aside > a[href="#{{C_o.SECTION_a[0]}}"]' )
     ]
       .forEach
       (
@@ -127,7 +127,7 @@ void function
   )
   {
     location +=
-      `#{{F_o.slug__s( C_o.SEC_TEXT_s )}}`    //: display article section by default
+      `#{{C_o.SECTION_a[0]}}`    //: display article section by default
   }
 
   window

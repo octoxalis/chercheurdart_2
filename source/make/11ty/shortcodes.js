@@ -18,7 +18,7 @@ const CODES_o =
         .ins__s( content_s )
 
     return (
-      `<section id="${F_o.slug__s( section_s )}">`
+      `<section id="${section_s}">`
       +
       ADOC_o
         .convert__s( content_s )

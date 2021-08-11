@@ -1,6 +1,6 @@
 <header>
-  <a href="index.html#{{F_o.slug__s( C_o.SEC_TEXT_s )}}">{{A_o.NAME_s}}</a>
+  <a href="index.html#{{C_o.SECTION_a[0]}}">{{A_o.NAME_s}}</a>
 {% for _section in section_a %}
-  <a href="#{{F_o.slug__s( _section )}}">{{ _section }}</a>
+  <a href="#{{_section}}">{{ _section }}</a>
 {% endfor %}
 </header>

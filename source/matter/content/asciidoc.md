@@ -9,11 +9,11 @@
   doc_n:      9999,
   title_s:    `AsciiDoc`,
   subtitle_s: `Subset used in chercheurd.art`,
-  abstract_s: `AscciDoc cheatsheet for chercheurd.art`,
+  abstract_s: `AsciiDoc cheatsheet for chercheurd.art`,
 
   section_a:
   [
-    `Article`,
+    `article`,
   ],
 
   script_a:
@@ -25,7 +25,6 @@
   ],
 }
 ---
-{% set _section_0 = permalink + '#' + F_o.slug__s( section_a[0] ) %}
 {% _doc section_a[0] %}
 = {{title_s}} (h1)
 
@@ -34,23 +33,23 @@
 //----------------------------------------
 == Headers (h2)
 
-Alinea_2
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 === Header h3
 
-Alinea_3
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 ==== Header h4
 
-Alinea_4
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 ===== Header h5
 
-Alinea_5
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 ====== Header h6
 
-Alinea_6
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 //----------------------------------------
 == Alinea avec un titre de 37 caractères
@@ -59,9 +58,9 @@ Alinea_6
 A common alinea...
 
 
-[quote, Nietzsche, Aurore]
+[quote, F. Nietzsche, 'Crépuscule des idoles, Maximes et pointes, § 33']
 ____
-Sans la musique, la vie serait une erreur
+Sans musique, la vie serait une erreur
 ____
 
 
@@ -132,14 +131,5 @@ Dans le catalogue
 == Links
 
 link:#article__anchor_1234[Reference]
-
-//----------------------------------------
-== Lorem
-
-Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
-
-Mi eget morbi felis cursus eros ut vestibulum ac, aliquet ligula praesent arcu orci primis velit habitant posuere, mattis erat class consequat in mus pharetra. Quis natoque auctor purus varius consequat maecenas tincidunt porttitor facilisi accumsan interdum scelerisque ullamcorper hac condimentum, torquent curabitur nullam sagittis vestibulum iaculis egestas arcu phasellus nec tristique nam fusce.
-
-Magnis nostra rhoncus dapibus mus sociosqu nam nullam, felis laoreet lobortis suspendisse ut molestie integer cras, bibendum in habitasse porttitor sagittis purus. In justo per cubilia tellus fringilla mus integer sollicitudin at parturient, nascetur mauris volutpat eleifend enim sociis conubia proin neque. Sollicitudin erat morbi quam ridiculus tincidunt eu placerat, purus tellus malesuada dictum cum gravida facilisi dignissim, conubia interdum nibh elementum aenean habitasse. Feugiat gravida praesent phasellus condimentum sagittis, vivamus tellus dui leo montes hendrerit, pellentesque cras aliquam nec.
 
 {% end_doc %}

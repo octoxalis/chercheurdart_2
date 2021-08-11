@@ -57,8 +57,12 @@ const C_o =
   
   //=== SECTIONS ===
   URL_INDEX_s:    'index.html',
-  SEC_TEXT_s:     'Article',
-  SEC_MEDIA_s:    'Galerie',
+
+  SECTION_a:
+  [
+    'article',
+    'galerie',
+  ],
 
   ANCHOR_SEPARATOR_s : '__',
 
@@ -73,7 +77,6 @@ const C_o =
   IOR_DIM_TAG_s:    'i',
   CHAPTER_TAG_s:    'h2',
 
-  GALLERY_TITLE_s: 'Galerie',
   CLOSE_CHAR_s:    '\u00D7',
 
 
@@ -106,6 +109,7 @@ const C_o =
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
   U_IMAGE_OF_s:    '\u22B7',    //: unicode 'image of'
 
+
   //???SUB_SPACE_s:     '₊',    //: unicode ₊
 
   //=== DB ===
@@ -132,6 +136,8 @@ const C_o =
   EXT_ARROW_s:     '2303',
   INT_ARROW_s:     '2304',
   DIM_SEPARATOR_s: '00D7',
+  LIST_MARKER_s:   '25AA',
+
   
   FULL_WIDTH_s:  '100vw',
   FULL_HEIGHT_s: '100vh',

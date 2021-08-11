@@ -12,6 +12,7 @@ context( stack, new )
             text-decoration: none;
             color: currentColor;
             font-weight: 400;
+            text-transform: capitalize;
             filter: brightness( var(--brigtness_lo) );
     </a>
     <!----------variant---------->
@@ -32,20 +33,20 @@ context( stack, new )
 </header>
 
 <!----------variant----------><!-- section related -->
-<section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target>
+<section#{{C_o.SECTION_a[0]}}:target>
 </section>
 ~
 <header>
-  <a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]>
+  <a[href="#{{C_o.SECTION_a[0]}}"]>
     context( copy, next )
   </a>
 </header>
 <!----------variant---------->
-<section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]:target>
+<section#{{C_o.SECTION_a[1]}}:target>
 </section>
 ~
 <header>
-  <a[href="#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]>
+  <a[href="#{{C_o.SECTION_a[1]}}"]>
           visibility: hidden;
   </a>
 </header>

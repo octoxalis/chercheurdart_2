@@ -14,7 +14,7 @@
 
   section_a:
   [
-    `Article`,
+    `article`,
   ],
 
   script_a:
@@ -31,8 +31,8 @@
 
 = En ligne
 
-*  link:renaissance.html#{{F_o.slug__s( C_o.SEC_TEXT_s )}}[Renaissance]
-*  link:1703_boucher-princeton_university-1748_arion.html#{{F_o.slug__s( C_o.SEC_TEXT_s )}}[F. Boucher, Arion - 1748]
+*  link:renaissance.html#{{C_o.SECTION_a[0]}}[Renaissance]
+*  link:1703_boucher-princeton_university-1748_arion.html#{{C_o.SECTION_a[0]}}[F. Boucher, Arion - 1748]
 
 == Guide de navigation
 

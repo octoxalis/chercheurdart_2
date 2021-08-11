@@ -894,6 +894,10 @@ const CSS_o =
     (
       tag_s
         .startsWith( CSS_o.BLOCK_s )
+      &&
+      tag_s
+      !==
+      'blockquote'
     )
     {
       CSS_o

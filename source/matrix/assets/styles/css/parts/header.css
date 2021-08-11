@@ -13,6 +13,7 @@ header > a {
   text-decoration: none;
   color: currentColor;
   font-weight: 400;
+  text-transform: capitalize;
   filter: brightness( var(--brigtness_lo) );
 }
 header > a:focus, header > a:hover {
@@ -25,6 +26,6 @@ header:hover {
   opacity: 1;
   transition: all .2s;
 }
-section[id="{{F_o.slug__s( C_o.SEC_TEXT_s )}}"]:target ~ header > a[href="#{{F_o.slug__s( C_o.SEC_TEXT_s )}}"], section[id="{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"]:target ~ header > a[href="#{{F_o.slug__s( C_o.SEC_MEDIA_s )}}"] {
+section#{{C_o.SECTION_a[0]}}:target ~ header > a[href="#{{C_o.SECTION_a[0]}}"], section#{{C_o.SECTION_a[1]}}:target ~ header > a[href="#{{C_o.SECTION_a[1]}}"] {
   visibility: hidden;
 }

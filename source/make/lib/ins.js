@@ -222,7 +222,7 @@ refLine__v:    //: ₂
       .legend_s =
         `<span class="cartel">`
         + `<${C_o.TABLE_TAG_s}>${work_o.subject_s}</${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s}</${C_o.TABLE_TAG_s}>`
+        + `<${C_o.TABLE_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${year_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${collection_o.place_s}${C_o.LEGEND_DELIM_s}${collection_o.country_s}</${C_o.TABLE_TAG_s}>`
@@ -510,16 +510,16 @@ module.exports =
           .length
       ?
         content_s
-          .replace    //: add GALLERY_TITLE_s link to header
+          .replace    //: add SECTION_a[1] link to header
           (
             '</header>',  //: insertion before <header> end
-            `<a href="#${F_o.slug__s( C_o.GALLERY_TITLE_s )}">${C_o.GALLERY_TITLE_s}</a>`
+            `<a href="#${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</a>`
             + '</header>'
           )
           .replace    //: add gallery asides (gray and color)
           (
-            `<${C_o.SEC_MEDIA_s}/>`,    //: custom tag deleted after section insertion
-            `<section id="${F_o.slug__s( C_o.GALLERY_TITLE_s )}">`
+            `<${C_o.SECTION_a[1]}/>`,    //: custom tag deleted after section insertion
+            `<section id="${C_o.SECTION_a[1]}">`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
             + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`
@@ -529,9 +529,9 @@ module.exports =
           )
       :
         content_s
-          .replace    //: remove SEC_MEDIA_s custom tag after section insertion
+          .replace    //: remove SECTION_a[1] custom tag after section insertion
           (
-            `<${C_o.SEC_MEDIA_s}/>`,
+            `<${C_o.SECTION_a[1]}/>`,
             ''
           )
     )

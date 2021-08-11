@@ -20,7 +20,7 @@ module
                   target_s,    //: i.e. specifier_s
                   attribute_a  //: i.e. subsid_s
                 ) =>
-                  `<ins data--="${C_o.SEC_TEXT_s}">`    //!!! quote needed for regexp
+                  `<ins data--="${C_o.SECTION_a[0]}">`    //!!! quote needed for regexp
                   + `${target_s}${C_o.INS_SPECIF_DELIM_s}${attribute_a.ins_s}`
                   + `</ins>`
               )
