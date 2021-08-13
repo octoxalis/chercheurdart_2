@@ -8,7 +8,6 @@ context( stack, new )
               width: 100%; max-width: {{C_o.FULL_WIDTH_s}};
               max-height: calc( {{C_o.FULL_HEIGHT_s}} - {{C_o.PAD_8}} );    /* header height */
               object-fit: scale-down;
-              cursor: url(var(--cursor_svg)), auto;
     </a>
   </figure>
   <!----------variant---------->
@@ -24,9 +23,19 @@ context( stack, new )
 </aside>
 <!----------variant---------->
 <aside#gray>
-        --cursor_svg:cursor_gray.svg;
+  <figure>
+    <a>
+      <img/>
+              cursor: url(cursor_color.svg), auto;
+    </a>
+  </figure>
 </aside>
 <!----------variant---------->
 <aside#color>
-        --cursor_svg:cursor_color.svg;
+  <figure>
+    <a>
+      <img/>
+              cursor: url(cursor_gray.svg), auto;
+    </a>
+  </figure>
 </aside>

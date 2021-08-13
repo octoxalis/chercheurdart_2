@@ -55,13 +55,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nu
 == Alinea avec un titre de 37 caractères
 
 .paragraph
-A common alinea...
-
-
-[quote, F. Nietzsche, 'Crépuscule des idoles, Maximes et pointes, § 33']
-____
-Sans musique, la vie serait une erreur
-____
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 
 //----------------------------------------
@@ -120,12 +114,16 @@ de F. Boucher fait partie du cycle décoratif.
 
 REFERENCE (REF) specifier_s = ₂
 
-Dans le catalogue
-₍₂ 2010_loire
-  p.123
-  f.123₎
- de la collection Mottais, ce tableau.
+Dans sa monographie sur
+₍₂ Claude Lorrain
+  1989_langdon₊p.123₊f.123₊On peut ajouter une _précision_...₎
+, H. Langdon décrit ce tableau...
 
+
+₍₃ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
+  F. Nietzsche
+  Crépuscule des idoles
+  Maximes et pointes, § 33₎
 
 //----------------------------------------
 == Links

@@ -86,6 +86,7 @@ parse__s:
   {
     case C_o.INS_TXT_s:
     case C_o.INS_REF_s:
+    case C_o.INS_QUOTE_s:
       return (
         INS_o
           .text_s
@@ -109,28 +110,16 @@ txtLine__v:    //: ₀
   line_s
 ) =>
 {
-  const text_a =
-    line_s
-      .split( C_o.INS_TXT_s )
-      .map
-      (
-        text_s =>
-          text_s
-            .trim()
-            .replaceAll
-            (
-              C_o.INS_BREAK_DELIM_s,
-              '<br>'
-            )
-      )
-      
+  //;console.log( line_s )
+
   INS_o
     .text_s =
-        //... TODO wrap
-        `<span><${C_o.TABLE_TAG_s}>`
-        + text_a
-          .join( `</${C_o.TABLE_TAG_s}><${C_o.TABLE_TAG_s}>` )
-        + `</${C_o.TABLE_TAG_s}></span>`
+      INS_o
+        .txt__s
+        (
+          line_s,
+          C_o.INS_TXT_s
+        )
 }
 ,
 
@@ -159,19 +148,134 @@ refLine__v:    //: ₂
   line_s
 ) =>
 {
+  const ref_s =
+    line_s
+      .trim()
+
   INS_o
     .text_s =
-      //... TODO get DB for biblio
-      line_s
-      .trim()
-        .replaceAll
+    INS_o
+      .reference__s( ref_s )    //;console.log( INS_o.text_s )
+
+
+}
+,
+
+
+
+quoteLine__v:    //: ₃
+(
+  line_s
+) =>
+{
+  INS_o
+    .text_s =
+      INS_o
+        .txt__s
         (
-          C_o.INS_BREAK_DELIM_s,
-          '<br>'
+          line_s,
+          C_o.INS_QUOTE_s
         )
 }
 ,
 
+
+
+
+txt__s:
+(
+  line_s,
+  specifier_s
+) =>
+  `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${specifier_s}>`
+  + `<${C_o.TABLE_TAG_s}>`
+  + line_s
+      .trim()
+      .replaceAll
+      (
+        C_o.INS_BREAK_DELIM_s,
+        `</${C_o.TABLE_TAG_s}><${C_o.TABLE_TAG_s}>`
+      )
+  + `</${C_o.TABLE_TAG_s}>`
+  + `</span>`
+,
+
+
+
+
+reference__s:
+(
+  refId_s
+) =>
+{
+  const  [ biblio_s, ...position_a ] =
+    refId_s
+      .split( C_o.ID_WORD_DELIM_s )    //;console.log( biblio_s + '...' + position_a )
+
+  const biblio_o =
+    INS_o
+      .db_o
+        .biblio
+          [`${biblio_s}`]    //;console.log( biblio_o )
+
+  let ref_s =
+  `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_REF_s}>`
+  + `<${C_o.TABLE_TAG_s}>${biblio_o.author_s??'inconnu'}</${C_o.TABLE_TAG_s}>`
+  + `<${C_o.TABLE_TAG_s}>${biblio_o.title_s}</${C_o.TABLE_TAG_s}>`
+
+  for
+  (
+    let field_s
+    of
+    [
+      'year_n',
+      'isbn_s',
+      'publication_s',
+      'issue_s',
+    ]
+  )
+  {
+    if
+    (
+      biblio_o
+        [ field_s ]
+    )
+    {
+      let title_s = ''
+
+      if
+      (
+        field_s
+        ===
+        'isbn_s'
+      )
+      {
+        title_s =
+          'ISBN: '
+      }
+
+      ref_s +=
+        `<${C_o.TABLE_TAG_s}>${title_s}${biblio_o[field_s]}</${C_o.TABLE_TAG_s}>`
+    }
+  }
+
+  for
+  (
+    let field_s
+    of
+    position_a
+  )
+  {
+    ref_s +=
+      `<${C_o.TABLE_TAG_s}>${field_s}</${C_o.TABLE_TAG_s}>`
+  }
+
+  ref_s +=
+    `</span>`
+
+  return ref_s
+}
+,
 
 
 
@@ -220,7 +324,8 @@ refLine__v:    //: ₂
 
     INS_o
       .legend_s =
-        `<span class="cartel">`
+        //XX`<span class="cartel">`
+        `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_IMG_s}>`
         + `<${C_o.TABLE_TAG_s}>${work_o.subject_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${year_s}</${C_o.TABLE_TAG_s}>`

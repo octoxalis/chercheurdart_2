@@ -93,16 +93,21 @@ const C_o =
 
   INS_SPECIF_DELIM_s: ' ',
   INS_BREAK_DELIM_s:  ' + ',  //: line break inside insert
-  INS_TXT_s:      '₀',     //: text insert
-  INS_IMG_s:      '₁',     //: img insert
-  INS_REF_s:      '₂',     //: reference insert
+  INS_TXT_s:      '₀',        //: text insert
+  INS_IMG_s:      '₁',        //: img insert
+  INS_REF_s:      '₂',        //: reference insert
+  INS_QUOTE_s:    '₃',        //: quotation insert
 
   INS_METHOD_o:
   {
     '₀': 'txt',
     '₁': 'img',
     '₂': 'ref',
+    '₃': 'quote',
   },
+
+  INS_PRINCIP_s: 'ins_principal',
+  INS_SUBSID_s:  'ins_subsid',
 
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet

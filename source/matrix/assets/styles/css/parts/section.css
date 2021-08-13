@@ -1,3 +1,42 @@
+h3 {
+  --font_scale: 3vw;
+  font-weight: 600;
+}
+h4 {
+  --font_scale: 2.75vw;
+  font-weight: 400;
+}
+h5 {
+  --font_scale: 2.5vw;
+  font-weight: 400;
+}
+h6 {
+  --font_scale: 2.25vw;
+  font-weight: 400;
+}
+ul {
+  border-left: 1px solid var(--shadow_ne);
+}
+ul > li {
+  padding-left: .8rem;
+  color: currentColor;
+  list-style: none;
+}
+ul > li > a {
+  color: currentColor;
+  text-decoration: none;
+}
+ul > li > a:hover {
+  border-bottom: 1px solid;
+  filter: brightness( var(--brigtness_hi) );
+  transition: opacity .2s;
+}
+ul > li:before {
+  content: '\{{C_o.LIST_MARKER_s}}';
+  position: relative;
+  left: -1rem;
+  color: var(--shadow_ne);
+}
 section {
   display: none;
   content-visibility: auto;
@@ -63,65 +102,19 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > hr {
   background: var(--shadow_ne);
   border: 0;
 }
-h3 {
-  --font_scale: 3vw;
-  font-weight: 600;
-}
-h4 {
-  --font_scale: 2.75vw;
-  font-weight: 400;
-}
-h5 {
-  --font_scale: 2.5vw;
-  font-weight: 400;
-}
-h6 {
-  --font_scale: 2.25vw;
-  font-weight: 400;
-}
-ul {
-  border-left: 1px solid var(--shadow_ne);
-}
-ul > li {
-  padding-left: .8rem;
-  color: currentColor;
-  list-style: none;
-}
-ul > li > a {
-  color: currentColor;
-  text-decoration: none;
-}
-ul > li > a:hover {
-  border-bottom: 1px solid;
-  filter: brightness( var(--brigtness_hi) );
-  transition: opacity .2s;
-}
-ul > li:before {
-  content: '\{{C_o.LIST_MARKER_s}}';
-  position: relative;
-  left: -1rem;
-  color: var(--shadow_ne);
-}
-blockquote {
-  margin: 0 0 1rem 1rem;
-  border-left: 4px solid var(--shadow_ne);
-}
-blockquote > p {
-  padding-left: .8rem;
-}
-p {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p {
   max-width: 50ch;
   margin-bottom: 1rem;
 }
-p > label {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label {
   margin: 0 {{C_o.PAD_1}};
   vertical-align: middle;
   cursor: pointer;
 }
-p > label + input, p > label + input + ins {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input, section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input + ins {
   display: none;
 }
-p > label + input:checked + ins {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins {
   --font_max: 18px;
   --font_scale: 1.9vw;
   display: block;
@@ -129,54 +122,77 @@ p > label + input:checked + ins {
   height: fit-content;
   margin: {{C_o.PAD_1}} 0;
   padding: {{C_o.PAD_4}};
-  background: var(--insert);
   text-decoration: none;
+  border: 1px solid var(--shadow_ne);
   border-radius: 4px;
 }
-p > label + input:checked + ins > a {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > a {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   cursor: zoom-in;
 }
-p > label + input:checked + ins > a > img {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > a > img {
   height: 100%;
   max-height: 128px;
   border-radius: 4px;
 }
-.cartel {
-  top: 0;
-}
-.cartel > * {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec] > b {
+  display: table;
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
   font-weight: 200;
   line-height: 1.3;
 }
-.cartel > b {
-  display: table;
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
+  --font_scale: 2vw;
+  font-weight: 400;
+  line-height: 1.6;
 }
-.cartel > b > * {
-  font-style: normal;
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_QUOTE_s}}] > b:nth-of-type(1) {
+  --font_scale: 2vw;
+  font-weight: 400;
+  line-height: 1.6;
 }
-.cartel > b:nth-of-type(1) {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(2) {
+  font-weight: 200;
+  font-style: italic;
+}
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_QUOTE_s}}] > b:nth-of-type(2) {
+  font-weight: 200;
+  font-style: italic;
+}
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] {
+  top: 0;
+}
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-.cartel > b:nth-of-type(2) {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-.cartel > b > i:first-of-type::after {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b > i {
+  font-style: normal;
+}
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
   content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 }
-hr {
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > span[data-spec={{C_o.INS_QUOTE_s}}] {
+  display: block;
+  margin: 0 0 1rem 1rem;
+  padding-left: .8rem;
+  border-left: 4px solid var(--shadow_ne);
+  font-style: italic;
+}
+section#{{C_o.SECTION_a[0]}} > hr {
   width: 100%;
   height: 1px;
   margin: {{C_o.PAD_8}} auto {{C_o.PAD_12}};

@@ -9,7 +9,6 @@ aside > figure > a > img {
   max-width: {{C_o.FULL_WIDTH_s}};
   max-height: calc( {{C_o.FULL_HEIGHT_s}} - {{C_o.PAD_8}} );
   object-fit: scale-down;
-  cursor: url(var(--cursor_svg)), auto;
 }
 figure:target {
   display: block;
@@ -20,9 +19,9 @@ figure:target {
   left: 0;
   background: var(--bgcolor);
 }
-aside#gray {
-  --cursor_svg: cursor_gray.svg;
+aside#gray > figure > a > img {
+  cursor: url(cursor_color.svg), auto;
 }
-aside#color {
-  --cursor_svg: cursor_color.svg;
+aside#color > figure > a > img {
+  cursor: url(cursor_gray.svg), auto;
 }
