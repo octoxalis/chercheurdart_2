@@ -31,6 +31,8 @@ module.exports =
   CONTEXTUAL_OUTPUT_s: 'source/matrix/assets/styles/css/parts/',
 
 
+  //=== GENERATE ===
+  ADOC_MARKUP_b:        false,
 
 
 

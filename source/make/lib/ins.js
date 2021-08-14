@@ -110,8 +110,6 @@ txtLine__v:    //: ₀
   line_s
 ) =>
 {
-  //;console.log( line_s )
-
   INS_o
     .text_s =
       INS_o
@@ -155,7 +153,7 @@ refLine__v:    //: ₂
   INS_o
     .text_s =
     INS_o
-      .reference__s( ref_s )    //;console.log( INS_o.text_s )
+      .reference__s( ref_s )
 
 
 }
@@ -210,13 +208,13 @@ reference__s:
 {
   const  [ biblio_s, ...position_a ] =
     refId_s
-      .split( C_o.ID_WORD_DELIM_s )    //;console.log( biblio_s + '...' + position_a )
+      .split( C_o.ID_WORD_DELIM_s )
 
   const biblio_o =
     INS_o
       .db_o
         .biblio
-          [`${biblio_s}`]    //;console.log( biblio_o )
+          [`${biblio_s}`]
 
   let ref_s =
   `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_REF_s}>`
@@ -324,10 +322,9 @@ reference__s:
 
     INS_o
       .legend_s =
-        //XX`<span class="cartel">`
         `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_IMG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${work_o.subject_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.TABLE_TAG_s}>`
+        + `<${C_o.TABLE_TAG_s}>${work_o.subject_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${year_s}</${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.TABLE_TAG_s}>`
         + `<${C_o.TABLE_TAG_s}>${collection_o.place_s}${C_o.LEGEND_DELIM_s}${collection_o.country_s}</${C_o.TABLE_TAG_s}>`
@@ -601,7 +598,7 @@ module.exports =
           .replace
           (
             match_a[0],    //: <ins data--="...">...</ins>
-            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.U_IMAGE_OF_s}</label>`
+            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="0">${C_o.INS_TRIGGER_s}</label>`
             + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
             + `<ins>`      //: remove ins tag data-- attribute
             + insert_s

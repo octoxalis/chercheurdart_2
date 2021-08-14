@@ -82,7 +82,6 @@ module
               .replace
               (
                 replace_s,
-                //XX`${principal_s}`
                 `pass:[<span data-ins="${C_o.INS_PRINCIP_s}" data-spec=${specifier_s}>]${principal_s}pass:[</span>]`
                 + `&#x202F;`    //!!! NARROW NO-BREAK SPACE to force AsciiDoc paragraph
                 + `ins:${specifier_s}`
@@ -90,8 +89,6 @@ module
               )
         }
     
-        //;console.log(content_s)
-
         return content_s
     }
   ,

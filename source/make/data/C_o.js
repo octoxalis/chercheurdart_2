@@ -52,6 +52,7 @@ const C_o =
   CONTEXTUAL_OUTPUT_s: CONF_o.CONTEXTUAL_OUTPUT_s,
 
   ADOC_TEMPLATES_s: CONF_o.ADOC_TEMPLATES_s,
+  ADOC_MARKUP_b:    CONF_o.ADOC_MARKUP_b,
 
 
   
@@ -106,13 +107,14 @@ const C_o =
     '₃': 'quote',
   },
 
-  INS_PRINCIP_s: 'ins_principal',
-  INS_SUBSID_s:  'ins_subsid',
+  INS_PRINCIP_s: 'principal',
+  INS_SUBSID_s:  'subsid',
 
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
-  U_IMAGE_OF_s:    '\u22B7',    //: unicode 'image of'
+  INS_TRIGGER_s:    '\u25BE',    //: unicode ▾
+  //...INS_TRIGGER_s:    'o',    //: unicode ⊷
 
 
   //???SUB_SPACE_s:     '₊',    //: unicode ₊

@@ -1,3 +1,8 @@
+const C_o = require("../../data/C_o")
+
+
+
+
 module
   .exports =
   (
@@ -8,15 +13,22 @@ module
     const title_s =
       node_o
         .getTitle()
-  
-    let blockTitle_s = ''
-  
+    
     const level_n =
       node_o
         .getLevel() + 2
+
+    const item_a =
+      node_o
+        .getItems()
   
+    let blockTitle_s = ''
+
     if
     (
+      C_o.
+        ADOC_MARKUP_b
+      &&
       title_s
     )
     {
@@ -28,10 +40,6 @@ module
   
     let list_s = ''
   
-    const item_a =
-      node_o
-        .getItems()
-  
     if
     (
       item_a
@@ -42,20 +50,31 @@ module
           .reduce
           (
             (
-              items_s,
+              item_s,
               item_o
             ) =>
             {
-              const id_s =
-                item_o
-                  .getId()
-  
-              const atId_s =
-                id_s
-                ?
-                  ` id=${id_s}`
-                :
-                  ''
+              let itemId_s = ''
+
+              if
+              (
+                C_o.
+                  ADOC_MARKUP_b
+              )
+              {
+                const id_s =
+                  item_o
+                    .getId()
+                
+                if
+                (
+                  id_s
+                )
+                {
+                  itemId_s =
+                    ` id=${id_s}`
+                }
+              }
   
               const content_s =
                 item_o
@@ -68,25 +87,28 @@ module
                   ''
   
               return (
-                items_s
-                + `<li${atId_s}>`
+                item_s
+                + `<li${itemId_s}>`
                 + `${item_o.getText()}`
                 + `${content_s}`
                 + `</li>`
                 )
             },
-            ''
+            ''    //: accumulator
           )
     }
-  
-    let data_s = ''
   
     const role_a =
       node_o
         .getRoles()
   
+    let data_s = ''
+  
     if
     (
+      C_o.
+        ADOC_MARKUP_b
+      &&
       role_a
         .length
     )
@@ -94,18 +116,29 @@ module
       data_s =
         ` data-ad="${role_a.join(' ')}"`
     }
-  
-    const id_s =
-      node_o
-        .getId()
-  
-    const listId_s =
-      id_s
-      ?
-        ` id=${id_s}`
-      :
-        ''
-  
+
+    let listId_s = ''
+
+    if
+    (
+      C_o.
+        ADOC_MARKUP_b
+    )
+    {
+      const id_s =
+        node_o
+          .getId()
+
+      if
+      (
+        id_s
+      )
+      {
+        listId_s =
+        ` id=${listId_s}`
+      }
+    }
+
     return (
       `${blockTitle_s}`
       + `<${listType_s}${listId_s}${data_s}>`

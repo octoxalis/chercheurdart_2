@@ -13,19 +13,24 @@ module
             .getTitle()
 
     let chapter_s =
-    `<div class="chapter">\n`    //: open chapter content
-
-    const level_n =
-      node
-        .level
+    `<div>\n`    //: open chapter content
 
     const header_n =
-      level_n
+      node
+        .level
       +
       1    //: h1: level 0
 
+    let data_s =
+      C_o.
+        ADOC_MARKUP_b
+      ?
+        ` data-${C_o.ADOC_DATA_s}=${C_o.BLOCK_PREAMBLE_s}`
+      :
+        ''
+
     return (
-      `<h${header_n} data-${C_o.ADOC_DATA_s}=${C_o.BLOCK_PREAMBLE_s}>`
+      `<h${header_n}${data_s}>`
       + title_s
       + `</h${header_n}>\n`  //: \n is mandatory
       + chapter_s

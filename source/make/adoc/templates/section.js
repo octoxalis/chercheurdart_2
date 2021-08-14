@@ -15,8 +15,6 @@ module
       F_o
         .slug__s( title_s )
 
-    //let label_s = title_s
-
     let chapter_s = ''
   
     let close_s = ''
@@ -47,20 +45,29 @@ module
       title_s =
         `<label for="${slug_s}" tabindex="-1">${title_s}</label>`
 
-      input_s =
-        //XX `<input id="${slug_s}" type="checkbox" checked/>`  //: chapter always open
-        ''
+      //XX input_s =
+      //XX   `<input id="${slug_s}" type="checkbox" checked/>`  //: chapter always open
 
       chapter_s =
-        `<div class="chapter">\n`    //: open chapter content
+        `<div>\n`    //: open chapter content
     }
+
+    let data_s =
+      C_o.
+        ADOC_MARKUP_b
+      ?
+        ` data-${C_o.ADOC_DATA_s}=${C_o.BLOCK_SECTION_s}_${level_n}`
+      :
+        ''
+
+
 
     return (
       close_s
-      + `<h${header_n} data-${C_o.ADOC_DATA_s}=${C_o.BLOCK_SECTION_s}_${level_n}>`
+      + `<h${header_n}${data_s}>`
       + title_s
       + `</h${header_n}>\n`  //: \n is mandatory
-      + input_s
+      //XX + input_s
       + chapter_s
       + node
           .getContent()    //: chapter content
