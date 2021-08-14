@@ -114,10 +114,7 @@ const C_o =
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
   INS_TRIGGER_s:    '\u25BE',    //: unicode ▾
-  //...INS_TRIGGER_s:    'o',    //: unicode ⊷
 
-
-  //???SUB_SPACE_s:     '₊',    //: unicode ₊
 
   //=== DB ===
   DB_a:    //: db tables names

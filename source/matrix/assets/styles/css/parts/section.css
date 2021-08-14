@@ -130,10 +130,6 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins {
   border-radius: 4px;
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > a {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
   cursor: zoom-in;
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > a > img {
