@@ -196,9 +196,9 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div > p > span[data-spec={{C_o.INS_QUOTE_s}}] {
   display: block;
-  margin: 0 0 -.5rem .4rem;
+  margin: 0 0 -.2rem .4rem;
   padding-left: .8rem;
-  border-left: 6px solid var(--shadow_ne);
+  border-left: .5rem solid var(--shadow_ne);
   font-style: italic;
 }
 section#{{C_o.SECTION_a[0]}} > hr {
