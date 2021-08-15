@@ -21,7 +21,7 @@ module
                   attribute_a  //: i.e. subsid_s
                 ) =>
                   `<ins data--="${C_o.SECTION_a[0]}">`    //!!! quote needed for regexp
-                  + `${target_s}${C_o.INS_SPECIF_DELIM_s}${attribute_a.ins_s}`
+                  + `${target_s}${C_o.INS_SPECIF_DELIM_s}${attribute_a.sub_s}`
                   + `</ins>`
               )
           }

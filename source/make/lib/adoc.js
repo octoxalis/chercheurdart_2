@@ -34,7 +34,8 @@ const ADOC_o =
           .convert
           (
             input_s,
-            ADOC_o.options_o
+            ADOC_o
+              .options_o
           )
     )
   }

@@ -85,7 +85,7 @@ module
                 `pass:[<span data-ins="${C_o.INS_PRINCIP_s}" data-spec=${specifier_s}>]${principal_s}pass:[</span>]`
                 + `&#x202F;`    //!!! NARROW NO-BREAK SPACE to force AsciiDoc paragraph
                 + `ins:${specifier_s}`
-                + `[ins_s="${subsid_s}"]`
+                + `[sub_s="${subsid_s}"]`
               )
         }
     
