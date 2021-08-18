@@ -142,7 +142,6 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
-  font-weight: 200;
   line-height: 1.3;
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {

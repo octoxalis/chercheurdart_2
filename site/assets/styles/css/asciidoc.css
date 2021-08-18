@@ -1,5 +1,5 @@
 span[data-spec="₄"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
-span[data-spec="₄"] > b{flex-grow:1;padding:.25rem;background:var(--shadow_ne)}
+span[data-spec="₄"] > b{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
 .colw_20_50_30 > b:nth-child(-n+3){background: var(--table);font-weight:600}
 .colw_20_50_30 > b:nth-child(3n+1){width: calc((20 - 2) * 1%)}
 .colw_20_50_30 > b:nth-child(3n+2){width: calc((50 - 5) * 1%)}

@@ -38,7 +38,7 @@
 {{abstract_s}}
 
 //----------------------------------------
-== Headers (h2)
+== Header h2
 
 Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
@@ -154,7 +154,7 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   row_1_0,row_1_1,row_1_2 short,row_1_3₎
 
 //----------------------------------------
-== Links
+== Link
 
 link:#article__anchor_1234[Reference]
 {% end_doc %}

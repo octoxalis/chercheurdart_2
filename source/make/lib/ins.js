@@ -468,19 +468,6 @@ tableAlign__s:
 
 
 
-//???tableTitle__s:
-//???(
-//???  title_a
-//???) =>
-//???{
-//???  let title_s = ''
-//???
-//???  return title_s
-//???}
-//???,
-
-
-
 tableRow__s:
 (
   row_a
@@ -768,8 +755,6 @@ tableRow__s:
     permalink_s
   ) =>
   {
-    //;console.log( INS_o.css_s )
-
     const path_s =
       C_o.INS_CSS_s
       + permalink_s
@@ -781,7 +766,7 @@ tableRow__s:
 
     const css_s =
 `${C_o.TABLE_TAG_s}[data-spec="₄"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
-${C_o.TABLE_TAG_s}[data-spec="₄"] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne)}
+${C_o.TABLE_TAG_s}[data-spec="₄"] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
 `
 + INS_o
     .css_s
