@@ -22,6 +22,7 @@
 
   css_a:
   [
+    'asciidoc.css'
   ],
 }
 ---
@@ -136,8 +137,24 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   Maximes et pointes, § 33₎
 
 //----------------------------------------
+== Table
+
+₍₄ Example 1 - simple table
+  20_50_30
+  2_1_0
+  TITLE_0,TITLE_1,TITLE_2
+  ROW_0_0,ROW_0_1 is a bit longer,ROW_0_2
+  ROW_1_0,ROW_1_1,ROW_1_2 short₎
+
+₍₄ Example 2 - another table
+  30_30_20_20
+  1_1_0_2
+  title_0,title_1,title_2,title_3
+  row_0_0,row_0_1 is a bit longer,row_0_2,row_0_3
+  row_1_0,row_1_1,row_1_2 short,row_1_3₎
+
+//----------------------------------------
 == Links
 
 link:#article__anchor_1234[Reference]
-
 {% end_doc %}

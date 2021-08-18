@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FLEX TABLE</title>
+    <style>
+ul[data-ad=flex_table]
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1px;
+  width: 80%;
+  color: hsla(220 25% 100% / 1);
+  list-style-type: none;
+}
+ul[data-ad=flex_table] > li
+{
+  flex-grow: 1;
+  padding: .25rem;
+  background: hsla(220 25% 25% / .5);
+}
+
+.colw_20_50_30 > li:nth-child(3n+1) {width: calc((20 - 2) * 1%)}
+.colw_20_50_30 > li:nth-child(3n+2) {width: calc((50 - 5) * 1%)}
+.colw_20_50_30 > li:nth-child(3n+3) {width: calc((30 - 3) * 1%)}
+
+.cola_0_1_2 > li:nth-child(3n+1) {text-align: left}
+.cola_0_1_2 > li:nth-child(3n+2) {text-align: center}
+.cola_0_1_2 > li:nth-child(3n+3) {text-align: right}
+    </style>
+  </head>
+  <body>
+    <p>
+₍₄ 20_50_30<br>
+0_1_2<br>
+TITLE_0,TITLE_1,TITLE_2<br>
+ROW_0_0,ROW_0_1 is a bit longer,ROW_0_2<br>
+ROW_1_0,ROW_1_1,ROW_1_2 short₎
+    </p>
+    <ul data-ad=flex_table class="colw_20_50_30 cola_0_1_2">
+      <li>TITLE_0</li>
+      <li>TITLE_1</li>
+      <li>TITLE_2</li>
+      <li>ROW_0_0</li>
+      <li>ROW_0_1 is a bit longer</li>
+      <li>ROW_0_2</li>
+      <li>ROW_1_0</li>
+      <li>ROW_1_1</li>
+      <li>ROW_1_2 short</li>
+    </ul>
+  </body>
+</html>

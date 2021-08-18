@@ -1,0 +1,12 @@
+.colw_20_50_30 > li:nth-child(3n+1){width: calc((20 - 2) * 1%)}
+.colw_20_50_30 > li:nth-child(3n+2){width: calc((50 - 5) * 1%)}
+.colw_20_50_30 > li:nth-child(3n+3){width: calc((30 - 3) * 1%)}
+.cola_2_1_0 > li:nth-child(3n+1){text-align: right}
+.cola_2_1_0 > li:nth-child(3n+2){text-align: center}
+.cola_2_1_0 > li:nth-child(3n+3){text-align: left}
+.colw_50_30_20 > li:nth-child(3n+1){width: calc((50 - 5) * 1%)}
+.colw_50_30_20 > li:nth-child(3n+2){width: calc((30 - 3) * 1%)}
+.colw_50_30_20 > li:nth-child(3n+3){width: calc((20 - 2) * 1%)}
+.cola_1_1_0 > li:nth-child(3n+1){text-align: center}
+.cola_1_1_0 > li:nth-child(3n+2){text-align: center}
+.cola_1_1_0 > li:nth-child(3n+3){text-align: left}

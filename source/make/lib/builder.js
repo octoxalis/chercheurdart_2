@@ -67,7 +67,11 @@ const BUI_o =
 
     let output_s =
       INS_o
-        .insert__s( input_s )
+        .insert__s
+        (
+          input_s,
+          data_o.permalink
+        )
 
     return output_s
   }

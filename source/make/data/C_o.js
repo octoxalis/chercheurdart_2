@@ -51,9 +51,10 @@ const C_o =
   CONTEXTUAL_INPUT_s:  CONF_o.CONTEXTUAL_INPUT_s,
   CONTEXTUAL_OUTPUT_s: CONF_o.CONTEXTUAL_OUTPUT_s,
 
-  ADOC_TEMPLATES_s: CONF_o.ADOC_TEMPLATES_s,
-  ADOC_MARKUP_b:    CONF_o.ADOC_MARKUP_b,
+  ADOC_TEMPLATES_s:    CONF_o.ADOC_TEMPLATES_s,
+  ADOC_MARKUP_b:       CONF_o.ADOC_MARKUP_b,
 
+  INS_CSS_s:    CONF_o.INS_CSS_s,
 
   
   //=== SECTIONS ===
@@ -74,7 +75,8 @@ const C_o =
   ASIDE_COLOR_ID_s: 'C',
   SLIDE_ID_s:       'S',
 
-  TABLE_TAG_s:      'b',
+  TABLE_TAG_s:      'span',
+  ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
   CHAPTER_TAG_s:    'h2',
 
@@ -84,13 +86,13 @@ const C_o =
   //=== JS ===
   //?? KEYVAL_DELIM_s:  '==',  //: _ior_spot shortcode
   LINE_DELIM_s:    '\n',
+  PART_DELIM_s:    '_',    //: between subparts
   ID_DELIM_s:      '-',    //: between parts
   ID_PART_DELIM_s: '_',    //: between subparts
   ID_WORD_DELIM_s: '₊',    //: between multi word subpart
 
   PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
   PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
-  PRE_DELIM_s:     '\n',   //: document preprocessor separator
 
   INS_SPECIF_DELIM_s: ' ',
   INS_BREAK_DELIM_s:  ' + ',  //: line break inside insert
@@ -98,6 +100,7 @@ const C_o =
   INS_IMG_s:      '₁',        //: img insert
   INS_REF_s:      '₂',        //: reference insert
   INS_QUOTE_s:    '₃',        //: quotation insert
+  INS_TABLE_s:    '₄',        //: table insert
 
   INS_METHOD_o:
   {
@@ -105,11 +108,22 @@ const C_o =
     '₁': 'img',
     '₂': 'ref',
     '₃': 'quote',
+    '₄': 'table',
   },
 
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
 
+  TABLE_ROW_DELIM_s: ',',
+
+  TABLE_ALIGN_a:
+  [
+    'left',
+    'center',
+    'right'
+  ],
+
+  TABLE_COL_RATIO_n: .1,
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret

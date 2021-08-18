@@ -29,6 +29,9 @@ module.exports =
   IMG_DIR_s:           './assets/media/img/',
   CONTEXTUAL_INPUT_s:  'source/ware/assets/styles/contextual_css/html.context.html',
   CONTEXTUAL_OUTPUT_s: 'source/matrix/assets/styles/css/parts/',
+  //XX INS_CSS_s:           'matrix/assets/styles/css/parts/',
+  //XXINS_CSS_s:           'ware/static/assets/styles/css/',
+  INS_CSS_s:           '../site/assets/styles/css/',
 
 
   //=== GENERATE ===

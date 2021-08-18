@@ -1,3 +1,5 @@
+const FS_o  = require( 'fs-extra' )
+
 const DB_o  = require( './db.js' )
 const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
@@ -87,11 +89,13 @@ parse__s:
     case C_o.INS_TXT_s:
     case C_o.INS_REF_s:
     case C_o.INS_QUOTE_s:
+    case C_o.INS_TABLE_s:
       return (
         INS_o
           .text_s
       )
-  
+      break
+
     case C_o.INS_IMG_s:
       return (
         INS_o
@@ -180,22 +184,41 @@ quoteLine__v:    //: ₃
 
 
 
+tableLine__v:    //: ₄
+(
+  line_s
+) =>
+{
+  INS_o
+    .text_s =
+      INS_o
+        .table__s
+        (
+          line_s,
+          C_o.INS_TABLE_s
+        )
+}
+,
+
+
+
+
 txt__s:
 (
   line_s,
   specifier_s
 ) =>
-  `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${specifier_s}>`
-  + `<${C_o.TABLE_TAG_s}>`
+  `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${specifier_s}>`
+  + `<${C_o.ROW_TAG_s}>`
   + line_s
       .trim()
       .replaceAll
       (
         C_o.INS_BREAK_DELIM_s,
-        `</${C_o.TABLE_TAG_s}><${C_o.TABLE_TAG_s}>`
+        `</${C_o.ROW_TAG_s}><${C_o.ROW_TAG_s}>`
       )
+  + `</${C_o.ROW_TAG_s}>`
   + `</${C_o.TABLE_TAG_s}>`
-  + `</span>`
 ,
 
 
@@ -217,9 +240,9 @@ reference__s:
           [`${biblio_s}`]
 
   let ref_s =
-  `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_REF_s}>`
-  + `<${C_o.TABLE_TAG_s}>${biblio_o.author_s??'inconnu'}</${C_o.TABLE_TAG_s}>`
-  + `<${C_o.TABLE_TAG_s}>${biblio_o.title_s}</${C_o.TABLE_TAG_s}>`
+  `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_REF_s}>`
+  + `<${C_o.ROW_TAG_s}>${biblio_o.author_s??'inconnu'}</${C_o.ROW_TAG_s}>`
+  + `<${C_o.ROW_TAG_s}>${biblio_o.title_s}</${C_o.ROW_TAG_s}>`
 
   for
   (
@@ -253,7 +276,7 @@ reference__s:
       }
 
       ref_s +=
-        `<${C_o.TABLE_TAG_s}>${title_s}${biblio_o[field_s]}</${C_o.TABLE_TAG_s}>`
+        `<${C_o.ROW_TAG_s}>${title_s}${biblio_o[field_s]}</${C_o.ROW_TAG_s}>`
     }
   }
 
@@ -265,13 +288,221 @@ reference__s:
   )
   {
     ref_s +=
-      `<${C_o.TABLE_TAG_s}>${field_s}</${C_o.TABLE_TAG_s}>`
+      `<${C_o.ROW_TAG_s}>${field_s}</${C_o.ROW_TAG_s}>`
   }
 
   ref_s +=
-    `</span>`
+    `</${C_o.TABLE_TAG_s}>`
 
   return ref_s
+}
+,
+
+
+
+table__s:
+(
+  line_s,
+  specifier_s
+) =>
+{
+  let table_s = ''
+
+  let css_s = ''
+
+  let colw_s = ''
+
+  let cola_s = ''
+
+  let at_n = 0    //: for loop index
+
+  for
+  (
+    let atline_s
+    of
+    line_s
+      .split( C_o.INS_BREAK_DELIM_s )
+  )
+  {
+    switch
+    (
+      at_n
+    )
+    {
+      case 0:        //: 1st line: column widths
+        colw_s =
+          atline_s
+            .trim()
+
+        css_s +=
+          INS_o
+            .tableWidth__s( atline_s )
+        break
+
+      case 1:        //: 2nd line: column align
+        cola_s =
+          atline_s
+            .trim()
+
+        css_s +=
+          INS_o
+            .tableAlign__s( atline_s )
+
+        break
+
+      default:
+        table_s +=
+          INS_o
+            .tableRow__s
+            (
+              atline_s
+                .split( C_o.TABLE_ROW_DELIM_s )
+            )
+    }
+
+    ++at_n
+  }
+
+  INS_o
+    .css_s +=
+      css_s
+
+  return (
+    `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${specifier_s} role=table`
+    + ` class="colw_${colw_s} cola_${cola_s}">`
+    + table_s
+    + `</${C_o.TABLE_TAG_s}>`
+    )
+}
+,
+
+
+
+tableWidth__s:
+(
+  width_s
+) =>
+{
+  const width_a =
+    width_s
+      .trim()
+        .split
+        (
+          C_o
+            .PART_DELIM_s
+        )
+
+  const col_n =
+    width_a
+      .length
+
+  let ruleset_s = ''
+    
+  let index_n = 1    //: for loop index
+
+  for
+  (
+    let col_s
+    of
+    width_a
+  )
+  {
+    ruleset_s +=
+      `.colw_${width_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
+      + `{width: calc((${col_s} - ${+col_s * C_o.TABLE_COL_RATIO_n}) * 1%)}\n`
+
+    ++index_n
+  }
+
+  return (
+    `.colw_${width_s} > ${C_o.ROW_TAG_s}:nth-child(-n+${col_n}){background: var(--table);font-weight:600}\n`
+    + ruleset_s
+    )
+}
+,
+
+
+
+tableAlign__s:
+(
+  align_s
+) =>
+{
+  align_s = 
+    align_s
+      .trim()
+
+  const align_a =
+    align_s
+      .split
+      (
+        C_o
+          .PART_DELIM_s
+      )
+
+  const col_n =
+    align_a
+      .length
+
+  let ruleset_s = ''
+    
+  let index_n = 1    //: for loop index
+
+  for
+  (
+    let col_s
+    of
+    align_a
+  )
+  {
+    ruleset_s +=
+      `.cola_${align_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
+      + `{text-align: ${C_o.TABLE_ALIGN_a[+col_s]}}\n`
+
+    ++index_n
+  }
+
+  return ruleset_s
+}
+,
+
+
+
+//???tableTitle__s:
+//???(
+//???  title_a
+//???) =>
+//???{
+//???  let title_s = ''
+//???
+//???  return title_s
+//???}
+//???,
+
+
+
+tableRow__s:
+(
+  row_a
+) =>
+{
+  let row_s = ''
+
+  for
+  (
+    let cell_s
+    of
+    row_a
+  )
+  {
+    row_s +=
+      `<${C_o.ROW_TAG_s}>`
+      + cell_s
+          .trim()
+      + `</${C_o.ROW_TAG_s}>`
+  }
+
+  return row_s
 }
 ,
 
@@ -322,14 +553,14 @@ reference__s:
 
     INS_o
       .legend_s =
-        `<span data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_IMG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${work_o.subject_s}</${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${year_s}</${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${collection_o.place_s}${C_o.LEGEND_DELIM_s}${collection_o.country_s}</${C_o.TABLE_TAG_s}>`
-        + `<${C_o.TABLE_TAG_s}>${collection_o.location_s}</${C_o.TABLE_TAG_s}>`
-        + `</span>`
+        `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_IMG_s}>`
+        + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
+        + `</${C_o.TABLE_TAG_s}>`
   }
   ,
 
@@ -530,6 +761,51 @@ reference__s:
   //??           .trim()
   //??     )
   //?? ,
+
+
+  css__v:
+  (
+    permalink_s
+  ) =>
+  {
+    //;console.log( INS_o.css_s )
+
+    const path_s =
+      C_o.INS_CSS_s
+      + permalink_s
+          .replace
+          (
+            'html',
+            'css'
+          )
+
+    const css_s =
+`${C_o.TABLE_TAG_s}[data-spec="₄"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
+${C_o.TABLE_TAG_s}[data-spec="₄"] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne)}
+`
++ INS_o
+    .css_s
+
+    FS_o
+      .writeFile
+      (
+        path_s,
+        css_s,
+        'utf8',
+        out_o =>    //: callback_f
+          {
+            const out_s =
+              out_o
+              ?
+                'ERROR'
+              :
+                'OK'
+            console
+              .log( `\n----\nWriting ${path_s}: (${out_s})\n----\n` )
+          }
+      )
+  }
+  ,
 }
 
 
@@ -539,7 +815,8 @@ module.exports =
 {
   insert__s
   (
-    content_s
+    content_s,
+    permalink_s
   )
   {
     INS_o
@@ -550,6 +827,9 @@ module.exports =
 
     INS_o
       .gallery_a = []    //: create stack
+
+    INS_o
+      .css_s = ''        //: reset    
 
     for
     (
@@ -606,6 +886,12 @@ module.exports =
           )
     }
     
+    INS_o
+      .css_s
+    &&
+    INS_o
+      .css__v( permalink_s )
+
     return (
       INS_o
         .gray_a
