@@ -101,7 +101,6 @@ const C_o =
   INS_REF_s:      '₂',        //: reference insert
   INS_QUOTE_s:    '₃',        //: quotation insert
   INS_TABLE_s:    '₄',        //: table insert
-
   INS_METHOD_o:
   {
     '₀': 'txt',
@@ -110,20 +109,17 @@ const C_o =
     '₃': 'quote',
     '₄': 'table',
   },
-
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
 
-  TABLE_ROW_DELIM_s: ',',
-
-  TABLE_ALIGN_a:
+  CELL_DELIM_s: '₊',
+  CELL_ALIGN_n:
   [
     'left',
     'center',
     'right'
   ],
-
-  TABLE_COL_RATIO_n: .1,
+  CELL_RATIO_n: .1,
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret

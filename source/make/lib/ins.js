@@ -356,7 +356,7 @@ table__s:
             .tableRow__s
             (
               atline_s
-                .split( C_o.TABLE_ROW_DELIM_s )
+                .split( C_o.CELL_DELIM_s )
             )
     }
 
@@ -409,7 +409,7 @@ tableWidth__s:
   {
     ruleset_s +=
       `.colw_${width_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
-      + `{width: calc((${col_s} - ${+col_s * C_o.TABLE_COL_RATIO_n}) * 1%)}\n`
+      + `{width: calc((${col_s} - ${+col_s * C_o.CELL_RATIO_n}) * 1%)}\n`
 
     ++index_n
   }
@@ -457,7 +457,7 @@ tableAlign__s:
   {
     ruleset_s +=
       `.cola_${align_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
-      + `{text-align: ${C_o.TABLE_ALIGN_a[+col_s]}}\n`
+      + `{text-align: ${C_o.CELL_ALIGN_n[+col_s]}}\n`
 
     ++index_n
   }

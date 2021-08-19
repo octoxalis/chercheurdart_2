@@ -9,20 +9,17 @@ context( stack, new )
         opacity: .25;
         transition: all 5s;  /* long fading out */
     <a>
-            text-decoration: none;
-            color: currentColor;
+            context( block, link_regular )
             font-weight: 400;
-            text-transform: capitalize;
             filter: brightness( var(--brigtness_lo) );
+            text-transform: capitalize;
     </a>
     <!----------variant---------->
     <a:focus>
       context( copy, next )
     </a>
     <a:hover>
-            border-bottom: 1px solid;
-            filter: brightness( var(--brigtness_hi) );
-            transition: opacity .2s;
+            context( block, link_hover )
     </a>
 </header>
 <!----------variant---------->

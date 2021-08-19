@@ -28,10 +28,11 @@
 ---
 {% _doc section_a[0] %}
 //IMAGES
-:1748_arion: ins:₁[sub_s="1703_boucher-princeton_university-1748_arion" ]
+:1748_arion: ins:₁[sub_s=1703_boucher-princeton_university-1748_arion]
 
 //BIBLIO
-:1989_langdon: ins:₂[sub_s="1989_langdon₊p.123₊f.123₊On peut ajouter une _précision_..."]
+:1989_langdon: ins:₂[sub_s=1989_langdon₊p.123₊f.123₊On peut ajouter une _précision_...]
+//----------------------------------------
 
 = {{title_s}} (h1)
 
@@ -91,7 +92,7 @@ Les blocs insérés en ligne se composent de deux parties:
 .horizontal line
 '''
 
-TEXTE (TXT) specifier_s = ₀
+=== TEXTE (TXT) specifier_s = ₀
 
 Le texte précédent l'
 ₍₀ appel (prinpipal_s)
@@ -108,50 +109,44 @@ suite du texte.
 .horizontal line
 '''
 
-IMAGE (IMG) specifier_s = ₁
+=== IMAGE (IMG) specifier_s = ₁
 
 _Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
-
-// INLINE
-//₍₁ _Arion_
-//  1703_boucher-princeton_university-1748_arion₎
 
 .horizontal line
 '''
 
-REFERENCE (REF) specifier_s = ₂
+=== REFERENCE (REF) specifier_s = ₂
 
 Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tableau...
 
-// INLINE
-// Dans sa monographie consacrée à
-// ₍₂ Claude Lorrain
-//   1989_langdon₊p.123₊f.123₊On peut ajouter une _précision_...₎
-// , H. Langdon décrit ce tableau...
-
-
-
+=== CITATION (QUOTE) specifier_s = ₃
 ₍₃ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
   F. Nietzsche
   Crépuscule des idoles
   Maximes et pointes, § 33₎
 
+₍₃ Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
+  A. Dupin
+  https://chercheurdart-2.netlify.app[chercheurd.art]₎
+
 //----------------------------------------
 == Table
+===  specifier_s = ₄
 
 ₍₄ Example 1 - simple table
   20_50_30
   2_1_0
-  TITLE_0,TITLE_1,TITLE_2
-  ROW_0_0,ROW_0_1 is a bit longer,ROW_0_2
-  ROW_1_0,ROW_1_1,ROW_1_2 short₎
+  TITLE_0₊TITLE_1₊TITLE_2
+  ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
+  ROW_1_0₊ROW_1_1₊ROW_1_2 short₎
 
 ₍₄ Example 2 - another table
   30_30_20_20
   1_1_0_2
-  title_0,title_1,title_2,title_3
-  row_0_0,row_0_1 is a bit longer,row_0_2,row_0_3
-  row_1_0,row_1_1,row_1_2 short,row_1_3₎
+  title_0₊title_1₊title_2₊title_3
+  row_0_0₊row_0_1 is a bit longer₊row_0_2₊row_0_3
+  row_1_0₊row_1_1₊row_1_2 short₊row_1_3₎
 
 //----------------------------------------
 == Link
