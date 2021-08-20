@@ -32,11 +32,21 @@
 
 //BIBLIO
 :1989_langdon: ins:₂[sub_s=1989_langdon₊p.123₊f.123₊On peut ajouter une _précision_...]
+
+//LINKS
+:chercheurdart: https://chercheurdart-2.netlify.app[chercheurd.art]
 //----------------------------------------
 
 = {{title_s}} (h1)
 
 {{abstract_s}}
+
+//----------------------------------------
+== Include
+
++Path is relative to source dir+
+
+include::matter/content/parts/include.txt[]
 
 //----------------------------------------
 == Header h2
@@ -121,6 +131,7 @@ _Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
 Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tableau...
 
 === CITATION (QUOTE) specifier_s = ₃
+
 ₍₃ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
   F. Nietzsche
   Crépuscule des idoles
@@ -128,7 +139,7 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
 
 ₍₃ Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
   A. Dupin
-  https://chercheurdart-2.netlify.app[chercheurd.art]₎
+  {chercheurdart}₎
 
 //----------------------------------------
 == Table
@@ -145,8 +156,8 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   30_30_20_20
   1_1_0_2
   title_0₊title_1₊title_2₊title_3
-  row_0_0₊row_0_1 is a bit longer₊row_0_2₊row_0_3
-  row_1_0₊row_1_1₊row_1_2 short₊row_1_3₎
+  ₊row_0_1 is a bit longer₊row_0_2₊row_0_3
+  row_1_0₊row_1_1₊row_1_2 short₊₎
 
 //----------------------------------------
 == Link

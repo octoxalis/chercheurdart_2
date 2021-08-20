@@ -122,8 +122,8 @@ const C_o =
   CELL_RATIO_n: .1,
 
   LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
-  //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
   INS_TRIGGER_s:    '\u25BE',    //: unicode ▾
+  //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
 
 
   //=== DB ===

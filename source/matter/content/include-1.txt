@@ -1,0 +1,10 @@
+=== Included text
+
+Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus.
+
+₍₄ Example 2 - another table
+  30_30_20_20
+  1_1_0_2
+  title_0₊title_1₊title_2₊title_3
+  ₊row_0_1 is a bit longer₊row_0_2₊row_0_3
+  row_1_0₊row_1_1₊row_1_2 short₊₎

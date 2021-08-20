@@ -314,7 +314,7 @@ table__s:
 
   let cola_s = ''
 
-  let at_n = 0    //: for loop index
+  let row_n = 0    //: for loop index
 
   for
   (
@@ -326,7 +326,7 @@ table__s:
   {
     switch
     (
-      at_n
+      row_n
     )
     {
       case 0:        //: 1st line: column widths
@@ -356,11 +356,12 @@ table__s:
             .tableRow__s
             (
               atline_s
-                .split( C_o.CELL_DELIM_s )
+                .split( C_o.CELL_DELIM_s ),
+              row_n
             )
     }
 
-    ++at_n
+    ++row_n
   }
 
   INS_o
@@ -470,7 +471,8 @@ tableAlign__s:
 
 tableRow__s:
 (
-  row_a
+  row_a,
+  row_n      //!!! not used
 ) =>
 {
   let row_s = ''
@@ -804,6 +806,7 @@ module.exports =
     permalink_s
   )
   {
+    console.log( content_s )
     INS_o
       .gray_a = []       //: create stack
 
