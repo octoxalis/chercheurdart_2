@@ -33,6 +33,8 @@ module.exports =
   //XXINS_CSS_s:           'ware/static/assets/styles/css/',
   INS_CSS_s:           '../site/assets/styles/css/',
 
+  JSON_INPUT_DIR_s:    'source/make/db/table',
+
 
   //=== GENERATE ===
   ADOC_MARKUP_b:        false,

@@ -37,6 +37,9 @@
 :chercheurdart: https://chercheurdart-2.netlify.app[chercheurd.art]
 //----------------------------------------
 
+//INCLUDE
+:example_1: matter/content/parts/example_1.adoc
+
 = {{title_s}} (h1)
 
 {{abstract_s}}
@@ -46,7 +49,8 @@
 
 +Path is relative to source dir+
 
-include::matter/content/parts/include.txt[]
+pass:[<span data-ins=principal data-spec=₄>]Example 1 - included table pass:[</span>]
+include::{example_1}[]
 
 //----------------------------------------
 == Header h2

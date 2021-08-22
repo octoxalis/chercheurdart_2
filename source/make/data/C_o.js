@@ -43,8 +43,8 @@ const C_o =
   INCLUDES_PATH_s:      CONF_o.INCLUDES_PATH_s,
   CONTENT_PARTS_PATH_s: CONF_o.CONTENT_PARTS_PATH_s,
 
-  MAKE_DIR_s:    CONF_o.MAKE_DIR_s,
-  CONTENT_DIR_s: CONF_o.CONTENT_DIR_s,
+  MAKE_DIR_s:          CONF_o.MAKE_DIR_s,
+  CONTENT_DIR_s:       CONF_o.CONTENT_DIR_s,
 
   WARE_DIR_s:          CONF_o.WARE_DIR_s,
   IMG_DIR_s:           CONF_o.IMG_DIR_s,
@@ -54,7 +54,9 @@ const C_o =
   ADOC_TEMPLATES_s:    CONF_o.ADOC_TEMPLATES_s,
   ADOC_MARKUP_b:       CONF_o.ADOC_MARKUP_b,
 
-  INS_CSS_s:    CONF_o.INS_CSS_s,
+  INS_CSS_s:           CONF_o.INS_CSS_s,
+
+  JSON_INPUT_DIR_s:    CONF_o.JSON_INPUT_DIR_s,
 
   
   //=== SECTIONS ===
@@ -113,7 +115,7 @@ const C_o =
   INS_SUBSID_s:  'subsid',
 
   CELL_DELIM_s: '₊',
-  CELL_ALIGN_n:
+  CELL_ALIGN_a:
   [
     'left',
     'center',
@@ -143,6 +145,15 @@ const C_o =
   BLOCK_PREAMBLE_s:  'preamble',
   BLOCK_SECTION_s:   'section_level',
   BLOCK_PARAGRAPH_s: 'paragraph',
+
+  JSON_TAB_a:
+  [
+    artist_o =
+    {
+      width_s: '',
+      align_s: ''
+    },
+  ],
 
 
 

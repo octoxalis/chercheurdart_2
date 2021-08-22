@@ -458,7 +458,7 @@ tableAlign__s:
   {
     ruleset_s +=
       `.cola_${align_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
-      + `{text-align: ${C_o.CELL_ALIGN_n[+col_s]}}\n`
+      + `{text-align: ${C_o.CELL_ALIGN_a[+col_s]}}\n`
 
     ++index_n
   }
@@ -767,8 +767,8 @@ tableRow__s:
           )
 
     const css_s =
-`${C_o.TABLE_TAG_s}[data-spec="₄"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
-${C_o.TABLE_TAG_s}[data-spec="₄"] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
+`${C_o.TABLE_TAG_s}[role=table]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
+${C_o.TABLE_TAG_s}[role=table] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
 `
 + INS_o
     .css_s
@@ -806,7 +806,7 @@ module.exports =
     permalink_s
   )
   {
-    console.log( content_s )
+    //;console.log( content_s )
     INS_o
       .gray_a = []       //: create stack
 

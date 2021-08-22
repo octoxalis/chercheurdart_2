@@ -1,5 +1,5 @@
-span[data-spec="₄"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
-span[data-spec="₄"] > b{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
+span[role=table]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
+span[role=table] > b{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
 .colw_30_30_20_20 > b:nth-child(-n+4){background: var(--table);font-weight:600}
 .colw_30_30_20_20 > b:nth-child(4n+1){width: calc((30 - 3) * 1%)}
 .colw_30_30_20_20 > b:nth-child(4n+2){width: calc((30 - 3) * 1%)}
