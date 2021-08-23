@@ -12,8 +12,6 @@ const TAB_o =
     ins_s
   ) =>
   {
-    //;console.log( file_s )
-
     const path_s =
       C_o
         .ADOC_OUTPUT_DIR_s
@@ -21,7 +19,7 @@ const TAB_o =
 
     const macro_s =
       `${C_o.MACRO_INSERT_s}:${C_o.INS_TABLE_s}`
-      + `[sub_s=${ins_s}]`
+      + `[${C_o.MACRO_SUB_s}=${ins_s}]`
 
 
     FS_o
@@ -55,11 +53,9 @@ const TAB_o =
     json_s
   ) =>
   {
-    //;console.log( json_s )
-
     const json_a =
       JSON
-        .parse( json_s )    //;console.table( json_a )
+        .parse( json_s )
 
     const title_a = []
 
@@ -212,7 +208,7 @@ const TAB_o =
           100
           /
           row_n
-        )                    //;console.log( cell_s )
+        )
 
     let width_s = ''
 
@@ -315,8 +311,7 @@ void function
             .lastIndexOf( '/' ) + 1,      //: skip '/'
           -'.json'
             .length                       //: skip '.json'
-        )                   //;console.log( file_s )
-
+        )
     FS_o
       .readFile
       (

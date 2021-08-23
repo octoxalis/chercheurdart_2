@@ -141,6 +141,7 @@ const C_o =
   //=== ADOC ===
   ADOC_DATA_s:       'ad',
   MACRO_INSERT_s:    'ins',
+  MACRO_SUB_s:       'sub_s',       //: macro insert subsidiary
   
   BLOCK_PREAMBLE_s:  'preamble',
   BLOCK_SECTION_s:   'section_level',
@@ -151,7 +152,7 @@ const C_o =
     artist_o:
     {
       width_s: '30_20_20_10_20',
-      //align_s: ''
+      //align_s: ''    //: default (left)
     },
   },
 
