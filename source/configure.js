@@ -34,6 +34,7 @@ module.exports =
   INS_CSS_s:           '../site/assets/styles/css/',
 
   JSON_INPUT_DIR_s:    'source/make/db/table',
+  ADOC_OUTPUT_DIR_s:   'source/matter/content/parts/',
 
 
   //=== GENERATE ===

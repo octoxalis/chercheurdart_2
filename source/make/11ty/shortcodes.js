@@ -29,6 +29,16 @@ const CODES_o =
     )
   }
   ,
+
+
+
+  tab__s:
+  (
+    title_s
+  ) =>
+    `pass:[<span data-ins=principal data-spec=₄>] ${title_s} pass:[</span>]`
+  ,
+
 }
 
 
@@ -43,6 +53,7 @@ module.exports =
       of
       [        //=== paired shortcodes
         'doc',
+        'tab'
       ]
     )
     {

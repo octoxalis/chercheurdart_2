@@ -35,22 +35,15 @@
 
 //LINKS
 :chercheurdart: https://chercheurdart-2.netlify.app[chercheurd.art]
+
+//INCLUDE (path is relative to source dir)
+
+:tab_artist: matter/content/parts/artist.adoc
+
 //----------------------------------------
-
-//INCLUDE
-:example_1: matter/content/parts/example_1.adoc
-
 = {{title_s}} (h1)
 
 {{abstract_s}}
-
-//----------------------------------------
-== Include
-
-+Path is relative to source dir+
-
-pass:[<span data-ins=principal data-spec=₄>]Example 1 - included table pass:[</span>]
-include::{example_1}[]
 
 //----------------------------------------
 == Header h2
@@ -145,23 +138,32 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   A. Dupin
   {chercheurdart}₎
 
-//----------------------------------------
-== Table
-===  specifier_s = ₄
+===  TABLE (table) specifier_s = ₄
 
 ₍₄ Example 1 - simple table
   20_50_30
   2_1_0
-  TITLE_0₊TITLE_1₊TITLE_2
-  ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
-  ROW_1_0₊ROW_1_1₊ROW_1_2 short₎
+  TITLE_0₌TITLE_1₌TITLE_2
+  ROW_0_0₌ROW_0_1 is a bit longer₌ROW_0_2
+  ROW_1_0₌ROW_1_1₌ROW_1_2 short₎
 
 ₍₄ Example 2 - another table
   30_30_20_20
   1_1_0_2
-  title_0₊title_1₊title_2₊title_3
-  ₊row_0_1 is a bit longer₊row_0_2₊row_0_3
-  row_1_0₊row_1_1₊row_1_2 short₊₎
+  title_0₌title_1₌title_2₌title_3
+  ₌row_0_1 is a bit longer₌row_0_2₌row_0_3
+  row_1_0₌row_1_1₌row_1_2 short₌₎
+
+//----------------------------------------
+== Include
+
+{% _tab %}
+{#__(multiline optional comment... commented out!!!)__#}
+
+Artist table (included)
+{% end_tab %}
+
+include::{tab_artist}[]
 
 //----------------------------------------
 == Link

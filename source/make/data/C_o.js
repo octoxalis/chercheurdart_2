@@ -57,7 +57,7 @@ const C_o =
   INS_CSS_s:           CONF_o.INS_CSS_s,
 
   JSON_INPUT_DIR_s:    CONF_o.JSON_INPUT_DIR_s,
-
+  ADOC_OUTPUT_DIR_s:   CONF_o.ADOC_OUTPUT_DIR_s,
   
   //=== SECTIONS ===
   URL_INDEX_s:    'index.html',
@@ -114,7 +114,7 @@ const C_o =
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
 
-  CELL_DELIM_s: '₊',
+  CELL_DELIM_s: '₌',
   CELL_ALIGN_a:
   [
     'left',
@@ -123,7 +123,7 @@ const C_o =
   ],
   CELL_RATIO_n: .1,
 
-  LEGEND_DELIM_s:  ' \u2219 ',  //: bullet
+  LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
   INS_TRIGGER_s:    '\u25BE',    //: unicode ▾
   //XXRANGE_DELIM_s:   ' \u2014 ',  //: long tiret
 
@@ -146,14 +146,14 @@ const C_o =
   BLOCK_SECTION_s:   'section_level',
   BLOCK_PARAGRAPH_s: 'paragraph',
 
-  JSON_TAB_a:
-  [
-    artist_o =
+  JSON_TAB_o:
+  {
+    artist_o:
     {
-      width_s: '',
-      align_s: ''
+      width_s: '30_20_20_10_20',
+      //align_s: ''
     },
-  ],
+  },
 
 
 

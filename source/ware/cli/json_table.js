@@ -12,7 +12,37 @@ const TAB_o =
     ins_s
   ) =>
   {
-    ;console.log( ins_s )
+    //;console.log( file_s )
+
+    const path_s =
+      C_o
+        .ADOC_OUTPUT_DIR_s
+      + `${file_s}.adoc`
+
+    const macro_s =
+      `${C_o.MACRO_INSERT_s}:${C_o.INS_TABLE_s}`
+      + `[sub_s=${ins_s}]`
+
+
+    FS_o
+      .writeFile
+      (
+        path_s,
+        macro_s,
+        'utf8',
+        out_o =>    //: callback_f
+          {
+            const out_s =
+              out_o
+              ?
+                'ERROR'
+              :
+                'OK'
+
+            console
+              .log( `\n----\nWriting ${path_s}: (${out_s})\n----\n` )
+          }
+      )
   }
   ,
 
@@ -71,7 +101,10 @@ const TAB_o =
         }
 
         row_a
-          .push( row_o[prop_s] )
+          .push
+          (
+            row_o[prop_s]
+          )
       }
 
       table_s +=
@@ -101,18 +134,21 @@ const TAB_o =
         if
         (
           C_o
-            [file_s]
+            .JSON_TAB_o
+              [`${file_s}_o`]
         )
         {
           width_s =
             C_o
-              [file_s]
-                ?.width_s
+              .JSON_TAB_o
+                [`${file_s}_o`]
+                  ?.width_s
 
           align_s =
             C_o
-              [file_s]
-                ?.align_s
+              .JSON_TAB_o
+                [`${file_s}_o`]
+                  ?.align_s
         }
 
         if
@@ -279,7 +315,7 @@ void function
             .lastIndexOf( '/' ) + 1,      //: skip '/'
           -'.json'
             .length                       //: skip '.json'
-        )                   ;console.log( file_s )
+        )                   //;console.log( file_s )
 
     FS_o
       .readFile
