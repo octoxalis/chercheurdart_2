@@ -90,14 +90,13 @@ const C_o =
   LINE_DELIM_s:    '\n',
   PART_DELIM_s:    '_',    //: between subparts
   ID_DELIM_s:      '-',    //: between parts
-  ID_PART_DELIM_s: '_',    //: between subparts
-  ID_WORD_DELIM_s: '₊',    //: between multi word subpart
+  ID_WORD_DELIM_s: '¯',    //: between multi word subpart
 
   PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
   PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
 
   INS_SPECIF_DELIM_s: ' ',
-  INS_BREAK_DELIM_s:  ' + ',  //: line break inside insert
+  INS_BREAK_DELIM_s:  ' ~ ',  //: line break inside insert
   INS_TXT_s:      '₀',        //: text insert
   INS_IMG_s:      '₁',        //: img insert
   INS_REF_s:      '₂',        //: reference insert
@@ -114,7 +113,7 @@ const C_o =
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
 
-  CELL_DELIM_s: '₌',
+  CELL_DELIM_s: '₊',
   CELL_ALIGN_a:
   [
     'left',

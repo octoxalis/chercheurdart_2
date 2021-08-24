@@ -15,7 +15,7 @@ const TAB_o =
     const path_s =
       C_o
         .ADOC_OUTPUT_DIR_s
-      + `${file_s}.adoc`
+      + `${file_s}.${C_o.MACRO_INSERT_s}`
 
     const macro_s =
       `${C_o.MACRO_INSERT_s}:${C_o.INS_TABLE_s}`
