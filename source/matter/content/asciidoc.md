@@ -99,7 +99,7 @@ Les blocs insérés en ligne se composent de deux parties:
 .horizontal line
 '''
 
-=== TEXTE (TXT) specifier_s = ₀
+=== TEXTE (txt) specifier_s = ₀
 
 Le texte précédent l'
 ₍₀ appel (prinpipal_s)
@@ -116,18 +116,18 @@ suite du texte.
 .horizontal line
 '''
 
-=== IMAGE (IMG) specifier_s = ₁
+=== IMAGE (img) specifier_s = ₁
 
 _Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
 
 .horizontal line
 '''
 
-=== REFERENCE (REF) specifier_s = ₂
+=== REFERENCE (ref) specifier_s = ₂
 
 Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tableau...
 
-=== CITATION (QUOTE) specifier_s = ₃
+=== CITATION (quo) specifier_s = ₃
 
 ₍₃ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
   F. Nietzsche
@@ -138,7 +138,7 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   A. Dupin
   {chercheurdart}₎
 
-===  TABLE (table) specifier_s = ₄
+===  TABLE (tab) specifier_s = ₄
 
 ₍₄ Example 1 - simple table
   20_50_30
@@ -147,20 +147,10 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
   ROW_1_0₊ROW_1_1₊pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]₎
 
-₍₄ Example 2 - another table
-  30_30_20_20
-  1_1_0_2
-  title_0₊title_1₊title_2₊title_3
-  ₊row_0_1 is a bit longer₊row_0_2₊row_0_3
-  row_1_0₊row_1_1₊row_1_2 short₊₎
-
-//----------------------------------------
-== Include
-
 {% _tab %}
 {#__(multiline optional comment... commented out!!!)__#}
 
-Artist table (included)
+Example 2 - Artist table (included)
 {% end_tab %}
 
 include::{tab_artist}[]

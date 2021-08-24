@@ -97,18 +97,19 @@ const C_o =
 
   INS_SPECIF_DELIM_s: ' ',
   INS_BREAK_DELIM_s:  ' ~ ',  //: line break inside insert
+  
   INS_TXT_s:      '₀',        //: text insert
-  INS_IMG_s:      '₁',        //: img insert
+  INS_IMG_s:      '₁',        //: image insert
   INS_REF_s:      '₂',        //: reference insert
-  INS_QUOTE_s:    '₃',        //: quotation insert
-  INS_TABLE_s:    '₄',        //: table insert
+  INS_QUO_s:      '₃',        //: quotation insert
+  INS_TAB_s:      '₄',        //: table insert
   INS_METHOD_o:
   {
     '₀': 'txt',
     '₁': 'img',
     '₂': 'ref',
-    '₃': 'quote',
-    '₄': 'table',
+    '₃': 'quo',
+    '₄': 'tab',
   },
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
@@ -146,14 +147,14 @@ const C_o =
   BLOCK_SECTION_s:   'section_level',
   BLOCK_PARAGRAPH_s: 'paragraph',
 
-  JSON_TAB_o:
-  {
-    artist_o:
-    {
-      width_s: '30_20_20_10_20',
-      //align_s: ''    //: default (left)
-    },
-  },
+//XX  JSON_TAB_o:
+//XX  {
+//XX    artist_o:
+//XX    {
+//XX      width_s: '30_20_20_10_20',
+//XX      //align_s: ''    //: default (left)
+//XX    },
+//XX  },
 
 
 

@@ -2,6 +2,7 @@ const FS_o  = require( 'fs-extra' )
 const KS_o  = require( 'klaw-sync' )
 
 const C_o =   require( '../../make/data/C_o.js' )
+const T_o =   require( '../../make/data/T_o.js' )
 
 
 const TAB_o =
@@ -18,7 +19,7 @@ const TAB_o =
       + `${file_s}.${C_o.MACRO_INSERT_s}`
 
     const macro_s =
-      `${C_o.MACRO_INSERT_s}:${C_o.INS_TABLE_s}`
+      `${C_o.MACRO_INSERT_s}:${C_o.INS_TAB_s}`
       + `[${C_o.MACRO_SUB_s}=${ins_s}]`
 
 
@@ -129,22 +130,19 @@ const TAB_o =
       {
         if
         (
-          C_o
-            .JSON_TAB_o
-              [`${file_s}_o`]
+          T_o
+            [`${file_s}_o`]
         )
         {
           width_s =
-            C_o
-              .JSON_TAB_o
-                [`${file_s}_o`]
-                  ?.width_s
+            T_o
+              [`${file_s}_o`]
+                ?.width_s
 
           align_s =
-            C_o
-              .JSON_TAB_o
-                [`${file_s}_o`]
-                  ?.align_s
+            T_o
+              [`${file_s}_o`]
+                ?.align_s
         }
 
         if

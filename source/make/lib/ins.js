@@ -88,8 +88,8 @@ parse__s:
   {
     case C_o.INS_TXT_s:
     case C_o.INS_REF_s:
-    case C_o.INS_QUOTE_s:
-    case C_o.INS_TABLE_s:
+    case C_o.INS_QUO_s:
+    case C_o.INS_TAB_s:
       return (
         INS_o
           .text_s
@@ -165,7 +165,7 @@ refLine__v:    //: ₂
 
 
 
-quoteLine__v:    //: ₃
+quoLine__v:    //: ₃
 (
   line_s
 ) =>
@@ -176,7 +176,7 @@ quoteLine__v:    //: ₃
         .txt__s
         (
           line_s,
-          C_o.INS_QUOTE_s
+          C_o.INS_QUO_s
         )
 }
 ,
@@ -184,7 +184,7 @@ quoteLine__v:    //: ₃
 
 
 
-tableLine__v:    //: ₄
+tabLine__v:    //: ₄
 (
   line_s
 ) =>
@@ -195,7 +195,7 @@ tableLine__v:    //: ₄
         .table__s
         (
           line_s,
-          C_o.INS_TABLE_s
+          C_o.INS_TAB_s
         )
 }
 ,
