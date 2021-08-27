@@ -207,6 +207,22 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span
 section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
   content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
 }
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[role=table] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1px;
+  width: 100%;
+}
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[role=table] > b {
+  flex-grow: 1;
+  padding: .25rem;
+  background: var(--shadow_ne);
+  font-size: 90%;
+}
+section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[role=table] > b > a {
+  font-size: 100%;
+}
 section#{{C_o.SECTION_a[0]}} > h2 + div > p > span[data-spec={{C_o.INS_QUO_s}}] {
   display: block;
   margin: 0 0 -.2rem .4rem;

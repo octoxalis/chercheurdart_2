@@ -25,7 +25,7 @@
     'asciidoc.css'
   ],
 }
------------------------------------------------------------------------------
+---
 {% _doc section_a[0] %}
 //IMAGES
 :1748_arion: ins:₁[sub_s=1703_boucher-princeton_university-1748_arion]
@@ -132,7 +132,7 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
 ₍₃ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
   F. Nietzsche
   Crépuscule des idoles
-  Maximes et pointes, § 33₎
+  Maximes et pointes § 33₎
 
 ₍₃ Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
   A. Dupin
@@ -148,9 +148,9 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   ROW_1_0₊ROW_1_1₊pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]₎
 
 {% _tab %}
-{#__(multiline optional comment... commented out!!!)__#}
-
 Example 2 - Artist table (included)
+
+__with multiline optional comment...__
 {% end_tab %}
 
 include::{tab_artist}[]

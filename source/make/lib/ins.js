@@ -767,10 +767,11 @@ tableRow__s:
           )
 
     const css_s =
-`${C_o.TABLE_TAG_s}[role=table]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
-${C_o.TABLE_TAG_s}[role=table] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
-`
-+ INS_o
+//XX`${C_o.TABLE_TAG_s}[role=table]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
+//XX${C_o.TABLE_TAG_s}[role=table] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
+//XX`
+//XX+ 
+  INS_o
     .css_s
 
     FS_o
