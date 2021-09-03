@@ -28,7 +28,7 @@
 ---
 {% _doc section_a[0] %}
 //IMAGES
-:1748_arion: ins:₁[sub_s=1703_boucher-princeton_university-1748_arion]
+:1748_arion: ins:₉[sub_s=1703_boucher-princeton_university-1748_arion]
 
 //BIBLIO
 :1989_langdon: ins:₂[sub_s=1989_langdon¯p.123¯f.123¯On peut ajouter une _précision_...]
@@ -87,15 +87,6 @@ Voici une référence
   - deux
 * tertio
 
-.horizontal line
-'''
-
-=== Simili Definition List (def)
-
-₍₅ Term
-  definition primo
-  definition secondo₎
-
 //----------------------------------------
 == Insert
 
@@ -124,9 +115,11 @@ suite du texte.
 .horizontal line
 '''
 
-=== IMAGE (img) specifier_s = ₁
+=== DEFINITION (def) specifier_s = ₁
 
-_Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
+₍₁ Définition multiple (single level list)
+definition primo
+definition secondo₎
 
 .horizontal line
 '''
@@ -168,6 +161,13 @@ __with multiline optional comment...__
 {% end_tab %}
 
 include::{tab_artist}[]
+
+.horizontal line
+'''
+
+=== IMAGE (img) specifier_s = ₉
+
+_Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
 
 //----------------------------------------
 == Link

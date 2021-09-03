@@ -99,19 +99,21 @@ const C_o =
   INS_BREAK_DELIM_s:  ' ~ ',  //: line break inside insert
   
   INS_TXT_s:      '₀',        //: text insert
-  INS_IMG_s:      '₁',        //: image insert
+  INS_DEF_s:      '₁',        //: definition list
   INS_REF_s:      '₂',        //: reference insert
   INS_QUO_s:      '₃',        //: quotation insert
   INS_TAB_s:      '₄',        //: table insert
-  INS_DEF_s:      '₅',        //: definition list
+  
+  INS_IMG_s:      '₉',        //: image insert
   INS_METHOD_o:
   {
     '₀': 'txt',
-    '₁': 'img',
+    '₁': 'def',
     '₂': 'ref',
     '₃': 'quo',
     '₄': 'tab',
-    '₅': 'def',
+
+    '₉': 'img',
   },
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
