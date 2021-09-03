@@ -1,16 +1,16 @@
 html {
-  --lum_mode: {{C_o.LUM_MODE_n}};
+  --lum_mode: {{CSS_o.LUM_MODE_n}};
   --lum_contrast: 45;
-  --c_lum_hi_4: calc(({{C_o.LUM_BASE_n}} + ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * 1.0 ) ) * 1%);
-  --c_lum_hi_3: calc(({{C_o.LUM_BASE_n}} + ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * .75 ) ) * 1%);
-  --c_lum_hi_2: calc(({{C_o.LUM_BASE_n}} + ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * .50 ) ) * 1%);
-  --c_lum_hi_1: calc(({{C_o.LUM_BASE_n}} + ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * .25 ) ) * 1%);
-  --c_lum_ne : calc(({{C_o.LUM_BASE_n}} +  0 ) * 1%);
-  --c_lum_lo_1: calc(({{C_o.LUM_BASE_n}} - ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * .25 ) ) * 1%);
-  --c_lum_lo_2: calc(({{C_o.LUM_BASE_n}} - ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * .50 ) ) * 1%);
-  --c_lum_lo_3: calc(({{C_o.LUM_BASE_n}} - ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * .75 ) ) * 1%);
-  --c_lum_lo_4: calc(({{C_o.LUM_BASE_n}} - ( var(--lum_mode) * {{C_o.LUM_CONTRAST_n}} * 1.0 ) ) * 1%);
-  --c_hue_p: {{C_o.HUE_P_n}};
+  --c_lum_hi_4: calc(({{CSS_o.LUM_BASE_n}} + ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * 1.0 ) ) * 1%);
+  --c_lum_hi_3: calc(({{CSS_o.LUM_BASE_n}} + ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * .75 ) ) * 1%);
+  --c_lum_hi_2: calc(({{CSS_o.LUM_BASE_n}} + ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * .50 ) ) * 1%);
+  --c_lum_hi_1: calc(({{CSS_o.LUM_BASE_n}} + ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * .25 ) ) * 1%);
+  --c_lum_ne : calc(({{CSS_o.LUM_BASE_n}} +  0 ) * 1%);
+  --c_lum_lo_1: calc(({{CSS_o.LUM_BASE_n}} - ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * .25 ) ) * 1%);
+  --c_lum_lo_2: calc(({{CSS_o.LUM_BASE_n}} - ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * .50 ) ) * 1%);
+  --c_lum_lo_3: calc(({{CSS_o.LUM_BASE_n}} - ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * .75 ) ) * 1%);
+  --c_lum_lo_4: calc(({{CSS_o.LUM_BASE_n}} - ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * 1.0 ) ) * 1%);
+  --c_hue_p: {{CSS_o.HUE_P_n}};
   --c_sat_hi_4: 94%;
   --c_sat_hi_2: 72%;
   --c_sat_lo_2: 28%;

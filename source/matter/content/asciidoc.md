@@ -87,6 +87,11 @@ Voici une référence
   - deux
 * tertio
 
+=== Simili Definition List
+
+₍₅ Term
+definition primo
+definition secondo₎
 
 //----------------------------------------
 == Insert

@@ -32,7 +32,7 @@ ul > li > a:hover {
   transition: opacity .2s;
 }
 ul > li:before {
-  content: '\{{C_o.LIST_MARKER_s}}';
+  content: '\{{CSS_o.LIST_MARKER_s}}';
   position: relative;
   left: -1rem;
   color: var(--shadow_ne);
@@ -42,10 +42,10 @@ section {
   content-visibility: auto;
   position: absolute;
   top: 0;
-  width: {{C_o.FULL_WIDTH_s}};
-  min-height: {{C_o.FULL_HEIGHT_s}};
+  width: {{CSS_o.FULL_WIDTH_s}};
+  min-height: {{CSS_o.FULL_HEIGHT_s}};
   height: auto;
-  padding-top: {{C_o.PAD_8}};
+  padding-top: {{CSS_o.PAD_8}};
   background: var(--bgcolor);
 }
 section:target {
@@ -98,7 +98,7 @@ section#{{C_o.SECTION_a[0]}} > h2 + div {
 section#{{C_o.SECTION_a[0]}} > h2 + div > hr {
   width: 30%;
   height: 1px;
-  margin: {{C_o.PAD_4}} auto {{C_o.PAD_4}};
+  margin: {{CSS_o.PAD_4}} auto {{CSS_o.PAD_4}};
   background: var(--shadow_ne);
   border: 0;
 }
@@ -119,7 +119,7 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label:hover {
   filter: invert( .5 );
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div > p > label {
-  margin: 0 {{C_o.PAD_1}};
+  margin: 0 {{CSS_o.PAD_1}};
   vertical-align: baseline;
   cursor: pointer;
 }
@@ -132,8 +132,8 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins {
   display: block;
   position: relative;
   height: fit-content;
-  margin: {{C_o.PAD_1}} 0;
-  padding: {{C_o.PAD_4}};
+  margin: {{CSS_o.PAD_1}} 0;
+  padding: {{CSS_o.PAD_4}};
   text-decoration: none;
   border: 1px solid var(--shadow_ne);
   border-radius: 4px;
@@ -146,94 +146,105 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > a > 
   max-height: 128px;
   border-radius: 4px;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec] > b {
+span[data-spec] > b {
   display: table;
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
   line-height: 1.3;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec] > b > a {
+span[data-spec] > b > a {
   color: currentColor;
   text-decoration: none;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec] > b > a:hover {
+span[data-spec] > b > a:hover {
   border-bottom: 1px solid;
   filter: brightness( var(--brigtness_hi) );
   transition: opacity .2s;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
+span[data-spec={{C_o.INS_DEF_s}}] {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(1) {
+span[data-spec={{C_o.INS_DEF_s}}] > b {
+  border-left: 1px solid var(--shadow_ne);
+  padding-left: .8rem;
+  color: currentColor;
+  list-style: none;
+}
+span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
+span[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(2) {
+span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
+  --font_max: 20px;
+  --font_scale: 2.2vw;
+  font-weight: 600;
+}
+span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(2) {
+span[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
+span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] {
+span[data-spec={{C_o.INS_IMG_s}}] {
   top: 0;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b > i {
+span[data-spec={{C_o.INS_IMG_s}}] > b > i {
   font-style: normal;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
-  content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
+span[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
+  content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[role=table] {
+span[role=table] {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1px;
   width: 100%;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[role=table] > b {
+span[role=table] > b {
   flex-grow: 1;
   padding: .25rem;
   background: var(--shadow_ne);
   font-size: 90%;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > span[role=table] > b > a {
+span[role=table] > b > a {
   font-size: 100%;
 }
-section#{{C_o.SECTION_a[0]}} > h2 + div > p > span[data-spec={{C_o.INS_QUO_s}}] {
+span[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid]) {
   display: block;
   margin: 0 0 -.2rem .4rem;
   padding-left: .8rem;
   border-left: .5rem solid var(--shadow_ne);
   font-style: italic;
 }
-section#{{C_o.SECTION_a[0]}} > hr {
+hr {
   width: 100%;
   height: 1px;
-  margin: {{C_o.PAD_8}} auto {{C_o.PAD_12}};
+  margin: {{CSS_o.PAD_8}} auto {{CSS_o.PAD_12}};
   background: var(--shadow_ne);
   border: 0;
 }
@@ -275,7 +286,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > span[data-spec] > b > i
   font-style: normal;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > span[data-spec] > b > i:first-of-type::after {
-  content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
+  content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > span[data-spec] > b > a {
   color: currentColor;

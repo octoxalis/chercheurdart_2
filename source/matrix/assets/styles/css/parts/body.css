@@ -3,5 +3,5 @@ body {
   min-height: 200vh;
   color: var(--textcolor);
   background: var(--bgcolor);
-  font-family: {{C_o.FONT_BODY_s}};
+  font-family: {{CSS_o.FONT_BODY_s}};
 }

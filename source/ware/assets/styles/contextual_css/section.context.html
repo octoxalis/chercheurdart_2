@@ -19,9 +19,7 @@ context( stack, new )
 <ul>
         context( block, vertical_hr )
   <li>
-          padding-left: .8rem;
-          color: currentColor;
-          list-style: none;
+        context( block, list_item )
     <a>
             context( block, link_regular )
     </a>
@@ -30,7 +28,7 @@ context( stack, new )
     </a>
   </li>
   <li:before>
-          content: '\{{C_o.LIST_MARKER_s}}';
+          content: '\{{CSS_o.LIST_MARKER_s}}';
           position: relative;
           left: -1rem;
           color: var(--shadow_ne);
@@ -50,10 +48,10 @@ context( stack, new )
         content-visibility: auto;   /* ?????????????? */
         position: absolute;
         top: 0;
-        width: {{C_o.FULL_WIDTH_s}};
-        min-height: {{C_o.FULL_HEIGHT_s}};
+        width: {{CSS_o.FULL_WIDTH_s}};
+        min-height: {{CSS_o.FULL_HEIGHT_s}};
         height: auto;
-        padding-top: {{C_o.PAD_8}};
+        padding-top: {{CSS_o.PAD_8}};
         background: var(--bgcolor);
 </section>
 <!----------variant---------->
@@ -107,7 +105,7 @@ context( stack, new )
     <hr><!-- !!! occurs inside chapter -->
       width: 30%;
       height: 1px;
-      margin: {{C_o.PAD_4}} auto {{C_o.PAD_4}};
+      margin: {{CSS_o.PAD_4}} auto {{CSS_o.PAD_4}};
       background: var(--shadow_ne);
       border: 0;
     </hr>
@@ -125,7 +123,7 @@ context( stack, new )
               filter: invert( .5 );
       </label>
       <label>
-              margin: 0 {{C_o.PAD_1}};
+              margin: 0 {{CSS_o.PAD_1}};
               vertical-align: baseline;
               cursor: pointer;
       </label>
@@ -148,8 +146,8 @@ context( stack, new )
               display: block;
               position: relative;
               height: fit-content;
-              margin: {{C_o.PAD_1}} 0;
-              padding: {{C_o.PAD_4}};
+              margin: {{CSS_o.PAD_1}} 0;
+              padding: {{CSS_o.PAD_4}};
               /*background: var(--insert);*/
               text-decoration: none;
               border: 1px solid var(--shadow_ne);
@@ -167,6 +165,7 @@ context( stack, new )
                   border-radius: 4px;
           </img>
         </a>
+        context( stack, new )
         <span[data-spec]>
           <b>
                   display: table;
@@ -181,6 +180,13 @@ context( stack, new )
             <a:hover>
                     context( block, link_hover )
             </a>
+          </b>
+        </span>
+        <span[data-spec={{C_o.INS_DEF_s}}]>
+                context( block, reference_1 )
+          <b>
+                context( block, vertical_hr )
+                context( block, list_item )
           </b>
         </span>
         <span[data-spec={{C_o.INS_REF_s}}]>
@@ -220,7 +226,7 @@ context( stack, new )
                     font-style: normal;
             </i>
             <i:first-of-type::after>
-                    content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
+                    content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
            </i>
           </b>
         </span>
@@ -241,7 +247,7 @@ context( stack, new )
           </b>
         </span>
       </ins>
-      <span[data-spec={{C_o.INS_QUO_s}}]>
+      <span[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid])>
               display: block;
               margin: 0 0 -.2rem .4rem;
               padding-left: .8rem;
@@ -253,11 +259,12 @@ context( stack, new )
   <hr/><!-- !!! occurs at chapter end -->
           width: 100%;
           height: 1px;
-          margin: {{C_o.PAD_8}} auto {{C_o.PAD_12}};
+          margin: {{CSS_o.PAD_8}} auto {{CSS_o.PAD_12}};
           background: var(--shadow_ne);
           border: 0;
 </section>
 <!----------variant---------->
+context( stack, new )
 <section#{{C_o.SECTION_a[1]}}>
         column-count: 3;
         column-gap: 0;
@@ -283,7 +290,7 @@ context( stack, new )
                     font-style: normal;
             </i>
             <i:first-of-type::after>
-                    content: '\00A0\{{C_o.DIM_SEPARATOR_s}}\00A0';
+                    content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
            </i>
             <a>
                     context( block, link_regular )

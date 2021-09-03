@@ -103,6 +103,7 @@ const C_o =
   INS_REF_s:      '₂',        //: reference insert
   INS_QUO_s:      '₃',        //: quotation insert
   INS_TAB_s:      '₄',        //: table insert
+  INS_DEF_s:      '₅',        //: definition list
   INS_METHOD_o:
   {
     '₀': 'txt',
@@ -110,6 +111,7 @@ const C_o =
     '₂': 'ref',
     '₃': 'quo',
     '₄': 'tab',
+    '₅': 'def',
   },
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
@@ -146,17 +148,6 @@ const C_o =
   BLOCK_PREAMBLE_s:  'preamble',
   BLOCK_SECTION_s:   'section_level',
   BLOCK_PARAGRAPH_s: 'paragraph',
-
-//XX  JSON_TAB_o:
-//XX  {
-//XX    artist_o:
-//XX    {
-//XX      width_s: '30_20_20_10_20',
-//XX      //align_s: ''    //: default (left)
-//XX    },
-//XX  },
-
-
 
   //=== CSS ===
   EXT_ARROW_s:     '2303',

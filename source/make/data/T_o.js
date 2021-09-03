@@ -1,7 +1,9 @@
 /*
  * Table widths & aligns
  */
-module.exports =
+
+
+const T_o =
 {
   artist_o:
   {
@@ -10,4 +12,7 @@ module.exports =
   },
 }
 
+
+
+module.exports = T_o
 

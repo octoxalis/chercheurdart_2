@@ -6,14 +6,14 @@ aside > figure {
 }
 aside > figure > a > img {
   width: 100%;
-  max-width: {{C_o.FULL_WIDTH_s}};
-  max-height: calc( {{C_o.FULL_HEIGHT_s}} - {{C_o.PAD_8}} );
+  max-width: {{CSS_o.FULL_WIDTH_s}};
+  max-height: calc( {{CSS_o.FULL_HEIGHT_s}} - {{CSS_o.PAD_8}} );
   object-fit: scale-down;
 }
 figure:target {
   display: block;
   position: fixed;
-  top: {{C_o.PAD_8}};
+  top: {{CSS_o.PAD_8}};
   right: 0;
   bottom: 0;
   left: 0;

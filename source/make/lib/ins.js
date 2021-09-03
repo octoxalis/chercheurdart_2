@@ -90,6 +90,7 @@ parse__s:
     case C_o.INS_REF_s:
     case C_o.INS_QUO_s:
     case C_o.INS_TAB_s:
+    case C_o.INS_DEF_s:
       return (
         INS_o
           .text_s
@@ -196,6 +197,25 @@ tabLine__v:    //: ₄
         (
           line_s,
           C_o.INS_TAB_s
+        )
+}
+,
+
+
+
+
+defLine__v:    //: ₅
+(
+  line_s
+) =>
+{
+  INS_o
+    .text_s =
+      INS_o
+        .txt__s
+        (
+          line_s,
+          C_o.INS_DEF_s
         )
 }
 ,
@@ -767,13 +787,9 @@ tableRow__s:
           )
 
     const css_s =
-//XX`${C_o.TABLE_TAG_s}[role=table]{display:flex;flex-direction:row;flex-wrap:wrap;gap:1px;width:100%}
-//XX${C_o.TABLE_TAG_s}[role=table] > ${C_o.ROW_TAG_s}{flex-grow:1;padding:.25rem;background:var(--shadow_ne);font-size:80%}
-//XX`
-//XX+ 
-  INS_o
-    .css_s
-
+      INS_o
+        .css_s
+    
     FS_o
       .writeFile
       (
@@ -807,7 +823,6 @@ module.exports =
     permalink_s
   )
   {
-    //;console.log( content_s )
     INS_o
       .gray_a = []       //: create stack
 
