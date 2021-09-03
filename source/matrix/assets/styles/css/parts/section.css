@@ -173,6 +173,12 @@ span[data-spec={{C_o.INS_DEF_s}}] > b {
   color: currentColor;
   list-style: none;
 }
+span[data-spec={{C_o.INS_DEF_s}}] > b:before {
+  content: '\{{CSS_o.LIST_MARKER_s}}';
+  position: relative;
+  left: -1rem;
+  color: var(--shadow_ne);
+}
 span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;

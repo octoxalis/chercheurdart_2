@@ -28,10 +28,7 @@ context( stack, new )
     </a>
   </li>
   <li:before>
-          content: '\{{CSS_o.LIST_MARKER_s}}';
-          position: relative;
-          left: -1rem;
-          color: var(--shadow_ne);
+          context( block, list_marker )
   </li>
 </ul>
 <!--
@@ -187,6 +184,9 @@ context( stack, new )
           <b>
                 context( block, vertical_hr )
                 context( block, list_item )
+          </b>
+          <b:before>
+                  context( block, list_marker )
           </b>
         </span>
         <span[data-spec={{C_o.INS_REF_s}}]>

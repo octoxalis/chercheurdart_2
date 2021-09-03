@@ -87,11 +87,14 @@ Voici une référence
   - deux
 * tertio
 
-=== Simili Definition List
+.horizontal line
+'''
+
+=== Simili Definition List (def)
 
 ₍₅ Term
-definition primo
-definition secondo₎
+  definition primo
+  definition secondo₎
 
 //----------------------------------------
 == Insert
@@ -132,6 +135,9 @@ _Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
 
 Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tableau...
 
+.horizontal line
+'''
+
 === CITATION (quo) specifier_s = ₃
 
 ₍₃ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
@@ -142,6 +148,9 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
 ₍₃ Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
   A. Dupin
   {chercheurdart}₎
+
+.horizontal line
+'''
 
 ===  TABLE (tab) specifier_s = ₄
 
