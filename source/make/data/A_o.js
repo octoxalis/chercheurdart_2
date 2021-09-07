@@ -15,6 +15,7 @@ module.exports =
   DESCRIPT_s:   process.env.DESCRIPT_s,
   GLOBAL_s:     process.env.GLOBAL_s,
 
+  OWNER_s:      process.env.OWNER_s,
   REPO_s:       process.env.REPO_s,
   TOKEN_s:      process.env.TOKEN_s,
 }

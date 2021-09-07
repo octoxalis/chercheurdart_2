@@ -1,8 +1,6 @@
 require( 'dotenv' ).config( { path: '../.env' } )    //: relative to current dir (source)
 const FETCH_o = require( 'node-fetch' )
-
-//XXconst { Octokit} = require( '@octokit/core' )
-//XXconst { createAppAuth } = require( "@octokit/auth-app" )
+const { request: REQ_o } = require( '@octokit/request' )
 
 const A_o     = require( '../data/A_o.js' )
 const U_o     = require( '../data/U_o.js' )
@@ -10,7 +8,7 @@ const U_o     = require( '../data/U_o.js' )
 
 
 const GIT_API_s    = 'https://api.github.com/'
-const GIT_ISSUES_s = `${GIT_API_s}repos/${A_o.AUTHOR_s}/${A_o.ID_s}/issues`
+const GIT_ISSUES_s = `${GIT_API_s}repos/${A_o.OWNER_s}/${A_o.REPO_s}/issues`
 const GIT_LABEL_s  = 'comment'
 const WRITE_TIMEOUT_n = 1000
 
@@ -23,10 +21,8 @@ GIT_o =
   
   body_o:    //: Template for create__n
   {
-    //XX labels: [ `${GIT_LABEL_s}` ],
-    //XX assignees: [ `${A_o.AUTHOR_s}` ],
     labels: [ GIT_LABEL_s ],
-    assignees: [ A_o.AUTHOR_s ],
+    assignees: [ A_o.OWNER_s ],
   }
 }
 
@@ -154,25 +150,8 @@ Issue created
     comment_o
   ) =>
   {
-/*------------------------
-    const { createTokenAuth } =
-      require( "@octokit/auth-token" )
-
-    const auth =
-      createTokenAuth
-      (
-        A_o
-          .TOKEN_s
-      )
-
-    const authentication =
-      await auth()          //;console.log( authentication )
-*/
-
-    const { request } = require("@octokit/request")
-
-    const requestWithAuth =
-      request
+    const request__v =
+      REQ_o
         .defaults
         (
           {
@@ -183,16 +162,19 @@ Issue created
           }
         )
 
-    await requestWithAuth
+    await request__v
       (
         `POST /repos/{owner}/{repo}/issues/{issue_number}/comments`,
-        {
-          //?? accept: 'application/vnd.github.v3+json',
-          owner: A_o.AUTHOR_s,
-          repo:  A_o.REPO_s,
-          issue_number: 1,
-          body: 'comment_2'
-        }
+        Object
+          .assign
+          (
+            comment_o,
+           {
+              //?? accept: 'application/vnd.github.v3+json',
+              owner: A_o.OWNER_s,
+              repo:  A_o.REPO_s
+           }
+          )
       )
   }
   ,

@@ -38,8 +38,15 @@ const BUI_o =
     //... GIT_o
     //...   .list__v()
 
+    //... NOT THE RIGHT PLACE: should go to comment form handling
     GIT_o
-      .comment__v()
+      .comment__v
+      (
+        {
+          issue_number: 1,
+          body: 'comment_4'
+        }
+      )
   }
 ,
 
