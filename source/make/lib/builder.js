@@ -1,4 +1,5 @@
 const HEAD_o = require( './header.js' )
+const GIT_o  = require( './git.js' )
 const CSP_o  = require( './csp.js' )
 const INS_o  = require( './ins.js' )
 const C_o    = require( '../data/C_o.js' )
@@ -33,6 +34,12 @@ const BUI_o =
     HEAD_o
       .write__v
       ( `${CSP_o.directive__s()}\n${HEAD_o.directive__s()}\n` )
+
+    //... GIT_o
+    //...   .list__v()
+
+    GIT_o
+      .comment__v()
   }
 ,
 
@@ -46,6 +53,33 @@ const BUI_o =
   {
     let start_s = input_s
     //... what else?
+    //... if
+    //... (
+    //...   data_o
+    //...     .issue_n
+    //...   ===
+    //...   -1
+    //... )
+    //... {
+    //...   GIT_o
+    //...     .create__n
+    //...     (
+    //...       data_o
+    //...         .permalink
+    //...     )
+    //...     .then
+    //...     (
+    //...       issue_n => 
+    //...         GIT_o
+    //...           .add__v
+    //...           (
+    //...             data_o
+    //...               .permalink,
+    //...             issue_n
+    //...           )
+    //...     )
+    //... }
+      
     return start_s
   }
 ,

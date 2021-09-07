@@ -10,6 +10,8 @@
   title_s:    `AsciiDoc`,
   subtitle_s: `Subset used in chercheurd.art`,
   abstract_s: `AsciiDoc cheatsheet for chercheurd.art`,
+  //???comment_b:  true,
+  issue_n:    -1,
 
   section_a:
   [
@@ -35,6 +37,7 @@
 
 //LINKS
 :chercheurdart: https://chercheurdart-2.netlify.app[chercheurd.art]
+:comments: https://chercheurdart-2.netlify.app[commentaires]
 
 //INCLUDE (path is relative to source dir)
 
@@ -173,4 +176,11 @@ _Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
 == Link
 
 link:#article__anchor_1234[Reference]
+
+
+//----------------------------------------
+== Commentaires
+
+6 commantaires
+
 {% end_doc %}

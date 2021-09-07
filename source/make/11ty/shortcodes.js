@@ -1,13 +1,14 @@
 const PREP_o = require( '../lib/prep.js' )
 const ADOC_o = require( '../lib/adoc.js' )
 const F_o    = require( '../data/F_o.js' )
+const C_o    = require( '../data/C_o.js' )
 
 
 
 
 const CODES_o =
 {
-  doc__s:
+  doc__s:    //: asciidoc section
   (
     content_s,
     section_s
@@ -32,11 +33,11 @@ const CODES_o =
 
 
 
-  tab__s:
+  tab__s:    //: asciidoc included table
   (
     title_s
   ) =>
-    `pass:[<span data-ins=principal data-spec=₄>] ${title_s} pass:[</span>]`
+    `pass:[<span data-ins=principal data-spec=${C_o.INS_TAB_s}>] ${title_s} pass:[</span>]`
   ,
 
 }

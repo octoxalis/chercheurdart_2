@@ -103,7 +103,7 @@ const C_o =
   INS_REF_s:      '₂',        //: reference insert
   INS_QUO_s:      '₃',        //: quotation insert
   INS_TAB_s:      '₄',        //: table insert
-
+  //...
   INS_IMG_s:      '₉',        //: image insert
   INS_METHOD_o:
   {
@@ -112,7 +112,7 @@ const C_o =
     '₂': 'ref',
     '₃': 'quo',
     '₄': 'tab',
-
+    //...
     '₉': 'img',
   },
   INS_PRINCIP_s: 'principal',
