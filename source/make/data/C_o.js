@@ -68,6 +68,7 @@ const C_o =
     'galerie',
   ],
 
+  SECTION_1_TAG_s:     '<del data--=section_1 hidden />',
   ANCHOR_SEPARATOR_s : '__',
 
 
@@ -128,8 +129,10 @@ const C_o =
   CELL_RATIO_n: .1,
 
   LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
-  INS_TRIGGER_s:    '\u25BE',    //: unicode ▾
+  INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
   //XX RANGE_DELIM_s:   ' \u2014 ',  //: long tiret
+
+  COMMENT_TAG_s:   '<del data--=comment hidden />',
 
 
   //=== DB ===

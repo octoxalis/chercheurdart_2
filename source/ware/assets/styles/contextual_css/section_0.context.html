@@ -203,5 +203,36 @@
               font-style: italic;
       </span>
     </p>
+    <p[data--=netlify-honeypot]>
+            display: none;
+    </p>
+    <form[name=comment]>
+            display: flex;
+            flex-direction: column;
+            gap: {{CSS_o.PAD_2}};
+      <label>
+              context( block, reference_1 )
+        <small>
+                --font_max: 16px;
+                --font_scale: 1.8vw;
+                font-weight: 100;
+        </small>
+      </label>
+      <textarea>
+              min-height: 8rem;
+      </textarea>
+      <textarea>
+              context( copy, next )
+      </textarea>
+      <input />
+              context( block, form_button )
+              font-weight: 200;
+      <button>
+              context( block, form_button )
+              context( block, reference_1 )
+              background: var(--table);
+              text-transform: uppercase;
+        </button>
+    </form>
   </div>
 </section>

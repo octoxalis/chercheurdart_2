@@ -2,6 +2,8 @@ const HEAD_o = require( './header.js' )
 const GIT_o  = require( './git.js' )
 const CSP_o  = require( './csp.js' )
 const INS_o  = require( './ins.js' )
+const COM_o  = require( './comment.js' )
+
 const C_o    = require( '../data/C_o.js' )
 
 
@@ -39,14 +41,15 @@ const BUI_o =
     //...   .list__v()
 
     //... NOT THE RIGHT PLACE: should go to comment form handling
-    GIT_o
-      .comment__v
-      (
-        {
-          issue_number: 1,
-          body: 'comment_4'
-        }
-      )
+    //... GIT_o
+    //...   .comment__v
+    //...   (
+    //...     {
+    //...       issue_number: 1,
+    //...       body: 'comment_4'
+    //...     }
+    //...   )
+
   }
 ,
 
@@ -114,7 +117,29 @@ const BUI_o =
           data_o.permalink
         )
 
-    return output_s
+    let commentPart_s = ''
+
+    if
+    (
+      data_o
+        .issue_n
+    )
+    {
+      //;console.log( 'Comments here: ' + data_o.permalink )
+      commentPart_s =
+        COM_o
+          .form__s( data_o.permalink )
+    }
+
+    return (
+        output_s
+          .replace
+          (
+            C_o.
+            COMMENT_TAG_s,
+            commentPart_s
+          )
+      )
   }
 ,
 

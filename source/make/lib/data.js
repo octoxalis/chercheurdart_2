@@ -8,6 +8,7 @@ const DATA_a =    // default exported data: front matter properties list
 
   'doc_n',
   'expires_n',
+  'issue_n',
 
   'title_s',
   'subtitle_s',

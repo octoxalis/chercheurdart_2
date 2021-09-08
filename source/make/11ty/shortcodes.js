@@ -5,7 +5,6 @@ const C_o    = require( '../data/C_o.js' )
 
 
 
-
 const CODES_o =
 {
   doc__s:    //: asciidoc section
@@ -20,13 +19,11 @@ const CODES_o =
 
     return (
       `<section id="${section_s}">`
-      +
-      ADOC_o
-        .convert__s( content_s )
-      +
-      `</div>\n`        //: first close last chapter div
-      + 
-      `</section>\n`  //: \n is mandatory
+      + ADOC_o
+          .convert__s( content_s )
+      + `</div>\n`            //: first close last chapter div
+      + C_o.COMMENT_TAG_s    //: to be replaced by comment part, if issue_n is defined
+      +  `</section>\n`       //: \n is mandatory
     )
   }
   ,

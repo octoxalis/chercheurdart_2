@@ -80,11 +80,27 @@ suite du texte.</p>
 </div>
 <hr/><h2><label for="link" tabindex="-1">Link</label></h2>
 <div>
-<p><a href="#article__anchor_1234">Reference</a></p>
-</div>
-<hr/><h2><label for="commentaires" tabindex="-1">Commentaires</label></h2>
+<p><a href="#article__anchor_1234">Reference</a></p></div>
+
+<hr/>
+<h2>
+  <label for="commentaires" tabindex="-1">Commentaires</label>
+</h2>
 <div>
-<p>6 commantaires</p></div>
+  <form name="comment" netlify-honeypot="full-name" action="/thanks" netlify>
+    <p data--=netlify-honeypot>
+      <input name="path" type="hidden" value="asciidoc.html">
+      <label>Votre nom<input name="full-name"></label>
+    </p>
+    <label for="name">Votre nom<br/><small>Comment voulez-vous être appelé?</small></label>
+    <input type="text" name="name" id="name">
+    <label for="email">Votre email<br/><small>Ce site ne vous tracera pas et ne vous adressera jamais de mail indésirable!</small></label>
+    <input type="email" name="email" id="email">
+    <label for="comment">Votre commentaire<br/><small>Vous pouvez utiliser des balises Markdown pour la mise en forme.</small></label>
+    <textarea name="comment" id="comment"></textarea>
+    <button type="submit">Postez votre commentaire</button>
+  </form>
+</div>
 </section>
 <section id="galerie"><figure id="S7875"><img src="./assets/media/img/1703_boucher-princeton_university-1748_arion/full/max/0/color.avif" alt="François Boucher:Arion chevauchant son dauphin (full size in color)" width="2000" height="1283" loading="lazy" /><a href="#C7875"><figcaption><span data-ins="subsid" data-spec=₉><b>François Boucher </b><b>Arion chevauchant son dauphin</b><b>1748 — 1750</b><b><i>86</i><i>135₅</i></b><b>Princeton ∙ United States of America</b><b>Princeton University Art Museum</b></span></figcaption></a></figure></section><aside id="gray"><figure id="G7875"><a href="#C7875"><img src="./assets/media/img/1703_boucher-princeton_university-1748_arion/full/_1024/0/gray.avif" alt="François Boucher:Arion chevauchant son dauphin (medium size in grayscale)" width="1596" height="1024" loading="lazy" /></a></figure></aside><aside id="color"><figure id="C7875"><a href="#G7875"><img src="./assets/media/img/1703_boucher-princeton_university-1748_arion/full/max/0/color.avif" alt="François Boucher:Arion chevauchant son dauphin (full size in color)" width="2000" height="1283" loading="lazy" /></a></figure></aside>
 <header>

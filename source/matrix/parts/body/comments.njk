@@ -1,0 +1,41 @@
+<h2>Laissez un commentaire</h2>
+<p>
+  Comments posted here will go into a moderation queue and the owner of the site will be notified via Slack.
+  Once approved, it will be pulled into the content and the site will be regenerated and deployed.
+</p>
+
+<form name="comments-queue" netlify-honeypot="full-name" action="/thanks" netlify>
+<!--
+  <p class="honey">
+    <input name="path" type="hidden" value="{{ page.url }}">
+    <label>Votre nom <input name="full-name"></label>
+  </p>
+  -->
+  <p>
+    <label for="name">Your name<small>Comment voulez-vous être appelé?</small></label>
+    <input type="text" name="name" id="name">
+  </p>
+  <p>
+    <label for="email">Votre email<small>Ce site ne vous tracera pas et ne vous adressera jamais de mail indésirable!</small></label>
+    <input type="email" name="email" id="email">
+  </p>
+  <p>
+    <label for="comment">Votre commentaire<small>Vous pouvez utiliser des balises Markdown pour la mise en forme.</small></label>
+    <textarea name="comment" id="comment"></textarea>
+  </p>
+  <p>
+    <button type="submit" class="btn">Postez votre commentaire</button>
+  </p>
+</form>
+
+
+<!--
+<label for="I5545" tabindex="-1">▾</label>
+<input id="I5545" type="checkbox">
+<ins>
+  <span data-ins="subsid" data-spec="₀">
+    <b></b>
+    <b></b>
+  </span>
+</ins>
+-->

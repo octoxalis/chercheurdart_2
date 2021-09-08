@@ -910,7 +910,7 @@ module.exports =
           )
           .replace    //: add gallery asides (gray and color)
           (
-            `<${C_o.SECTION_a[1]}/>`,    //: custom tag deleted after section insertion
+            C_o.SECTION_1_TAG_s,    //: custom tag deleted after section insertion
             `<section id="${C_o.SECTION_a[1]}">`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
@@ -921,9 +921,9 @@ module.exports =
           )
       :
         content_s
-          .replace    //: remove SECTION_a[1] custom tag after section insertion
+          .replace    //: remove custom tag after section insertion
           (
-            `<${C_o.SECTION_a[1]}/>`,
+            C_o.SECTION_1_TAG_s,
             ''
           )
       )

@@ -10,7 +10,6 @@
   title_s:    `AsciiDoc`,
   subtitle_s: `Subset used in chercheurd.art`,
   abstract_s: `AsciiDoc cheatsheet for chercheurd.art`,
-  //???comment_b:  true,
   issue_n:    -1,
 
   section_a:
@@ -179,8 +178,6 @@ link:#article__anchor_1234[Reference]
 
 
 //----------------------------------------
-== Commentaires
-
-6 commantaires
+// CommentPart
 
 {% end_doc %}
