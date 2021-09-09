@@ -1,0 +1,47 @@
+<hr/>
+<h2>
+  <label>Commentaires</label>
+</h2>
+<div>
+  <h3>
+    Publiés (6)
+  </h3>
+  <div role=list>
+    <ul>
+      <li>
+        <b>Jean-Luc</b>
+        <b>08/11/2021 @ 10:36</b>
+        <b>Tincidunt massa erat quisque augue nostra pellentesque</b>
+        <a href=#>...</a>
+      </li>
+      <li>Herbert [12/11/2021 @ 08:36]<br>
+        Pretium scelerisque sed semper cubilia aenean …&ZeroWidthSpace;<ul>
+          <li>Jaja [21/11/2021 @ 12:20]<br>
+            ilisis vel duis cras velit hendrerit eros nisi montes …&ZeroWidthSpace;</li>
+          <li>Herbert [21/11/2021 @ 12:41]<br>
+            cubilia aenean suspendisse arcu purus …&ZeroWidthSpace;</li>
+        </ul>
+      </li>
+      <li>François [25/12/2021 @ 09:36]<br>
+        congue velit gravida fames libero eget …&ZeroWidthSpace;</li>
+    </ul>
+  </div>
+  <hr/>
+  <label for=comment_dialog>Rédiger un nouveau commentaire</label><label for=comment_dialog>▾</label>
+  <input id=comment_dialog type=checkbox />
+  <dialog>
+    <form name="comment" netlify-honeypot="full-name" action="/thanks" netlify>
+      <p data--=netlify-honeypot>
+        <input name="path" type="hidden" value="${permalink_s}">
+        <label>Votre nom<input name="full-name"></label>
+      </p>
+      <label for="name">Votre nom<br/><small>Tel qu'il apparaîtra dans les commentaires</small></label>
+      <input type="text" name="name" id="name">
+      <label for="comment">Votre commentaire<br/><small>Pour la mise en forme, les balises Markdown sont acceptées.</small></label>
+      <textarea name="comment" id="comment"></textarea>
+      <button type="reset">Réinitialiser</button>
+      <button type="submit">Envoyer</button>
+      <label for=comment_dialog>Fermer</label>
+    </form>
+  </dialog>
+</div>

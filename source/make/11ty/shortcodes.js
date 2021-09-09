@@ -34,7 +34,7 @@ const CODES_o =
   (
     title_s
   ) =>
-    `pass:[<span data-ins=principal data-spec=${C_o.INS_TAB_s}>] ${title_s} pass:[</span>]`
+    `pass:[<${C_o.TABLE_TAG_s} data-ins=principal data-spec=${C_o.INS_TAB_s}>] ${title_s} pass:[</${C_o.TABLE_TAG_s}>]`
   ,
 
 }

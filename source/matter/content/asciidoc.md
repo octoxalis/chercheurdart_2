@@ -180,4 +180,17 @@ link:#article__anchor_1234[Reference]
 //----------------------------------------
 // CommentPart
 
+////
+* pass:[<b>Jean-Luc</b>] [08/11/2021 @ 10:36] +
+      pass:[<b>Tincidunt massa erat quisque augue nostra pellentesque</b> ...]
+* Herbert [12/11/2021 @ 08:36] +
+      Pretium scelerisque sed semper cubilia aenean ...
+  - Jaja [21/11/2021 @ 12:20] +
+      ilisis vel duis cras velit hendrerit eros nisi montes ...
+  - Herbert [21/11/2021 @ 12:41] +
+      cubilia aenean suspendisse arcu purus ...
+* François [25/12/2021 @ 09:36] +
+      congue velit gravida fames libero eget ...
+////
+
 {% end_doc %}

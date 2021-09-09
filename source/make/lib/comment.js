@@ -1,3 +1,8 @@
+const FS_o  = require( 'fs-extra' )
+
+
+
+
 const COM_o =
 {
   form__s:
@@ -6,27 +11,20 @@ const COM_o =
   ) =>
   {
     return (
-`
-<hr/>
-<h2>
-  <label for="commentaires" tabindex="-1">Commentaires</label>
-</h2>
-<div>
-  <form name="comment" netlify-honeypot="full-name" action="/thanks" netlify>
-    <p data--=netlify-honeypot>
-      <input name="path" type="hidden" value="${permalink_s}">
-      <label>Votre nom<input name="full-name"></label>
-    </p>
-    <label for="name">Votre nom<br/><small>Comment voulez-vous être appelé?</small></label>
-    <input type="text" name="name" id="name">
-    <label for="email">Votre email<br/><small>Ce site ne vous tracera pas et ne vous adressera jamais de mail indésirable!</small></label>
-    <input type="email" name="email" id="email">
-    <label for="comment">Votre commentaire<br/><small>Vous pouvez utiliser des balises Markdown pour la mise en forme.</small></label>
-    <textarea name="comment" id="comment"></textarea>
-    <button type="submit">Postez votre commentaire</button>
-  </form>
-</div>
-`
+      FS_o
+      .readFileSync
+      (
+        'make/lib/comment_dialog.html',
+        {
+          encoding:'utf-8',
+          flag:'r'
+        }
+      )
+      .replace
+      (
+        '${permalink_s}',
+        permalink_s
+      )
     )
   }
   ,

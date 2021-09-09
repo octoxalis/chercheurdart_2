@@ -1,4 +1,6 @@
 html {
+  --cancel_hue: 0;
+  --accept_hue: 120;
   --lum_mode: {{CSS_o.LUM_MODE_n}};
   --lum_contrast: 45;
   --c_lum_hi_4: calc(({{CSS_o.LUM_BASE_n}} + ( var(--lum_mode) * {{CSS_o.LUM_CONTRAST_n}} * 1.0 ) ) * 1%);
@@ -23,9 +25,11 @@ html {
   --shadow_hi: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.75);
   --shadow_ne: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.5);
   --shadow_lo: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.25);
-  --brigtness_hi: 2;
+  --accept_hi: hsla(var(--accept_hue) var(--c_sat_hi_4) var(--c_lum_hi_2) /1);
+  --cancel_hi: hsla(var(--cancel_hue) var(--c_sat_hi_4) var(--c_lum_hi_2) /1);
+  --brigtness_hi: 1.3;
   --brigtness_ne: 1;
-  --brigtness_lo: .5;
+  --brigtness_lo: .7;
 }
 * {
   margin: 0;

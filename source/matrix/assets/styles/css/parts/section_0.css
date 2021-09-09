@@ -43,6 +43,7 @@ section#{{C_o.SECTION_a[0]}} > h2 > label {
   font-weight: 900;
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div {
+  position: relative;
   margin: 0 0 0 auto;
   padding: .5em 0;
   max-width: 100%;
@@ -100,101 +101,101 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > a > 
   max-height: 128px;
   border-radius: 4px;
 }
-span[data-spec] > b {
+{{C_o.TABLE_TAG_s}}[data-spec] > b {
   display: table;
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
   line-height: 1.3;
 }
-span[data-spec] > b > a {
+{{C_o.TABLE_TAG_s}}[data-spec] > b > a {
   color: currentColor;
   text-decoration: none;
 }
-span[data-spec] > b > a:hover {
+{{C_o.TABLE_TAG_s}}[data-spec] > b > a:hover {
   border-bottom: 1px solid;
   filter: brightness( var(--brigtness_hi) );
   transition: opacity .2s;
 }
-span[data-spec={{C_o.INS_DEF_s}}] {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}] {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-span[data-spec={{C_o.INS_DEF_s}}] > b {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}] > b {
   border-left: 1px solid var(--shadow_ne);
   padding-left: .8rem;
   color: currentColor;
   list-style: none;
 }
-span[data-spec={{C_o.INS_DEF_s}}] > b:before {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}] > b:before {
   content: '\{{CSS_o.LIST_MARKER_s}}';
   position: relative;
   left: -1rem;
   color: var(--shadow_ne);
 }
-span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-span[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(1) {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-span[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(2) {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-span[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(2) {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-span[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-span[data-spec={{C_o.INS_IMG_s}}] {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
   top: 0;
 }
-span[data-spec={{C_o.INS_IMG_s}}] > b > i {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > i {
   font-style: normal;
 }
-span[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
   content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
 }
-span[role=table] {
+{{C_o.TABLE_TAG_s}}[role=table] {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1px;
   width: 100%;
 }
-span[role=table] > b {
+{{C_o.TABLE_TAG_s}}[role=table] > b {
   flex-grow: 1;
   padding: .25rem;
   background: var(--shadow_ne);
   font-size: 90%;
 }
-span[role=table] > b > a {
+{{C_o.TABLE_TAG_s}}[role=table] > b > a {
   font-size: 100%;
 }
-span[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid]) {
+{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid]) {
   display: block;
   margin: 0 0 -.2rem .4rem;
   padding-left: .8rem;
@@ -204,25 +205,52 @@ span[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid]) {
 p[data--=netlify-honeypot] {
   display: none;
 }
-form[name=comment] {
+label + label:hover {
+  filter: invert( .5 );
+}
+label {
+  margin: 0 {{CSS_o.PAD_1}};
+  vertical-align: baseline;
+  cursor: pointer;
+}
+label + input#comment_dialog {
+  display: none;
+}
+label + input#comment_dialog + dialog {
+  display: none;
+}
+label + input#comment_dialog:checked + dialog {
+  padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
+  color: currentColor;
+  background: var(--bgcolor);
+  border: 2px solid var(--shadow_ne);
+  border-radius: 4px;
+  display: grid;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: {{CSS_o.PAD_2}};
+  box-shadow: 0 0 0 1000vmax var(--shadow_hi);
+}
+label + input#comment_dialog:checked + dialog > form[name=comment] {
   display: flex;
   flex-direction: column;
   gap: {{CSS_o.PAD_2}};
 }
-form[name=comment] > label {
+label + input#comment_dialog:checked + dialog > form[name=comment] > label {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-form[name=comment] > label > small {
+label + input#comment_dialog:checked + dialog > form[name=comment] > label > small {
   --font_max: 16px;
   --font_scale: 1.8vw;
   font-weight: 100;
 }
-form[name=comment] > textarea {
-  min-height: 8rem;
+label + input#comment_dialog:checked + dialog > form[name=comment] > textarea {
+  min-height: 16rem;
 }
-form[name=comment] > textarea, form[name=comment] > input {
+label + input#comment_dialog:checked + dialog > form[name=comment] > textarea, label + input#comment_dialog:checked + dialog > form[name=comment] > input {
   padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
   color: currentColor;
   background: var(--bgcolor);
@@ -230,7 +258,10 @@ form[name=comment] > textarea, form[name=comment] > input {
   border-radius: 4px;
   font-weight: 200;
 }
-form[name=comment] > button {
+label + input#comment_dialog:checked + dialog > form[name=comment] > textarea:focus, label + input#comment_dialog:checked + dialog > form[name=comment] > label:hover, label + input#comment_dialog:checked + dialog > form[name=comment] > button:hover, label + input#comment_dialog:checked + dialog > form[name=comment] > input:focus {
+  filter: brightness( var(--brigtness_hi) );
+}
+label + input#comment_dialog:checked + dialog > form[name=comment] > button {
   padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
   color: currentColor;
   background: var(--bgcolor);
@@ -239,6 +270,33 @@ form[name=comment] > button {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
-  background: var(--table);
+  border: 2px solid var(--accept_hi);
   text-transform: uppercase;
+  cursor: pointer;
+  filter: brightness( var(--brigtness_lo) );
+}
+label + input#comment_dialog:checked + dialog > form[name=comment] > button[type=reset] {
+  margin: auto;
+  width: 33%;
+  --font_max: 18px;
+  --font_scale: 2vw;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.6;
+  border: 2px solid var(--cancel_hi);
+  font-style: normal;
+}
+label + input#comment_dialog:checked + dialog > form[name=comment] > label[for=comment_dialog] {
+  padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
+  color: currentColor;
+  background: var(--bgcolor);
+  border: 2px solid var(--shadow_ne);
+  border-radius: 4px;
+  --font_max: 18px;
+  --font_scale: 2vw;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.6;
+  text-transform: uppercase;
+  text-align: center;
 }

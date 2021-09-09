@@ -43,6 +43,7 @@
   </h2>
   +
   <div>
+        position: relative;    /* to position comment dialog */
         margin: 0 0 0 auto;
         padding: .5em 0;
         max-width: 100%;
@@ -111,7 +112,7 @@
           </img>
         </a>
         context( stack, new )
-        <span[data-spec]>
+        <{{C_o.TABLE_TAG_s}}[data-spec]>
           <b>
                   display: table;
                   --font_max: 18px;
@@ -126,8 +127,8 @@
                     context( block, link_hover )
             </a>
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_DEF_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}]>
                 context( block, reference_1 )
           <b>
                 context( block, vertical_hr )
@@ -136,38 +137,38 @@
           <b:before>
                   context( block, list_marker )
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_REF_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}]>
           <b:nth-of-type(1)>
           context( block, reference_1 )
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_QUO_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]>
           <b:nth-of-type(1)>
           context( block, reference_1 )
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_IMG_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
           <b:nth-of-type(1)>
           context( block, reference_1 )
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_REF_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}]>
           <b:nth-of-type(2)>
           context( block, reference_2 )
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_QUO_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]>
           <b:nth-of-type(2)>
           context( block, reference_2 )
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_IMG_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
           <b:nth-of-type(2)>
           context( block, reference_2 )
           </b>
-        </span>
-        <span[data-spec={{C_o.INS_IMG_s}}]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
                 top: 0;
           <b>
             <i>
@@ -177,8 +178,8 @@
                     content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
            </i>
           </b>
-        </span>
-        <span[role=table]>
+        </{{C_o.TABLE_TAG_s}}>
+        <{{C_o.TABLE_TAG_s}}[role=table]>
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -193,46 +194,106 @@
                     font-size: 100%;
             </a>
           </b>
-        </span>
+        </{{C_o.TABLE_TAG_s}}>
       </ins>
-      <span[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid])>
+      <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid])>
               display: block;
               margin: 0 0 -.2rem .4rem;
               padding-left: .8rem;
               border-left: .5rem solid var(--shadow_ne);
               font-style: italic;
-      </span>
+      </{{C_o.TABLE_TAG_s}}>
     </p>
     <p[data--=netlify-honeypot]>
             display: none;
     </p>
-    <form[name=comment]>
-            display: flex;
-            flex-direction: column;
-            gap: {{CSS_o.PAD_2}};
-      <label>
-              context( block, reference_1 )
-        <small>
-                --font_max: 16px;
-                --font_scale: 1.8vw;
-                font-weight: 100;
-        </small>
-      </label>
-      <textarea>
-              min-height: 8rem;
-      </textarea>
-      <textarea>
-              context( copy, next )
-      </textarea>
-      <input />
-              context( block, form_button )
-              font-weight: 200;
-      <button>
-              context( block, form_button )
-              context( block, reference_1 )
-              background: var(--table);
-              text-transform: uppercase;
+    <label>
+              /*cursor: pointer;*/
+    </label>
+    +
+    <label:hover>
+            filter: invert( .5 );
+    </label>
+    <label>
+            margin: 0 {{CSS_o.PAD_1}};
+            vertical-align: baseline;
+            cursor: pointer;
+    </label>
+    +
+    <input#comment_dialog/>
+            display: none;
+    +
+    <dialog>
+            display: none;
+    </dialog>
+    <label>
+    </label>
+    +
+    <input#comment_dialog:checked/>
+    +
+    <dialog>
+            context( block, form_button )
+            display: grid;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            padding:{{CSS_o.PAD_2}};
+            box-shadow: 0 0 0 1000vmax var(--shadow_hi);
+      <form[name=comment]>
+              display: flex;
+              flex-direction: column;
+              gap: {{CSS_o.PAD_2}};
+        <label>
+                context( block, reference_1 )
+          <small>
+                  --font_max: 16px;
+                  --font_scale: 1.8vw;
+                  font-weight: 100;
+          </small>
+        </label>
+        <textarea>
+                min-height: 16rem;
+        </textarea>
+        <textarea>
+                context( copy, next )
+        </textarea>
+        <input />
+                context( block, form_button )
+                font-weight: 200;
+        <textarea:focus>
+                context( copy, next )
+        </textarea>
+        <label:hover>
+                context( copy, next )
+        </label:hover>
+        <button:hover>
+                context( copy, next )
         </button>
-    </form>
+        <input:focus />
+                filter: brightness( var(--brigtness_hi) );
+        <button>
+                context( block, form_button )
+                context( block, reference_1 )
+                border: 2px solid var(--accept_hi);
+                text-transform: uppercase;
+                cursor: pointer;
+                filter: brightness( var(--brigtness_lo) );
+        </button>
+        <button[type=reset]>
+                margin: auto;
+                width: 33%;
+                context( block, reference_2 )
+                border: 2px solid var(--cancel_hi);
+                font-style: normal;
+        </button>
+        <label[for=comment_dialog]>
+                context( block, form_button )
+                context( block, reference_2 )
+                text-transform: uppercase;
+                text-align: center;
+        </label>
+        </form>
+    </dialog>
+
   </div>
 </section>
