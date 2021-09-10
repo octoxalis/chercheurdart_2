@@ -15,17 +15,17 @@
     "markdown-it-attrs": "^4.0.0",
     "markdown-it-deflist": "^2.1.0",
     "markdown-it-include": "^2.0.0",
+    "netlify": "^4.3.13",
     "nunjucks": "^3.2.3",
     "octokit": "^1.5.0",
     "sharp": "^0.28.1",
-    "terser": "^5.7.0",
-    "netlify": "^4.3.13"
+    "terser": "^5.7.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
     "http-server": "^0.12.3",
     "node-fetch": "^2.6.1",
-    "npx": "^10.2.2",
+    "npx": "^3.0.0",
     "performance-leaderboard": "^4.2.0"
   },
   "scripts": {
