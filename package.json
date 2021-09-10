@@ -18,7 +18,8 @@
     "nunjucks": "^3.2.3",
     "octokit": "^1.5.0",
     "sharp": "^0.28.1",
-    "terser": "^5.7.0"
+    "terser": "^5.7.0",
+    "netlify": "^4.3.13"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
