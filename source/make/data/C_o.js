@@ -58,6 +58,9 @@ const C_o =
 
   JSON_INPUT_DIR_s:    CONF_o.JSON_INPUT_DIR_s,
   ADOC_OUTPUT_DIR_s:   CONF_o.ADOC_OUTPUT_DIR_s,
+
+  LIB_TEMPLATES_DIR_s: CONF_o.LIB_TEMPLATES_DIR_s,
+  
   
   //=== SECTIONS ===
   URL_INDEX_s:    'index.html',

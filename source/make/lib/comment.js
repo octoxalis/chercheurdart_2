@@ -1,5 +1,8 @@
 const FS_o  = require( 'fs-extra' )
 
+const C_o    = require( '../data/C_o.js' )
+
+
 
 
 
@@ -14,7 +17,7 @@ const COM_o =
       FS_o
       .readFileSync
       (
-        'make/lib/comment_dialog.html',
+        `${C_o.LIB_TEMPLATES_DIR_s}comment_dialog.html`,
         {
           encoding:'utf-8',
           flag:'r'
@@ -25,6 +28,11 @@ const COM_o =
         '${permalink_s}',
         permalink_s
       )
+      .replaceAll
+      (
+        '${C_o.ROW_TAG_s}',
+        C_o.ROW_TAG_s
+      )
     )
   }
   ,
@@ -34,15 +42,3 @@ const COM_o =
 
 
 module.exports = COM_o
-
-
-
-/*
-    <label for="I1_0" tabindex="-1">▾</label>
-    <input id="I1_0" type="checkbox">
-    <ins>
-      <span data-ins="subsid" data-spec="₀">
-        <b>Comment voulez-vous être appelé?</b>
-      </span>
-    </ins>
-*/

@@ -17,5 +17,5 @@ module.exports =
 
   OWNER_s:      process.env.OWNER_s,
   REPO_s:       process.env.REPO_s,
-  TOKEN_s:      process.env.TOKEN_s,
+  GITHUB_API_ACCESS_TOKEN:      process.env.GITHUB_API_ACCESS_TOKEN,
 }

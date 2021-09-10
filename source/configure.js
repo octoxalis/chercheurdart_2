@@ -34,10 +34,11 @@ module.exports =
   JSON_INPUT_DIR_s:    'source/make/db/table',
   ADOC_OUTPUT_DIR_s:   'source/matter/content/parts/',
 
+  LIB_TEMPLATES_DIR_s: 'make/lib/templates/',
+
 
   //=== GENERATE ===
   ADOC_MARKUP_b:        false,
-
 
 
   //=== CSS constants to avoid calc(): can be changed! ===  

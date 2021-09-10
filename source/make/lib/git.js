@@ -79,7 +79,7 @@ module.exports =
         headers: 
         {
           'Content-Type': 'application/json',
-          'Authorization': `token ${process.env.TOKEN_s}`
+          'Authorization': `token ${process.env.GITHUB_API_ACCESS_TOKEN}`
         }
       }
 
@@ -157,7 +157,7 @@ Issue created
           {
             headers:
               {
-                authorization: `token ${A_o.TOKEN_s}`,
+                authorization: `token ${A_o.GITHUB_API_ACCESS_TOKEN}`,
               },
           }
         )
