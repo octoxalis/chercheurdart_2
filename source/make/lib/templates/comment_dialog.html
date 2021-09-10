@@ -51,7 +51,7 @@
   <label for=comment_dialog>Rédiger un nouveau commentaire</label><label for=comment_dialog>▾</label>
   <input id=comment_dialog type=checkbox />
   <dialog>
-    <form name="comment" netlify-honeypot="full-name" action="/thanks" netlify>
+    <form name="comment" netlify-honeypot="full-name" netlify><!-- action="/thanks" -->
       <p data--=netlify-honeypot>
         <input name="path" type="hidden" value="${permalink_s}">
         <label>Votre nom<input name="full-name"></label>
@@ -66,6 +66,3 @@
     </form>
   </dialog>
 </div>
-
-
-/home/daniel/Public/chercheurdart_2/source/make/netlify/functions
