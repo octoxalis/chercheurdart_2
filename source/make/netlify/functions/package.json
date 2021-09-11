@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "netlify": "^4.3.13"
+    "netlify": "^4.3.13",
+    "octokit": "^1.5.0"
   }
 }

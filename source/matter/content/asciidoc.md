@@ -10,7 +10,7 @@
   title_s:    `AsciiDoc`,
   subtitle_s: `Subset used in chercheurd.art`,
   abstract_s: `AsciiDoc cheatsheet for chercheurd.art`,
-  issue_n:    -1,
+  issue_n:    3,
 
   section_a:
   [

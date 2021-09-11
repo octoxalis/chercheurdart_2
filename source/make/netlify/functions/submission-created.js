@@ -1,81 +1,135 @@
-const NetlifyAPI = require('netlify')
+const NET_o = require('netlify')
+const { request: REQ_o } = require( '@octokit/request' )
 
 
 
 const SUB_o =
 {
-  deleteAll:
-    async function
-    (
-      //-- event_o,    //: not used
-      //-- context     //: not used
-    )
+  post__v:
+  async (
+    submit_e
+  ) =>
+  {
+    const
     {
-      const client_c =
-        new NetlifyAPI
+      issue_n,
+      name_s,
+      comment_s
+    } =
+      JSON
+        .parse
         (
-          process
-            .env
-              .NETLIFY_API_ACCESS_TOKEN
+          submit_e.body
         )
-  
-      const submit_a =
-        await client_c
-          .listSiteSubmissions
-          (
-            {
-              site_id: process
-                         .env
-                           .SITE_ID
-            }
-          )
-          .catch
-          (
-            error_o =>
-              console
-                .log( `Error getting submission: ${error_o}` )
-          )
-    
-      if
-      (
-        ! submit_a
-          .length
-      )
-      {
-        return (
+        .payload
+
+    const client_c =
+      new NET_o( process.env.NETLIFY_API_ACCESS_TOKEN )
+
+    const request__v =
+      REQ_o
+        .defaults
+        (
           {
-            statusCode: 200,
-            body: 'No Submission to delete',
+            headers:
+              {
+                authorization: `token ${process.env.GITHUB_API_ACCESS_TOKEN}`,
+              },
           }
         )
-      }
-  
-      for
+
+    await request__v
       (
-        let submit_o
-        of
-        submit_a
+        `POST /repos/{owner}/{repo}/issues/{issue_number}/comments`,
+        Object
+          .assign
+          (
+            {
+              issue_number: issue_n,
+              body: `${name_s}₊${scomment_s}`
+            },
+           {
+              //?? accept: 'application/vnd.github.v3+json',
+              owner: process.env.GITHUB_OWNER,
+              repo:  process.env.GITHUB_REPO
+           }
+          )
       )
-      {
-        ;console.log( submit_o )
-        //... await client_c
-        //...   .deleteSubmission
-        //...   (
-        //...     {
-        //...       submission_id: submit_o.id
-        //...     }
-        //...   )
-      }
+  }
+  ,
+
+
+
+  deleteAll__v:
+  async (
+    //-- event_o,    //: not used
+    //-- context     //: not used
+  ) =>
+  {
+    const client_c =
+      new NET_o
+      (
+        process
+          .env
+            .NETLIFY_API_ACCESS_TOKEN
+      )
+
+    const submit_a =
+      await client_c
+        .listSiteSubmissions
+        (
+          {
+            site_id: process
+                       .env
+                         .SITE_ID
+          }
+        )
+        .catch
+        (
+          error_o =>
+            console
+              .log( `Error getting submission: ${error_o}` )
+        )
   
+    if
+    (
+      ! submit_a
+        .length
+    )
+    {
       return (
         {
           statusCode: 200,
-          body: 'Submissions deleted',
+          body: 'No Submission to delete',
         }
       )
-
     }
-    ,
+
+    for
+    (
+      let submit_o
+      of
+      submit_a
+    )
+    {
+      ;console.log( submit_o )
+      //... await client_c
+      //...   .deleteSubmission
+      //...   (
+      //...     {
+      //...       submission_id: submit_o.id
+      //...     }
+      //...   )
+    }
+
+    return (
+      {
+        statusCode: 200,
+        body: 'Submissions deleted',
+      }
+    )
+  }
+  ,
 
 }
 
@@ -84,4 +138,4 @@ const SUB_o =
 exports
   .handler =
     SUB_o
-      .deleteAll
+      .post__v

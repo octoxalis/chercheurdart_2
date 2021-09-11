@@ -11,7 +11,7 @@
       <li>
         <${C_o.ROW_TAG_s}>Nico Poussin</${C_o.ROW_TAG_s}>
         <${C_o.ROW_TAG_s}>08/11/2021 @ 10:36</${C_o.ROW_TAG_s}>
-        <input id="C1234" type="checkbox">
+        <input id="C1234" type="checkbox" />
         <ins>
           <p>
             Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
@@ -28,7 +28,7 @@
       <li>
         <${C_o.ROW_TAG_s}>Claude Lorrain</${C_o.ROW_TAG_s}>
         <${C_o.ROW_TAG_s}>08/11/2021 @ 10:36</${C_o.ROW_TAG_s}>
-        <input id="C12345" type="checkbox">
+        <input id="C12345" type="checkbox" />
         <ins>
           <p>
             Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
@@ -48,18 +48,19 @@
     </ul>
   </div>
   <hr/>
-  <label for=comment_dialog>Rédiger un nouveau commentaire</label><label for=comment_dialog>▾</label>
+  <label for=comment_dialog>Rédiger un commentaire</label><label for=comment_dialog>▾</label>
   <input id=comment_dialog type=checkbox />
   <dialog>
-    <form name="comment" netlify-honeypot="full-name" netlify><!-- action="/thanks" -->
+    <form name="comment" netlify data-netlify-honeypot="lure"><!-- action="/thanks" -->
       <p data--=netlify-honeypot>
-        <input name="path" type="hidden" value="${permalink_s}">
-        <label>Votre nom<input name="full-name"></label>
+        <!--<label>lure<input name="lure" type="hidden" /></label>-->
+        <input name="issue_n" type="hidden" value="${issue_n}" />
+        <!--<input name="permalink" type="hidden" value="${permalink_s}" />-->
       </p>
-      <label for="name">Votre nom<br/><small>Tel qu'il apparaîtra dans les commentaires</small></label>
-      <input type="text" name="name" id="name">
-      <label for="comment">Votre commentaire<br/><small>Pour la mise en forme, les balises Markdown sont acceptées.</small></label>
-      <textarea name="comment" id="comment"></textarea>
+      <label for="name" title="Tel qu'il apparaîtra dans les commentaires">Nom</label>
+      <input id="name_s" name="name_s" type="text" />
+      <label for="comment_s" title="Pour la mise en forme, les balises Markdown sont acceptées">Commentaire</label>
+      <textarea id="comment_s" name="comment_s"></textarea>
       <button type="reset">Réinitialiser</button>
       <button type="submit">Envoyer</button>
       <label for=comment_dialog>&#x00D7;</label>

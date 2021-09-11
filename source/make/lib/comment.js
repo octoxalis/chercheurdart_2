@@ -10,7 +10,8 @@ const COM_o =
 {
   form__s:
   (
-    permalink_s
+    issue_n,
+    //??? permalink_s
   ) =>
   {
     return (
@@ -25,9 +26,14 @@ const COM_o =
       )
       .replace
       (
-        '${permalink_s}',
-        permalink_s
+        '${issue_n}',
+        issue_n
       )
+      //???.replace
+      //???(
+      //???  '${permalink_s}',
+      //???  permalink_s
+      //???)
       .replaceAll
       (
         '${C_o.ROW_TAG_s}',

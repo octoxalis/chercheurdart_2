@@ -129,7 +129,11 @@ const BUI_o =
       //;console.log( 'Comments here: ' + data_o.permalink )
       commentPart_s =
         COM_o
-          .form__s( data_o.permalink )
+          .form__s
+          (
+            data_o.issue_n,
+            //??? data_o.permalink
+          )
     }
 
     return (
