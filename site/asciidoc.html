@@ -137,13 +137,13 @@ suite du texte.</p>
     <form name="comment" netlify data-netlify-honeypot="lure"><!-- action="/thanks" -->
       <p data--=netlify-honeypot>
         <!--<label>lure<input name="lure" type="hidden" /></label>-->
-        <input name="issue_n" type="hidden" value="3" />
+        <input name="issue" type="hidden" value="${issue}" />
         <!--<input name="permalink" type="hidden" value="${permalink_s}" />-->
       </p>
-      <label for="name" title="Tel qu'il apparaîtra dans les commentaires">Nom</label>
-      <input id="name_s" name="name_s" type="text" />
-      <label for="comment_s" title="Pour la mise en forme, les balises Markdown sont acceptées">Commentaire</label>
-      <textarea id="comment_s" name="comment_s"></textarea>
+      <label for="user" title="Tel qu'il apparaîtra dans les commentaires">Nom</label>
+      <input id="user" name="user" type="text" />
+      <label for="content" title="Pour la mise en forme, les balises Markdown sont acceptées">Commentaire</label>
+      <textarea id="content" name="content"></textarea>
       <button type="reset">Réinitialiser</button>
       <button type="submit">Envoyer</button>
       <label for=comment_dialog>&#x00D7;</label>

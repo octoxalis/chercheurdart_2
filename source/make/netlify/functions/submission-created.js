@@ -12,9 +12,9 @@ const SUB_o =
   {
     const
     {
-      issue_n,
-      name_s,
-      comment_s
+      issue: issue_n,
+      user:  name_s,
+      content: comment_s
     } =
       JSON
         .parse
