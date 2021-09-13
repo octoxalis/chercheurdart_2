@@ -1,0 +1,13 @@
+  <form name="comment" netlify data-netlify-honeypot="lure"><!-- action="/thanks" -->
+    <p data--=netlify-honeypot>
+      <label>lure<input name="lure" type="hidden" /></label>
+      <input id=issue name="issue" type="hidden" value="0" />
+    </p>
+    <label for="user" title="Tel qu'il apparaîtra dans les commentaires">Nom</label>
+    <input id="user" name="user" type="text" />
+    <label for="content" title="Pour la mise en forme, les balises Markdown sont acceptées">Commentaire</label>
+    <textarea id="content" name="content"></textarea>
+    <button type="reset">Réinitialiser</button>
+    <button type="submit">Envoyer</button>
+    <label for=comment_dialog>&#x00D7;</label>
+  </form>

@@ -50,20 +50,7 @@
   <hr/>
   <label for=comment_dialog>Rédiger un commentaire</label><label for=comment_dialog>▾</label>
   <input id=comment_dialog type=checkbox />
-  <dialog>
-    <form name="comment" netlify data-netlify-honeypot="lure"><!-- action="/thanks" -->
-      <p data--=netlify-honeypot>
-        <!--<label>lure<input name="lure" type="hidden" /></label>-->
-        <input name="issue" type="hidden" value="${issue}" />
-        <!--<input name="permalink" type="hidden" value="${permalink_s}" />-->
-      </p>
-      <label for="user" title="Tel qu'il apparaîtra dans les commentaires">Nom</label>
-      <input id="user" name="user" type="text" />
-      <label for="content" title="Pour la mise en forme, les balises Markdown sont acceptées">Commentaire</label>
-      <textarea id="content" name="content"></textarea>
-      <button type="reset">Réinitialiser</button>
-      <button type="submit">Envoyer</button>
-      <label for=comment_dialog>&#x00D7;</label>
-    </form>
-  </dialog>
+  <iframe id=comment_frame name=comment_frame src="assets/form/comment.html"
+          data-issue="3"
+          onload="this.contentDocument.getElementById( 'issue' ).value = this.dataset.issue" ></iframe>
 </div>
