@@ -72,7 +72,7 @@ module.exports =
     //?? }
 
     const hash_s =
-      'this.contentDocument.getElementById( "issue" ).value = this.dataset.issue'
+      `onload="this.contentDocument.getElementById( 'issue' ).value = this.dataset.issue"`
 
     csp_s += ` 'sha-256-${CSP_o.hash__s( hash_s )}'`    //;console.log(csp_s)
 
