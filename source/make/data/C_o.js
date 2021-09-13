@@ -25,9 +25,9 @@ const C_o =
       FORM_ACTION:     '',
       MANIFEST_SRC:    '',
       SCRIPT_SRC_ELEM: '',
-      SCRIPT_SRC:      '',
       OBJECT_SRC:      '',
-      STYLE_SRC:       `'unsafe-inline' 'unsafe-hashes'`,  //: for browser not accepting sha-256 (Firefox-78!)
+      SCRIPT_SRC:      `'unsafe-hashes'`,
+      //?? STYLE_SRC:       `'unsafe-inline'`,  //: for browser not accepting sha-256 (Firefox-78!)
     },
   },
 

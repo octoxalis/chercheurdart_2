@@ -66,10 +66,10 @@ module.exports =
 
     csp_s = csp_s.slice( 0, -1 )  //: trim last ';' (it's not over)
 
-    for ( let style_a of CSP_o.style_a )
-    {
-      for ( let match_a of style_a ) csp_s += ` 'sha-256-${CSP_o.hash__s( match_a[1] )}'`
-    }
+    //?? for ( let style_a of CSP_o.style_a )
+    //?? {
+    //??   for ( let match_a of style_a ) csp_s += ` 'sha-256-${CSP_o.hash__s( match_a[1] )}'`
+    //?? }
 
     const hash_s =
       'this.contentDocument.getElementById( "issue" ).value = this.dataset.issue'
