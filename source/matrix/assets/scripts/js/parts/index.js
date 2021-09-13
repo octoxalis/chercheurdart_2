@@ -103,9 +103,52 @@ const IND_o =
       anchor_e
         .scrollIntoView( {behavior: "smooth", block: "start", inline: "nearest"} )
     }
+
+    //?? IND_o
+    //??   .formIssue__v()
+
   }
   ,
-}
+
+
+  //?????????????????????????
+  formIssue__v:
+  () =>
+  {
+    const formIframe_e =
+      document
+        .getElementById( 'comment_iframe' )
+
+        //;console.log( 'formIframe_e' )
+
+    if
+    (
+      formIframe_e
+    )
+    {
+      //;console.log( formIframe_e )
+
+      formIframe_e
+        .addEventListener
+        (
+          'load',
+          () =>
+          {
+            formIframe_e
+              .contentDocument
+              .getElementById( 'issue' )
+                .value =
+                  formIframe_e
+                    .dataset
+                      .issue_n
+
+            console.log( formIframe_e.contentDocument.getElementById( 'issue' ).value )
+          }
+        )
+    }
+  }
+  ,
+  }
 
 
 

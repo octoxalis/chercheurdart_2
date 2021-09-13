@@ -58,15 +58,24 @@ module.exports =
   ()
   {
     let csp_s = ''
+
     for ( let [key_s, value_s] of Object.entries( C_o.csp_o.HEAD_o ) )
     {
       csp_s += ` ${key_s.toLowerCase().replace( /_/g, '-' )} ${U_o.url_s} ${value_s};`
     }
+
     csp_s = csp_s.slice( 0, -1 )  //: trim last ';' (it's not over)
+
     for ( let style_a of CSP_o.style_a )
     {
       for ( let match_a of style_a ) csp_s += ` 'sha-256-${CSP_o.hash__s( match_a[1] )}'`
     }
+
+    const hash_s =
+      'this.contentDocument.getElementById( "issue" ).value = this.dataset.issue'
+
+    csp_s += ` 'sha-256-${CSP_o.hash__s( hash_s )}'`    //;console.log(csp_s)
+
     return `Content-Security-Policy:${csp_s};`
   }
 ,
