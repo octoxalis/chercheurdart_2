@@ -26,7 +26,7 @@ const C_o =
       MANIFEST_SRC:    '',
       SCRIPT_SRC_ELEM: '',
       OBJECT_SRC:      '',
-      SCRIPT_SRC:      `'unsafe-hashes'`,
+      SCRIPT_SRC:      `'unsafe-inline' 'unsafe-hashes'`,
       //?? STYLE_SRC:       `'unsafe-inline'`,  //: for browser not accepting sha-256 (Firefox-78!)
     },
   },
