@@ -10,14 +10,9 @@ const SUB_o =
     submit_e
   ) =>
   {
-    console.log( submit_e.body )
-    
-    const
-    {
-      issue: issue_n,
-      user:  name_s,
-      content: comment_s
-    } =
+    //;console.log( submit_e.body )
+
+    const payload_o =
       JSON
         .parse
         (
@@ -25,7 +20,14 @@ const SUB_o =
         )
         .payload
 
-        ;console.table( [issue_n, name_s, comment_s ] )
+    const
+    {
+      issue: issue_n,
+      user:  name_s,
+      content: comment_s
+    } =
+      payload_o
+        .data              ;console.table( [issue_n, name_s, comment_s ] )
 
     const client_c =
       new NET_o( process.env.NETLIFY_API_ACCESS_TOKEN )
@@ -40,7 +42,7 @@ const SUB_o =
                 authorization: `token ${process.env.GITHUB_API_ACCESS_TOKEN}`,
               },
           }
-        )        ;console.log( request_f )
+        )        //;console.log( request_f )
 
     await request_f
       (
