@@ -103,52 +103,57 @@ const IND_o =
       anchor_e
         .scrollIntoView( {behavior: "smooth", block: "start", inline: "nearest"} )
     }
-
-    //?? IND_o
-    //??   .formIssue__v()
-
   }
   ,
 
 
-  //?????????????????????????
-  formIssue__v:
+  comment__v:    //: extract form and issue number from iframe and remove iframe
   () =>
   {
-    const formIframe_e =
-      document
-        .getElementById( 'comment_iframe' )
+    document
+      .getElementById( 'comment_label' )
+      .addEventListener
+      (
+        'click',
+        () =>
+        {
+          const iframe_e =
+            document
+              .getElementById( 'comment_iframe' )
 
-        //;console.log( 'formIframe_e' )
-
-    if
-    (
-      formIframe_e
-    )
-    {
-      //;console.log( formIframe_e )
-
-      formIframe_e
-        .addEventListener
-        (
-          'load',
-          () =>
-          {
-            formIframe_e
+          const content_e =      //: adopted
+            iframe_e
               .contentDocument
-              .getElementById( 'issue' )
-                .value =
-                  formIframe_e
-                    .dataset
-                      .issue_n
+                .body
+            ||
+            iframe_e
+              .contentDocument
 
-            console.log( formIframe_e.contentDocument.getElementById( 'issue' ).value )
-          }
-        )
-    }
+          const form_e =
+            content_e
+              .children[0]
+
+          document
+            .getElementById( 'comments' )    //: adopter
+            .appendChild( form_e )
+
+          form_e
+            .querySelector( '#issue' )
+              .value =
+                iframe_e
+                  .dataset
+                    .issue_n
+
+          iframe_e
+            .remove()
+        },
+        {
+          once: true
+        }
+    )
   }
   ,
-  }
+}
 
 
 
@@ -179,6 +184,12 @@ void function
   window
     .onhashchange
   =
-    IND_o
-      .anchor__v
+    () =>
+    {
+      IND_o
+        .anchor__v
+
+      IND_o
+        .comment__v()
+    }
 } ()

@@ -2,7 +2,7 @@
 <h2>
   <label>Commentaires</label>
 </h2>
-<div>
+<div id=comments>
   <h3>
     Publiés (6)
   </h3>
@@ -48,9 +48,8 @@
     </ul>
   </div>
   <hr/>
-  <label for=comment_dialog>Rédiger un commentaire</label><label for=comment_dialog>▾</label>
-  <input id=comment_dialog type=checkbox />
-  <iframe id=comment_frame name=comment_frame src="assets/form/comment.html"
-          data-issue="3"
-          onload="this.contentDocument.getElementById( 'issue' ).value = this.dataset.issue" ></iframe>
+  <label id=comment_label for=comment_input>Rédiger un commentaire <em>▾</em></label>
+  <input id=comment_input type=checkbox />
+  <iframe id=comment_iframe name=comment_iframe src="assets/form/comment.html"
+          data-issue_n="3"></iframe>
 </div>

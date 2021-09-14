@@ -85,7 +85,7 @@ suite du texte.</p>
 <h2>
   <label>Commentaires</label>
 </h2>
-<div>
+<div id=comments>
   <h3>
     Publiés (6)
   </h3>
@@ -131,11 +131,10 @@ suite du texte.</p>
     </ul>
   </div>
   <hr/>
-  <label for=comment_dialog>Rédiger un commentaire</label><label for=comment_dialog>▾</label>
-  <input id=comment_dialog type=checkbox />
-  <iframe id=comment_frame name=comment_frame src="assets/form/comment.html"
-          data-issue="3"
-          onload="this.contentDocument.getElementById( 'issue' ).value = this.dataset.issue" ></iframe>
+  <label id=comment_label for=comment_input>Rédiger un commentaire <em>▾</em></label>
+  <input id=comment_input type=checkbox />
+  <iframe id=comment_iframe name=comment_iframe src="assets/form/comment.html"
+          data-issue_n="3"></iframe>
 </div>
 </section>
 <section id="galerie"><figure id="S7875"><img src="./assets/media/img/1703_boucher-princeton_university-1748_arion/full/max/0/color.avif" alt="François Boucher:Arion chevauchant son dauphin (full size in color)" width="2000" height="1283" loading="lazy" /><a href="#C7875"><figcaption><span data-ins="subsid" data-spec=₉><b>François Boucher </b><b>Arion chevauchant son dauphin</b><b>1748 — 1750</b><b><i>86</i><i>135₅</i></b><b>Princeton ∙ United States of America</b><b>Princeton University Art Museum</b></span></figcaption></a></figure></section><aside id="gray"><figure id="G7875"><a href="#C7875"><img src="./assets/media/img/1703_boucher-princeton_university-1748_arion/full/_1024/0/gray.avif" alt="François Boucher:Arion chevauchant son dauphin (medium size in grayscale)" width="1596" height="1024" loading="lazy" /></a></figure></aside><aside id="color"><figure id="C7875"><a href="#G7875"><img src="./assets/media/img/1703_boucher-princeton_university-1748_arion/full/max/0/color.avif" alt="François Boucher:Arion chevauchant son dauphin (full size in color)" width="2000" height="1283" loading="lazy" /></a></figure></aside>

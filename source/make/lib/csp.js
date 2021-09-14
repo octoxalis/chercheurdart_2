@@ -71,10 +71,10 @@ module.exports =
     //??   for ( let match_a of style_a ) csp_s += ` 'sha-256-${CSP_o.hash__s( match_a[1] )}'`
     //?? }
 
-    const hash_s =
-      `onload="this.contentDocument.getElementById( 'issue' ).value = this.dataset.issue"`
+    //?? const hash_s =
+    //??   `onload="this.contentDocument.getElementById( 'issue' ).value = this.dataset.issue"`
 
-    csp_s += ` 'sha-256-${CSP_o.hash__s( hash_s )}'`    //;console.log(csp_s)
+    //?? csp_s += ` 'sha-256-${CSP_o.hash__s( hash_s )}'`    //;console.log(csp_s)
 
     return `Content-Security-Policy:${csp_s};`
   }
