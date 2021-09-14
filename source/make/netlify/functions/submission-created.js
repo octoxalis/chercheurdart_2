@@ -10,6 +10,8 @@ const SUB_o =
     submit_e
   ) =>
   {
+    console.log( submit_e.body )
+    
     const
     {
       issue: issue_n,
