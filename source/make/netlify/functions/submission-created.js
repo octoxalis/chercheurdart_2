@@ -23,10 +23,12 @@ const SUB_o =
         )
         .payload
 
+        ;console.table( [issue_n, name_s, comment_s ] )
+
     const client_c =
       new NET_o( process.env.NETLIFY_API_ACCESS_TOKEN )
 
-    const request__v =
+    const request_f =
       REQ_o
         .defaults
         (
@@ -36,9 +38,9 @@ const SUB_o =
                 authorization: `token ${process.env.GITHUB_API_ACCESS_TOKEN}`,
               },
           }
-        )
+        )        ;console.log( request_f )
 
-    await request__v
+    await request_f
       (
         `POST /repos/{owner}/{repo}/issues/{issue_number}/comments`,
         Object
@@ -46,7 +48,7 @@ const SUB_o =
           (
             {
               issue_number: issue_n,
-              body: `${name_s}₊${scomment_s}`
+              body: `${name_s}₊${comment_s}`
             },
            {
               //?? accept: 'application/vnd.github.v3+json',
