@@ -2,7 +2,7 @@
  * Authentication
  * Kind of proxy for configure constants
  */
-require('dotenv').config({ path: '../env/chercheurdart' })
+require('dotenv').config({ path: 'env/chercheurdart' })
 
 module.exports =
 {

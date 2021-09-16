@@ -126,28 +126,9 @@ Issue created
 
 
 
-  list__v:      //: display to console a list of new issues
-  () =>
-  {
-    GIT_o
-      .issue_a
-        .length
-    &&
-    setTimeout
-    (
-      () =>
-        console
-          .table( GIT_o.issue_a ),
-      WRITE_TIMEOUT_n
-    )
-  }
-  ,
-
-
-  
-  comment__v:
+  list__o:      //: display to console a list of new issues
   async (
-    comment_o
+    issue_n
   ) =>
   {
     const request__v =
@@ -162,20 +143,19 @@ Issue created
           }
         )
 
-    await request__v
-      (
-        `POST /repos/{owner}/{repo}/issues/{issue_number}/comments`,
-        Object
-          .assign
-          (
-            comment_o,
-           {
-              //?? accept: 'application/vnd.github.v3+json',
-              owner: A_o.OWNER_s,
-              repo:  A_o.REPO_s
-           }
-          )
-      )
+    const list_o =
+      await request__v
+        (
+          `GET /repos/{owner}/{repo}/issues/{issue_number}/comments`,
+             {
+                //?? accept: 'application/vnd.github.v3+json',
+                owner: A_o.OWNER_s,
+                repo:  A_o.REPO_s,
+                issue_number: issue_n
+             }
+        )
+
+    return list_o
   }
   ,
 

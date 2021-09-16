@@ -4,11 +4,16 @@
           width: 100%;
           padding:{{CSS_o.PAD_2}};
           box-shadow: 0 0 0 1000vmax var(--shadow_hi);
+  <label[for=comment_input]>
+      context( block, X_button )
+      context( block, form_button )
+  </label>
   <p[data--=netlify-honeypot]>
           display: none;
   </p>
   <label>
       context( block, reference_1 )
+      margin-top: {{CSS_o.PAD_8}};    /* space for close button */
   </label>
   <textarea>
       min-height: 16rem;
@@ -33,7 +38,6 @@
   <button>
       context( block, form_button )
       context( block, reference_1 )
-      margin-bottom: {{CSS_o.PAD_12}};              /* space for close button */
       border: 2px solid var(--accept_hi);
       text-transform: uppercase;
       cursor: pointer;
@@ -46,8 +50,4 @@
       border: 2px solid var(--cancel_hi);
       font-style: normal;
   </button>
-  <label[for=comment_input]>
-      context( block, X_button )
-      context( block, form_button )
-  </label>
 </form>

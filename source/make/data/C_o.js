@@ -41,6 +41,7 @@ const C_o =
   SITE_PATH_s:          CONF_o.SITE_PATH_s,
   DATA_PATH_s:          CONF_o.DATA_PATH_s,
   INCLUDES_PATH_s:      CONF_o.INCLUDES_PATH_s,
+  CONTENT_PATH_s:       CONF_o.CONTENT_PATH_s,
   CONTENT_PARTS_PATH_s: CONF_o.CONTENT_PARTS_PATH_s,
 
   MAKE_DIR_s:          CONF_o.MAKE_DIR_s,
@@ -59,7 +60,9 @@ const C_o =
   JSON_INPUT_DIR_s:    CONF_o.JSON_INPUT_DIR_s,
   ADOC_OUTPUT_DIR_s:   CONF_o.ADOC_OUTPUT_DIR_s,
 
-  LIB_TEMPLATES_DIR_s: CONF_o.LIB_TEMPLATES_DIR_s,
+  LIB_PARTS_DIR_s:     CONF_o.LIB_PARTS_DIR_s,
+
+  COM_OUTPUT_DIR_s:    CONF_o.COM_OUTPUT_DIR_s,
   
 
   //=== SECTIONS ===
@@ -136,6 +139,9 @@ const C_o =
   //XX RANGE_DELIM_s:   ' \u2014 ',  //: long tiret
 
   COMMENT_TAG_s:   '<del data--=comment hidden />',
+  COMMENT_DELIM_s: '₊',
+  COMMENT_INTRO_s: '₀',
+  COMMENT_ELIPSIS_s: '...',
 
 
   //=== DB ===

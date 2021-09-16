@@ -110,47 +110,56 @@ const IND_o =
   comment__v:    //: extract form and issue number from iframe and remove iframe
   () =>
   {
-    document
-      .getElementById( 'comment_label' )
-      .addEventListener
-      (
-        'click',
-        () =>
-        {
-          const iframe_e =
-            document
-              .getElementById( 'comment_iframe' )
+    const label_e =
+      document
+        .getElementById( 'comment_label' )
 
-          const content_e =      //: adopted
-            iframe_e
-              .contentDocument
-                .body
-            ||
-            iframe_e
-              .contentDocument
-
-          const form_e =
-            content_e
-              .children[0]
-
-          document
-            .getElementById( 'comments' )    //: adopter
-            .appendChild( form_e )
-
-          form_e
-            .querySelector( '#issue' )
-              .value =
-                iframe_e
-                  .dataset
-                    .issue_n
-
-          iframe_e
-            .remove()
-        },
-        {
-          once: true
-        }
+    if
+    (
+      label_e    //: skip if no page is not comment enabled
     )
+    {
+      label_e
+        .addEventListener
+        (
+          'click',
+          () =>
+          {
+            const iframe_e =
+              document
+                .getElementById( 'comment_iframe' )
+  
+            const content_e =      //: adopted
+              iframe_e
+                .contentDocument
+                  .body
+              ||
+              iframe_e
+                .contentDocument
+  
+            const form_e =
+              content_e
+                .children[0]
+  
+            document
+              .getElementById( 'comments' )    //: adopter
+              .appendChild( form_e )
+  
+            form_e
+              .querySelector( '#issue' )
+                .value =
+                  iframe_e
+                    .dataset
+                      .issue_n
+  
+            iframe_e
+              .remove()
+          },
+          {
+            once: true
+          }
+      )
+    }
   }
   ,
 }

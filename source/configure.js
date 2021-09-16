@@ -32,9 +32,12 @@ module.exports =
   INS_CSS_s:           '../site/assets/styles/css/',
 
   JSON_INPUT_DIR_s:    'source/make/db/table',
+  CONTENT_PATH_s:      'source/matter/content',
   ADOC_OUTPUT_DIR_s:   'source/matter/content/parts/',
 
-  LIB_TEMPLATES_DIR_s: 'make/lib/templates/',
+  LIB_PARTS_DIR_s:     'make/lib/parts/',
+
+  COM_OUTPUT_DIR_s:    'make/comment/',
 
 
   //=== GENERATE ===

@@ -36,20 +36,6 @@ const BUI_o =
     HEAD_o
       .write__v
       ( `${CSP_o.directive__s()}\n${HEAD_o.directive__s()}\n` )
-
-    //... GIT_o
-    //...   .list__v()
-
-    //... NOT THE RIGHT PLACE: should go to comment form handling
-    //... GIT_o
-    //...   .comment__v
-    //...   (
-    //...     {
-    //...       issue_number: 1,
-    //...       body: 'comment_4'
-    //...     }
-    //...   )
-
   }
 ,
 
@@ -64,32 +50,33 @@ const BUI_o =
     let start_s = input_s
 
     //... what else?
-    //... if
-    //... (
-    //...   data_o
-    //...     .issue_n
-    //...   ===
-    //...   -1
-    //... )
-    //... {
-    //...   GIT_o
-    //...     .create__n
-    //...     (
-    //...       data_o
-    //...         .permalink
-    //...     )
-    //...     .then
-    //...     (
-    //...       issue_n => 
-    //...         GIT_o
-    //...           .add__v
-    //...           (
-    //...             data_o
-    //...               .permalink,
-    //...             issue_n
-    //...           )
-    //...     )
-    //... }
+
+    if
+    (
+      data_o
+        .issue_n
+      ===
+      -1
+    )
+    {
+      GIT_o
+        .create__n
+        (
+          data_o
+            .permalink
+        )
+        .then
+        (
+          issue_n =>
+            GIT_o
+              .add__v
+              (
+                data_o
+                  .permalink,
+                issue_n
+              )
+        )
+    }
       
     return start_s
   }
@@ -102,8 +89,6 @@ const BUI_o =
     data_o
   )
   {
-    //;console.log( `${data_o.permalink}` )
-
     HEAD_o
       .add__v( data_o )
 
@@ -118,21 +103,23 @@ const BUI_o =
           data_o.permalink
         )
 
+    
     let commentPart_s = ''
 
     if
     (
       data_o
         .issue_n
+      >
+      0
     )
     {
-      //;console.log( 'Comments here: ' + data_o.permalink )
       commentPart_s =
         COM_o
-          .form__s
+          .comment__s
           (
-            data_o.issue_n,
-            //??? data_o.permalink
+            data_o
+              .issue_n
           )
     }
 
@@ -141,7 +128,7 @@ const BUI_o =
           .replace
           (
             C_o.
-            COMMENT_TAG_s,
+              COMMENT_TAG_s,
             commentPart_s
           )
       )

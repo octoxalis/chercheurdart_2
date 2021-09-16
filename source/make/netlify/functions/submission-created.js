@@ -1,5 +1,8 @@
-const NET_o = require('netlify')
+const NET_o              = require('netlify')
 const { request: REQ_o } = require( '@octokit/request' )
+
+
+const COMMENT_DELIM_s = '₊'    //: C_o.COMMENT_DELIM_s
 
 
 
@@ -27,10 +30,11 @@ const SUB_o =
       content: comment_s
     } =
       payload_o
-        .data              ;console.table( [issue_n, name_s, comment_s ] )
+        .data
 
-    const client_c =
-      new NET_o( process.env.NETLIFY_API_ACCESS_TOKEN )
+    const stamp_s =
+      payload_o
+        .created_at
 
     const request_f =
       REQ_o
@@ -42,7 +46,7 @@ const SUB_o =
                 authorization: `token ${process.env.GITHUB_API_ACCESS_TOKEN}`,
               },
           }
-        )        //;console.log( request_f )
+        )
 
     await request_f
       (
@@ -52,7 +56,7 @@ const SUB_o =
           (
             {
               issue_number: issue_n,
-              body: `${name_s}₊${comment_s}`
+              body: `${stamp_s}${COMMENT_DELIM_s}${name_s}${COMMENT_DELIM_s}${comment_s}`
             },
            {
               //?? accept: 'application/vnd.github.v3+json',
@@ -61,6 +65,13 @@ const SUB_o =
            }
           )
       )
+
+    //??? return (
+    //???   {
+    //???     statusCode: 200,
+    //???     body: `Comment saved to Github issue #${issue_n}`,
+    //???   }
+    //??? )
   }
   ,
 
@@ -118,14 +129,14 @@ const SUB_o =
       submit_a
     )
     {
-      ;console.log( submit_o )
-      //... await client_c
-      //...   .deleteSubmission
-      //...   (
-      //...     {
-      //...       submission_id: submit_o.id
-      //...     }
-      //...   )
+      //;console.log( submit_o )
+      await client_c
+        .deleteSubmission
+        (
+          {
+            submission_id: submit_o.id
+          }
+        )
     }
 
     return (

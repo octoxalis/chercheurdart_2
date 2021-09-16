@@ -2,7 +2,7 @@
   "name":"chercheurdart",
   "short_name":"chercheurdart",
   "start_url": "/",
-  "description": "",
+  "description": "l'œil technologique de la peinture",
   "icons": [{ "src": "https://chercheurdart-2.netlify.app/assets/media/img/png/google-touch-icon.png", "sizes": "512x512" }],
   "theme_color":"#064ec1",
   "background_color":"#ffffff",
