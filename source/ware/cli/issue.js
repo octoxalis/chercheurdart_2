@@ -6,6 +6,7 @@ const REX_o = require( '../../make/lib/regex.js' )
 const MARK_o = require( '../../make/lib/markdown.js' )
 const C_o =   require( '../../make/data/C_o.js' )
 const A_o =   require( '../../make/data/A_o.js' )
+const { MACRO_INSERT_s } = require('../../make/data/C_o.js')
 
 
 
@@ -40,13 +41,76 @@ const ISS_o =
   ,
 
 
-  stamp__s:
+  stamp__s:    //: UTC: 2021-09-14T12:44:07Z
   (
     stamp_s
   ) =>
   {
-    const at_s =
+    const stamp_re =
+    REX_o
+      .new__re( 'i' )
+       `(?<year_s>
+        \d{4}
+        )
+        -
+        (?<month_s>
+          \d{2}
+        )
+        -
+        (?<day_s>
+          \d{2}
+        )
+        T
+        (?<hour_s>
+          \d{2}
+        )
+        :
+        (?<minutes_s>
+          \d{2}
+        )
+        :
+        (?<seconds_s>
+          \d{2}
+        )`
+    
+    const match_a =
       stamp_s
+        .match( stamp_re )
+
+    let at_s = ''
+
+    if
+    (
+      match_a
+        ?.length
+    )
+    {
+      const month_o =
+      {
+        '01': 'janvier',
+        '02': 'février',
+        '03': 'mars',
+        '04': 'avril',
+        '05': 'mai',
+        '06': 'juin',
+        '07': 'juillet',
+        '08': 'août',
+        '09': 'septembre',
+        '10': 'octobre',
+        '11': 'novembre',
+        '12': 'décembre',
+      }
+
+      at_s =
+       `<bold>`
+       + `${match_a.groups.day_s} `
+       + `${month_o[ match_a.groups.month_s ]} `
+       + `${match_a.groups.year_s}`
+       + `</bold> `
+       + `à ${match_a.groups.hour_s}:`
+       + `${match_a.groups.minutes_s}:`
+       + `${match_a.groups.seconds_s}`
+    }
 
     return at_s
   }
@@ -58,21 +122,16 @@ const ISS_o =
   (
     raw_s
   ) =>
-  {
-    const pretty_s =
-      MARK_o
-        .parse__s
-        (
-          raw_s
-            .replace
-            (
-              C_o.COMMENT_INTRO_s,
-              ''
-            )  
-        )
-
-    return pretty_s
-  }
+    MARK_o
+      .parse__s
+      (
+        raw_s
+          .replace
+          (
+            C_o.COMMENT_INTRO_s,
+            ''
+          )  
+      )
   ,
 
 
@@ -129,12 +188,9 @@ const ISS_o =
     )
     {
       list_s +=
-`<h3>
-    ${list_o.data.length}
-  </h3>
-  <div role=list>
-    <ul>
-`
+`<h3>${list_o.data.length}</h3>
+<div role=list>
+<ul>`
 
       let at_n = 0
 
@@ -166,6 +222,7 @@ const ISS_o =
           -1
         )
         {
+          console.log( 'CHECK COMMENT_INTRO_s delimiter' )
           upto_n = 32
         }
 
@@ -190,12 +247,12 @@ const ISS_o =
 <${C_o.ROW_TAG_s}>${at_s}</${C_o.ROW_TAG_s}>
 <input id=${id_s} type="checkbox" />
 <ins>
-  <p>${pretty_s}</p>
-  <label for=${id_s}>&#x00D7;</label>
-  </ins>
-  <label for=${id_s}>${intro_s}${C_o.COMMENT_ELIPSIS_s}</label>
-</li>
-`
+<p>${pretty_s}</p>
+<label for=${id_s}>&#x00D7;</label>
+</ins>
+<label for=${id_s}>${intro_s}${C_o.COMMENT_ELIPSIS_s}</label>
+</li>`
+
         ++at_n
       }
     }
@@ -248,8 +305,6 @@ void async function ()
     file_a
   )
   {
-    //;console.log( file_o.path )
-
     const content_s =
       FS_o
       .readFileSync
@@ -264,7 +319,7 @@ void async function ()
 
     const match_o =
       content_s
-        .match( issue_re )    //;console.log( match_o )
+        .match( issue_re )
 
     if
     (
@@ -272,14 +327,14 @@ void async function ()
     )
     {
       const issue_n =
-        match_o[1]        //;console.log( issue_n )
+        match_o[1]
 
       const list_o =
         await ISS_o
           .list__o
           (
             issue_n
-          )        //;console.log( list_o )
+          )
 
       const list_s =
         ISS_o
@@ -287,18 +342,12 @@ void async function ()
           (
             list_o,
             issue_n
-          )        //;console.log( list_s )
-
-      const name_s =
-        `issue_${issue_n}`
-
-      const path_s =
-      `source/${C_o.LIB_PARTS_DIR_s}${name_s}.html`    //;console.log( path_s )
+          )
 
       ISS_o
         .write__v
         (
-          path_s,
+          `source/${C_o.LIB_PARTS_DIR_s}issue_${issue_n}.html`,
           list_s
         )
     }

@@ -8,14 +8,20 @@ div[role=list] > ul > li {
   margin-bottom: 1rem;
 }
 div[role=list] > ul > li > b {
-  width: 48%;
   padding: {{CSS_o.PAD_2}};
 }
 div[role=list] > ul > li > b:first-child {
+  width: 35%;
   font-weight: 600;
 }
 div[role=list] > ul > li > b:nth-child(2) {
+  width: 60%;
   text-align: right;
+  font-family: {{CSS_o.FONT_BODY_s}};
+  font-size: 80%;
+}
+div[role=list] > ul > li > b:nth-child(2) > bold {
+  font-weight: 600;
 }
 div[role=list] > ul > li > input, div[role=list] > ul > li > input + ins {
   display: none;
@@ -38,6 +44,7 @@ div[role=list] > ul > li > input:checked + ins {
   --font_scale: 1.9vw;
   display: block;
   position: relative;
+  width: 100%;
   height: fit-content;
   margin: {{CSS_o.PAD_1}} 0;
   padding: {{CSS_o.PAD_4}};
