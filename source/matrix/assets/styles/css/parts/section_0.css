@@ -39,13 +39,12 @@ section#{{C_o.SECTION_a[0]}} > h2 {
 }
 section#{{C_o.SECTION_a[0]}} > h2 > label {
   --font_max: 32px;
-  --font_scale: 3.5vw;
+  --font_scale: 3vw;
   font-weight: 900;
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div {
   position: relative;
   margin: 0 0 0 auto;
-  padding: .5em 0;
   max-width: 100%;
   min-width: var(--col-width);
   width: calc((var(--threshold) - 100%) * 1000);

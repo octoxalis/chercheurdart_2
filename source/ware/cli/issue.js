@@ -241,8 +241,9 @@ const ISS_o =
         const id_s =
           `C${issue_n}_${at_n}`
 
-        list_s +=
-`<li>
+        list_s +=          //: keep \n for lisibility
+`\n
+<li>
 <${C_o.ROW_TAG_s}>${name_s}</${C_o.ROW_TAG_s}>
 <${C_o.ROW_TAG_s}>${at_s}</${C_o.ROW_TAG_s}>
 <input id=${id_s} type="checkbox" />
@@ -257,7 +258,7 @@ const ISS_o =
       }
     }
 
-    return list_s
+    return `${list_s}\n\n</ul>`      //: keep double\n for lisibility
   }
   ,
 
