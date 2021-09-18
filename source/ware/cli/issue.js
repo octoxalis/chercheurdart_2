@@ -1,9 +1,10 @@
 const FS_o  = require( 'fs-extra' )
 const KS_o  = require( 'klaw-sync' )
 const { request: REQ_o } = require( '@octokit/request' )
+const marked = require("marked")
+const insane = require("insane")
 
 const REX_o = require( '../../make/lib/regex.js' )
-const MARK_o = require( '../../make/lib/markdown.js' )
 const C_o =   require( '../../make/data/C_o.js' )
 const A_o =   require( '../../make/data/A_o.js' )
 
@@ -121,16 +122,18 @@ const ISS_o =
   (
     raw_s
   ) =>
-    MARK_o
-      .parse__s
+    insane
+    (
+      marked
       (
         raw_s
           .replace
           (
             C_o.COMMENT_INTRO_s,
             ''
-          )  
+          )
       )
+    )
   ,
 
 
@@ -235,7 +238,7 @@ const ISS_o =
 
         const pretty_s =
           ISS_o
-            .prettify__s( comment_s )
+            .prettify__s( comment_s )    //;console.log( pretty_s )
 
         const id_s =
           `C${issue_n}_${at_n}`
@@ -247,7 +250,7 @@ const ISS_o =
 <${C_o.ROW_TAG_s}>${at_s}</${C_o.ROW_TAG_s}>
 <input id=${id_s} type="checkbox" />
 <ins>
-<p>${pretty_s}</p>
+${pretty_s}
 <label for=${id_s}>&#x00D7;</label>
 </ins>
 <label for=${id_s}>${intro_s}${C_o.COMMENT_ELIPSIS_s}</label>
