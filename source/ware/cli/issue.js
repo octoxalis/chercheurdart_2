@@ -6,7 +6,6 @@ const REX_o = require( '../../make/lib/regex.js' )
 const MARK_o = require( '../../make/lib/markdown.js' )
 const C_o =   require( '../../make/data/C_o.js' )
 const A_o =   require( '../../make/data/A_o.js' )
-const { MACRO_INSERT_s } = require('../../make/data/C_o.js')
 
 
 
@@ -263,8 +262,6 @@ const ISS_o =
   ,
 
 
-
-
 }
 
 
@@ -290,7 +287,7 @@ void async function ()
         `
 
   file_a =
-    require( 'klaw-sync' )
+    KS_o
     (
       MD_DIR_s,
       {
