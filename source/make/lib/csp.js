@@ -12,74 +12,61 @@ const CSP_o =
 {
 
   style_re: new RegExp( `${STYLE_OPEN_s}([\\s\\S]*?)${STYLE_CLOSE_s}`, 'ig'),
-  style_a: new Set(),
+
+  //XXstyle_a: new Set(),
 
 
 
-  style__a
-  (
-    input_s
-  )
-  { return input_s.matchAll( CSP_o.style_re ) }
-,
-  
-  
-  
-  hash__s
-  (
-    code_s
-  )
-  {
-    return CRYPTO_o
-    .createHash( 'sha256' )
-    .update( code_s )
-    .digest( 'base64' )
-  }
-,
-
-
-
+  //XX style__a:
+  //XX   input_s =>
+  //XX     input_s
+  //XX       .matchAll( CSP_o.style_re )
+  //XX ,
 }
 
 
 
 module.exports =
 {
-  add__s
-  (
-    input_s
-  )
-  { return CSP_o.style_a.add( CSP_o.style__a( input_s ) ) }
-,
+  //XXadd__s:
+  //XX  input_s =>
+  //XX    CSP_o
+  //XX      .style_a
+  //XX        .add
+  //XX        (
+  //XX          CSP_o
+  //XX            .style__a( input_s )
+  //XX        )
+  //XX,
 
 
 
-  directive__s
-  ()
+  directive__s:
+  () =>
   {
     let csp_s = ''
 
-    for ( let [key_s, value_s] of Object.entries( C_o.csp_o.HEAD_o ) )
+    for
+    (
+      let [key_s, value_s]
+      of
+      Object
+        .entries( C_o.csp_o.HEAD_o )
+    )
     {
-      csp_s += ` ${key_s.toLowerCase().replace( /_/g, '-' )} ${U_o.url_s} ${value_s};`
+      csp_s +=
+        ` ${key_s.toLowerCase().replace( /_/g, '-' )} ${U_o.url_s} ${value_s};`
     }
 
-    csp_s = csp_s.slice( 0, -1 )  //: trim last ';' (it's not over)
-
-    //?? for ( let style_a of CSP_o.style_a )
-    //?? {
-    //??   for ( let match_a of style_a ) csp_s += ` 'sha-256-${CSP_o.hash__s( match_a[1] )}'`
-    //?? }
-
-    //?? const hash_s =
-    //??   `onload="this.contentDocument.getElementById( 'issue' ).value = this.dataset.issue"`
-
-    //?? csp_s += ` 'sha-256-${CSP_o.hash__s( hash_s )}'`    //;console.log(csp_s)
+    csp_s =
+      csp_s
+        .slice
+        (
+          0,
+          -1      //: trim last ';' (it's not over)
+        )
 
     return `Content-Security-Policy:${csp_s};`
   }
-,
-
-
-
+  ,
 }

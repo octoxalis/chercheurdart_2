@@ -14,7 +14,7 @@ const C_o =
   {
     HEAD_o:  //!!! DON'T change order
     {
-      DEFAULT_SRC:     '',
+      DEFAULT_SRC:     'none',
       BASE_URI:        '',
       FONT_SRC:        '',
       CONNECT_SRC:     '',
@@ -63,6 +63,9 @@ const C_o =
   LIB_PARTS_DIR_s:     CONF_o.LIB_PARTS_DIR_s,
 
   COM_OUTPUT_DIR_s:    CONF_o.COM_OUTPUT_DIR_s,
+
+  INDEX_DIR_s:        CONF_o.INDEX_DIR_s,
+
   
 
   //=== SECTIONS ===

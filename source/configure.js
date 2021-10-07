@@ -20,6 +20,7 @@ module.exports =
 
   MAKE_DIR_s:           'make/11ty/',
   CONTENT_DIR_s:        'matter/content/',
+  INDEX_DIR_s:          'make/index/',
 
   ADOC_TEMPLATES_s:     'make/adoc/templates',
 

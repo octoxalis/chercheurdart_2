@@ -27,41 +27,19 @@ const IND_o =
   ,
 
 
-  listener__v:
+  location__v:
   () =>
   {
-    ;[...document
-          .querySelectorAll( 'a[href^="#G"]' ),
-      ...document
-          .querySelectorAll( 'a[href^="#C"]' )
-    ]
-      .forEach
-      (
-        link_e =>
-          link_e
-            .addEventListener
-            (
-              "click",
-              () => document.fullscreenElement && document.exitFullscreen()
-                    ||
-                    document.querySelector( "body" )?.requestFullscreen()
-            )
-          )
-
-    ;[...document
-          .querySelectorAll( 'body > aside > a[href="#{{C_o.SECTION_a[0]}}"]' )
-    ]
-      .forEach
-      (
-        link_e =>
-          link_e
-            .addEventListener
-            (
-              "click",
-              () => document.fullscreenElement && document.exitFullscreen()
-            )
-          )
-  }
+    if
+    (
+      ! location
+          .hash
+    )
+    {
+      location +=
+        `#{{C_o.SECTION_a[0]}}`    //: display article section by default
+    }
+}
   ,
 
 
@@ -98,70 +76,63 @@ const IND_o =
       const anchor_e =
         document
           .getElementById( hash_s )
+
       anchor_e
       &&
       anchor_e
-        .scrollIntoView( {behavior: "smooth", block: "start", inline: "nearest"} )
-    }
-  }
-  ,
-
-
-  comment__v:    //: extract form and issue number from iframe and remove iframe
-  () =>
-  {
-    const label_e =
-      document
-        .getElementById( 'comment_label' )
-
-    if
-    (
-      label_e    //: skip if no page is not comment enabled
-    )
-    {
-      label_e
-        .addEventListener
+        .scrollIntoView
         (
-          'click',
-          () =>
           {
-            const iframe_e =
-              document
-                .getElementById( 'comment_iframe' )
-  
-            const content_e =      //: adopted
-              iframe_e
-                .contentDocument
-                  .body
-              ||
-              iframe_e
-                .contentDocument
-  
-            const form_e =
-              content_e
-                .children[0]
-  
-            document
-              .getElementById( 'comments' )    //: adopter
-              .appendChild( form_e )
-  
-            form_e
-              .querySelector( '#issue' )
-                .value =
-                  iframe_e
-                    .dataset
-                      .issue_n
-  
-            iframe_e
-              .remove()
-          },
-          {
-            once: true
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
           }
-      )
+        )
     }
   }
   ,
+
+
+
+  comment_label__v:    //: listener
+  (
+    event_e    //: not used
+  ) =>
+  {
+    const iframe_e =
+      document
+        .getElementById( 'comment_iframe' )
+  
+    const content_e =      //: adopted
+      iframe_e
+        .contentDocument
+          .body
+      ||
+      iframe_e
+        .contentDocument
+  
+    const form_e =
+      content_e
+        .children[0]
+  
+    document
+      .getElementById( 'comments' )    //: adopter
+      .appendChild( form_e )
+  
+    form_e
+      .querySelector( '#issue' )
+        .value =
+          iframe_e
+            .dataset
+              .issue_n
+  
+    iframe_e
+      .remove()
+  }
+  ,
+
+
+
 }
 
 
@@ -174,18 +145,8 @@ void function
   IND_o
     .service__v()
 
-  //... IND_o
-  //...   .listener__v()
-
-  if
-  (
-    ! location
-      .hash
-  )
-  {
-    location +=
-      `#{{C_o.SECTION_a[0]}}`    //: display article section by default
-  }
+  IND_o
+    .location__v()
 
   window
     .onload
@@ -198,7 +159,31 @@ void function
       IND_o
         .anchor__v()
 
-      IND_o
-        .comment__v()
+      for
+      (
+        let id_s
+        of
+        [
+          'comment_label',
+        ]
+      )
+      {
+        const listen_e =
+          document
+            .getElementById( id_s )
+  
+        listen_e
+        &&
+        listen_e
+          .addEventListener
+          (
+            'click',
+            IND_o
+              [ `${id_s}__v` ],
+            {
+              once: true
+            }
+          )
+      }
     }
 } ()

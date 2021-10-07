@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      9999,
+  doc_n:      7168,
   title_s:    `AsciiDoc`,
   subtitle_s: `Subset used in chercheurd.art`,
   abstract_s: `AsciiDoc cheatsheet for chercheurd.art`,
@@ -36,7 +36,7 @@
 
 //LINKS
 :chercheurdart: https://chercheurdart-2.netlify.app[chercheurd.art]
-:comments: https://chercheurdart-2.netlify.app[commentaires]
+:comments:      https://chercheurdart-2.netlify.app[commentaires]
 
 //INCLUDE (path is relative to source dir)
 
@@ -48,9 +48,9 @@
 {{abstract_s}}
 
 //----------------------------------------
-== Header h2
+== ‹Header h2›
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
+‹Lorem› ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 === Header h3
 
@@ -104,7 +104,7 @@ Les blocs insérés en ligne se composent de deux parties:
 
 Le texte précédent l'
 ₍₀ appel (prinpipal_s)
-  parenthèse ouverte (caractère substring)
+  ‹parenthèse ouverte› (caractère substring)
   specifier_s: 0-99 (caractères substring)₎
 est suivi de la
 ₍₀ référence (subsid_s)
@@ -179,18 +179,5 @@ link:#article__anchor_1234[Reference]
 
 //----------------------------------------
 // CommentPart
-
-////
-* pass:[<b>Jean-Luc</b>] [08/11/2021 @ 10:36] +
-      pass:[<b>Tincidunt massa erat quisque augue nostra pellentesque</b> ...]
-* Herbert [12/11/2021 @ 08:36] +
-      Pretium scelerisque sed semper cubilia aenean ...
-  - Jaja [21/11/2021 @ 12:20] +
-      ilisis vel duis cras velit hendrerit eros nisi montes ...
-  - Herbert [21/11/2021 @ 12:41] +
-      cubilia aenean suspendisse arcu purus ...
-* François [25/12/2021 @ 09:36] +
-      congue velit gravida fames libero eget ...
-////
 
 {% end_doc %}

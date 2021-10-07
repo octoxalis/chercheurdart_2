@@ -37,6 +37,16 @@ ul > li:before {
   left: -1rem;
   color: var(--shadow_ne);
 }
+pre {
+  width: 100%;
+  background: var(--shadow_lo);
+}
+pre > code {
+  width: 100%;
+  padding: {{CSS_o.PAD_1}};
+  border-left: 1px solid currentColor;
+  white-space: normal;
+}
 section {
   display: none;
   content-visibility: auto;

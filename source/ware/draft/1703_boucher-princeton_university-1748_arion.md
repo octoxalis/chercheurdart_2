@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      1,
+  doc_n:      1024,
   title_s:    '1703_boucher-princeton_university-1748_arion',
   subtitle_s: `F. Boucher Arion 1748`,
   abstract_s: `F. Boucher Arion 1748`,

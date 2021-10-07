@@ -22,7 +22,7 @@ const CODES_o =
       + ADOC_o
           .convert__s( content_s )
       + `</div>\n`            //: first close last chapter div
-      + C_o.COMMENT_TAG_s    //: to be replaced by comment part, if issue_n is defined
+      + C_o.COMMENT_TAG_s     //: to be replaced by comment part, if issue_n is defined
       +  `</section>\n`       //: \n is mandatory
     )
   }
@@ -34,7 +34,9 @@ const CODES_o =
   (
     title_s
   ) =>
-    `pass:[<${C_o.TABLE_TAG_s} data-ins=principal data-spec=${C_o.INS_TAB_s}>] ${title_s} pass:[</${C_o.TABLE_TAG_s}>]`
+    `pass:[<${C_o.TABLE_TAG_s} data-ins=principal data-spec=${C_o.INS_TAB_s}>]`
+    + ` ${title_s}`
+    + ` pass:[</${C_o.TABLE_TAG_s}>]`
   ,
 
 }

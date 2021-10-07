@@ -1,8 +1,6 @@
 /*
  * Image constants
  */
-const CONF_o = require( '../../configure.js' )
-
 const I_o =
 {
   IMG_DEFAULT_a:  [ 'full', 'max', '0', 'color',   'jpeg' ],  //: region/size/rotation/quality/format

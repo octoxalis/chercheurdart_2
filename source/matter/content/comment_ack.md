@@ -5,7 +5,7 @@
   tags:      [ 'notag' ],
   eleventyExcludeFromCollections: false,
 
-  doc_n: -9999,
+  doc_n: 6145,
   title_s:    'Commentaire expédié',
   abstract_s: 'Commentaire en attente de modération',
 
@@ -24,5 +24,5 @@ Votre commentaire a bien été expédié et nous vous en remercions.
 Il est désormais en phase de **modération** avant d'être publié.
 
 
-Pour revenir à l'article consulté, veuillez utiliser la fonction ```retour``` de votre navigateur.
+Pour revenir à l'article consulté, veuillez utiliser le bouton ```retour``` de votre navigateur.
 {% end_doc %}

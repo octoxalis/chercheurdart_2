@@ -3,6 +3,8 @@ const GIT_o  = require( './git.js' )
 const CSP_o  = require( './csp.js' )
 const INS_o  = require( './ins.js' )
 const COM_o  = require( './comment.js' )
+const TOP_o =  require( './topics.js' )
+const WORD_o = require( './words.js' )
 
 const C_o    = require( '../data/C_o.js' )
 
@@ -16,10 +18,10 @@ const BUI_o =
   
   
   
-  buildStart__v
+  buildStart__v:
   (
     data_o
-  )
+  ) =>
   {
     console.log( `${BUI_o.count_n} Markdown files to process` )
   }
@@ -27,12 +29,15 @@ const BUI_o =
 
   
   
-  buildEnd__v
+  buildEnd__v:
   (
     end_s,
     data_o
-  )
+  ) =>
   {
+    TOP_o
+      .write__v()
+
     HEAD_o
       .write__v
       ( `${CSP_o.directive__s()}\n${HEAD_o.directive__s()}\n` )
@@ -41,11 +46,11 @@ const BUI_o =
 
   
   
-  templateStart__s
+  templateStart__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
     let start_s = input_s
 
@@ -83,17 +88,17 @@ const BUI_o =
 ,
   
   
-  templateEnd__s
+  templateEnd__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
     HEAD_o
       .add__v( data_o )
 
-    CSP_o
-      .add__s( input_s )
+    //XX CSP_o
+    //XX   .add__s( input_s )
 
     let output_s =
       INS_o
@@ -124,24 +129,28 @@ const BUI_o =
     }
 
     return (
-        output_s
-          .replace
-          (
-            C_o.
-              COMMENT_TAG_s,
-            commentPart_s
-          )
+      WORD_o
+        .words__s
+        (
+          output_s
+            .replace
+            (
+              C_o.
+                COMMENT_TAG_s,
+              commentPart_s
+            )
+        )
       )
   }
 ,
 
   
   
-  headEnd__s
+  headEnd__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
     let end_s = input_s
     //... what else?
@@ -151,11 +160,11 @@ const BUI_o =
 
   
   
-  bodyEnd__s
+  bodyEnd__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
     let body_s = input_s
     //... what else?
@@ -172,18 +181,21 @@ const BUI_o =
 
 module.exports =
 {
-  start__s
+  start__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
     if
     (
-      BUI_o.current_n
-      === 0
+      BUI_o
+        .current_n
+      ===
+      0
       &&
-      BUI_o.file_a
+      BUI_o
+        .file_a
       )
       {
         BUI_o
@@ -204,13 +216,14 @@ module.exports =
 
 
 
-  end__s
+  end__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
-    ++BUI_o.current_n
+    ++BUI_o
+      .current_n
 
     let end_s =
       BUI_o
@@ -247,11 +260,11 @@ module.exports =
 
 
 
-  head__s
+  head__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
     return (
       BUI_o
@@ -266,11 +279,11 @@ module.exports =
 
 
 
-  body__s
+  body__s:
   (
     input_s,
     data_o
-  )
+  ) =>
   {
     return (
       BUI_o
@@ -289,14 +302,11 @@ module.exports =
 
 
 
-/**
- * List Markdown files to process
- * Keep 2 levels depth only for content slots
- */
 void function ()
 {
-  const MD_DIR_s = C_o.CONTENT_DIR_s    //: all Mardown files
-  const DEPTH_n  = 2
+  const MD_DIR_s =
+    C_o
+      .CONTENT_DIR_s    //: all Mardown files to process
 
   BUI_o
     .file_a =
@@ -305,7 +315,7 @@ void function ()
         MD_DIR_s,
         {
           nodir: true,
-          depthLimit: DEPTH_n
+          depthLimit: 0    //: no subdirectory
         }
       )
 

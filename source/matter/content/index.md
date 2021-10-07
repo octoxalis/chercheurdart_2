@@ -28,21 +28,23 @@
 }
 ---
 {% _doc section_a[0] %}
+//LINKS
+:site_tech: {{U_o.url_s}}site_tech.html#{{C_o.SECTION_a[0]}}[Technologie du site]
 
 = En ligne
 
 *  link:renaissance.html#{{C_o.SECTION_a[0]}}[Renaissance]
-*  link:1703_boucher-princeton_university-1748_arion.html#{{C_o.SECTION_a[0]}}[F. Boucher, Arion - 1748]
+*  link:site_tech.html#{{C_o.SECTION_a[0]}}[Technologie du site]
 
-== Guide de navigation
+////
+*  link:1703_boucher-princeton_university-1748_arion.html#{{C_o.SECTION_a[0]}}[F. Boucher, Arion - 1748]
+////
+
+== Avertissement
 
 Ce site étant délibéremment expérimental, tant par sa forme que par son contenu, certains de ses éléments, et en tout premier lieu les images, ne sont accessibles qu'en utilisant les navigateurs Internet Google Chrome ou Mozilla Firefox dans leurs versions les plus récentes.
 
-En effet, toutes les images du site sont au format AVIF, une technique d'encodage des images qui permet de réduire de façon très significative la taille de leurs fichiers numériques et, par voie de conséquence, le temps nécessaire à leur chargement.
-
-== Technologies Web
-
-...
+La page {site_tech} donne un aperçu de l'infrastructure mise en oeuvre.
 
 link:asciidoc.html#article__anchor_1234[Reference]
 

@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      1,
+  doc_n:      4096,
   title_s:    `Renaissance`,
   subtitle_s: `Un nouveau modèle pour Chercheur d'Art`,
   abstract_s: `Après un an d'absence, Chercheur d'Art revient sous une nouvelle forme`,

@@ -7,31 +7,31 @@ module.exports = make_o =>
       typographer: true
     }
 
-  make_o.setLibrary('md',
-    require( 'markdown-it' )( markdown_o )
-      .use( require( 'markdown-it-attrs' ) )
-      .use( require( 'markdown-it-deflist' ) )
-      .use( require( 'markdown-it-include' ), make_o.dirs_o.contentPartsDir_s )
-  )
+  make_o
+    .setLibrary
+    (
+      'md',
+      require( 'markdown-it' )( markdown_o )
+      //XX .use( require( 'markdown-it-attrs' ) )
+      //XX .use( require( 'markdown-it-deflist' ) )
+      //XX .use( require( 'markdown-it-include' ), make_o.dirs_o.contentPartsDir_s )
+    )
 
   make_o
     .setLibrary
     (
       'njk',
-      require
+      require( 'nunjucks')
+        .configure
         (
-          'nunjucks'
+          make_o
+            .matrixDir_s,
+          {
+            autoescape: false,  //: for CSS rules
+            lstripBlocks: true,
+            trimBlocks:true
+          } 
         )
-          .configure
-          (
-            make_o
-              .matrixDir_s,
-            {
-              autoescape: false,  //: for CSS rules
-              lstripBlocks: true,
-              trimBlocks:true
-            } 
-          )
     )
 
 }

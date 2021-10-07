@@ -24,11 +24,7 @@ const ADOC_o =
 
 
   convert__s:
-  (
-    input_s
-  ) =>
-  {
-    return (
+    input_s =>
       ADOC_o
         .ad_o
           .convert
@@ -37,10 +33,10 @@ const ADOC_o =
             ADOC_o
               .options_o
           )
-    )
-  }
   ,
 }
+
+
 
 
 ADOC_o
@@ -56,20 +52,16 @@ ADOC_o
     ADOC_o
       .registry_o
 
-require
-(
-  '../adoc/ins-inline-macro-processor.js'
-)( ADOC_o.registry_o )
+require( '../adoc/ins-inline-macro-processor.js' )
+( ADOC_o.registry_o )
 
 
 
 module.exports =
 {
   convert__s:
-  (
-    input_s
-  ) =>
-    ADOC_o
-      .convert__s( input_s )
+    input_s =>
+      ADOC_o
+        .convert__s( input_s )
 ,
 }
