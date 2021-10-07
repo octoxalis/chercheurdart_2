@@ -1,7 +1,7 @@
 const FS_o = require('fs-extra')
 
-const F_o = require( '../data/F_o.js' )
-const GRA_o = require('./Graph')    //: GRA_o redeclared in: matrix/assets/scripts/js/parts/graph.js
+//XX const F_o = require( '../data/F_o.js' )
+//XX const GRA_o = require('./Graph')    //: GRA_o redeclared in: matrix/assets/scripts/js/parts/graph.js
 
 
 
@@ -42,7 +42,12 @@ const DOCS_o =
       }
       ++atdoc_n
     }
-    DOCS_o.graph__v( topicsDocs_a )
+
+    //XX DOCS_o.graph__v( topicsDocs_a )
+
+    ;console.table( docsLabels_a )
+    ;console.table( topicsDocs_a )
+
     return [ docsLabels_a, topicsDocs_a ]
   }
 ,
@@ -142,19 +147,20 @@ const DOCS_o =
       } )
       lab_doc_js_s = `var LAB_o=[];${lab_doc_js_s}`
     
-    FS_o.
-      writeFile( DOCS_o.DOCS_NJK_s, doc_word_html_s, error_o => F_o.writeFile__v( error_o) )
-    FS_o.
-      writeFile( DOCS_o.DOCS_JS_s, doc_word_js_s, error_o=>F_o.writeFile__v( error_o) )
-    FS_o.
-      writeFile( DOCS_o.LABELS_NJK_s, lab_doc_html_s, error_o=>F_o.writeFile__v( error_o) )
-    FS_o.
-      writeFile( DOCS_o.LABELS_JS_s, lab_doc_js_s, error_o=>F_o.writeFile__v( error_o) )
-    DOCS_o.svg__v( docsLabels_a )
+    //... FS_o.
+    //...   writeFile( DOCS_o.DOCS_NJK_s, doc_word_html_s, error_o => F_o.writeFile__v( error_o) )
+    //... FS_o.
+    //...   writeFile( DOCS_o.DOCS_JS_s, doc_word_js_s, error_o=>F_o.writeFile__v( error_o) )
+    //... FS_o.
+    //...   writeFile( DOCS_o.LABELS_NJK_s, lab_doc_html_s, error_o=>F_o.writeFile__v( error_o) )
+    //... FS_o.
+    //...   writeFile( DOCS_o.LABELS_JS_s, lab_doc_js_s, error_o=>F_o.writeFile__v( error_o) )
+    
+    //XX DOCS_o.svg__v( docsLabels_a )
   }
 ,
 
-
+/* *********************************************
   graph__v
   (
     topicsDocs_a
@@ -247,7 +253,6 @@ svg__v
       error_o => F_o.writeFile__v( error_o)
     )
 }
-
 ,
 
   geometry__v
@@ -310,6 +315,8 @@ svg__v
     return [ wide_n, dim_n, height_n, column_n ]
   }
 ,
+
+************************* */
   
 }
 
@@ -317,14 +324,30 @@ svg__v
 
 module.exports =
 {
-  parse__v
+  parse__v:
   (
-    docs_s    //: 'docs_topics_words.json'
-  )
-  {
-    DOCS_o.docs__v( DOCS_o.docs__a( JSON.parse( FS_o.readFileSync( docs_s, 'utf8', 'r' ) ) ) )
-  }
-,
+    docs_s    //: docs_topics_words.json
+  ) =>
+    DOCS_o
+      .docs__v
+      (
+        DOCS_o
+          .docs__a
+          (
+            JSON
+              .parse
+              (
+                FS_o
+                  .readFileSync
+                  (
+                    docs_s,
+                    'utf8',
+                    'r'
+                  )
+              )
+          )
+      )
+  ,
 
 
 

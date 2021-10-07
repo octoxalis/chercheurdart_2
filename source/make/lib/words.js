@@ -7,12 +7,6 @@ const X_o = require( '../data/X_o.js' )
 
 const WORD_o =
 {
-  //?? url__s
-  //?? (
-  //??   url_s
-  //?? )
-  //?? { return url_s.slice( url_s.indexOf( PATH_s ) + PATH_s.length ) }
-  //?? ,
 }
 
 

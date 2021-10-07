@@ -1,4 +1,4 @@
-//... const DOCS_o = require( './docs.js' )
+const DOCS_o = require( './docs.js' )
 
 const C_o    = require( '../data/C_o.js' )
 
@@ -9,18 +9,6 @@ const TOP_o =
   script_s: `${C_o.INDEX_DIR_s}PLDA_model.py`,   //: Partially topic LDA
 
   docs_topics_json_s: `${C_o.INDEX_DIR_s}input/docs_topics_words.json`,
-  
-  
-  
-  //XX parse__v:
-  //XX () =>
-  //XX   void DOCS_o
-  //XX     .parse__v
-  //XX     (
-  //XX       TOP_o
-  //XX         .docs_topics_json_s
-  //XX     )
-  //XX,
 }
 
 
@@ -53,17 +41,17 @@ module.exports =
       .on('close', code_n => console.log(`-- Python child process exited with code ${code_n}`) )
 
     //----
-    //... setTimeout
-    //... (
-    //...   () =>
-    //...   void DOCS_o
-    //...     .parse__v
-    //...     (
-    //...       TOP_o
-    //...         .docs_topics_json_s
-    //...     ),
-    //...   2000
-    //... )
+    setTimeout
+    (
+      () =>
+      void DOCS_o
+        .parse__v
+        (
+          TOP_o
+            .docs_topics_json_s
+        ),
+      2000
+    )
   }
 ,
 
