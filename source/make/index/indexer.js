@@ -382,7 +382,9 @@ const IND_o =
                   (
                     IND_o
                       .WORDS_DELIM_s
-                  ),
+                  )
+                ||
+                [],
                 atdoc_o
                   .words_s
                   ?.split
@@ -390,6 +392,8 @@ const IND_o =
                     IND_o
                       .WORDS_DELIM_s
                   )
+                ||
+                []
               ]
             )
       
