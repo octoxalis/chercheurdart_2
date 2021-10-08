@@ -45,8 +45,8 @@ const DOCS_o =
 
     //XX DOCS_o.graph__v( topicsDocs_a )
 
-    ;console.table( docsLabels_a )
-    ;console.table( topicsDocs_a )
+    ;console.log( docsLabels_a )
+    ;console.log( topicsDocs_a )
 
     return [ docsLabels_a, topicsDocs_a ]
   }
@@ -328,25 +328,26 @@ module.exports =
   (
     docs_s    //: docs_topics_words.json
   ) =>
-    DOCS_o
-      .docs__v
-      (
-        DOCS_o
-          .docs__a
-          (
-            JSON
-              .parse
-              (
-                FS_o
-                  .readFileSync
-                  (
-                    docs_s,
-                    'utf8',
-                    'r'
-                  )
-              )
-          )
-      )
+  {}//.............
+    //.............DOCS_o
+    //.............  .docs__v
+    //.............  (
+    //.............    DOCS_o
+    //.............      .docs__a
+    //.............      (
+    //.............        JSON
+    //.............          .parse
+    //.............          (
+    //.............            FS_o
+    //.............              .readFileSync
+    //.............              (
+    //.............                docs_s,
+    //.............                'utf8',
+    //.............                'r'
+    //.............              )
+    //.............          )
+    //.............      )
+    //.............  )
   ,
 
 

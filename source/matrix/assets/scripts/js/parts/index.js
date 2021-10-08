@@ -151,9 +151,6 @@ void function
   window
     .onload
   =
-  window
-    .onhashchange
-  =
     () =>
     {
       IND_o
@@ -171,7 +168,7 @@ void function
         const listen_e =
           document
             .getElementById( id_s )
-  
+            
         listen_e
         &&
         listen_e
@@ -186,4 +183,10 @@ void function
           )
       }
     }
+
+  window
+    .onhashchange
+  =
+  IND_o
+    .anchor__v
 } ()

@@ -36,6 +36,7 @@ const IND_o =
     `
     \\s*?   //: optional space, non-greedy
     (       //: open capture group
+    -*?     //: optional negative sign
     \\d     //: digit
     +?      //: non-greedy...
     )       //: close capture group
@@ -108,8 +109,8 @@ const IND_o =
         {
           doc_n: 0,
           doc_s: '',
-          topics_s: '',
-          words_s: ''
+          topics_s: null,
+          words_s: null
         }
 
       const G_re =
@@ -120,7 +121,7 @@ const IND_o =
         REX_o
         .new__re( 'sm' )    //: multiline regex
     
-      //: doc_n
+      //:==================== doc_n
       const docN_a =
         source_s
           .match
@@ -156,7 +157,7 @@ const IND_o =
           docS_a[1]
       }
     
-      //: topics
+      //:==================== topics
       let topics_a =
         source_s
           .match
@@ -175,8 +176,8 @@ const IND_o =
             .concat__s( topics_a[1] )
       }
     
-      //: words
-      let words_s = ''
+      //:==================== words
+      //XX let words_s    //: undefined
 
       let words_a =
         source_s
@@ -189,12 +190,16 @@ const IND_o =
               `
           )
 
-      if ( words_a )
+      if
+      (
+        words_a
+      )
       {
-        words_s +=
-          IND_o
-            .concat__s( words_a[1] )
+        docs_o.words_s =
+          words_a[1]
       }
+
+      //;console.log( words_s )
 
       for
       (
@@ -210,9 +215,7 @@ const IND_o =
           )
       )
       {
-        words_s +=
-          IND_o.WORDS_DELIM_s
-          +
+        const atwords_s =
           word_a
               [1]
               .replace    //:--=> will have to .replace( /IND_o.WORDS_CONCAT_s/g, IND_o.WORDS_DELIM_s ) LATER
@@ -222,10 +225,45 @@ const IND_o =
                 IND_o
                   .WORDS_CONCAT_s
               )
+          +
+          IND_o
+            .WORDS_DELIM_s
+    
+        if
+        (
+          docs_o
+            .words_s
+        )
+        {
+          docs_o
+            .words_s +=
+              atwords_s
+        }
+        else
+        {
+          docs_o
+            .words_s =
+              atwords_s
+        }
       }
 
-      docs_o.words_s =
-        words_s
+      if
+      (
+        docs_o
+          .words_s
+      )
+      {
+        docs_o
+          .words_s =
+            docs_o
+              .words_s
+                .slice
+                (
+                  0,
+                  -1    //: skip last WORDS_DELIM_s
+                )
+      }
+
       
       return docs_o
     }
@@ -294,60 +332,89 @@ const IND_o =
         index_a
       )
       {
-        IND_o
-          .range__v
-          (
-            atdoc_o
-              .doc_n
-          )
-
         if
         (
-          doc_a
-            .has
+          atdoc_o
+            .doc_n
+          !==
+          X_o
+            .NO_TOPIC_n
+        )
+        {
+          IND_o
+            .range__v
             (
               atdoc_o
                 .doc_n
             )
-        )
-        {
-          console.log( `ERROR: duplicate doc_n: ${atdoc_o.doc_n}`)
-        }
-
-        doc_a
-          .add
+  
+          if
+          (
+            doc_a
+              .has
+              (
+                atdoc_o
+                  .doc_n
+              )
+          )
+          {
+            console.log( `ERROR: duplicate doc_n: ${atdoc_o.doc_n}`)
+          }
+  
+          doc_a
+            .add
+            (
+              atdoc_o
+                .doc_n
+            )
+          
+          json_a
+            .push
+            (
+              [
+                atdoc_o
+                  .doc_n,
+                atdoc_o
+                  .doc_s,
+                atdoc_o
+                  .topics_s
+                  ?.split
+                  (
+                    IND_o
+                      .WORDS_DELIM_s
+                  ),
+                atdoc_o
+                  .words_s
+                  ?.split
+                  (
+                    IND_o
+                      .WORDS_DELIM_s
+                  )
+              ]
+            )
+      
+          text_s +=
+            atdoc_o
+              .doc_s
+          
+          if
           (
             atdoc_o
-              .doc_n
+              .words_s
           )
-        
-        json_a
-          .push
-          (
-            [
-              atdoc_o
-                .doc_n,
-              atdoc_o
-                .doc_s,
-              atdoc_o
-                .topics_s
-                .split
-                (
-                  IND_o
-                    .WORDS_DELIM_s
-                ),
+          {
+            text_s +=
+              IND_o
+                .WORDS_DELIM_s
+              +
               atdoc_o
                 .words_s
-                .split
-                (
-                  IND_o
-                    .WORDS_DELIM_s
-                )
-            ]
-          )
-    
-        text_s +=
-          `${atdoc_o.doc_s}${IND_o.WORDS_DELIM_s}${atdoc_o.words_s}${IND_o.FILE_DELIM_s}`
+          }
+  
+          text_s +=
+            IND_o
+              .FILE_DELIM_s
+        }
       }
 
       FS_o

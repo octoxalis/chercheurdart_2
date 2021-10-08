@@ -8,6 +8,8 @@ const X_o =
   WORD_OPEN_s:  '‹',
   WORD_CLOSE_s: '›',
 
+  NO_TOPIC_n: -1,      //: document is excluded (ex. 404.html)
+
   ARTICLE_s:   0,      //: 0-1023
                                   //... _s: 1,      //: 1024-
   NEWS_s:      2,      //: 2048-

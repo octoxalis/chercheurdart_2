@@ -5,7 +5,7 @@
   tags:      [ 'notag' ],
   eleventyExcludeFromCollections: false,
 
-  doc_n: 6145,
+  doc_n: -1,    //: NO_TOPIC_n
   title_s:    'Commentaire expédié',
   abstract_s: 'Commentaire en attente de modération',
 
