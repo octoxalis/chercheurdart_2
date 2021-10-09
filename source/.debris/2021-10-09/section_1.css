@@ -1,0 +1,65 @@
+section#{{C_o.SECTION_a[1]}} {
+  column-count: 3;
+  column-gap: 0;
+  max-width: 100vw;
+}
+section#{{C_o.SECTION_a[1]}} > figure {
+  position: relative;
+  margin: 1vmin;
+}
+section#{{C_o.SECTION_a[1]}} > figure > img {
+  max-width: 100%;
+  height: auto;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a {
+  color: currentColor;
+  text-decoration: none;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1vmin;
+  background: var(--shadow_hi);
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b {
+  display: table;
+  --font_max: 18px;
+  --font_scale: 1.9vw;
+  font-style: normal;
+  line-height: 1.3;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > i {
+  font-style: normal;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
+  content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > a {
+  color: currentColor;
+  text-decoration: none;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > a:hover {
+  border-bottom: 1px solid;
+  filter: brightness( var(--brigtness_hi) );
+  transition: opacity .2s;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
+  --font_max: 20px;
+  --font_scale: 2.2vw;
+  font-weight: 600;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
+  --font_max: 18px;
+  --font_scale: 2vw;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.6;
+}
+section#{{C_o.SECTION_a[1]}} > figure > a > figcaption:hover {
+  opacity: 0;
+  transition: opacity .4s ease;
+}

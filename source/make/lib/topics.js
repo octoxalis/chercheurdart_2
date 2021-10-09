@@ -6,7 +6,7 @@ const C_o    = require( '../data/C_o.js' )
 
 const TOP_o =
 {
-  script_s: `${C_o.INDEX_DIR_s}PLDA_model.py`,   //: Partially topic LDA
+  script_s: `./PLDA_model.py`,   //: Partially topic LDA
 
   docs_topics_json_s: `${C_o.INDEX_DIR_s}input/docs_topics_words.json`,
 }

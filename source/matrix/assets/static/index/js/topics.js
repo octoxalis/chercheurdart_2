@@ -1,0 +1,1 @@
+var LAB_o=[];LAB_o['first_topic']=[3];LAB_o['second_topic']=[3];

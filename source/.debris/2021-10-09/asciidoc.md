@@ -191,36 +191,4 @@ link:#article__anchor_1234[Reference]
   ]
 ////
 
-
-== Voir aussi
-
-link:renaissance.html#{{C_o.SECTION_a[0]}}[Renaissance]
-₍₀ 
-  first_topic
-  second topic
-  third topic₎
-
-link:site_tech.html#{{C_o.SECTION_a[0]}}[Site tech]
-₍₀ 
-  prima topic
-  secondo
-  terzo₎
-
-////
-<div>
-  <p>
-    <a href="renaissance.html#article">Renaissance</a>
-    <span data-ins="principal" data-spec=₀></span>
-    <label for="I8289" tabindex="-1">▾</label>
-    <input id="I8289" type="checkbox" />
-    <ins>
-      <span data-ins="subsid" data-spec=₀>
-        <b>first_topic</b>
-        <b>second topic</b>
-        <b>third topic</b>
-      </span>
-    </ins>
-  </p>
-</div>
-////
 {% end_doc %}

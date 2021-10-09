@@ -1,17 +1,19 @@
 const FS_o = require('fs-extra')
 
-//XX const F_o = require( '../data/F_o.js' )
+const F_o = require( '../data/F_o.js' )
 const GRA_o = require('./Graph')    //: GRA_o redeclared in: matrix/assets/scripts/js/parts/graph.js
 
 
 
 const DOCS_o =
 {
-  OUTPUT_DIR_s: 'matrix/assets/static/data/json/',
-  DOCS_JS_s:    'matrix/assets/static/data/js/docs_data.js',
-  LABELS_JS_s:  'matrix/assets/static/data/js/topics_data.js',
-  DOCS_NJK_s:   'matrix/parts/slot/data/docs.njk',
-  LABELS_NJK_s: 'matrix/parts/slot/data/topics.njk',
+  OUTPUT_DIR_s: 'matrix/assets/static/index/json/',
+
+  DOCS_JS_s:    'matrix/assets/static/index/js/docs.js',
+  TOPICS_JS_s:  'matrix/assets/static/index/js/topics.js',
+
+  DOCS_NJK_s:   'matrix/parts/body/index/docs.njk',
+  TOPICS_NJK_s: 'matrix/parts/body/index/topics.njk',
   //XX GRAPH_SVG_s:  'matrix/parts/slot/graph/graph.svg',
   GRAPH_JSON_s: 'graph',
   AT_DOC_n:     0,    //: doc_n in docs_a
@@ -29,10 +31,10 @@ const DOCS_o =
     const topicsDocs_a = new Map()
     const docsLabels_a = new Array( docs_a.length )
     let atdoc_n = 0
-    for ( doc_a of docs_a )
+    for ( let doc_a of docs_a )
     {
       docsLabels_a[atdoc_n] = [ doc_a[DOCS_o.AT_DOC_n], doc_a[DOCS_o.AT_SLOT_n] ]
-      for ( topic_s of doc_a[DOCS_o.AT_LAB_n] )
+      for ( let topic_s of doc_a[DOCS_o.AT_LAB_n] )
       {
         docsLabels_a[atdoc_n].push( topic_s )    //: docs[topics]
         if ( !topicsDocs_a.has( topic_s ) ) topicsDocs_a.set( topic_s, new Set() )    //: topics[docs]
@@ -67,8 +69,24 @@ const DOCS_o =
       ) =>
     {
       let doc_s = ''
-      for ( let at_s of doc_a.slice( DOCS_o.AT_LAB_n ) ) doc_s += `${at_s} `
-      return `\n<li data-doc_n="${doc_a[DOCS_o.AT_DOC_n]}" data-doc_s="${doc_a[DOCS_o.AT_SLOT_n]}" data--="${doc_s.trimEnd()}"></li>`
+
+      for
+      (
+        let at_s
+        of
+        doc_a
+          .slice( DOCS_o.AT_LAB_n )
+      )
+      {
+        doc_s +=
+          `${at_s} `
+      }
+
+      return (
+        `\n<li data-doc_n="${doc_a[DOCS_o.AT_DOC_n]}" `
+        + `data-doc_s="${doc_a[DOCS_o.AT_SLOT_n]}" `
+        + `data--="${doc_s.trimEnd()}"></li>`
+      )
     }
 
 
@@ -76,13 +94,24 @@ const DOCS_o =
     const docWordsJs__v =
     (
       doc_a,    //: [ [doc_n, doc_s, [topics_a] ], [words_a], ... ]
-      step_n
+      step_n    //: not used
       ) =>
     {
-      let doc_s = '['
-      for ( let at_s of doc_a.slice( DOCS_o.AT_LAB_n ) ) doc_s += `'${at_s}',`
-      doc_s = doc_s.slice( 0, -1 )     //: trim last ','
-      return `DOC_o['${doc_a[DOCS_o.AT_SLOT_n]}']=${doc_s}];`
+      let doc_s = ''
+
+      for
+      (
+        let at_s
+        of
+        doc_a
+          .slice( DOCS_o.AT_LAB_n )
+      ) 
+      {
+        doc_s +=
+          `'${at_s}',`
+      }
+      
+      return `DOC_o['${doc_a[DOCS_o.AT_SLOT_n]}']=[${doc_s}];`
     }
 
 
@@ -115,46 +144,94 @@ const DOCS_o =
     }
 
 
-    //--------
+    //============================
     const [ docsLabels_a, topicsDocs_a ] = docs_a
     let step_n = 0
     let doc_word_html_s = ''
     let doc_word_js_s = ''
-    docsLabels_a.forEach(
-      (
-        doc_a,
-        step_n
-      ) =>
-      {
-        doc_word_html_s += docLabelsHtml__v( doc_a, step_n )
-        doc_word_js_s   += docWordsJs__v( doc_a, step_n )
-      } )
+
+    for
+    (
+      let doc_a
+      of
+      docsLabels_a
+    )
+    {
+      doc_word_html_s += docLabelsHtml__v( doc_a, step_n )
+      doc_word_js_s   += docWordsJs__v( doc_a, step_n )
+      ++step_n
+    }
+
     doc_word_js_s = `var DOC_o=[];${doc_word_js_s}`
-    //----
+
+    //============================
     step_n = 0
     let lab_doc_html_s = ''
     let lab_doc_js_s = ''
-    topicsDocs_a.forEach(
-      (
-        value_s,
-        key_s
-      ) =>
-      {
-        const docs_a = Array.from( topicsDocs_a.get( key_s ) )
-        lab_doc_html_s += labDocHtml__v( docs_a, step_n, key_s )
-        lab_doc_js_s   += labDocJs__v( docs_a, step_n, key_s )
-        step_n++
-      } )
-      lab_doc_js_s = `var LAB_o=[];${lab_doc_js_s}`
     
-    //... FS_o.
-    //...   writeFile( DOCS_o.DOCS_NJK_s, doc_word_html_s, error_o => F_o.writeFile__v( error_o) )
-    //... FS_o.
-    //...   writeFile( DOCS_o.DOCS_JS_s, doc_word_js_s, error_o=>F_o.writeFile__v( error_o) )
-    //... FS_o.
-    //...   writeFile( DOCS_o.LABELS_NJK_s, lab_doc_html_s, error_o=>F_o.writeFile__v( error_o) )
-    //... FS_o.
-    //...   writeFile( DOCS_o.LABELS_JS_s, lab_doc_js_s, error_o=>F_o.writeFile__v( error_o) )
+    topicsDocs_a
+      .forEach
+      (
+        (
+          value_s,
+          key_s
+        ) =>
+        {
+          const docs_a = Array.from( topicsDocs_a.get( key_s ) )
+          lab_doc_html_s += labDocHtml__v( docs_a, step_n, key_s )
+          lab_doc_js_s   += labDocJs__v( docs_a, step_n, key_s )
+          ++step_n
+        }
+      )
+
+    lab_doc_js_s =
+      `var LAB_o=[];${lab_doc_js_s}`
+    
+    FS_o.
+      writeFile
+      (
+        DOCS_o
+          .TOPICS_JS_s,
+        lab_doc_js_s,
+        error_o =>
+          console
+            .log( error_o ?? `-- Writing ${DOCS_o.TOPICS_JS_s}` )
+      )
+
+    FS_o.
+      writeFile
+      (
+        DOCS_o
+          .DOCS_JS_s,
+        doc_word_js_s,
+        error_o =>
+          console
+            .log( error_o ?? `-- Writing ${DOCS_o.DOCS_JS_s}` )
+      )
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    FS_o.
+      writeFile
+      (
+        DOCS_o
+          .DOCS_NJK_s,
+        doc_word_html_s,
+        error_o =>
+          console
+            .log( error_o ?? `-- Writing ${DOCS_o.DOCS_NJK_s}` )
+      )
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    FS_o.
+      writeFile
+      (
+        DOCS_o
+          .TOPICS_NJK_s,
+        lab_doc_html_s,
+        error_o =>
+          console
+            .log( error_o ?? `-- Writing ${DOCS_o.TOPICS_NJK_s}` )
+      )
     
     //XX DOCS_o.svg__v( docsLabels_a )
   }
@@ -173,7 +250,7 @@ const DOCS_o =
       ) =>
       {
         const docs_a = Array.from( topicsDocs_a.get( topic_s ) )
-        for ( atdoc_n of docs_a )
+        for ( let atdoc_n of docs_a )
           {
             let node_o = graph_c.nodeLabel__o( atdoc_n )
             if ( !node_o )
@@ -182,7 +259,7 @@ const DOCS_o =
               node_o = graph_c.nodeId__o( node_n )
             }
             const node_n = node_o.id__n()
-            for ( idoc_n of docs_a )  //: link to every other nodes in the Set (complete graph)
+            for ( let idoc_n of docs_a )  //: link to every other nodes in the Set (complete graph)
             {
               if ( idoc_n !== atdoc_n )
               {
@@ -201,14 +278,60 @@ const DOCS_o =
       } )
     FS_o
       .writeFile
-      ( `${DOCS_o.OUTPUT_DIR_s}${DOCS_o.GRAPH_JSON_s}.json`,
-        JSON.stringify( graph_c ),
+      (
+        `${DOCS_o.OUTPUT_DIR_s}${DOCS_o.GRAPH_JSON_s}.json`,
+        JSON
+          .stringify( graph_c ),
         error_o =>
           console
             .log( error_o ?? `-- Writing ${DOCS_o.OUTPUT_DIR_s}${DOCS_o.GRAPH_JSON_s}.json` )
       )
   }
 ,
+
+
+  
+}
+
+
+
+module.exports =
+{
+  parse__v:
+  (
+    docs_s    //: docs_topics_words.json
+  ) =>
+    DOCS_o
+      .docs__v
+      (
+        DOCS_o
+          .docs__a
+          (
+            JSON
+              .parse
+              (
+                FS_o
+                  .readFileSync
+                  (
+                    docs_s,
+                    'utf8',
+                    'r'
+                  )
+              )
+          )
+      )
+  ,
+
+
+
+}
+
+
+
+
+
+
+
 
 
 /* *********************************************
@@ -321,38 +444,3 @@ svg__v
 ,
 
 ************************* */
-  
-}
-
-
-
-module.exports =
-{
-  parse__v:
-  (
-    docs_s    //: docs_topics_words.json
-  ) =>
-    DOCS_o
-      .docs__v
-      (
-        DOCS_o
-          .docs__a
-          (
-            JSON
-              .parse
-              (
-                FS_o
-                  .readFileSync
-                  (
-                    docs_s,
-                    'utf8',
-                    'r'
-                  )
-              )
-          )
-      )
-  ,
-
-
-
-}

@@ -1,8 +1,8 @@
 const FS_o = require( 'fs-extra' )
 
-const REX_o = require( '../lib/regex.js' )
-const C_o   = require( '../data/C_o.js' )
-const X_o   = require( '../data/X_o.js' )
+const REX_o = require( '../../make/lib/regex.js' )
+const C_o =   require( '../../make/data/C_o.js' )
+const X_o =   require( '../../make/data/X_o.js' )
 
 const IND_o =
 {
@@ -379,7 +379,7 @@ const IND_o =
               [
                 atdoc_o
                   .doc_n,
-                atdoc_o
+                atdoc_o        //!!! move before doc_n
                   .doc_s,
                 atdoc_o
                   .topics_s
