@@ -1,7 +1,7 @@
 const FS_o = require('fs-extra')
 
 //XX const F_o = require( '../data/F_o.js' )
-//XX const GRA_o = require('./Graph')    //: GRA_o redeclared in: matrix/assets/scripts/js/parts/graph.js
+const GRA_o = require('./Graph')    //: GRA_o redeclared in: matrix/assets/scripts/js/parts/graph.js
 
 
 
@@ -12,7 +12,7 @@ const DOCS_o =
   LABELS_JS_s:  'matrix/assets/static/data/js/topics_data.js',
   DOCS_NJK_s:   'matrix/parts/slot/data/docs.njk',
   LABELS_NJK_s: 'matrix/parts/slot/data/topics.njk',
-  GRAPH_SVG_s:  'matrix/parts/slot/graph/graph.svg',
+  //XX GRAPH_SVG_s:  'matrix/parts/slot/graph/graph.svg',
   GRAPH_JSON_s: 'graph',
   AT_DOC_n:     0,    //: doc_n in docs_a
   AT_SLOT_n:    1,    //: doc_s
@@ -43,7 +43,7 @@ const DOCS_o =
       ++atdoc_n
     }
 
-    //XX DOCS_o.graph__v( topicsDocs_a )
+    DOCS_o.graph__v( topicsDocs_a )
 
     ;console.log( docsLabels_a )
     ;console.log( topicsDocs_a )
@@ -160,7 +160,6 @@ const DOCS_o =
   }
 ,
 
-/* *********************************************
   graph__v
   (
     topicsDocs_a
@@ -201,13 +200,18 @@ const DOCS_o =
           }
       } )
     FS_o
-      .writeFile( `${DOCS_o.OUTPUT_DIR_s}${DOCS_o.GRAPH_JSON_s}.json`,
-      JSON.stringify( graph_c ),
-      error_o => F_o.writeFile__v( error_o) )
+      .writeFile
+      ( `${DOCS_o.OUTPUT_DIR_s}${DOCS_o.GRAPH_JSON_s}.json`,
+        JSON.stringify( graph_c ),
+        error_o =>
+          console
+            .log( error_o ?? `-- Writing ${DOCS_o.OUTPUT_DIR_s}${DOCS_o.GRAPH_JSON_s}.json` )
+      )
   }
 ,
 
 
+/* *********************************************
 svg__v
 (
   docsLabels_a
@@ -328,26 +332,25 @@ module.exports =
   (
     docs_s    //: docs_topics_words.json
   ) =>
-  {}//.............
-    //.............DOCS_o
-    //.............  .docs__v
-    //.............  (
-    //.............    DOCS_o
-    //.............      .docs__a
-    //.............      (
-    //.............        JSON
-    //.............          .parse
-    //.............          (
-    //.............            FS_o
-    //.............              .readFileSync
-    //.............              (
-    //.............                docs_s,
-    //.............                'utf8',
-    //.............                'r'
-    //.............              )
-    //.............          )
-    //.............      )
-    //.............  )
+    DOCS_o
+      .docs__v
+      (
+        DOCS_o
+          .docs__a
+          (
+            JSON
+              .parse
+              (
+                FS_o
+                  .readFileSync
+                  (
+                    docs_s,
+                    'utf8',
+                    'r'
+                  )
+              )
+          )
+      )
   ,
 
 

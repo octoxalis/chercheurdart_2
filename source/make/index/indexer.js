@@ -107,10 +107,10 @@ const IND_o =
     {
       const docs_o =
         {
-          doc_n: 0,
-          doc_s: '',
+          doc_n:    0,
+          doc_s:    '',
           topics_s: null,
-          words_s: null
+          words_s:  null
         }
 
       const G_re =
@@ -133,13 +133,16 @@ const IND_o =
           `
           )
 
-      if ( docN_a )
+      if
+      (
+        docN_a
+      )
       {
         docs_o.doc_n =
           +docN_a[1]    //: Number cast
       }
     
-      //: doc_s
+      //:==================== doc_s
       const docS_a =
         source_s
           .match
@@ -151,7 +154,10 @@ const IND_o =
           `
           )
 
-      if ( docS_a )
+      if
+      (
+        docS_a
+      )
       {
         docs_o.doc_s =
           docS_a[1]
@@ -169,7 +175,10 @@ const IND_o =
             `
           )
 
-      if ( topics_a )
+      if
+      (
+        topics_a
+      )
       {
         docs_o.topics_s =
           IND_o
@@ -177,8 +186,6 @@ const IND_o =
       }
     
       //:==================== words
-      //XX let words_s    //: undefined
-
       let words_a =
         source_s
           .match
@@ -198,8 +205,6 @@ const IND_o =
         docs_o.words_s =
           words_a[1]
       }
-
-      //;console.log( words_s )
 
       for
       (
@@ -338,7 +343,7 @@ const IND_o =
             .doc_n
           !==
           X_o
-            .NO_TOPIC_n
+            .NO_TOPIC_n    //: skip document (ex.404.html)
         )
         {
           IND_o
@@ -384,7 +389,7 @@ const IND_o =
                       .WORDS_DELIM_s
                   )
                 ||
-                [],
+                [],    //!!! empty array if no topics
                 atdoc_o
                   .words_s
                   ?.split
@@ -393,7 +398,7 @@ const IND_o =
                       .WORDS_DELIM_s
                   )
                 ||
-                []
+                []    //!!! empty array if no topics
               ]
             )
       
