@@ -8,6 +8,7 @@ const X_o =   require( '../../make/data/X_o.js' )
 const IND_o =
 {
   DOCS_TOPICS_s:  `source/make/index/input/docs_topics_words.json`,
+  TOPICS_DOCS_s:  `source/make/index/input/topics_docs.json`,
   DOCS_WORDS_s :  `source/make/index/input/docs_words.txt`,
   FILE_DELIM_s:   '\n',
   WORDS_DELIM_s:  ' ',
@@ -383,7 +384,7 @@ const IND_o =
 
       let atdoc_n = -1      //: pre-incrementing
 
-      const json_a = []
+      const docsTopicsWords_a = []
 
       const doc_a = new Set()
 
@@ -480,7 +481,7 @@ const IND_o =
               (
                 //|| atdoc_o
                 //||   .doc_n
-                atdoc_n    //: index in json_a
+                atdoc_n    //: index in docsTopicsWords_a
               )
 
             topicsDocs_a
@@ -491,7 +492,7 @@ const IND_o =
               )
           }
 
-          json_a
+          docsTopicsWords_a
             .push
             (
               [
@@ -540,8 +541,32 @@ const IND_o =
         }
       }
 
-      //..........  OUTPUT topicsDocs_a map
-      console.table( Array.from( topicsDocs_a ) )
+      const topicsDocsArray_o = {}
+      for
+      (
+        let at_a
+        of
+        Array
+          .from( topicsDocs_a )
+      )
+      {
+        topicsDocsArray_o
+          [ at_a[0] ] =
+            Array
+              .from( at_a[1] )
+      }
+
+      FS_o
+        .writeFile
+        (
+          IND_o
+            .TOPICS_DOCS_s,
+          JSON
+            .stringify( topicsDocsArray_o ),
+          error_o =>
+            console
+              .log( error_o ?? `-- Writing ${IND_o.TOPICS_DOCS_s}` )
+            )
 
       FS_o
         .writeFile
@@ -549,7 +574,7 @@ const IND_o =
           IND_o
             .DOCS_TOPICS_s,
           JSON
-            .stringify( json_a ),
+            .stringify( docsTopicsWords_a ),
           error_o =>
             console
               .log( error_o ?? `-- Writing ${IND_o.DOCS_TOPICS_s}` )
@@ -574,10 +599,6 @@ const IND_o =
           IND_o
             .range_a
         )
-
-        //..................
-        ;console.log( json_a )
-        ;console.log( topicsDocs_a )
     }
     ,
     
