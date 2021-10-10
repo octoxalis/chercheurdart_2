@@ -6,8 +6,8 @@
   eleventyExcludeFromCollections: false,
 
   doc_n: -1,    //: NO_TOPIC_n
-  title_s:    'Commentaire expédié',
-  abstract_s: 'Commentaire en attente de modération',
+  title_s:    `Commentaire expédié`,
+  subtitle_s: `Commentaire en attente de modération`,
 
   section_a:
   [

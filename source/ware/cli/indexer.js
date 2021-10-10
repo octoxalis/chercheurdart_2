@@ -1,6 +1,7 @@
 const FS_o = require( 'fs-extra' )
 
 const REX_o = require( '../../make/lib/regex.js' )
+const TOP_o = require( '../../make/lib/topics.js' )
 const C_o =   require( '../../make/data/C_o.js' )
 const X_o =   require( '../../make/data/X_o.js' )
 
@@ -30,9 +31,9 @@ const IND_o =
     \\]     //: closing Array bracket
     )       //: close capture group
     `
-    ,
+  ,
   
-  DOC_n:      //: doc_n front matter JS property
+  DOC_n:    //: doc_n front matter JS property
     `
     \\s*?   //: optional space, non-greedy
     (       //: open capture group
@@ -43,9 +44,21 @@ const IND_o =
     \\s*?   //: optional space, non-greedy
     ,       //: object properties separator
     `
-    ,
+  ,
   
-    PERMALINK_s:      //: permalink front matter JS property
+  TITLE_s:  //: title_s front matter JS property
+    `
+    \\s*?     //: optional space, non-greedy
+    \\\`      //: backtick string delimiter
+    (         //: open capture group
+    [\\w\\W]  //: everything
+    +?        //: non-greedy...
+    )         //: close capture group
+    \\\`      //: backtick string delimiter
+    `
+  ,
+
+  PERMALINK_s:      //: permalink front matter JS property
     `
     \\s*?   //: optional space, non-greedy
     (?:'|") //: string delimiter
@@ -56,7 +69,7 @@ const IND_o =
     \.html  //: file extension
     (?:'|") //: string delimiter
     `
-    ,
+  ,
   
   WORD_s:      //: content indexed words
     `
@@ -69,7 +82,7 @@ const IND_o =
     )                     //: close capture group
     ${X_o.WORD_CLOSE_s}   //: closing word delimiter
     `
-    ,
+  ,
 
 
 
@@ -140,6 +153,48 @@ const IND_o =
       {
         docs_o.doc_n =
           +docN_a[1]    //: Number cast
+      }
+    
+      //:==================== tile_s
+      const titleS_a =
+        source_s
+          .match
+          (
+            SM_re
+              `
+              title_s:     //: JS front matter String
+              ${IND_o.TITLE_s}
+          `
+          )
+
+      if
+      (
+        titleS_a
+      )
+      {
+        docs_o.title_s =
+          titleS_a[1]
+      }
+    
+      //:==================== subtile_s
+      const subtitleS_a =
+        source_s
+          .match
+          (
+            SM_re
+              `
+              subtitle_s:     //: JS front matter String
+              ${IND_o.TITLE_s}
+          `
+          )
+
+      if
+      (
+        subtitleS_a
+      )
+      {
+        docs_o.subtitle_s =
+          subtitleS_a[1]
       }
     
       //:==================== doc_s
@@ -324,11 +379,15 @@ const IND_o =
             other_o.doc_n
         )
 
-      let text_s = ''
+      let words_s = ''
 
-      let json_a = []
+      let atdoc_n = -1      //: pre-incrementing
 
-      let doc_a = new Set()
+      const json_a = []
+
+      const doc_a = new Set()
+
+      const topicsDocs_a = new Map()
 
       for
       (
@@ -343,9 +402,11 @@ const IND_o =
             .doc_n
           !==
           X_o
-            .NO_TOPIC_n    //: skip document (ex.404.html)
+            .NO_TOPIC_n    //: skip structural documents (ex.404.html)
         )
         {
+          ++atdoc_n
+
           IND_o
             .range__v
             (
@@ -373,23 +434,76 @@ const IND_o =
                 .doc_n
             )
           
+          const topics_a =
+            atdoc_o
+              .topics_s
+            ?
+              atdoc_o
+                .topics_s
+                  .split
+                  (
+                    IND_o
+                      .WORDS_DELIM_s
+                  )
+            :
+              []    //!!! empty array if no topics
+
+          for
+          (
+            topic_s
+            of
+            topics_a
+          )
+          {
+            //;console.log( atdoc_o )
+
+            if
+            (
+              ! topicsDocs_a
+                .has( topic_s )
+            )
+            {
+              topicsDocs_a
+                .set
+                (
+                  topic_s,
+                  new Set()    //: topics[docs]
+                )
+            }
+
+            const set_a =
+              topicsDocs_a
+                .get( topic_s )
+
+            set_a
+              .add
+              (
+                //|| atdoc_o
+                //||   .doc_n
+                atdoc_n    //: index in json_a
+              )
+
+            topicsDocs_a
+              .set
+              (
+                topic_s,
+                set_a
+              )
+          }
+
           json_a
             .push
             (
               [
                 atdoc_o
                   .doc_n,
-                atdoc_o        //!!! move before doc_n
+                atdoc_o
                   .doc_s,
                 atdoc_o
-                  .topics_s
-                  ?.split
-                  (
-                    IND_o
-                      .WORDS_DELIM_s
-                  )
-                ||
-                [],    //!!! empty array if no topics
+                  .title_s,
+                atdoc_o
+                  .subtitle_s,
+                topics_a,
                 atdoc_o
                   .words_s
                   ?.split
@@ -402,7 +516,7 @@ const IND_o =
               ]
             )
       
-          text_s +=
+          words_s +=
             atdoc_o
               .doc_s
           
@@ -412,7 +526,7 @@ const IND_o =
               .words_s
           )
           {
-            text_s +=
+            words_s +=
               IND_o
                 .WORDS_DELIM_s
               +
@@ -420,11 +534,14 @@ const IND_o =
                 .words_s
           }
   
-          text_s +=
+          words_s +=
             IND_o
               .FILE_DELIM_s
         }
       }
+
+      //..........  OUTPUT topicsDocs_a map
+      console.table( Array.from( topicsDocs_a ) )
 
       FS_o
         .writeFile
@@ -443,7 +560,7 @@ const IND_o =
         (
           IND_o
             .DOCS_WORDS_s,
-          text_s,
+          words_s,
           error_o =>
             console
               .log( error_o ?? `-- Writing ${IND_o.DOCS_WORDS_s}` )
@@ -457,6 +574,10 @@ const IND_o =
           IND_o
             .range_a
         )
+
+        //..................
+        ;console.log( json_a )
+        ;console.log( topicsDocs_a )
     }
     ,
     
@@ -518,6 +639,7 @@ const IND_o =
 
         IND_o
           .toIndex__v( index_a )
+
       }
 
       ;console

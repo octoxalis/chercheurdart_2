@@ -18,8 +18,8 @@ const DOCS_o =
   GRAPH_JSON_s: 'graph',
   AT_DOC_n:     0,    //: doc_n in docs_a
   AT_SLOT_n:    1,    //: doc_s
-  AT_LAB_n:     2,    //: [topic_s]
-  AT_WORD_n:    3,    //: [word_s]
+  AT_LAB_n:     4,    //: [topic_s]
+  AT_WORD_n:    5,    //: [word_s]
 
   
   

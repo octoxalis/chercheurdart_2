@@ -8,8 +8,8 @@
 
 
   doc_n:      0,
-  title_s:    'chercheurdart',
-  subtitle_s: `l'œil technologique de la peinture`,
+  title_s:    `chercheurdart`,
+  subtitle_s: `L'œil technologique de la peinture`,
   abstract_s: `Un autre regard sur la peinture des maîtres anciens`,
 
   section_a:

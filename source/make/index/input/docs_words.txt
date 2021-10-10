@@ -1,4 +1,4 @@
 index
-renaissance
+renaissance biblio_entry work_entry
 site_tech
 asciidoc Lorem parenthèse_ouverte cubilia multiline Arion

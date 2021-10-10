@@ -38,8 +38,17 @@
 
 == Références
 
-Ref. 1: biblio entry
+Ref. 1: ‹biblio entry›
 
-Ref. 2: work entry
+Ref. 2: ‹work entry›
+
+//----------------------------------------
+////
+  topics_a:
+  [
+    'first topic',
+    'third topic'
+  ]
+////
 
 {% end_doc %}

@@ -8,7 +8,7 @@
 
 
   doc_n:      5120,
-  title_s:    'Technologie du site',
+  title_s:    `Technologie du site`,
   subtitle_s: `Infrastructure technologique du site`,
   abstract_s: `Les technologies du web au service de l'art`,
 
