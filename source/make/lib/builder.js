@@ -3,7 +3,8 @@ const GIT_o  = require( './git.js' )
 const CSP_o  = require( './csp.js' )
 const INS_o  = require( './ins.js' )
 const COM_o  = require( './comment.js' )
-const TOP_o =  require( './topics.js' )
+//XX const TOP_o =  require( './topics.js' )
+const DOCS_o =  require( './docsTopics.js' )
 const WORD_o = require( './words.js' )
 
 const C_o    = require( '../data/C_o.js' )
@@ -35,8 +36,8 @@ const BUI_o =
     data_o
   ) =>
   {
-    //... TOP_o
-    //...   .write__v()
+    //?? TOP_o
+    //??   .write__v()
 
     HEAD_o
       .write__v
@@ -108,6 +109,28 @@ const BUI_o =
           data_o.permalink
         )
 
+    if
+    (
+      data_o
+        .doc_n
+      >
+      0        //: skip structural docs
+    )
+    {
+      output_s =
+        output_s
+          .replace
+          (
+            C_o.
+              TOPICS_TAG_s,
+            DOCS_o
+              .toLink__v
+              (
+                data_o
+                  .doc_n
+              )
+          )
+    }
     
     let commentPart_s = ''
 

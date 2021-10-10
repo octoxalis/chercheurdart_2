@@ -24,7 +24,12 @@
   [
   ],
 
-
+  topics_a:
+  [
+    'first topic',
+    'third topic'
+  ]
+  ,
 }
 ---
 {% _doc section_a[0] %}
@@ -41,14 +46,4 @@
 Ref. 1: ‹biblio entry›
 
 Ref. 2: ‹work entry›
-
-//----------------------------------------
-////
-  topics_a:
-  [
-    'first topic',
-    'third topic'
-  ]
-////
-
 {% end_doc %}

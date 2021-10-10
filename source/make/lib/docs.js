@@ -1,6 +1,6 @@
 const FS_o = require('fs-extra')
 
-const F_o = require( '../data/F_o.js' )
+//XX const F_o = require( '../data/F_o.js' )
 const GRA_o = require('./Graph')    //: GRA_o redeclared in: matrix/assets/scripts/js/parts/graph.js
 
 

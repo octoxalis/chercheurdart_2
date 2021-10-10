@@ -141,6 +141,7 @@ const C_o =
   INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
   //XX RANGE_DELIM_s:   ' \u2014 ',  //: long tiret
 
+  TOPICS_TAG_s:    '<del data--=topics hidden />',
   COMMENT_TAG_s:   '<del data--=comment hidden />',
   COMMENT_DELIM_s: '₊',
   COMMENT_INTRO_s: '₀',

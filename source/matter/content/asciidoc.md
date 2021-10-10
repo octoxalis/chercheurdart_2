@@ -26,6 +26,12 @@
     'asciidoc.css'
   ],
 
+  topics_a:
+  [
+    'first topic',
+    'second topic'
+  ]
+  ,
 }
 ---
 {% _doc section_a[0] %}
@@ -179,21 +185,9 @@ link:#article__anchor_1234[Reference]
 
 
 //----------------------------------------
-// CommentPart
+// TopicsPart
 
-
-//----------------------------------------
 ////
-  topics_a:
-  [
-    'first topic',
-    'second topic'
-  ]
-////
-
-
-== Voir aussi
-
 first_topic
 ₍₀ 
   link:renaissance.html#{{C_o.SECTION_a[0]}}[Renaissance]₎
@@ -202,19 +196,28 @@ second_topic
 ₍₀ 
   link:site_tech.html#{{C_o.SECTION_a[0]}}[Site tech]₎
 
-////
+
+<hr/>
+<h2>
+  <label for="voir-aussi" tabindex="-1">Voir aussi</label>
+</h2>
 <div>
-  <p>
-    <a href="renaissance.html#article">first_topic</a>
-    <span data-ins="principal" data-spec=₀></span>
-    <label for="I8289" tabindex="-1">▾</label>
-    <input id="I8289" type="checkbox" />
+  <p>first_topic
+    <span data-ins="principal" data-spec="₀"> </span>
+    <label for="I8320" tabindex="-1">▾</label>
+    <input id="I8320" type="checkbox">
     <ins>
-      <span data-ins="subsid" data-spec=₀>
-        <b><a href="renaissance.html#article">Renaissance</a></b>
+      <span data-ins="subsid" data-spec="₀">
+        <b>
+          <a href="renaissance.html#article">Renaissance</a>
+        </b>
       </span>
     </ins>
   </p>
 </div>
 ////
+
+//----------------------------------------
+// CommentPart
+
 {% end_doc %}
