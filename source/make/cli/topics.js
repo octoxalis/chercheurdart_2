@@ -1,4 +1,4 @@
-//: CLI: node source/make/cli/indexer.js  (from chercheurdart_2 dir)
+//: CLI: node source/make/cli/topics.js  (from chercheurdart_2 dir)
 
 const FS_o = require( 'fs-extra' )
 
@@ -9,11 +9,11 @@ const X_o =   require( '../data/X_o.js' )
 
 
 
-const IND_o =
+const TOP_o =
 {
-  DOCS_TOPICS_s:  `source/make/index/input/docs_topics_words.json`,
-  TOPICS_DOCS_s:  `source/make/index/input/topics_docs.json`,
-  DOCS_WORDS_s :  `source/make/index/input/docs_words.txt`,
+  DOCS_TOPICS_s:  `source/make/topics/docs_topics_words.json`,
+  TOPICS_DOCS_s:  `source/make/topics/topics_docs.json`,
+  DOCS_WORDS_s :  `source/make/topics/docs_words.txt`,
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
   
@@ -143,7 +143,7 @@ const IND_o =
             SM_re
               `
               doc_n:     //: JS front matter number
-              ${IND_o.DOC_n}
+              ${TOP_o.DOC_n}
           `
           )
 
@@ -164,7 +164,7 @@ const IND_o =
             SM_re
               `
               title_s:     //: JS front matter String
-              ${IND_o.TITLE_s}
+              ${TOP_o.TITLE_s}
           `
           )
 
@@ -185,7 +185,7 @@ const IND_o =
             SM_re
               `
               subtitle_s:     //: JS front matter String
-              ${IND_o.TITLE_s}
+              ${TOP_o.TITLE_s}
           `
           )
 
@@ -206,7 +206,7 @@ const IND_o =
             SM_re
               `
               permalink:     //: JS front matter String
-              ${IND_o.PERMALINK_s}
+              ${TOP_o.PERMALINK_s}
           `
           )
 
@@ -227,7 +227,7 @@ const IND_o =
             SM_re
               `
               topics_a:     //: JS front matter Array
-              ${IND_o.ARRAY_s}
+              ${TOP_o.ARRAY_s}
             `
           )
 
@@ -237,7 +237,7 @@ const IND_o =
       )
       {
         docs_o.topics_s =
-          IND_o
+          TOP_o
             .concat__s( topics_a[1] )
       }
     
@@ -249,7 +249,7 @@ const IND_o =
             SM_re
               `
               words_a:     //: JS front matter Array
-              ${IND_o.ARRAY_s}
+              ${TOP_o.ARRAY_s}
               `
           )
 
@@ -271,7 +271,7 @@ const IND_o =
           (
             G_re
               `
-              ${IND_o.WORD_s}
+              ${TOP_o.WORD_s}
             `
           )
       )
@@ -347,12 +347,12 @@ const IND_o =
       (
         doc_n
         >
-        IND_o
+        TOP_o
           .range_a
             [range_n]
       )
       {
-        IND_o
+        TOP_o
           .range_a
             [range_n] =
               doc_n
@@ -408,7 +408,7 @@ const IND_o =
         {
           ++atdoc_n
 
-          IND_o
+          TOP_o
             .range__v
             (
               atdoc_o
@@ -559,36 +559,36 @@ const IND_o =
       FS_o
         .writeFile
         (
-          IND_o
+          TOP_o
             .TOPICS_DOCS_s,
           JSON
             .stringify( topicsDocsArray_o ),
           error_o =>
             console
-              .log( error_o ?? `-- Writing ${IND_o.TOPICS_DOCS_s}` )
+              .log( error_o ?? `-- Writing ${TOP_o.TOPICS_DOCS_s}` )
             )
 
       FS_o
         .writeFile
         (
-          IND_o
+          TOP_o
             .DOCS_TOPICS_s,
           JSON
             .stringify( docsTopicsWords_a ),
           error_o =>
             console
-              .log( error_o ?? `-- Writing ${IND_o.DOCS_TOPICS_s}` )
+              .log( error_o ?? `-- Writing ${TOP_o.DOCS_TOPICS_s}` )
             )
 
       FS_o
         .writeFile
         (
-          IND_o
+          TOP_o
             .DOCS_WORDS_s,
           words_s,
           error_o =>
             console
-              .log( error_o ?? `-- Writing ${IND_o.DOCS_WORDS_s}` )
+              .log( error_o ?? `-- Writing ${TOP_o.DOCS_WORDS_s}` )
         )
 
       console.log( '--------------------\nfrontmatter doc_n max in categories 0-7\n--------------------' )
@@ -596,7 +596,7 @@ const IND_o =
       console
         .table
         (
-          IND_o
+          TOP_o
             .range_a
         )
     }
@@ -606,7 +606,7 @@ const IND_o =
     init__v:
     () =>
     {
-      IND_o
+      TOP_o
         .file_a =        //: prepare
           require( 'klaw-sync' )
           (
@@ -619,15 +619,15 @@ const IND_o =
 
       if
       (
-        IND_o
+        TOP_o
           .file_a
       )
       {
-        IND_o
+        TOP_o
           .count_n =
-            IND_o
+            TOP_o
               .file_a
-              .length            //;console.table(IND_o.file_a)
+              .length            //;console.table(TOP_o.file_a)
 
         let index_a = []
 
@@ -635,7 +635,7 @@ const IND_o =
         (
           file_o
           of
-          IND_o
+          TOP_o
             .file_a
         )
         {
@@ -653,27 +653,27 @@ const IND_o =
           index_a
             .push
             (
-              IND_o
+              TOP_o
                 .docs__o( source_s )    //: build document
             )
         }
 
-        IND_o
+        TOP_o
           .toIndex__v( index_a )
 
       }
 
       ;console
-        .log( `*.md files processed: ${IND_o.count_n}` )
+        .log( `*.md files processed: ${TOP_o.count_n}` )
     }
     ,
   }
 
 
 
-IND_o
+TOP_o
   .range_a
   .fill( 0 )
 
-IND_o
+TOP_o
   .init__v()

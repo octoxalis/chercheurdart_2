@@ -51,7 +51,7 @@ Ce site étant délibéremment expérimental, tant par sa forme que par son cont
 
 La page {site_tech} donne un aperçu de l'infrastructure mise en oeuvre.
 
-link:asciidoc.html#article__anchor_1234[Reference]
+link:style_guide.html#article__anchor_1234[Reference]
 
 
 == Colophon

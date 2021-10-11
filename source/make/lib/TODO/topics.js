@@ -8,7 +8,7 @@ const TOP_o =
 {
   script_s: `./PLDA_model.py`,   //: Partially topic LDA
 
-  docs_topics_json_s: `${C_o.INDEX_DIR_s}input/docs_topics_words.json`,
+  docs_topics_json_s: `${C_o.INDEX_DIR_s}docs_topics_words.json`,
 }
 
 

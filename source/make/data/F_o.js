@@ -272,15 +272,4 @@ module.exports =
             { recursive: true }
           )
   ,
-
-
-
-  //XX writeFile__v:
-  //XX (
-  //XX   output_o
-  //XX ) =>
-  //XX {
-  //XX   if ( output_o ) console.log( output_o )    //: null or error message
-  //XX }
-  //XX ,
 }

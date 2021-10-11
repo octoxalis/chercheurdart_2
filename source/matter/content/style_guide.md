@@ -1,15 +1,15 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: 'asciidoc.html',
+  permalink: 'style_guide.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
   doc_n:      7168,
-  title_s:    `AsciiDoc`,
-  subtitle_s: `Subset used in chercheurd.art`,
-  abstract_s: `AsciiDoc cheatsheet for chercheurd.art`,
+  title_s:    `Style guide`,
+  subtitle_s: `AsciiDoc subset used in chercheurd.art`,
+  abstract_s: `Style guide for chercheurd.art`,
   issue_n:    3,
 
   section_a:
@@ -23,7 +23,7 @@
 
   css_a:
   [
-    'asciidoc.css'
+    'style_guide.css'
   ],
 
   topics_a:

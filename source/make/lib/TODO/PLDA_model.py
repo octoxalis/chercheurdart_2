@@ -2,10 +2,10 @@ import tomotopy as lib
 import json as json
 
 # input
-docs_json = 'make/index/input/docs_topics_words.json'
-docs_txt  = 'make/index/input/docs_words.txt'
+docs_json = 'make/topics/docs_topics_words.json'
+docs_txt  = 'make/topics/docs_words.txt'
 # output
-docs_words_json = 'make/index/output/docs_words.json'
+docs_words_json = 'make/topics/docs_words.json'
 
 
 
