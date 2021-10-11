@@ -1,6 +1,6 @@
 const HEAD_o = require( './header.js' )
-const GIT_o  = require( './git.js' )
 const CSP_o  = require( './csp.js' )
+const GIT_o  = require( './git.js' )
 const INS_o  = require( './ins.js' )
 const TOP_o =  require( './topicsList.js' )
 const MARK_o = require( './markWord.js' )

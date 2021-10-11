@@ -86,6 +86,7 @@ const C_o =
   ASIDE_GRAY_ID_s:  'G',
   ASIDE_COLOR_ID_s: 'C',
   SLIDE_ID_s:       'S',
+  TOPICS_ID_s:      'T',
 
   TABLE_TAG_s:      'span',
   ROW_TAG_s:        'b',

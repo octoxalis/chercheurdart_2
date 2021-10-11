@@ -1,15 +1,15 @@
-label:hover {
+label[for]:hover {
   filter: invert( .5 );
 }
-label {
+label[for] {
   cursor: pointer;
 }
-label > em {
+label[for] > em {
   margin: 0 {{CSS_o.PAD_1}};
   vertical-align: baseline;
   font-style: normal;
 }
-label + input#comment_input, label + input#comment_input + iframe {
+label[for] + input#comment_input, label[for] + input#comment_input + iframe {
   display: none;
 }
 label + input#comment_input + form[name=comment] {

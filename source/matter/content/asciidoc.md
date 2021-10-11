@@ -32,6 +32,13 @@
     'second topic'
   ]
   ,
+
+  version_a:
+  [
+    '2021-09-16T08:12:00Z',
+    '2021-09-14T12:44:07Z',
+  ],
+
 }
 ---
 {% _doc section_a[0] %}
@@ -53,6 +60,10 @@
 = {{title_s}} (h1)
 
 {{abstract_s}}
+₍₀ 
+  Versions
+  {{F_o.versionList__s(version_a)}}₎
+
 
 //----------------------------------------
 == Header h2

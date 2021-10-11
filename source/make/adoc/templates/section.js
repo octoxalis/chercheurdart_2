@@ -1,5 +1,4 @@
 const C_o = require( '../../data/C_o.js' )
-const F_o = require( '../../data/F_o.js' )
 
 
 
@@ -11,16 +10,10 @@ module
       node
         .title
 
-    const slug_s =
-      F_o
-        .slug__s( title_s )
-
     let chapter_s = ''
   
     let close_s = ''
   
-    let input_s = ''
-
     const level_n =
       node
         .level
@@ -43,10 +36,7 @@ module
       + `<hr/>`
 
       title_s =
-        `<label for="${slug_s}" tabindex="-1">${title_s}</label>`
-
-      //XX input_s =
-      //XX   `<input id="${slug_s}" type="checkbox" checked/>`  //: chapter always open
+        `<label>${title_s}</label>`
 
       chapter_s =
         `<div>\n`    //: open chapter content
@@ -67,7 +57,6 @@ module
       + `<h${header_n}${data_s}>`
       + title_s
       + `</h${header_n}>\n`  //: \n is mandatory
-      //XX + input_s
       + chapter_s
       + node
           .getContent()    //: chapter content

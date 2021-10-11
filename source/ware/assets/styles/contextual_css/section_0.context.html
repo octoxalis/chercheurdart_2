@@ -39,10 +39,9 @@
             --font_max: 32px;
             --font_scale: 3vw;
             font-weight: 900;
-            line-height: .5;
+            line-height: .5;    /* align with right column using a value < 1 */
     </label>
   </h2>
-  +
   <div>
         position: relative;    /* to position comment dialog */
         margin: 0 0 0 auto;
@@ -73,7 +72,7 @@
               margin: 0 {{CSS_o.PAD_1}};
               vertical-align: baseline;
               cursor: pointer;
-      </label>
+        </label>
       +
       <input/>
         context( copy, next )
@@ -127,6 +126,9 @@
             <a:hover>
                     context( block, link_hover )
             </a>
+            <bold>
+                    font-weight: 600;
+            </bold>
           </b>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}]>
@@ -221,12 +223,5 @@
     context( url, comment_list.context.html )
     context( url, comment_iframe.context.html )
     context( url, comment_form.context.html )
-  </div>
-<!-- variant -->
-  <h2>
-  </h2>
-  +
-  <div#comments>
-        /*... background: red;*/
   </div>
 </section>

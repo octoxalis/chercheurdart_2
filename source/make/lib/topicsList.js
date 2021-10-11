@@ -69,7 +69,7 @@ const DOCS_o =
     )
     {
       const id_s =
-        `T_${link_n}`      //: T for 'topic'
+        `${C_o.TOPICS_ID_s}_${doc_n}_${link_n}`
 
       let link_s = ''
 
@@ -125,7 +125,7 @@ const DOCS_o =
         linkList_s +=
 `<p data-ins=linkList>${atopic_s}
   <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
-  <label for=${id_s} data-doc_n=${doc_n} tabindex=-1>▾</label>
+  <label for=${id_s} tabindex=-1>▾</label>
   <input id=${id_s} type=checkbox>
   <ins>
     <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>

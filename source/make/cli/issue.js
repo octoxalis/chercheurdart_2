@@ -7,8 +7,10 @@ const marked = require("marked")
 const insane = require("insane")
 
 const REX_o = require( '../../make/lib/regex.js' )
-const C_o =   require( '../../make/data/C_o.js' )
+
 const A_o =   require( '../../make/data/A_o.js' )
+const C_o =   require( '../../make/data/C_o.js' )
+const F_o =   require( '../../make/data/F_o.js' )
 
 
 
@@ -43,82 +45,6 @@ const ISS_o =
   ,
 
 
-  stamp__s:    //: UTC: 2021-09-14T12:44:07Z
-  (
-    stamp_s
-  ) =>
-  {
-    const stamp_re =
-    REX_o
-      .new__re( 'i' )
-       `(?<year_s>
-        \d{4}
-        )
-        -
-        (?<month_s>
-          \d{2}
-        )
-        -
-        (?<day_s>
-          \d{2}
-        )
-        T
-        (?<hour_s>
-          \d{2}
-        )
-        :
-        (?<minutes_s>
-          \d{2}
-        )
-        :
-        (?<seconds_s>
-          \d{2}
-        )`
-    
-    const match_a =
-      stamp_s
-        .match( stamp_re )
-
-    let at_s = ''
-
-    if
-    (
-      match_a
-        ?.length
-    )
-    {
-      const month_o =
-      {
-        '01': 'janvier',
-        '02': 'février',
-        '03': 'mars',
-        '04': 'avril',
-        '05': 'mai',
-        '06': 'juin',
-        '07': 'juillet',
-        '08': 'août',
-        '09': 'septembre',
-        '10': 'octobre',
-        '11': 'novembre',
-        '12': 'décembre',
-      }
-
-      at_s =
-       `<bold>`
-       + `${match_a.groups.day_s} `
-       + `${month_o[ match_a.groups.month_s ]} `
-       + `${match_a.groups.year_s}`
-       + `</bold> `
-       + `à ${match_a.groups.hour_s}:`
-       + `${match_a.groups.minutes_s}:`
-       + `${match_a.groups.seconds_s}`
-    }
-
-    return at_s
-  }
-  ,
-
-
 
   prettify__s:
   (
@@ -137,7 +63,6 @@ const ISS_o =
       )
     )
   ,
-
 
 
 
@@ -212,7 +137,7 @@ const ISS_o =
             .split( C_o.COMMENT_DELIM_s )
 
         const at_s =
-          ISS_o
+          F_o
             .stamp__s( stamp_s )
 
         const upto_n =
