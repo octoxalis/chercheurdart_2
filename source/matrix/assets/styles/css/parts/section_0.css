@@ -41,6 +41,7 @@ section#{{C_o.SECTION_a[0]}} > h2 > label {
   --font_max: 32px;
   --font_scale: 3vw;
   font-weight: 900;
+  line-height: .5;
 }
 section#{{C_o.SECTION_a[0]}} > h2 + div {
   position: relative;
@@ -200,4 +201,10 @@ section#{{C_o.SECTION_a[0]}} > h2 + div > p > label + input:checked + ins > a > 
   padding-left: .8rem;
   border-left: .5rem solid var(--shadow_ne);
   font-style: italic;
+}
+p[data-ins=linkList] > ins > {{C_o.TABLE_TAG_s}} > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
+  padding-left: 2em;
+  font-style: italic;
+  margin: 0 0.25em;
+  vertical-align: baseline;
 }

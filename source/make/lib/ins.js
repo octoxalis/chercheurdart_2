@@ -49,7 +49,7 @@ parse__s:
 
   const specifier_n =
     insert_s
-      .indexOf( C_o.INS_SPECIF_DELIM_s )
+      .indexOf( C_o.SPECIF_DELIM_s )
 
   const specifier_s =
     insert_s
@@ -234,7 +234,7 @@ txt__s:
       .trim()
       .replaceAll
       (
-        C_o.INS_BREAK_DELIM_s,
+        C_o.BREAK_DELIM_s,
         `</${C_o.ROW_TAG_s}><${C_o.ROW_TAG_s}>`
       )
   + `</${C_o.ROW_TAG_s}>`
@@ -341,7 +341,7 @@ table__s:
     let atline_s
     of
     line_s
-      .split( C_o.INS_BREAK_DELIM_s )
+      .split( C_o.BREAK_DELIM_s )
   )
   {
     switch

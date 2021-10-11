@@ -2,9 +2,9 @@ const HEAD_o = require( './header.js' )
 const GIT_o  = require( './git.js' )
 const CSP_o  = require( './csp.js' )
 const INS_o  = require( './ins.js' )
-const COM_o  = require( './comment.js' )
 const TOP_o =  require( './topicsList.js' )
 const MARK_o = require( './markWord.js' )
+const COM_o  = require( './comment.js' )
 
 const C_o    = require( '../data/C_o.js' )
 
@@ -37,7 +37,9 @@ const BUI_o =
   {
     HEAD_o
       .write__v
-      ( `${CSP_o.directive__s()}\n${HEAD_o.directive__s()}\n` )
+      (
+        `${CSP_o.directive__s()}\n${HEAD_o.directive__s()}\n`
+      )
   }
 ,
 
@@ -94,16 +96,15 @@ const BUI_o =
     HEAD_o
       .add__v( data_o )
 
-    //XX CSP_o
-    //XX   .add__s( input_s )
-
     let output_s =
       INS_o
         .insert__s
         (
           input_s,
-          data_o.permalink
+          data_o
+            .permalink
         )
+
 
     if
     (
@@ -113,19 +114,21 @@ const BUI_o =
       0        //: skip structural docs
     )
     {
+      //;console.log( output_s )
       output_s =
-        output_s
-          .replace
-          (
-            C_o.
-              TOPICS_TAG_s,
-            TOP_o
-              .list__v
-              (
-                data_o
-                  .doc_n
-              )
-          )
+          output_s
+            .replace
+            (
+              C_o.
+                TOPICS_TAG_s,
+              TOP_o
+                .list__v
+                (
+                  data_o
+                    .doc_n
+                )
+            )
+      //;console.log( output_s )
     }
     
     let commentPart_s = ''

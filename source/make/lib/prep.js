@@ -11,11 +11,11 @@ const PREP_o =
     pre_re:
       REX_o
         .new__re( 'gms' )
-          `${C_o.PRE_OPEN_s}
+          `${C_o.INS_OPEN_s}
           (                         //: open group
-          [^${C_o.PRE_CLOSE_s}]+?
+          [^${C_o.INS_CLOSE_s}]+?
           )                         //: close group
-          ${C_o.PRE_CLOSE_s}`
+          ${C_o.INS_CLOSE_s}`
     ,
 
   }
@@ -44,7 +44,7 @@ module
 
           const specifier_n =
             match_s
-              .indexOf( C_o.INS_SPECIF_DELIM_s )
+              .indexOf( C_o.SPECIF_DELIM_s )
 
           const specifier_s =
             match_s
@@ -74,7 +74,7 @@ module
               .replaceAll
               (
                 C_o.LINE_DELIM_s,
-                C_o.INS_BREAK_DELIM_s
+                C_o.BREAK_DELIM_s
               )
 
           content_s =
@@ -82,7 +82,7 @@ module
               .replace
               (
                 replace_s,
-                `pass:[<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_PRINCIP_s}" data-spec=${specifier_s}>]${principal_s} pass:[</${C_o.TABLE_TAG_s}>]`
+                `pass:[<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_PRINCIP_s} data-spec=${specifier_s}>]${principal_s} pass:[</${C_o.TABLE_TAG_s}>]`
                 + `&#x202F;`    //!!! NARROW NO-BREAK SPACE to force AsciiDoc paragraph
                 + `${C_o.MACRO_INSERT_s}:${specifier_s}`
                 + `[${C_o.MACRO_SUB_s}=${subsid_s}]`

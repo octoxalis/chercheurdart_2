@@ -1,3 +1,5 @@
+//: CLI: node source/make/cli/issue.js  (from chercheurdart_2 dir)
+
 const FS_o  = require( 'fs-extra' )
 const KS_o  = require( 'klaw-sync' )
 const { request: REQ_o } = require( '@octokit/request' )
@@ -190,7 +192,7 @@ const ISS_o =
     )
     {
       list_s +=
-`<h3>${list_o.data.length}</h3>
+`<label>${list_o.data.length}</label>
 <div data-role=list>
 <ul>`
 

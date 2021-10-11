@@ -101,13 +101,15 @@ const C_o =
   PART_DELIM_s:    '_',    //: between subparts
   ID_DELIM_s:      '-',    //: between parts
   ID_WORD_DELIM_s: '¯',    //: between multi word subpart
-
-  PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
-  PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
-
-  INS_SPECIF_DELIM_s: ' ',
-  INS_BREAK_DELIM_s:  ' ~ ',  //: line break inside insert
+  SPECIF_DELIM_s:  ' ',    //: between specifier and content (insert)
+  BREAK_DELIM_s:   ' ~ ',  //: line break (insert)
   
+
+  //=== INSERT
+  INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
+  INS_OPEN_s:      '₍',         //: document preprocessor delimiter
+  INS_CLOSE_s:     '₎',         //: document preprocessor delimiter
+
   INS_TXT_s:      '₀',        //: text insert
   INS_DEF_s:      '₁',        //: definition list
   INS_REF_s:      '₂',        //: reference insert
@@ -128,6 +130,7 @@ const C_o =
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
 
+  //=== TABLE
   CELL_DELIM_s: '₊',
   CELL_ALIGN_a:
   [
@@ -137,15 +140,24 @@ const C_o =
   ],
   CELL_RATIO_n: .1,
 
-  LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
-  INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
   //XX RANGE_DELIM_s:   ' \u2014 ',  //: long tiret
 
-  COMMENT_TAG_s:   '<del data--=comment hidden />',
+  //=== TOPICS
+  AT_DOCN_n:     0,    //: doc_n in docs_a
+  AT_DOCS_n:     1,    //: doc_s
+  AT_TITLE_n:    2,    //: title
+  AT_SUBTITLE_n: 3,    //: subtitle
+  AT_TOPICS_n:   4,    //: [topic_s,...]
+
+  WORDS_DELIM_s:  ' ',
+  WORDS_CONCAT_s: '_',
+  TOPICS_TAG_s:    '<del data--=topics hidden />',
+
+  //=== COMMENT
   COMMENT_DELIM_s: '₊',
   COMMENT_INTRO_s: '₀',
   COMMENT_ELIPSIS_s: '...',
-
+  COMMENT_TAG_s:   '<del data--=comment hidden />',
 
   //=== DB ===
   DB_a:    //: db tables names
@@ -156,6 +168,8 @@ const C_o =
     'biblio',
   ],
 
+  //=== IMG LEGEND
+  LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
 
   //=== ADOC ===
   ADOC_DATA_s:       'ad',

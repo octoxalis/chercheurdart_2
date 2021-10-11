@@ -103,7 +103,7 @@ const C_o =
   ID_WORD_DELIM_s: '¯',    //: between multi word subpart
 
   PRE_OPEN_s:      '₍',    //: document preprocessor delimiter
-  PRE_CLOSE_s:     '₎',    //: document preprocessor delimiter
+  INS_CLOSE_s:     '₎',    //: document preprocessor delimiter
 
   INS_SPECIF_DELIM_s: ' ',
   INS_BREAK_DELIM_s:  ' ~ ',  //: line break inside insert
@@ -141,11 +141,15 @@ const C_o =
   INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
   //XX RANGE_DELIM_s:   ' \u2014 ',  //: long tiret
 
+  FILE_DELIM_s:   '\n',
+  WORDS_DELIM_s:  ' ',
+  WORDS_CONCAT_s: '_',
   TOPICS_TAG_s:    '<del data--=topics hidden />',
-  COMMENT_TAG_s:   '<del data--=comment hidden />',
+
   COMMENT_DELIM_s: '₊',
   COMMENT_INTRO_s: '₀',
   COMMENT_ELIPSIS_s: '...',
+  COMMENT_TAG_s:   '<del data--=comment hidden />',
 
 
   //=== DB ===

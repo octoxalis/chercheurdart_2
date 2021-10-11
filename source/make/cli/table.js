@@ -1,8 +1,8 @@
 const FS_o  = require( 'fs-extra' )
 const KS_o  = require( 'klaw-sync' )
 
-const C_o =   require( '../../make/data/C_o.js' )
-const T_o =   require( '../../make/data/T_o.js' )
+const C_o =   require( '../data/C_o.js' )
+const T_o =   require( '../data/T_o.js' )
 
 
 const TAB_o =
@@ -118,7 +118,7 @@ const TAB_o =
       {
         table_s +=
           C_o
-            .INS_BREAK_DELIM_s
+            .BREAK_DELIM_s
       }
 
       if
@@ -172,14 +172,14 @@ const TAB_o =
     return (
       width_s
       + C_o
-          .INS_BREAK_DELIM_s
+          .BREAK_DELIM_s
       + align_s
       + C_o
-          .INS_BREAK_DELIM_s
+          .BREAK_DELIM_s
       + title_a
           .join( C_o.CELL_DELIM_s )
       + C_o
-          .INS_BREAK_DELIM_s
+          .BREAK_DELIM_s
       + table_s
       )
   }

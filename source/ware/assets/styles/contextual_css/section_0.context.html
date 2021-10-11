@@ -39,6 +39,7 @@
             --font_max: 32px;
             --font_scale: 3vw;
             font-weight: 900;
+            line-height: .5;
     </label>
   </h2>
   +
@@ -203,6 +204,19 @@
               border-left: .5rem solid var(--shadow_ne);
               font-style: italic;
       </{{C_o.TABLE_TAG_s}}>
+    </p>
+    <!----------variant---------->
+    <p[data-ins=linkList]>
+      <ins>
+        <{{C_o.TABLE_TAG_s}}>
+          <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
+              padding-left: 2em;
+              font-style: italic;
+              margin: 0 0.25em;
+              vertical-align: baseline;
+          </{{C_o.ROW_TAG_s}}>
+        </{{C_o.TABLE_TAG_s}}>
+      </ins>
     </p>
     context( url, comment_list.context.html )
     context( url, comment_iframe.context.html )

@@ -1,19 +1,19 @@
+//: CLI: node source/make/cli/indexer.js  (from chercheurdart_2 dir)
+
 const FS_o = require( 'fs-extra' )
 
-const REX_o = require( '../../make/lib/regex.js' )
-const TOP_o = require( '../../make/lib/--topics.js' )
-const C_o =   require( '../../make/data/C_o.js' )
-const X_o =   require( '../../make/data/X_o.js' )
+const REX_o = require( '../lib/regex.js' )
+
+const C_o =   require( '../data/C_o.js' )
+const X_o =   require( '../data/X_o.js' )
+
+
 
 const IND_o =
 {
   DOCS_TOPICS_s:  `source/make/index/input/docs_topics_words.json`,
   TOPICS_DOCS_s:  `source/make/index/input/topics_docs.json`,
   DOCS_WORDS_s :  `source/make/index/input/docs_words.txt`,
-  FILE_DELIM_s:   '\n',
-  WORDS_DELIM_s:  ' ',
-  WORDS_CONCAT_s: '_',
-
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
   
@@ -103,11 +103,11 @@ const IND_o =
               item_s
                 .replaceAll
                 (
-                  IND_o.WORDS_DELIM_s,
-                  IND_o.WORDS_CONCAT_s
+                  C_o.WORDS_DELIM_s,
+                  C_o.WORDS_CONCAT_s
                 )
           )
-          .join( IND_o.WORDS_DELIM_s )
+          .join( C_o.WORDS_DELIM_s )
       )
     }
     ,
@@ -279,15 +279,15 @@ const IND_o =
         const atwords_s =
           word_a
               [1]
-              .replace    //:--=> will have to .replace( /IND_o.WORDS_CONCAT_s/g, IND_o.WORDS_DELIM_s ) LATER
+              .replace    //:--=> will have to .replace( /C_o.WORDS_CONCAT_s/g, C_o.WORDS_DELIM_s ) LATER
               (
                 G_re
                   `\s+?`,    //: multi space, non-greedy
-                IND_o
+                C_o
                   .WORDS_CONCAT_s
               )
           +
-          IND_o
+          C_o
             .WORDS_DELIM_s
     
         if
@@ -443,7 +443,7 @@ const IND_o =
                 .topics_s
                   .split
                   (
-                    IND_o
+                    C_o
                       .WORDS_DELIM_s
                   )
             :
@@ -509,7 +509,7 @@ const IND_o =
                   .words_s
                   ?.split
                   (
-                    IND_o
+                    C_o
                       .WORDS_DELIM_s
                   )
                 ||
@@ -528,7 +528,7 @@ const IND_o =
           )
           {
             words_s +=
-              IND_o
+              C_o
                 .WORDS_DELIM_s
               +
               atdoc_o
@@ -536,8 +536,8 @@ const IND_o =
           }
   
           words_s +=
-            IND_o
-              .FILE_DELIM_s
+            C_o
+              .LINE_DELIM_s
         }
       }
 
@@ -677,6 +677,3 @@ IND_o
 
 IND_o
   .init__v()
-
-
-//: CLI: node source/make/index/indexer.js  (from chercheurdart_2 dir)
