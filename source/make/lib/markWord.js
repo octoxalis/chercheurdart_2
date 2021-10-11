@@ -5,7 +5,7 @@ const X_o = require( '../data/X_o.js' )
 
 
 
-const WORD_o =
+const MARK_o =
 {
 }
 
@@ -13,7 +13,7 @@ const WORD_o =
 
 module.exports =
 {
-  words__s
+  replace__s
   (
     input_s
   )

@@ -3,9 +3,8 @@ const GIT_o  = require( './git.js' )
 const CSP_o  = require( './csp.js' )
 const INS_o  = require( './ins.js' )
 const COM_o  = require( './comment.js' )
-//XX const TOP_o =  require( './topics.js' )
-const DOCS_o =  require( './docsTopics.js' )
-const WORD_o = require( './words.js' )
+const TOP_o =  require( './topicsList.js' )
+const MARK_o = require( './markWord.js' )
 
 const C_o    = require( '../data/C_o.js' )
 
@@ -36,9 +35,6 @@ const BUI_o =
     data_o
   ) =>
   {
-    //?? TOP_o
-    //??   .write__v()
-
     HEAD_o
       .write__v
       ( `${CSP_o.directive__s()}\n${HEAD_o.directive__s()}\n` )
@@ -123,8 +119,8 @@ const BUI_o =
           (
             C_o.
               TOPICS_TAG_s,
-            DOCS_o
-              .toLink__v
+            TOP_o
+              .list__v
               (
                 data_o
                   .doc_n
@@ -152,8 +148,8 @@ const BUI_o =
     }
 
     return (
-      WORD_o
-        .words__s
+      MARK_o
+        .replace__s
         (
           output_s
             .replace

@@ -1,7 +1,7 @@
 const FS_o = require( 'fs-extra' )
 
 const REX_o = require( '../../make/lib/regex.js' )
-const TOP_o = require( '../../make/lib/topics.js' )
+const TOP_o = require( '../../make/lib/--topics.js' )
 const C_o =   require( '../../make/data/C_o.js' )
 const X_o =   require( '../../make/data/X_o.js' )
 
