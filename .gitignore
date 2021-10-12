@@ -1,9 +1,9 @@
+
+.log
 node_modules
-chercheurdart_2.code-workspace
-_workspace_
-_perf.js
-pnpm-lock.yaml
 env
-cli.txt
+_workspace_
 source/.cache
-source/img
+source/.debris
+source/ware/db
+chercheurdart_2.code-workspace

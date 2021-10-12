@@ -7,8 +7,12 @@ const I_o = require('../data/I_o.js')
 
 const IOR_o =
 {
+  db_o:
+    DB_o
+      .db__s(),
+
   ior__o:
-  id_s =>
+    id_s =>
   {
     let ior_o =
       new Object( null )
@@ -25,10 +29,11 @@ const IOR_o =
       ior_o
         .format
     ] =
-      DB_o
-        .work
-          [`${id_s}`]
-            .default_a
+      IOR_o
+        .db_o
+          .work
+            [id_s]
+              .default_a
       ??
       I_o
         .IOR_DEFAULT_a

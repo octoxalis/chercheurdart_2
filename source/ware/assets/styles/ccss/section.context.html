@@ -1,0 +1,69 @@
+context( stack, new )
+<h3>
+        --font_scale: 3vw;
+        font-weight:600;
+        /*text-transform:uppercase;*/
+</h3>
+<h4>
+        --font_scale: 2.75vw;
+        font-weight: 400;
+</h4>
+<h5>
+        --font_scale: 2.5vw;
+        font-weight: 400;
+</h5>
+<h6>
+        --font_scale: 2.25vw;
+        font-weight: 400;
+</h6>
+<ul>
+        context( block, vertical_hr )
+  <li>
+        context( block, list_item )
+    <a>
+            context( block, link_regular )
+    </a>
+    <a:hover>
+            context( block, link_hover )
+    </a>
+  </li>
+  <li:before>
+          context( block, list_marker )
+  </li>
+</ul>
+<pre>
+        width: 100%;
+        background: var(--shadow_lo);
+  <code>
+        width: 100%;
+        padding: {{CSS_o.PAD_1}};
+        border-left: 1px solid currentColor;
+        white-space: normal;
+  </code>
+</pre>
+<!--
+<blockquote>
+        margin: 0 0 1rem 1rem;
+        border-left: 4px solid var(--shadow_ne);
+    <p>
+          padding-left: .8rem;
+    </p>
+</blockquote>
+-->
+<section>
+        display: none;
+        content-visibility: auto;   /* ?????????????? */
+        position: absolute;
+        top: 0;
+        width: {{CSS_o.FULL_WIDTH_s}};
+        min-height: {{CSS_o.FULL_HEIGHT_s}};
+        height: auto;
+        padding-top: {{CSS_o.PAD_8}};
+        background: var(--bgcolor);
+</section>
+<!----------variant---------->
+<section:target>
+        display: block;
+</section>
+context( url, section_0.context.html )
+context( url, section_1.context.html )

@@ -11,9 +11,9 @@ const X_o =   require( '../data/X_o.js' )
 
 const TOP_o =
 {
-  DOCS_TOPICS_s:  `source/make/topics/docs_topics_words.json`,
-  TOPICS_DOCS_s:  `source/make/topics/topics_docs.json`,
-  DOCS_WORDS_s :  `source/make/topics/docs_words.txt`,
+  DOCS_TOPICS_s:  `source/make/lib/parts/docs_topics_words.json`,
+  TOPICS_DOCS_s:  `source/make/lib/parts/topics_docs.json`,
+  DOCS_WORDS_s :  `source/make/lib/parts/docs_words.txt`,
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
   

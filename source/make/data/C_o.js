@@ -64,7 +64,7 @@ const C_o =
 
   COM_OUTPUT_DIR_s:    CONF_o.COM_OUTPUT_DIR_s,
 
-  INDEX_DIR_s:        CONF_o.INDEX_DIR_s,
+  TOPICS_DIR_s:        CONF_o.TOPICS_DIR_s,
 
   
 

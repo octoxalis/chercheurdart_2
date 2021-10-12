@@ -20,15 +20,15 @@ module.exports =
 
   MAKE_DIR_s:           'make/11ty/',
   CONTENT_DIR_s:        'matter/content/',
-  INDEX_DIR_s:          'make/topics/',
+  TOPICS_DIR_s:         'make/lib/parts/',
 
   ADOC_TEMPLATES_s:     'make/adoc/templates',
 
 
   //=== DIR ===     relative to site || source/ware dir
   WARE_DIR_s:          'source/ware/',
-  IMG_DIR_s:           './assets/media/img/',
-  CONTEXTUAL_INPUT_s:  'source/ware/assets/styles/contextual_css/html.context.html',
+  IMG_DIR_s:           'assets/media/img/',
+  CONTEXTUAL_INPUT_s:  'source/ware/assets/styles/ccss/html.context.html',
   CONTEXTUAL_OUTPUT_s: 'source/matrix/assets/styles/css/parts/',
   INS_CSS_s:           '../site/assets/styles/css/',
 
