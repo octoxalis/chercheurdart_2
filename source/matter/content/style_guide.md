@@ -19,6 +19,7 @@
 
   script_a:
   [
+    'idecompress.min.js',
   ],
 
   css_a:
