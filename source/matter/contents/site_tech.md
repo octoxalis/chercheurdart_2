@@ -45,9 +45,9 @@
 //----------------------------------------
 // TopicsPart
 ////
-‹topic_1›
-‹topic_2›
-‹topic_3›
+‹Nicolas Poussin›
+‹Charles Lebrun›
+‹François Boucher›
 ////
 
 {% end_doc %}

@@ -202,7 +202,7 @@ ${pretty_s}
  */
 void async function ()
 {
-  const MD_DIR_s = C_o.CONTENT_PATH_s    //: all Mardown files
+  const MD_DIR_s = C_o.CONTENTS_PATH_s    //: all Mardown files
 
   const DEPTH_n  = 2
 

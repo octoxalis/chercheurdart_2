@@ -220,6 +220,21 @@
         </{{C_o.TABLE_TAG_s}}>
       </ins>
     </p>
+    <!----------variant---------->
+    <p[data-ins=contents]>
+      <ins>
+        <{{C_o.TABLE_TAG_s}}>
+          <{{C_o.ROW_TAG_s}}:first-of-type>
+              font-style: italic;
+          </{{C_o.ROW_TAG_s}}>
+          <!----------variant---------->
+          <{{C_o.ROW_TAG_s}}:nth-of-type(2n)>
+              margin-top: {{CSS_o.PAD_2}};
+              padding-left: {{CSS_o.PAD_8}};
+          </{{C_o.ROW_TAG_s}}>
+        </{{C_o.TABLE_TAG_s}}>
+      </ins>
+    </p>
     context( url, comment_list.context.html )
     context( url, comment_iframe.context.html )
     context( url, comment_form.context.html )

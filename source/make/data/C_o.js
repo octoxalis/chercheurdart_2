@@ -41,7 +41,7 @@ const C_o =
   SITE_PATH_s:          CONF_o.SITE_PATH_s,
   DATA_PATH_s:          CONF_o.DATA_PATH_s,
   INCLUDES_PATH_s:      CONF_o.INCLUDES_PATH_s,
-  CONTENT_PATH_s:       CONF_o.CONTENT_PATH_s,
+  CONTENTS_PATH_s:       CONF_o.CONTENTS_PATH_s,
   CONTENT_PARTS_PATH_s: CONF_o.CONTENT_PARTS_PATH_s,
 
   MAKE_DIR_s:          CONF_o.MAKE_DIR_s,
@@ -142,6 +142,9 @@ const C_o =
   CELL_RATIO_n: .1,
 
   //XX RANGE_DELIM_s:   ' \u2014 ',  //: long tiret
+
+  //=== DOCS
+  DOC_INDEX_n:   0,    //: index doc_n is 0 (> NO_TOPIC_n)
 
   //=== TOPICS
   AT_DOCN_n:     0,    //: doc_n in docs_a

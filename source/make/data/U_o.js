@@ -25,9 +25,7 @@ const U_o =
   //XXSOLO_GIT_R_s:  `[G]: https://github.com/octoxalis/chercheurdart`,
   //XXSOLO_SRC_R_s:  `https://github.com/octoxalis/chercheurdart/blob/main/source/`,
 
-  E11TY_s:       `[Eleventy][E]`,
-  E11TY_R_s:     `[E]: https://www.11ty.dev/`,
-
+  
 
   setup__v:
   () =>

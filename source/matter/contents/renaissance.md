@@ -48,7 +48,7 @@ Ref. 2: work entry
 //----------------------------------------
 // TopicsPart
 ////
-‹topic_2›
-‹topic_3›
+‹Charles Lebrun›
+‹François Boucher›
 ////
 {% end_doc %}

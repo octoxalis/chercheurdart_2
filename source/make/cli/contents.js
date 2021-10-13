@@ -5,18 +5,36 @@ const FS_o = require( 'fs-extra' )
 const REX_o = require( '../lib/regex.js' )
 
 const C_o =   require( '../data/C_o.js' )
+const F_o =   require( '../data/F_o.js' )
 const X_o =   require( '../data/X_o.js' )
 
 
 
-const TOP_o =
+const TOC_o =
 {
-  DOCS_TOPICS_s:  `source/make/lib/parts/docs_topics.json`,
-  TOPICS_DOCS_s:  `source/make/lib/parts/topics_docs.json`,
+  //XXDOCS_TOPICS_s:  `source/make/lib/parts/docs_topics.json`,
+  //XXTOPICS_DOCS_s:  `source/make/lib/parts/topics_docs.json`,
+  INDEX_MD_s:  `source/matter/contents/index.md`,
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
   
   //!!! double slash for template String
+  ARRAY_s:      //: version_a front matter JS Array
+    `       //: JS Array declaration
+    \\s*?   //: optional space, non-greedy
+    (       //: open capture group
+    \\[     //: opening Array bracket
+    \\s*?   //: optional space, non-greedy
+    [       //: open char range
+    ^\\]    //: everything except close Array bracket
+    ]       //: close char range
+    +?      //: 1 or more chars in that range, non-greedy
+    \\s*?   //: optional space, non-greedy
+    \\]     //: closing Array bracket
+    )       //: close capture group
+    `
+  ,
+  
   DOCN_s:   //: doc_n front matter JS property
     `
     \\s*?   //: optional space, non-greedy
@@ -55,18 +73,17 @@ const TOP_o =
     `
   ,
 
-  TOPIC_s:    //: indexed topics (‹word›)
+  TOC_s:      //: TOC asciidoc markup to update
     `
-    ${X_o.WORD_OPEN_s}    //: opening word delimiter
-    (                     //: open capture group
-    [                     //: open capture group
-    \\s\\S                //: anything
-    ]                     //: close capture group
-    +?                    //: non-greedy
-    )                     //: close capture group
-    ${X_o.WORD_CLOSE_s}   //: closing word delimiter
+    \\.toc
+    (         //: open capture group
+    [\\w\\W]  //: everything
+    +?        //: non-greedy...
+    )         //: close capture group
+    \\.toc
     `
   ,
+
 
 
 
@@ -81,7 +98,7 @@ const TOP_o =
         doc_s:    '',
         title_s:  '',
         subtitle_s:  '',
-        topics_a: []
+        version_a: []
       }
 
     const G_re =
@@ -123,7 +140,7 @@ const TOP_o =
           SM_re
             `
             doc_n:     //: JS front matter number
-            ${TOP_o.DOCN_s}`
+            ${TOC_o.DOCN_s}`
         )
 
     if
@@ -146,7 +163,7 @@ const TOP_o =
           SM_re
             `
             title_s:     //: JS front matter String
-            ${TOP_o.TITLE_s}`
+            ${TOC_o.TITLE_s}`
         )
 
     if
@@ -169,7 +186,7 @@ const TOP_o =
           SM_re
             `
             subtitle_s:     //: JS front matter String
-            ${TOP_o.TITLE_s}`
+            ${TOC_o.TITLE_s}`
         )
 
     if
@@ -183,36 +200,30 @@ const TOP_o =
     docs_o
       .subtitle_s =
         subtitle_a[1]
-  
-    //:==================== topics
-    for
-    (
-      const topic_a
-      of
+
+    //:==================== version_a
+    let version_a =
       source_s
-        .matchAll
+        .match
         (
-          G_re
-            `${TOP_o.TOPIC_s}`
+          SM_re
+            `
+            version_a:     //: JS front matter Array
+            ${TOC_o.ARRAY_s}
+          `
         )
+
+    if
+    (
+      version_a
     )
     {
       docs_o
-        .topics_a
-          .push
-          (
-            topic_a
-              [1]
-              .replace    //:--=> will have to .replace( /C_o.WORDS_CONCAT_s/g, C_o.WORDS_DELIM_s ) LATER
-              (
-                G_re
-                  `\s+?`,    //: multi space, non-greedy
-                C_o
-                  .WORDS_CONCAT_s
-              )
-          )
+        .version_a =
+          eval( version_a[1] )
     }
-
+    
+  
     return docs_o
   }
   ,
@@ -234,12 +245,12 @@ const TOP_o =
     (
       doc_n
       >
-      TOP_o
+      TOC_o
         .range_a
           [range_n]
     )
     {
-      TOP_o
+      TOC_o
         .range_a
           [range_n] =
             doc_n
@@ -252,171 +263,116 @@ const TOP_o =
     
   write__v:
   (
-    topic_a
+    doc_a
   ) =>
   {
-    topic_a
+    doc_a
       .sort
       (
         (
-          topic_o,
+          doc_o,
           other_o
         ) =>
-          topic_o.doc_n
+          doc_o.doc_n
           -
           other_o.doc_n
       )
 
-      
-    const docsTopics_a = []
-      
-    const topicsDocs_a = new Map()
-      
-    const doc_a = new Set()
-      
-    let atdoc_n = -1      //: pre-incremented to 0
+    let toc_s = ''
 
     for
     (
       const atdoc_o
       of
-      topic_a
+      doc_a
     )
     {
       if
       (
         atdoc_o
           .doc_n
-        !==
-        X_o
-          .NO_TOPIC_n    //: skip structural documents (ex.404.html)
+        >
+        C_o
+          .DOC_INDEX_n    //: skip index and structural documents (ex.404.html)
       )
       {
-        ++atdoc_n      //: pre-incrementing
-
-        TOP_o
-          .range__v
-          (
-            atdoc_o
-              .doc_n
-          )
-
-        if
-        (
-          doc_a
-            .has
-            (
-              atdoc_o
-                .doc_n
-            )
-        )
-        {
-          console.log( `ERROR: duplicate doc_n: ${atdoc_o.doc_n}`)
-        }
-
-        doc_a
-          .add
-          (
-            atdoc_o
-              .doc_n
-          )
-        
-        for
-        (
-          topic_s
-          of
-          atdoc_o
-            .topics_a
-        )
-        {
-          if
-          (
-            ! topicsDocs_a
-              .has( topic_s )
-          )
-          {
-            topicsDocs_a
-              .set
-              (
-                topic_s,
-                new Set()    //: topics[docs]
-              )
-          }
-
-          const set_a =
-            topicsDocs_a
-              .get( topic_s )
-
-          set_a
-            .add
-            (
-              atdoc_n    //: index in docsTopics_a
-            )
-
-          topicsDocs_a
-            .set
-            (
-              topic_s,
-              set_a
-            )
-        }
-
-        docsTopics_a
-          .push
-          (
-            Object
-              .values( atdoc_o )
-          )
+        toc_s +=
+`<p data-ins=contents>
+    <a href=${atdoc_o.doc_s}.html#${C_o.SECTION_a[0]}>${atdoc_o.title_s}</a>
+    <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
+    <label for=L_${atdoc_o.doc_s} tabindex=-1>▾</label>
+    <input id=L_${atdoc_o.doc_s} type=checkbox>
+    <ins>
+      <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>
+        <b>${atdoc_o.subtitle_s}</b>
+        <b>${F_o.stamp__s(atdoc_o.version_a[0])}</b>
+      </span>
+    </ins>
+  </p>`
       }
     }
 
-    const topicsDocsArray_o = {}
+    //??toc_s =
+    //??  toc_s
+    //??    .replaceAll
+    //??    (
+    //??      '\n',
+    //??      ''      //: remove new lines
+    //??    )
 
-    for
+    toc_s =
+      `\npass:[${toc_s}]\n\n`    //: preserve new lines
+
+    let source_s =
+      FS_o
+        .readFileSync
+        (
+          TOC_o
+            .INDEX_MD_s,
+          {
+            encoding:'utf-8',
+            flag:'r'
+          }
+        )
+
+    const SM_re =
+      REX_o
+      .new__re( 'sm' )    //: multiline regex
+
+    const content_a =
+      source_s
+        .match
+        (
+          SM_re
+            `
+            ${TOC_o.TOC_s}`
+        )
+
+    if
     (
-      let at_a
-      of
-      Array
-        .from( topicsDocs_a )
+      ! content_a
     )
     {
-      topicsDocsArray_o
-        [ at_a[0] ] =
-          Array
-            .from( at_a[1] )
+      return void console.log( `!!! document index has no toc delimiters` )
     }
+    //->
+    source_s =
+      source_s
+        .replace
+        (
+          content_a[1],
+          toc_s
+        )           //;console.log( source_s )
 
     FS_o
       .writeFile
       (
-        TOP_o
-          .TOPICS_DOCS_s,
-        JSON
-          .stringify( topicsDocsArray_o ),
+        TOC_o
+          .INDEX_MD_s,
+          source_s,
         error_o =>
           console
-            .log( error_o ?? `-- Writing ${TOP_o.TOPICS_DOCS_s}` )
-          )
-
-    FS_o
-      .writeFile
-      (
-        TOP_o
-          .DOCS_TOPICS_s,
-        JSON
-          .stringify( docsTopics_a ),
-        error_o =>
-          console
-            .log( error_o ?? `-- Writing ${TOP_o.DOCS_TOPICS_s}` )
-          )
-
-    console.log( '--------------------\nfrontmatter doc_n max in categories 0-7\n--------------------' )
-
-    console
-      .table
-      (
-        TOP_o
-          .range_a
+            .log( error_o ?? `-- Writing ${TOC_o.INDEX_MD_s}` )
       )
   }
   ,
@@ -426,7 +382,7 @@ const TOP_o =
   init__v:
   () =>
   {
-    TOP_o
+    TOC_o
       .file_a =        //: prepare
         require( 'klaw-sync' )
         (
@@ -439,23 +395,23 @@ const TOP_o =
 
     if
     (
-      TOP_o
+      TOC_o
         .file_a
     )
     {
-      TOP_o
+      TOC_o
         .count_n =
-          TOP_o
+          TOC_o
             .file_a
               .length
 
-      let topic_a = []
+      let doc_a = []
 
       for
       (
         file_o
         of
-        TOP_o
+        TOC_o
           .file_a
       )
       {
@@ -470,30 +426,30 @@ const TOP_o =
               }
             )
 
-        topic_a
+        doc_a
           .push
           (
-            TOP_o
+            TOC_o
               .docs__o( source_s )    //: build document
           )
       }
 
-      TOP_o
-        .write__v( topic_a )
+      TOC_o
+        .write__v( doc_a )
 
     }
 
     ;console
-      .log( `*.md files processed: ${TOP_o.count_n}` )
+      .log( `*.md files processed: ${TOC_o.count_n}` )
   }
   ,
 }
 
 
 
-TOP_o
+TOC_o
   .range_a
   .fill( 0 )
 
-TOP_o
+TOC_o
   .init__v()

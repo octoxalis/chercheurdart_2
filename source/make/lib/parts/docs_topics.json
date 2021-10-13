@@ -5,7 +5,7 @@
     "chercheurdart",
     "L'œil technologique de la peinture",
     [
-      "topic_3"
+      "François_Boucher"
     ]
   ],
   [
@@ -14,8 +14,8 @@
     "Renaissance",
     "Un nouveau modèle pour Chercheur d'Art",
     [
-      "topic_2",
-      "topic_3"
+      "Charles_Lebrun",
+      "François_Boucher"
     ]
   ],
   [
@@ -24,9 +24,9 @@
     "Technologie du site",
     "Infrastructure technologique du site",
     [
-      "topic_1",
-      "topic_2",
-      "topic_3"
+      "Nicolas_Poussin",
+      "Charles_Lebrun",
+      "François_Boucher"
     ]
   ],
   [
@@ -35,10 +35,10 @@
     "Style guide",
     "AsciiDoc subset used in chercheurd.art",
     [
-      "topic_0",
-      "topic_1",
-      "topic_2",
-      "topic_3"
+      "Claude_Gelée",
+      "Nicolas_Poussin",
+      "Charles_Lebrun",
+      "François_Boucher"
     ]
   ]
 ]

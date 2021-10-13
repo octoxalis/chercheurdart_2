@@ -16,10 +16,10 @@ module.exports =
   SITE_PATH_s:          '../site',
   DATA_PATH_s:          'make/data',
   INCLUDES_PATH_s:      'matrix',
-  CONTENT_PARTS_PATH_s: 'matter/content/parts',
+  CONTENT_PARTS_PATH_s: 'matter/contents/parts',
 
   MAKE_DIR_s:           'make/11ty/',
-  CONTENT_DIR_s:        'matter/content/',
+  CONTENT_DIR_s:        'matter/contents/',
   TOPICS_DIR_s:         'make/lib/parts/',
 
   ADOC_TEMPLATES_s:     'make/adoc/templates',
@@ -33,8 +33,8 @@ module.exports =
   INS_CSS_s:           '../site/assets/styles/css/',
 
   JSON_INPUT_DIR_s:    'source/make/db/table',
-  CONTENT_PATH_s:      'source/matter/content',
-  ADOC_OUTPUT_DIR_s:   'source/matter/content/parts/',
+  CONTENTS_PATH_s:      'source/matter/contents',
+  ADOC_OUTPUT_DIR_s:   'source/matter/contents/parts/',
 
   LIB_PARTS_DIR_s:     'make/lib/parts/',
 

@@ -43,12 +43,12 @@
 :1989_langdon: ins:₂[sub_s=1989_langdon¯p.123¯f.123¯On peut ajouter une _précision_...]
 
 //LINKS
-:chercheurdart: https://chercheurdart-2.netlify.app[chercheurd.art]
-:comments:      https://chercheurdart-2.netlify.app[commentaires]
+:chercheurdart: {{U_o.url_s}}index.html#{{C_o.SECTION_a[0]}}[chercheurd.art]
+:chercheur_dart: pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]
 
 //INCLUDE (path is relative to source dir)
 
-:tab_artist: matter/content/parts/artist.{{C_o.MACRO_INSERT_s}}
+:tab_artist: matter/contents/parts/artist.{{C_o.MACRO_INSERT_s}}
 
 //===========================================================================
 = {{title_s}} (h1)
@@ -166,7 +166,7 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   2_1_0
   TITLE_0₊TITLE_1₊TITLE_2
   ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
-  ROW_1_0₊ROW_1_1₊pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]₎
+  ROW_1_0₊ROW_1_1₊{chercheur_dart}₎
 
 {% _tab %}
 Example 2 - Artist table (included)
@@ -191,10 +191,10 @@ link:#article__anchor_1234[Reference]
 //----------------------------------------
 // TopicsPart
 ////
-‹topic_0›
-‹topic_1›
-‹topic_2›
-‹topic_3›
+‹Claude Gelée›
+‹Nicolas Poussin›
+‹Charles Lebrun›
+‹François Boucher›
 ////
 
 
