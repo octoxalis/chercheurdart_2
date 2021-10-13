@@ -6,7 +6,7 @@ const C_o = require( '../data/C_o.js' )
 
 const DOCS_o =
 {
-  DOCS_TOPICS_s:  'make/lib/parts/docs_topics_words.json',
+  DOCS_TOPICS_s:  'make/lib/parts/docs_topics.json',
   TOPICS_DOCS_s:  'make/lib/parts/topics_docs.json',
 
 

@@ -299,7 +299,7 @@ module.exports =
 {
   parse__v:
   (
-    docs_s    //: docs_topics_words.json
+    docs_s    //: docs_topics.json
   ) =>
     DOCS_o
       .docs__v

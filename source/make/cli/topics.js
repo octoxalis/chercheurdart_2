@@ -11,7 +11,7 @@ const X_o =   require( '../data/X_o.js' )
 
 const TOP_o =
 {
-  DOCS_TOPICS_s:  `source/make/lib/parts/docs_topics_words.json`,
+  DOCS_TOPICS_s:  `source/make/lib/parts/docs_topics.json`,
   TOPICS_DOCS_s:  `source/make/lib/parts/topics_docs.json`,
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
@@ -55,7 +55,7 @@ const TOP_o =
     `
   ,
 
-  TOPIC_s:    //: content indexed topics
+  TOPIC_s:    //: indexed topics (‹word›)
     `
     ${X_o.WORD_OPEN_s}    //: opening word delimiter
     (                     //: open capture group
@@ -106,15 +106,18 @@ const TOP_o =
 
     if
     (
-      docN_a
+      ! docN_a
     )
     {
-      docs_o.doc_n =
-        +docN_a[1]    //: Number cast
+      return void console.log( `document has no doc_n front matter property` )
     }
-  
-    //:==================== tile_s
-    const titleS_a =
+    //->
+    docs_o
+      .doc_n =
+      +docN_a[1]    //: Number cast
+
+//:==================== tile_s
+    const title_a =
       source_s
         .match
         (
@@ -127,15 +130,18 @@ const TOP_o =
 
     if
     (
-      titleS_a
+      ! title_a
     )
     {
-      docs_o.title_s =
-        titleS_a[1]
+      return void console.log( `document has no title_s front matter property` )
     }
+
+    docs_o
+      .title_s =
+        title_a[1]
   
     //:==================== subtile_s
-    const subtitleS_a =
+    const subtitle_a =
       source_s
         .match
         (
@@ -148,12 +154,16 @@ const TOP_o =
 
     if
     (
-      subtitleS_a
+      ! subtitle_a
     )
     {
-      docs_o.subtitle_s =
-        subtitleS_a[1]
+      return void console.log( `document has no subtitle_s front matter property` )
     }
+
+    docs_o
+      .subtitle_s =
+        subtitle_a[1]
+  
   
     //:==================== doc_s
     const docS_a =
@@ -169,12 +179,16 @@ const TOP_o =
 
     if
     (
-      docS_a
+      ! docS_a
     )
     {
-      docs_o.doc_s =
-        docS_a[1]
+      return void console.log( `document has no permalink front matter property` )
     }
+
+    docs_o
+      .doc_s =
+        docS_a[1]
+  
   
     //:==================== topics
     for
@@ -213,33 +227,33 @@ const TOP_o =
 
 
 
-    range__v:
+  range__v:
+  (
+    doc_n
+  ) =>
+  {
+    const range_n =
+      doc_n
+      >>
+      X_o
+        .RANGE_SHIFT_n
+
+    if
     (
       doc_n
-    ) =>
+      >
+      TOP_o
+        .range_a
+          [range_n]
+    )
     {
-      const range_n =
-        doc_n
-        >>
-        X_o
-          .RANGE_SHIFT_n
-
-      if
-      (
-        doc_n
-        >
-        TOP_o
-          .range_a
-            [range_n]
-      )
-      {
-        TOP_o
-          .range_a
-            [range_n] =
-              doc_n
-      }
+      TOP_o
+        .range_a
+          [range_n] =
+            doc_n
     }
-    ,
+  }
+  ,
     
     
     
@@ -365,7 +379,7 @@ const TOP_o =
     }
 
     const topicsDocsArray_o = {}
-    
+
     for
     (
       let at_a

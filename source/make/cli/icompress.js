@@ -133,8 +133,6 @@ const ICO_o =
 void function
 ()
 {
-  const size_n = 10
-
   const big_a =
     //XX new Array( size_n )
     [
@@ -150,8 +148,6 @@ void function
    1520
    ]
 
-  
-
   ;console.log( big_a )
   const big_s = JSON.stringify( big_a )
   const big_n = big_s.length
@@ -162,10 +158,6 @@ void function
     
   ;console.log( comp_a )
   const comp_n = comp_a.byteLength
-
-  //... const ucomp_a =
-  //...   ICO_o
-  //...     .uncompress__a( comp_a )
 
   console.log( `\n===========\nRATIO ( ${comp_n}/${big_n} ): ${comp_n / big_n}\n===========\n` )
 
