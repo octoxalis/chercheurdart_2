@@ -13,28 +13,11 @@ const TOP_o =
 {
   DOCS_TOPICS_s:  `source/make/lib/parts/docs_topics_words.json`,
   TOPICS_DOCS_s:  `source/make/lib/parts/topics_docs.json`,
-  DOCS_WORDS_s :  `source/make/lib/parts/docs_words.txt`,
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
   
   //!!! double slash for template String
-  ARRAY_s:      //: topics_a and words_a front matter JS Arrays
-    `       //: JS Array declaration
-    \\s*?   //: optional space, non-greedy
-    (       //: open capture group
-    \\[     //: opening Array bracket
-    \\s*?   //: optional space, non-greedy
-    [       //: open char range
-    ^\\]    //: everything except close Array bracket
-    ]       //: close char range
-    +?      //: 1 or more chars in that range, non-greedy
-    \\s*?   //: optional space, non-greedy
-    \\]     //: closing Array bracket
-    )       //: close capture group
-    `
-  ,
-  
-  DOC_n:    //: doc_n front matter JS property
+  DOCN_s:   //: doc_n front matter JS property
     `
     \\s*?   //: optional space, non-greedy
     (       //: open capture group
@@ -44,6 +27,19 @@ const TOP_o =
     )       //: close capture group
     \\s*?   //: optional space, non-greedy
     ,       //: object properties separator
+    `
+  ,
+  
+  DOCS_s:   //: permalink front matter JS property
+    `
+    \\s*?   //: optional space, non-greedy
+    (?:'|") //: string delimiter
+    (       //: open capture group
+    \\w     //: word char
+    +?      //: non-greedy...
+    )       //: close capture group
+    \.html  //: file extension
+    (?:'|") //: string delimiter
     `
   ,
   
@@ -59,20 +55,7 @@ const TOP_o =
     `
   ,
 
-  PERMALINK_s:      //: permalink front matter JS property
-    `
-    \\s*?   //: optional space, non-greedy
-    (?:'|") //: string delimiter
-    (       //: open capture group
-    \\w     //: word char
-    +?      //: non-greedy...
-    )       //: close capture group
-    \.html  //: file extension
-    (?:'|") //: string delimiter
-    `
-  ,
-  
-  WORD_s:      //: content indexed words
+  TOPIC_s:    //: content indexed topics
     `
     ${X_o.WORD_OPEN_s}    //: opening word delimiter
     (                     //: open capture group
@@ -87,197 +70,132 @@ const TOP_o =
 
 
 
-    concat__s:
-    (
-      array_s    //: front matter Array (topics or words)
-    ) =>
-    {
-      const array_a =
-        eval( array_s )
+  docs__o:
+  (
+    source_s    //: front matter + markdown (*.md file)
+  ) =>
+  {
+    const docs_o =
+      {
+        doc_n:    0,
+        doc_s:    '',
+        title_s:  '',
+        subtitle_s:  '',
+        topics_a: []
+      }
 
-      return (
-        array_a
-          .map
-          (
-            item_s =>
-              item_s
-                .replaceAll
-                (
-                  C_o.WORDS_DELIM_s,
-                  C_o.WORDS_CONCAT_s
-                )
-          )
-          .join( C_o.WORDS_DELIM_s )
-      )
+    const G_re =
+      REX_o
+        .new__re( 'g' )    //: global regex
+
+    const SM_re =
+      REX_o
+      .new__re( 'sm' )    //: multiline regex
+  
+    //:==================== doc_n
+    const docN_a =
+      source_s
+        .match
+        (
+          SM_re
+            `
+            doc_n:     //: JS front matter number
+            ${TOP_o.DOCN_s}
+        `
+        )
+
+    if
+    (
+      docN_a
+    )
+    {
+      docs_o.doc_n =
+        +docN_a[1]    //: Number cast
     }
-    ,
-    
-    
-    
-    docs__o:
+  
+    //:==================== tile_s
+    const titleS_a =
+      source_s
+        .match
+        (
+          SM_re
+            `
+            title_s:     //: JS front matter String
+            ${TOP_o.TITLE_s}
+        `
+        )
+
+    if
     (
-      source_s    //: front matter + markdown (*.md file)
-    ) =>
+      titleS_a
+    )
     {
-      const docs_o =
-        {
-          doc_n:    0,
-          doc_s:    '',
-          topics_s: null,
-          words_s:  null
-        }
-
-      const G_re =
-        REX_o
-          .new__re( 'g' )    //: global regex
-
-      const SM_re =
-        REX_o
-        .new__re( 'sm' )    //: multiline regex
-    
-      //:==================== doc_n
-      const docN_a =
-        source_s
-          .match
-          (
-            SM_re
-              `
-              doc_n:     //: JS front matter number
-              ${TOP_o.DOC_n}
-          `
-          )
-
-      if
-      (
-        docN_a
-      )
-      {
-        docs_o.doc_n =
-          +docN_a[1]    //: Number cast
-      }
-    
-      //:==================== tile_s
-      const titleS_a =
-        source_s
-          .match
-          (
-            SM_re
-              `
-              title_s:     //: JS front matter String
-              ${TOP_o.TITLE_s}
-          `
-          )
-
-      if
-      (
-        titleS_a
-      )
-      {
-        docs_o.title_s =
-          titleS_a[1]
-      }
-    
-      //:==================== subtile_s
-      const subtitleS_a =
-        source_s
-          .match
-          (
-            SM_re
-              `
-              subtitle_s:     //: JS front matter String
-              ${TOP_o.TITLE_s}
-          `
-          )
-
-      if
-      (
-        subtitleS_a
-      )
-      {
-        docs_o.subtitle_s =
-          subtitleS_a[1]
-      }
-    
-      //:==================== doc_s
-      const docS_a =
-        source_s
-          .match
-          (
-            SM_re
-              `
-              permalink:     //: JS front matter String
-              ${TOP_o.PERMALINK_s}
-          `
-          )
-
-      if
-      (
-        docS_a
-      )
-      {
-        docs_o.doc_s =
-          docS_a[1]
-      }
-    
-      //:==================== topics
-      let topics_a =
-        source_s
-          .match
-          (
-            SM_re
-              `
-              topics_a:     //: JS front matter Array
-              ${TOP_o.ARRAY_s}
+      docs_o.title_s =
+        titleS_a[1]
+    }
+  
+    //:==================== subtile_s
+    const subtitleS_a =
+      source_s
+        .match
+        (
+          SM_re
             `
-          )
+            subtitle_s:     //: JS front matter String
+            ${TOP_o.TITLE_s}
+        `
+        )
 
-      if
-      (
-        topics_a
-      )
-      {
-        docs_o.topics_s =
-          TOP_o
-            .concat__s( topics_a[1] )
-      }
-    
-      //:==================== words
-      let words_a =
-        source_s
-          .match
-          (
-            SM_re
-              `
-              words_a:     //: JS front matter Array
-              ${TOP_o.ARRAY_s}
-              `
-          )
-
-      if
-      (
-        words_a
-      )
-      {
-        docs_o.words_s =
-          words_a[1]
-      }
-
-      for
-      (
-        const word_a
-        of
-        source_s
-          .matchAll
-          (
-            G_re
-              `
-              ${TOP_o.WORD_s}
+    if
+    (
+      subtitleS_a
+    )
+    {
+      docs_o.subtitle_s =
+        subtitleS_a[1]
+    }
+  
+    //:==================== doc_s
+    const docS_a =
+      source_s
+        .match
+        (
+          SM_re
             `
-          )
-      )
-      {
-        const atwords_s =
-          word_a
+            permalink:     //: JS front matter String
+            ${TOP_o.DOCS_s}
+        `
+        )
+
+    if
+    (
+      docS_a
+    )
+    {
+      docs_o.doc_s =
+        docS_a[1]
+    }
+  
+    //:==================== topics
+    for
+    (
+      const topic_a
+      of
+      source_s
+        .matchAll
+        (
+          G_re
+            `
+            ${TOP_o.TOPIC_s}
+          `
+        )
+    )
+    {
+      docs_o
+        .topics_a
+          .push
+          (
+            topic_a
               [1]
               .replace    //:--=> will have to .replace( /C_o.WORDS_CONCAT_s/g, C_o.WORDS_DELIM_s ) LATER
               (
@@ -286,49 +204,12 @@ const TOP_o =
                 C_o
                   .WORDS_CONCAT_s
               )
-          +
-          C_o
-            .WORDS_DELIM_s
-    
-        if
-        (
-          docs_o
-            .words_s
-        )
-        {
-          docs_o
-            .words_s +=
-              atwords_s
-        }
-        else
-        {
-          docs_o
-            .words_s =
-              atwords_s
-        }
-      }
-
-      if
-      (
-        docs_o
-          .words_s
-      )
-      {
-        docs_o
-          .words_s =
-            docs_o
-              .words_s
-                .slice
-                (
-                  0,
-                  -1    //: skip last WORDS_DELIM_s
-                )
-      }
-
-      
-      return docs_o
+          )
     }
-    ,
+
+    return docs_o
+  }
+  ,
 
 
 
@@ -363,311 +244,244 @@ const TOP_o =
     
     
     
-    toIndex__v:
-    (
-      index_a
-    ) =>
-    {
-      index_a
-        .sort
-        (
-          (
-            item_o,
-            other_o
-          ) =>
-            item_o.doc_n
-            -
-            other_o.doc_n
-        )
-
-      let words_s = ''
-
-      let atdoc_n = -1      //: pre-incrementing
-
-      const docsTopicsWords_a = []
-
-      const doc_a = new Set()
-
-      const topicsDocs_a = new Map()
-
-      for
+  write__v:
+  (
+    topic_a
+  ) =>
+  {
+    topic_a
+      .sort
       (
-        const atdoc_o
-        of
-        index_a
+        (
+          topic_o,
+          other_o
+        ) =>
+          topic_o.doc_n
+          -
+          other_o.doc_n
+      )
+
+      
+    const docsTopics_a = []
+      
+    const topicsDocs_a = new Map()
+      
+    const doc_a = new Set()
+      
+    let atdoc_n = -1      //: pre-incrementing
+
+    for
+    (
+      const atdoc_o
+      of
+      topic_a
+    )
+    {
+      if
+      (
+        atdoc_o
+          .doc_n
+        !==
+        X_o
+          .NO_TOPIC_n    //: skip structural documents (ex.404.html)
       )
       {
+        ++atdoc_n      //: pre-incrementing
+
+        TOP_o
+          .range__v
+          (
+            atdoc_o
+              .doc_n
+          )
+
         if
         (
-          atdoc_o
-            .doc_n
-          !==
-          X_o
-            .NO_TOPIC_n    //: skip structural documents (ex.404.html)
+          doc_a
+            .has
+            (
+              atdoc_o
+                .doc_n
+            )
         )
         {
-          ++atdoc_n
+          console.log( `ERROR: duplicate doc_n: ${atdoc_o.doc_n}`)
+        }
 
-          TOP_o
-            .range__v
-            (
-              atdoc_o
-                .doc_n
-            )
-  
+        doc_a
+          .add
+          (
+            atdoc_o
+              .doc_n
+          )
+        
+        for
+        (
+          topic_s
+          of
+          atdoc_o
+            .topics_a
+        )
+        {
           if
           (
-            doc_a
-              .has
-              (
-                atdoc_o
-                  .doc_n
-              )
+            ! topicsDocs_a
+              .has( topic_s )
           )
           {
-            console.log( `ERROR: duplicate doc_n: ${atdoc_o.doc_n}`)
-          }
-  
-          doc_a
-            .add
-            (
-              atdoc_o
-                .doc_n
-            )
-          
-          const topics_a =
-            atdoc_o
-              .topics_s
-            ?
-              atdoc_o
-                .topics_s
-                  .split
-                  (
-                    C_o
-                      .WORDS_DELIM_s
-                  )
-            :
-              []    //!!! empty array if no topics
-
-          for
-          (
-            topic_s
-            of
-            topics_a
-          )
-          {
-            //;console.log( atdoc_o )
-
-            if
-            (
-              ! topicsDocs_a
-                .has( topic_s )
-            )
-            {
-              topicsDocs_a
-                .set
-                (
-                  topic_s,
-                  new Set()    //: topics[docs]
-                )
-            }
-
-            const set_a =
-              topicsDocs_a
-                .get( topic_s )
-
-            set_a
-              .add
-              (
-                //|| atdoc_o
-                //||   .doc_n
-                atdoc_n    //: index in docsTopicsWords_a
-              )
-
             topicsDocs_a
               .set
               (
                 topic_s,
-                set_a
+                new Set()    //: topics[docs]
               )
           }
 
-          docsTopicsWords_a
-            .push
+          const set_a =
+            topicsDocs_a
+              .get( topic_s )
+
+          set_a
+            .add
             (
-              [
-                atdoc_o
-                  .doc_n,
-                atdoc_o
-                  .doc_s,
-                atdoc_o
-                  .title_s,
-                atdoc_o
-                  .subtitle_s,
-                topics_a,
-                atdoc_o
-                  .words_s
-                  ?.split
-                  (
-                    C_o
-                      .WORDS_DELIM_s
-                  )
-                ||
-                []    //!!! empty array if no topics
-              ]
+              atdoc_n    //: index in docsTopics_a
             )
-      
-          words_s +=
-            atdoc_o
-              .doc_s
-          
-          if
-          (
-            atdoc_o
-              .words_s
-          )
-          {
-            words_s +=
-              C_o
-                .WORDS_DELIM_s
-              +
-              atdoc_o
-                .words_s
-          }
-  
-          words_s +=
-            C_o
-              .LINE_DELIM_s
+
+          topicsDocs_a
+            .set
+            (
+              topic_s,
+              set_a
+            )
         }
+
+        docsTopics_a
+          .push
+          (
+            Object
+              .values( atdoc_o )
+          )
       }
-
-      const topicsDocsArray_o = {}
-      for
-      (
-        let at_a
-        of
-        Array
-          .from( topicsDocs_a )
-      )
-      {
-        topicsDocsArray_o
-          [ at_a[0] ] =
-            Array
-              .from( at_a[1] )
-      }
-
-      FS_o
-        .writeFile
-        (
-          TOP_o
-            .TOPICS_DOCS_s,
-          JSON
-            .stringify( topicsDocsArray_o ),
-          error_o =>
-            console
-              .log( error_o ?? `-- Writing ${TOP_o.TOPICS_DOCS_s}` )
-            )
-
-      FS_o
-        .writeFile
-        (
-          TOP_o
-            .DOCS_TOPICS_s,
-          JSON
-            .stringify( docsTopicsWords_a ),
-          error_o =>
-            console
-              .log( error_o ?? `-- Writing ${TOP_o.DOCS_TOPICS_s}` )
-            )
-
-      FS_o
-        .writeFile
-        (
-          TOP_o
-            .DOCS_WORDS_s,
-          words_s,
-          error_o =>
-            console
-              .log( error_o ?? `-- Writing ${TOP_o.DOCS_WORDS_s}` )
-        )
-
-      console.log( '--------------------\nfrontmatter doc_n max in categories 0-7\n--------------------' )
-
-      console
-        .table
-        (
-          TOP_o
-            .range_a
-        )
     }
-    ,
+
+    const topicsDocsArray_o = {}
     
-    
-    init__v:
-    () =>
+    for
+    (
+      let at_a
+      of
+      Array
+        .from( topicsDocs_a )
+    )
+    {
+      topicsDocsArray_o
+        [ at_a[0] ] =
+          Array
+            .from( at_a[1] )
+    }
+
+    FS_o
+      .writeFile
+      (
+        TOP_o
+          .TOPICS_DOCS_s,
+        JSON
+          .stringify( topicsDocsArray_o ),
+        error_o =>
+          console
+            .log( error_o ?? `-- Writing ${TOP_o.TOPICS_DOCS_s}` )
+          )
+
+    FS_o
+      .writeFile
+      (
+        TOP_o
+          .DOCS_TOPICS_s,
+        JSON
+          .stringify( docsTopics_a ),
+        error_o =>
+          console
+            .log( error_o ?? `-- Writing ${TOP_o.DOCS_TOPICS_s}` )
+          )
+
+    console.log( '--------------------\nfrontmatter doc_n max in categories 0-7\n--------------------' )
+
+    console
+      .table
+      (
+        TOP_o
+          .range_a
+      )
+  }
+  ,
+
+
+
+  init__v:
+  () =>
+  {
+    TOP_o
+      .file_a =        //: prepare
+        require( 'klaw-sync' )
+        (
+          C_o.CONTENT_PATH_s,    //: all Mardown files,
+          {
+            nodir: true,
+            depthLimit: 0
+          }
+        )
+
+    if
+    (
+      TOP_o
+        .file_a
+    )
     {
       TOP_o
-        .file_a =        //: prepare
-          require( 'klaw-sync' )
-          (
-            C_o.CONTENT_PATH_s,    //: all Mardown files,
-            {
-              nodir: true,
-              depthLimit: 0
-            }
-          )
+        .count_n =
+          TOP_o
+            .file_a
+            .length            //;console.table(TOP_o.file_a)
 
-      if
+      let topic_a = []
+
+      for
       (
+        file_o
+        of
         TOP_o
           .file_a
       )
       {
-        TOP_o
-          .count_n =
-            TOP_o
-              .file_a
-              .length            //;console.table(TOP_o.file_a)
-
-        let index_a = []
-
-        for
-        (
-          file_o
-          of
-          TOP_o
-            .file_a
-        )
-        {
-          const source_s =
-            FS_o
-              .readFileSync
-              (
-                file_o.path,
-                {
-                  encoding:'utf-8',
-                  flag:'r'
-                }
-              )
-
-          index_a
-            .push
+        const source_s =
+          FS_o
+            .readFileSync
             (
-              TOP_o
-                .docs__o( source_s )    //: build document
+              file_o.path,
+              {
+                encoding:'utf-8',
+                flag:'r'
+              }
             )
-        }
 
-        TOP_o
-          .toIndex__v( index_a )
-
+        topic_a
+          .push
+          (
+            TOP_o
+              .docs__o( source_s )    //: build document
+          )
       }
 
-      ;console
-        .log( `*.md files processed: ${TOP_o.count_n}` )
+      TOP_o
+        .write__v( topic_a )
+
     }
-    ,
+
+    ;console
+      .log( `*.md files processed: ${TOP_o.count_n}` )
   }
+  ,
+}
 
 
 

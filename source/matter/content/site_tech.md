@@ -42,5 +42,12 @@
 ....En effet, toutes les images du site sont au format AVIF, une technique d'encodage des images permettant de réduire d'optimiser la taille de leurs fichiers numériques et, par voie de conséquence, le temps nécessaire à leur chargement.
 
 
+//----------------------------------------
+// TopicsPart
+////
+‹topic_1›
+‹topic_2›
+‹topic_3›
+////
 
 {% end_doc %}

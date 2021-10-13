@@ -27,13 +27,6 @@
     'style_guide.css'
   ],
 
-  topics_a:
-  [
-    'first topic',
-    'second topic'
-  ]
-  ,
-
   version_a:
   [
     '2021-09-16T08:12:00Z',
@@ -69,7 +62,7 @@
 //----------------------------------------
 == Header h2
 
-‹Lorem› ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 === Header h3
 
@@ -123,7 +116,7 @@ Les blocs insérés en ligne se composent de deux parties:
 
 Le texte précédent l'
 ₍₀ appel (prinpipal_s)
-  ‹parenthèse ouverte› (caractère substring)
+  parenthèse ouverte (caractère substring)
   specifier_s: 0-99 (caractères substring)₎
 est suivi de la
 ₍₀ référence (subsid_s)
@@ -159,7 +152,7 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   Crépuscule des idoles
   Maximes et pointes § 33₎
 
-₍₃ Pretium scelerisque sed semper ‹cubilia› aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
+₍₃ Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
   A. Dupin
   {chercheurdart}₎
 
@@ -178,7 +171,7 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
 {% _tab %}
 Example 2 - Artist table (included)
 
-__with ‹multiline› optional comment...__
+__with multiline optional comment...__
 {% end_tab %}
 
 include::{tab_artist}[]
@@ -188,7 +181,7 @@ include::{tab_artist}[]
 
 === IMAGE (img) specifier_s = ₉
 
-_‹Arion›_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
+_Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
 
 //----------------------------------------
 == Link
@@ -197,6 +190,13 @@ link:#article__anchor_1234[Reference]
 
 //----------------------------------------
 // TopicsPart
+////
+‹topic_0›
+‹topic_1›
+‹topic_2›
+‹topic_3›
+////
+
 
 //----------------------------------------
 // CommentPart

@@ -58,4 +58,9 @@ link:style_guide.html#article__anchor_1234[Reference]
 
 {{A_o.NAME_s}} est construit avec le générateur de site statique  {{U_o.E11TY_s}}
 
+//----------------------------------------
+// TopicsPart
+////
+‹topic_3›
+////
 {% end_doc %}

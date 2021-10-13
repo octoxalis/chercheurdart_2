@@ -28,13 +28,6 @@
   [
     '2021-10-14T12:00:00Z'
   ],
-
-  topics_a:
-  [
-    'first topic',
-    'third topic'
-  ]
-  ,
 }
 ---
 {% _doc section_a[0] %}
@@ -48,7 +41,14 @@
 
 == Références
 
-Ref. 1: ‹biblio entry›
+Ref. 1: biblio entry
 
-Ref. 2: ‹work entry›
+Ref. 2: work entry
+
+//----------------------------------------
+// TopicsPart
+////
+‹topic_2›
+‹topic_3›
+////
 {% end_doc %}

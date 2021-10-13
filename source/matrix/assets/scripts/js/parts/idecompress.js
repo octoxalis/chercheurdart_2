@@ -89,28 +89,54 @@ const IDE_o =
 
 
 
-  read__v:
+  read__s:
   (
     path_s
   ) =>
   {
-    //..............
-    const reader_i = new FileReader()
-
-    reader_i.onerror =
-    _read_e_ =>
-    {
-      reader_i.abort()
-      return void console.log( 'bad file type' )
-    }
-  
-    reader_i.onload =
-    read_e =>
-    {
-      console.log( read_e.target.result )
-    }
-    reader_i.readAsArrayBuffer( path_s )
-    }
+    fetch
+    (
+      path_s
+    )
+      .then
+      (
+        response_o =>
+        {
+          if
+          (
+            response_o
+              .ok
+          )
+          {
+            return (
+              response_o
+                .arrayBuffer()
+            )
+          }
+          
+          throw new Error ( `${response_o.status}: ${response_o.statusText}` )
+          
+          return ''
+        }
+      )
+      .then
+      (
+        buffer_s =>
+        {
+          ;console
+            .log
+            (
+              IDE_o
+                .decompress__a( buffer_s )
+            )
+        }
+      )
+      .catch
+      (
+        error_o =>
+          console.error( error_o )
+      )
+  }
   ,
 }
 
@@ -119,14 +145,11 @@ const IDE_o =
 void function
 ()
 {
-  const buf_a =
-    IDE_o
-      .decompress__a
-      (
-        IDE_o
-          .read__v( 'assets/bin/icompress.bin' )
-      )
+  console.time( 'icompress' )
 
-  ;console.log( buf_a )
+  IDE_o
+    .read__s( '/assets/bin/icompress.bin' )
+
+  console.timeEnd( 'icompress' )
 }()
 
