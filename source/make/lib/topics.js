@@ -1,6 +1,7 @@
 const FS_o = require('fs-extra')
 
 const C_o = require( '../data/C_o.js' )
+const X_o = require( '../data/X_o.js' )
 
 
 
@@ -85,7 +86,14 @@ const DOCS_o =
         (
           topicDoc_n
           !==
-          index_n       //: skip link to this page
+          index_n             //: skip link to this page
+          &&
+          docsTopics_a
+            [topicDoc_n]
+              [C_o.AT_DOCN_n]
+          <                    //: skip hidden docs
+          X_o
+            .HIDDEN_DOCS_n
         )
         {
           const doc_s =

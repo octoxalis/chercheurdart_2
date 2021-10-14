@@ -294,6 +294,12 @@ const TOC_o =
         >
         C_o
           .DOC_INDEX_n    //: skip index and structural documents (ex.404.html)
+        &&
+        atdoc_o
+          .doc_n
+        <
+        X_o
+          .HIDDEN_DOCS_n
       )
       {
         toc_s +=

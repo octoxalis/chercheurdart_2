@@ -100,7 +100,7 @@ const TOP_o =
           SM_re
             `
             permalink:     //: JS front matter String
-            ${TOC_o.DOCS_s}`
+            ${TOP_o.DOCS_s}`
         )
 
     if
@@ -138,7 +138,7 @@ const TOP_o =
       .doc_n =
       +docN_a[1]    //: Number cast
 
-//:==================== tile_s
+    //:==================== tile_s
     const title_a =
       source_s
         .match

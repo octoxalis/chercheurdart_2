@@ -244,15 +244,14 @@ module.exports =
       }
   }
 
-    list_s =
+    return (
       list_s
         .slice
         (
           0,
           -1    //: remove last \n
         )
-
-    return `pass:[${list_s}]`
+    )
   }
   ,
 

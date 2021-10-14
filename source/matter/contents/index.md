@@ -47,7 +47,7 @@
 {{subtitle_s}}
 ₍₀ 
   Versions
-  {{F_o.versionList__s(version_a)}}₎
+  pass:[{{F_o.versionList__s(version_a)}}]₎
 
 //---------------------------------------
 == Articles mis en ligne
