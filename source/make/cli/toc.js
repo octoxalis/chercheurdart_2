@@ -312,7 +312,7 @@ const TOC_o =
       }
     }
 
-    toc_s =
+    toc_s =         //!!!
       `pass:[`
       + `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
       + toc_s
