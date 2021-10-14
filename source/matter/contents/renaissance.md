@@ -33,11 +33,10 @@
 {% _doc section_a[0] %}
 = {{title_s}}
 
-{{abstract_s}}
+{{subtitle_s}}
 ₍₀ 
   Versions
   pass:[{{F_o.versionList__s(version_a)}}]₎
-
 
 == Nouvelle version du site
 

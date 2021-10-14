@@ -3,9 +3,9 @@ const FS_o  = require( 'fs-extra' )
 const DB_o  = require( './db.js' )
 const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
+const ASC_o = require( './asciidoc.js' )
 
 const C_o   = require( '../data/C_o.js' )
-const F_o   = require( '../data/F_o.js' )
 const I_o   = require( '../data/I_o.js' )
 
 
@@ -92,8 +92,12 @@ parse__s:
     case C_o.INS_TAB_s:
     case C_o.INS_DEF_s:
       return (
-        INS_o
-          .text_s
+        ASC_o
+          .parse__s
+          (
+            INS_o
+              .text_s
+          )
       )
       break
 

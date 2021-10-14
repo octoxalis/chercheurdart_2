@@ -40,7 +40,8 @@
 :1748_arion: ins:₉[sub_s=1703_boucher-princeton_university-1748_arion]
 
 //BIBLIO
-:1989_langdon: ins:₂[sub_s=1989_langdon¯p.123¯f.123¯On peut ajouter une _précision_...]
+// NB: inside ins, html markup can be used if ins is enclosed in an AsciiDoc pass directive
+:1989_langdon: pass:[ins:₂[sub_s=1989_langdon¯**p.123**¯f.123¯On peut ajouter une __précision__...¯link<index.html>"link"¯image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"¯etc.]]
 
 //LINKS
 :chercheurdart: {{U_o.url_s}}index.html#{{C_o.SECTION_a[0]}}[chercheurd.art]
@@ -182,6 +183,16 @@ include::{tab_artist}[]
 === IMAGE (img) specifier_s = ₉
 
 _Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
+
+=== Insert markup
+
+Use AsciiDoc pass:[] to insert link, images...
+₍₀ par exemple:
+  pass:[image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"
+  link<index.html>"link"
+  `code_line = 1234`
+  __italic__
+  **bold**]₎
 
 //----------------------------------------
 == Link

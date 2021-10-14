@@ -2,12 +2,13 @@ const FS_o  = require( 'fs-extra' )
 const KS_o  = require( 'klaw-sync' )
 const SHA_o = require('sharp')
 
-const C_o =   require( '../../make/data/C_o.js' )
-const I_o =   require( '../../make/data/I_o.js' )
-const F_o =   require( '../../make/data/F_o.js' )
 const REX_o = require( '../../make/lib/regex.js' )
 const IOR_o = require( '../../make/lib/ior.js' )
 //~~const UVB_o = require( '../../make/lib/uint_compress.js' )  //: compression gain < 8%
+
+const C_o =   require( '../../make/data/C_o.js' )
+const I_o =   require( '../../make/data/I_o.js' )
+const F_o =   require( '../../make/data/F_o.js' )
 
 
 
