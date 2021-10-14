@@ -12,9 +12,9 @@ header {
 header > a {
   color: currentColor;
   text-decoration: none;
+  border-bottom: 1px solid var(--shadow_ne);
   font-weight: 400;
   filter: brightness( var(--brigtness_lo) );
-  text-transform: capitalize;
 }
 header > a:focus, header > a:hover {
   border-bottom: 1px solid;

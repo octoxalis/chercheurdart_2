@@ -25,6 +25,7 @@ ul > li {
 ul > li > a {
   color: currentColor;
   text-decoration: none;
+  border-bottom: 1px solid var(--shadow_ne);
 }
 ul > li > a:hover {
   border-bottom: 1px solid;

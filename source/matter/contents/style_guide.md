@@ -19,7 +19,7 @@
 
   script_a:
   [
-    'idecompress.min.js',
+    //'idecompress.min.js',
   ],
 
   css_a:
@@ -44,13 +44,13 @@
 
 //LINKS
 :chercheurdart: {{U_o.url_s}}index.html#{{C_o.SECTION_a[0]}}[chercheurd.art]
+// ins inner link has to be passed
 :chercheur_dart: pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]
 
-//INCLUDE (path is relative to source dir)
+//INCLUDES (path is relative to source dir)
+:tab_artist: {{C_o.CONTENT_PARTS_DIR_s}}artist.{{C_o.MACRO_INSERT_s}}
 
-:tab_artist: matter/contents/parts/artist.{{C_o.MACRO_INSERT_s}}
-
-//===========================================================================
+//========================================
 = {{title_s}} (h1)
 
 {{abstract_s}}

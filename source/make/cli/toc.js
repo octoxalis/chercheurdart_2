@@ -14,7 +14,7 @@ const TOC_o =
 {
   //XXDOCS_TOPICS_s:  `source/make/lib/parts/docs_topics.json`,
   //XXTOPICS_DOCS_s:  `source/make/lib/parts/topics_docs.json`,
-  INDEX_MD_s:  `source/matter/contents/index.md`,
+  INDEX_MD_s:  `source/matter/contents/parts/index_toc.html`,
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
   
@@ -298,78 +298,33 @@ const TOC_o =
       {
         toc_s +=
 `<p data-ins=contents>
-    <a href=${atdoc_o.doc_s}.html#${C_o.SECTION_a[0]}>${atdoc_o.title_s}</a>
-    <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
-    <label for=L_${atdoc_o.doc_s} tabindex=-1>▾</label>
-    <input id=L_${atdoc_o.doc_s} type=checkbox>
-    <ins>
-      <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>
-        <b>${atdoc_o.subtitle_s}</b>
-        <b>${F_o.stamp__s(atdoc_o.version_a[0])}</b>
-      </span>
-    </ins>
-  </p>`
+  <a href=${atdoc_o.doc_s}.html#${C_o.SECTION_a[0]}>${atdoc_o.title_s}</a>
+  <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
+  <label for=L_${atdoc_o.doc_s} tabindex=-1>▾</label>
+  <input id=L_${atdoc_o.doc_s} type=checkbox>
+  <ins>
+    <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>
+      <b>${atdoc_o.subtitle_s}</b>
+      <b>${F_o.stamp__s(atdoc_o.version_a[0])}</b>
+    </span>
+  </ins>
+</p>\n`
       }
     }
 
-    //??toc_s =
-    //??  toc_s
-    //??    .replaceAll
-    //??    (
-    //??      '\n',
-    //??      ''      //: remove new lines
-    //??    )
-
     toc_s =
-      `\npass:[${toc_s}]\n\n`    //: preserve new lines
-
-    let source_s =
-      FS_o
-        .readFileSync
-        (
-          TOC_o
-            .INDEX_MD_s,
-          {
-            encoding:'utf-8',
-            flag:'r'
-          }
-        )
-
-    const SM_re =
-      REX_o
-      .new__re( 'sm' )    //: multiline regex
-
-    const content_a =
-      source_s
-        .match
-        (
-          SM_re
-            `
-            ${TOC_o.TOC_s}`
-        )
-
-    if
-    (
-      ! content_a
-    )
-    {
-      return void console.log( `!!! document index has no toc delimiters` )
-    }
-    //->
-    source_s =
-      source_s
-        .replace
-        (
-          content_a[1],
-          toc_s
-        )           //;console.log( source_s )
+      `pass:[`
+      + `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
+      + toc_s
+      + `<p>`       //: open idem
+      + `]`
 
     FS_o
       .writeFile
       (
         TOC_o
           .INDEX_MD_s,
-          source_s,
+        toc_s,
         error_o =>
           console
             .log( error_o ?? `-- Writing ${TOC_o.INDEX_MD_s}` )

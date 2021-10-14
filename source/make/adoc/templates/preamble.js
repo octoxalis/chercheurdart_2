@@ -13,7 +13,7 @@ module
             .getTitle()
 
     let chapter_s =
-    `<div>\n`    //: open chapter content
+    `<div>`    //: open chapter content
 
     const header_n =
       node
@@ -32,9 +32,9 @@ module
     return (
       `<h${header_n}${data_s}>`
       + title_s
-      + `</h${header_n}>\n`  //: \n is mandatory
+      + `</h${header_n}>`
       + chapter_s
       + node
-          .getContent()    //: chapter content
+          .getContent()    //!!! content enclosed in a <p></p>
     )
   }

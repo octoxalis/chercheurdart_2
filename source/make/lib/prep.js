@@ -82,7 +82,7 @@ module
               .replace
               (
                 replace_s,
-                `pass:[<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_PRINCIP_s} data-spec=${specifier_s}>]${principal_s} pass:[</${C_o.TABLE_TAG_s}>]`
+                `pass:[<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_PRINCIP_s} data-spec=${specifier_s}>]${principal_s}&nbsp;pass:[</${C_o.TABLE_TAG_s}>]`
                 + `&#x202F;`    //!!! NARROW NO-BREAK SPACE to force AsciiDoc paragraph
                 + `${C_o.MACRO_INSERT_s}:${specifier_s}`
                 + `[${C_o.MACRO_SUB_s}=${subsid_s}]`

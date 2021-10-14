@@ -37,6 +37,7 @@ module.exports =
   ADOC_OUTPUT_DIR_s:   'source/matter/contents/parts/',
 
   LIB_PARTS_DIR_s:     'make/lib/parts/',
+  CONTENT_PARTS_DIR_s: 'matter/contents/parts/',
 
   COM_OUTPUT_DIR_s:    'make/comment/',
 

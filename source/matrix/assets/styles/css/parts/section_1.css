@@ -14,6 +14,7 @@ section#{{C_o.SECTION_a[1]}} > figure > img {
 section#{{C_o.SECTION_a[1]}} > figure > a {
   color: currentColor;
   text-decoration: none;
+  border-bottom: 1px solid var(--shadow_ne);
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
   position: absolute;
@@ -41,6 +42,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > a {
   color: currentColor;
   text-decoration: none;
+  border-bottom: 1px solid var(--shadow_ne);
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > a:hover {
   border-bottom: 1px solid;
