@@ -31,20 +31,19 @@
 }
 ---
 {% _doc section_a[0] %}
+// TOPICS
+////
+‹Charles Lebrun›
+‹François Boucher›
+////
+//========================================
 = {{title_s}}
 
-{{subtitle_s}}
+pass:[{{abstract_s}}]
 ₍₀ 
   Versions
   pass:[{{F_o.versionList__s(version_a)}}]₎
 
 == Nouvelle version du site
 
-
-//----------------------------------------
-// TopicsPart
-////
-‹Charles Lebrun›
-‹François Boucher›
-////
 {% end_doc %}

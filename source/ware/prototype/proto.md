@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      1,
+  doc_n:      8191,
   title_s:    'proto',
   subtitle_s: `subtitle_s`,
   abstract_s: `abstract_s`,
@@ -23,10 +23,28 @@
   css_a:
   [
   ],
+
+  version_a:
+  [
+    '2021-10-14T12:00:00Z'
+  ],
 }
----{% _doc section_a[0] %}
+---
+{% _doc section_a[0] %}
+//LINKS
+
+// TOPICS
+////
+‹topic›
+////
+//========================================
 = {{title_s}}
 
-{{abstract_s}}
+pass:[{{abstract_s}}]
+₍₀ 
+  Versions
+  pass:[{{F_o.versionList__s(version_a)}}]₎
+//---------------------------------------
+== Article
 
 {% end_doc %}

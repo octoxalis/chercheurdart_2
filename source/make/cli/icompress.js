@@ -6,18 +6,22 @@ const ICO_o =
 {
   compress__a:    //: Compress an Array of integers, return a compressed ArrayBuffer.
   (
-    array_a
+    int32_a
   ) =>
   {
     const end_n =
-      array_a
+      int32_a
         .length
 
-    const abuf_a =
-      new ArrayBuffer( ICO_o.size__n( array_a ) )
+    const compress_a =
+      new ArrayBuffer
+        (
+          ICO_o
+            .size__n( int32_a )
+        )
 
-    const view_a =
-      new Int8Array( abuf_a )
+    const int8_a =            //: compress_a view
+      new Int8Array( compress_a )
 
     let pos_n = 0
 
@@ -28,32 +32,57 @@ const ICO_o =
       ++at_n
     )
     {
-      const int_n = array_a[at_n]
+      const int32_n =
+        int32_a[at_n]
 
-      if (int_n < (1 << 7)) {
-        view_a[pos_n++] = int_n 
-      } else if (int_n < (1 << 14)) {
-        view_a[pos_n++] = (int_n & 0x7F) | 0x80
-        view_a[pos_n++] = int_n >>> 7
-      } else if (int_n < (1 << 21)) {
-        view_a[pos_n++] = (int_n & 0x7F) | 0x80
-        view_a[pos_n++] = ( (int_n >>> 7) & 0x7F ) | 0x80
-        view_a[pos_n++] = int_n >>> 14
-      } else if (int_n < (1 << 28)) {
-        view_a[pos_n++] = (int_n & 0x7F ) | 0x80 
-        view_a[pos_n++] = ( (int_n >>> 7) & 0x7F ) | 0x80
-        view_a[pos_n++] = ( (int_n >>> 14) & 0x7F ) | 0x80
-        view_a[pos_n++] = int_n >>> 21
-      } else {
-        view_a[pos_n++] = ( int_n & 0x7F ) | 0x80
-        view_a[pos_n++] = ( (int_n >>> 7) & 0x7F ) | 0x80
-        view_a[pos_n++] = ( (int_n >>> 14) & 0x7F ) | 0x80
-        view_a[pos_n++] = ( (int_n >>> 21) & 0x7F ) | 0x80
-        view_a[pos_n++] = int_n >>> 28
+      if (int32_n < (1 << 7))
+      {
+        int8_a[pos_n++] =
+          int32_n 
+      }
+      else if (int32_n < (1 << 14))
+      {
+        int8_a[pos_n++] =
+          (int32_n & 0x7F) | 0x80
+        int8_a[pos_n++] =
+          int32_n >>> 7
+      }
+      else if (int32_n < (1 << 21))
+      {
+        int8_a[pos_n++] =
+          (int32_n & 0x7F) | 0x80
+        int8_a[pos_n++] =
+          ( (int32_n >>> 7) & 0x7F ) | 0x80
+        int8_a[pos_n++] =
+          int32_n >>> 14
+      }
+      else if (int32_n < (1 << 28))
+      {
+        int8_a[pos_n++] =
+          (int32_n & 0x7F ) | 0x80 
+        int8_a[pos_n++] =
+          ( (int32_n >>> 7) & 0x7F ) | 0x80
+        int8_a[pos_n++] =
+          ( (int32_n >>> 14) & 0x7F ) | 0x80
+        int8_a[pos_n++] =
+          int32_n >>> 21
+      }
+      else
+      {
+        int8_a[pos_n++] =
+          ( int32_n & 0x7F ) | 0x80
+        int8_a[pos_n++] =
+          ( (int32_n >>> 7) & 0x7F ) | 0x80
+        int8_a[pos_n++] =
+          ( (int32_n >>> 14) & 0x7F ) | 0x80
+        int8_a[pos_n++] =
+          ( (int32_n >>> 21) & 0x7F ) | 0x80
+        int8_a[pos_n++] =
+          int32_n >>> 28
       }
     }
     
-    return abuf_a
+    return compress_a
   }
   ,
     
@@ -61,11 +90,11 @@ const ICO_o =
   
   size__n:        //: Compute how many bytes an array of integers would use once compressed.
   (
-    array_a
+    int32_a
   ) =>
   {
     const end_n =
-      array_a
+      int32_a
         .length
 
     let size_n = 0
@@ -77,23 +106,23 @@ const ICO_o =
       ++at_n
     )
     {
-      const int_n =
-        array_a[at_n]
+      const int32_n =
+        int32_a[at_n]
 
       size_n +=
-        int_n < (1 << 7)
+        int32_n < (1 << 7)
         ?
           1
         :
-          int_n < (1 << 14)
+          int32_n < (1 << 14)
           ?
             2
           :
-            int_n < (1 << 21)
+            int32_n < (1 << 21)
             ?
              3
              :
-               int_n < (1 << 28)
+               int32_n < (1 << 28)
                ?
                 4
               :
@@ -108,7 +137,7 @@ const ICO_o =
   write__v:
   (
     path_s,
-    abuf_a
+    int32_a
   ) =>
   {
     FS_o
@@ -116,11 +145,12 @@ const ICO_o =
       (
         path_s,
         new Buffer
-              .from( abuf_a ),
+              .from( int32_a ),
         'utf8',
         error_o =>
-        console
-          .log( error_o ?? `-- Writing ${path_s}` )
+          //...console
+          //...  .log( error_o ?? `-- Writing ${path_s}` )
+          null
       )
   }
   ,
@@ -134,7 +164,6 @@ void function
 ()
 {
   const big_a =
-    //XX new Array( size_n )
     [
       0,    8,   12,   20,   24,   36,   44,   48,   56,   60,   68,
      72,   84,   96,  108,  112,  116,  120,  132,  140,  172,  200,
@@ -148,7 +177,7 @@ void function
    1520
    ]
 
-  ;console.log( big_a )
+  //;console.log( big_a )
   const big_s = JSON.stringify( big_a )
   const big_n = big_s.length
 
@@ -156,15 +185,29 @@ void function
     ICO_o
       .compress__a( big_a )
     
-  ;console.log( comp_a )
+  //;console.log( comp_a )
   const comp_n = comp_a.byteLength
 
   console.log( `\n===========\nRATIO ( ${comp_n}/${big_n} ): ${comp_n / big_n}\n===========\n` )
 
-  ICO_o
-    .write__v
-    (
-      'source/ware/static/assets/bin/icompress.bin',
-      comp_a
-    )
+  const REPEAT_n = 1
+
+  console.time( `compress_${REPEAT_n}` )
+
+  for
+  (
+    let at_n = 0;
+    at_n < REPEAT_n;
+    ++at_n
+  )
+  {
+    ICO_o
+      .write__v
+      (
+        'source/ware/static/assets/bin/icompress.bin',
+        comp_a
+      )
+  }
+  
+    console.timeEnd( `compress_${REPEAT_n}` )
 }()

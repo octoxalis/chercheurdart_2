@@ -15,28 +15,30 @@ var SWO_o =
   
 
   
-  install__v    //:- Iterate thru url_a and put each entry in cache
+  install__v:    //:- Iterate thru url_a and put each entry in cache
   (
     install_o
-  )
+  ) =>
   {
-    SWO_o.cache_a =
-      new Set
-      (
-        SWO_o.slots_a
-      )
+    SWO_o
+      .cache_a =
+        new Set
+        (
+          SWO_o
+            .slots_a
+        )
+
     install_o
       .waitUntil
       (
-        void async function ()
+        void async function    //: IIFE
+        ()
         {
           const cache_o =
-            await
-            caches
+            await caches
               .open( SWO_o.cache_s )
 
-          await
-          cache_o
+          await cache_o
             .addAll( SWO_o.url_a  )
 
           self
@@ -48,42 +50,48 @@ var SWO_o =
 
 
   
-  activate__v    //:- Remove inapplicable caches entries
+  activate__v:    //:- Remove inapplicable caches entries
   (
     activate_o
-  )
+  ) =>
   {
-    activate_o.waitUntil(
-      void async function ()
-      {
-        const entry_a =
-          await
-          caches
-            .keys()
-
-        const remove_a =
-          await
-          entry_a
-            .filter
-            (
-              entry_s => entry_s !== SWO_o.cache_s
-            )
-
-        await
-        Promise
-          .all
-          (
-            remove_a
-              .map
+    activate_o
+      .waitUntil
+      (
+        void async function    //: IIFE
+        ()
+        {
+          const entry_a =
+            await caches
+              .keys()
+  
+          const remove_a =
+            await entry_a
+              .filter
               (
-                remove_s => caches.delete( remove_s )
+                entry_s =>
+                  entry_s
+                  !==
+                  SWO_o
+                    .cache_s
               )
-          )
-
-        self
-          .clients
-          .claim()
-      } ()
+  
+          await Promise
+            .all
+            (
+              remove_a
+                .map
+                (
+                  remove_s =>
+                    caches
+                      .delete( remove_s )
+                )
+            )
+  
+          self
+            .clients
+              .claim()
+        } ()
     )
   }
 ,
@@ -91,27 +99,38 @@ var SWO_o =
 
   //:- https://developers.google.com/web/fundamentals/primers/service-workers/high-performance-loading
   
-  fetch__v    //:- Fetch offline-1st
+  fetch__v:    //:- Fetch offline-1st
   (
     fetch_o
-  )
+  ) =>
   {
     const mode_s =
       fetch_o
         ?.request
         ?.mode
 
-    if (mode_s  === 'navigate' )
+    if
+    (
+      mode_s
+      ===
+      'navigate'
+    )
     {
       try
       {
+
         fetch_o
           .respondWith
           (
-            async function()
+            async function()    //: IIFE
             {
               const url_o =
-              new URL( fetch_o.request.url )
+                new URL
+                (
+                  fetch_o
+                    .request
+                      .url
+                )
 
               const response_o =
                 fetch( url_o )
@@ -121,20 +140,23 @@ var SWO_o =
                   .then
                   (
                     resp_o =>
-                    resp_o
-                      .clone()
+                      resp_o
+                        .clone()
                   )
 
               fetch_o
                 .waitUntil
                 (
-                  async function
+                  void async function    //: IIFE
                   ()
                   {
                     const cache_o =
-                      await
-                      caches
-                        .open( SWO_o.cache_s )
+                      await caches
+                        .open
+                        (
+                          SWO_o
+                            .cache_s
+                        )
 
                     await cache_o
                       .put
@@ -142,12 +164,11 @@ var SWO_o =
                         url_o,
                         await clone_o
                       )
-                  }()    //: IIFE
+                  }()
                 )
 
               return (
-                await
-                caches
+                await caches
                   .match( url_o )
                 )
                 ||
@@ -162,7 +183,11 @@ var SWO_o =
       {
         const cache_o =
           caches
-            .open( SWO_o.cache_s )
+            .open
+            (
+              SWO_o
+                .cache_s
+            )
 
         return (
           cache_o
@@ -180,8 +205,8 @@ var SWO_o =
   
 
 
-  init__v
-  ()
+  init__v:
+  () =>
   {
     for
     (
@@ -199,7 +224,7 @@ var SWO_o =
         (
           event_s,
           event_o =>
-            SWO_o[`${event_s}__v`]( event_o )
+            SWO_o[ `${event_s}__v` ]( event_o )
         )
     }
 

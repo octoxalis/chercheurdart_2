@@ -19,7 +19,6 @@
 
   script_a:
   [
-    //'idecompress.min.js',
   ],
 
   css_a:
@@ -51,14 +50,20 @@
 //INCLUDES (path is relative to source dir)
 :tab_artist: {{C_o.CONTENT_PARTS_DIR_s}}artist.{{C_o.MACRO_INSERT_s}}
 
+// TOPICS
+////
+‹Claude Gelée›
+‹Nicolas Poussin›
+‹Charles Lebrun›
+‹François Boucher›
+////
 //========================================
 = {{title_s}} (h1)
 
-{{abstract_s}}
+pass:[{{abstract_s}}]
 ₍₀ 
   Versions
   pass:[{{F_o.versionList__s(version_a)}}]₎
-
 
 //----------------------------------------
 == Header h2
@@ -198,16 +203,6 @@ Use AsciiDoc pass:[] to insert link, images...
 == Link
 
 link:#article__anchor_1234[Reference]
-
-//----------------------------------------
-// TopicsPart
-////
-‹Claude Gelée›
-‹Nicolas Poussin›
-‹Charles Lebrun›
-‹François Boucher›
-////
-
 
 //----------------------------------------
 // CommentPart

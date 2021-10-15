@@ -19,6 +19,7 @@
 
   script_a:
   [
+    //:TEST 'idecompress.min.js',
   ],
 
   css_a:
@@ -29,7 +30,6 @@
   [
     '2021-10-14T12:00:00Z'
   ],
-
 }
 ---
 {% _doc section_a[0] %}
@@ -40,11 +40,15 @@
 
 //INCLUDES
 :index_toc: {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html
-//========================================
 
+// TOPICS
+////
+‹François Boucher›
+////
+//========================================
 = {{title_s}}
 
-{{subtitle_s}}
+pass:[{{abstract_s}}]
 ₍₀ 
   Versions
   pass:[{{F_o.versionList__s(version_a)}}]₎
@@ -67,9 +71,4 @@ ou Mozilla Firefox.
 
 {{A_o.NAME_s}} est généré avec la complicité de {11ty}
 
-//----------------------------------------
-// TopicsPart
-////
-‹François Boucher›
-////
 {% end_doc %}

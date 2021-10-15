@@ -111,7 +111,7 @@ const BUI_o =
       data_o
         .doc_n
       >
-      0        //: skip structural docs
+      0        //: skip structural and index docs
     )
     {
       //;console.log( output_s )

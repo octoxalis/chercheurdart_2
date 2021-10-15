@@ -53,7 +53,10 @@ const TOC_o =
     \\s*?   //: optional space, non-greedy
     (?:'|") //: string delimiter
     (       //: open capture group
+    [       //: open char range
     \\w     //: word char
+    \\W     //: non-word char
+    ]       //: close char range
     +?      //: non-greedy...
     )       //: close capture group
     \.html  //: file extension
@@ -318,7 +321,7 @@ const TOC_o =
       }
     }
 
-    toc_s =         //!!!
+    toc_s =         //!!! can't put AsciiDoc pass:[] in md file
       `pass:[`
       + `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
       + toc_s

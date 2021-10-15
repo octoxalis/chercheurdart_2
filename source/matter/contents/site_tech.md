@@ -33,24 +33,22 @@
 }
 ---
 {% _doc section_a[0] %}
-
-= {{title_s}}
-
-{{subtitle_s}}
-₍₀ 
-  Versions
-  pass:[{{F_o.versionList__s(version_a)}}]₎
-
-== Draft
-....En effet, toutes les images du site sont au format AVIF, une technique d'encodage des images permettant de réduire d'optimiser la taille de leurs fichiers numériques et, par voie de conséquence, le temps nécessaire à leur chargement.
-
-
-//----------------------------------------
-// TopicsPart
+// TOPICS
 ////
 ‹Nicolas Poussin›
 ‹Charles Lebrun›
 ‹François Boucher›
 ////
+//========================================
+= {{title_s}}
+
+pass:[{{abstract_s}}]
+₍₀ 
+  Versions
+  pass:[{{F_o.versionList__s(version_a)}}]₎
+
+== Draft
+
+....En effet, toutes les images du site sont au format AVIF, une technique d'encodage des images permettant de réduire d'optimiser la taille de leurs fichiers numériques et, par voie de conséquence, le temps nécessaire à leur chargement.
 
 {% end_doc %}

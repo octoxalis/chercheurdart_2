@@ -11,7 +11,7 @@ const X_o =
   NO_TOPIC_n: -1,      //: document is excluded (ex. 404.html)
 
   ARTICLE_n:   0,      //: 0-1023
-                                  //... _n: 1,      //: 1024-
+  WORKS_n:     1,      //: 1024-
   NEWS_n:      2,      //: 2048-
                                   //... _n: 3,      //: 3072-
   SITE_n:      4,      //: 4096-

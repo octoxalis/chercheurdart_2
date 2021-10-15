@@ -6,13 +6,13 @@ const IDE_o =
     abuf_a
   ) =>
   {
-    const array_a = [] // The size of the output is not yet known.
+    const int32_a = [] // The size of the output is not yet known.
   
-    const int_a =
+    const int8_a =
       new Int8Array( abuf_a )
   
     const end_n =
-      int_a
+      int8_a
         .length
   
     let at_n = 0
@@ -24,66 +24,66 @@ const IDE_o =
       at_n
     )
     {
-      let byte_n =
-        int_a[at_n++]
+      let int8_n =
+        int8_a[at_n++]
   
-      var int_n =
-        byte_n & 0x7F
+      var int32_n =
+        int8_n & 0x7F
   
-      if ( byte_n >= 0 )
+      if ( int8_n >= 0 )
       {
-        array_a
-          .push( int_n )
+        int32_a
+          .push( int32_n )
   
         continue
       }
   
-      byte_n = int_a[at_n++]
+      int8_n = int8_a[at_n++]
   
-      int_n |= (byte_n & 0x7F) << 7
+      int32_n |= (int8_n & 0x7F) << 7
   
-      if ( byte_n >= 0 ) {
-        array_a
-          .push( int_n )
+      if ( int8_n >= 0 ) {
+        int32_a
+          .push( int32_n )
   
         continue
       }
   
-      byte_n = int_a[at_n++]
+      int8_n = int8_a[at_n++]
   
-      int_n |= (byte_n & 0x7F) << 14
+      int32_n |= (int8_n & 0x7F) << 14
   
-      if ( byte_n >= 0 )
+      if ( int8_n >= 0 )
       {
-        array_a
-          .push( int_n )
+        int32_a
+          .push( int32_n )
   
         continue
       }
   
-      byte_n = int_a[at_n++]
+      int8_n = int8_a[at_n++]
   
-      int_n |= (byte_n & 0x7F) << 21
+      int32_n |= (int8_n & 0x7F) << 21
   
-      if ( byte_n >= 0 )
+      if ( int8_n >= 0 )
       {
-        array_a
-          .push( int_n )
+        int32_a
+          .push( int32_n )
   
         continue
       }
   
-      byte_n = int_a[at_n++]
+      int8_n = int8_a[at_n++]
   
-      int_n |= byte_n << 28
+      int32_n |= int8_n << 28
   
-      int_n >>>= 0; // make positive
+      int32_n >>>= 0; // make positive
   
-      array_a
-        .push( int_n )
+      int32_a
+        .push( int32_n )
     }
   
-    return array_a
+    return int32_a
   }
   ,
 
@@ -91,7 +91,8 @@ const IDE_o =
 
   read__s:
   (
-    path_s
+    path_s,
+    callback_f
   ) =>
   {
     fetch
@@ -121,35 +122,67 @@ const IDE_o =
       )
       .then
       (
-        buffer_s =>
+        buffer_a =>
         {
-          ;console
-            .log
-            (
-              IDE_o
-                .decompress__a( buffer_s )
-            )
+          callback_f
+          (
+            IDE_o
+              .decompress__a( buffer_a )
+          )
         }
       )
       .catch
       (
         error_o =>
-          console.error( error_o )
+          console
+            .error( error_o )
       )
   }
   ,
+
+
+
 }
+
+
+
+const process__v =    //: TEST function
+(
+  buffer_a
+) =>
+{
+  console
+    .log
+    (
+      buffer_a
+    )
+}
+
 
 
 
 void function
 ()
 {
-  console.time( 'icompress' )
+  const REPEAT_n = 1
 
-  IDE_o
-    .read__s( '/assets/bin/icompress.bin' )
+  console.time( `decompress_${REPEAT_n}` )
 
-  console.timeEnd( 'icompress' )
+  for
+  (
+    let at_n = 0;
+    at_n < REPEAT_n;
+    ++at_n
+  )
+  {
+      IDE_o
+        .read__s
+        (
+          '/assets/bin/icompress.bin',
+          process__v
+        )
+  }
+
+  console.timeEnd( `decompress_${REPEAT_n}` )
 }()
 

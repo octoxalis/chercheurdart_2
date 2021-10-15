@@ -35,7 +35,10 @@ const TOP_o =
     \\s*?   //: optional space, non-greedy
     (?:'|") //: string delimiter
     (       //: open capture group
+    [       //: open char range
     \\w     //: word char
+    \\W     //: non-word char
+    ]       //: close char range
     +?      //: non-greedy...
     )       //: close capture group
     \.html  //: file extension
@@ -59,9 +62,9 @@ const TOP_o =
     `
     ${X_o.WORD_OPEN_s}    //: opening word delimiter
     (                     //: open capture group
-    [                     //: open capture group
+    [                     //: open char range
     \\s\\S                //: anything
-    ]                     //: close capture group
+    ]                     //: close char range
     +?                    //: non-greedy
     )                     //: close capture group
     ${X_o.WORD_CLOSE_s}   //: closing word delimiter
@@ -267,7 +270,6 @@ const TOP_o =
           other_o.doc_n
       )
 
-      
     const docsTopics_a = []
       
     const topicsDocs_a = new Map()
