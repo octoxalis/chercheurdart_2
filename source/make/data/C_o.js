@@ -157,6 +157,7 @@ const C_o =
   WORDS_DELIM_s:  ' ',
   WORDS_CONCAT_s: '_',
   TOPICS_TAG_s:    '<del data--=topics hidden />',
+  TOOLS_TAG_s:     '<del data--=tools hidden />',
 
   //=== COMMENT
   COMMENT_DELIM_s: '₊',

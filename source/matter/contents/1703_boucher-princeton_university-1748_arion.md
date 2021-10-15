@@ -64,7 +64,7 @@ L'analyse colorimétrique...
 
 
 
-{% _doc section_a[1] %}
+{% _doc section_a[1], 1 %}
 == Colorimétrie
 
 {% end_doc %}
