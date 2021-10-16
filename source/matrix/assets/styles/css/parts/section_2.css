@@ -1,0 +1,15 @@
+section#{{C_o.SECTION_a[2]}} {
+  position: relative;
+}
+section#{{C_o.SECTION_a[2]}} > div {
+  display: none;
+  position: absolute;
+  padding-top: {{CSS_o.PAD_8}};
+  width: {{CSS_o.FULL_WIDTH_s}};
+  min-height: calc( {{CSS_o.FULL_HEIGHT_s}} - {{CSS_o.PAD_8}});
+  height: auto;
+  background: red;
+}
+section#{{C_o.SECTION_a[2]}} > div:target {
+  display: block;
+}

@@ -1,12 +1,12 @@
 context( stack, new )
-<header>
+<nav>
         position: sticky; top: 0;
         z-index: 1;
         display: flex;
         justify-content: space-between;
         width: 100%;
         background: var(--bgcolor);
-        opacity: .25;
+        opacity: 1;  /* .25; */
         transition: all 5s;  /* long fading out */
     <a>
             context( block, link_regular )
@@ -21,29 +21,29 @@ context( stack, new )
     <a:hover>
             context( block, link_hover )
     </a>
-</header>
+</nav>
 <!----------variant---------->
-<header:hover>
+<nav:hover>
         filter: saturate(5);
         opacity: 1;
         transition: all .2s;  /* short fading in */
-</header>
+</nav>
 
 <!----------variant----------><!-- section related -->
 <section#{{C_o.SECTION_a[0]}}:target>
 </section>
 ~
-<header>
+<nav>
   <a[href="#{{C_o.SECTION_a[0]}}"]>
     context( copy, next )
   </a>
-</header>
+</nav>
 <!----------variant---------->
 <section#{{C_o.SECTION_a[1]}}:target>
 </section>
 ~
-<header>
+<nav>
   <a[href="#{{C_o.SECTION_a[1]}}"]>
           visibility: hidden;
   </a>
-</header>
+</nav>

@@ -1,0 +1,1 @@
+section#stats{position:relative}section#stats>div{display:none;position:absolute;padding-top:2em;width:100vw;min-height:calc(100vh - 2em);height:auto;background:red}section#stats>div:target{display:block}

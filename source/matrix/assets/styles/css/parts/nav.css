@@ -1,4 +1,4 @@
-header {
+nav {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -6,26 +6,26 @@ header {
   justify-content: space-between;
   width: 100%;
   background: var(--bgcolor);
-  opacity: .25;
+  opacity: 1;
   transition: all 5s;
 }
-header > a {
+nav > a {
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid var(--shadow_ne);
   font-weight: 400;
   filter: brightness( var(--brigtness_lo) );
 }
-header > a:focus, header > a:hover {
+nav > a:focus, nav > a:hover {
   border-bottom: 1px solid;
   filter: brightness( var(--brigtness_hi) );
   transition: opacity .2s;
 }
-header:hover {
+nav:hover {
   filter: saturate(5);
   opacity: 1;
   transition: all .2s;
 }
-section#{{C_o.SECTION_a[0]}}:target ~ header > a[href="#{{C_o.SECTION_a[0]}}"], section#{{C_o.SECTION_a[1]}}:target ~ header > a[href="#{{C_o.SECTION_a[1]}}"] {
+section#{{C_o.SECTION_a[0]}}:target ~ nav > a[href="#{{C_o.SECTION_a[0]}}"], section#{{C_o.SECTION_a[1]}}:target ~ nav > a[href="#{{C_o.SECTION_a[1]}}"] {
   visibility: hidden;
 }

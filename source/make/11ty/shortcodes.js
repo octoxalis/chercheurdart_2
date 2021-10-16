@@ -35,7 +35,7 @@ const CODES_o =
           FS_o
             .readFileSync
             (
-              `${C_o.LIB_PARTS_DIR_s}stats.html`,
+              `${C_o.INCLUDES_PATH_s}/parts/body/stats.html`,
               'utf8',
               'r'
             )
@@ -44,8 +44,8 @@ const CODES_o =
     
       default:                    //: section[0]
         output_s +=
-        `</div>\n`            //: first close last chapter div
-          + C_o.TOPICS_TAG_s        //: to be replaced by topics to documents list
+        `</div>\n`                //: first close last chapter div
+          + C_o.TOPICS_TAG_s      //: to be replaced by topics to documents list
           + C_o.COMMENT_TAG_s     //: to be replaced by comment part, if issue_n is defined
 
         break

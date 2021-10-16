@@ -76,9 +76,13 @@ const C_o =
   [
     'article',
     'galerie',
+    'stats',
   ],
 
-  SECTION_1_TAG_s:     '<del data--=section_1 hidden />',
+  SECTION_1_TAG_s:  '<del data--=section_1 hidden />',
+  SECTION_2_TAG_s:  '<del data--=section_2 hidden />',
+
+
   ANCHOR_SEPARATOR_s : '__',
 
 
@@ -147,11 +151,6 @@ const C_o =
   //=== DOCS
   DOC_INDEX_n:   0,    //: index doc_n is 0 (> NO_TOPIC_n)
 
-  //=== HEADER
-  SECTION_1_TAG_s:  '<del data--=section_1 hidden />',
-  SECTION_2_TAG_s:  '<del data--=section_2 hidden />',
-
-
   //=== TOPICS
   AT_DOCN_n:     0,    //: doc_n in docs_a
   AT_DOCS_n:     1,    //: doc_s
@@ -162,9 +161,6 @@ const C_o =
   WORDS_DELIM_s:  ' ',
   WORDS_CONCAT_s: '_',
   TOPICS_TAG_s:    '<del data--=topics hidden />',
-
-  //=== STATS
-  //XX STATS_TAG_s:     '<del data--=stats hidden />',
 
   //=== COMMENT
   COMMENT_DELIM_s: '₊',

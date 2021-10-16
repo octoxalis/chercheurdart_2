@@ -22,6 +22,7 @@
   ],
   css_a:
   [
+    'section_2.min.css',
   ],
 
   version_a:

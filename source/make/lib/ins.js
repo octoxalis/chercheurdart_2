@@ -906,7 +906,7 @@ module.exports =
           .length
       ?
         content_s
-          .replace    //: add SECTION_a[2] link to header
+          .replace    //: add SECTION_a[2] link to nav
           (
             C_o.SECTION_2_TAG_s,
             `<a href="#${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</a>`
