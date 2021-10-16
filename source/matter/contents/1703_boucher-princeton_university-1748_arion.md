@@ -63,7 +63,6 @@ L'analyse colorimétrique...
 {% end_doc %}
 
 
-
 {% _doc section_a[1], 1 %}
 {% end_doc %}
 

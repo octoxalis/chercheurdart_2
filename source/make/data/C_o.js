@@ -148,7 +148,8 @@ const C_o =
   DOC_INDEX_n:   0,    //: index doc_n is 0 (> NO_TOPIC_n)
 
   //=== HEADER
-  HEADER_TAG_s:     '<del data--=header hidden />',
+  SECTION_1_TAG_s:  '<del data--=section_1 hidden />',
+  SECTION_2_TAG_s:  '<del data--=section_2 hidden />',
 
 
   //=== TOPICS
@@ -163,7 +164,7 @@ const C_o =
   TOPICS_TAG_s:    '<del data--=topics hidden />',
 
   //=== STATS
-  STATS_TAG_s:     '<del data--=stats hidden />',
+  //XX STATS_TAG_s:     '<del data--=stats hidden />',
 
   //=== COMMENT
   COMMENT_DELIM_s: '₊',

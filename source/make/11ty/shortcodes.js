@@ -13,7 +13,7 @@ const CODES_o =
   (
     content_s,
     section_s,
-    stats_b
+    section_n
   ) =>
   {
     content_s =
@@ -27,12 +27,11 @@ const CODES_o =
 
     switch
     (
-      stats_b
+      section_n
     )
     {
-      case 1:                    //: stats
+      case 1:                    //: section[1]
         output_s +=
-          //-- C_o.STATS_TAG_s        //: to be replaced by stats div
           FS_o
             .readFileSync
             (
@@ -43,7 +42,7 @@ const CODES_o =
 
         break
     
-      default:                    //: article
+      default:                    //: section[0]
         output_s +=
         `</div>\n`            //: first close last chapter div
           + C_o.TOPICS_TAG_s        //: to be replaced by topics to documents list

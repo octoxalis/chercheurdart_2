@@ -900,17 +900,16 @@ module.exports =
     INS_o
       .css__v( permalink_s )
 
-    return (
+    content_s =
       INS_o
         .gray_a
           .length
       ?
         content_s
-          .replace    //: add SECTION_a[1] link to header
+          .replace    //: add SECTION_a[2] link to header
           (
-            C_o.HEADER_TAG_s,  //: insertion before <header> end
+            C_o.SECTION_2_TAG_s,
             `<a href="#${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</a>`
-            + '</header>'
           )
           .replace    //: add gallery asides (gray and color)
           (
@@ -930,7 +929,8 @@ module.exports =
             C_o.SECTION_1_TAG_s,
             ''
           )
-      )
+
+    return content_s
   }
 ,
 
