@@ -147,6 +147,10 @@ const C_o =
   //=== DOCS
   DOC_INDEX_n:   0,    //: index doc_n is 0 (> NO_TOPIC_n)
 
+  //=== HEADER
+  HEADER_TAG_s:     '<del data--=header hidden />',
+
+
   //=== TOPICS
   AT_DOCN_n:     0,    //: doc_n in docs_a
   AT_DOCS_n:     1,    //: doc_s
@@ -157,7 +161,9 @@ const C_o =
   WORDS_DELIM_s:  ' ',
   WORDS_CONCAT_s: '_',
   TOPICS_TAG_s:    '<del data--=topics hidden />',
-  TOOLS_TAG_s:     '<del data--=tools hidden />',
+
+  //=== STATS
+  STATS_TAG_s:     '<del data--=stats hidden />',
 
   //=== COMMENT
   COMMENT_DELIM_s: '₊',

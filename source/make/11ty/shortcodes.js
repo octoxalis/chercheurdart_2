@@ -1,3 +1,5 @@
+const FS_o  = require( 'fs-extra' )
+
 const PREP_o = require( '../lib/prep.js' )
 const ADOC_o = require( '../lib/adoc.js' )
 const F_o    = require( '../data/F_o.js' )
@@ -11,7 +13,7 @@ const CODES_o =
   (
     content_s,
     section_s,
-    tool_b
+    stats_b
   ) =>
   {
     content_s =
@@ -22,22 +24,32 @@ const CODES_o =
       `<section id="${section_s}">`
       + ADOC_o
           .convert__s( content_s )
-      + `</div>\n`            //: first close last chapter div
 
-
-    if
+    switch
     (
-      ! tool_b
+      stats_b
     )
     {
-      output_s +=
-        C_o.TOPICS_TAG_s        //: to be replaced by topics to documents list
-        + C_o.COMMENT_TAG_s     //: to be replaced by comment part, if issue_n is defined
-    }
-    else
-    {
-      output_s +=
-        C_o.TOOLS_TAG_s        //: to be replaced by tool div
+      case 1:                    //: stats
+        output_s +=
+          //-- C_o.STATS_TAG_s        //: to be replaced by stats div
+          FS_o
+            .readFileSync
+            (
+              `${C_o.LIB_PARTS_DIR_s}stats.html`,
+              'utf8',
+              'r'
+            )
+
+        break
+    
+      default:                    //: article
+        output_s +=
+        `</div>\n`            //: first close last chapter div
+          + C_o.TOPICS_TAG_s        //: to be replaced by topics to documents list
+          + C_o.COMMENT_TAG_s     //: to be replaced by comment part, if issue_n is defined
+
+        break
     }
 
     output_s +=

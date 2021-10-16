@@ -908,7 +908,7 @@ module.exports =
         content_s
           .replace    //: add SECTION_a[1] link to header
           (
-            '</header>',  //: insertion before <header> end
+            C_o.HEADER_TAG_s,  //: insertion before <header> end
             `<a href="#${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</a>`
             + '</header>'
           )

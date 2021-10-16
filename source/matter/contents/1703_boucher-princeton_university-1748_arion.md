@@ -14,7 +14,7 @@
   section_a:
   [
     `article`,
-    `colorimétrie`,
+    `stats`,
   ],
 
   script_a:
@@ -65,7 +65,5 @@ L'analyse colorimétrique...
 
 
 {% _doc section_a[1], 1 %}
-== Colorimétrie
-
 {% end_doc %}
 
