@@ -24,6 +24,3 @@ nav:hover {
   opacity: 1;
   transition: all .2s;
 }
-input#I_{{C_o.SECTION_a[0]}}:checked ~ nav > label[for=I_{{C_o.SECTION_a[0]}}], input#I_{{C_o.SECTION_a[1]}}:checked ~ nav > label[for=I_{{C_o.SECTION_a[1]}}], input#I_{{C_o.SECTION_a[2]}}:checked ~ nav > label[for=I_{{C_o.SECTION_a[2]}}] {
-  visibility: hidden;
-}

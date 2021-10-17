@@ -61,6 +61,46 @@ const IND_o =
 
 
 
+  main_input__v:
+  () =>
+  {
+    for
+    (
+      let input_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `[name="main_nav"]` )
+        )
+    )
+    {
+      input_e
+        .addEventListener
+        (
+          'click',
+          () =>
+          {
+            if
+            (
+              location
+                .hash
+            )
+            {
+              location
+                .hash = ''    //: remove hash
+                
+            }
+          }
+        )
+    }
+  }
+  ,
+  
+  
+
+
   comment_label__v:    //: listener
   (
     event_e    //: not used
@@ -110,6 +150,12 @@ void function
   window
     .onload
   =
-  IND_o
-    .listener__v()
+  () =>
+  {
+    IND_o
+      .listener__v()
+
+    IND_o
+      .main_input__v()
+  }
 } ()

@@ -12,6 +12,7 @@ aside > figure > a > img {
 }
 figure:target {
   display: block;
+  z-index: 1;
   position: fixed;
   top: {{CSS_o.PAD_8}};
   right: 0;
