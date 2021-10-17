@@ -145,8 +145,8 @@ void function
   IND_o
     .service__v()
 
-  IND_o
-    .location__v()
+  //??? IND_o
+  //???   .location__v()
 
   window
     .onload

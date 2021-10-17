@@ -908,12 +908,13 @@ module.exports =
         content_s
           .replace    //: add SECTION_a[2] link to nav
           (
-            C_o.SECTION_2_TAG_s,
-            `<a href="#${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</a>`
+            C_o.SECTION_2_LABEL_s,
+            //--`<a href="#${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</a>`
+            `<label for="I_${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</label>`
           )
           .replace    //: add gallery asides (gray and color)
           (
-            C_o.SECTION_1_TAG_s,    //: custom tag deleted after section insertion
+            C_o.SECTION_1_LABEL_s,    //: custom tag deleted after section insertion
             `<section id="${C_o.SECTION_a[1]}">`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
@@ -926,7 +927,7 @@ module.exports =
         content_s
           .replace    //: remove custom tag after section insertion
           (
-            C_o.SECTION_1_TAG_s,
+            C_o.SECTION_1_LABEL_s,
             ''
           )
 

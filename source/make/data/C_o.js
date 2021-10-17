@@ -79,8 +79,16 @@ const C_o =
     'stats',
   ],
 
-  SECTION_1_TAG_s:  '<del data--=section_1 hidden />',
-  SECTION_2_TAG_s:  '<del data--=section_2 hidden />',
+  STATS_a:
+  [
+    'burst',
+    'aster',
+    'paint',
+  ],
+
+  SECTION_1_LABEL_s:  '<del data--=section_1_label hidden />',
+  SECTION_2_LABEL_s:  '<del data--=section_2_label hidden />',
+  SECTION_2_INPUT_s:  '<del data--=section_2_input hidden />',
 
 
   ANCHOR_SEPARATOR_s : '__',
@@ -160,13 +168,13 @@ const C_o =
 
   WORDS_DELIM_s:  ' ',
   WORDS_CONCAT_s: '_',
-  TOPICS_TAG_s:    '<del data--=topics hidden />',
+  TOPICS_LIST_s:    '<del data--=topics hidden />',
 
   //=== COMMENT
   COMMENT_DELIM_s: '₊',
   COMMENT_INTRO_s: '₀',
   COMMENT_ELIPSIS_s: '...',
-  COMMENT_TAG_s:   '<del data--=comment hidden />',
+  COMMENT_PART_s:   '<del data--=comment hidden />',
 
   //=== DB ===
   DB_a:    //: db tables names

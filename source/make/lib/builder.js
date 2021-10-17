@@ -105,6 +105,19 @@ const BUI_o =
             .permalink
         )
 
+    output_s =
+      output_s
+        .replace    //: remove custom tag after section insertion
+        (
+          C_o.SECTION_2_INPUT_s,
+          data_o
+            .section_a
+              ?.[1]
+          ?
+            `<input id="I_${C_o.SECTION_a[2]}" name="main_nav" type="radio" />`
+          :
+            ''    //: remove if no section[2]
+        )
 
     if
     (
@@ -120,7 +133,7 @@ const BUI_o =
             .replace
             (
               C_o.
-                TOPICS_TAG_s,
+                TOPICS_LIST_s,
               TOP_o
                 .list__v
                 (
@@ -158,7 +171,7 @@ const BUI_o =
             .replace
             (
               C_o.
-                COMMENT_TAG_s,
+                COMMENT_PART_s,
               commentPart_s
             )
         )

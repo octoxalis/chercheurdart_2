@@ -1,1 +1,1 @@
-section#stats{position:relative}section#stats>div{display:none;position:absolute;padding-top:2em;width:100vw;min-height:calc(100vh - 2em);height:auto;background:red}section#stats>div:target{display:block}
+section#stats>input{display:none}section#stats>input~div{display:none;position:absolute;top:1em;padding-top:2em;width:100vw;min-height:calc(100vh - 2em);height:200px;background:red}section#stats>input#burst[checked]{display:block}section#stats>input#burst[checked]~div#S_burst{display:block}

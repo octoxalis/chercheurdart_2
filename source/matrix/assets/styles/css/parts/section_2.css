@@ -1,15 +1,19 @@
-section#{{C_o.SECTION_a[2]}} {
-  position: relative;
+section#{{C_o.SECTION_a[2]}} > input {
+  display: none;
 }
-section#{{C_o.SECTION_a[2]}} > div {
+section#{{C_o.SECTION_a[2]}} > input ~ div {
   display: none;
   position: absolute;
+  top: {{CSS_o.PAD_4}};
   padding-top: {{CSS_o.PAD_8}};
   width: {{CSS_o.FULL_WIDTH_s}};
   min-height: calc( {{CSS_o.FULL_HEIGHT_s}} - {{CSS_o.PAD_8}});
-  height: auto;
+  height: 200px;
   background: red;
 }
-section#{{C_o.SECTION_a[2]}} > div:target {
+section#{{C_o.SECTION_a[2]}} > input#{{C_o.STATS_a[0]}}[checked] {
+  display: block;
+}
+section#{{C_o.SECTION_a[2]}} > input#{{C_o.STATS_a[0]}}[checked] ~ div#S_{{C_o.STATS_a[0]}} {
   display: block;
 }

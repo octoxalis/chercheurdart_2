@@ -2,8 +2,8 @@ const FS_o  = require( 'fs-extra' )
 
 const PREP_o = require( '../lib/prep.js' )
 const ADOC_o = require( '../lib/adoc.js' )
-const F_o    = require( '../data/F_o.js' )
 const C_o    = require( '../data/C_o.js' )
+//XX const F_o    = require( '../data/F_o.js' )
 
 
 
@@ -31,22 +31,43 @@ const CODES_o =
     )
     {
       case 1:                    //: section[1]
-        output_s +=
+        let stats_s =
           FS_o
-            .readFileSync
-            (
-              `${C_o.INCLUDES_PATH_s}/parts/body/stats.html`,
-              'utf8',
-              'r'
-            )
+          .readFileSync
+          (
+            `${C_o.INCLUDES_PATH_s}/parts/body/stats.njk`,
+            'utf8',
+            'r'
+          )
+
+        for        //!!! simulate njk substitution
+        (
+          at_n
+          of
+          [0, 1, 2]
+        )
+        {
+          stats_s =
+            stats_s
+              .replaceAll
+              (
+                `{{C_o.STATS_a[${at_n}]}}`,
+                C_o
+                  .STATS_a
+                    [at_n]
+              )
+        }
+        
+        output_s +=
+          stats_s
 
         break
     
       default:                    //: section[0]
         output_s +=
         `</div>\n`                //: first close last chapter div
-          + C_o.TOPICS_TAG_s      //: to be replaced by topics to documents list
-          + C_o.COMMENT_TAG_s     //: to be replaced by comment part, if issue_n is defined
+          + C_o.TOPICS_LIST_s      //: to be replaced by topics to documents list
+          + C_o.COMMENT_PART_s     //: to be replaced by comment part, if issue_n is defined
 
         break
     }

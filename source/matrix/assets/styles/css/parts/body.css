@@ -5,3 +5,6 @@ body {
   background: var(--bgcolor);
   font-family: {{CSS_o.FONT_BODY_s}};
 }
+body > input {
+  display: none;
+}
