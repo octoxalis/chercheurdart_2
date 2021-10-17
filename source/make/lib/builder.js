@@ -105,20 +105,6 @@ const BUI_o =
             .permalink
         )
 
-    output_s =
-      output_s
-        .replace    //: remove custom tag after section insertion
-        (
-          C_o.SECTION_2_INPUT_s,
-          data_o
-            .section_a
-              ?.[1]
-          ?
-            `<input id="I_${C_o.SECTION_a[2]}" name="main_nav" type="radio" />`
-          :
-            ''    //: remove if no section[2]
-        )
-
     if
     (
       data_o
@@ -127,7 +113,6 @@ const BUI_o =
       0        //: skip structural and index docs
     )
     {
-      //;console.log( output_s )
       output_s =
           output_s
             .replace
@@ -141,7 +126,6 @@ const BUI_o =
                     .doc_n
                 )
             )
-      //;console.log( output_s )
     }
     
     let commentPart_s = ''

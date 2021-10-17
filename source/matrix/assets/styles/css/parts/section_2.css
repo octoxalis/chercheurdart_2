@@ -11,9 +11,9 @@ section#{{C_o.SECTION_a[2]}} > input ~ div {
   height: 200px;
   background: red;
 }
-section#{{C_o.SECTION_a[2]}} > input#{{C_o.STATS_a[0]}}[checked] {
+section#{{C_o.SECTION_a[2]}} > input#{{C_o.STAT_a[0]}}[checked] {
   display: block;
 }
-section#{{C_o.SECTION_a[2]}} > input#{{C_o.STATS_a[0]}}[checked] ~ div#S_{{C_o.STATS_a[0]}} {
+section#{{C_o.SECTION_a[2]}} > input#{{C_o.STAT_a[0]}}[checked] ~ div#S_{{C_o.STAT_a[0]}} {
   display: block;
 }

@@ -14,7 +14,15 @@
   section_a:
   [
     `article`,
+    `galerie`,
     `stats`,
+  ],
+
+  stat_a:
+  [
+    'burst',
+    'aster',
+    'paint',
   ],
 
   script_a:
@@ -62,8 +70,3 @@ L'analyse colorimétrique...
 // *  link:1703_boucher-princeton_university-1748_arion__scan.html[scan]
 // *  link:1703_boucher-princeton_university-1748_arion__burst.html[burst]
 {% end_doc %}
-
-
-{% _doc section_a[1], 1 %}
-{% end_doc %}
-

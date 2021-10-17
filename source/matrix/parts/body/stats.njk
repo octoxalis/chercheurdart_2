@@ -1,19 +1,21 @@
-<input id={{C_o.STATS_a[0]}} />
-<input id={{C_o.STATS_a[1]}} />
-<input id={{C_o.STATS_a[2]}} />
-
+{% set _template = '' %}
+{% if stat_a %}
+{% set _template %}
+<section id="{{C_o.SECTION_a[2]}}">
+{% for _stat in stat_a %}
+  <input id="I_{{_stat}}">{{ _stat }}</label>
+{% endfor %}
 <nav>
-  <label for={{C_o.STATS_a[0]}}>{{C_o.STATS_a[0]}}</label>
-  <label for={{C_o.STATS_a[1]}}>{{C_o.STATS_a[1]}}</label>
-  <label for={{C_o.STATS_a[2]}}>{{C_o.STATS_a[2]}}</label>
+{% for _stat in stat_a %}
+  <label for="I_{{_stat}}">{{ _stat }}</label>
+{% endfor %}
 </nav>
-
-<div id=S_{{C_o.STATS_a[0]}}>
-  BURST
-</div>
-<div id=S_{{C_o.STATS_a[1]}}>
-  ASTER
-</div>
-<div id=S_{{C_o.STATS_a[2]}}>
-  PAINT
-</div>
+{% for _stat in stat_a %}
+  <div id=stat_{{_stat}}>
+    {{ _stat }}    <!-- TEMPORARY -->
+  </div>
+{% endfor %}
+</section>
+{% endset %}
+{% endif %}
+{{_template}}

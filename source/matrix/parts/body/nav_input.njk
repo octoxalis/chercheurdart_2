@@ -1,0 +1,7 @@
+{% for _section in section_a %}
+  {% set _checked = '' %}
+  {% if _section === C_o.SECTION_a[0] %}
+  {% set _checked = 'checked' %}
+  {% endif %}
+  <input id="I_{{C_o.SECTION_a[loop.index0]}}" name="main_nav" type="radio" {{_checked}} />
+{% endfor %}

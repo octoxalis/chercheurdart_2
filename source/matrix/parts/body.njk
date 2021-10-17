@@ -1,6 +1,9 @@
 <body>
-{% include "parts/body/input.njk" %}
+{% include "parts/body/nav_input.njk" %}
 {% include "parts/body/main.njk" %}
+{% if stat_a %}
+{% include "parts/body/stats.njk" %}
+{% endif %}
 {% include "parts/body/nav.njk" %}
 {% include "parts/body/svg_inline.njk" %}
 {% if C_o.SERVICE_b === true %}

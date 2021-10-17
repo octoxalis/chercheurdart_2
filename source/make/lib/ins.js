@@ -901,20 +901,14 @@ module.exports =
       .css__v( permalink_s )
 
     content_s =
-      INS_o
-        .gray_a
-          .length
-      ?
-        content_s
-          .replace    //: add SECTION_a[2] link to nav
-          (
-            C_o.SECTION_2_LABEL_s,
-            //--`<a href="#${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</a>`
-            `<label for="I_${C_o.SECTION_a[1]}">${C_o.SECTION_a[1]}</label>`
-          )
-          .replace    //: add gallery asides (gray and color)
-          (
-            C_o.SECTION_1_LABEL_s,    //: custom tag deleted after section insertion
+      content_s
+        .replace    //: add gallery asides (gray and color)
+        (
+          C_o.SECTION_1_INSERT_s,    //: custom tag deleted after section insertion
+          INS_o
+          .gray_a
+            .length
+          ?
             `<section id="${C_o.SECTION_a[1]}">`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
@@ -922,15 +916,10 @@ module.exports =
             +`</aside>`
             + `<aside id="color">${INS_o.color_a.join( '\n' )}`
             + `</aside>`
-          )
-      :
-        content_s
-          .replace    //: remove custom tag after section insertion
-          (
-            C_o.SECTION_1_LABEL_s,
-            ''
-          )
-
+          :
+            ''    //: remove
+        )
+    
     return content_s
   }
 ,

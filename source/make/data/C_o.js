@@ -79,16 +79,14 @@ const C_o =
     'stats',
   ],
 
-  STATS_a:
+  STAT_a:
   [
     'burst',
     'aster',
     'paint',
   ],
 
-  SECTION_1_LABEL_s:  '<del data--=section_1_label hidden />',
-  SECTION_2_LABEL_s:  '<del data--=section_2_label hidden />',
-  SECTION_2_INPUT_s:  '<del data--=section_2_input hidden />',
+  SECTION_1_INSERT_s:  '<del data--=section_1 hidden />',
 
 
   ANCHOR_SEPARATOR_s : '__',

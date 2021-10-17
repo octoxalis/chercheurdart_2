@@ -12,8 +12,7 @@ const CODES_o =
   doc__s:    //: asciidoc section
   (
     content_s,
-    section_s,
-    section_n
+    section_s
   ) =>
   {
     content_s =
@@ -25,55 +24,11 @@ const CODES_o =
       + ADOC_o
           .convert__s( content_s )
 
-    switch
-    (
-      section_n
-    )
-    {
-      case 1:                    //: section[1]
-        let stats_s =
-          FS_o
-          .readFileSync
-          (
-            `${C_o.INCLUDES_PATH_s}/parts/body/stats.njk`,
-            'utf8',
-            'r'
-          )
-
-        for        //!!! simulate njk substitution
-        (
-          at_n
-          of
-          [0, 1, 2]
-        )
-        {
-          stats_s =
-            stats_s
-              .replaceAll
-              (
-                `{{C_o.STATS_a[${at_n}]}}`,
-                C_o
-                  .STATS_a
-                    [at_n]
-              )
-        }
-        
-        output_s +=
-          stats_s
-
-        break
-    
-      default:                    //: section[0]
-        output_s +=
-        `</div>\n`                //: first close last chapter div
-          + C_o.TOPICS_LIST_s      //: to be replaced by topics to documents list
-          + C_o.COMMENT_PART_s     //: to be replaced by comment part, if issue_n is defined
-
-        break
-    }
-
     output_s +=
-      `</section>\n`       //: \n is mandatory
+    `</div>\n`                 //: first close last chapter div
+      + C_o.TOPICS_LIST_s      //: to be replaced by topics to documents list
+      + C_o.COMMENT_PART_s     //: to be replaced by comment part, if issue_n is defined
+      + `</section>\n`         //: \n is mandatory
 
     return output_s
   }
