@@ -1,12 +1,11 @@
 context( stack, new )
 <nav>
-        position: sticky; top: 0;
-        z-index: 1;
         display: flex;
         justify-content: space-between;
         width: 100%;
+        height: {{CSS_o.PAD_6}};
         background: var(--bgcolor);
-        opacity: 1;  /* .25; */
+        opacity: .25;
         transition: all 5s;  /* long fading out */
     <a>
             context( block, link_regular )
@@ -28,22 +27,25 @@ context( stack, new )
         opacity: 1;
         transition: all .2s;  /* short fading in */
 </nav>
-
 <!----------variant----------><!-- section related -->
-<section#{{C_o.SECTION_a[0]}}:target>
-</section>
+<input#I_{{C_o.SECTION_a[0]}}:checked />
 ~
 <nav>
-  <a[href="#{{C_o.SECTION_a[0]}}"]>
-    context( copy, next )
-  </a>
+  <label[for=I_{{C_o.SECTION_a[0]}}]>
+          context( copy, next )
+  </label>
 </nav>
-<!----------variant---------->
-<section#{{C_o.SECTION_a[1]}}:target>
-</section>
+<input#I_{{C_o.SECTION_a[1]}}:checked />
 ~
 <nav>
-  <a[href="#{{C_o.SECTION_a[1]}}"]>
+  <label[for=I_{{C_o.SECTION_a[1]}}]>
+          context( copy, next )
+  </label>
+</nav>
+<input#I_{{C_o.SECTION_a[2]}}:checked />
+~
+<nav>
+  <label[for=I_{{C_o.SECTION_a[2]}}]>
           visibility: hidden;
-  </a>
+  </label>
 </nav>

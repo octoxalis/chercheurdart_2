@@ -27,65 +27,32 @@ const IND_o =
   ,
 
 
-  location__v:
+  listener__v:
   () =>
   {
-    if
+    for
     (
-      ! location
-          .hash
+      let id_s
+      of
+      [
+        'comment_label',
+      ]
     )
     {
-      location +=
-        `#{{C_o.SECTION_a[0]}}`    //: display article section by default
-    }
-}
-  ,
-
-
-
-
-  anchor__v:
-  () =>
-  {
-    const hash_s =       //: schema: section__anchor_id
-      location
-        .hash
-          .slice( 1 )    //: skip '#'
-
-    const section_n =
-      hash_s
-        .indexOf( '{{C_o.ANCHOR_SEPARATOR_s}}' )
-
-    if
-    (
-      section_n
-      >
-      -1
-    )
-    {
-      location
-        .hash =
-          hash_s
-            .slice
-            (
-              0,
-              section_n
-            )
-      
-      const anchor_e =
+      const listen_e =
         document
-          .getElementById( hash_s )
-
-      anchor_e
+          .getElementById( id_s )
+          
+      listen_e
       &&
-      anchor_e
-        .scrollIntoView
+      listen_e
+        .addEventListener
         (
+          'click',
+          IND_o
+            [ `${id_s}__v` ],
           {
-            behavior: "smooth",
-            block: "start",
-            inline: "nearest"
+            once: true
           }
         )
     }
@@ -130,9 +97,6 @@ const IND_o =
       .remove()
   }
   ,
-
-
-
 }
 
 
@@ -140,53 +104,12 @@ const IND_o =
 void function
 ()
 {
-  //;console.log( 'index.js' )
-
   IND_o
     .service__v()
-
-  //??? IND_o
-  //???   .location__v()
 
   window
     .onload
   =
-    () =>
-    {
-      IND_o
-        .anchor__v()
-
-      for
-      (
-        let id_s
-        of
-        [
-          'comment_label',
-        ]
-      )
-      {
-        const listen_e =
-          document
-            .getElementById( id_s )
-            
-        listen_e
-        &&
-        listen_e
-          .addEventListener
-          (
-            'click',
-            IND_o
-              [ `${id_s}__v` ],
-            {
-              once: true
-            }
-          )
-      }
-    }
-
-  window
-    .onhashchange
-  =
   IND_o
-    .anchor__v
+    .listener__v()
 } ()

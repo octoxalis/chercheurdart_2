@@ -112,7 +112,7 @@ const DOCS_o =
                 [C_o.AT_SUBTITLE_n]
             
           link_s +=
-            `<b><a href=${doc_s}.html#${C_o.SECTION_a[0]}>${title_s}</a></b>`
+            `<b><a href=${doc_s}.html>${title_s}</a></b>`
             + `<b>${subtitle_s}</b>`
         }
       }

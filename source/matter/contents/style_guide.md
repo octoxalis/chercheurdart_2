@@ -44,7 +44,7 @@
 :1989_langdon: pass:[ins:₂[sub_s=1989_langdon¯**p.123**¯f.123¯On peut ajouter une __précision__...¯link<index.html>"link"¯image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"¯etc.]]
 
 //LINKS
-:chercheurdart: {{U_o.url_s}}index.html#{{C_o.SECTION_a[0]}}[chercheurd.art]
+:chercheurdart: {{U_o.url_s}}index.html[chercheurd.art]
 // ins inner link has to be passed
 :chercheur_dart: pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]
 

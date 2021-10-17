@@ -1,12 +1,10 @@
 nav {
-  position: sticky;
-  top: 0;
-  z-index: 1;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: {{CSS_o.PAD_6}};
   background: var(--bgcolor);
-  opacity: 1;
+  opacity: .25;
   transition: all 5s;
 }
 nav > a {
@@ -26,6 +24,6 @@ nav:hover {
   opacity: 1;
   transition: all .2s;
 }
-section#{{C_o.SECTION_a[0]}}:target ~ nav > a[href="#{{C_o.SECTION_a[0]}}"], section#{{C_o.SECTION_a[1]}}:target ~ nav > a[href="#{{C_o.SECTION_a[1]}}"] {
+input#I_{{C_o.SECTION_a[0]}}:checked ~ nav > label[for=I_{{C_o.SECTION_a[0]}}], input#I_{{C_o.SECTION_a[1]}}:checked ~ nav > label[for=I_{{C_o.SECTION_a[1]}}], input#I_{{C_o.SECTION_a[2]}}:checked ~ nav > label[for=I_{{C_o.SECTION_a[2]}}] {
   visibility: hidden;
 }

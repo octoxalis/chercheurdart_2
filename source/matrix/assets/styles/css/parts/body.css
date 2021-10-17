@@ -7,4 +7,10 @@ body {
 }
 body > input {
   display: none;
+  position: absolute;
+}
+body > nav {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }

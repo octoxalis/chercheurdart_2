@@ -34,7 +34,7 @@
 ---
 {% _doc section_a[0] %}
 //LINKS
-:site_tech: pass:[<a href=site_tech.html#article>Technologie du site</a>]
+:site_tech: pass:[<a href=site_tech.html>Technologie du site</a>]
 :Brave: pass:[<a href=https://brave.com>Brave</a>]
 :11ty: https://www.11ty.dev[Eleventy]
 
