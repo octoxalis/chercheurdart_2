@@ -9,11 +9,16 @@ section#{{C_o.SECTION_a[2]}} > input ~ div {
   width: {{CSS_o.FULL_WIDTH_s}};
   min-height: calc( {{CSS_o.FULL_HEIGHT_s}} - {{CSS_o.PAD_8}});
   height: 200px;
+}
+section#{{C_o.SECTION_a[2]}} > input#I_{{C_o.STAT_a[0]}}:checked ~ div#stat_{{C_o.STAT_a[0]}}, section#{{C_o.SECTION_a[2]}} > input#I_{{C_o.STAT_a[1]}}:checked ~ div#stat_{{C_o.STAT_a[1]}}, section#{{C_o.SECTION_a[2]}} > input#I_{{C_o.STAT_a[2]}}:checked ~ div#stat_{{C_o.STAT_a[2]}} {
+  display: block;
+}
+section#{{C_o.SECTION_a[2]}} > div#stat_{{C_o.STAT_a[0]}} {
+  background: green;
+}
+section#{{C_o.SECTION_a[2]}} > div#stat_{{C_o.STAT_a[1]}} {
+  background: blue;
+}
+section#{{C_o.SECTION_a[2]}} > div#stat_{{C_o.STAT_a[2]}} {
   background: red;
-}
-section#{{C_o.SECTION_a[2]}} > input#{{C_o.STAT_a[0]}}[checked] {
-  display: block;
-}
-section#{{C_o.SECTION_a[2]}} > input#{{C_o.STAT_a[0]}}[checked] ~ div#S_{{C_o.STAT_a[0]}} {
-  display: block;
 }
