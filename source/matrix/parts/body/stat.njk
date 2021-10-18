@@ -11,7 +11,7 @@
 {% endfor %}
 <nav>
 {% for _stat in stat_a %}
-  <label for="{{C_o.INPUT_ID_s}}_{{_stat}}">{{_stat}}</label>
+  <label for="{{C_o.INPUT_ID_s}}_{{_stat}}" data-legend="{{C_o.NAV_LEGEND_o[_stat]}}">{{C_o.NAV_LEGEND_ICON_o[_stat]}}</label>
 {% endfor %}
 </nav>
 {% for _stat in stat_a %}

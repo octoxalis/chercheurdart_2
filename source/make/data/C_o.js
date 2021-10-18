@@ -95,6 +95,30 @@ const C_o =
     '<del for=div_paint hidden ></del>',    //: idem
   ],
 
+  NAV_LEGEND_o:
+  {
+    home:    `accueil`,
+    article: `article`,
+    galerie: `galerie`,
+    stat:    `diagrammes`,
+
+    burst:   `burst`,
+    aster:   `aster`,
+    paint:   `paint`,
+  },
+
+  NAV_LEGEND_ICON_o:
+  {
+    home:    `&#x2302;`,    //: ⌂
+    article: `&#x2263;`,    //: ≣
+    galerie: `&#x22A1;`,    //: ⊡
+    stat:    `&#x2237;`,    //: ∷
+
+    burst:   `&#x229B;`,    //: ⊛
+    aster:   `&#x229A;`,    //: ⊚
+    paint:   `&#x229E;`,    //: ⊞
+  },
+
 
   ANCHOR_SEPARATOR_s : '__',
 

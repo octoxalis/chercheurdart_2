@@ -2,41 +2,55 @@ context( stack, new )
 <nav>
         display: flex;
         justify-content: center;
-        gap: {{CSS_o.PAD_16}};
+        gap: {{CSS_o.PAD_8}};
         width: 100%;
         height: {{CSS_o.PAD_6}};
         background: var(--bgcolor);
-        opacity: 1;
-        transition: all 5s;  /* long fading out */
-    <a>
-            context( block, link_regular )
-            font-weight: 400;
-            /*text-transform: capitalize;*/
-            text-transform: uppercase;
-            opacity: .25;
-
+    <a:before>
+            context( copy, next )
     </a>
+    <label:before>
+            content: attr( data-legend );
+            position: absolute;
+            left: 1.5em;
+            font-size: 85%;
+            line-height: 2;
+            transform: translateX( -10em );
+            transition: transform ease .5s;
+    </label>
+    <a>
+            context( copy, next )
+    </a>
+    <label>
+            position: relative;
+            overflow: hidden;
+            width: 5vw;
+            font-weight: 500;
+            color: currentColor;
+            text-decoration: none;
+            text-transform: uppercase;
+            opacity: .2;
+    </label>
+    <a:hover>
+            context( copy, next )
+    </a>
+    <label:hover>
+            width: 15vw;
+    </label>
     <!----------variant---------->
-    <a:focus>
+    <a:hover:before>
       context( copy, next )
     </a>
-    <a:hover>
-      context( block, link_hover )
-</a>
-    <label>
-            font-weight: 400;
-            color: currentColor;
-            text-transform: uppercase;
-            opacity: .25;
+    <label:hover:before>
+            transform: translateX( 0 );
     </label>
 </nav>
 <!----------variant---------->
 <nav:hover>
         filter: saturate(5);
-        opacity: 1;
         transition: all .2s;  /* short fading in */
   <a>
-    context( copy, next )
+          context( copy, next )
   </a>
   <label>
         opacity: 1;

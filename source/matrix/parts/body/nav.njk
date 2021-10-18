@@ -1,6 +1,6 @@
 <nav>
-  <a href="index.html">{{C_o.HOME_CHAR_s}}</a>
+  <a href="index.html" data-legend="{{C_o.NAV_LEGEND_o.home}}">{{C_o.NAV_LEGEND_ICON_o.home}}</a>
 {% for _section in section_a %}
-  <label for="{{C_o.INPUT_ID_s}}_{{_section}}">{{ _section }}</label>
+  <label for="{{C_o.INPUT_ID_s}}_{{_section}}" data-legend="{{C_o.NAV_LEGEND_o[_section]}}">{{C_o.NAV_LEGEND_ICON_o[_section]}}</label>
 {% endfor %}
 </nav>

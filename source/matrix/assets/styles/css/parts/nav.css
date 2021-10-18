@@ -1,35 +1,38 @@
 nav {
   display: flex;
   justify-content: center;
-  gap: {{CSS_o.PAD_16}};
+  gap: {{CSS_o.PAD_8}};
   width: 100%;
   height: {{CSS_o.PAD_6}};
   background: var(--bgcolor);
-  opacity: 1;
-  transition: all 5s;
 }
-nav > a {
+nav > a:before, nav > label:before {
+  content: attr( data-legend );
+  position: absolute;
+  left: 1.5em;
+  font-size: 85%;
+  line-height: 2;
+  transform: translateX( -10em );
+  transition: transform ease .5s;
+}
+nav > a, nav > label {
+  position: relative;
+  overflow: hidden;
+  width: 5vw;
+  font-weight: 500;
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid var(--shadow_ne);
-  font-weight: 400;
   text-transform: uppercase;
-  opacity: .25;
+  opacity: .2;
 }
-nav > a:focus, nav > a:hover {
-  border-bottom: 1px solid;
-  filter: brightness( var(--brigtness_hi) );
-  transition: opacity .2s;
+nav > a:hover, nav > label:hover {
+  width: 15vw;
 }
-nav > label {
-  font-weight: 400;
-  color: currentColor;
-  text-transform: uppercase;
-  opacity: .25;
+nav > a:hover:before, nav > label:hover:before {
+  transform: translateX( 0 );
 }
 nav:hover {
   filter: saturate(5);
-  opacity: 1;
   transition: all .2s;
 }
 nav:hover > a, nav:hover > label {
