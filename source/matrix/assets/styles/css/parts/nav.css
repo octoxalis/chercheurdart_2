@@ -24,9 +24,11 @@ nav > a, nav > label {
   text-decoration: none;
   text-transform: uppercase;
   opacity: .2;
+  transition: all ease .2s;
 }
 nav > a:hover, nav > label:hover {
   width: 15vw;
+  transition: all ease .5s;
 }
 nav > a:hover:before, nav > label:hover:before {
   transform: translateX( 0 );

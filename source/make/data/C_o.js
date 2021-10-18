@@ -98,7 +98,7 @@ const C_o =
 
   INSERT_ICON_o:
   {
-    html: '&#x22F1;',    //: ⋱ (diag elipsis)
+    html: '&#x22F1;',    //: ⋱ (diag elipsis)  
     css:  '\\22F1',      //!!!  escape slash
     js:   '\u22F1',
   },
@@ -124,7 +124,7 @@ const C_o =
 
     burst:   `&#x22C7;`,    //: ⋇
     aster:   `&#x229A;`,    //: ⊚
-    paint:   `&#x229E;`,    //: ⊞
+    paint:   `&#x229C;`,    //: ⊜
   },
 
 

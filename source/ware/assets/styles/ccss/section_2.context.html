@@ -1,5 +1,5 @@
 <section#{{C_o.SECTION_a[2]}}>
-        /*position: relative;*/
+        padding: {{CSS_o.PAD_6}} 2vmin 2vmin 2vmin;
   <nav>
   </nav>
   <input />
@@ -9,10 +9,12 @@
   <div>
           display: none;
           position: absolute;
-          width: {{CSS_o.FULL_WIDTH_s}};
-          min-height: calc( {{CSS_o.FULL_HEIGHT_s}} - {{CSS_o.PAD_8}});
+          margin-top: 2vmin;
+          width: calc( {{CSS_o.FULL_WIDTH_s}} - 4vmin );
+          min-height: calc( {{CSS_o.FULL_HEIGHT_s}} - ( {{CSS_o.PAD_12}} + 4vmin ) );
           color: currentColor;
           background: var(--bgcolor);
+          border: 1px solid var(--shadow_ne);   /* TEMPORARY */
   </div>
   <!----------variant---------->
   <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked />

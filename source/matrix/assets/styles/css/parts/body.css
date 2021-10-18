@@ -1,5 +1,6 @@
 body {
   position: relative;
+  overflow-X: hidden;
   min-height: 200vh;
   color: var(--textcolor);
   background: var(--bgcolor);
