@@ -886,7 +886,7 @@ module.exports =
           .replace
           (
             match_a[0],    //: <ins data--="...">...</ins>
-            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1">${C_o.INS_TRIGGER_s}</label>`
+            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1">${C_o.INSERT_ICON_o.js}</label>`
             + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
             + `<ins>`      //: remove ins tag data-- attribute
             + insert_s

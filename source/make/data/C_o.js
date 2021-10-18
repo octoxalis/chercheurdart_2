@@ -95,6 +95,14 @@ const C_o =
     '<del for=div_paint hidden ></del>',    //: idem
   ],
 
+
+  INSERT_ICON_o:
+  {
+    html: '&#x22F1;',    //: ⋱ (diag elipsis)
+    css:  '\\22F1',      //!!!  escape slash
+    js:   '\u22F1',
+  },
+
   NAV_LEGEND_o:
   {
     home:    `accueil`,
@@ -114,7 +122,7 @@ const C_o =
     galerie: `&#x22A1;`,    //: ⊡
     stat:    `&#x2237;`,    //: ∷
 
-    burst:   `&#x229B;`,    //: ⊛
+    burst:   `&#x22C7;`,    //: ⋇
     aster:   `&#x229A;`,    //: ⊚
     paint:   `&#x229E;`,    //: ⊞
   },
@@ -136,8 +144,7 @@ const C_o =
   IOR_DIM_TAG_s:    'i',
   CHAPTER_TAG_s:    'h2',
 
-  CLOSE_CHAR_s:    '\u00D7',
-  HOME_CHAR_s:     '&#8962;',    //: ⌂
+  //?? CLOSE_CHAR_s:    '\u00D7',
 
 
   //=== JS ===
@@ -151,7 +158,7 @@ const C_o =
   
 
   //=== INSERT
-  INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
+  //XX INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
   INS_OPEN_s:      '₍',         //: document preprocessor delimiter
   INS_CLOSE_s:     '₎',         //: document preprocessor delimiter
 

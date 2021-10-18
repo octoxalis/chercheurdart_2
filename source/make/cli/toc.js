@@ -309,7 +309,7 @@ const TOC_o =
 `<p data-ins=contents>
   <a href=${atdoc_o.doc_s}.html>${atdoc_o.title_s}</a>
   <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
-  <label for=L_${atdoc_o.doc_s} tabindex=-1>▾</label>
+  <label for=L_${atdoc_o.doc_s} tabindex=-1>${C_o.INSERT_ICON_o.js}</label>
   <input id=L_${atdoc_o.doc_s} type=checkbox>
   <ins>
     <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>
