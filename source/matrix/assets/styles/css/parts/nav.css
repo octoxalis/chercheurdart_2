@@ -1,10 +1,11 @@
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: {{CSS_o.PAD_16}};
   width: 100%;
   height: {{CSS_o.PAD_6}};
   background: var(--bgcolor);
-  opacity: .25;
+  opacity: 1;
   transition: all 5s;
 }
 nav > a {
@@ -12,15 +13,27 @@ nav > a {
   text-decoration: none;
   border-bottom: 1px solid var(--shadow_ne);
   font-weight: 400;
-  filter: brightness( var(--brigtness_lo) );
+  text-transform: uppercase;
+  opacity: .25;
 }
 nav > a:focus, nav > a:hover {
   border-bottom: 1px solid;
   filter: brightness( var(--brigtness_hi) );
   transition: opacity .2s;
 }
+nav > label {
+  font-weight: 400;
+  color: currentColor;
+  text-transform: uppercase;
+  opacity: .25;
+}
 nav:hover {
   filter: saturate(5);
   opacity: 1;
   transition: all .2s;
+}
+nav:hover > a, nav:hover > label {
+  opacity: 1;
+  filter: brightness( var(--brigtness_hi) );
+  transition: opacity .2s;
 }

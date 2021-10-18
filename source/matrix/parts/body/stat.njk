@@ -7,17 +7,17 @@
   {% if _stat === C_o.STAT_a[0] %}
   {% set _checked = 'checked' %}
   {% endif %}
-  <input id="I_{{_stat}}" name="stat_nav" type="radio" {{_checked}} />
+  <input id="{{C_o.INPUT_ID_s}}_{{_stat}}" name="stat_nav" type="radio" {{_checked}} />
 {% endfor %}
 <nav>
 {% for _stat in stat_a %}
-  <label for="I_{{_stat}}">{{ _stat }}</label>
+  <label for="{{C_o.INPUT_ID_s}}_{{_stat}}">{{_stat}}</label>
 {% endfor %}
 </nav>
 {% for _stat in stat_a %}
-  <div id="stat_{{_stat}}">
+  <div id="{{_stat}}">
     {{C_o.STAT_INSERT_a[loop.index0]}}
-    <h3>{{ _stat }}</h3><!-- TEMPORARY -->
+    <h3>{{_stat}}</h3><!-- TEMPORARY -->
   </div>
 {% endfor %}
 </section>

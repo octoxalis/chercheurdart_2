@@ -15,7 +15,7 @@
   [
     `article`,
     `galerie`,
-    `stats`,
+    `stat`,
   ],
 
   stat_a:

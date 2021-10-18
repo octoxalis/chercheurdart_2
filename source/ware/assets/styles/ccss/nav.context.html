@@ -1,53 +1,46 @@
 context( stack, new )
 <nav>
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap: {{CSS_o.PAD_16}};
         width: 100%;
         height: {{CSS_o.PAD_6}};
         background: var(--bgcolor);
-        opacity: .25;
+        opacity: 1;
         transition: all 5s;  /* long fading out */
     <a>
             context( block, link_regular )
             font-weight: 400;
-            filter: brightness( var(--brigtness_lo) );
             /*text-transform: capitalize;*/
+            text-transform: uppercase;
+            opacity: .25;
+
     </a>
     <!----------variant---------->
     <a:focus>
       context( copy, next )
     </a>
     <a:hover>
-            context( block, link_hover )
-    </a>
+      context( block, link_hover )
+</a>
+    <label>
+            font-weight: 400;
+            color: currentColor;
+            text-transform: uppercase;
+            opacity: .25;
+    </label>
 </nav>
 <!----------variant---------->
 <nav:hover>
         filter: saturate(5);
         opacity: 1;
         transition: all .2s;  /* short fading in */
-</nav>
-<!----------variant----------><!-- section related -->
-<!--
-<input#I_{{C_o.SECTION_a[0]}}:checked />
-~
-<nav>
-  <label[for=I_{{C_o.SECTION_a[0]}}]>
-          context( copy, next )
+  <a>
+    context( copy, next )
+  </a>
+  <label>
+        opacity: 1;
+        filter: brightness( var(--brigtness_hi) );
+        transition: opacity .2s;
   </label>
 </nav>
-<input#I_{{C_o.SECTION_a[1]}}:checked />
-~
-<nav>
-  <label[for=I_{{C_o.SECTION_a[1]}}]>
-          context( copy, next )
-  </label>
-</nav>
-<input#I_{{C_o.SECTION_a[2]}}:checked />
-~
-<nav>
-  <label[for=I_{{C_o.SECTION_a[2]}}]>
-          visibility: hidden;
-  </label>
-</nav>
--->

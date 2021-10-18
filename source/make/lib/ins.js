@@ -649,7 +649,7 @@ tableRow__s:
       .gallery_a
         .push
         (
-          `<figure id="${C_o.SLIDE_ID_s}${INS_o.index_n}">`
+          `<figure id="${C_o.GALERY_ID_s}${INS_o.index_n}">`
           
           + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
           + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment

@@ -59,6 +59,6 @@ section {
   padding-top: {{CSS_o.PAD_8}};
   background: var(--bgcolor);
 }
-input#I_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#I_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}}, input#I_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {
+input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {
   display: block;
 }

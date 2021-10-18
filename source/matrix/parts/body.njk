@@ -2,9 +2,9 @@
 {% include "parts/body/nav_input.njk" %}
 {% include "parts/body/main.njk" %}
 {% if stat_a %}
-{% include "parts/body/stats.njk" %}
+{% include "parts/body/stat.njk" %}
 {% endif %}
-{% include "parts/body/nav.njk" %}
+{% include "parts/body/nav.njk" %}    <!-- at end to be upper layer -->
 {% include "parts/body/svg_inline.njk" %}
 {% if C_o.SERVICE_b === true %}
 {% include "parts/body/script.njk" %}

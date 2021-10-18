@@ -76,10 +76,10 @@ const C_o =
   [
     'article',
     'galerie',
-    'stats',
+    'stat',
   ],
 
-  SECTION_1_INSERT_s:  '<del data--=section_1 hidden ></del>',
+  SECTION_1_INSERT_s:  '<del for=section_a[1] hidden ></del>',
 
   STAT_a:
   [
@@ -90,9 +90,9 @@ const C_o =
 
   STAT_INSERT_a:
   [
-    '<del data--=stat_burst hidden ></del>',
-    '<del data--=stat_aster hidden ></del>',
-    '<del data--=stat_paint hidden ></del>',
+    '<del for=div_burst hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
+    '<del for=div_aster hidden ></del>',    //: idem
+    '<del for=div_paint hidden ></del>',    //: idem
   ],
 
 
@@ -100,10 +100,11 @@ const C_o =
 
 
   //=== HTML ===
+  INPUT_ID_s:       'IN',
   INSERT_ID_s:      'I',
-  ASIDE_GRAY_ID_s:  'G',
-  ASIDE_COLOR_ID_s: 'C',
-  SLIDE_ID_s:       'S',
+  ASIDE_GRAY_ID_s:  'AG',
+  ASIDE_COLOR_ID_s: 'AC',
+  GALERY_ID_s:      'G',
   TOPICS_ID_s:      'T',
 
   TABLE_TAG_s:      'span',
@@ -112,6 +113,7 @@ const C_o =
   CHAPTER_TAG_s:    'h2',
 
   CLOSE_CHAR_s:    '\u00D7',
+  HOME_CHAR_s:     '&#8962;',    //: ⌂
 
 
   //=== JS ===
@@ -173,13 +175,13 @@ const C_o =
 
   WORDS_DELIM_s:  ' ',
   WORDS_CONCAT_s: '_',
-  TOPICS_LIST_s:    '<del data--=topics hidden ></del>',
+  TOPICS_LIST_s:    '<del for=div_topics hidden ></del>',
 
   //=== COMMENT
   COMMENT_DELIM_s: '₊',
   COMMENT_INTRO_s: '₀',
   COMMENT_ELIPSIS_s: '...',
-  COMMENT_PART_s:   '<del data--=comment hidden ></del>',
+  COMMENT_PART_s:   '<del for=div_comment hidden ></del>',
 
   //=== DB ===
   DB_a:    //: db tables names
