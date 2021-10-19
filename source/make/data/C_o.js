@@ -5,81 +5,60 @@ const CONF_o = require( '../../configure.js' )
 
 const C_o =
 {
-  //=== HEAD ===
-  INLINE_s: 'inline_style',
+  //=== DIR ===     relative to source dir
+  MAKE_DIR_s:            CONF_o.MAKE_DIR_s,
+  CONTENT_DIR_s:         CONF_o.CONTENT_DIR_s,
+  WARE_DIR_s:            CONF_o.WARE_DIR_s,
+  IMG_DIR_s:             CONF_o.IMG_DIR_s,
+  CONTEXT_INPUT_FILE_s:  CONF_o.CONTEXT_INPUT_FILE_s,
+  CONTEXT_PARTS_DIR_s:   CONF_o.CONTEXT_PARTS_DIR_s,
+  CSS_SITE_DIR_s:        CONF_o.CSS_SITE_DIR_s,
+  ADOC_PARTS_DIR_s:      CONF_o.ADOC_PARTS_DIR_s,
+  LIB_PARTS_DIR_s:       CONF_o.LIB_PARTS_DIR_s,
+  CONTENT_PARTS_DIR_s:   CONF_o.CONTENT_PARTS_DIR_s,
+  COM_OUTPUT_DIR_s:      CONF_o.COM_OUTPUT_DIR_s,
+  TOPICS_DIR_s:          CONF_o.TOPICS_DIR_s,
+
+  SITE_PATH_s:           CONF_o.SITE_PATH_s,
+  DATA_PATH_s:           CONF_o.DATA_PATH_s,
+  INCLUDES_PATH_s:       CONF_o.INCLUDES_PATH_s,
+  CONTENTS_PATH_s:       CONF_o.CONTENTS_PATH_s,
+  CONTENT_PARTS_PATH_s:  CONF_o.CONTENT_PARTS_PATH_s,
+  ADOC_TEMP_PATH_s:      CONF_o.ADOC_TEMP_PATH_s,
+  TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
 
-  //=== HEADERS ===
-  csp_o:
+  //=== CONFIGURE FLAG
+  ADOC_MARKUP_b:        CONF_o.ADOC_MARKUP_b,
+
+
+  //=== HTML-HEAD: HEADERS ===
+  HEAD_CSP_o:  //!!! KEEP order
   {
-    HEAD_o:  //!!! DON'T change order
-    {
-      DEFAULT_SRC:     'none',
-      BASE_URI:        '',
-      FONT_SRC:        '',
-      CONNECT_SRC:     '',
-      PREFETCH_SRC:    '',  //: requires 'enable-experimental-web-platform-features' flag
-      IMG_SRC:         '',
-      FRAME_SRC:       '',
-      FRAME_ANCESTORS: '',
-      FORM_ACTION:     '',
-      MANIFEST_SRC:    '',
-      SCRIPT_SRC_ELEM: '',
-      OBJECT_SRC:      '',
-      SCRIPT_SRC:      ``,
-      STYLE_SRC:       ``,
-    },
+    DEFAULT_SRC:     'none',
+    BASE_URI:        '',
+    FONT_SRC:        '',
+    CONNECT_SRC:     '',
+    PREFETCH_SRC:    '',  //: requires 'enable-experimental-web-platform-features' flag
+    IMG_SRC:         '',
+    FRAME_SRC:       '',
+    FRAME_ANCESTORS: '',
+    FORM_ACTION:     '',
+    MANIFEST_SRC:    '',
+    SCRIPT_SRC_ELEM: '',
+    OBJECT_SRC:      '',
+    SCRIPT_SRC:      ``,
+    STYLE_SRC:       ``,
   },
 
 
-  //=== SERVICE WORKER ===
-  SERVICE_b: CONF_o.SERVICE_b,
-  KEY_n:     CONF_o.KEY_n,
-
-
-  //=== DIR ===     relative to source dir
-  SITE_PATH_s:          CONF_o.SITE_PATH_s,
-  DATA_PATH_s:          CONF_o.DATA_PATH_s,
-  INCLUDES_PATH_s:      CONF_o.INCLUDES_PATH_s,
-  CONTENTS_PATH_s:       CONF_o.CONTENTS_PATH_s,
-  CONTENT_PARTS_PATH_s: CONF_o.CONTENT_PARTS_PATH_s,
-
-  MAKE_DIR_s:          CONF_o.MAKE_DIR_s,
-  CONTENT_DIR_s:       CONF_o.CONTENT_DIR_s,
-
-  WARE_DIR_s:          CONF_o.WARE_DIR_s,
-  IMG_DIR_s:           CONF_o.IMG_DIR_s,
-  CONTEXTUAL_INPUT_s:  CONF_o.CONTEXTUAL_INPUT_s,
-  CONTEXTUAL_OUTPUT_s: CONF_o.CONTEXTUAL_OUTPUT_s,
-
-  ADOC_TEMPLATES_s:    CONF_o.ADOC_TEMPLATES_s,
-  ADOC_MARKUP_b:       CONF_o.ADOC_MARKUP_b,
-
-  INS_CSS_s:           CONF_o.INS_CSS_s,
-
-  JSON_INPUT_DIR_s:    CONF_o.JSON_INPUT_DIR_s,
-  ADOC_OUTPUT_DIR_s:   CONF_o.ADOC_OUTPUT_DIR_s,
-
-  LIB_PARTS_DIR_s:     CONF_o.LIB_PARTS_DIR_s,
-  CONTENT_PARTS_DIR_s: CONF_o.CONTENT_PARTS_DIR_s,
-
-  COM_OUTPUT_DIR_s:    CONF_o.COM_OUTPUT_DIR_s,
-
-  TOPICS_DIR_s:        CONF_o.TOPICS_DIR_s,
-
-  
-
-  //=== SECTIONS ===
-  URL_INDEX_s:    'index.html',
-
+  //=== HTML-BODY: SECTIONS ===
   SECTION_a:
   [
     'article',
     'galerie',
     'stat',
   ],
-
-  SECTION_1_INSERT_s:  '<del for=section_a[1] hidden ></del>',
 
   STAT_a:
   [
@@ -88,50 +67,20 @@ const C_o =
     'paint',
   ],
 
-  STAT_INSERT_a:
-  [
-    '<del for=div_burst hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
-    '<del for=div_aster hidden ></del>',    //: idem
-    '<del for=div_paint hidden ></del>',    //: idem
-  ],
-
-
-  INSERT_ICON_o:
+  NAV_LEGEND_o:    //: property names === SECTION_a + STAT_a
   {
-    html: '&#x22F1;',    //: ⋱ (diag elipsis)  
-    css:  '\\22F1',      //!!!  escape slash
-    js:   '\u22F1',
-  },
+    home:    { icon_s: `&#x2302;`, legend_s: `accueil` },    //: ⌂
+    article: { icon_s: `&#x2263;`, legend_s: `article` },    //: ≣
+    galerie: { icon_s: `&#x22A1;`, legend_s: `galerie` },    //: ⊡
+    stat:    { icon_s: `&#x2237;`, legend_s: `diagrammes`},  //: ∷
 
-  NAV_LEGEND_o:
-  {
-    home:    `accueil`,
-    article: `article`,
-    galerie: `galerie`,
-    stat:    `diagrammes`,
-
-    burst:   `burst`,
-    aster:   `aster`,
-    paint:   `paint`,
-  },
-
-  NAV_LEGEND_ICON_o:
-  {
-    home:    `&#x2302;`,    //: ⌂
-    article: `&#x2263;`,    //: ≣
-    galerie: `&#x22A1;`,    //: ⊡
-    stat:    `&#x2237;`,    //: ∷
-
-    burst:   `&#x22C7;`,    //: ⋇
-    aster:   `&#x229A;`,    //: ⊚
-    paint:   `&#x229C;`,    //: ⊜
+    burst:   { icon_s: `&#x22C7;`, legend_s: `burst`},       //: ⋇
+    aster:   { icon_s: `&#x229A;`, legend_s: `aster`},       //: ⊚
+    paint:   { icon_s: `&#x229C;`, legend_s: `paint`},       //: ⊜
   },
 
 
-  ANCHOR_SEPARATOR_s : '__',
-
-
-  //=== HTML ===
+  //=== HTML-BODY: TAGS ===
   INPUT_ID_s:       'IN',
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
@@ -144,87 +93,81 @@ const C_o =
   IOR_DIM_TAG_s:    'i',
   CHAPTER_TAG_s:    'h2',
 
-  //?? CLOSE_CHAR_s:    '\u00D7',
 
+  //=== HTML-BODY: EXTEND MARKUP ===
+  INS_OPEN_s:   '₍',       //: document preprocessor delimiter
+  INS_CLOSE_s:  '₎',       //: document preprocessor delimiter
 
-  //=== JS ===
-  //?? KEYVAL_DELIM_s:  '==',  //: _ior_spot shortcode
-  LINE_DELIM_s:    '\n',
-  PART_DELIM_s:    '_',    //: between subparts
-  ID_DELIM_s:      '-',    //: between parts
-  ID_WORD_DELIM_s: '¯',    //: between multi word subpart
-  SPECIF_DELIM_s:  ' ',    //: between specifier and content (insert)
-  BREAK_DELIM_s:   ' ~ ',  //: line break (insert)
-  
+  INS_TXT_s:  '₀',        //: text insert
+  INS_DEF_s:  '₁',        //: definition list
+  INS_REF_s:  '₂',        //: reference insert
+  INS_QUO_s:  '₃',        //: quotation insert
+  INS_TAB_s:  '₄',        //: table insert
+  //..............
+  INS_IMG_s:  '₉',        //: image insert
 
-  //=== INSERT
-  //XX INS_TRIGGER_s:   '\u25BE',    //: unicode ▾
-  INS_OPEN_s:      '₍',         //: document preprocessor delimiter
-  INS_CLOSE_s:     '₎',         //: document preprocessor delimiter
+  INS_ICON_o:
+  {
+    html: '&#x22F1;',    //: ⋱ (diag elipsis)  
+    css:  '\\22F1',      //!!!  escape slash
+    js:   '\u22F1',
+  },
 
-  INS_TXT_s:      '₀',        //: text insert
-  INS_DEF_s:      '₁',        //: definition list
-  INS_REF_s:      '₂',        //: reference insert
-  INS_QUO_s:      '₃',        //: quotation insert
-  INS_TAB_s:      '₄',        //: table insert
-  //...
-  INS_IMG_s:      '₉',        //: image insert
   INS_METHOD_o:
   {
-    '₀': 'txt',
-    '₁': 'def',
-    '₂': 'ref',
-    '₃': 'quo',
-    '₄': 'tab',
+    '₀':  'txt',
+    '₁':  'def',
+    '₂':  'ref',
+    '₃':  'quo',
+    '₄':  'tab',
     //...
-    '₉': 'img',
+    '₉':  'img',
   },
+
+  LINE_DELIM_s:        '\n',
+  PART_DELIM_s:        '_',    //: between subparts
+  SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
+  BREAK_DELIM_s:       ' ~ ',  //: line break (insert)
+
+  ID_DELIM_s:          '-',    //: between db id parts
+  ID_WORD_DELIM_s:     '¯',    //: between db id multi word subpart
+
+  IMG_LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
+
+  WORDS_DELIM_s:       ' ',
+  WORDS_CONCAT_s:      '_',
+  COMMENT_INTRO_s:     '₀',
+  COMMENT_ELIPSIS_s:   '...',
+  COMMENT_DELIM_s:     '₊',    //: subscript +
+
+  CELL_DELIM_s:        '₊',    //: subscript +
+
+  //-- ANCHOR_DELIM_s :     '__',
+
   INS_PRINCIP_s: 'principal',
   INS_SUBSID_s:  'subsid',
 
-  //=== TABLE
-  CELL_DELIM_s: '₊',
+  GALERY_INS_s:  '<del for=section_galery hidden ></del>',
+  STAT_INS_a:
+  [
+    '<del for=div_burst hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
+    '<del for=div_aster hidden ></del>',    //: idem
+    '<del for=div_paint hidden ></del>',    //: idem
+  ],
+  TOPICS_INS_s:    '<del for=div_topics hidden ></del>',
+  COMMENTS_INS_s:  '<del for=div_comment hidden ></del>',
+
+
+  //=== HTML-BODY: TABLE
   CELL_ALIGN_a:
   [
     'left',
     'center',
     'right'
   ],
+
   CELL_RATIO_n: .1,
 
-  //XX RANGE_DELIM_s:   ' \u2014 ',  //: long tiret
-
-  //=== DOCS
-  DOC_INDEX_n:   0,    //: index doc_n is 0 (> NO_TOPIC_n)
-
-  //=== TOPICS
-  AT_DOCN_n:     0,    //: doc_n in docs_a
-  AT_DOCS_n:     1,    //: doc_s
-  AT_TITLE_n:    2,    //: title
-  AT_SUBTITLE_n: 3,    //: subtitle
-  AT_TOPICS_n:   4,    //: [topic_s,...]
-
-  WORDS_DELIM_s:  ' ',
-  WORDS_CONCAT_s: '_',
-  TOPICS_LIST_s:    '<del for=div_topics hidden ></del>',
-
-  //=== COMMENT
-  COMMENT_DELIM_s: '₊',
-  COMMENT_INTRO_s: '₀',
-  COMMENT_ELIPSIS_s: '...',
-  COMMENT_PART_s:   '<del for=div_comment hidden ></del>',
-
-  //=== DB ===
-  DB_a:    //: db tables names
-  [
-    'artist',
-    'work',
-    'collection',
-    'biblio',
-  ],
-
-  //=== IMG LEGEND
-  LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
 
   //=== ADOC ===
   ADOC_DATA_s:       'ad',
@@ -235,7 +178,20 @@ const C_o =
   BLOCK_SECTION_s:   'section_level',
   BLOCK_PARAGRAPH_s: 'paragraph',
 
-}
 
+  //=== DB ===
+  DB_a:    //: db tables names
+  [
+    'artist',
+    'work',
+    'collection',
+    'biblio',
+  ],
+
+
+  //=== SERVICE WORKER ===
+  SERVICE_b: CONF_o.SERVICE_b,
+  KEY_n:     CONF_o.KEY_n,
+}
 
 module.exports = C_o

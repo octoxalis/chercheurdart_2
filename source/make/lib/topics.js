@@ -51,7 +51,7 @@ const DOCS_o =
         (
           at_o =>
             at_o
-              [C_o.AT_DOCN_n]
+              [X_o.AT_DOCN_n]
             ===
             doc_n
         )
@@ -66,7 +66,7 @@ const DOCS_o =
       of
       docsTopics_a
         [index_n]
-          [C_o.AT_TOPICS_n]
+          [X_o.AT_TOPICS_n]
     )
     {
       const id_s =
@@ -90,27 +90,16 @@ const DOCS_o =
           &&
           docsTopics_a
             [topicDoc_n]
-              [C_o.AT_DOCN_n]
+              [X_o.AT_DOCN_n]
           <                    //: skip hidden docs
           X_o
             .HIDDEN_DOCS_n
         )
         {
-          const doc_s =
+          const [ , doc_s, title_s, subtitle_s ] =
             docsTopics_a
               [topicDoc_n]
-                [C_o.AT_DOCS_n]
-            
-          const title_s =
-            docsTopics_a
-              [topicDoc_n]
-                [C_o.AT_TITLE_n]
-            
-          const subtitle_s =
-            docsTopics_a
-              [topicDoc_n]
-                [C_o.AT_SUBTITLE_n]
-            
+          
           link_s +=
             `<b><a href=${doc_s}.html>${title_s}</a></b>`
             + `<b>${subtitle_s}</b>`
@@ -133,7 +122,7 @@ const DOCS_o =
         linkList_s +=
 `<p data-ins=linkList>${atopic_s}
   <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
-  <label for=${id_s} tabindex=-1>${C_o.INSERT_ICON_o.js}</label>
+  <label for=${id_s} tabindex=-1>${C_o.INS_ICON_o.js}</label>
   <input id=${id_s} type=checkbox>
   <ins>
     <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>

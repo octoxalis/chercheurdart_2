@@ -118,7 +118,7 @@ const BUI_o =
             .replace
             (
               C_o.
-                TOPICS_LIST_s,
+                TOPICS_INS_s,
               TOP_o
                 .list__v
                 (
@@ -155,7 +155,7 @@ const BUI_o =
             .replace
             (
               C_o.
-                COMMENT_PART_s,
+                COMMENTS_INS_s,
               commentPart_s
             )
         )

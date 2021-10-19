@@ -19,7 +19,7 @@ module.exports =
       let [key_s, value_s]
       of
       Object
-        .entries( C_o.csp_o.HEAD_o )
+        .entries( C_o.HEAD_CSP_o )
     )
     {
       csp_s +=

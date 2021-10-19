@@ -8,7 +8,10 @@ const X_o =
   WORD_OPEN_s:  '‹',
   WORD_CLOSE_s: '›',
 
-  NO_TOPIC_n: -1,      //: document is excluded (ex. 404.html)
+  NO_TOPIC_n:  -1,     //: document is excluded (ex. 404.html)
+  DOC_INDEX_n: 0,      //: index doc_n is 0 (> NO_TOPIC_n)
+  AT_DOCN_n:   0,      //: doc_n in docs_a
+  AT_TOPICS_n: 4,      //: [topic_s,...]
 
   ARTICLE_n:   0,      //: 0-1023
   WORKS_n:     1,      //: 1024-

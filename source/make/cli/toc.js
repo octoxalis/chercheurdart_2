@@ -89,7 +89,6 @@ const TOC_o =
 
 
 
-
   docs__o:
   (
     source_s    //: front matter + markdown (*.md file)
@@ -295,7 +294,7 @@ const TOC_o =
         atdoc_o
           .doc_n
         >
-        C_o
+        X_o
           .DOC_INDEX_n    //: skip index and structural documents (ex.404.html)
         &&
         atdoc_o
@@ -309,7 +308,7 @@ const TOC_o =
 `<p data-ins=contents>
   <a href=${atdoc_o.doc_s}.html>${atdoc_o.title_s}</a>
   <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
-  <label for=L_${atdoc_o.doc_s} tabindex=-1>${C_o.INSERT_ICON_o.js}</label>
+  <label for=L_${atdoc_o.doc_s} tabindex=-1>${C_o.INS_ICON_o.js}</label>
   <input id=L_${atdoc_o.doc_s} type=checkbox>
   <ins>
     <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>

@@ -571,7 +571,7 @@ tableRow__s:
         + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
         + `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
         + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
         + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
         + `</${C_o.TABLE_TAG_s}>`
   }
@@ -782,7 +782,7 @@ tableRow__s:
   ) =>
   {
     const path_s =
-      C_o.INS_CSS_s
+      C_o.CSS_SITE_DIR_s
       + permalink_s
           .replace
           (
@@ -886,7 +886,7 @@ module.exports =
           .replace
           (
             match_a[0],    //: <ins data--="...">...</ins>
-            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1">${C_o.INSERT_ICON_o.js}</label>`
+            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1">${C_o.INS_ICON_o.js}</label>`
             + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
             + `<ins>`      //: remove ins tag data-- attribute
             + insert_s
@@ -904,7 +904,7 @@ module.exports =
       content_s
         .replace    //: add gallery asides (gray and color)
         (
-          C_o.SECTION_1_INSERT_s,    //: custom tag deleted after section insertion
+          C_o.GALERY_INS_s,    //: custom tag deleted after section insertion
           INS_o
           .gray_a
             .length

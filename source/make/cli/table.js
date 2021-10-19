@@ -15,7 +15,7 @@ const TAB_o =
   {
     const path_s =
       C_o
-        .ADOC_OUTPUT_DIR_s
+        .ADOC_PARTS_DIR_s
       + `${file_s}.${C_o.MACRO_INSERT_s}`
 
     const macro_s =
@@ -285,7 +285,7 @@ void function
   const file_a =
     KS_o
     (
-      C_o.JSON_INPUT_DIR_s,
+      C_o.TABLE_INPUT_PATH_s,
       {
         nodir: true,
         depthLimit: -1    //: unlimited

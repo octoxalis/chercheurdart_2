@@ -173,8 +173,8 @@ const UN_o =
 
 const CCSS_o =
 {
-  INPUT_s:            C_o.CONTEXTUAL_INPUT_s,    //: default input
-  OUTPUT_s:           C_o.CONTEXTUAL_OUTPUT_s,    //: default output directory
+  INPUT_s:            C_o.CONTEXT_INPUT_FILE_s,    //: default input
+  OUTPUT_s:           C_o.CONTEXT_PARTS_DIR_s,    //: default output directory
   CHILD_s:            '>',
   GENERAL_SIBLING_s:  '~',
   ADJACENT_SIBLING_s: '+',

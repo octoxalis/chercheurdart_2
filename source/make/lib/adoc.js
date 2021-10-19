@@ -16,7 +16,7 @@ const ADOC_o =
   {
     safe: 'safe',
     backend: 'html5',
-    template_dirs: [ C_o.ADOC_TEMPLATES_s ],
+    template_dirs: [ C_o.ADOC_TEMP_PATH_s ],
     extension_registry: null
   }
   ,
