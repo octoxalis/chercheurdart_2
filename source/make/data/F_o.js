@@ -1,6 +1,6 @@
 const { F_OK } = require('constants')
 const FS_o  = require( 'fs' )
-const KS_o  = require('klaw-sync')
+//XX const KS_o  = require('klaw-sync')
 
 const REX_o = require( '../lib/regex.js' )
 

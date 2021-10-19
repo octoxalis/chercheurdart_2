@@ -82,7 +82,7 @@ const ICO_o =
       }
     }
     
-    return compress_a
+    return compress_a    //|| int8_a
   }
   ,
     
@@ -163,6 +163,9 @@ const ICO_o =
 void function
 ()
 {
+  return
+
+  //: TEST
   const big_a =
     [
       0,    8,   12,   20,   24,   36,   44,   48,   56,   60,   68,
@@ -211,3 +214,18 @@ void function
   
     console.timeEnd( `compress_${REPEAT_n}` )
 }()
+
+
+module.exports =
+{
+  compress__a:
+  (
+    int32_a
+  ) =>
+    ICO_o
+      .compress__a
+      (
+        int32_a
+      )
+
+}

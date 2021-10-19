@@ -12,7 +12,7 @@
   <hr/><!-- !!! occurs at chapter end -->
           width: 100%;
           height: 1px;
-          margin: {{CSS_o.PAD_8}} auto {{CSS_o.PAD_12}};
+          margin: {{S_o.PAD_8}} auto {{S_o.PAD_12}};
           background: var(--shadow_ne);
           border: 0;
   <h1>
@@ -52,7 +52,7 @@
     <hr><!-- !!! occurs inside chapter -->
       width: 30%;
       height: 1px;
-      margin: {{CSS_o.PAD_4}} auto {{CSS_o.PAD_4}};
+      margin: {{S_o.PAD_4}} auto {{S_o.PAD_4}};
       background: var(--shadow_ne);
       border: 0;
     </hr>
@@ -70,7 +70,7 @@
               filter: invert( .5 );
       </label>
       <label>
-              margin: 0 {{CSS_o.PAD_1}};
+              margin: 0 {{S_o.PAD_1}};
               vertical-align: baseline;
               cursor: pointer;
         </label>
@@ -93,8 +93,8 @@
               display: block;
               position: relative;
               height: fit-content;
-              margin: {{CSS_o.PAD_1}} 0;
-              padding: {{CSS_o.PAD_4}};
+              margin: {{S_o.PAD_1}} 0;
+              padding: {{S_o.PAD_4}};
               /*background: var(--insert);*/
               text-decoration: none;
               border: 1px solid var(--shadow_ne);
@@ -179,7 +179,7 @@
                     font-style: normal;
             </i>
             <i:first-of-type::after>
-                    content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
+                    content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
            </i>
           </b>
         </{{C_o.TABLE_TAG_s}}>
@@ -230,8 +230,8 @@
           </{{C_o.ROW_TAG_s}}>
           <!----------variant---------->
           <{{C_o.ROW_TAG_s}}:nth-of-type(2n)>
-              margin-top: {{CSS_o.PAD_2}};
-              padding-left: {{CSS_o.PAD_8}};
+              margin-top: {{S_o.PAD_2}};
+              padding-left: {{S_o.PAD_8}};
           </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
       </ins>

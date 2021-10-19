@@ -5,7 +5,7 @@ label + label:hover {
   filter: invert( .5 );
 }
 label {
-  margin: 0 {{CSS_o.PAD_1}};
+  margin: 0 {{S_o.PAD_1}};
   vertical-align: baseline;
   cursor: pointer;
 }
@@ -16,7 +16,7 @@ label + input#comment_dialog + dialog {
   display: none;
 }
 label + input#comment_dialog:checked + dialog {
-  padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
+  padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
   background: var(--bgcolor);
   border: 2px solid var(--shadow_ne);
@@ -25,13 +25,13 @@ label + input#comment_dialog:checked + dialog {
   align-items: center;
   position: relative;
   width: 100%;
-  padding: {{CSS_o.PAD_2}};
+  padding: {{S_o.PAD_2}};
   box-shadow: 0 0 0 1000vmax var(--shadow_hi);
 }
 label + input#comment_dialog:checked + dialog > form[name=comment] {
   display: flex;
   flex-direction: column;
-  gap: {{CSS_o.PAD_2}};
+  gap: {{S_o.PAD_2}};
 }
 label + input#comment_dialog:checked + dialog > form[name=comment] > label {
   --font_max: 20px;
@@ -47,7 +47,7 @@ label + input#comment_dialog:checked + dialog > form[name=comment] > textarea {
   min-height: 16rem;
 }
 label + input#comment_dialog:checked + dialog > form[name=comment] > textarea, label + input#comment_dialog:checked + dialog > form[name=comment] > input {
-  padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
+  padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
   background: var(--bgcolor);
   border: 2px solid var(--shadow_ne);
@@ -58,7 +58,7 @@ label + input#comment_dialog:checked + dialog > form[name=comment] > textarea:fo
   filter: brightness( var(--brigtness_hi) );
 }
 label + input#comment_dialog:checked + dialog > form[name=comment] > button {
-  padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
+  padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
   background: var(--bgcolor);
   border: 2px solid var(--shadow_ne);
@@ -83,7 +83,7 @@ label + input#comment_dialog:checked + dialog > form[name=comment] > button[type
   font-style: normal;
 }
 label + input#comment_dialog:checked + dialog > form[name=comment] > label[for=comment_dialog] {
-  padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
+  padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
   background: var(--bgcolor);
   border: 2px solid var(--shadow_ne);

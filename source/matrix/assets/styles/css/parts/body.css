@@ -4,7 +4,7 @@ body {
   min-height: 200vh;
   color: var(--textcolor);
   background: var(--bgcolor);
-  font-family: {{CSS_o.FONT_BODY_s}};
+  font-family: {{S_o.FONT_BODY_s}};
 }
 body > input {
   display: none;

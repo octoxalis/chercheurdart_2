@@ -27,6 +27,9 @@ const C_o =
   ADOC_TEMP_PATH_s:      CONF_o.ADOC_TEMP_PATH_s,
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
+  //=== FILE NAMES
+  SCAN_FILE_s:    'scan.bin',
+
 
   //=== CONFIGURE FLAG
   ADOC_MARKUP_b:        CONF_o.ADOC_MARKUP_b,
@@ -72,7 +75,7 @@ const C_o =
     home:    { icon_s: `&#x2302;`, legend_s: `accueil` },    //: ⌂
     article: { icon_s: `&#x2263;`, legend_s: `article` },    //: ≣
     galerie: { icon_s: `&#x22A1;`, legend_s: `galerie` },    //: ⊡
-    stat:    { icon_s: `&#x2237;`, legend_s: `diagrammes`},  //: ∷
+    stat:    { icon_s: `&#x2237;`, legend_s: `analyse`},     //: ∷
 
     burst:   { icon_s: `&#x22C7;`, legend_s: `burst`},       //: ⋇
     aster:   { icon_s: `&#x229A;`, legend_s: `aster`},       //: ⊚

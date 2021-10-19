@@ -8,7 +8,7 @@ div[data-role=list] > ul > li {
   margin-bottom: 1rem;
 }
 div[data-role=list] > ul > li > b {
-  padding: {{CSS_o.PAD_2}};
+  padding: {{S_o.PAD_2}};
 }
 div[data-role=list] > ul > li > b:first-child {
   width: 35%;
@@ -17,7 +17,7 @@ div[data-role=list] > ul > li > b:first-child {
 div[data-role=list] > ul > li > b:nth-child(2) {
   width: 60%;
   text-align: right;
-  font-family: {{CSS_o.FONT_BODY_s}};
+  font-family: {{S_o.FONT_BODY_s}};
   font-size: 80%;
 }
 div[data-role=list] > ul > li > b:nth-child(2) > bold {
@@ -28,9 +28,9 @@ div[data-role=list] > ul > li > input, div[data-role=list] > ul > li > input + i
 }
 div[data-role=list] > ul > li > input + ins + label {
   width: 100%;
-  padding-left: {{CSS_o.PAD_8}};
+  padding-left: {{S_o.PAD_8}};
   font-style: italic;
-  margin: 0 {{CSS_o.PAD_1}};
+  margin: 0 {{S_o.PAD_1}};
   vertical-align: baseline;
   cursor: pointer;
 }
@@ -46,22 +46,22 @@ div[data-role=list] > ul > li > input:checked + ins {
   position: relative;
   width: 100%;
   height: fit-content;
-  margin: {{CSS_o.PAD_1}} 0;
-  padding: {{CSS_o.PAD_4}};
+  margin: {{S_o.PAD_1}} 0;
+  padding: {{S_o.PAD_4}};
   background: var(--insert);
   text-decoration: none;
   border: 1px solid var(--shadow_ne);
   border-radius: 4px;
 }
 div[data-role=list] > ul > li > input:checked + ins > p:first-of-type {
-  margin-top: {{CSS_o.PAD_8}};
+  margin-top: {{S_o.PAD_8}};
 }
 div[data-role=list] > ul > li > input:checked + ins > label {
   position: absolute;
   top: 0;
   right: 0;
-  margin: {{CSS_o.PAD_1}};
-  padding: {{CSS_o.PAD_1}} {{CSS_o.PAD_2}};
+  margin: {{S_o.PAD_1}};
+  padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
   background: var(--bgcolor);
   border: 2px solid var(--shadow_ne);

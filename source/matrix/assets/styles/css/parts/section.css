@@ -33,7 +33,7 @@ ul > li > a:hover {
   transition: opacity .2s;
 }
 ul > li:before {
-  content: '\{{CSS_o.LIST_MARKER_s}}';
+  content: '\{{S_o.LIST_MARKER_s}}';
   position: relative;
   left: -1rem;
   color: var(--shadow_ne);
@@ -44,7 +44,7 @@ pre {
 }
 pre > code {
   width: 100%;
-  padding: {{CSS_o.PAD_1}};
+  padding: {{S_o.PAD_1}};
   border-left: 1px solid currentColor;
   white-space: normal;
 }
@@ -53,10 +53,10 @@ section {
   content-visibility: auto;
   position: absolute;
   top: 0;
-  width: {{CSS_o.FULL_WIDTH_s}};
-  min-height: {{CSS_o.FULL_HEIGHT_s}};
+  width: {{S_o.FULL_WIDTH_s}};
+  min-height: {{S_o.FULL_HEIGHT_s}};
   height: auto;
-  padding-top: {{CSS_o.PAD_12}};
+  padding-top: {{S_o.PAD_12}};
   background: var(--bgcolor);
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {

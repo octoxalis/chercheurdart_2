@@ -1,6 +1,6 @@
 context( stack, new )
 <section#{{C_o.SECTION_a[1]}}>
-        column-count: 3;
+        column-count: 2;
         column-gap: 0;
         max-width: 100vw;
   <figure>
@@ -17,14 +17,18 @@ context( stack, new )
               width: 100%;
               padding: 1vmin;
               background: var(--shadow_hi);
+              opacity: 0;
+              transition: opacity .4s ease;
         <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
+              opacity: 0;
+              transition: opacity .4s ease;
           <b>
                     context( block, cartel )
             <i>
                     font-style: normal;
             </i>
             <i:first-of-type::after>
-                    content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
+                    content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
            </i>
             <a>
                     context( block, link_regular )
@@ -43,7 +47,7 @@ context( stack, new )
       </figcaption>
       <!----------variant---------->
       <figcaption:hover>
-              opacity: 0;
+              opacity: 1;
               transition: opacity .4s ease;
       </figcaption>
     </a>

@@ -13,7 +13,7 @@ section#{{C_o.SECTION_a[0]}} {
 section#{{C_o.SECTION_a[0]}} > hr {
   width: 100%;
   height: 1px;
-  margin: {{CSS_o.PAD_8}} auto {{CSS_o.PAD_12}};
+  margin: {{S_o.PAD_8}} auto {{S_o.PAD_12}};
   background: var(--shadow_ne);
   border: 0;
 }
@@ -53,7 +53,7 @@ section#{{C_o.SECTION_a[0]}} > div {
 section#{{C_o.SECTION_a[0]}} > div > hr {
   width: 30%;
   height: 1px;
-  margin: {{CSS_o.PAD_4}} auto {{CSS_o.PAD_4}};
+  margin: {{S_o.PAD_4}} auto {{S_o.PAD_4}};
   background: var(--shadow_ne);
   border: 0;
 }
@@ -75,7 +75,7 @@ p > label:hover {
   filter: invert( .5 );
 }
 p > label {
-  margin: 0 {{CSS_o.PAD_1}};
+  margin: 0 {{S_o.PAD_1}};
   vertical-align: baseline;
   cursor: pointer;
 }
@@ -88,8 +88,8 @@ p > label + input:checked + ins {
   display: block;
   position: relative;
   height: fit-content;
-  margin: {{CSS_o.PAD_1}} 0;
-  padding: {{CSS_o.PAD_4}};
+  margin: {{S_o.PAD_1}} 0;
+  padding: {{S_o.PAD_4}};
   text-decoration: none;
   border: 1px solid var(--shadow_ne);
   border-radius: 4px;
@@ -134,7 +134,7 @@ p > label + input:checked + ins > a > img {
   list-style: none;
 }
 {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}] > b:before {
-  content: '\{{CSS_o.LIST_MARKER_s}}';
+  content: '\{{S_o.LIST_MARKER_s}}';
   position: relative;
   left: -1rem;
   color: var(--shadow_ne);
@@ -182,7 +182,7 @@ p > label + input:checked + ins > a > img {
   font-style: normal;
 }
 {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
-  content: '\00A0\{{CSS_o.DIM_SEPARATOR_s}}\00A0';
+  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
 }
 {{C_o.TABLE_TAG_s}}[role=table] {
   display: flex;
@@ -217,6 +217,6 @@ p[data-ins=contents] > ins > {{C_o.TABLE_TAG_s}} > {{C_o.ROW_TAG_s}}:first-of-ty
   font-style: italic;
 }
 p[data-ins=contents] > ins > {{C_o.TABLE_TAG_s}} > {{C_o.ROW_TAG_s}}:nth-of-type(2n) {
-  margin-top: {{CSS_o.PAD_2}};
-  padding-left: {{CSS_o.PAD_8}};
+  margin-top: {{S_o.PAD_2}};
+  padding-left: {{S_o.PAD_8}};
 }

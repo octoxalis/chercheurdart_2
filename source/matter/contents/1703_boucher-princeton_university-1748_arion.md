@@ -27,6 +27,7 @@
 
   script_a:
   [
+    'stat.min.js',
   ],
   css_a:
   [
