@@ -1,59 +1,267 @@
 //=== scan.js
 const SCAN_o =
 {
-  eval__a:
-  (
-    buffer_a
+  //: {
+  //:   hue_o:
+  //:   {
+  //:     capacity_a: [360],
+  //:     hue_a: [360][...],
+  //:   },
+  //:
+  //:   sat_o:
+  //:   {
+  //:     capacity_a: [101],
+  //:     sat_a: [101][...],
+  //:   },
+  //:
+  //:   lum_o:
+  //:   {
+  //:     capacity_a: [101],
+  //:     lum_a: [101][...],
+  //:   }
+  //: }
+   scan__o:
+   (
+    buffer_a    //: ArrayBuffer
   ) =>
   {
-    let offset_n = 0
+    let scan_o = //XX new Object()
+      {
+        hue_o:
+        {
+          capacity_a: null,
+          hue_a: [],
+        },
 
-    let length_n = 360
+        sat_o:
+        {
+          capacity_a: null,
+          sat_a: [],
+        },
 
-    let scan_o = new Objet()
+        lum_o:
+        {
+          capacity_a: null,
+          lum_a: [],
+        }
+      }
 
-    scan_o
-      .hueLookup_a =
-        new Int32Array
-        (
-          buffer_a,
-          offset_n,
-          length_n
-        )
+    let buffer_n = 0    //: buffer_a pointer
     
-    offset_n +=
-      length_n
+    let look_n = 0      //: hueLookup_a, satLookup_a, lumLookup_a pointer
+
+    let length_n        //: hue_a, sat_a, lum_a slots length
+
+    const uint32_a =
+      new Uint32Array( buffer_a )
+
+    //=== HUE
+    let hue_n = 360
+
 
     scan_o
-      .hue_a =
-        new Int32Array
-        (
-          buffer_a,
-          360,
-          length
-        )
+      .hue_o
+        .capacity_a =
+          new Uint32Array
+          (
+            uint32_a
+                .subarray
+                (
+                  0,
+                  hue_n
+                )
+          )               //;console.log( scan_o )  ;return
+
+    for
+    (
+      let at_n = 0;
+      at_n < hue_n;
+      ++at_n
+    )
+    {
+      scan_o
+        .hue_o
+          .hue_a
+            [at_n] = []
+    }                       ;console.log( scan_o.hue_o.hue_a )
+
+
+    let at_n = 0
+    let atc_n = 0
+
+    at_n +=
+      hue_n
+
+    for
+    (
+      let length_n
+      of
+      scan_o
+        .hue_o
+          .capacity_a
+    )
+    {
+      //;console.log( at_n )
+      ;console.log( `${atc_n}: ${length_n}` )
+      //;console.log
+      //;(
+      //;  uint32_a
+      //;    .subarray
+      //;    (
+      //;      at_n,
+      //;      length_n
+      //;    )
+      //;)
+
+      scan_o
+        .hue_o
+          .hue_a
+            [atc_n++] =
+              new Uint32Array
+              (
+                uint32_a
+                    .subarray
+                    (
+                      at_n,
+                      length_n
+                    )
+              )
+              
+      at_n +=
+        length_n
+    }               ;console.log( scan_o )
+                    ;return
+  
+    buffer_n +=
+      hue_n
 
     scan_o
-      .satLookup_a
+      .hue_a = []
+    
+    while
+    (
+      look_n
+      <
+      hue_n
+    )
+    {
+      length_n =
+        hueLookup_a
+          [look_n]
+
+      scan_o
+        .hue_a
+          [ look_n ] =
+            new Int32Array
+            (
+              buffer_a,
+              buffer_n,
+              length_n
+            )
+
+      buffer_n +=
+        length_n
+        
+      ++look_n
+    }
+
+    return scan_o
+    //==>
+
+    
+    //=== SAT
+    look_n = 0
+
+    let sat_n = 101
+
+    let satLookup_a =
+      new Int32Array
+      (
+        buffer_a,
+        buffer_n,
+        sat_n
+      )
+
+    buffer_n +=
+      sat_n
 
     scan_o
-      .sat_a
-     
-    scan_o
-      .lumLookup_a
+      .sat_a = []
+    
+    while
+    (
+      look_n
+      <
+      sat_n
+    )
+    {
+      length_n =
+        satLookup_a
+          [look_n]
+
+      scan_o
+        .sat_a
+          [ look_n ] =
+            new Int32Array
+            (
+              buffer_a,
+              buffer_n,
+              length_n
+            )
+
+      buffer_n +=
+        length_n
+        
+      ++look_n
+    }
+
+    //=== LUM
+    look_n = 0
+
+    let lum_n = 101
+
+    let lumLookup_a =
+      new Int32Array
+      (
+        buffer_a,
+        buffer_n,
+        lum_n
+      )
+
+    buffer_n +=
+      lum_n
 
     scan_o
-      .lum_a
+      .lum_a = []
+    
+    while
+    (
+      look_n
+      <
+      lum_n
+    )
+    {
+      length_n =
+        lumLookup_a
+          [look_n]
+
+      scan_o
+        .lum_a
+          [ look_n ] =
+            new Int32Array
+            (
+              buffer_a,
+              buffer_n,
+              length_n
+            )
+
+      buffer_n +=
+        length_n
+        
+      ++look_n
+    }
+
+    return scan_o
   }
   ,
 }
-
-
-
-
-
-void function
-()
-{
-}()
-
