@@ -28,7 +28,7 @@ const C_o =
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
   //=== FILE NAMES
-  SCAN_FILE_s:    'scan.bin',
+  SCAN_FILE_s:    'scan.json',
 
 
   //=== CONFIGURE FLAG

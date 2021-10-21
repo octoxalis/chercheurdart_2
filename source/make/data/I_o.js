@@ -4,7 +4,7 @@
 const I_o =
 {
   IMG_DEFAULT_a:  [ 'full', 'max', '0', 'color',   'jpeg' ],  //: region/size/rotation/quality/format
-  SCAN_DEFAULT_a: [ 'full', 'max', '0', 'scan',    'bin' ],   //: idem
+  SCAN_DEFAULT_a: [ 'full', 'max', '0', 'scan',    'json' ],   //: idem
   IOR_DEFAULT_a:  [ 'full', 'max', '0', 'default', 'avif' ],  //: idem
 
   IOR_TRIPLE_a:

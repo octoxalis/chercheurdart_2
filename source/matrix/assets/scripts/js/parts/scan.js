@@ -83,9 +83,10 @@ const SCAN_o =
         .hue_o
           .hue_a
             [at_n] = []
-    }                       ;console.log( scan_o.hue_o.hue_a )
+    }                       //;console.log( scan_o.hue_o.hue_a )
 
 
+                             let total_n = 0
     let at_n = 0
     let atc_n = 0
 
@@ -102,21 +103,12 @@ const SCAN_o =
     )
     {
       //;console.log( at_n )
-      ;console.log( `${atc_n}: ${length_n}` )
-      //;console.log
-      //;(
-      //;  uint32_a
-      //;    .subarray
-      //;    (
-      //;      at_n,
-      //;      length_n
-      //;    )
-      //;)
+      //;console.log( `${atc_n}: ${length_n}` )
 
       scan_o
         .hue_o
           .hue_a
-            [atc_n++] =
+            [atc_n] =
               new Uint32Array
               (
                 uint32_a
@@ -127,10 +119,18 @@ const SCAN_o =
                     )
               )
               
+      ++atc_n
+      
       at_n +=
         length_n
-    }               ;console.log( scan_o )
-                    ;return
+
+                                   total_n +=
+                                     length_n
+      
+    }               
+    
+    ;console.log( total_n )
+    ;console.log( scan_o )      ;return
   
     buffer_n +=
       hue_n

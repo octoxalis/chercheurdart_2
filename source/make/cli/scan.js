@@ -200,9 +200,9 @@ const SCAN_o =
   /*
   Uint32Array view:
     [
-      hueCapacity_n[360], hue_a[360][...]
-      satCapacity_n[101], sat_a[101][...]
-      lumCapacity_n[101], lum_a[101][...]
+      hueCapacity_a[360], hue_a[360][...]
+      satCapacity_a[101], sat_a[101][...]
+      lumCapacity_a[101], lum_a[101][...]
     ]
   */
   scan__a:
@@ -216,7 +216,7 @@ const SCAN_o =
     const hue_a =
       new Array( capacity_n )
     
-    const hueCapacity_n =
+    const hueCapacity_a =
       new Array( capacity_n )
     
     while
@@ -226,7 +226,7 @@ const SCAN_o =
     {
       hue_a
         [capacity_n] = []
-      hueCapacity_n
+      hueCapacity_a
         [capacity_n] = 0
     }
     
@@ -236,7 +236,7 @@ const SCAN_o =
     const sat_a =
       new Array( capacity_n )
     
-    const satCapacity_n =
+    const satCapacity_a =
       new Array( capacity_n )
     
     while
@@ -246,7 +246,7 @@ const SCAN_o =
     {
       sat_a
         [capacity_n] = []
-      satCapacity_n
+      satCapacity_a
         [capacity_n] = 0
     }
     
@@ -256,7 +256,7 @@ const SCAN_o =
     const lum_a =
       new Array( capacity_n )
     
-    const lumCapacity_n =
+    const lumCapacity_a =
       new Array( capacity_n )
     
     while
@@ -266,7 +266,7 @@ const SCAN_o =
     {
       lum_a
         [capacity_n] = []
-      lumCapacity_n
+      lumCapacity_a
         [capacity_n] = 0
     }
     
@@ -309,7 +309,7 @@ const SCAN_o =
         [hue_n]
           .push( at_n )
     
-      hueCapacity_n
+      hueCapacity_a
         [hue_n] += 1
     
       let sat_n =
@@ -326,7 +326,7 @@ const SCAN_o =
         [sat_n]
           .push( at_n )
     
-      satCapacity_n
+      satCapacity_a
         [sat_n] += 1
  
       let lum_n =
@@ -343,19 +343,19 @@ const SCAN_o =
         [lum_n]
           .push( at_n )
     
-      lumCapacity_n
+      lumCapacity_a
         [lum_n] += 1
     }
     
     return (    //: Array
           [
-            hueCapacity_n,
+            hueCapacity_a,
             hue_a
               .flat(),
-            satCapacity_n,
+            satCapacity_a,
             sat_a
               .flat(),
-            lumCapacity_n,
+            lumCapacity_a,
             lum_a
               .flat()
           ]
@@ -372,11 +372,11 @@ const SCAN_o =
   )
   {
     return (        //: Buffer
-      //... F_o
-      //...   .exist__b( dest_s )
-      //... ?
-      //...   void console.log( `Already there:\t${dest_s}` )
-      //... :
+      F_o
+        .exist__b( dest_s )
+      ?
+        void console.log( `Already there:\t${dest_s}` )
+      :
         await SHA_o( src_s )
           .raw()
           .toBuffer()
@@ -428,21 +428,22 @@ const SCAN_o =
       buffer_a
     )
     {
-      console.time( 'scan' )
+      //;console.time( 'scan' )
 
       const scan_a =  //: Array
         SCAN_o
-          .scan__a( buffer_a )           //;console.log( scan_a )  //;return
+          .scan__a( buffer_a )
 
-      console.timeEnd( 'scan' )
+      //;console.timeEnd( 'scan' )
 
       WRI_o
         .toFile__v
         (
           dest_s,
-          SCAN_o
-            .view__a( scan_a )
+          JSON
+            .stringify( scan_a )
         )
+
     }
   }
   ,

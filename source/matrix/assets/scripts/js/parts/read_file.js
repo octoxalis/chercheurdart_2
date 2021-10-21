@@ -4,7 +4,8 @@ const READ_o =
   read__s:
   (
     path_s,
-    callback_f
+    callback_f,
+    method_s='json'    //: default
   ) =>
   {
     fetch
@@ -23,7 +24,7 @@ const READ_o =
           {
             return (
               response_o
-                .arrayBuffer()
+                [ method_s ]()
             )
           }
           

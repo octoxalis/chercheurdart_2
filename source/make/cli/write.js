@@ -9,8 +9,6 @@ const WRI_o =
     format_s='utf8'
   ) =>
   {
-    ;console.log( `buffer_s.length: ${buffer_s.length}` )
-
     FS_o
       .writeFile
       (
