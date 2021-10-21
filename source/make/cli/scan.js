@@ -350,14 +350,14 @@ const SCAN_o =
     return (    //: Array
           [
             hueCapacity_a,
-            hue_a
-              .flat(),
+            hue_a,
+            //XX  .flat(),
             satCapacity_a,
-            sat_a
-              .flat(),
+            sat_a,
+            //XX  .flat(),
             lumCapacity_a,
-            lum_a
-              .flat()
+            lum_a,
+            //XX  .flat()
           ]
     )
   }

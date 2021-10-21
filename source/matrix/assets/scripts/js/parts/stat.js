@@ -20,7 +20,7 @@ void function    //!!! TEST SCAN
         const scan_o =
           eval( buffer_a )    //!!! eval not JSON.parse !!!
         
-        ;console.log( scan_o )
+        //;console.log( scan_o )
       }
     )
 
