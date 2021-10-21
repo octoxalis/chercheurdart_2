@@ -18,6 +18,7 @@ const C_o =
   CONTENT_PARTS_DIR_s:   CONF_o.CONTENT_PARTS_DIR_s,
   COM_OUTPUT_DIR_s:      CONF_o.COM_OUTPUT_DIR_s,
   TOPICS_DIR_s:          CONF_o.TOPICS_DIR_s,
+  HTML_PARTS_DIR_s:      CONF_o.HTML_PARTS_DIR_s,
 
   SITE_PATH_s:           CONF_o.SITE_PATH_s,
   DATA_PATH_s:           CONF_o.DATA_PATH_s,
@@ -28,7 +29,8 @@ const C_o =
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
   //=== FILE NAMES
-  SCAN_FILE_s:    'scan.json',
+  SCAN_FILE_s:       'scan.json',
+  SCAN_IFRAME_s:     'scan_iframe',
 
 
   //=== CONFIGURE FLAG
@@ -85,6 +87,7 @@ const C_o =
 
   //=== HTML-BODY: TAGS ===
   INPUT_ID_s:       'IN',
+  LABEL_ID_s:       'LA',
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',

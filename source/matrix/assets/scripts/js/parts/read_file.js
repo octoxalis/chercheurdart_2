@@ -1,7 +1,7 @@
 //=== read_file.js
 const READ_o =
 {
-  read__s:
+  read__v:
   (
     path_s,
     callback_f,

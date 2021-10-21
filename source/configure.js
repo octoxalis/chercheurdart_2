@@ -28,6 +28,7 @@ module.exports =
   //=== DIR ===     relative to site || source/ware dir
   WARE_DIR_s:           'source/ware/',
   IMG_DIR_s:            'assets/media/img/',
+  HTML_PARTS_DIR_s:     'assets/parts/',
   CSS_SITE_DIR_s:       '../site/assets/styles/css/',
   LIB_PARTS_DIR_s:      'make/lib/parts/',
   CONTENT_PARTS_DIR_s:  'matter/contents/parts/',

@@ -1,16 +1,16 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1703_boucher-princeton_university-1748_arion.html',
+  permalink: '1586_de¯coster-new¯york_sothebys-1625_young¯woman.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
   doc_n:      1024,
-  title_s:    `Arion (1748-50) par François Boucher`,
-  subtitle_s: `F. Boucher Arion 1748`,
-  abstract_s: `Un décor pour La Muette`,
-  workID_s:   `1703_boucher-princeton_university-1748_arion`,
+  title_s:    `Jeune femme (1625 c.) par Adam de Coster`,
+  subtitle_s: `A. de Coster Jeune femme 1625 c.`,
+  abstract_s: `Un Nocture flamand`,
+  workID_s:   `1586_de¯coster-new¯york_sothebys-1625_young¯woman`,
   //... issue_n: -1,
 
   section_a:
@@ -44,12 +44,12 @@
 ---
 {% _doc section_a[0] %}
 //IMAGES
-:arion: ins:₉[sub_s={{workID_s}}]
+:jeune_femme: ins:₉[sub_s={{workID_s}}]
 
 //LINKS
 // TOPICS
 ////
-‹François Boucher›
+Adam de Coster›
 ////
 //========================================
 = {{title_s}}
@@ -62,14 +62,10 @@ pass:[{{abstract_s}}]
 //---------------------------------------
 == Presentation
 
-_Arion_ {arion} +
-fait partie d'un cycle décoratif conçu pour le château de La Muette.
+_Jeune femme tenant une chandelle_ {jeune_femme} +
+vendu chez Sotheby's.
 
 == Colorimétrie
 
 L'analyse colorimétrique...
-
-
-// *  link:1703_boucher-princeton_university-1748_arion__scan.html[scan]
-// *  link:1703_boucher-princeton_university-1748_arion__burst.html[burst]
 {% end_doc %}
