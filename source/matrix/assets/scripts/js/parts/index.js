@@ -27,6 +27,59 @@ const IND_o =
   ,
 
 
+  adopt__v:    //!!! ensure id_s
+  (
+    iframe_s,     //: iframe element ID
+    adopter_s,    //: adopter element ID
+    callback_f
+  ) =>
+  {
+    try
+    {
+      const iframe_e =
+        document
+          .getElementById( iframe_s )
+    
+      const src_e =      //: adopted element body
+        iframe_e
+          .contentDocument
+            .body
+        ||
+        iframe_e
+          .contentDocument
+    
+      const adopted_e =
+        src_e
+          .children[0]
+    
+      document
+        .getElementById( adopter_s )    //: adopter
+        .appendChild( adopted_e )
+    
+      callback_f
+      &&
+      callback_f
+      (
+        iframe_e,
+        adopted_e
+      )
+
+      iframe_e
+        .remove()
+    }
+    catch
+    (
+      error_o
+    )
+    {
+      console
+        .log(`ERROR DETECTED @iframe.js: ${ error_o }`)
+    }
+  }
+  ,
+
+
+
   listener__v:
   () =>
   {
@@ -103,38 +156,27 @@ const IND_o =
 
   comment_label__v:    //: listener
   (
-    event_e    //: not used
+    //-- event_e    //: not used
   ) =>
   {
-    const iframe_e =
-      document
-        .getElementById( 'comment_iframe' )
-  
-    const content_e =      //: adopted
-      iframe_e
-        .contentDocument
-          .body
-      ||
-      iframe_e
-        .contentDocument
-  
-    const form_e =
-      content_e
-        .children[0]
-  
-    document
-      .getElementById( 'comments' )    //: adopter
-      .appendChild( form_e )
-  
-    form_e
-      .querySelector( '#issue' )
-        .value =
-          iframe_e
-            .dataset
-              .issue_n
-  
-    iframe_e
-      .remove()
+    IND_o
+      .adopt__v
+      (
+        'comment_iframe',
+        'comments',
+        (
+          iframe_e,
+          adopted_e
+        ) =>
+        {
+          adopted_e
+            .querySelector( '#issue' )
+              .value =
+                iframe_e
+                  .dataset
+                    .issue_n
+        }
+      )
   }
   ,
 }

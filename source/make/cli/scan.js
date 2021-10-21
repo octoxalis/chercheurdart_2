@@ -351,13 +351,10 @@ const SCAN_o =
           [
             hueCapacity_a,
             hue_a,
-            //XX  .flat(),
             satCapacity_a,
             sat_a,
-            //XX  .flat(),
             lumCapacity_a,
             lum_a,
-            //XX  .flat()
           ]
     )
   }

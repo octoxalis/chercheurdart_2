@@ -45,6 +45,11 @@ const COM_o =
           '${C_o.ROW_TAG_s}',
           C_o.ROW_TAG_s
         )
+        .replaceAll
+        (
+          C_o.COMMENTS_ICON_s,
+          C_o.INS_ICON_o.html
+        )
       +
       `</div>`    //: id=comments
       

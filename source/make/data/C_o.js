@@ -111,9 +111,10 @@ const C_o =
 
   INS_ICON_o:
   {
-    html: '&#x22F1;',    //: ⋱ (diag elipsis)  
-    css:  '\\22F1',      //!!!  escape slash
-    js:   '\u22F1',
+    //XX html: '&#x22F1;',    //: ⋱ (diag elipsis)  
+    html: '&#x22F0;',    //: ⋰ (diag elipsis)  
+    css:  '\\22F0',      //!!!  escape slash
+    js:   '\u22F0',
   },
 
   INS_METHOD_o:
@@ -159,6 +160,7 @@ const C_o =
   ],
   TOPICS_INS_s:    '<del for=div_topics hidden ></del>',
   COMMENTS_INS_s:  '<del for=div_comment hidden ></del>',
+  COMMENTS_ICON_s: '<del for=em_comment hidden ></del>',
 
 
   //=== HTML-BODY: TABLE

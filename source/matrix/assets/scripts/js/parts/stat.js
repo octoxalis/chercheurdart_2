@@ -18,9 +18,12 @@ void function    //!!! TEST SCAN
       buffer_a =>         //: callback_f( ArrayBuffer )
       {
         const scan_o =
-          eval( buffer_a )    //!!! eval not JSON.parse !!!
-        
-        //;console.log( scan_o )
+          new Function            //!!! not JSON.parse !!!
+          (
+            `return ${buffer_a}`
+          )()
+
+        ;console.log( scan_o )
       }
     )
 

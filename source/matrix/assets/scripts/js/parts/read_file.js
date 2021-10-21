@@ -5,7 +5,7 @@ const READ_o =
   (
     path_s,
     callback_f,
-    method_s='json'    //: default
+    method_s='text'    //: default
   ) =>
   {
     fetch
