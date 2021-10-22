@@ -22,9 +22,9 @@
 
   stat_a:
   [
-    'burst',
-    'aster',
-    'paint',
+    `burst`,
+    `aster`,
+    `paint`,
   ],
 
   script_a:

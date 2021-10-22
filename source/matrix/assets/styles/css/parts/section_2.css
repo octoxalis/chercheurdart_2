@@ -4,6 +4,9 @@ section#{{C_o.SECTION_a[2]}} {
 section#{{C_o.SECTION_a[2]}} > input {
   display: none;
 }
+section#{{C_o.SECTION_a[2]}} > input ~ iframe {
+  display: none;
+}
 section#{{C_o.SECTION_a[2]}} > input ~ div {
   display: none;
   position: absolute;

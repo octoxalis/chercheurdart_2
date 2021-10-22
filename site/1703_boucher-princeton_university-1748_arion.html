@@ -39,25 +39,30 @@ fait partie d&#8217;un cycle décoratif conçu pour le château de La Muette.</p
   <input id="IN_burst" name="stat_nav" type="radio" checked />
   <input id="IN_aster" name="stat_nav" type="radio"  />
   <input id="IN_paint" name="stat_nav" type="radio"  />
-  <nav>
+  <nav id=NA_stat>
     <label id="LA_burst" for="IN_burst" data-legend="burst">&#x22C7;</label>
     <label id="LA_aster" for="IN_aster" data-legend="aster">&#x229A;</label>
     <label id="LA_paint" for="IN_paint" data-legend="paint">&#x229C;</label>
   </nav>
-  <div id="burst">
-    <del for=div_burst hidden ></del>
-    <h3>burst</h3><!-- TEMPORARY -->
-  </div>
-  <div id="aster">
-    <del for=div_aster hidden ></del>
-    <h3>aster</h3><!-- TEMPORARY -->
-  </div>
-  <div id="paint">
-    <del for=div_paint hidden ></del>
-    <h3>paint</h3><!-- TEMPORARY -->
-  </div>
+
+  <iframe id=IF_burst name=IF_burst src="assets/parts/burst.html"></iframe>
+
+
+  <iframe id=IF_aster name=IF_aster src="assets/parts/aster.html"></iframe>
+
+
+  <iframe id=IF_paint name=IF_paint src="assets/parts/paint.html"></iframe>
+
 </section>
 
+
+
+<!--
+  <div id="">
+    
+    <h3></h3>
+  </div>
+  -->
 <nav>
   <a href="index.html" data-legend="accueil">&#x2302;</a>
   <label id="LA_article" for="IN_article" data-legend="article">&#x2263;</label>
@@ -67,8 +72,8 @@ fait partie d&#8217;un cycle décoratif conçu pour le château de La Muette.</p
     <!-- at end to be upper layer -->
 
 <svg id="svg_symbols" aria-hidden="true"><symbol id="icon_close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></symbol><symbol id="icon_link" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8"/></g></symbol><symbol id="icon_load" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></symbol><symbol id="icon_fav" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></symbol></svg>
-<script type=module src="assets/scripts/js/index.min.js"></script>
-<script type=module src="assets/scripts/js/stat.min.js"></script>
+<script src="assets/scripts/js/index.min.js" defer></script>
+<script src="assets/scripts/js/stat.min.js" defer></script>
 </body>
 
 </html>

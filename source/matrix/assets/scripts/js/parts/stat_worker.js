@@ -1,10 +1,6 @@
 //=== stat_worker.js
 const SWO_o =
 {
-  data_o: null,      //: store receive event data
-
-
-
   read__v:
   (
     path_s,
@@ -55,7 +51,7 @@ const SWO_o =
 
 
   
-  loadScan__v:
+  load_scan__v:
   (
     id_s
   ) =>
@@ -64,19 +60,18 @@ const SWO_o =
       .read__v
       (
         `/{{C_o.IMG_DIR_s}}${id_s}/full/max/0/{{C_o.SCAN_FILE_s}}`,
-        buffer_a =>         //: callback_f( ArrayBuffer )
+        buffer_a =>         //: text
         {
-          //;console.log( buffer_a )
           self
             .postMessage
             (
               {
-                task_s: 'LOAD_SCAN',
+                task_s: 'put_scan',
                 scan_a: buffer_a
               },
               [ new ArrayBuffer( buffer_a ) ]
             )
-        }
+        },
       )
   }
   ,
@@ -84,29 +79,25 @@ const SWO_o =
 
   receive__v:
   (
-    payload_o      //: event
+    msg_o
   ) =>
   {
-    SWO_o
-      .data_o =
-        payload_o
-          .data
+    const payload_o =
+      msg_o
+        .data
 
     switch
     (
-      SWO_o
-        .data_o
-          .task_s
+      payload_o
+        .task_s
     )
     {
-      case 'LOAD_SCAN':
+      case 'load_scan':      //: { task_s, id_s }
         SWO_o
-          .loadScan__v
+          .load_scan__v
           (
-            SWO_o
-              .data_o
-                .id_s
-      
+            payload_o
+              .id_s
           )
         break
     

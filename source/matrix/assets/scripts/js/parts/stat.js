@@ -5,34 +5,37 @@ const STAT_o =
 
   worker_o: null,
 
-
-
-  loadScan__v:
+  scan_a: null,
+  //: [
+  //:   [0]: hueCapacities_a[],
+  //:   [1]: hue_a[]pointer_a[],
+  //:   [2]: satCapacities_a[],
+  //:   [3]: sat_a[]pointer_a[],
+  //:   [4]: lumCapacities_a[],
+  //:   [5]: lum_a[]pointer_a[],
+  //: ]
+  
+  put_scan__v:
   (
-    payload_o
+    scan_a
   ) =>
   {
-    const scan_a =
-      payload_o
-        .scan_a
-
-  const scan_o =
-    new Function            //!!! not JSON.parse !!!
-    (
-      `return ${scan_a}`
-    )()                      ;console.log( scan_o )
+    STAT_o
+      .scan_a =
+        eval( scan_a )      //!!! not JSON.parse !!!
+                            //;console.log( STAT_o.scan_a )
   }
   ,
 
 
 
-  listenWorker__v:
+  receive__v:
   (
-    message_o
+    msg_o
   ) =>
   {
     const payload_o =
-      message_o
+      msg_o
         .data
 
     switch
@@ -41,9 +44,14 @@ const STAT_o =
         .task_s
     )
     {
-      case 'LOAD_SCAN':
+      case 'put_scan':      //: { task_s, scan_a }
         STAT_o
-          .loadScan__v( payload_o )
+          .put_scan__v
+          (
+            payload_o
+              .scan_a
+          )
+
         break
     
       default:
@@ -54,15 +62,9 @@ const STAT_o =
 
 
 
-  startWorker__v:
+  init__v:
   () =>
   {
-    const id_s =
-    document
-      .getElementById( '{{C_o.SECTION_a[2]}}' )
-        .dataset
-          .work_s
-  
     STAT_o
       .worker_o =
         new Worker
@@ -77,7 +79,7 @@ const STAT_o =
         (
           'message',
           STAT_o
-            .listenWorker__v,
+            .receive__v,
           true
         )
 
@@ -91,12 +93,18 @@ const STAT_o =
           true
         )
 
+    const id_s =
+      document
+        .getElementById( '{{C_o.SECTION_a[2]}}' )
+          .dataset
+            .work_s
+  
     STAT_o
       .worker_o
         .postMessage
         (
           { 
-            task_s: 'LOAD_SCAN',
+            task_s: 'load_scan',
             id_s: id_s
           }
         )
@@ -105,11 +113,12 @@ const STAT_o =
 
   handleError__v:
   (
-    event_o
+    error_o
   ) =>
     console
-      .log`ERROR: ${event_o.message}`
+      .log`ERROR: ${error_o.message}`
   ,
+
 
 
   listener__v:
@@ -120,13 +129,15 @@ const STAT_o =
       let id_s
       of
       [
-        'LA_stat',
+        'burst',
+        'aster',
+        'paint',
       ]
     )
     {
       const listen_e =
         document
-          .getElementById( id_s )
+          .getElementById( `{{C_o.LABEL_ID_s}}_${id_s}` )
           
       listen_e
       &&
@@ -135,12 +146,71 @@ const STAT_o =
         (
           'click',
           STAT_o
-            [ `${id_s}__v` ],
+            [ `{{C_o.LABEL_ID_s}}_${id_s}__v` ],
           {
             once: true
           }
         )
     }
+  }
+  ,
+
+
+  LA_burst__v:        //: {{C_o.LABEL_ID_s}}_{{_stat}}
+  () =>
+  {
+    STAT_o
+      .adopt__v( 'burst' )
+
+  }
+  ,
+
+
+
+  LA_aster__v:        //: {{C_o.LABEL_ID_s}}_{{_stat}}
+  () =>
+  {
+    STAT_o
+      .adopt__v( 'aster' )
+  }
+  ,
+
+
+
+
+  LA_paint__v:        //: {{C_o.LABEL_ID_s}}_{{_stat}}
+  () =>
+  {
+    STAT_o
+      .adopt__v( 'paint' )
+  }
+  ,
+
+
+
+  adopt__v:
+  (
+    id_s
+  ) =>
+  {
+    IND_o
+      .adopt__v
+      (
+        'stat',
+        `IF_${id_s}`,
+        (
+          iframe_e,
+          adopted_e
+        ) =>
+        {
+          //XX adopted_e
+          //XX   .querySelector( '#issue' )
+          //XX     .value =
+          //XX       iframe_e
+          //XX         .dataset
+          //XX           .issue_n
+        }
+      )
   }
   ,
 }
@@ -151,8 +221,8 @@ void function
 ()
 {
   STAT_o
-    .listener__v()
+    .init__v()
 
   STAT_o
-    .startWorker__v()
+    .listener__v()
 }()

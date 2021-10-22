@@ -29,8 +29,8 @@ const IND_o =
 
   adopt__v:    //!!! ensure id_s
   (
-    iframe_s,     //: iframe element ID
     adopter_s,    //: adopter element ID
+    iframe_s,     //: iframe element ID
     callback_f
   ) =>
   {
@@ -154,7 +154,7 @@ const IND_o =
   
 
 
-  comment_label__v:    //: listener
+  comment_label__v:
   (
     //-- event_e    //: not used
   ) =>
@@ -162,8 +162,8 @@ const IND_o =
     IND_o
       .adopt__v
       (
-        'comment_iframe',
         'comments',
+        'comment_iframe',
         (
           iframe_e,
           adopted_e
