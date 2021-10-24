@@ -17,6 +17,7 @@ html {
   --c_sat_hi_2: 72%;
   --c_sat_lo_2: 28%;
   --textcolor: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_lo_4) /1);
+  --inscolor: hsla( calc(var(--c_hue_p) - 200 ) var(--c_sat_hi_4) var(--c_lum_lo_3) /1);
   --bgcolor: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_2) /1);
   --bg_lower: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_1) /1);
   --highlight: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_lo_2) /1);
@@ -25,6 +26,7 @@ html {
   --shadow_hi: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.75);
   --shadow_ne: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.5);
   --shadow_lo: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.25);
+  --ins_shadow_ne: hsla( calc(var(--c_hue_p) - 200 ) var(--c_sat_hi_4) var(--c_lum_lo_3) /.25);
   --accept_hi: hsla(var(--accept_hue) var(--c_sat_hi_4) var(--c_lum_hi_2) /1);
   --cancel_hi: hsla(var(--cancel_hue) var(--c_sat_hi_4) var(--c_lum_hi_2) /1);
   --brigtness_hi: 1.3;

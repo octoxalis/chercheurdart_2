@@ -1,15 +1,15 @@
 label[for]:hover {
   filter: invert( .5 );
 }
-label[for] {
+label[for]:not[data-ins] {
   cursor: pointer;
 }
-label[for] > em {
+label[for]:not[data-ins] > em {
   margin: 0 {{S_o.PAD_1}};
   vertical-align: baseline;
   font-style: normal;
 }
-label[for] + input#comment_input, label[for] + input#comment_input + iframe {
+label[for]:not[data-ins] + input#comment_input, label[for]:not[data-ins] + input#comment_input + iframe {
   display: none;
 }
 label + input#comment_input + form[name=comment] {

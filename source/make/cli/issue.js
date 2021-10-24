@@ -180,7 +180,7 @@ const ISS_o =
 ${pretty_s}
 <label for=${id_s}>&#x00D7;</label>
 </ins>
-<label for=${id_s}>${intro_s}${C_o.COMMENT_ELIPSIS_s}</label>
+<label for=${id_s} data-ins=${C_o.INS_TXT_s}>${intro_s}</label>
 </li>`
 
         ++at_n

@@ -58,16 +58,18 @@ module.exports =
       (
         const omatch_a
         of
-        [ ...
-          input_s
-            .matchAll
-            (
-              gms_re
-                `<img       //: open tag
-                ([^>]+?)    //: all img attributes
-                >`          //: close tag
-            )
-        ]
+        Array
+          .from
+          (
+            input_s
+              .matchAll
+              (
+                gms_re
+                  `<img       //: open tag
+                  ([^>]+?)    //: all img attributes
+                  >`          //: close tag
+              )
+          )
       )
       {
         let attribute_s =
@@ -81,19 +83,21 @@ module.exports =
         (
           const imatch_a
           of
-          [ ...
-            attribute_s
-              .matchAll
-              (
-                gms_re
-                  `data-      //: data attribute
-                  ([a-z]+)    //: dataset name: group 0
-                  =           //: attribute equal
-                  "           //: open attribute value (apos)
-                  ([^"]+?)    //: attribute value up to apos: group 1
-                  "`          //: close atribute value (apos)
-              )
-          ]
+          Array
+            .from
+            (
+              attribute_s
+                .matchAll
+                (
+                  gms_re
+                    `data-      //: data attribute
+                    ([a-z]+)    //: dataset name: group 0
+                    =           //: attribute equal
+                    "           //: open attribute value (apos)
+                    ([^"]+?)    //: attribute value up to apos: group 1
+                    "`          //: close atribute value (apos)
+                )
+            )
         )
         {
           //.........................................
@@ -150,8 +154,9 @@ module.exports =
               attribute_s
                 .split( ':' )
 
-            ior_o[property_s] =
-              val_s
+            ior_o
+              [property_s] =
+                val_s
           }
             //..........
 

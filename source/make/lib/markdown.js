@@ -5,17 +5,17 @@ const MARK_o =
     md_s
   ) =>
     md_s
-      .replace(/^### (.*$)/gim,         `<h6>$1</h6>`)
-      .replace(/^## (.*$)/gim,          `<h5>$1</h5>`)
-      .replace(/^# (.*$)/gim,           `<h4>$1</h4>`)
-      .replace(/\*\*(.*)\*\*/gim,       `<bold>$1</bold>`)
-      .replace(/\*(.*)\*/gim,           `<i>$1</i>`)
-      .replace(/__(.*)__/gim,           `<em>$1</em>`)
-      .replace(/```([\w\s]+?)```/gim,   `<pre><code>$1</code></pre>`)
-      .replace(/^\> (.*$)/gim,          `<blockquote>$1</blockquote>`)
-      .replace(/!\[(.*?)\]\((.*?)\)/gim,`<img alt="$1" src="$2" />`)
-      .replace(/\[(.*?)\]\((.*?)\)/gim, `<a href="$2">$1</a>`)
-      .replace(/\n$/gim,                `<br />`)
+      .replaceAll(/^### (.*$)/gim,         `<h6>$1</h6>`)
+      .replaceAll(/^## (.*$)/gim,          `<h5>$1</h5>`)
+      .replaceAll(/^# (.*$)/gim,           `<h4>$1</h4>`)
+      .replaceAll(/\*\*(.*)\*\*/gim,       `<bold>$1</bold>`)
+      .replaceAll(/\*(.*)\*/gim,           `<i>$1</i>`)
+      .replaceAll(/__(.*)__/gim,           `<em>$1</em>`)
+      .replaceAll(/```([\w\s]+?)```/gim,   `<pre><code>$1</code></pre>`)
+      .replaceAll(/^\> (.*$)/gim,          `<blockquote>$1</blockquote>`)
+      .replaceAll(/!\[(.*?)\]\((.*?)\)/gim,`<img alt="$1" src="$2" />`)
+      .replaceAll(/\[(.*?)\]\((.*?)\)/gim, `<a href="$2">$1</a>`)
+      .replaceAll(/\n$/gim,                `<br />`)
       .trim()
   
   

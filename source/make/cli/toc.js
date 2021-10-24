@@ -307,11 +307,10 @@ const TOC_o =
         toc_s +=
 `<p data-ins=contents>
   <a href=${atdoc_o.doc_s}.html>${atdoc_o.title_s}</a>
-  <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
-  <label for=L_${atdoc_o.doc_s} tabindex=-1>${C_o.INS_ICON_o.js}</label>
+  <label for=L_${atdoc_o.doc_s} tabindex=-1 data-ins=₀>${atdoc_o.title_s}</label>    <!--!!!! TODO: avoid doublon -->
   <input id=L_${atdoc_o.doc_s} type=checkbox>
   <ins>
-    <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>
+    <span data-ins=₀>
       <b>${atdoc_o.subtitle_s}</b>
       <b>${F_o.stamp__s(atdoc_o.version_a[0])}</b>
     </span>

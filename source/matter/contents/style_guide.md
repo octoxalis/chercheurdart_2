@@ -37,11 +37,13 @@
 ---
 {% _doc section_a[0] %}
 //IMAGES
-:1748_arion: ins:₉[sub_s=1703_boucher-princeton_university-1748_arion]
+:1748_arion: ₍₉ Arion
+  1703_boucher-princeton_university-1748_arion₎
 
 //BIBLIO
 // NB: inside ins, html markup can be used if ins is enclosed in an AsciiDoc pass directive
-:1989_langdon: pass:[ins:₂[sub_s=1989_langdon¯**p.123**¯f.123¯On peut ajouter une __précision__...¯link<index.html>"link"¯image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"¯etc.]]
+:1989_langdon: ₍₂ Claude Lorrain
+  1989_langdon¯**p.123**¯f.123¯On peut ajouter une __précision__...¯link<index.html>"link"¯image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"¯etc.₎
 
 //LINKS
 :chercheurdart: {{U_o.url_s}}index.html[chercheurd.art]
@@ -49,7 +51,7 @@
 :chercheur_dart: pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]
 
 //INCLUDES (path is relative to source dir)
-:tab_artist: {{C_o.CONTENT_PARTS_DIR_s}}artist.{{C_o.MACRO_INSERT_s}}
+:tab_artist: {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
 
 // TOPICS
 ////
@@ -61,10 +63,9 @@
 //========================================
 = {{title_s}} (h1)
 
-pass:[{{abstract_s}}]
-₍₀ 
-  Versions
-  pass:[{{F_o.versionList__s(version_a)}}]₎
+
+₍₀ {{abstract_s}}
+  {{F_o.versionList__s(version_a)}}₎
 
 //----------------------------------------
 == Header h2
@@ -147,7 +148,7 @@ definition secondo₎
 
 === REFERENCE (ref) specifier_s = ₂
 
-Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tableau...
+Dans sa monographie {1989_langdon}, H. Langdon a décrit ce tableau...
 
 .horizontal line
 '''
@@ -175,12 +176,8 @@ Dans sa monographie _Claude Lorrain_ {1989_langdon}, H. Langdon a décrit ce tab
   ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
   ROW_1_0₊ROW_1_1₊{chercheur_dart}₎
 
-{% _tab %}
-Example 2 - Artist table (included)
-
-__with multiline optional comment...__
-{% end_tab %}
-
+₍₀ Example 2 - Artist table (included)
+__with multiline optional comment...__₎
 include::{tab_artist}[]
 
 .horizontal line
@@ -188,17 +185,17 @@ include::{tab_artist}[]
 
 === IMAGE (img) specifier_s = ₉
 
-_Arion_ {1748_arion} de F. Boucher fait partie du cycle décoratif.
+{1748_arion} de F. Boucher fait partie du cycle décoratif.
 
 === Insert markup
 
 Use AsciiDoc pass:[] to insert link, images...
-₍₀ par exemple:
-  pass:[image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"
+₍₀<> par exemple:
+  image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"
   link<index.html>"link"
   `code_line = 1234`
   __italic__
-  **bold**]₎
+  **bold**₎
 
 //----------------------------------------
 == Link

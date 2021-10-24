@@ -77,7 +77,10 @@ p > label:hover {
 p > label {
   margin: 0 {{S_o.PAD_1}};
   vertical-align: baseline;
-  cursor: pointer;
+  color: var(--inscolor);
+}
+p > label > em {
+  font-style: italic;
 }
 p > label + input, p > label + input + ins {
   display: none;
@@ -91,7 +94,7 @@ p > label + input:checked + ins {
   margin: {{S_o.PAD_1}} 0;
   padding: {{S_o.PAD_4}};
   text-decoration: none;
-  border: 1px solid var(--shadow_ne);
+  border: 1px solid var(--ins_shadow_ne);
   border-radius: 4px;
 }
 p > label + input:checked + ins > a {
@@ -102,86 +105,86 @@ p > label + input:checked + ins > a > img {
   max-height: 128px;
   border-radius: 4px;
 }
-{{C_o.TABLE_TAG_s}}[data-spec] > b {
+{{C_o.TABLE_TAG_s}}[data-ins] > b {
   display: table;
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
   line-height: 1.3;
 }
-{{C_o.TABLE_TAG_s}}[data-spec] > b > a {
+{{C_o.TABLE_TAG_s}}[data-ins] > b > a {
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid var(--shadow_ne);
 }
-{{C_o.TABLE_TAG_s}}[data-spec] > b > a:hover {
+{{C_o.TABLE_TAG_s}}[data-ins] > b > a:hover {
   border-bottom: 1px solid;
   filter: brightness( var(--brigtness_hi) );
   transition: opacity .2s;
 }
-{{C_o.TABLE_TAG_s}}[data-spec] > b > bold {
+{{C_o.TABLE_TAG_s}}[data-ins] > b > bold {
   font-weight: 600;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}] {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}] > b {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] > b {
   border-left: 1px solid var(--shadow_ne);
   padding-left: .8rem;
   color: currentColor;
   list-style: none;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}] > b:before {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] > b:before {
   content: '\{{S_o.LIST_MARKER_s}}';
   position: relative;
   left: -1rem;
   color: var(--shadow_ne);
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(1) {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > b:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: 600;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}] > b:nth-of-type(2) {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}] > b:nth-of-type(2) {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > b:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] {
   top: 0;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > i {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > b > i {
   font-style: normal;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > b > i:first-of-type::after {
   content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
 }
 {{C_o.TABLE_TAG_s}}[role=table] {
@@ -200,7 +203,7 @@ p > label + input:checked + ins > a > img {
 {{C_o.TABLE_TAG_s}}[role=table] > b > a {
   font-size: 100%;
 }
-{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid]) {
+{{C_o.LABEL_TAG_s}}[data-ins={{C_o.INS_QUO_s}}] {
   display: block;
   margin: 0 0 -.2rem .4rem;
   padding-left: .8rem;

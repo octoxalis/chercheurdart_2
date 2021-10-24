@@ -44,7 +44,8 @@
 ---
 {% _doc section_a[0] %}
 //IMAGES
-:arion: ins:₉[sub_s={{workID_s}}]
+:arion: ₍₉ Arion (1748-50) par nçois Boucher
+  {{workID_s}}₎
 
 //LINKS
 // TOPICS
@@ -54,15 +55,13 @@
 //========================================
 = {{title_s}}
 
-pass:[{{abstract_s}}]
-₍₀ 
-  Versions
-  pass:[{{F_o.versionList__s(version_a)}}]₎
+₍₀ {{abstract_s}}
+  {{F_o.versionList__s(version_a)}}₎
 
 //---------------------------------------
 == Presentation
 
-_Arion_ {arion} +
+{arion} +
 fait partie d'un cycle décoratif conçu pour le château de La Muette.
 
 == Colorimétrie

@@ -3,7 +3,6 @@ const FS_o  = require( 'fs-extra' )
 const PREP_o = require( '../lib/prep.js' )
 const ADOC_o = require( '../lib/adoc.js' )
 const C_o    = require( '../data/C_o.js' )
-//XX const F_o    = require( '../data/F_o.js' )
 
 
 
@@ -33,18 +32,6 @@ const CODES_o =
     return output_s
   }
   ,
-
-
-
-  tab__s:    //: asciidoc included table
-  (
-    title_s
-  ) =>
-    `pass:[<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_PRINCIP_s} data-spec=${C_o.INS_TAB_s}>]`
-    + ` ${title_s}`
-    + ` pass:[</${C_o.TABLE_TAG_s}>]`
-  ,
-
 }
 
 
@@ -59,7 +46,6 @@ module.exports =
       of
       [        //=== paired shortcodes
         'doc',
-        'tab'
       ]
     )
     {

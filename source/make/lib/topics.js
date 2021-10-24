@@ -120,12 +120,11 @@ const DOCS_o =
             )
 
         linkList_s +=
-`<p data-ins=linkList>${atopic_s}
-  <span data-ins=${C_o.INS_PRINCIP_s} data-spec=₀> </span>
-  <label for=${id_s} tabindex=-1>${C_o.INS_ICON_o.js}</label>
+`<p data-ins=linkList>
+  <label for=${id_s} tabindex=-1>${atopic_s}</label>
   <input id=${id_s} type=checkbox>
   <ins>
-    <span data-ins=${C_o.INS_SUBSID_s} data-spec=₀>
+    <span data-ins=₀>
     ${link_s}
     </span>
   </ins>

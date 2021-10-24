@@ -5,12 +5,12 @@
 .cola_2_1_0 > b:nth-child(3n+1){text-align: right}
 .cola_2_1_0 > b:nth-child(3n+2){text-align: center}
 .cola_2_1_0 > b:nth-child(3n+3){text-align: left}
-.colw_25_20_20_15_20 > b:nth-child(-n+5){filter:brightness(var(--brigtness_lo));font-weight:600}
-.colw_25_20_20_15_20 > b:nth-child(5n+1){width: calc((25 - 2.5) * 1%)}
-.colw_25_20_20_15_20 > b:nth-child(5n+2){width: calc((20 - 2) * 1%)}
-.colw_25_20_20_15_20 > b:nth-child(5n+3){width: calc((20 - 2) * 1%)}
-.colw_25_20_20_15_20 > b:nth-child(5n+4){width: calc((15 - 1.5) * 1%)}
-.colw_25_20_20_15_20 > b:nth-child(5n+5){width: calc((20 - 2) * 1%)}
+.colw_20_20_20_20_20 > b:nth-child(-n+5){filter:brightness(var(--brigtness_lo));font-weight:600}
+.colw_20_20_20_20_20 > b:nth-child(5n+1){width: calc((20 - 2) * 1%)}
+.colw_20_20_20_20_20 > b:nth-child(5n+2){width: calc((20 - 2) * 1%)}
+.colw_20_20_20_20_20 > b:nth-child(5n+3){width: calc((20 - 2) * 1%)}
+.colw_20_20_20_20_20 > b:nth-child(5n+4){width: calc((20 - 2) * 1%)}
+.colw_20_20_20_20_20 > b:nth-child(5n+5){width: calc((20 - 2) * 1%)}
 .cola_0_0_0_0_0 > b:nth-child(5n+1){text-align: left}
 .cola_0_0_0_0_0 > b:nth-child(5n+2){text-align: left}
 .cola_0_0_0_0_0 > b:nth-child(5n+3){text-align: left}

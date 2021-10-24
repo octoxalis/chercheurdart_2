@@ -5,11 +5,11 @@ const ASC_o =
     ascii_s
   ) =>
     ascii_s
-      .replace( /link<([^>]+?)>"([^"]+?)"/gim,  `<a href="$1">$2</a>`)
-      .replace( /image<([^>]+?)>"([^"]+?)"/gim, `<img src="$1" alt="$2" />`)
-      .replace( /\*\*(.*)\*\*/gim,              `<bold>$1</bold>`)
-      .replace( /__(.*)__/gim,                  `<i>$1</i>`)
-      .replace( /`(.*)`/gim,                    `<code>$1</code>`)
+      .replaceAll( /link<([^>]+?)>"([^"]+?)"/gim,  `<a href="$1">$2</a>`)
+      .replaceAll( /image<([^>]+?)>"([^"]+?)"/gim, `<img src="$1" alt="$2" />`)
+      .replaceAll( /\*\*(.*)\*\*/gim,              `<bold>$1</bold>`)
+      .replaceAll( /__(.*)__/gim,                  `<i>$1</i>`)
+      .replaceAll( /`(.*)`/gim,                    `<code>$1</code>`)
       .trim()
 }
 

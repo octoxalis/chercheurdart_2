@@ -19,9 +19,8 @@ const TAB_o =
       + `${file_s}.${C_o.MACRO_INSERT_s}`
 
     const macro_s =
-      `${C_o.MACRO_INSERT_s}:${C_o.INS_TAB_s}`
-      + `[${C_o.MACRO_SUB_s}=${ins_s}]`
-
+      `${C_o.INS_OPEN_s}${C_o.INS_TAB_s} `
+      + `${file_s}${C_o.INS_PRINCIPAL_s}${ins_s}${C_o.INS_CLOSE_s}`    //: principal_s is empty
 
     FS_o
       .writeFile
@@ -118,7 +117,7 @@ const TAB_o =
       {
         table_s +=
           C_o
-            .BREAK_DELIM_s
+            .INS_DELIM_s
       }
 
       if
@@ -172,14 +171,14 @@ const TAB_o =
     return (
       width_s
       + C_o
-          .BREAK_DELIM_s
+          .INS_DELIM_s
       + align_s
       + C_o
-          .BREAK_DELIM_s
+          .INS_DELIM_s
       + title_a
           .join( C_o.CELL_DELIM_s )
       + C_o
-          .BREAK_DELIM_s
+          .INS_DELIM_s
       + table_s
       )
   }

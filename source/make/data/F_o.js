@@ -4,6 +4,9 @@ const FS_o  = require( 'fs' )
 
 const REX_o = require( '../lib/regex.js' )
 
+const C_o = require( './C_o.js' )
+
+
 
 const SPECIAL_s = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
 const NORMAL_s  = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
@@ -71,12 +74,12 @@ const F_o =
       }
 
       at_s =
-       `<bold>`
+       `*`                            //: <bold>
        + `${match_a.groups.day_s} `
        + `${month_o[ match_a.groups.month_s ]} `
        + `${match_a.groups.year_s}`
-       + `</bold> `
-       + `à ${match_a.groups.hour_s}:`
+       + `*`
+       + ` à ${match_a.groups.hour_s}:`
        + `${match_a.groups.minutes_s}:`
        + `${match_a.groups.seconds_s}`
     }
@@ -238,6 +241,11 @@ module.exports =
         list_s +=
           F_o
             .stamp__s( version_s )
+            .slice
+            (
+              0,
+              -( ':00'.length )    //: skip seconds at end
+            )
           + '\n'
 
         ++version_n
@@ -245,12 +253,13 @@ module.exports =
   }
 
     return (
-      list_s
-        .slice
-        (
-          0,
-          -1    //: remove last \n
-        )
+      `Versions: ${C_o.INS_DELIM_s}`
+      +  list_s
+          .slice
+          (
+            0,
+            -1    //: remove last \n
+          )
     )
   }
   ,

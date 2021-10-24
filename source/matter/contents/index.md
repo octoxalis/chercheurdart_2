@@ -48,10 +48,8 @@
 //========================================
 = {{title_s}}
 
-pass:[{{abstract_s}}]
-₍₀ 
-  Versions
-  pass:[{{F_o.versionList__s(version_a)}}]₎
+₍₀ {{abstract_s}}
+  {{F_o.versionList__s(version_a)}}₎
 
 //---------------------------------------
 == Articles mis en ligne

@@ -44,7 +44,8 @@
 ---
 {% _doc section_a[0] %}
 //IMAGES
-:jeune_femme: ins:₉[sub_s={{workID_s}}]
+:jeune_femme: ₍₉ Jeune femme (1625 c.) par Adam de Coster
+  {{workID_s}}₎
 
 //LINKS
 // TOPICS
@@ -54,15 +55,13 @@ Adam de Coster›
 //========================================
 = {{title_s}}
 
-pass:[{{abstract_s}}]
-₍₀ 
-  Versions
-  pass:[{{F_o.versionList__s(version_a)}}]₎
+₍₀ {{abstract_s}}
+  {{F_o.versionList__s(version_a)}}₎
 
 //---------------------------------------
 == Presentation
 
-_Jeune femme tenant une chandelle_ {jeune_femme} +
+{jeune_femme} +
 vendu chez Sotheby's.
 
 == Colorimétrie

@@ -95,6 +95,7 @@ const C_o =
   TOPICS_ID_s:      'T',
 
   TABLE_TAG_s:      'span',
+  LABEL_TAG_s:      'label',
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
   CHAPTER_TAG_s:    'h2',
@@ -112,13 +113,13 @@ const C_o =
   //..............
   INS_IMG_s:  '₉',        //: image insert
 
-  INS_ICON_o:
-  {
-    //XX html: '&#x22F1;',    //: ⋱ (diag elipsis)  
-    html: '&#x22F0;',    //: ⋰ (diag elipsis)  
-    css:  '\\22F0',      //!!!  escape slash
-    js:   '\u22F0',
-  },
+  //XX INS_ICON_o:
+  //XX {
+  //XX   //XX html: '&#x22F1;',    //: ⋱ (diag elipsis)  
+  //XX   html: '&#x22F0;',    //: ⋰ (diag elipsis)  
+  //XX   css:  '\\22F0',      //!!!  escape slash
+  //XX   js:   '\u22F0',
+  //XX },
 
   INS_METHOD_o:
   {
@@ -131,10 +132,10 @@ const C_o =
     '₉':  'img',
   },
 
-  LINE_DELIM_s:        '\n',
+  //XX LINE_DELIM_s:        '\n',
   PART_DELIM_s:        '_',    //: between subparts
   SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
-  BREAK_DELIM_s:       ' ~ ',  //: line break (insert)
+  //XX BREAK_DELIM_s:       ' ~ ',  //: line break (insert)
 
   ID_DELIM_s:          '-',    //: between db id parts
   ID_WORD_DELIM_s:     '¯',    //: between db id multi word subpart
@@ -149,10 +150,16 @@ const C_o =
 
   CELL_DELIM_s:        '₊',    //: subscript +
 
+  INS_PRINCIPAL_s:     '₌',    //: subscript =
+  INS_DELIM_s:         '₊₊',   //: subscript +
+  INS_PASS_s:          '<>',   //: use adoc pass:[...]
+
+
+
   //-- ANCHOR_DELIM_s :     '__',
 
-  INS_PRINCIP_s: 'principal',
-  INS_SUBSID_s:  'subsid',
+  //XX INS_PRINCIP_s: 'principal',
+  //XX INS_SUBSID_s:  'subsid',
 
   GALERY_INS_s:  '<del for=section_galery hidden ></del>',
   STAT_INS_a:
@@ -180,7 +187,7 @@ const C_o =
   //=== ADOC ===
   ADOC_DATA_s:       'ad',
   MACRO_INSERT_s:    'ins',
-  MACRO_SUB_s:       'sub_s',       //: macro insert subsidiary
+  //XX MACRO_SUB_s:       'sub_s',       //: macro insert subsidiary
   
   BLOCK_PREAMBLE_s:  'preamble',
   BLOCK_SECTION_s:   'section_level',

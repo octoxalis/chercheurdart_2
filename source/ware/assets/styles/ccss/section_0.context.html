@@ -72,7 +72,11 @@
       <label>
               margin: 0 {{S_o.PAD_1}};
               vertical-align: baseline;
-              cursor: pointer;
+                                         /*cursor: pointer;*/
+              color: var(--inscolor);
+        <em>
+                font-style: italic;
+        </em>
         </label>
       +
       <input/>
@@ -97,7 +101,7 @@
               padding: {{S_o.PAD_4}};
               /*background: var(--insert);*/
               text-decoration: none;
-              border: 1px solid var(--shadow_ne);
+              border: 1px solid var(--ins_shadow_ne);
               border-radius: 4px;
         <a>
                 /*?????????????????
@@ -113,7 +117,7 @@
           </img>
         </a>
         context( stack, new )
-        <{{C_o.TABLE_TAG_s}}[data-spec]>
+        <{{C_o.TABLE_TAG_s}}[data-ins]>
           <b>
                   display: table;
                   --font_max: 18px;
@@ -132,7 +136,7 @@
             </bold>
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_DEF_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}]>
                 context( block, reference_1 )
           <b>
                 context( block, vertical_hr )
@@ -142,37 +146,37 @@
                   context( block, list_marker )
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
           <b:nth-of-type(1)>
           context( block, reference_1 )
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
           <b:nth-of-type(1)>
           context( block, reference_1 )
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
           <b:nth-of-type(1)>
           context( block, reference_1 )
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_REF_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
           <b:nth-of-type(2)>
           context( block, reference_2 )
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
           <b:nth-of-type(2)>
           context( block, reference_2 )
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
           <b:nth-of-type(2)>
           context( block, reference_2 )
           </b>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
+        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
                 top: 0;
           <b>
             <i>
@@ -200,13 +204,13 @@
           </b>
         </{{C_o.TABLE_TAG_s}}>
       </ins>
-      <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_QUO_s}}]:not([data-ins=subsid])>
+      <{{C_o.LABEL_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
               display: block;
               margin: 0 0 -.2rem .4rem;
               padding-left: .8rem;
               border-left: .5rem solid var(--shadow_ne);
               font-style: italic;
-      </{{C_o.TABLE_TAG_s}}>
+      </{{C_o.LABEL_TAG_s}}>
     </p>
     <!----------variant---------->
     <p[data-ins=linkList]>

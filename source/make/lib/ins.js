@@ -14,7 +14,6 @@ const I_o   = require( '../data/I_o.js' )
 const INS_o =
 {
   //--index_n,
-  //--section_s,
   //--gray_a,
   //--color_a,
 
@@ -32,7 +31,8 @@ const INS_o =
 */
 parse__s:
 (
-  insert_s
+  specifier_s,
+  subsid_s
 ) =>
 {
   INS_o
@@ -47,67 +47,49 @@ parse__s:
   INS_o
     .aside_n = 1    //: post increment
 
-  const specifier_n =
-    insert_s
-      .indexOf( C_o.SPECIF_DELIM_s )
+  let method_s =
+    C_o.
+      INS_METHOD_o
+        [ specifier_s ]
 
-  const specifier_s =
-    insert_s
-      .slice( 0, specifier_n )
-
-  for
-  (
-    let line_s
-    of
-    insert_s
-      .split( C_o.LINE_DELIM_s )
-    )
+  if ( method_s )
   {
-    let method_s =
-      C_o.
-        INS_METHOD_o
-          [ specifier_s ]
+    INS_o
+      [`${method_s}Line__v`]
+      (
+        subsid_s
+          .trim()
+      )
 
-    if ( method_s )
+    switch
+    (
+      specifier_s
+    )
     {
-      INS_o
-        [`${method_s}Line__v`]
-        (
-          line_s
-            .slice( specifier_n )    //: skip specifier
-            .trim()
+      case C_o.INS_TXT_s:
+      case C_o.INS_REF_s:
+      case C_o.INS_QUO_s:
+      case C_o.INS_TAB_s:
+      case C_o.INS_DEF_s:
+        return (
+          ASC_o
+            .parse__s
+            (
+              INS_o
+                .text_s
+            )
+        )
+        break
   
+      case C_o.INS_IMG_s:
+        return (
+          INS_o
+            .image_s
         )
     }
   }
 
-  switch
-  (
-    specifier_s
-  )
-  {
-    case C_o.INS_TXT_s:
-    case C_o.INS_REF_s:
-    case C_o.INS_QUO_s:
-    case C_o.INS_TAB_s:
-    case C_o.INS_DEF_s:
-      return (
-        ASC_o
-          .parse__s
-          (
-            INS_o
-              .text_s
-          )
-      )
-      break
-
-    case C_o.INS_IMG_s:
-      return (
-        INS_o
-          .image_s
-      )
-
-  }
+  return ''    //!!! ERROR???
 }
 ,
 
@@ -232,17 +214,30 @@ txt__s:
   line_s,
   specifier_s
 ) =>
-  `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${specifier_s}>`
-  + `<${C_o.ROW_TAG_s}>`
-  + line_s
-      .trim()
-      .replaceAll
-      (
-        C_o.BREAK_DELIM_s,
-        `</${C_o.ROW_TAG_s}><${C_o.ROW_TAG_s}>`
-      )
-  + `</${C_o.ROW_TAG_s}>`
-  + `</${C_o.TABLE_TAG_s}>`
+{
+  let text_s = ''
+
+  for
+  (
+    let part_s
+    of
+    line_s
+      .split( C_o.INS_DELIM_s )
+  )
+  {
+    text_s +=
+      `<${C_o.ROW_TAG_s}>`
+      + part_s
+          .trim()
+      + `</${C_o.ROW_TAG_s}>`
+  }
+
+  return (
+    `<${C_o.TABLE_TAG_s} data-ins=${specifier_s}>`
+    + text_s
+    + `</${C_o.TABLE_TAG_s}>`
+    )
+}
 ,
 
 
@@ -264,7 +259,7 @@ reference__s:
           [`${biblio_s}`]
 
   let ref_s =
-  `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_REF_s}>`
+  `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_REF_s}>`
   + `<${C_o.ROW_TAG_s}>${biblio_o.author_s??'inconnu'}</${C_o.ROW_TAG_s}>`
   + `<${C_o.ROW_TAG_s}>${biblio_o.title_s}</${C_o.ROW_TAG_s}>`
 
@@ -345,7 +340,7 @@ table__s:
     let atline_s
     of
     line_s
-      .split( C_o.BREAK_DELIM_s )
+      .split( C_o.INS_DELIM_s )
   )
   {
     switch
@@ -393,7 +388,7 @@ table__s:
       css_s
 
   return (
-    `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${specifier_s} role=table`
+    `<${C_o.TABLE_TAG_s} data-ins=${specifier_s} role=table`
     + ` class="colw_${colw_s} cola_${cola_s}">`
     + table_s
     + `</${C_o.TABLE_TAG_s}>`
@@ -566,7 +561,7 @@ tableRow__s:
 
     INS_o
       .legend_s =
-        `<${C_o.TABLE_TAG_s} data-ins="${C_o.INS_SUBSID_s}" data-spec=${C_o.INS_IMG_s}>`
+        `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s}>`
         + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
         + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
         + `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
@@ -843,53 +838,85 @@ module.exports =
     (
       const match_a
       of
-      [ ...
-        content_s
-          .trim()
-          .matchAll
-          (
-            REX_o
-              .new__re( 'gms' )    //: collect all <ins> tags
-                `<ins
-                \s+?
-                (             //: open optional data attribute group
-                data--=
-                "
-                ([^"]+?)      //: section_s (everything inside apos) group
-                "
-                )?            //: close optional data attribute group
-                >
-                ([\s\S]+?)    //: everything inside <ins> element group
-                </ins>`
-          )
-      ]
+      Array
+        .from
+        (
+          content_s
+            .trim()
+            .matchAll
+            (
+              REX_o
+                .new__re( 'gms' )    //: collect all <ins> tags
+                  `${C_o.INS_OPEN_s}
+                  (
+                  [₀-₉]{1,3}            //: specifier_s: 1 to 3 subscript digits
+                  )
+                  \s*?
+                  (
+                  [^${C_o.INS_PRINCIPAL_s}]*?
+                  )
+                  ${C_o.INS_PRINCIPAL_s}
+                  (
+                  [^${C_o.INS_CLOSE_s}]+?  //: everything up to close
+                  )
+                  ${C_o.INS_CLOSE_s}`
+            )
+        )
     )
     {
       INS_o
         .index_n =
           match_a.index    //: index with prefix yields a unique ID, e.g. G1234
 
-      INS_o
-        .section_s =
-          match_a[2]
+      let
+      [
+        replace_s,
+        specifier_s,
+        principal_s,
+        subsid_s
+      ] =
+        match_a
 
-      let insert_s =
+      switch
+      (
+        specifier_s
+      )
+      {
+        //?? case C_o.INS_DEF_s:    //: auto AsciiDoc pass:
+        case C_o.INS_REF_s:
+        //?? case C_o.INS_QUO_s:
+        //?? case C_o.INS_TAB_s:
+        case C_o.INS_IMG_s:
+          principal_s =
+            `<em>${principal_s}</em>`
+
+          break
+      
+        default:
+          break
+      }
+      
+      let ins_s =
         INS_o
           .parse__s
           (
-            match_a[3]
+            specifier_s,
+            subsid_s
               .trim()
           )
-      
+
       content_s =
         content_s
           .replace
           (
-            match_a[0],    //: <ins data--="...">...</ins>
-            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1">${C_o.INS_ICON_o.js}</label>`
+            replace_s,
+            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1" data-ins=${specifier_s}>`
+            + principal_s
+                .trim()
+            + `</label>`
             + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
             + `<ins>`      //: remove ins tag data-- attribute
-            + insert_s
+            + ins_s
             +`</ins>`
           )
     }
