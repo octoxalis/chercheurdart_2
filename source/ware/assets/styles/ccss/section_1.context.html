@@ -16,7 +16,7 @@ context( stack, new )
             height: auto;
             border-style: solid;
             border-width: var(--figure_border);
-            border-image: radial-gradient( hsla(70 60% 50%/1), hsla(30 40% 20%/1) ) 1; 
+            border-image: radial-gradient( var(--frame_gradient_from), var(--frame_gradient_to) ) 1; 
     <a>
             context( block, link_regular )
       <figcaption>
@@ -51,7 +51,7 @@ context( stack, new )
           </b>
         </{{C_o.TABLE_TAG_s}}>
       </figcaption>
-      <!----------variant---------->
+      <!--variant-->
       <figcaption:hover>
               opacity: 1;
               transition: opacity .6s ease;

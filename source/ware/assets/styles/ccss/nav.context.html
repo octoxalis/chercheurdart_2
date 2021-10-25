@@ -19,7 +19,10 @@ context( stack, new )
             transition: transform ease .5s;
     </label>
     <a>
-            context( copy, next )
+      context( block, link_raw )
+    </a>
+    <a>
+      context( copy, next )
     </a>
     <label>
             position: relative;
@@ -27,7 +30,6 @@ context( stack, new )
             width: 5vw;
             font-weight: 500;
             color: currentColor;
-            text-decoration: none;
             text-transform: uppercase;
             opacity: .2;
             transition: all ease .2s;
@@ -39,7 +41,7 @@ context( stack, new )
             width: 15vw;
             transition: all ease .5s;
         </label>
-    <!----------variant---------->
+    <!--variant-->
     <a:hover:before>
       context( copy, next )
     </a>
@@ -47,7 +49,7 @@ context( stack, new )
             transform: translateX( 0 );
     </label>
 </nav>
-<!----------variant---------->
+<!--variant-->
 <nav:hover>
         filter: saturate(5);
         transition: all .2s;  /* short fading in */

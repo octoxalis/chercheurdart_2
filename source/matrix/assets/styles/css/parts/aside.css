@@ -20,8 +20,16 @@ figure:target {
   left: 0;
   background: var(--bgcolor);
 }
+aside#gray > figure > a {
+  text-decoration: none;
+  border: 0;
+}
 aside#gray > figure > a > img {
   cursor: url(cursor_color.svg), auto;
+}
+aside#color > figure > a {
+  text-decoration: none;
+  border: 0;
 }
 aside#color > figure > a > img {
   cursor: url(cursor_gray.svg), auto;

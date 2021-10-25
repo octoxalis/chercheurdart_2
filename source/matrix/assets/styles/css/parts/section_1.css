@@ -17,7 +17,7 @@ section#{{C_o.SECTION_a[1]}} > figure > img {
   height: auto;
   border-style: solid;
   border-width: var(--figure_border);
-  border-image: radial-gradient( hsla(70 60% 50%/1), hsla(30 40% 20%/1) ) 1;
+  border-image: radial-gradient( var(--frame_gradient_from), var(--frame_gradient_to) ) 1;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a {
   color: currentColor;

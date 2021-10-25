@@ -98,6 +98,8 @@ p > label + input:checked + ins {
   border-radius: 4px;
 }
 p > label + input:checked + ins > a {
+  text-decoration: none;
+  border: 0;
   cursor: zoom-in;
 }
 p > label + input:checked + ins > a > img {
