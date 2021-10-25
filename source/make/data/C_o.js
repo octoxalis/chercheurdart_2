@@ -124,6 +124,8 @@ const C_o =
     '₉':  'img',
   },
 
+  UP_ARROW: '&#8593;',
+
   PART_DELIM_s:        '_',    //: between subparts
   SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
 
@@ -167,6 +169,9 @@ const C_o =
   ],
 
   CELL_RATIO_n: .1,
+
+  //=== HTML-BODY ANCHORS
+  PAGE_TOP: 'page_top',
 
 
   //=== ADOC ===

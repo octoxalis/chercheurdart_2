@@ -1,15 +1,23 @@
 section#{{C_o.SECTION_a[1]}} {
   column-count: 2;
   column-gap: 0;
+  margin: 1vmin;
   max-width: 100vw;
 }
 section#{{C_o.SECTION_a[1]}} > figure {
+  --figure_border: 2vmin;
+  display: grid;
   position: relative;
-  margin: 1vmin;
+}
+section#{{C_o.SECTION_a[1]}} > figure > * {
+  grid-area: 1/-1;
 }
 section#{{C_o.SECTION_a[1]}} > figure > img {
   max-width: 100%;
   height: auto;
+  border-style: solid;
+  border-width: var(--figure_border);
+  border-image: radial-gradient( hsla(70 60% 50%/1), hsla(30 40% 20%/1) ) 1;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a {
   color: currentColor;
@@ -17,20 +25,15 @@ section#{{C_o.SECTION_a[1]}} > figure > a {
   border-bottom: 1px solid var(--shadow_ne);
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1vmin;
+  padding: calc( var(--figure_border) * 2);
+  height: 100%;
   background: var(--shadow_hi);
   opacity: 0;
   transition: opacity .4s ease;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity .6s ease;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > b {
   display: table;
@@ -69,5 +72,5 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption:hover {
   opacity: 1;
-  transition: opacity .4s ease;
+  transition: opacity .6s ease;
 }

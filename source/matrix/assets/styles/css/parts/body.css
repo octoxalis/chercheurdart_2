@@ -15,3 +15,19 @@ body > nav {
   top: 0;
   z-index: 2;
 }
+body > a#goto_{{C_o.PAGE_TOP}} {
+  z-index: 10;
+  position: fixed;
+  top: calc( 100vh - 4vmin );
+  left: calc( 100vw - 4vmin );
+  width: 3vmin;
+  height: 3vmin;
+  text-align: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 1px 1px var(--shadow_hi), 0 2px 2px var(--shadow_hi), 0 4px 4px var(--shadow_hi);
+}
+body > a#goto_{{C_o.PAGE_TOP}}:hover {
+  filter: brightness( var(--brigtness_lo) );
+}
