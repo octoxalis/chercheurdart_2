@@ -74,7 +74,7 @@ const F_o =
       }
 
       at_s =
-       `*`                            //: <bold>
+       `*`
        + `${match_a.groups.day_s} `
        + `${month_o[ match_a.groups.month_s ]} `
        + `${match_a.groups.year_s}`
@@ -253,7 +253,7 @@ module.exports =
   }
 
     return (
-      `Versions: ${C_o.INS_DELIM_s}`
+      `Versions ${C_o.INS_DELIM_s}`
       +  list_s
           .slice
           (

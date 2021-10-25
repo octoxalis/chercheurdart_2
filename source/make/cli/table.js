@@ -18,9 +18,17 @@ const TAB_o =
         .ADOC_PARTS_DIR_s
       + `${file_s}.${C_o.MACRO_INSERT_s}`
 
+    const title_s =
+      file_s
+        .replaceAll
+        (
+          C_o.WORDS_CONCAT_s,
+          C_o.WORDS_DELIM_s             //: space separator
+        )
+
     const macro_s =
       `${C_o.INS_OPEN_s}${C_o.INS_TAB_s} `
-      + `${file_s}${C_o.INS_PRINCIPAL_s}${ins_s}${C_o.INS_CLOSE_s}`    //: principal_s is empty
+      + `${title_s}${C_o.INS_PRINCIPAL_s}${ins_s}${C_o.INS_CLOSE_s}`    //: principal_s is empty
 
     FS_o
       .writeFile

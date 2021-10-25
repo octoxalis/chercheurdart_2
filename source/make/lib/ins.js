@@ -931,7 +931,7 @@ module.exports =
       content_s
         .replace    //: add gallery asides (gray and color)
         (
-          C_o.GALERY_INS_s,    //: custom tag deleted after section insertion
+          C_o.GALERY_REPLACE_s,    //: custom tag deleted after section insertion
           INS_o
           .gray_a
             .length

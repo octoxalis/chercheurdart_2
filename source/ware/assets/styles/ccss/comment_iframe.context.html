@@ -2,15 +2,10 @@ context( stack, keep )
 <label[for]:hover>
         filter: invert( .5 );
 </label>
-<label[for]:not[data-ins]>    /* skip label of image principal_s */
+<label[for]>    /* skip label of image principal_s */
+        color: var(--inscolor);
         cursor: pointer;
-  <em>
-          margin: 0 {{S_o.PAD_1}};
-          vertical-align: baseline;
-          font-style: normal;
-  </em>
 </label>
-+
 <input#comment_input/>
         context( copy, next )
 +
@@ -18,18 +13,12 @@ context( stack, keep )
         display: none;
 </iframe>
 <!-- variant -->
-<label>
-</label>
-+
 <input#comment_input/>
 +
 <form[name=comment]>
       display: none;
 </form>
 <!-- variant -->
-<label>
-</label>
-+
 <input#comment_input:checked/>
 +
 <form[name=comment]>

@@ -6,7 +6,7 @@ context( stack, new )
     <a>
       <img/>
               width: 100%; max-width: {{S_o.FULL_WIDTH_s}};
-              max-height: calc( {{S_o.FULL_HEIGHT_s}} - {{S_o.PAD_8}} );    /* nav height */
+              max-height: calc( {{S_o.FULL_HEIGHT_s}} - var(--nav_height) );
               object-fit: scale-down;
     </a>
   </figure>
@@ -15,7 +15,7 @@ context( stack, new )
           display: block;
           z-index: 1;
           position:fixed;
-          top:{{S_o.PAD_8}};    /* nav height */
+          top:var(--nav_height);
           right:0;
           bottom:0;
           left:0;

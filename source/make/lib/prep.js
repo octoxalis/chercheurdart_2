@@ -68,8 +68,8 @@ module
             specifier_s
           )
           {
-            //?? case C_o.INS_DEF_s:    //: auto AsciiDoc pass:
-            case C_o.INS_REF_s:
+            //?? case C_o.INS_DEF_s:
+            case C_o.INS_REF_s:    //: auto AsciiDoc pass:
             //?? case C_o.INS_QUO_s:
             //?? case C_o.INS_TAB_s:
             case C_o.INS_IMG_s:

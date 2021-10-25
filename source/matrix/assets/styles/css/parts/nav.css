@@ -3,7 +3,7 @@ nav {
   justify-content: center;
   gap: {{S_o.PAD_8}};
   width: 100%;
-  height: {{S_o.PAD_6}};
+  height: var(--nav_height);
   background: var(--bgcolor);
 }
 nav > a:before, nav > label:before {

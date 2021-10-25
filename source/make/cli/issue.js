@@ -118,8 +118,8 @@ const ISS_o =
     {
       list_s +=
 `<label>${list_o.data.length}</label>
-<div data-role=list>
-<ul>`
+<div>
+<ul data-role=list>`
 
       let at_n = 0
 

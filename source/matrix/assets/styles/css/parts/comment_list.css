@@ -1,32 +1,29 @@
-div[data-role=list] {
-  width: 100%;
-}
-div[data-role=list] > ul > li {
+ul[data-role=list] > li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-div[data-role=list] > ul > li > b {
+ul[data-role=list] > li > b {
   padding: {{S_o.PAD_2}};
 }
-div[data-role=list] > ul > li > b:first-child {
+ul[data-role=list] > li > b:first-child {
   width: 35%;
   font-weight: 600;
 }
-div[data-role=list] > ul > li > b:nth-child(2) {
+ul[data-role=list] > li > b:nth-child(2) {
   width: 60%;
   text-align: right;
   font-family: {{S_o.FONT_BODY_s}};
   font-size: 80%;
 }
-div[data-role=list] > ul > li > b:nth-child(2) > bold {
+ul[data-role=list] > li > b:nth-child(2) > strong, ul[data-role=list] > li > b:nth-child(2) > bold {
   font-weight: 600;
 }
-div[data-role=list] > ul > li > input, div[data-role=list] > ul > li > input + ins {
+ul[data-role=list] > li > input, ul[data-role=list] > li > input + ins {
   display: none;
 }
-div[data-role=list] > ul > li > input + ins + label {
+ul[data-role=list] > li > input + ins + label {
   width: 100%;
   padding-left: {{S_o.PAD_8}};
   font-style: italic;
@@ -34,7 +31,7 @@ div[data-role=list] > ul > li > input + ins + label {
   vertical-align: baseline;
   cursor: pointer;
 }
-div[data-role=list] > ul > li > input:checked + ins {
+ul[data-role=list] > li > input:checked + ins {
   --font_max: 18px;
   --font_scale: 1.9vw;
   display: block;
@@ -48,10 +45,10 @@ div[data-role=list] > ul > li > input:checked + ins {
   border: 1px solid var(--shadow_ne);
   border-radius: 4px;
 }
-div[data-role=list] > ul > li > input:checked + ins > p:first-of-type {
+ul[data-role=list] > li > input:checked + ins > p:first-of-type {
   margin-top: {{S_o.PAD_8}};
 }
-div[data-role=list] > ul > li > input:checked + ins > label {
+ul[data-role=list] > li > input:checked + ins > label {
   position: absolute;
   top: 0;
   right: 0;
@@ -62,9 +59,9 @@ div[data-role=list] > ul > li > input:checked + ins > label {
   border: 2px solid var(--shadow_ne);
   border-radius: 4px;
 }
-div[data-role=list] > ul > li > input:checked + ins + label {
+ul[data-role=list] > li > input:checked + ins + label {
   display: none;
 }
-div[data-role=list] > ul > li > input:checked + ins:hover {
+ul[data-role=list] > li > input:checked + ins:hover {
   filter: brightness( var(--brigtness_hi) );
 }

@@ -125,15 +125,6 @@
                   font-style: normal;
                   /*font-weight: 200;*/
                   line-height: 1.3;
-            <a>
-                    context( block, link_regular )
-            </a>
-            <a:hover>
-                    context( block, link_hover )
-            </a>
-            <bold>
-                    font-weight: 600;
-            </bold>
           </b>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}]>
@@ -212,34 +203,18 @@
               font-style: italic;
       </{{C_o.LABEL_TAG_s}}>
     </p>
-    <!----------variant---------->
-    <p[data-ins=linkList]>
-      <ins>
-        <{{C_o.TABLE_TAG_s}}>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(2n)>
-              padding-left: 2em;
-              font-style: italic;
-              margin: 0 0.25em;
-              vertical-align: baseline;
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-      </ins>
-    </p>
-    <!----------variant---------->
-    <p[data-ins=contents]>
-      <ins>
-        <{{C_o.TABLE_TAG_s}}>
-          <{{C_o.ROW_TAG_s}}:first-of-type>
-              font-style: italic;
-          </{{C_o.ROW_TAG_s}}>
-          <!----------variant---------->
-          <{{C_o.ROW_TAG_s}}:nth-of-type(2n)>
-              margin-top: {{S_o.PAD_2}};
-              padding-left: {{S_o.PAD_8}};
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-      </ins>
-    </p>
+    <a>
+    context( block, link_regular )
+    </a>
+    <a:hover>
+    context( block, link_hover )
+    </a>
+    <strong>
+    context( copy, next )
+    </strong>
+    <bold>
+            font-weight: 600;
+    </bold>
     context( url, comment_list.context.html )
     context( url, comment_iframe.context.html )
     context( url, comment_form.context.html )

@@ -112,19 +112,6 @@ p > label + input:checked + ins > a > img {
   font-style: normal;
   line-height: 1.3;
 }
-{{C_o.TABLE_TAG_s}}[data-ins] > b > a {
-  color: currentColor;
-  text-decoration: none;
-  border-bottom: 1px solid var(--shadow_ne);
-}
-{{C_o.TABLE_TAG_s}}[data-ins] > b > a:hover {
-  border-bottom: 1px solid;
-  filter: brightness( var(--brigtness_hi) );
-  transition: opacity .2s;
-}
-{{C_o.TABLE_TAG_s}}[data-ins] > b > bold {
-  font-weight: 600;
-}
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] {
   --font_max: 20px;
   --font_scale: 2.2vw;
@@ -210,16 +197,16 @@ p > label + input:checked + ins > a > img {
   border-left: .5rem solid var(--shadow_ne);
   font-style: italic;
 }
-p[data-ins=linkList] > ins > {{C_o.TABLE_TAG_s}} > {{C_o.ROW_TAG_s}}:nth-of-type(2n) {
-  padding-left: 2em;
-  font-style: italic;
-  margin: 0 0.25em;
-  vertical-align: baseline;
+a {
+  color: currentColor;
+  text-decoration: none;
+  border-bottom: 1px solid var(--shadow_ne);
 }
-p[data-ins=contents] > ins > {{C_o.TABLE_TAG_s}} > {{C_o.ROW_TAG_s}}:first-of-type {
-  font-style: italic;
+a:hover {
+  border-bottom: 1px solid;
+  filter: brightness( var(--brigtness_hi) );
+  transition: opacity .2s;
 }
-p[data-ins=contents] > ins > {{C_o.TABLE_TAG_s}} > {{C_o.ROW_TAG_s}}:nth-of-type(2n) {
-  margin-top: {{S_o.PAD_2}};
-  padding-left: {{S_o.PAD_8}};
+strong, bold {
+  font-weight: 600;
 }

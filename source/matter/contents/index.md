@@ -35,7 +35,8 @@
 {% _doc section_a[0] %}
 //LINKS
 :site_tech: pass:[<a href=site_tech.html>Technologie du site</a>]
-:Brave: pass:[<a href=https://brave.com>Brave</a>]
+:usage: pass:[<a href=ui.html>Interface utilisateur</a>]
+:Brave: pass:[<a href=https://brave.com><strong>Brave</strong></a>]
 :11ty: https://www.11ty.dev[Eleventy]
 
 //INCLUDES
@@ -57,13 +58,14 @@ include::{index_toc}[]
 
 == Avertissement
 
-Ce site étant délibéremment 
+Ce site est délibéremment 
 ₍₀ expérimental
-  la page {site_tech} donne un aperçu de son infrastructure₎
-, tant par sa forme que par son contenu, certains de ses éléments, et en tout premier lieu les images, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec, 
-₍₀ Google Chrome
-  je recommande tout particulièrement {Brave} pour des raisons de confidentialité₎
-ou Mozilla Firefox.
+  Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
+  - **Google Chrome** (je recommande tout particulièrement {Brave}, pour des raisons de confidentialité)
+  - **Mozilla Firefox**.
+
+  La page {site_tech} donne un aperçu de son infrastructure
+  La page {usage} détaille son fonctionnement₎!
 
 == Colophon
 

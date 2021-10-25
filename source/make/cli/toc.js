@@ -12,8 +12,6 @@ const X_o =   require( '../data/X_o.js' )
 
 const TOC_o =
 {
-  //XXDOCS_TOPICS_s:  `source/make/lib/parts/docs_topics.json`,
-  //XXTOPICS_DOCS_s:  `source/make/lib/parts/topics_docs.json`,
   INDEX_MD_s:  `source/matter/contents/parts/index_toc.html`,
 
   range_a: new Array( X_o.CAT_RANGE_n + 1 ),       //: document doc_n by ranges [0-2^10]
@@ -305,24 +303,25 @@ const TOC_o =
       )
       {
         toc_s +=
-`<p data-ins=contents>
+`<li>
   <a href=${atdoc_o.doc_s}.html>${atdoc_o.title_s}</a>
-  <label for=L_${atdoc_o.doc_s} tabindex=-1 data-ins=₀>${atdoc_o.title_s}</label>    <!--!!!! TODO: avoid doublon -->
+  <label for=L_${atdoc_o.doc_s} tabindex=-1 data-ins=₀>&#x2139;</label>
   <input id=L_${atdoc_o.doc_s} type=checkbox>
   <ins>
     <span data-ins=₀>
       <b>${atdoc_o.subtitle_s}</b>
       <b>${F_o.stamp__s(atdoc_o.version_a[0])}</b>
     </span>
-  </ins>
-</p>\n`
+  </ins>\n`
       }
     }
 
-    toc_s =         //!!! can't put AsciiDoc pass:[] in md file
+    toc_s =         //!!! don't put AsciiDoc pass:[] in md file
       `pass:[`
       + `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
+      + `<ul data-role=list>`
       + toc_s
+      + `</ul>`
       + `<p>`       //: open idem
       + `]`
 
@@ -332,9 +331,18 @@ const TOC_o =
         TOC_o
           .INDEX_MD_s,
         toc_s,
-        error_o =>
-          console
-            .log( error_o ?? `-- Writing ${TOC_o.INDEX_MD_s}` )
+        out_o =>    //: callback_f
+          {
+            const out_s =
+              out_o
+              ?
+                'ERROR'
+              :
+                'OK'
+
+            console
+              .log( `\n----\nWriting ${TOC_o.INDEX_MD_s}: (${out_s})\n----\n` )
+          }
       )
   }
   ,

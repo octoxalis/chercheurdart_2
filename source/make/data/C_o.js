@@ -113,14 +113,6 @@ const C_o =
   //..............
   INS_IMG_s:  '₉',        //: image insert
 
-  //XX INS_ICON_o:
-  //XX {
-  //XX   //XX html: '&#x22F1;',    //: ⋱ (diag elipsis)  
-  //XX   html: '&#x22F0;',    //: ⋰ (diag elipsis)  
-  //XX   css:  '\\22F0',      //!!!  escape slash
-  //XX   js:   '\u22F0',
-  //XX },
-
   INS_METHOD_o:
   {
     '₀':  'txt',
@@ -132,10 +124,8 @@ const C_o =
     '₉':  'img',
   },
 
-  //XX LINE_DELIM_s:        '\n',
   PART_DELIM_s:        '_',    //: between subparts
   SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
-  //XX BREAK_DELIM_s:       ' ~ ',  //: line break (insert)
 
   ID_DELIM_s:          '-',    //: between db id parts
   ID_WORD_DELIM_s:     '¯',    //: between db id multi word subpart
@@ -150,27 +140,22 @@ const C_o =
 
   CELL_DELIM_s:        '₊',    //: subscript +
 
+  //-- ANCHOR_DELIM_s :     '__',
+
   INS_PRINCIPAL_s:     '₌',    //: subscript =
   INS_DELIM_s:         '₊₊',   //: subscript +
   INS_PASS_s:          '<>',   //: use adoc pass:[...]
 
-
-
-  //-- ANCHOR_DELIM_s :     '__',
-
-  //XX INS_PRINCIP_s: 'principal',
-  //XX INS_SUBSID_s:  'subsid',
-
-  GALERY_INS_s:  '<del for=section_galery hidden ></del>',
-  STAT_INS_a:
+  //=== REPLACE
+  GALERY_REPLACE_s:    '<del for=section_galery hidden ></del>',
+  TOPICS_REPLACE_s:    '<del for=div_topics hidden ></del>',
+  COMMENTS_REPLACE_s:  '<del for=div_comment hidden ></del>',
+  STAT_REPLACE_a:
   [
-    '<del for=div_burst hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
-    '<del for=div_aster hidden ></del>',    //: idem
-    '<del for=div_paint hidden ></del>',    //: idem
+                       '<del for=div_burst hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
+                       '<del for=div_aster hidden ></del>',    //: idem
+                       '<del for=div_paint hidden ></del>',    //: idem
   ],
-  TOPICS_INS_s:    '<del for=div_topics hidden ></del>',
-  COMMENTS_INS_s:  '<del for=div_comment hidden ></del>',
-  COMMENTS_ICON_s: '<del for=em_comment hidden ></del>',
 
 
   //=== HTML-BODY: TABLE
@@ -187,7 +172,6 @@ const C_o =
   //=== ADOC ===
   ADOC_DATA_s:       'ad',
   MACRO_INSERT_s:    'ins',
-  //XX MACRO_SUB_s:       'sub_s',       //: macro insert subsidiary
   
   BLOCK_PREAMBLE_s:  'preamble',
   BLOCK_SECTION_s:   'section_level',

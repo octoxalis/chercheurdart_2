@@ -169,15 +169,17 @@ Dans sa monographie {1989_langdon}, H. Langdon a décrit ce tableau...
 
 ===  TABLE (tab) specifier_s = ₄
 
-₍₄ Example 1 - simple table
+₍₄ Example 1 - inline table
   20_50_30
   2_1_0
   TITLE_0₊TITLE_1₊TITLE_2
   ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
   ROW_1_0₊ROW_1_1₊{chercheur_dart}₎
 
-₍₀ Example 2 - Artist table (included)
-__with multiline optional comment...__₎
+₍₀ Example 2 - AsciiDoc include table
+  __ generated with CLI table script__
+  using file name₎ +
+//!!! insert break
 include::{tab_artist}[]
 
 .horizontal line
