@@ -60,6 +60,8 @@ const DOCS_o =
 
     let link_n = 0
 
+    let count_n = 0
+
     for
     (
       let topic_s
@@ -101,8 +103,10 @@ const DOCS_o =
               [topicDoc_n]
           
           link_s +=
-            `<b><a href=${doc_s}.html>${title_s}</a></b>`
-            + `<b>${subtitle_s}</b>`
+            `<${C_o.ROW_TAG_s}><a href=${doc_s}.html>${title_s}</a></${C_o.ROW_TAG_s}>`
+            + `<${C_o.ROW_TAG_s} data--=abstract>${subtitle_s}</${C_o.ROW_TAG_s}>`
+
+          ++count_n
         }
       }
 
@@ -119,16 +123,25 @@ const DOCS_o =
               C_o.WORDS_DELIM_s
             )
 
+
+//--  <a href="1586_de¯coster-new¯york_sothebys-1625_young¯woman.html">Jeune femme (1625 c.) par Adam de Coster</a>
+//--  <label for="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" tabindex="-1" data-ins="₀">ℹ</label>
+//--  <input id="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" type="checkbox">
+          
+
+
+
         linkList_s +=
-`<p data-ins=linkList>
-  <label for=${id_s} tabindex=-1>${atopic_s}</label>
+`<li>
+  <label for=${id_s} tabindex=-1 data-ins="₀">${atopic_s}</label>
+  <label for=${id_s} tabindex="-1" data-ins="₀">ℹ</label>
   <input id=${id_s} type=checkbox>
   <ins>
     <span data-ins=₀>
     ${link_s}
     </span>
   </ins>
-</p>`
+</li>`
       }
 
       ++link_n
@@ -139,13 +152,12 @@ const DOCS_o =
       ?
 `
 <hr/>
-<h2>
-  <label>Correspondances</label>
-</h2>
+<h2><label>Correspondances</label></h2>
 <div>
+<label data-list=link_n>${count_n}</label>
+<ul data-list=link_a>
 ${linkList_s}
-</div>
-`
+</ul></div>`
       :
       ''
       )

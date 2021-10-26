@@ -48,6 +48,13 @@ pre > code {
   border-left: 1px solid currentColor;
   white-space: normal;
 }
+{{C_o.ROW_TAG_s}}[data--=abstract] {
+  font-style: italic;
+  padding-left: {{S_o.PAD_8}};
+}
+{{C_o.ROW_TAG_s}}[data--=stamp] {
+  font-size: 90%;
+}
 section {
   display: none;
   content-visibility: auto;

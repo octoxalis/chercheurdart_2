@@ -51,6 +51,7 @@
 :chercheur_dart: pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]
 
 //INCLUDES (path is relative to source dir)
+:index_toc: {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html
 :tab_artist: {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
 
 // TOPICS
@@ -66,6 +67,10 @@
 
 ₍₀ {{abstract_s}}
   {{F_o.versionList__s(version_a)}}₎
+
+//---------------------------------------
+== Articles mis en ligne
+include::{index_toc}[]
 
 //----------------------------------------
 == Header h2

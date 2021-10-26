@@ -1,38 +1,28 @@
-<ul[data-role=list]>
+<label[data-list=link_n]>
+        font-weight: 600;
+</label>
+<ul[data-list=link_a]>
   <li>
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         margin-bottom: 1rem;
-    <b>
-            padding: {{S_o.PAD_2}};
-    </b>    <!-- name -->
     <b:first-child>
-            width: 35%;
-            font-weight: 600;
-    </b>
+            width: 45%;
+            font-size: 80%;
+    </{{C_o.ROW_TAG_s}}>
     <b:nth-child(2)>
-            width: 60%;
+            width: 50%;
             text-align: right;
             font-family: {{S_o.FONT_BODY_s}};
-            font-size: 80%;
+            font-weight: 600;
       <bold>
       context( copy, next )
       </bold>
       <bold>
               font-weight: 600;
       </bold>
-    </b>
-    <!--
-    <b:last-of-type>
-            width: 100%;
-            padding-left: {{S_o.PAD_4}};
-            font-style: italic;
-    </b>
-    <b:nth-child(3n)::after>
-            content: '...';
-    </b>
-    -->
+    </{{C_o.ROW_TAG_s}}>
     <input/>
       context( copy, next )
     +
@@ -86,9 +76,9 @@
   </li>
 </ul>
 <!--variant-->
-<ul[data-role=list]>
+<ul[data-list=link_a]>
   <li>
-    <label:not(data--=comment)>
+    <label:not(data--=abstract)>
             width:  1.8em;
             height: 1.8em;
             font-size: 90%;

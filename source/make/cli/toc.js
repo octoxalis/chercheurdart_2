@@ -308,10 +308,10 @@ const TOC_o =
   <label for=L_${atdoc_o.doc_s} tabindex=-1 data-ins=₀>&#x2139;</label>
   <input id=L_${atdoc_o.doc_s} type=checkbox>
   <ins>
-    <span data-ins=₀>
-      <b>${atdoc_o.subtitle_s}</b>
-      <b>${F_o.stamp__s(atdoc_o.version_a[0])}</b>
-    </span>
+    <${C_o.TABLE_TAG_s} data-ins=₀>
+      <${C_o.ROW_TAG_s} data--=stamp>${F_o.stamp__s(atdoc_o.version_a[0])}</${C_o.ROW_TAG_s}>
+      <${C_o.ROW_TAG_s} data--=abstract>${atdoc_o.subtitle_s}</${C_o.ROW_TAG_s}>
+    </${C_o.TABLE_TAG_s}>
   </ins>\n`    //: skip </li>
       }
     }
@@ -319,7 +319,7 @@ const TOC_o =
     toc_s =         //!!! don't put AsciiDoc pass:[] in md file
       `pass:[`
       + `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
-      + `<ul data-role=list>`
+      + `<ul data-list=link_a>`
       + toc_s
       + `</ul>`
       + `<p>`       //: open idem

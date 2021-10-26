@@ -117,9 +117,10 @@ const ISS_o =
     )
     {
       list_s +=
-`<label>${list_o.data.length}</label>
+`
 <div>
-<ul data-role=list>`
+<label data-list=link_n>${list_o.data.length}</label>
+<ul data-list=link_a>`
 
       let at_n = 0
 
@@ -173,14 +174,14 @@ const ISS_o =
         list_s +=          //: keep \n for lisibility
 `\n
 <li>
+<${C_o.ROW_TAG_s} data--=stamp>${at_s}</${C_o.ROW_TAG_s}>
 <${C_o.ROW_TAG_s}>${name_s}</${C_o.ROW_TAG_s}>
-<${C_o.ROW_TAG_s}>${at_s}</${C_o.ROW_TAG_s}>
 <input id=${id_s} type=checkbox />
 <ins>
 ${pretty_s}
 <label for=${id_s}>&#x00D7;</label>
 </ins>
-<label for=${id_s} data-ins=${C_o.INS_TXT_s} data--=comment>${intro_s}</label>`    //: skip </li>
+<label for=${id_s} data-ins=${C_o.INS_TXT_s} data--=abstract>${intro_s}</label>`    //: skip </li>
 
         ++at_n
       }
