@@ -91,7 +91,7 @@ module
                 + `<li${itemId_s}>`
                 + `${item_o.getText()}`
                 + `${content_s}`
-                + `</li>`
+                //+ `</li>`            //: skip closing tag
                 )
             },
             ''    //: accumulator

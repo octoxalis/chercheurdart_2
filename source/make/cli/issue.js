@@ -3,8 +3,8 @@
 const FS_o  = require( 'fs-extra' )
 const KS_o  = require( 'klaw-sync' )
 const { request: REQ_o } = require( '@octokit/request' )
-const marked = require("marked")
-const insane = require("insane")
+const marked = require( 'marked' )
+const insane = require( 'insane' )
 
 const REX_o = require( '../../make/lib/regex.js' )
 
@@ -175,13 +175,12 @@ const ISS_o =
 <li>
 <${C_o.ROW_TAG_s}>${name_s}</${C_o.ROW_TAG_s}>
 <${C_o.ROW_TAG_s}>${at_s}</${C_o.ROW_TAG_s}>
-<input id=${id_s} type="checkbox" />
+<input id=${id_s} type=checkbox />
 <ins>
 ${pretty_s}
 <label for=${id_s}>&#x00D7;</label>
 </ins>
-<label for=${id_s} data-ins=${C_o.INS_TXT_s}>${intro_s}</label>
-</li>`
+<label for=${id_s} data-ins=${C_o.INS_TXT_s} data--=comment>${intro_s}</label>`    //: skip </li>
 
         ++at_n
       }

@@ -16,9 +16,9 @@
             text-align: right;
             font-family: {{S_o.FONT_BODY_s}};
             font-size: 80%;
-      <strong>
+      <bold>
       context( copy, next )
-      </strong>
+      </bold>
       <bold>
               font-weight: 600;
       </bold>
@@ -85,3 +85,18 @@
     </ins>
   </li>
 </ul>
+<!--variant-->
+<ul[data-role=list]>
+  <li>
+    <label:not(data--=comment)>
+            width:  1.8em;
+            height: 1.8em;
+            font-size: 90%;
+            text-align: center;
+            vertical-align: bottom;
+            border: 2px solid var(--shadow_ne);
+            border-radius: 50%;
+            background: transparent;
+    </label>
+  </li>
+  </ul>

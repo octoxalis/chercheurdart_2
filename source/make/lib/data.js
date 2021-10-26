@@ -16,6 +16,8 @@ const DATA_a =    // default exported data: front matter properties list
 
   'section_a',
 
+  'version_a',
+
   'A_o',
   'C_o',
 ]

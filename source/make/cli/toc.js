@@ -312,7 +312,7 @@ const TOC_o =
       <b>${atdoc_o.subtitle_s}</b>
       <b>${F_o.stamp__s(atdoc_o.version_a[0])}</b>
     </span>
-  </ins>\n`
+  </ins>\n`    //: skip </li>
       }
     }
 

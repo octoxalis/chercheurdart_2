@@ -74,11 +74,11 @@ const F_o =
       }
 
       at_s =
-       `*`
+       `<bold>`
        + `${match_a.groups.day_s} `
        + `${month_o[ match_a.groups.month_s ]} `
        + `${match_a.groups.year_s}`
-       + `*`
+       + `</bold>`
        + ` à ${match_a.groups.hour_s}:`
        + `${match_a.groups.minutes_s}:`
        + `${match_a.groups.seconds_s}`
@@ -253,13 +253,14 @@ module.exports =
   }
 
     return (
-      `Versions ${C_o.INS_DELIM_s}`
+      `pass:[Versions ${C_o.INS_DELIM_s}`    //: AsciiDoc
       +  list_s
           .slice
           (
             0,
             -1    //: remove last \n
           )
+      + `]`    //: AsciiDoc
     )
   }
   ,

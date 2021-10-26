@@ -36,7 +36,7 @@
 //LINKS
 :site_tech: pass:[<a href=site_tech.html>Technologie du site</a>]
 :usage: pass:[<a href=ui.html>Interface utilisateur</a>]
-:Brave: pass:[<a href=https://brave.com><strong>Brave</strong></a>]
+:Brave: pass:[<a href=https://brave.com><bold>Brave</bold></a>]
 :11ty: https://www.11ty.dev[Eleventy]
 
 //INCLUDES

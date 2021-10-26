@@ -9,7 +9,7 @@
   doc_n:      7168,
   title_s:    `Style guide`,
   subtitle_s: `AsciiDoc subset used in chercheurd.art`,
-  abstract_s: `Style guide for chercheurd.art`,
+  abstract_s: `Style guide for *chercheurd.art*`,
   issue_n:    3,
 
   section_a:
