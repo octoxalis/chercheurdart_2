@@ -26,7 +26,7 @@ const STAT_o =
         new Function            //!!! not JSON.parse !!!
         (
           `return ${scan_a}`
-        )()                      ;console.log( 'STAT_o.scan_a loaded' )
+        )()                      //;console.log( 'STAT_o.scan_a loaded' )
                             //;console.log( STAT_o.scan_a )
   }
   ,
