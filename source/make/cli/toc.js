@@ -280,6 +280,8 @@ const TOC_o =
 
     let toc_s = ''
 
+    let count_n = 0
+
     for
     (
       const atdoc_o
@@ -302,6 +304,8 @@ const TOC_o =
           .HIDDEN_DOCS_n
       )
       {
+        ++count_n
+
         toc_s +=
 `<li>
   <a href=${atdoc_o.doc_s}.html>${atdoc_o.title_s}</a>
@@ -319,6 +323,8 @@ const TOC_o =
     toc_s =         //!!! don't put AsciiDoc pass:[] in md file
       `pass:[`
       + `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
+      + `<label for=toc_link_a data-list=link_n>${count_n}</label>`
+      + `<input id=toc_link_a type=checkbox />`
       + `<ul data-list=link_a>`
       + toc_s
       + `</ul>`

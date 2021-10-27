@@ -119,7 +119,8 @@ const ISS_o =
       list_s +=
 `
 <div>
-<label data-list=link_n>${list_o.data.length}</label>
+<label for=issue_link_a data-list=link_n>${list_o.data.length}</label>
+<input id=issue_link_a type=checkbox />
 <ul data-list=link_a>`
 
       let at_n = 0

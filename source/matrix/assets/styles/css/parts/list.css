@@ -1,29 +1,42 @@
-label[data-list=link_n] {
-  font-weight: 600;
+label[data-list=link_n]:hover {
+  filter: invert( .5 );
 }
-ul[data-list=link_a] > li {
+label[data-list=link_n] {
+  padding: .5rem;
+  border: 1px solid var(--shadow_ne);
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+label[data-list=link_n] + input {
+  display: none;
+}
+label[data-list=link_n] + input + ul[data-list=link_a] {
+  display: none;
+}
+label[data-list=link_n] + input + ul[data-list=link_a] > li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-ul[data-list=link_a] > li > b:first-child {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > b:first-child {
   width: 45%;
   font-size: 80%;
 }
-ul[data-list=link_a] > li > b:nth-child(2) {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) {
   width: 50%;
   text-align: right;
   font-family: {{S_o.FONT_BODY_s}};
   font-weight: 600;
 }
-ul[data-list=link_a] > li > b:nth-child(2) > bold, ul[data-list=link_a] > li > b:nth-child(2) > bold {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > bold, label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > bold {
   font-weight: 600;
 }
-ul[data-list=link_a] > li > input, ul[data-list=link_a] > li > input + ins {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > input, label[data-list=link_n] + input + ul[data-list=link_a] > li > input + ins {
   display: none;
 }
-ul[data-list=link_a] > li > input + ins + label {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > input + ins + label {
   width: 100%;
   padding-left: {{S_o.PAD_8}};
   font-style: italic;
@@ -31,7 +44,17 @@ ul[data-list=link_a] > li > input + ins + label {
   vertical-align: baseline;
   cursor: pointer;
 }
-ul[data-list=link_a] > li > input:checked + ins {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > label:not(data--=abstract) {
+  width: 1.8em;
+  height: 1.8em;
+  font-size: 90%;
+  text-align: center;
+  vertical-align: bottom;
+  border: 2px solid var(--shadow_ne);
+  border-radius: 50%;
+  background: transparent;
+}
+label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins {
   --font_max: 18px;
   --font_scale: 1.9vw;
   display: block;
@@ -45,10 +68,10 @@ ul[data-list=link_a] > li > input:checked + ins {
   border: 1px solid var(--shadow_ne);
   border-radius: 4px;
 }
-ul[data-list=link_a] > li > input:checked + ins > p:first-of-type {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins > p:first-of-type {
   margin-top: {{S_o.PAD_8}};
 }
-ul[data-list=link_a] > li > input:checked + ins > label {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins > label {
   position: absolute;
   top: 0;
   right: 0;
@@ -59,19 +82,12 @@ ul[data-list=link_a] > li > input:checked + ins > label {
   border: 2px solid var(--shadow_ne);
   border-radius: 4px;
 }
-ul[data-list=link_a] > li > input:checked + ins + label {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins + label {
   display: none;
 }
-ul[data-list=link_a] > li > input:checked + ins:hover {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins:hover {
   filter: brightness( var(--brigtness_hi) );
 }
-ul[data-list=link_a] > li > label:not(data--=abstract) {
-  width: 1.8em;
-  height: 1.8em;
-  font-size: 90%;
-  text-align: center;
-  vertical-align: bottom;
-  border: 2px solid var(--shadow_ne);
-  border-radius: 50%;
-  background: transparent;
+label[data-list=link_n] + input:checked + ul[data-list=link_a] {
+  display: block;
 }

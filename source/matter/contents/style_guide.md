@@ -69,7 +69,7 @@
   {{F_o.versionList__s(version_a)}}₎
 
 //---------------------------------------
-== Articles mis en ligne
+== Articles en ligne
 include::{index_toc}[]
 
 //----------------------------------------
