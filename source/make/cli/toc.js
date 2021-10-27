@@ -309,7 +309,7 @@ const TOC_o =
         toc_s +=
 `<li>
   <a href=${atdoc_o.doc_s}.html>${atdoc_o.title_s}</a>
-  <label for=L_${atdoc_o.doc_s} tabindex=-1 data-ins=₀>&#x2139;</label>
+  <label for=L_${atdoc_o.doc_s} tabindex=-1 data-ins=₀>${C_o.INFO_s}</label>
   <input id=L_${atdoc_o.doc_s} type=checkbox>
   <ins>
     <${C_o.TABLE_TAG_s} data-ins=₀>

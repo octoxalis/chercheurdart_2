@@ -1,11 +1,11 @@
-.colw_20_50_30 > b:nth-child(-n+3){filter:brightness(var(--brigtness_lo));font-weight:600}
+.colw_20_50_30 > b:nth-child(-n+3){filter:brightness({{S_o.brigtness_lo}});font-weight:600}
 .colw_20_50_30 > b:nth-child(3n+1){width: calc((20 - 2) * 1%)}
 .colw_20_50_30 > b:nth-child(3n+2){width: calc((50 - 5) * 1%)}
 .colw_20_50_30 > b:nth-child(3n+3){width: calc((30 - 3) * 1%)}
 .cola_2_1_0 > b:nth-child(3n+1){text-align: right}
 .cola_2_1_0 > b:nth-child(3n+2){text-align: center}
 .cola_2_1_0 > b:nth-child(3n+3){text-align: left}
-.colw_20_20_20_20_20 > b:nth-child(-n+5){filter:brightness(var(--brigtness_lo));font-weight:600}
+.colw_20_20_20_20_20 > b:nth-child(-n+5){filter:brightness({{S_o.brigtness_lo}});font-weight:600}
 .colw_20_20_20_20_20 > b:nth-child(5n+1){width: calc((20 - 2) * 1%)}
 .colw_20_20_20_20_20 > b:nth-child(5n+2){width: calc((20 - 2) * 1%)}
 .colw_20_20_20_20_20 > b:nth-child(5n+3){width: calc((20 - 2) * 1%)}

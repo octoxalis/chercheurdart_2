@@ -1,12 +1,12 @@
 context( stack, new )
 <aside>
-        background:var(--bgcolor);
+        background:{{S_o.bgcolor}};
   <figure>
           display:none;
     <a>
       <img/>
               width: 100%; max-width: {{S_o.FULL_WIDTH_s}};
-              max-height: calc( {{S_o.FULL_HEIGHT_s}} - var(--nav_height) );
+              max-height: calc( {{S_o.FULL_HEIGHT_s}} - {{S_o.NAV_HEIGHT_s}} );
               object-fit: scale-down;
     </a>
   </figure>
@@ -15,11 +15,11 @@ context( stack, new )
           display: block;
           z-index: 1;
           position:fixed;
-          top:var(--nav_height);
+          top:{{S_o.NAV_HEIGHT_s}};
           right:0;
           bottom:0;
           left:0;
-          background: var(--bgcolor);
+          background: {{S_o.bgcolor}};
   </figure>
 </aside>
 <!--variant-->

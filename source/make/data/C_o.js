@@ -124,7 +124,8 @@ const C_o =
     '₉':  'img',
   },
 
-  UP_ARROW: '&#8593;',
+  INFO_s    : '&#x2139;',
+  UP_ARROW_s: '&#8593;',
 
   PART_DELIM_s:        '_',    //: between subparts
   SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)

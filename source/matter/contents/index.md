@@ -35,7 +35,7 @@
 {% _doc section_a[0] %}
 //LINKS
 :site_tech: pass:[<a href=site_tech.html>Technologie du site</a>]
-:usage: pass:[<a href=ui.html>Interface utilisateur</a>]
+:guide: pass:[<a href=ui_guide.html>Guide du visiteur</a>]
 :Brave: pass:[<a href=https://brave.com><bold>Brave</bold></a>]
 :11ty: https://www.11ty.dev[Eleventy]
 
@@ -53,22 +53,34 @@
   {{F_o.versionList__s(version_a)}}₎
 
 //---------------------------------------
-== Articles mis en ligne
+== Contenu en ligne
 include::{index_toc}[]
 
 == Avertissement
 
-Ce site est délibéremment 
+**{{A_o.NAME_s}}** est délibéremment 
 ₍₀ expérimental
   Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
   - **Google Chrome** (je recommande tout particulièrement {Brave}, pour des raisons de confidentialité)
   - **Mozilla Firefox**.
 
   La page {site_tech} donne un aperçu de son infrastructure
-  La page {usage} détaille son fonctionnement₎!
+  La page {guide} détaille son fonctionnement₎!
+
+== Confidentialité
+
+**{{A_o.NAME_s}}** respecte la plus totale
+₍₀ anonymité
+  Ici nul **cookie**,
+  nul **enregistrement** de votre adresse Internet Protocol,
+  nul **traçage** de vos interactions sur chaque page,
+  nulle **information personelle** transmise à de tierces parties:
+  &nbsp;
+  **nous ne vendons pas votre profil comportemental** &hellip;₎
+de votre visite!
 
 == Colophon
 
-{{A_o.NAME_s}} est généré avec la complicité de {11ty}
+**{{A_o.NAME_s}}** est généré avec la complicité de {11ty}
 
 {% end_doc %}

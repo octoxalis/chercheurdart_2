@@ -176,7 +176,7 @@ const ISS_o =
 `\n
 <li>
 <${C_o.ROW_TAG_s} data--=stamp>${at_s}</${C_o.ROW_TAG_s}>
-<${C_o.ROW_TAG_s}>${name_s}</${C_o.ROW_TAG_s}>
+<${C_o.ROW_TAG_s}><label for=${id_s}>${name_s}<label></${C_o.ROW_TAG_s}>
 <input id=${id_s} type=checkbox />
 <ins>
 ${pretty_s}

@@ -1,19 +1,20 @@
 <section#{{C_o.SECTION_a[0]}}>
-        --max-width: 100vw;
-        --col-width: 66.6%;
-        --threshold: calc(var(--max-width) - 100px);
+        --max_width: 100vw;
+        --col_width: 66.6%;
+        --threshold: calc(var(--max_width) - 100px);
         --gap: 2rem;
-        max-width: var(--max-width);
+        max-width: var(--max_width);
         margin: auto;
         padding: var(--gap);
         align-self: center;
         font-size: 1.1em;
         line-height: 2;
-  <hr/><!-- !!! occurs at chapter end -->
+<!-- !!! occurs at chapter end -->
+  <hr/>
           width: 100%;
           height: 1px;
           margin: {{S_o.PAD_8}} auto {{S_o.PAD_12}};
-          background: var(--shadow_ne);
+          background: {{S_o.shadow_ne}};
           border: 0;
   <h1>
           --font_max: 40px;
@@ -30,7 +31,7 @@
     </p>
   </div>
   <h2>
-          min-width: calc(100% - var(--col-width) - var(--gap));
+          min-width: calc(100% - var(--col_width) - var(--gap));
           max-width: 100%;
           width: calc((var(--threshold) - 100%) * 1000);
           text-align: end;
@@ -47,13 +48,13 @@
         margin: 0 0 0 auto;
         /*padding: .5em 0;*/
         max-width: 100%;
-        min-width: var(--col-width);
+        min-width: var(--col_width);
         width: calc((var(--threshold) - 100%) * 1000);
     <hr><!-- !!! occurs inside chapter -->
       width: 30%;
       height: 1px;
       margin: {{S_o.PAD_4}} auto {{S_o.PAD_4}};
-      background: var(--shadow_ne);
+      background: {{S_o.shadow_ne}};
       border: 0;
     </hr>
     context( stack, new )
@@ -73,7 +74,7 @@
               margin: 0 {{S_o.PAD_1}};
               vertical-align: baseline;
                                          /*cursor: pointer;*/
-              color: var(--inscolor);
+              color: {{S_o.inscolor}};
         <em>
                 font-style: italic;
         </em>
@@ -99,9 +100,9 @@
               height: fit-content;
               margin: {{S_o.PAD_1}} 0;
               padding: {{S_o.PAD_4}};
-              background: var(--insert);
+              background: {{S_o.insert}};
               text-decoration: none;
-              border: 1px solid var(--ins_shadow_ne);
+              border: 1px solid {{S_o.ins_shadow_ne}};
               border-radius: 4px;
         <a>
                 context( block, link_raw )
@@ -127,10 +128,10 @@
           <{{C_o.ROW_TAG_s}}>
                 context( block, vertical_hr )
                 context( block, list_item )
-</v>
+          </{{C_o.ROW_TAG_s}}>
           <{{C_o.ROW_TAG_s}}:before>
                   context( block, list_marker )
-          </>
+          </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
           <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
@@ -182,7 +183,7 @@
           <{{C_o.ROW_TAG_s}}>
                   flex-grow: 1;
                   padding: {{S_o.PAD_2}};
-                  background: var(--shadow_ne);
+                  background: {{S_o.shadow_ne}};
                   font-size: 90%;
             <a>
                     font-size: 100%;
@@ -194,7 +195,7 @@
               display: block;
               margin: 0 0 -.2rem .4rem;
               padding-left: .8rem;
-              border-left: .5rem solid var(--shadow_ne);
+              border-left: .5rem solid {{S_o.shadow_ne}};
               font-style: italic;
       </{{C_o.LABEL_TAG_s}}>
     </p>
@@ -208,8 +209,8 @@
     context( copy, next )
     </strong>
     <bold>
-            font-weight: 600;
-    </{{C_o.ROW_TAG_s}}old>
+            font-weight: {{S_o.FONT_BOLD_s}};
+    </bold>
     context( url, list.context.html )
     context( url, comment_iframe.context.html )
     context( url, comment_form.context.html )

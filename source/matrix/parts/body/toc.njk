@@ -1,0 +1,59 @@
+<!--
+<div>
+  <label for="toc_link_a" data-list="link_n">4</label>
+  <input id="toc_link_a" type="checkbox">
+  <ul data-list="link_a">
+    <li>
+      <a href="1586_de¯coster-new¯york_sothebys-1625_young¯woman.html">Jeune femme (1625 c.) par Adam de Coster</a>
+      <label for="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" tabindex="-1" data-ins="₀">${C_o.INFO_s}</label>
+      <input id="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" type="checkbox">
+      <ins>
+        <span data-ins="₀">
+          <b data--="stamp"><bold>14 octobre 2021</bold> à 12:00:00</b>
+          <b data--="abstract">A. de Coster Jeune femme 1625 c.</b>
+        </span>
+      </ins>
+    </li>
+  </ul>
+</div>
+-->
+
+
+
+{% set _count_n = 0 %}
+{% set _page_a = collections.collection %}
+
+{% set _link_a %}
+{% for _page_o in _page_a %}
+  {% if _page_o.doc_n  > X_o.DOC_INDEX_n and _page_o.doc_n < X_o.HIDDEN_DOCS_n  %}
+  {% set _count_n += 1 %}
+  {% set _id_s += 1 %}
+
+<li>
+  <a href="{{_page_o.permalink}}">{{_page_o.title_s}}</a>
+  <label for="L_{{_page_o.workID_s}}" tabindex="-1" data-ins="₀">{{C_o.INFO_s}}</label>
+  <input id="L_{{_page_o.workID_s}}" type="checkbox">
+  <ins>
+    <span data-ins="₀">
+      <b data--="stamp"><bold>{{F_o.stamp__s( _page_o.version_a[0] )}}</b>
+      <b data--="abstract">{{_page_o.subtitle_s}}</b>
+    </span>
+  </ins>
+</li>
+
+  {% endif %}
+{% endfor %}
+{% endset %}
+
+
+
+
+<div>
+  <label for="toc_link_a" data-list="link_n">{{_count_n}}</label>
+  {% if _count_n %}
+  <input id="toc_link_a" type="checkbox">
+  <ul data-list="link_a">
+  {{- _link_a | safe -}}
+  </ul>
+  {% endif %}
+</div>

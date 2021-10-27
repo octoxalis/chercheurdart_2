@@ -2,8 +2,8 @@ body {
   position: relative;
   overflow-X: hidden;
   min-height: 200vh;
-  color: var(--textcolor);
-  background: var(--bgcolor);
+  color: {{S_o.textcolor}};
+  background: {{S_o.bgcolor}};
   font-family: {{S_o.FONT_BODY_s}};
 }
 body > input {
@@ -24,10 +24,10 @@ body > a#goto_{{C_o.PAGE_TOP}} {
   height: 2em;
   text-align: center;
   vertical-align: bottom;
-  border: 1px solid var(--shadow_ne);
+  border: 1px solid {{S_o.shadow_ne}};
   border-radius: 50%;
   background: transparent;
 }
 body > a#goto_{{C_o.PAGE_TOP}}:hover {
-  filter: brightness( var(--brigtness_lo) );
+  filter: brightness( {{S_o.brigtness_lo}} );
 }

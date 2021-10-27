@@ -5,7 +5,6 @@ context( stack, new )
         margin: 1vmin;
         max-width: 100vw;
   <figure>
-        --figure_border: 2vmin;
           display: grid;
           position: relative;
     <*>
@@ -15,14 +14,14 @@ context( stack, new )
             max-width: 100%;
             height: auto;
             border-style: solid;
-            border-width: var(--figure_border);
-            border-image: radial-gradient( var(--frame_gradient_from), var(--frame_gradient_to) ) 1; 
+            border-width: {{S_o.FIGURE_BORDER_s}};
+            border-image: radial-gradient( {{S_o.frame_gradient_from}}, {{S_o.frame_gradient_to}} ) 1; 
     <a>
             context( block, link_regular )
       <figcaption>
-              padding: calc( var(--figure_border) * 2);
+              padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
               height: 100%;
-              background: var(--shadow_hi);
+              background: {{S_o.shadow_hi}};
               opacity: 0;
               transition: opacity .4s ease;
         <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>

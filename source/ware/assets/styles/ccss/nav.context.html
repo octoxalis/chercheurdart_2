@@ -4,8 +4,8 @@ context( stack, new )
         justify-content: center;
         gap: {{S_o.PAD_8}};
         width: 100%;
-        height: var(--nav_height);
-        background: var(--bgcolor);
+        height: {{S_o.NAV_HEIGHT_s}};
+        background: {{S_o.bgcolor}};
     <a:before>
             context( copy, next )
     </a>
@@ -58,7 +58,7 @@ context( stack, new )
   </a>
   <label>
         opacity: 1;
-        filter: brightness( var(--brigtness_hi) );
+        filter: brightness( {{S_o.brigtness_hi}} );
         transition: opacity .2s;
   </label>
 </nav>

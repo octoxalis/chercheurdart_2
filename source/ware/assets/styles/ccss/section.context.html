@@ -33,7 +33,7 @@ context( stack, new )
 </ul>
 <pre>
         width: 100%;
-        background: var(--shadow_lo);
+        background: {{S_o.shadow_lo}};
   <code>
         width: 100%;
         padding: {{S_o.PAD_1}};
@@ -41,10 +41,13 @@ context( stack, new )
         white-space: normal;
   </code>
 </pre>
+<label[for]>
+        cursor: pointer;
+</label>
 <!--
 <blockquote>
         margin: 0 0 1rem 1rem;
-        border-left: 4px solid var(--shadow_ne);
+        border-left: 4px solid {{S_o.shadow_ne}};
     <p>
           padding-left: .8rem;
     </p>
@@ -66,7 +69,7 @@ context( stack, new )
         min-height: {{S_o.FULL_HEIGHT_s}};
         height: auto;
         padding-top: {{S_o.PAD_12}};
-        background: var(--bgcolor);
+        background: {{S_o.bgcolor}};
 </section>
 <!--variant-->
 <input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked />

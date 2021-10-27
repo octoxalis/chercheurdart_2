@@ -15,7 +15,7 @@ h6 {
   font-weight: 400;
 }
 ul {
-  border-left: 1px solid var(--shadow_ne);
+  border-left: 1px solid {{S_o.shadow_ne}};
 }
 ul > li {
   padding-left: .8rem;
@@ -25,28 +25,31 @@ ul > li {
 ul > li > a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid var(--shadow_ne);
+  border-bottom: 1px solid {{S_o.shadow_ne}};
 }
 ul > li > a:hover {
   border-bottom: 1px solid;
-  filter: brightness( var(--brigtness_hi) );
+  filter: brightness( {{S_o.brigtness_hi}} );
   transition: opacity .2s;
 }
 ul > li:before {
   content: '\{{S_o.LIST_MARKER_s}}';
   position: relative;
   left: -1rem;
-  color: var(--shadow_ne);
+  color: {{S_o.shadow_ne}};
 }
 pre {
   width: 100%;
-  background: var(--shadow_lo);
+  background: {{S_o.shadow_lo}};
 }
 pre > code {
   width: 100%;
   padding: {{S_o.PAD_1}};
   border-left: 1px solid currentColor;
   white-space: normal;
+}
+label[for] {
+  cursor: pointer;
 }
 {{C_o.ROW_TAG_s}}[data--=abstract] {
   font-style: italic;
@@ -64,7 +67,7 @@ section {
   min-height: {{S_o.FULL_HEIGHT_s}};
   height: auto;
   padding-top: {{S_o.PAD_12}};
-  background: var(--bgcolor);
+  background: {{S_o.bgcolor}};
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {
   display: block;

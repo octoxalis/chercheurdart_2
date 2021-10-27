@@ -1,5 +1,5 @@
 section#{{C_o.SECTION_a[2]}} {
-  padding: var(--nav_height) 2vmin 2vmin 2vmin;
+  padding: {{S_o.NAV_HEIGHT_s}} 2vmin 2vmin 2vmin;
 }
 section#{{C_o.SECTION_a[2]}} > input {
   display: none;
@@ -14,8 +14,8 @@ section#{{C_o.SECTION_a[2]}} > input ~ div {
   width: calc( {{S_o.FULL_WIDTH_s}} - 4vmin );
   min-height: calc( {{S_o.FULL_HEIGHT_s}} - ( {{S_o.PAD_12}} + 4vmin ) );
   color: currentColor;
-  background: var(--bgcolor);
-  border: 1px solid var(--shadow_ne);
+  background: {{S_o.bgcolor}};
+  border: 1px solid {{S_o.shadow_ne}};
 }
 section#{{C_o.SECTION_a[2]}} > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked ~ div#{{C_o.STAT_a[0]}}, section#{{C_o.SECTION_a[2]}} > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked ~ div#{{C_o.STAT_a[1]}}, section#{{C_o.SECTION_a[2]}} > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked ~ div#{{C_o.STAT_a[2]}} {
   display: block;

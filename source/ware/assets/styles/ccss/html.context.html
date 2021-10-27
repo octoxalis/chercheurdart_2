@@ -1,54 +1,4 @@
 <html>
-        --cancel_hue: 0;
-        --accept_hue: 120;
-
-        --lum_mode:{{S_o.LUM_MODE_n}};
-        --lum_contrast:45;
-        
-        --c_lum_hi_4:calc(({{S_o.LUM_BASE_n}} + ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * 1.0 ) ) * 1%); /* 40/40:90% */
-        --c_lum_hi_3:calc(({{S_o.LUM_BASE_n}} + ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * .75 ) ) * 1%); /* 30/40:80% */
-        --c_lum_hi_2:calc(({{S_o.LUM_BASE_n}} + ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * .50 ) ) * 1%); /* 20/40:70% */
-        --c_lum_hi_1:calc(({{S_o.LUM_BASE_n}} + ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * .25 ) ) * 1%); /* 10/40:60% */
-        --c_lum_ne :calc(({{S_o.LUM_BASE_n}} +  0 ) * 1%);                                                    /* 50% */
-        --c_lum_lo_1:calc(({{S_o.LUM_BASE_n}} - ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * .25 ) ) * 1%); /* 10/40:40% */
-        --c_lum_lo_2:calc(({{S_o.LUM_BASE_n}} - ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * .50 ) ) * 1%); /* 20/40:30% */
-        --c_lum_lo_3:calc(({{S_o.LUM_BASE_n}} - ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * .75 ) ) * 1%); /* 30/40:20% */
-        --c_lum_lo_4:calc(({{S_o.LUM_BASE_n}} - ( var(--lum_mode) * {{S_o.LUM_CONTRAST_n}} * 1.0 ) ) * 1%); /* 40/40:10% */
-        
-        --c_hue_p: {{S_o.HUE_P_n}};   /* user definable primary */
-        --c_sat_hi_4: 94%;   /* 11 point scale */
-        --c_sat_hi_2: 72%;
-        --c_sat_hi_1: 61%;
-        --c_sat_ne:   50%;
-        --c_sat_lo_1: 39%;
-        --c_sat_lo_2: 28%;
-        
-        --textcolor: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_lo_4) /1);
-        --inscolor:  hsla( calc(var(--c_hue_p) - 60 ) var(--c_sat_hi_4) var(--c_lum_lo_3) /1);
-        --bgcolor:   hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_3) /1);
-        --bg_lower:  hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_1) /1);
-        --highlight: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_lo_2) /1);
-        --insert:    hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_1) /.25);
-        --table:     hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_hi_4) /.25);
-        
-        --shadow_hi: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.75);
-        --shadow_ne: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.5);
-        --shadow_lo: hsla(var(--c_hue_p) var(--c_sat_lo_2) var(--c_lum_ne) /.25);
-
-        --ins_shadow_ne: hsla( calc(var(--c_hue_p) - 200 ) var(--c_sat_hi_4) var(--c_lum_lo_3) /.25);
-
-        --accept_hi: hsla(var(--accept_hue) var(--c_sat_hi_4) var(--c_lum_hi_2) /1);
-        --cancel_hi: hsla(var(--cancel_hue) var(--c_sat_hi_4) var(--c_lum_hi_2) /1);
-
-        --frame_gradient_from: hsla( 60 61% 39% /1);
-        --frame_gradient_to:   hsla( 20 39% 28% /1);
-        
-        --brigtness_hi: 1.3;
-        --brigtness_ne: 1;
-        --brigtness_lo: .7;
-
-        --nav_height: {{S_o.PAD_8}};
-        
   context( stack, ignore )
   <*>
           margin: 0;
@@ -71,11 +21,11 @@
           width:.5em;
   </*>
   <*::-webkit-scrollbar-track>
-          background:var(--bgcolor);
+          background:{{S_o.bgcolor}};
   </*>
   <*::-webkit-scrollbar-thumb>
-          background-color:var(--bg_lower);
-          border:.2em solid var(--bgcolor);
+          background-color:{{S_o.bg_lower}};
+          border:.2em solid {{S_o.bgcolor}};
           border-radius: .5em;
   </*>
   context( url, body.context.html )

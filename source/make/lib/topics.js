@@ -125,7 +125,7 @@ const DOCS_o =
 
 
 //--  <a href="1586_de¯coster-new¯york_sothebys-1625_young¯woman.html">Jeune femme (1625 c.) par Adam de Coster</a>
-//--  <label for="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" tabindex="-1" data-ins="₀">ℹ</label>
+//--  <label for="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" tabindex="-1" data-ins="₀">${C_o.INFO_s}</label>
 //--  <input id="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" type="checkbox">
           
 
@@ -134,7 +134,7 @@ const DOCS_o =
         linkList_s +=
 `<li>
   <label for=${id_s} tabindex=-1 data-ins="₀">${atopic_s}</label>
-  <label for=${id_s} tabindex="-1" data-ins="₀">ℹ</label>
+  <label for=${id_s} tabindex="-1" data-ins="₀">${C_o.INFO_s}</label>
   <input id=${id_s} type=checkbox>
   <ins>
     <span data-ins=₀>

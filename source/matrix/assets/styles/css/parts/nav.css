@@ -3,8 +3,8 @@ nav {
   justify-content: center;
   gap: {{S_o.PAD_8}};
   width: 100%;
-  height: var(--nav_height);
-  background: var(--bgcolor);
+  height: {{S_o.NAV_HEIGHT_s}};
+  background: {{S_o.bgcolor}};
 }
 nav > a:before, nav > label:before {
   content: attr( data-legend );
@@ -42,6 +42,6 @@ nav:hover {
 }
 nav:hover > a, nav:hover > label {
   opacity: 1;
-  filter: brightness( var(--brigtness_hi) );
+  filter: brightness( {{S_o.brigtness_hi}} );
   transition: opacity .2s;
 }

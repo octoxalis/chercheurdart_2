@@ -3,8 +3,8 @@ context( stack, new )
         position: relative;
         overflow-X: hidden;    /* no HZ space bar */
         min-height: 200vh;    /* needed for sticky nav child */
-        color: var(--textcolor);
-        background: var(--bgcolor);
+        color: {{S_o.textcolor}};
+        background: {{S_o.bgcolor}};
         font-family: {{S_o.FONT_BODY_s}};
   <input />
           display: none;
@@ -22,13 +22,13 @@ context( stack, new )
           height: 2em;
           text-align: center;
           vertical-align: bottom;
-          border: 1px solid var(--shadow_ne);
+          border: 1px solid {{S_o.shadow_ne}};
           border-radius: 50%;
           background: transparent;
 </a>
   <!--variant-->
   <a#goto_{{C_o.PAGE_TOP}}:hover>
-          filter: brightness( var(--brigtness_lo) );
+          filter: brightness( {{S_o.brigtness_lo}} );
   </a>
   context( url, at_rules.context.html )
   context( url, blocks.context.html )

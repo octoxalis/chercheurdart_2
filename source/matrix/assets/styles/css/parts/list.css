@@ -2,10 +2,10 @@ label[data-list=link_n]:hover {
   filter: invert( .5 );
 }
 label[data-list=link_n] {
-  padding: .5rem;
-  border: 1px solid var(--shadow_ne);
+  padding: {{S_o.PAD_2}};
+  border: 1px solid {{S_o.shadow_ne}};
   border-radius: 4px;
-  font-weight: 600;
+  font-weight: {{S_o.FONT_BOLD_s}};
   cursor: pointer;
 }
 label[data-list=link_n] + input {
@@ -18,7 +18,7 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin: {{S_o.PAD_2}} 0 {{S_o.PAD_2}} ;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > b:first-child {
   width: 45%;
@@ -28,10 +28,14 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) {
   width: 50%;
   text-align: right;
   font-family: {{S_o.FONT_BODY_s}};
-  font-weight: 600;
+  font-weight: {{S_o.FONT_BOLD_s}};
+}
+label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > label[for] {
+  font-weight: {{S_o.FONT_BOLD_s}};
+  margin-bottom: {{S_o.PAD_4}};
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > bold, label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > bold {
-  font-weight: 600;
+  font-weight: {{S_o.FONT_BOLD_s}};
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input, label[data-list=link_n] + input + ul[data-list=link_a] > li > input + ins {
   display: none;
@@ -50,7 +54,7 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > label:not(data--=a
   font-size: 90%;
   text-align: center;
   vertical-align: bottom;
-  border: 2px solid var(--shadow_ne);
+  border: 2px solid {{S_o.shadow_ne}};
   border-radius: 50%;
   background: transparent;
 }
@@ -63,9 +67,9 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + in
   height: fit-content;
   margin: {{S_o.PAD_1}} 0;
   padding: {{S_o.PAD_4}};
-  background: var(--insert);
+  background: {{S_o.insert}};
   text-decoration: none;
-  border: 1px solid var(--shadow_ne);
+  border: 1px solid {{S_o.shadow_ne}};
   border-radius: 4px;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins > p:first-of-type {
@@ -78,15 +82,15 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + in
   margin: {{S_o.PAD_1}};
   padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
-  background: var(--bgcolor);
-  border: 2px solid var(--shadow_ne);
+  background: {{S_o.bgcolor}};
+  border: 2px solid {{S_o.shadow_ne}};
   border-radius: 4px;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins + label {
   display: none;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins:hover {
-  filter: brightness( var(--brigtness_hi) );
+  filter: brightness( {{S_o.brigtness_hi}} );
 }
 label[data-list=link_n] + input:checked + ul[data-list=link_a] {
   display: block;
