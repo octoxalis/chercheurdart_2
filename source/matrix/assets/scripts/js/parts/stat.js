@@ -22,7 +22,11 @@ const STAT_o =
   {
     STAT_o
       .scan_a =
-        eval( scan_a )      //!!! not JSON.parse !!!
+        //XXeval( scan_a )      //!!! not JSON.parse !!!
+        new Function            //!!! not JSON.parse !!!
+        (
+          `return ${scan_a}`
+        )()                      ;console.log( 'STAT_o.scan_a loaded' )
                             //;console.log( STAT_o.scan_a )
   }
   ,
