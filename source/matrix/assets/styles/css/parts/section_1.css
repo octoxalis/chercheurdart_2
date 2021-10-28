@@ -28,11 +28,11 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
   height: 100%;
   background: {{S_o.shadow_hi}};
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity .6s ease;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
   opacity: 0;
-  transition: opacity .6s ease;
+  transition: opacity 1s ease;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} {
   display: table;
@@ -70,6 +70,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
   line-height: 1.6;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption:hover {
+  clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
-  transition: opacity .6s ease;
+  transition: opacity 1s ease;
 }

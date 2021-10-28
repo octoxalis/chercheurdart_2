@@ -23,10 +23,10 @@ context( stack, new )
               height: 100%;
               background: {{S_o.shadow_hi}};
               opacity: 0;
-              transition: opacity .4s ease;
+              transition: opacity .6s ease;
         <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
               opacity: 0;
-              transition: opacity .6s ease;
+              transition: opacity 1s ease;
           <{{C_o.ROW_TAG_s}}>
                     context( block, cartel )
             <i>
@@ -52,8 +52,9 @@ context( stack, new )
       </figcaption>
       <!--variant-->
       <figcaption:hover>
+              clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
               opacity: 1;
-              transition: opacity .6s ease;
+              transition: opacity 1s ease;
       </figcaption>
     </a>
   </figure>

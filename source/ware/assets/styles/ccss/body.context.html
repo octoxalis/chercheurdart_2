@@ -2,7 +2,7 @@ context( stack, new )
 <body>
         position: relative;
         overflow-X: hidden;    /* no HZ space bar */
-        min-height: 200vh;    /* needed for sticky nav child */
+        min-height: 200vh;     /* needed for sticky nav child */
         color: {{S_o.textcolor}};
         background: {{S_o.bgcolor}};
         font-family: {{S_o.FONT_BODY_s}};
@@ -11,15 +11,15 @@ context( stack, new )
           position: absolute;
   <nav>
           position: sticky; top: 0;
-          z-index: 2;
+          z-index: 5;
   </nav>
   <a#goto_{{C_o.PAGE_TOP}}>
           z-index: 10;
           position: fixed;
-          top:  calc( 100vh - 3em );
-          left: calc( 100vw - 3em );
-          width:  2em;
-          height: 2em;
+          top:  calc( 100vh - 5vmin );
+          left: calc( 100vw - 5vmin );
+          width:  4vmin;
+          height: 4vmin;
           text-align: center;
           vertical-align: bottom;
           border: 1px solid {{S_o.shadow_ne}};

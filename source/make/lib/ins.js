@@ -524,7 +524,7 @@ tableRow__s:
   {
     const [ artist_s, collection_s ] =
       imgId_s
-        .split( C_o.ID_PARTS_DELIM_s )
+        .split( C_o.ID_PART_DELIM_s )
     
     const artist_o =
       INS_o
@@ -676,7 +676,7 @@ tableRow__s:
       imgId_s
         .split
         (
-          C_o.ID_PARTS_DELIM_s
+          C_o.ID_PART_DELIM_s
         )
         [0]
 

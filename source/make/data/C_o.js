@@ -124,28 +124,32 @@ const C_o =
     '₉':  'img',
   },
 
-  INFO_s    : '&#x2139;',
-  UP_ARROW_s: '&#8593;',
+  INFO_s    :           '&#x2139;',
+  UP_ARROW_s:           '&#8593;',
+  IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
 
   SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
   
-  ID_PARTS_DELIM_s:          '--',   //: between id parts
-  //?? PART_DELIM_s:        '-',    //: between id subparts
-  ID_WORD_DELIM_s:     '₊₊',   //: between id multi word subpart
+  //=== DB ID
+  //-- 1586-de_coster--new_york-sothebys--1625-young_woman
 
-  IMG_LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
+  ID_PART_DELIM_s:     '--',   //: between parts
+  //-- ID_SUBPART_DELIM_s:        '-',    //: between subparts
+  ID_WORD_DELIM_s:     '₊₊',   //: between multi word subpart
 
   WORDS_DELIM_s:       ' ',
   WORDS_CONCAT_s:      '_',
-  
-  COMMENT_INTRO_s:     '₀',
-  COMMENT_ELIPSIS_s:   '...',
-  COMMENT_DELIM_s:     '₊₊',   //: subscript ++
 
+  //=== COMMENT
+  //-- 2021-09-14T12:44:07Z₊₊Daniel₊₊Markdown subset markup test₀
+
+  COMMENT_INTRO_s:     '₀',
+  COMMENT_DELIM_s:     '₊₊',   //: subscript ++ between stamp_s, name_s, intro_s
+
+  //=== TABLE
   CELL_DELIM_s:        '₊',    //: subscript ++
 
-  //-- ANCHOR_DELIM_s :     '__',
-
+  //=== INSERT
   INS_PRINCIPAL_s:     '₌',    //: subscript =
   INS_DELIM_s:         '₊₊',   //: subscript ++
   INS_PASS_s:          '<>',   //: use adoc pass:[...]
@@ -173,6 +177,7 @@ const C_o =
   CELL_RATIO_n: .1,
 
   //=== HTML-BODY ANCHORS
+  //-- ANCHOR_DELIM_s : '__',
   PAGE_TOP: 'page_top',
 
 

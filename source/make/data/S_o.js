@@ -48,8 +48,8 @@ const S_o =
   brigtness_ne: 1,
   brigtness_lo: .7,
 
-  frame_gradient_from: `hsla( 60 61% 39% /1)`,           /* 11 point scale */
-  frame_gradient_to:   `hsla( 20 39% 28% /1)`,
+  frame_gradient_from: `hsla( 60 61% 28% /1)`,           /* 11 point scale */
+  frame_gradient_to:   `hsla( 20 39% 17% /1)`,
   }
 
   S_o.lum_hi_4 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`,     // = 40/40 =90%
@@ -77,9 +77,9 @@ const S_o =
   S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.25)`,
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`,
   
-  S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.75)`,
+  S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`,
   S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`,
-  S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.25)`,
+  S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.25)`,
   
   S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`,
   S_o.accept_hi =     `hsla(${S_o.accept_hue} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`,
@@ -101,8 +101,7 @@ module.exports = S_o
 
 
 
-/*
-
+/* with ;console.log( S_o )
 {
   EXT_ARROW_s: '2303',
   INT_ARROW_s: '2304',
@@ -158,9 +157,9 @@ module.exports = S_o
   highlight: 'hsla( 190 28% 74.5% /1)',
   insert: 'hsla( 190 28% 37.75% /.25)',
   table: 'hsla( 190 28% 1% /.25)',
-  shadow_hi: 'hsla( 190 28% 50% /.75)',
+  shadow_hi: 'hsla( 190 28% 25.5% /.75)',
   shadow_ne: 'hsla( 190 28% 50% /.5)',
-  shadow_lo: 'hsla( 190 28% 50% /.25)',
+  shadow_lo: 'hsla( 190 28% 25.5% /.25)',
   ins_shadow_ne: 'hsla( -10 94% 86.75% /.25)',
   accept_hi: 'hsla(120 94% 25.5% /1)',
   cancel_hi: 'hsla(0 94% 25.5% /1)',
