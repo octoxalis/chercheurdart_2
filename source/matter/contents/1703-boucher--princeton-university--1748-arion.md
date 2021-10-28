@@ -1,16 +1,16 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1703_boucher-princeton_university-1748_arion.html',
+  permalink: '1703-boucher--princeton-university--1748-arion.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
   doc_n:      1024,
-  title_s:    `Arion (1748-50) par François Boucher`,
-  subtitle_s: `F. Boucher Arion 1748`,
+  title_s:    `Arion par François Boucher (1748-50)`,
+  subtitle_s: `F. Boucher Arion (1748-50)`,
   abstract_s: `Un décor pour La Muette`,
-  workID_s:   `1703_boucher-princeton_university-1748_arion`,
+  workID_s:   `1703-boucher--princeton-university--1748-arion`,
   //... issue_n: -1,
 
   section_a:
@@ -40,13 +40,17 @@
   [
     '2021-10-14T12:00:00Z'
   ],
+  
+  //=== IMAGES
+  '1748_arion':
+      `₍₉ Arion (1748-50) par François Boucher
+      1703-boucher--princeton-university--1748-arion₎`
+  ,
+  
 }
+
 ---
 {% _doc section_a[0] %}
-//IMAGES
-:arion: ₍₉ Arion (1748-50) par nçois Boucher
-  {{workID_s}}₎
-
 //LINKS
 // TOPICS
 ////
@@ -61,14 +65,10 @@
 //---------------------------------------
 == Presentation
 
-{arion} +
-fait partie d'un cycle décoratif conçu pour le château de La Muette.
+{{1748_arion}} fait partie d'un cycle décoratif conçu pour le château de La Muette.
 
 == Colorimétrie
 
 L'analyse colorimétrique...
 
-
-// *  link:1703_boucher-princeton_university-1748_arion__scan.html[scan]
-// *  link:1703_boucher-princeton_university-1748_arion__burst.html[burst]
 {% end_doc %}

@@ -7,6 +7,7 @@ const ASC_o = require( './asciidoc.js' )
 
 const C_o   = require( '../data/C_o.js' )
 const I_o   = require( '../data/I_o.js' )
+const S_o   = require( '../data/S_o.js' )
 
 
 
@@ -409,7 +410,7 @@ tableWidth__s:
         .split
         (
           C_o
-            .PART_DELIM_s
+            .WORDS_CONCAT_s
         )
 
   const col_n =
@@ -435,7 +436,7 @@ tableWidth__s:
   }
 
   return (
-    `.colw_${width_s} > ${C_o.ROW_TAG_s}:nth-child(-n+${col_n}){filter:brightness({{S_o.brigtness_lo}});font-weight:600}\n`
+    `.colw_${width_s} > ${C_o.ROW_TAG_s}:nth-child(-n+${col_n}){filter:brightness(${S_o.brigtness_lo});font-weight:600}\n`
     + ruleset_s
     )
 }
@@ -457,7 +458,7 @@ tableAlign__s:
       .split
       (
         C_o
-          .PART_DELIM_s
+          .WORDS_CONCAT_s
       )
 
   const col_n =
@@ -523,7 +524,7 @@ tableRow__s:
   {
     const [ artist_s, collection_s ] =
       imgId_s
-        .split( C_o.ID_DELIM_s )
+        .split( C_o.ID_PARTS_DELIM_s )
     
     const artist_o =
       INS_o
@@ -675,7 +676,7 @@ tableRow__s:
       imgId_s
         .split
         (
-          C_o.ID_DELIM_s
+          C_o.ID_PARTS_DELIM_s
         )
         [0]
 
@@ -877,7 +878,7 @@ module.exports =
       ] =
         match_a
 
-      switch
+        switch
       (
         specifier_s
       )

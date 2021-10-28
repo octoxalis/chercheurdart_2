@@ -33,18 +33,22 @@
     '2021-09-14T12:44:07Z',
   ],
 
+  //=== IMAGES
+  '1748_arion':
+      `₍₉ Arion
+      1703-boucher--princeton-university--1748-arion₎`
+  ,
+
+  //=== BIBLIO
+  // NB: inside ins, html markup can be used if ins is enclosed in an AsciiDoc pass directive
+  '1989_langdon':
+      `₍₂ Claude Lorrain
+      1989-langdon₊₊**p.123**₊₊f.123₊₊On peut ajouter une __précision__...₊₊link<index.html>"link"₊₊image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"₊₊etc.₎`
+  ,
+  
 }
 ---
 {% _doc section_a[0] %}
-//IMAGES
-:1748_arion: ₍₉ Arion
-  1703_boucher-princeton_university-1748_arion₎
-
-//BIBLIO
-// NB: inside ins, html markup can be used if ins is enclosed in an AsciiDoc pass directive
-:1989_langdon: ₍₂ Claude Lorrain
-  1989_langdon¯**p.123**¯f.123¯On peut ajouter une __précision__...¯link<index.html>"link"¯image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"¯etc.₎
-
 //LINKS
 :chercheurdart: {{U_o.url_s}}index.html[chercheurd.art]
 // ins inner link has to be passed
@@ -153,7 +157,7 @@ definition secondo₎
 
 === REFERENCE (ref) specifier_s = ₂
 
-Dans sa monographie {1989_langdon}, H. Langdon a décrit ce tableau...
+Dans sa monographie {{1989_langdon}}, H. Langdon a décrit ce tableau...
 
 .horizontal line
 '''
@@ -191,14 +195,16 @@ include::{tab_artist}[]
 '''
 
 === IMAGE (img) specifier_s = ₉
+{{1748_arion}} de F. Boucher fait partie du cycle décoratif.
 
-{1748_arion} de F. Boucher fait partie du cycle décoratif.
+
+
 
 === Insert markup
 
 Use AsciiDoc pass:[] to insert link, images...
 ₍₀<> par exemple:
-  image<https://chercheurdart-2.netlify.app/assets/media/img/1703_boucher-princeton_university-1748_arion/full/_128/0/gray.avif>"image"
+  image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"
   link<index.html>"link"
   `code_line = 1234`
   __italic__
@@ -210,6 +216,9 @@ Use AsciiDoc pass:[] to insert link, images...
 link:#article__anchor_1234[Reference]
 
 //----------------------------------------
-// CommentPart
+// References
+
+//----------------------------------------
+// Comments
 
 {% end_doc %}

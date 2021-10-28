@@ -2,7 +2,7 @@ const NET_o              = require('netlify')
 const { request: REQ_o } = require( '@octokit/request' )
 
 
-const COMMENT_DELIM_s = '₊'    //: C_o.COMMENT_DELIM_s
+const COMMENT_DELIM_s = '₊₊'    //: C_o.COMMENT_DELIM_s
 
 
 

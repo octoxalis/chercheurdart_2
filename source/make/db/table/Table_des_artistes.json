@@ -1,13 +1,13 @@
 [
 	{
-		"ID" : "1703_boucher",
+		"ID" : "1703-boucher",
 		"PRENOM" : "François",
 		"NOM" : "Boucher",
 		"NE EN" : 1703,
 		"NE A" : "Paris"
 	},
 	{
-		"ID" : "1586_de¯coster",
+		"ID" : "1586-de_coster",
 		"PRENOM" : "Adam",
 		"NOM" : "de Coster",
 		"NE EN" : 1586,

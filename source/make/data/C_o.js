@@ -127,26 +127,27 @@ const C_o =
   INFO_s    : '&#x2139;',
   UP_ARROW_s: '&#8593;',
 
-  PART_DELIM_s:        '_',    //: between subparts
   SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
-
-  ID_DELIM_s:          '-',    //: between db id parts
-  ID_WORD_DELIM_s:     '¯',    //: between db id multi word subpart
+  
+  ID_PARTS_DELIM_s:          '--',   //: between id parts
+  //?? PART_DELIM_s:        '-',    //: between id subparts
+  ID_WORD_DELIM_s:     '₊₊',   //: between id multi word subpart
 
   IMG_LEGEND_DELIM_s:  ' \u2219 ',   //: bullet
 
   WORDS_DELIM_s:       ' ',
   WORDS_CONCAT_s:      '_',
+  
   COMMENT_INTRO_s:     '₀',
   COMMENT_ELIPSIS_s:   '...',
-  COMMENT_DELIM_s:     '₊',    //: subscript +
+  COMMENT_DELIM_s:     '₊₊',   //: subscript ++
 
-  CELL_DELIM_s:        '₊',    //: subscript +
+  CELL_DELIM_s:        '₊',    //: subscript ++
 
   //-- ANCHOR_DELIM_s :     '__',
 
   INS_PRINCIPAL_s:     '₌',    //: subscript =
-  INS_DELIM_s:         '₊₊',   //: subscript +
+  INS_DELIM_s:         '₊₊',   //: subscript ++
   INS_PASS_s:          '<>',   //: use adoc pass:[...]
 
   //=== REPLACE

@@ -1,6 +1,6 @@
 [
 	{
-		"id_s" : "1703_boucher",
+		"id_s" : "1703-boucher",
 		"forename_s" : "François",
 		"lastname_s" : "Boucher",
 		"nickname_s" : null,
@@ -10,7 +10,7 @@
 		"death_place_s" : "Paris"
 	},
 	{
-		"id_s" : "1586_de¯coster",
+		"id_s" : "1586-de_coster",
 		"forename_s" : "Adam",
 		"lastname_s" : "de Coster",
 		"nickname_s" : null,

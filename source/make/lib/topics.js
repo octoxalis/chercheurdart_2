@@ -124,9 +124,9 @@ const DOCS_o =
             )
 
 
-//--  <a href="1586_de¯coster-new¯york_sothebys-1625_young¯woman.html">Jeune femme (1625 c.) par Adam de Coster</a>
-//--  <label for="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" tabindex="-1" data-ins="₀">${C_o.INFO_s}</label>
-//--  <input id="L_1586_de¯coster-new¯york_sothebys-1625_young¯woman" type="checkbox">
+//--  <a href="1586-de_coster--new_york-sothebys--1625-young_woman.html">Jeune femme (1625 c.) par Adam de Coster</a>
+//--  <label for="L_1586-de_coster--new_york-sothebys--1625-young_woman" tabindex="-1" data-ins="₀">${C_o.INFO_s}</label>
+//--  <input id="L_1586-de_coster--new_york-sothebys--1625-young_woman" type="checkbox">
           
 
 

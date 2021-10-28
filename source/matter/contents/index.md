@@ -69,14 +69,14 @@ include::{index_toc}[]
 
 == Confidentialité
 
-**{{A_o.NAME_s}}** respecte la plus totale
+**{{A_o.NAME_s}}** respecte scrupuleusement l'
 ₍₀ anonymité
-  Ici nul **cookie**,
+  nul **cookie**,
   nul **enregistrement** de votre adresse Internet Protocol,
   nul **traçage** de vos interactions sur chaque page,
   nulle **information personelle** transmise à de tierces parties:
   &nbsp;
-  **nous ne vendons pas votre profil comportemental** &hellip;₎
+  **nous ne moneyons pas votre profil comportemental** &hellip;₎
 de votre visite!
 
 == Colophon
