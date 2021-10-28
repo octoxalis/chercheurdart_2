@@ -35,8 +35,8 @@ module
       '</div>\n'        //: first close previous chapter div
       + `<hr/>`
 
-      title_s =
-        `<label>${title_s}</label>`
+      //XX title_s =
+      //XX   `<label>${title_s}</label>`
 
       chapter_s =
         `<div>\n`    //: open chapter content

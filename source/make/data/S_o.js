@@ -18,6 +18,7 @@ const S_o =
   FONT_MONO_s: `'JetBrains Mono Light', system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace`,
 
   FIGURE_BORDER_s: '2vmin',
+  PARAGRAPH_WIDTH_s: '50ch',
 
   FONT_BOLD_s: 600,
 

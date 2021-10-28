@@ -68,7 +68,6 @@
 //========================================
 = {{title_s}} (h1)
 
-
 ₍₀ {{abstract_s}}
   {{F_o.versionList__s(version_a)}}₎
 

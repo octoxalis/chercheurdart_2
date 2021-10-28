@@ -12,7 +12,7 @@ const COM_o =
   ) =>
   {
     const output_s =
-      `<hr/><h2><label>Commentaires</label></h2><div id=comments>`
+      `<hr/><h2>Commentaires</h2><div id=comments>`
       +
       FS_o
       .readFileSync

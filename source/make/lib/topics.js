@@ -152,7 +152,7 @@ const DOCS_o =
       ?
 `
 <hr/>
-<h2><label>Correspondances</label></h2>
+<h2>Correspondances</h2>
 <div>
 <label for=topics_link_a data-list=link_n>${count_n}</label>
 <input id=topics_link_a type=checkbox />

@@ -1,6 +1,6 @@
 section#{{C_o.SECTION_a[0]}} {
   --max_width: 100vw;
-  --col_width: 66.6%;
+  --col_width: 70%;
   --threshold: calc(var(--max_width) - 100px);
   --gap: 2rem;
   max-width: var(--max_width);
@@ -11,7 +11,7 @@ section#{{C_o.SECTION_a[0]}} {
   line-height: 2;
 }
 section#{{C_o.SECTION_a[0]}} > hr {
-  width: 100%;
+  width: 95%;
   height: 1px;
   margin: {{S_o.PAD_8}} auto {{S_o.PAD_12}};
   background: {{S_o.shadow_ne}};
@@ -24,31 +24,26 @@ section#{{C_o.SECTION_a[0]}} > h1 {
   text-align: center;
   font-weight: 500;
 }
-section#{{C_o.SECTION_a[0]}} > h1 + div {
-  margin: 0;
-}
 section#{{C_o.SECTION_a[0]}} > h1 + div > p {
-  width: 100%;
+  width: {{S_o.PARAGRAPH_WIDTH_s}};
 }
 section#{{C_o.SECTION_a[0]}} > h2 {
+  margin-top: -.5rem;
   min-width: calc(100% - var(--col_width) - var(--gap));
   max-width: 100%;
   width: calc((var(--threshold) - 100%) * 1000);
   text-align: end;
   float: left;
-}
-section#{{C_o.SECTION_a[0]}} > h2 > label {
   --font_max: 32px;
   --font_scale: 3vw;
-  font-weight: 900;
-  line-height: .5;
+  font-weight: 700;
 }
 section#{{C_o.SECTION_a[0]}} > div {
   position: relative;
-  margin: 0 0 0 auto;
+  margin: 0 2vmin 0 auto;
   max-width: 100%;
   min-width: var(--col_width);
-  width: calc((var(--threshold) - 100%) * 1000);
+  width: calc( (var(--threshold) - 100%) * 1000 );
 }
 section#{{C_o.SECTION_a[0]}} > div > hr {
   width: 30%;
@@ -58,7 +53,7 @@ section#{{C_o.SECTION_a[0]}} > div > hr {
   border: 0;
 }
 p {
-  max-width: 50ch;
+  max-width: {{S_o.PARAGRAPH_WIDTH_s}};
   margin-bottom: 1rem;
 }
 p > a {

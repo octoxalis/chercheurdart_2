@@ -13,7 +13,7 @@ body > input {
 body > nav {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 5;
 }
 body > a#goto_{{C_o.PAGE_TOP}} {
   z-index: 10;
