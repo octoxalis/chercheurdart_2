@@ -1,5 +1,5 @@
 <section#{{C_o.SECTION_a[2]}}>
-        padding: {{S_o.NAV_HEIGHT_s}} 2vmin 2vmin 2vmin;
+        padding:{{S_o.NAV_HEIGHT_s}} 2vmin 2vmin 2vmin;  /* skip main nav bar */
   <input />
           display: none;
   <input />
@@ -13,13 +13,11 @@
   ~
   <div>
           display: none;
-          position: absolute;
-          margin-top: 2vmin;
           width: calc( {{S_o.FULL_WIDTH_s}} - 4vmin );
-          min-height: calc( {{S_o.FULL_HEIGHT_s}} - ( {{S_o.PAD_12}} + 4vmin ) );
-          color: currentColor;
-          background: {{S_o.bgcolor}};
-          border: 1px solid {{S_o.shadow_ne}};   /* TEMPORARY */
+          height: calc( {{S_o.FULL_HEIGHT_s}} - ( {{S_o.PAD_12}} + 4vmin ) );
+    <canvas>
+            background: red;
+    </canvas>
   </div>
   <!--variant-->
   <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked />

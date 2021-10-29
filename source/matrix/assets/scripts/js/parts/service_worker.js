@@ -1,6 +1,6 @@
-// === SWO_o: service_worker.js ===
+// === STAT_W_o: service_worker.js ===
 
-var SWO_o =
+var STAT_W_o =
 {
   cache_s: '{{A_o.ID_s}}_{{C_o.KEY_n}}'            //: name of the current cache
   ,
@@ -20,11 +20,11 @@ var SWO_o =
     install_o
   ) =>
   {
-    SWO_o
+    STAT_W_o
       .cache_a =
         new Set
         (
-          SWO_o
+          STAT_W_o
             .slots_a
         )
 
@@ -36,10 +36,10 @@ var SWO_o =
         {
           const cache_o =
             await caches
-              .open( SWO_o.cache_s )
+              .open( STAT_W_o.cache_s )
 
           await cache_o
-            .addAll( SWO_o.url_a  )
+            .addAll( STAT_W_o.url_a  )
 
           self
             .skipWaiting()
@@ -72,7 +72,7 @@ var SWO_o =
                 entry_s =>
                   entry_s
                   !==
-                  SWO_o
+                  STAT_W_o
                     .cache_s
               )
   
@@ -154,7 +154,7 @@ var SWO_o =
                       await caches
                         .open
                         (
-                          SWO_o
+                          STAT_W_o
                             .cache_s
                         )
 
@@ -185,7 +185,7 @@ var SWO_o =
           caches
             .open
             (
-              SWO_o
+              STAT_W_o
                 .cache_s
             )
 
@@ -224,7 +224,7 @@ var SWO_o =
         (
           event_s,
           event_o =>
-            SWO_o[ `${event_s}__v` ]( event_o )
+            STAT_W_o[ `${event_s}__v` ]( event_o )
         )
     }
 
@@ -233,5 +233,5 @@ var SWO_o =
 
 }
 
-SWO_o
+STAT_W_o
   .init__v()  // !!! no IIFE

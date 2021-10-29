@@ -9,13 +9,11 @@ section#{{C_o.SECTION_a[2]}} > input ~ iframe {
 }
 section#{{C_o.SECTION_a[2]}} > input ~ div {
   display: none;
-  position: absolute;
-  margin-top: 2vmin;
   width: calc( {{S_o.FULL_WIDTH_s}} - 4vmin );
-  min-height: calc( {{S_o.FULL_HEIGHT_s}} - ( {{S_o.PAD_12}} + 4vmin ) );
-  color: currentColor;
-  background: {{S_o.bgcolor}};
-  border: 1px solid {{S_o.shadow_ne}};
+  height: calc( {{S_o.FULL_HEIGHT_s}} - ( {{S_o.PAD_12}} + 4vmin ) );
+}
+section#{{C_o.SECTION_a[2]}} > input ~ div > canvas {
+  background: red;
 }
 section#{{C_o.SECTION_a[2]}} > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked ~ div#{{C_o.STAT_a[0]}}, section#{{C_o.SECTION_a[2]}} > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked ~ div#{{C_o.STAT_a[1]}}, section#{{C_o.SECTION_a[2]}} > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked ~ div#{{C_o.STAT_a[2]}} {
   display: block;

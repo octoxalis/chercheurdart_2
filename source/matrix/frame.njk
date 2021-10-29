@@ -11,7 +11,7 @@
 {% endset -%}
 
 {%- set _template_s %}
-<!doctype html><html lang="{{A_o.LANGUAGE_s}}">
+<!DOCTYPE html><html lang="{{A_o.LANGUAGE_s}}">
 {{- _head_block_s | safe | head_end( data_o ) -}}{# head process #}
 {{- _body_block_s | safe | body_end( data_o ) -}}{# body process #}
 </html>

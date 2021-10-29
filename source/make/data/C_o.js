@@ -10,6 +10,7 @@ const C_o =
   CONTENT_DIR_s:         CONF_o.CONTENT_DIR_s,
   WARE_DIR_s:            CONF_o.WARE_DIR_s,
   IMG_DIR_s:             CONF_o.IMG_DIR_s,
+  JS_DIR_s:              CONF_o.JS_DIR_s,
   CONTEXT_INPUT_FILE_s:  CONF_o.CONTEXT_INPUT_FILE_s,
   CONTEXT_PARTS_DIR_s:   CONF_o.CONTEXT_PARTS_DIR_s,
   CSS_SITE_DIR_s:        CONF_o.CSS_SITE_DIR_s,
@@ -160,7 +161,7 @@ const C_o =
   COMMENTS_REPLACE_s:  '<del for=div_comment hidden ></del>',
   STAT_REPLACE_a:
   [
-                       '<del for=div_burst hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
+                       '<del for=burst_div hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
                        '<del for=div_aster hidden ></del>',    //: idem
                        '<del for=div_paint hidden ></del>',    //: idem
   ],

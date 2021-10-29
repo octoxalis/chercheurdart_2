@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<div id="burst">                  <!--<del for="burst_div" hidden=""></del>-->
+  <canvas id=burst_canvas></canvas>
+  <script id=burst_script data-src="../../assets/scripts/js/burst.min.js"></script>
+</div>

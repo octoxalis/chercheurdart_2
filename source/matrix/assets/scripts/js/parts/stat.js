@@ -158,6 +158,43 @@ const STAT_o =
   ,
 
 
+
+  adopt__v:
+  (
+    id_s
+  ) =>
+  {
+    IND_o
+      .adopt__v
+      (
+        'stat',
+        `IF_${id_s}`,
+        (
+          iframe_e,
+          adopted_e
+        ) =>
+        {
+          const script_e =
+            adopted_e
+              .querySelector( `#${id_s}_script` )
+
+          if
+          (
+            script_e
+          )
+          {
+            script_e
+              .src =
+              script_e
+                .dataset
+                  .src
+          }
+        }
+      )
+  }
+  ,
+
+
   LA_burst__v:        //: {{C_o.LABEL_ID_s}}_{{_stat}}
   () =>
   {
@@ -185,34 +222,6 @@ const STAT_o =
   {
     STAT_o
       .adopt__v( 'paint' )
-  }
-  ,
-
-
-
-  adopt__v:
-  (
-    id_s
-  ) =>
-  {
-    IND_o
-      .adopt__v
-      (
-        'stat',
-        `IF_${id_s}`,
-        (
-          iframe_e,
-          adopted_e
-        ) =>
-        {
-          //XX adopted_e
-          //XX   .querySelector( '#issue' )
-          //XX     .value =
-          //XX       iframe_e
-          //XX         .dataset
-          //XX           .issue_n
-        }
-      )
   }
   ,
 }

@@ -1,5 +1,5 @@
 //=== stat_worker.js
-const SWO_o =
+const STAT_W_o =
 {
   read__v:
   (
@@ -56,7 +56,7 @@ const SWO_o =
     id_s
   ) =>
   {
-    SWO_o
+    STAT_W_o
       .read__v
       (
         `/{{C_o.IMG_DIR_s}}${id_s}/full/max/0/{{C_o.SCAN_FILE_s}}`,
@@ -93,7 +93,7 @@ const SWO_o =
     )
     {
       case 'load_scan':      //: { task_s, id_s }
-        SWO_o
+        STAT_W_o
           .load_scan__v
           (
             payload_o
@@ -116,7 +116,7 @@ self
   .addEventListener
   (
     'message',
-    SWO_o
+    STAT_W_o
       .receive__v,
     true
   )

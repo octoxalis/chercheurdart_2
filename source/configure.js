@@ -26,14 +26,15 @@ module.exports =
 
 
   //=== DIR ===     relative to site || source/ware dir
-  WARE_DIR_s:           'source/ware/',
+  JS_DIR_s:             '/assets/scripts/js/',    //: site
   IMG_DIR_s:            'assets/media/img/',
   HTML_PARTS_DIR_s:     'assets/parts/',
   CSS_SITE_DIR_s:       '../site/assets/styles/css/',
   LIB_PARTS_DIR_s:      'make/lib/parts/',
   CONTENT_PARTS_DIR_s:  'matter/contents/parts/',
-  ADOC_PARTS_DIR_s:     'source/matter/contents/parts/',
   CONTEXT_PARTS_DIR_s:  'source/matrix/assets/styles/css/parts/',
+  ADOC_PARTS_DIR_s:     'source/matter/contents/parts/',
+  WARE_DIR_s:           'source/ware/',
 
   CONTENTS_PATH_s:      'source/matter/contents',
   TABLE_INPUT_PATH_s:   'source/make/db/table',
