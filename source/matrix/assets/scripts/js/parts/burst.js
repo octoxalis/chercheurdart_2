@@ -20,9 +20,6 @@ const BUR_o =
       div_e
         .getBoundingClientRect()
 
-    ;console.log( 'width: ' +  width )
-    ;console.log( 'height: ' + height )
-
     const canvas_e =
       document
         .createElement( 'canvas' )
@@ -39,11 +36,11 @@ const BUR_o =
       .height =
         height
 
-    div_e
-      .appendChild( canvas_e )
-
     ;console.log( 'width: ' + canvas_e.width )
     ;console.log( 'height: ' + canvas_e.height )
+
+    div_e
+      .appendChild( canvas_e )
 
     BUR_o
       .offCanvas_e =

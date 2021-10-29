@@ -40,8 +40,8 @@ const BUR_W_o =
           .context_o
             .fillRect
             (
-              10, 10,
-              100, 50
+              0, 0,
+              400, 300
             )
 
 
