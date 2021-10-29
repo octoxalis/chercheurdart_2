@@ -66,7 +66,7 @@
 ‹François Boucher›
 ////
 //========================================
-= {{title_s}} (h1)
+= {{title_s}}
 
 ₍₀ {{abstract_s}}
   {{F_o.versionList__s(version_a)}}₎

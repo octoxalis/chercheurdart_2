@@ -13,24 +13,14 @@
   <hr/>
           width: 95%;     /* keep right space for goto_top button */
           height: 1px;
-          margin: {{S_o.PAD_8}} auto {{S_o.PAD_12}};
+          margin: {{S_o.PAD_6}} auto {{S_o.PAD_10}};
           background: {{S_o.shadow_ne}};
           border: 0;
   <h1>
-          --font_max: 40px;
-          --font_scale: 5vw;
-          margin: 0 auto 2rem auto;
-          text-align: center;
-          font-weight: 500;
+  context( copy, next )
   </h1>
-  +
-  <div>
-    <p>
-        width: {{S_o.PARAGRAPH_WIDTH_s}};
-    </p>
-  </div>
   <h2>
-          margin-top: -.5rem;      /* vertical-align with <p> */
+          /*margin: 0 auto 0 auto;*/
           min-width: calc(100% - var(--col_width) - var(--gap));
           max-width: 100%;
           width: calc((var(--threshold) - 100%) * 1000);
@@ -38,25 +28,35 @@
           float: left;
           --font_max: 32px;
           --font_scale: 3vw;
-          font-weight: 700;
+          font-weight: 600;
   </h2>
+  <h1>
+          margin-top: 3rem;  /* div align */
+  </h1>
+  <h2>
+          margin-top: -.4rem;     /* vertical-align with <p> */
+  </h2>
+
+  <div:first-of-type>
+          margin-top: 3.5rem;  /* h1 align */
+  </div>
   <div>
-        position: relative;         /* to position comment dialog */
-        margin: 0 2vmin 0 auto;     /* keep right space for goto_top button */
-        max-width: 100%;
-        min-width: var(--col_width);
-        width: calc( (var(--threshold) - 100%) * 1000 );
+          position: relative;         /* to position comment dialog */
+          margin: 0 2vmin 0 auto;     /* keep right space for goto_top button */
+          min-width: var(--col_width);
+          width: calc( (var(--threshold) - 100%) * 1000 );
     <hr><!-- !!! occurs inside chapter -->
-      width: 30%;
-      height: 1px;
-      margin: {{S_o.PAD_4}} auto {{S_o.PAD_4}};
-      background: {{S_o.shadow_ne}};
-      border: 0;
+            width: 30%;
+            height: 1px;
+            margin: {{S_o.PAD_4}} auto {{S_o.PAD_4}};
+            background: {{S_o.shadow_ne}};
+            border: 0;
     </hr>
     context( stack, new )
     <p>
             max-width: {{S_o.PARAGRAPH_WIDTH_s}};
-            margin-bottom: 1rem;
+            margin-bottom: {{S_o.PAD_10}};
+            margin-top: 0;
       <a>
               context( block, link_regular )
       </a>

@@ -35,6 +35,7 @@ const S_o =
   PAD_4:  .25 * 4 + 'em',
   PAD_6:  .25 * 6 + 'em',
   PAD_8:  .25 * 8 + 'em',
+  PAD_10: .25 * 10 + 'em',
   PAD_12: .25 * 12 + 'em',
   PAD_16: .25 * 16 + 'em',
 
@@ -75,7 +76,7 @@ const S_o =
   S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`,
   S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`,
   S_o.highlight = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_2} /1)`,
-  S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.25)`,
+  S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`,
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`,
   
   S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`,

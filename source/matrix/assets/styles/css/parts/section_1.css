@@ -67,7 +67,6 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
-  line-height: 1.6;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );

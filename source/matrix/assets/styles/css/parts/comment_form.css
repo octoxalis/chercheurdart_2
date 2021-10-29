@@ -64,7 +64,6 @@ form[name=comment] > button[type=reset] {
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
-  line-height: 1.6;
   border: 2px solid {{S_o.cancel_hi}};
   font-style: normal;
 }

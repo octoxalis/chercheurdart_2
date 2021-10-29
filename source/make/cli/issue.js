@@ -118,7 +118,7 @@ const ISS_o =
     {
       list_s +=
 `
-<div>
+<div><p></p>                                //: keep this empty <p> for vertical align
 <label for=issue_link_a data-list=link_n>${list_o.data.length}</label>
 <input id=issue_link_a type=checkbox />
 <ul data-list=link_a>`

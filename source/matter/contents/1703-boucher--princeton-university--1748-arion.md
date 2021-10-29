@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      1024,
+  doc_n:      1025,
   title_s:    `Arion par François Boucher (1748-50)`,
   subtitle_s: `F. Boucher Arion (1748-50)`,
   abstract_s: `Un décor pour La Muette`,

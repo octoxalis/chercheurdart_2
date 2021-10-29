@@ -69,7 +69,7 @@ include::{index_toc}[]
 
 == Confidentialité
 
-**{{A_o.NAME_s}}** respecte scrupuleusement l'
+**{{A_o.NAME_s}}** respecte l'
 ₍₀ anonymité
   nul **cookie**,
   nul **enregistrement** de votre adresse Internet Protocol,
