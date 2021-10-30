@@ -68,8 +68,10 @@ context( stack, new )
         width: {{S_o.FULL_WIDTH_s}};
         min-height: {{S_o.FULL_HEIGHT_s}};
         height: auto;
-        padding-top: {{S_o.PAD_12}};
         background: {{S_o.bgcolor}};
+  <iframe>
+          display: none;
+  </iframe>
 </section>
 <!--variant-->
 <input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked />
@@ -80,14 +82,9 @@ context( stack, new )
 <input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked />
 ~
 <section#{{C_o.SECTION_a[1]}}>
-        context( copy, next )
-</section>
-<input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked />
-~
-<section#{{C_o.SECTION_a[2]}}>
         display: block;
 </section>
 context( url, section_0.context.html )
 context( url, section_1.context.html )
-context( url, section_2.context.html )
+context( url, stat.context.html )
 </section>

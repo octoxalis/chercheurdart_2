@@ -66,9 +66,11 @@ section {
   width: {{S_o.FULL_WIDTH_s}};
   min-height: {{S_o.FULL_HEIGHT_s}};
   height: auto;
-  padding-top: {{S_o.PAD_12}};
   background: {{S_o.bgcolor}};
 }
-input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {
+section > iframe {
+  display: none;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}} {
   display: block;
 }

@@ -5,3 +5,9 @@
   {% endif %}
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[loop.index0]}}" name="main_nav" type="radio" {{_checked}} />
 {% endfor %}
+{% if stat_a %}
+  {% for _stat in stat_a %}
+    <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[loop.index0]}}" name="main_nav" type="radio" />
+  {% endfor %}
+{% endif %}
+

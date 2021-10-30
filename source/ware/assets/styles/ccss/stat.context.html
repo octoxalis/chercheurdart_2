@@ -1,0 +1,24 @@
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked />
+~
+<section#{{C_o.STAT_a[0]}}>
+        context( copy, next )
+</section>
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked />
+~
+<section#{{C_o.STAT_a[1]}}>
+        context( copy, next )
+</section>
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked />
+~
+<section#{{C_o.STAT_a[2]}}>
+        display: block;
+</section>
+<section>
+  <div[id^={{C_o.DIV_ID_s}}]>
+          margin-top: {{S_o.NAV_HEIGHT_s}};
+          height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
+    <canvas>
+            background: red;
+    </canvas>
+  </div>
+</section>

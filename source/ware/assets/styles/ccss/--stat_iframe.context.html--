@@ -1,11 +1,4 @@
 context( stack, keep )
-<nav#NA_stat>
-</nav>
-+
-<iframe>
-        display: none;
-</iframe>
-<!--variant-->
 <label>
 </label>
 +

@@ -17,7 +17,7 @@
   [
     `article`,
     `galerie`,
-    `stat`,
+    //XX `stat`,
   ],
 
   stat_a:
@@ -33,7 +33,7 @@
   ],
   css_a:
   [
-    'section_2.min.css',
+    'stat.min.css',
   ],
 
   version_a:

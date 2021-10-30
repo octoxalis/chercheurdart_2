@@ -63,7 +63,7 @@ const C_o =
   [
     'article',
     'galerie',
-    'stat',
+    //XX'stat',
   ],
 
   STAT_a:
@@ -78,7 +78,7 @@ const C_o =
     home:    { icon_s: `&#x2302;`, legend_s: `accueil` },    //: ⌂
     article: { icon_s: `&#x2263;`, legend_s: `article` },    //: ≣
     galerie: { icon_s: `&#x22A1;`, legend_s: `galerie` },    //: ⊡
-    stat:    { icon_s: `&#x2237;`, legend_s: `analyse`},     //: ∷
+    //XX stat:    { icon_s: `&#x2237;`, legend_s: `analyse`},     //: ∷
 
     burst:   { icon_s: `&#x22C7;`, legend_s: `burst`},       //: ⋇
     aster:   { icon_s: `&#x229A;`, legend_s: `aster`},       //: ⊚
@@ -89,6 +89,8 @@ const C_o =
   //=== HTML-BODY: TAGS ===
   INPUT_ID_s:       'IN',
   LABEL_ID_s:       'LA',
+  IFRAME_ID_s:      'IF',
+  DIV_ID_s:         'DI',
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',

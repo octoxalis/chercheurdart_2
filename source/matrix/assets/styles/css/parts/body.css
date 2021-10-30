@@ -15,6 +15,9 @@ body > nav {
   top: 0;
   z-index: 5;
 }
+body > iframe {
+  display: none;
+}
 body > a#goto_{{C_o.PAGE_TOP}} {
   z-index: 10;
   position: fixed;

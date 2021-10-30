@@ -1,1 +1,20 @@
-section#stat{padding:2em 2vmin 2vmin 2vmin}section#stat>input{display:none}section#stat>input~iframe{display:none}section#stat>input~div{display:none;width:calc(100vw - 4vmin);height:calc(100vh - (3em + 4vmin))}section#stat>input~div>canvas{background:red}section#stat>input#IN_aster:checked~div#aster,section#stat>input#IN_burst:checked~div#burst,section#stat>input#IN_paint:checked~div#paint{display:block}
+section# {
+  padding: 2em 2vmin 2vmin 2vmin;
+}
+section# > input {
+  display: none;
+}
+section# > input ~ iframe {
+  display: none;
+}
+section# > input ~ div {
+  display: none;
+  width: calc( 100vw - 4vmin );
+  height: calc( 100vh - ( 3em + 4vmin ) );
+}
+section# > input ~ div > canvas {
+  background: red;
+}
+section# > input#IN_burst:checked ~ div#burst, section# > input#IN_aster:checked ~ div#aster, section# > input#IN_paint:checked ~ div#paint {
+  display: block;
+}

@@ -51,22 +51,22 @@ const STAT_W_o =
 
 
   
-  load_scan__v:
+  get_scan__v:
   (
-    id_s
+    work_s
   ) =>
   {
     STAT_W_o
       .read__v
       (
-        `/{{C_o.IMG_DIR_s}}${id_s}/full/max/0/{{C_o.SCAN_FILE_s}}`,
+        `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/{{C_o.SCAN_FILE_s}}`,
         buffer_a =>         //: text
         {
           self
             .postMessage
             (
               {
-                task_s: 'put_scan',
+                task_s: 'PUT_scan',
                 scan_a: buffer_a
               },
               [ new ArrayBuffer( buffer_a ) ]
@@ -92,12 +92,12 @@ const STAT_W_o =
         .task_s
     )
     {
-      case 'load_scan':      //: { task_s, id_s }
+      case 'GET_scan':      //: { task_s, work_s }
         STAT_W_o
-          .load_scan__v
+          .get_scan__v
           (
             payload_o
-              .id_s
+              .work_s
           )
         break
     

@@ -1,4 +1,4 @@
-// === burst}.js ===
+// === burst.js ===
 const BUR_o =
 {
   worker_o: null,
@@ -12,12 +12,26 @@ const BUR_o =
     canvas_s
   ) =>
   {
-    const div_e =
+    const nav_s =      //: get nav bar height
+      window
+        .getComputedStyle
+        (
+          document
+            .querySelector( `nav` )
+        )
+        .height
+          .slice
+          (
+            0,
+            -('px'.length)
+          )
+      
+    const section_e =
       document
         .querySelector( `#{{C_o.STAT_a[0]}}` )
 
     const { width, height } =
-      div_e
+      section_e                       //: outer section has dimensions, not div
         .getBoundingClientRect()
 
     const canvas_e =
@@ -35,12 +49,20 @@ const BUR_o =
     canvas_e
       .height =
         height
+        -
+        +nav_s        //: number cast
 
-    ;console.log( 'width: ' + canvas_e.width )
-    ;console.log( 'height: ' + canvas_e.height )
+    const div_e =
+      section_e
+        .querySelector( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}` )
 
     div_e
-      .appendChild( canvas_e )
+      .insertBefore        //: as div children[0]
+      (
+        canvas_e,
+        div_e
+          .querySelector( `script` )
+      )
 
     BUR_o
       .offCanvas_e =

@@ -5,6 +5,8 @@ const STAT_o =
 
   worker_o: null,
 
+  await_s: '',    //: stat_s awaiting init
+
   scan_a: null,
   //: [
   //:   [0]: hueCapacities_a[],
@@ -46,13 +48,26 @@ const STAT_o =
         .task_s
     )
     {
-      case 'put_scan':      //: { task_s, scan_a }
+      case 'PUT_scan':      //: { task_s, scan_a }
         STAT_o
           .put_scan__v
           (
             payload_o
               .scan_a
           )
+
+        if        //: now adopted script can be loaded
+        (
+          STAT_o
+            .await_s
+        )
+        {
+          STAT_o
+            .resumeAdopt__v( STAT_o.await_s )
+  
+          STAT_o
+            .await_s = ''    //:reset
+        }
 
         break
     
@@ -65,7 +80,9 @@ const STAT_o =
 
 
   init__v:
-  () =>
+  (
+    stat_s
+  ) =>
   {
     STAT_o
       .worker_o =
@@ -74,7 +91,7 @@ const STAT_o =
           STAT_o
             .worker_s
         )
-
+  
     STAT_o
       .worker_o
         .addEventListener
@@ -84,7 +101,7 @@ const STAT_o =
             .receive__v,
           true
         )
-
+  
     STAT_o
       .worker_o
         .addEventListener
@@ -94,24 +111,26 @@ const STAT_o =
             .handleError__v,
           true
         )
-
-    const id_s =
+  
+    const work_s =
       document
-        .getElementById( '{{C_o.SECTION_a[2]}}' )
+        .querySelector( 'body' )
           .dataset
             .work_s
-  
     STAT_o
       .worker_o
         .postMessage
         (
           { 
-            task_s: 'load_scan',
-            id_s: id_s
+            task_s: 'GET_scan',
+            work_s: work_s
           }
         )
+
   }
   ,
+
+
 
   handleError__v:
   (
@@ -123,52 +142,16 @@ const STAT_o =
 
 
 
-  listener__v:
-  () =>
-  {
-    for
-    (
-      let id_s
-      of
-      [
-        'burst',
-        'aster',
-        'paint',
-      ]
-    )
-    {
-      const listen_e =
-        document
-          .getElementById( `{{C_o.LABEL_ID_s}}_${id_s}` )
-          
-      listen_e
-      &&
-      listen_e
-        .addEventListener
-        (
-          'click',
-          STAT_o
-            [ `{{C_o.LABEL_ID_s}}_${id_s}__v` ],
-          {
-            once: true
-          }
-        )
-    }
-  }
-  ,
-
-
-
-  adopt__v:
+  resumeAdopt__v:
   (
-    id_s
+    stat_s
   ) =>
   {
     IND_o
       .adopt__v
       (
-        'stat',
-        `IF_${id_s}`,
+        stat_s,                //!!! section id=stat_s
+        `IF_${stat_s}`,
         (
           iframe_e,
           adopted_e
@@ -176,7 +159,7 @@ const STAT_o =
         {
           const script_e =
             adopted_e
-              .querySelector( `#${id_s}_script` )
+              .querySelector( `#${stat_s}_script` )
 
           if
           (
@@ -189,39 +172,83 @@ const STAT_o =
                 .dataset
                   .src
           }
+          console.timeEnd( 'stat' )
+
         }
       )
   }
   ,
 
 
-  LA_burst__v:        //: {{C_o.LABEL_ID_s}}_{{_stat}}
-  () =>
-  {
-    STAT_o
-      .adopt__v( 'burst' )
 
+  adopt__v:
+  (
+    stat_s
+  ) =>
+  {
+    ;console.time( 'stat' )
+    if        //: not yet adopted
+    (
+      document
+        .getElementById( `{{C_o.IFRAME_ID_s}}_${stat_s}` )
+    )
+    {
+      if        //: scan_a already loaded
+      (
+        STAT_o
+          .scan_a
+      )
+      {
+        STAT_o
+          .resumeAdopt__v( stat_s )
+  
+        return
+      }
+      //:  load scan before adopted script
+      STAT_o
+        .await_s =
+          stat_s
+  
+      STAT_o
+        .init__v( stat_s )
+    }
   }
   ,
 
 
 
-  LA_aster__v:        //: {{C_o.LABEL_ID_s}}_{{_stat}}
+  listener__v:
   () =>
   {
-    STAT_o
-      .adopt__v( 'aster' )
-  }
-  ,
-
-
-
-
-  LA_paint__v:        //: {{C_o.LABEL_ID_s}}_{{_stat}}
-  () =>
-  {
-    STAT_o
-      .adopt__v( 'paint' )
+    for
+    (
+      let stat_s
+      of
+      [
+        'burst',
+        'aster',
+        'paint',
+      ]
+    )
+    {
+      const listen_e =
+        document
+          .getElementById( `{{C_o.LABEL_ID_s}}_${stat_s}` )
+          
+      listen_e
+      &&
+      listen_e
+        .addEventListener
+        (
+          'click',
+          () =>
+            STAT_o
+              .adopt__v( stat_s ),
+          {
+            once: true
+          }
+        )
+    }
   }
   ,
 }
@@ -232,8 +259,11 @@ void function
 ()
 {
   STAT_o
-    .init__v()
-
-  STAT_o
     .listener__v()
 }()
+
+
+/*//..................
+1. setup stats nav click listeners
+2. 
+*/

@@ -1,33 +1,5 @@
-{% set _template = '' %}
-{% if stat_a %}
-{% set _template %}
-<section id="{{C_o.SECTION_a[2]}}" data-work_s="{{workID_s}}">
 {% for _stat in stat_a %}
-  {% set _checked = '' %}
-  {% if _stat === C_o.STAT_a[0] %}
-  {% set _checked = 'checked' %}
-  {% endif %}
-  <input id="{{C_o.INPUT_ID_s}}_{{_stat}}" name="stat_nav" type="radio" {{_checked}} />
+  <section id={{_stat}}>
+    <iframe id={{C_o.IFRAME_ID_s}}_{{_stat}} name=IF_{{_stat}} src="assets/parts/{{_stat}}.html"></iframe>
+  </section>
 {% endfor %}
-  <nav id=NA_stat>
-{% for _stat in stat_a %}
-    <label id="{{C_o.LABEL_ID_s}}_{{_stat}}" for="{{C_o.INPUT_ID_s}}_{{_stat}}" data-legend="{{C_o.NAV_LEGEND_o[_stat].legend_s}}">{{C_o.NAV_LEGEND_o[_stat].icon_s}}</label>
-{% endfor %}
-  </nav>
-{% for _stat in stat_a %}
-
-  <iframe id=IF_{{_stat}} name=IF_{{_stat}} src="assets/parts/{{_stat}}.html"></iframe>
-
-{% endfor %}
-</section>
-{% endset %}
-{% endif %}
-{{_template}}
-
-
-<!--
-  <div id="{{_stat}}">
-    {{C_o.STAT_REPLACE_a[loop.index0]}}
-    <h3>{{_stat}}</h3>
-  </div>
-  -->
