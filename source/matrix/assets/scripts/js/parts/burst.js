@@ -16,14 +16,14 @@ const BUR_o =
   
     let times_n = 10    //: 10s
   
-                            //;console.time( 'sleep' )
+                            ;console.time( 'sleep' )
     while
     (
       ! scan_a
       &&
-      ( --times_n
+      --times_n
       >
-      0 )
+      0
     )
     {
       await IND_o
@@ -41,7 +41,7 @@ const BUR_o =
         times_n = 0    //: stop waiting
       }
     }
-                            //;console.timeEnd( 'sleep' )
+                            ;console.timeEnd( 'sleep' )
 
     BUR_o
       .worker_o

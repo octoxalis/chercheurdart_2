@@ -8,6 +8,19 @@ const BUR_W_o =
   scan_a:      null,
 
 
+  put_scan__v:
+  (
+    scan_a
+  ) =>
+  {
+    BUR_W_o
+      .scan_a =
+        scan_a
+
+    ;console.log( BUR_W_o.scan_a )  }
+  ,
+
+
 
   receive__v:
   (
@@ -52,9 +65,11 @@ const BUR_W_o =
     
         case 'PUT_scan':      //: { task_s, scan_a }
           BUR_W_o
-            .scan_a =
+            .put_scan__v
+            (
               payload_o
-                .scan_a           //;console.log( BUR_W_o.scan_a )
+                .scan_a
+            )
 
 
           break
