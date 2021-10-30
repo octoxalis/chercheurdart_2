@@ -53,8 +53,8 @@ const C_o =
     MANIFEST_SRC:    '',
     SCRIPT_SRC_ELEM: '',
     OBJECT_SRC:      '',
-    SCRIPT_SRC:      `unsafe-eval`,
-    WORKER_SRC:      `unsafe-eval`,
+    SCRIPT_SRC:      `'unsafe-eval'`,
+    WORKER_SRC:      `'unsafe-eval'`,
     STYLE_SRC:       ``,
   },
 
