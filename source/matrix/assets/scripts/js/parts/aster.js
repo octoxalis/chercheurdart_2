@@ -30,7 +30,7 @@ const AST_o =
         .postMessage
         (
           {
-            task_s:   'set_offscreen',
+            task_s:   'PUT_offscreen',
             canvas_o: AST_o.offCanvas_o
           },
           [ AST_o.offCanvas_o ]

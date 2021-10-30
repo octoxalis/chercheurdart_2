@@ -27,6 +27,47 @@ const IND_o =
   ,
 
 
+
+  //-- function sleep (time)
+  //-- {
+  //--   return new Promise((resolve) => setTimeout(resolve, time))
+  //-- }
+  //--
+  //-- sleep( 500 )
+  //--   .then
+  //--   (
+  //--     () =>
+  //--     {
+  //--       // Do something after the sleep!
+  //--     }
+  //--   )
+
+
+  //function sleep(ms)
+  // {
+  //  return new Promise(resolve => setTimeout(resolve, ms));
+  //  }
+
+
+  sleep__v:
+  (
+    delay_n    //: milliseconds
+  ) =>
+  {
+    return new Promise
+      (
+        resolve_f =>
+          setTimeout
+          (
+            resolve_f,
+            delay_n
+          )
+      )
+  }
+  ,
+
+
+
   adopt__v:    //!!! ensure id_s
   (
     adopter_s,    //: adopter element ID
@@ -199,5 +240,20 @@ void function
 
     IND_o
       .main_input__v()
+
+    const work_s =      //: stat page
+      document
+        .querySelector( 'body' )
+          .dataset
+            .work_s
+
+    if
+    (
+      work_s
+    )
+    {
+      STAT_o
+        .init__v( work_s )
+    }
   }
 } ()

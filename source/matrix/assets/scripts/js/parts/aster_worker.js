@@ -22,7 +22,7 @@ const AST_W_o =
         .task_s
     )
     {
-      case 'set_offscreen':      //: { task_s, id_s }
+      case 'PUT_offscreen':      //: { task_s, id_s }
 
         break
     

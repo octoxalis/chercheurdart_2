@@ -5,6 +5,8 @@ const BUR_W_o =
 
   context_o:   null,
 
+  scan_a:      null,
+
 
 
   receive__v:
@@ -22,7 +24,7 @@ const BUR_W_o =
         .task_s
     )
     {
-      case 'set_offscreen':      //: { task_s, id_s }
+      case 'PUT_offscreen':      //: { task_s, id_s }
         BUR_W_o
           .offCanvas_e =
             payload_o
@@ -32,7 +34,7 @@ const BUR_W_o =
             .context_o =
               BUR_W_o
                 .offCanvas_e
-                  .getContext( '2d' )      ;console.log( BUR_W_o.context_o )
+                  .getContext( '2d' )      //;console.log( BUR_W_o.context_o )
 
         //................................ TEST
 
@@ -45,10 +47,19 @@ const BUR_W_o =
             )
 
 
-        //................................
-        break
+          //................................
+          break
     
-      default:
+        case 'PUT_scan':      //: { task_s, scan_a }
+          BUR_W_o
+            .scan_a =
+              payload_o
+                .scan_a           //;console.log( BUR_W_o.scan_a )
+
+
+          break
+
+        default:
         break
     }
   }
@@ -70,4 +81,4 @@ self
 
 
 
-;console.log( '{{C_o.STAT_a[0]}}_worker.js' )
+//;console.log( '{{C_o.STAT_a[0]}}_worker.js' )

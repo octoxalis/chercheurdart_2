@@ -30,7 +30,7 @@ const PAI_o =
         .postMessage
         (
           {
-            task_s:   'set_offscreen',
+            task_s:   'PUT_offscreen',
             canvas_o: PAI_o.offCanvas_o
           },
           [ PAI_o.offCanvas_o ]

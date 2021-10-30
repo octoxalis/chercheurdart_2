@@ -62,14 +62,20 @@ const STAT_W_o =
         `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/{{C_o.SCAN_FILE_s}}`,
         buffer_a =>         //: text
         {
+          const scan_a =
+            new Function            //!!! not JSON.parse !!!
+            (
+              `return ${buffer_a}`
+            )()
+
           self
             .postMessage
             (
               {
                 task_s: 'PUT_scan',
-                scan_a: buffer_a
+                scan_a: scan_a
               },
-              [ new ArrayBuffer( buffer_a ) ]
+              [ new ArrayBuffer( scan_a ) ]
             )
         },
       )

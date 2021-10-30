@@ -7,6 +7,57 @@ const BUR_o =
 
 
 
+  async put_scan__v
+  ()
+  {
+    let scan_a =
+      STAT_o
+        .scan_a
+  
+    let times_n = 10    //: 10s
+  
+                            //;console.time( 'sleep' )
+    while
+    (
+      ! scan_a
+      &&
+      ( --times_n
+      >
+      0 )
+    )
+    {
+      await IND_o
+        .sleep__v( 1000 )
+
+      scan_a =
+        STAT_o
+          .scan_a
+
+      if
+      (
+        scan_a
+      )
+      {
+        times_n = 0    //: stop waiting
+      }
+    }
+                            //;console.timeEnd( 'sleep' )
+
+    BUR_o
+      .worker_o
+        .postMessage
+        (
+          {
+            task_s: 'PUT_scan',
+            scan_a: scan_a
+          },
+          [ new ArrayBuffer( scan_a ) ]
+        )
+  }
+  ,
+
+
+
   init__v:
   (
     canvas_s
@@ -78,12 +129,16 @@ const BUR_o =
         .postMessage
         (
           {
-            task_s:   'set_offscreen',
+            task_s:   'PUT_offscreen',
             canvas_e: BUR_o.offCanvas_e
           },
           [ BUR_o.offCanvas_e ]
         )
+
+    BUR_o
+      .put_scan__v()
   }
+
   ,
 
 
@@ -123,7 +178,7 @@ const BUR_o =
         .postMessage
         (
           {
-            task_s:   'set_offscreen',
+            task_s:   'PUT_offscreen',
             canvas_e: BUR_o.offCanvas_e
           },
           [ BUR_o.offCanvas_e ]
@@ -137,7 +192,7 @@ const BUR_o =
 void function
 ()
 {
-  ;console.log( '{{C_o.STAT_a[0]}}.js' )
+  //;console.log( '{{C_o.STAT_a[0]}}.js' )
 
   BUR_o
     .init__v( '{{C_o.STAT_a[0]}}' )
