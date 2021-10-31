@@ -32,6 +32,7 @@ const C_o =
   //=== FILE NAMES
   SCAN_FILE_s:       'scan.json',
   SCAN_IFRAME_s:     'scan_iframe',
+  WORKER_FILE_s:     '/assets/scripts/js/stat_worker.min.js',
 
 
   //=== CONFIGURE FLAG
@@ -66,6 +67,8 @@ const C_o =
     'galerie',
     //XX'stat',
   ],
+
+  STAT_s: 'stat',
 
   STAT_a:
   [
@@ -207,6 +210,13 @@ const C_o =
   //=== SERVICE WORKER ===
   SERVICE_b: CONF_o.SERVICE_b,
   KEY_n:     CONF_o.KEY_n,
+
+  //=== SHARED WORKER ===
+  WORKER_MSG_o:
+  {
+    ok: 0,
+  },
+
 }
 
 module.exports = C_o

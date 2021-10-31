@@ -28,27 +28,6 @@ const IND_o =
 
 
 
-  //-- function sleep (time)
-  //-- {
-  //--   return new Promise((resolve) => setTimeout(resolve, time))
-  //-- }
-  //--
-  //-- sleep( 500 )
-  //--   .then
-  //--   (
-  //--     () =>
-  //--     {
-  //--       // Do something after the sleep!
-  //--     }
-  //--   )
-
-
-  //function sleep(ms)
-  // {
-  //  return new Promise(resolve => setTimeout(resolve, ms));
-  //  }
-
-
   sleep__v:
   (
     delay_n    //: milliseconds

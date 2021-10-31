@@ -1,20 +1,70 @@
 //=== stat.js
 const STAT_o =
 {
-  worker_s: '/assets/scripts/js/stat_worker.min.js',
-
   worker_o: null,
 
-  scan_a: null,
-  //: [
-  //:   [0]: hueCapacities_a[],
-  //:   [1]: hue_a[]pointer_a[],
-  //:   [2]: satCapacities_a[],
-  //:   [3]: sat_a[]pointer_a[],
-  //:   [4]: lumCapacities_a[],
-  //:   [5]: lum_a[]pointer_a[],
-  //: ]
+
+
+  message__v:
+  (
+    payload_o
+  ) =>
+  {
+    switch
+    (
+      payload_o
+        .task_s
+    )
+    {
+      case 'PUT_scan':      //: { task_s, msg_s }
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ;console.timeEnd( 'scan_load' )
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!
+        console.log( payload_o.msg_s )
+      
+        break
+    
+      default:
+        break
+    }
+  }
+  ,
   
+
+  
+  init__v:    //: from index.js
+  (
+    work_s
+  ) =>
+  {
+    STAT_o
+      .worker_o =
+        new SWorker
+        (
+          {
+            url_s: '{{C_o.WORKER_FILE_s}}',
+            id_s:  '{{C_o.STAT_s}}',
+            //-- handleMessage__v: payload_o => console.log( payload_o )
+            handleMessage__v: STAT_o.message__v
+          }
+        )
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    ;console.time( 'scan_load' )
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    STAT_o
+      .worker_o
+        .post__v
+        (
+          { 
+            client_s: '{{C_o.STAT_s}}',
+            task_s: 'GET_scan',
+            work_s: work_s
+          }
+          )
+  }
+  ,
+
 
 
   adopt__v:
@@ -60,6 +110,7 @@ const STAT_o =
   ,
 
 
+
   listener__v:
   () =>
   {
@@ -95,126 +146,7 @@ const STAT_o =
   }
   ,
 
-
-
-  receive__v:
-  (
-    msg_o
-  ) =>
-  {
-    const payload_o =
-      msg_o
-        .data
-
-    switch
-    (
-      payload_o
-        .task_s
-    )
-    {
-      case 'PUT_scan':      //: { task_s, scan_a }
-        STAT_o
-          .put_scan__v
-          (
-            payload_o
-              .scan_a
-          )
-
-        break
-    
-      default:
-        break
-    }
-  }
-  ,
-
-
-
-  put_scan__v:
-  (
-    scan_a
-  ) =>
-  {
-    STAT_o
-      .scan_a =
-        scan_a
-      
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
-    ;console.timeEnd( 'scan_load' )
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
-  }
-  ,
-
-
-
-  handleError__v:
-  (
-    error_o
-  ) =>
-    console
-      .log`ERROR: ${error_o.message}`
-  ,
-
-
-
-  init__v:
-  (
-    work_s
-  ) =>
-  {
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
-    ;console.time( 'scan_load' )
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    if
-    (
-      ! STAT_o
-          .worker_o
-    )
-    {
-      STAT_o
-        .worker_o =
-          new Worker
-          (
-            STAT_o
-              .worker_s
-          )
-    
-      STAT_o
-        .worker_o
-          .addEventListener
-          (
-            'message',
-            STAT_o
-              .receive__v,
-            true
-          )
-    
-      STAT_o
-        .worker_o
-          .addEventListener
-          (
-            'error',
-            STAT_o
-              .handleError__v,
-            true
-          )
-    
-      STAT_o
-        .worker_o
-          .postMessage
-          (
-            { 
-              task_s: 'GET_scan',
-              work_s: work_s
-            }
-          )
-      }
-
-  }
-  ,
 }
-
 
 
 void function 
@@ -227,6 +159,6 @@ void function
 
 /*//..................
 1. init__v from index.js
-2. receive__v from worker
+2. message__v from worker
 3. adopt__v from listener__v
 */
