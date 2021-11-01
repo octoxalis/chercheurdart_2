@@ -3,6 +3,8 @@ const STAT_o =
 {
   worker_o: null,
 
+  scan_b: false,    //: status: not loaded
+
 
 
   message__v:
@@ -16,13 +18,22 @@ const STAT_o =
         .task_s
     )
     {
-      case 'PUT_scan':      //: { task_s, msg_s }
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!
-        ;console.timeEnd( 'scan_load' )
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!
-        console.log( payload_o.msg_s )
-      
-        break
+      //?? case 'PUT_scan':      //: { task_s, msg_s }
+      //??   //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //??   ;console.timeEnd( 'scan_load' )
+      //??   //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //??   STAT_o
+      //??     .scan_b =
+      //??       payload_o
+      //??         .scan_b
+      //?? 
+      //??   break
+      //?? 
+      //?? case 'PUT_offscreen':      //: { task_s, client_s, canvas_e }
+      //??   STAT_W_o
+      //??     .put_offscreen( payload_o )
+      //?? 
+      //??   break
     
       default:
         break
@@ -37,21 +48,20 @@ const STAT_o =
     work_s
   ) =>
   {
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    ;console.time( 'sworker' )
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
     STAT_o
       .worker_o =
-        new SWorker
+        new WorkerClient
         (
           {
             url_s: '{{C_o.WORKER_FILE_s}}',
             id_s:  '{{C_o.STAT_s}}',
-            //-- handleMessage__v: payload_o => console.log( payload_o )
             handleMessage__v: STAT_o.message__v
           }
         )
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
-    ;console.time( 'scan_load' )
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
     STAT_o
       .worker_o
         .post__v
@@ -61,7 +71,11 @@ const STAT_o =
             task_s: 'GET_scan',
             work_s: work_s
           }
-          )
+        )
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    ;console.timeEnd( 'sworker' )
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
   ,
 

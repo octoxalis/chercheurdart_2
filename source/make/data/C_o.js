@@ -32,7 +32,7 @@ const C_o =
   //=== FILE NAMES
   SCAN_FILE_s:       'scan.json',
   SCAN_IFRAME_s:     'scan_iframe',
-  WORKER_FILE_s:     '/assets/scripts/js/stat_worker.min.js',
+  WORKER_FILE_s:     '/assets/scripts/js/stat_w.min.js',
 
 
   //=== CONFIGURE FLAG
@@ -214,8 +214,14 @@ const C_o =
   //=== SHARED WORKER ===
   WORKER_MSG_o:
   {
-    ok: 0,
+    wait:  false,
+    ready: true,
   },
+
+  CLIENT_ALL_s: undefined,
+  AWAIT_SCAN_n: 100,         //: times
+  AWAIT_SCAN_SLEEP_n: 50,    //: ms
+
 
 }
 

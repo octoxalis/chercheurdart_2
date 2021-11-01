@@ -17,7 +17,6 @@
   [
     `article`,
     `galerie`,
-    //XX `stat`,
   ],
 
   stat_a:

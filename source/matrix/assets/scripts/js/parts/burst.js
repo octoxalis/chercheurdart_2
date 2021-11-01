@@ -1,136 +1,15 @@
 // === burst.js ===
 const BUR_o =
 {
-  //??????????????
-  //...receive__v:
-  //...(
-  //...  msg_o
-  //...) =>
-  //...{
-  //...  const payload_o =
-  //...    msg_o
-  //...      .data
-  //...
-  //...  switch
-  //...  (
-  //...    payload_o
-  //...      .task_s
-  //...  )
-  //...  {
-  //...    case 'xxxx':      //: { task_s, ... }
-  //...      break
-  //...  
-  //...    default:
-  //...      break
-  //...  }
-  //...}
-  //...,
+  scan_b: false,    //: status: not loaded
 
-  test__v:
+  status_o: null,    //: STAT_W_o.status_o
+
+
+
+  offCanvas__v:
   () =>
   {
-    console.log( 'Comes from STAT_W_o!!!' )
-  }
-  ,
-
-
-  async put_scan__v
-  ()
-  {
-    let scan_a =
-      STAT_o
-        .scan_a
-  
-    let times_n = 20    //: 10s
-  
-                            ;console.time( 'sleep' )
-    while
-    (
-      ! scan_a
-      &&
-      --times_n
-      >
-      0
-    )
-    {
-      await IND_o
-        .sleep__v( 500 )
-
-      scan_a =
-        STAT_o
-          .scan_a
-
-      if
-      (
-        scan_a
-      )
-      {
-        times_n = 0    //: stop waiting
-      }
-    }
-                            ;console.timeEnd( 'sleep' )
-  }
-  ,
-
-
-
-  init__v:
-  (
-    canvas_s
-  ) =>
-  {
-    const shared_o =
-      new SharedWorker
-      (
-        BUR_o
-          .worker_s
-      )
-
-    BUR_o
-      .port_o =
-        shared_o
-          .port
-
-    BUR_o
-      .port_o
-        .onmessage =
-          BUR_o
-            .receive__v
-
-    BUR_o
-      .port_o
-        .onerror =
-          BUR_o
-            .handleError__v
-    
-    BUR_o
-      .port_o
-        .start()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     const nav_s =      //: get nav bar height
       window
         .getComputedStyle
@@ -142,7 +21,7 @@ const BUR_o =
           .slice
           (
             0,
-            -('px'.length)
+            -2     //: skip ending 'px'
           )
       
     const section_e =
@@ -159,7 +38,7 @@ const BUR_o =
   
     canvas_e
       .id =
-        `${canvas_s}_canvas`
+        `{{C_o.STAT_a[0]}}_canvas`
   
     canvas_e
       .width =
@@ -183,32 +62,101 @@ const BUR_o =
           .querySelector( `script` )
       )
   
-    const offCanvas_e =
-      canvas_e
-        .transferControlToOffscreen()
-    
-    BUR_o
-      .worker_o =
-        new SharedWorker
-        (
-          STAT_o
-            .worker_s
-        )
-        
+      const offCanvas_e =
+        canvas_e
+          .transferControlToOffscreen()
+
+      BUR_o
+        .worker_o           //! using port postMessage directly
+          .port_o           //! to avoid error:
+            .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+            (
+              {
+                client_s:   '{{C_o.STAT_a[0]}}',
+                task_s:     'PUT_offCanvas',
+                offCanvas_e: offCanvas_e
+              },
+              [ offCanvas_e ]
+            )
+    }
+  ,
+
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  draw_test__v
+  ()
+  {
     BUR_o
       .worker_o
-        .port
-          .postMessage
-          (
-            {
-              client_s: '{{C_o.STAT_a[0]}}',
-              task_s:   'PUT_offscreen',
-              canvas_e: offCanvas_e
-            },
-            [ offCanvas_e ]
-          )
-  
+        .post__v
+        (
+          {
+            client_s: '{{C_o.STAT_a[0]}}',
+            task_s:   'PUT_draw_test',
+          }
+        )
   }
+  ,
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+  message__v:
+  (
+    payload_o
+  ) =>
+  {
+    switch
+    (
+      payload_o
+        .task_s
+    )
+    {
+      case 'PUT_status':      //: { client_s, task_s, status_o }
+        BUR_o
+          .status_o =
+            payload_o
+              .status_o
+      
+        break
+    
+      case 'PUT_error':      //: { client_s, task_s, error_s }
+        //................ TODO: load error page ....................
+        console.log( `ERROR: ${payload_o.error_s}` )
+        
+        break
+    
+      default:
+        break
+    }
+  }
+  ,
+  
+
+
+  init__v:
+  () =>
+  {
+    BUR_o
+      .worker_o =
+        new WorkerClient
+        (
+          {
+            url_s: '{{C_o.WORKER_FILE_s}}',
+            id_s:  '{{C_o.STAT_a[0]}}',
+            handleMessage__v: BUR_o.message__v
+          }
+        )
+
+    BUR_o
+      .offCanvas__v()
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  BUR_o
+      .draw_test__v()
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+}
   ,
 }
 
@@ -220,5 +168,5 @@ void function
   //;console.log( '{{C_o.STAT_a[0]}}.js' )
 
   BUR_o
-    .init__v( '{{C_o.STAT_a[0]}}' )
+    .init__v()
 } ()

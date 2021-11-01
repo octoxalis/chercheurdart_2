@@ -28,25 +28,6 @@ const IND_o =
 
 
 
-  sleep__v:
-  (
-    delay_n    //: milliseconds
-  ) =>
-  {
-    return new Promise
-      (
-        resolve_f =>
-          setTimeout
-          (
-            resolve_f,
-            delay_n
-          )
-      )
-  }
-  ,
-
-
-
   adopt__v:    //!!! ensure id_s
   (
     adopter_s,    //: adopter element ID

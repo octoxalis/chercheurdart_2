@@ -1,6 +1,5 @@
-
-//=== SharedWorker.js
-class SharedWorker
+//=== WorkerClient.js
+class WorkerClient
 {
   constructor
   (
@@ -51,12 +50,13 @@ class SharedWorker
     this
       .port_o
         .onmessage =
-          this
-            .message__v
-
-    this
-      .port_o
-        .start()
+          msg_o =>      //: can't use this.message__v directly
+            this
+              .message__v
+              (
+                 msg_o
+                   .data
+              )
   }
 
 
@@ -74,28 +74,32 @@ class SharedWorker
 
   message__v
   (
-    payload_o    //: { client_s, task_s, ... }
+    payload_o    //: data: { client_s, task_s, ... }
   )
   {
     if
-    (
-      payload_o
-        .client_s
-      !==
-      this
-        .id_s
+    (                    //: filter msg for clients
+      ! payload_o
+        .client_s    //: CLIENT_ALL_s
+      ||
+      (
+        payload_o
+          .client_s
+        ===
+        this
+          .id_s
+      )
     )
     {
-      return    //-->
+      this
+        .handleMessage__v( payload_o )
     }
 
-    this
-      .handleMessage__v( payload_o )
   }
 
 
 
-  post__v
+  post__v      //!!! can't use this method for offscreenCanvas transfer
   (
     payload_o
   )
@@ -104,7 +108,4 @@ class SharedWorker
       .port_o
         .postMessage( payload_o )
   }
-
-
-  
 }
