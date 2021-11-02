@@ -6,5 +6,5 @@ section > div[id^={{C_o.DIV_ID_s}}] {
   height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
 }
 section > div[id^={{C_o.DIV_ID_s}}] > canvas {
-  background: red;
+  background: white;
 }

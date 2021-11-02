@@ -3,8 +3,6 @@ const STAT_o =
 {
   worker_o: null,
 
-  scan_b: false,    //: status: not loaded
-
 
 
   message__v:
@@ -18,9 +16,9 @@ const STAT_o =
         .task_s
     )
     {
-      //?? case 'PUT_scan':      //: { task_s, msg_s }
-      //?? 
-      //??   break
+      //-- case 'PUT_scan':      //: { task_s, msg_s }
+      //-- 
+      //--   break
     
       default:
         break
@@ -30,7 +28,7 @@ const STAT_o =
   
 
   
-  init__v:    //: from index.js
+  init__v:    //!!! from index.js
   (
     work_s
   ) =>
@@ -41,7 +39,7 @@ const STAT_o =
         (
           {
             url_s: '{{C_o.WORKER_FILE_s}}',
-            id_s:  '{{C_o.STAT_s}}',
+            client_s:  '{{C_o.STAT_s}}',
             handleMessage__v: STAT_o.message__v
           }
         )

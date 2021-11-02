@@ -35,16 +35,26 @@ const BUR_o =
     canvas_e
       .id =
         `{{C_o.STAT_a[0]}}_canvas`
+
+    const pixel_n =
+      window
+        .devicePixelRatio
   
     canvas_e
       .width =
         width
+        *
+        pixel_n
   
     canvas_e
       .height =
-        height
-        -
-        +nav_s        //: number cast
+        (
+          height
+          -
+          +nav_s        //: number cast
+        )
+        *
+        pixel_n
   
     const div_e =
       section_e
@@ -69,7 +79,9 @@ const BUR_o =
             (
               {
                 client_s:   '{{C_o.STAT_a[0]}}',
-                task_s:     'PUT_offCanvas',
+                script_s:   'LogScale Painter',
+                task_s:     'PUT_canvas',
+                pixel_n:    window.devicePixelRatio,
                 offCanvas_e: offCanvas_e
               },
               [ offCanvas_e ]
@@ -140,7 +152,7 @@ const BUR_o =
         (
           {
             url_s: '{{C_o.WORKER_FILE_s}}',
-            id_s:  '{{C_o.STAT_a[0]}}',
+            client_s:  '{{C_o.STAT_a[0]}}',                //--- TODO: rename client_s
             handleMessage__v: BUR_o.message__v
           }
         )

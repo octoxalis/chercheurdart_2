@@ -222,6 +222,8 @@ const C_o =
   AWAIT_SCAN_n: 100,         //: times
   AWAIT_SCAN_SLEEP_n: 50,    //: ms
 
+  //===  STATs ===
+  LOG_SCALE_n: 100000,
 
 }
 

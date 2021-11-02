@@ -3,7 +3,7 @@ class WorkerClient
 {
   constructor
   (
-    worker_o    //: { url_s, id_s, handleMessage__v }
+    worker_o    //: { url_s, client_s, handleMessage__v }
   )
   {
     this
@@ -12,9 +12,9 @@ class WorkerClient
           .url_s
 
     this
-      .id_s =
+      .client_s =
         worker_o
-          .id_s
+          .client_s
 
     this
       .handleMessage__v =
@@ -87,7 +87,7 @@ class WorkerClient
           .client_s
         ===
         this
-          .id_s
+          .client_s
       )
     )
     {

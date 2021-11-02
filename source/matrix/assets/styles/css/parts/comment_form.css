@@ -6,7 +6,6 @@ form[name=comment] {
   border-radius: 4px;
   position: relative;
   width: 100%;
-  padding: {{S_o.PAD_2}};
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
 }
 form[name=comment] > label[for=comment_input] {

@@ -1,1 +1,1 @@
-input#IN_aster:checked~section#aster,input#IN_burst:checked~section#burst,input#IN_paint:checked~section#paint{display:block}section>div[id^=DI]{margin-top:2em;height:calc(100vh - 2em)}section>div[id^=DI]>canvas{background:red}
+input#IN_aster:checked~section#aster,input#IN_burst:checked~section#burst,input#IN_paint:checked~section#paint{display:block}section>div[id^=DI]{margin-top:2em;height:calc(100vh - 2em)}section>div[id^=DI]>canvas{background:#fff}

@@ -3,6 +3,7 @@
  * Logarithmic scale_n
  * @param {*} scale_o : { minpos_n, maxpos_n, minval_n, maxval_n }
  */
+
 class LogScale
 {
   constructor
