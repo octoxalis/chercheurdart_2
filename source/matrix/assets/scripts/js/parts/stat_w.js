@@ -189,7 +189,7 @@ const STAT_W_o =
           .context_o =
             payload_o
               .offCanvas_e
-                .getContext( '2d' )    ;console.log( STAT_W_o.client_o[ client_s ] )
+                .getContext( '2d' )    //;console.log( STAT_W_o.client_o[ client_s ] )
   }
   ,
 

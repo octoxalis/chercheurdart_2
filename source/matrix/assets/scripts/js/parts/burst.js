@@ -1,11 +1,7 @@
 // === burst.js ===
 const BUR_o =
 {
-  scan_b: false,    //: status: not loaded
-
   status_o: null,    //: STAT_W_o.status_o
-
-
 
   offCanvas__v:
   () =>

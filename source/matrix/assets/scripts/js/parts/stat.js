@@ -19,19 +19,6 @@ const STAT_o =
     )
     {
       //?? case 'PUT_scan':      //: { task_s, msg_s }
-      //??   //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //??   ;console.timeEnd( 'scan_load' )
-      //??   //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //??   STAT_o
-      //??     .scan_b =
-      //??       payload_o
-      //??         .scan_b
-      //?? 
-      //??   break
-      //?? 
-      //?? case 'PUT_offscreen':      //: { task_s, client_s, canvas_e }
-      //??   STAT_W_o
-      //??     .put_offscreen( payload_o )
       //?? 
       //??   break
     
@@ -48,9 +35,6 @@ const STAT_o =
     work_s
   ) =>
   {
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
-    ;console.time( 'sworker' )
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
     STAT_o
       .worker_o =
         new WorkerClient
@@ -72,10 +56,6 @@ const STAT_o =
             work_s: work_s
           }
         )
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
-    ;console.timeEnd( 'sworker' )
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
   ,
 
