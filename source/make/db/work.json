@@ -20,5 +20,16 @@
 		"height_n" : 2000,
 		"width_n" : 1388,
 		"default_a" : null
+	},
+	{
+		"id_s" : "2021-dev--paris-dev--2021-sample",
+		"artist_s" : "2021-dev",
+		"year_n" : 2021,
+		"subject_s" : "A sample",
+		"w_height_n" : 8,
+		"w_width_n" : 8,
+		"height_n" : 8,
+		"width_n" : 8,
+		"default_a" : null
 	}
 ]

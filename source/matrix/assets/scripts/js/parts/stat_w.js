@@ -152,6 +152,48 @@ const STAT_W_o =
 
 
 
+  deflat__a
+  (
+    cap_a,      //: capacities array
+    flat_a      //: array to deflat
+  )
+  {
+    const deflat_a = []
+
+    let at_n = 0
+
+    let point_n = 0
+
+    for
+    (
+      cap_n    //: simili pointer
+      of
+      cap_a
+    )
+    {
+      deflat_a
+        [at_n] =
+          flat_a
+            .slice
+            (
+              point_n,
+              point_n
+              +
+              cap_n
+            )
+          
+      ++at_n
+
+      point_n +=
+      cap_n
+    }
+
+    return deflat_a
+  }
+  ,
+
+
+
 
   //=== GET    
   get_scan__v
@@ -180,7 +222,7 @@ const STAT_W_o =
                 new Function            //!!! not JSON.parse !!!
                 (
                   `return ${buffer_a}`
-                )()
+                )()                    ;console.log( STAT_W_o.scan_a )
   
             if
             (
@@ -191,6 +233,19 @@ const STAT_W_o =
               STAT_W_o
                 .status_o
                   .scan_b = true
+
+              //...........................
+              const hue_a =
+                STAT_W_o
+                  .deflat__a
+                  (
+                    STAT_W_o
+                      .scan_a
+                        [0],
+                    STAT_W_o
+                      .scan_a
+                        [1],
+                  )                ;console.log( hue_a )
             }
             
             //!!!!!!!!!!!!!!!!!!!!!!!!!!

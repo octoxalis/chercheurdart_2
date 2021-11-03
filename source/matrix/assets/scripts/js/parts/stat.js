@@ -96,7 +96,7 @@ const STAT_o =
       )
   
     return canvas_e
-    }
+  }
   ,
 
 
@@ -125,7 +125,7 @@ const STAT_o =
       canvas_e
         .transferControlToOffscreen()
 
-    worker_o           //! using port postMessage directly
+    worker_o            //! using port postMessage directly
       .port_o           //! to avoid error:
         .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
         (

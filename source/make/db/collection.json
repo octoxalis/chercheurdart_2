@@ -10,5 +10,11 @@
 		"location_s" : "Princeton University Art Museum",
 		"place_s" : "Princeton",
 		"country_s" : "United States of America"
+	},
+	{
+		"id_s" : "paris-dev",
+		"location_s" : "Prive",
+		"place_s" : "Paris",
+		"country_s" : "France"
 	}
 ]
