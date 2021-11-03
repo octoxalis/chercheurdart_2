@@ -230,8 +230,8 @@ const SCAN_o =
         [capacity_n] = 0
     }
     
-      //=== SAT
-      capacity_n = 101  //: 0-100
+    //=== SAT
+    capacity_n = 101  //: 0-100
     
     const sat_a =
       new Array( capacity_n )

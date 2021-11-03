@@ -1,4 +1,5 @@
-//=== stat_w.js
+//=== stat_w.js ===
+
 const STAT_W_o =
 {
   port_o: null,
@@ -14,8 +15,6 @@ const STAT_W_o =
     'GET_scan',
     'GET_status',
     'PUT_canvas',
-
-    'PUT_draw_test',
   ]
   ,
 
@@ -37,6 +36,7 @@ const STAT_W_o =
 
 
   //=== FUNCTIONS
+
   sleep__v
   (
     delay_n    //: milliseconds
@@ -51,53 +51,6 @@ const STAT_W_o =
             delay_n
           )
       )
-  }
-  ,
-
-
-
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  async waitScan__v
-  (
-    client_s
-  )
-  {
-    let times_n = 100    //: {{C_o.AWAIT_SCAN_n}} = 5s
-
-    while                   //: wait for scan
-    (
-      ! STAT_W_o
-        .status_o
-          .scan_b
-    )
-    {
-      if
-      (
-        --times_n
-        >
-        0
-      )
-      {
-        await STAT_W_o
-          .sleep__v( 50 )    //: {{C_o.AWAIT_SCAN_SLEEP_n}}
-      }
-      else
-      {
-        STAT_W_o
-          .post__v
-            (
-              {
-                client_s: client_s,
-                task_s: 'PUT_error',
-                error_s: 'scan is not available'
-              }
-            )
-        
-        return false
-      }
-    }
-
-    return true
   }
   ,
 
@@ -153,6 +106,52 @@ const STAT_W_o =
 
 
   
+  async waitScan__v
+  (
+    client_s
+  )
+  {
+    let times_n = 100    //: {{C_o.AWAIT_SCAN_n}} = 5s
+
+    while                   //: wait for scan
+    (
+      ! STAT_W_o
+        .status_o
+          .scan_b
+    )
+    {
+      if
+      (
+        --times_n
+        >
+        0
+      )
+      {
+        await STAT_W_o
+          .sleep__v( 50 )    //: {{C_o.AWAIT_SCAN_SLEEP_n}}
+      }
+      else
+      {
+        STAT_W_o
+          .post__v
+            (
+              {
+                client_s: client_s,
+                task_s: 'PUT_error',
+                error_s: 'scan is not available'
+              }
+            )
+        
+        return false
+      }
+    }
+
+    return true
+  }
+  ,
+
+
+
 
   //=== GET    
   get_scan__v
@@ -166,9 +165,10 @@ const STAT_W_o =
         .scan_a    //: already loaded?
     )
     {
-                            //!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            ;console.time( 'scan' )
-                            //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      ;console.time( 'scan' )
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+
       STAT_W_o
         .read__v
         (
@@ -193,9 +193,9 @@ const STAT_W_o =
                   .scan_b = true
             }
             
-                              //!!!!!!!!!!!!!!!!!!!!!!!!!!
-                              ;console.timeEnd( 'scan' )
-                              //!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ;console.timeEnd( 'scan' )
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!
           }
         )
     }
@@ -248,9 +248,9 @@ const STAT_W_o =
     STAT_W_o
       .client_o
         [ client_s ]
-          .offCanvas_e =
+          .canvas_e =
       payload_o
-        .offCanvas_e
+        .canvas_e
 
     const pixel_n =
       payload_o
@@ -258,7 +258,7 @@ const STAT_W_o =
 
     const context_o =
       payload_o
-        .offCanvas_e
+        .canvas_e
           .getContext( '2d' )    //;console.log( STAT_W_o.client_o[ client_s ] )
 
     context_o
@@ -277,97 +277,6 @@ const STAT_W_o =
   ,
 
 
-
-
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  async put_draw_test__v
-  (
-    payload_o
-  )
-  {
-    const client_s =
-      payload_o
-        .client_s
-
-    if
-    (
-      await STAT_W_o
-        .waitScan__v
-        (
-          client_s
-        )
-    )
-    {
-      const client_o =
-        STAT_W_o
-          .client_o
-            [client_s]
-    
-      const paint_o =
-        {
-          context_o:
-              client_o
-                .context_o
-        }
-    
-      client_o
-        .painter_c =
-          new Painter( paint_o )     //;console.log( client_o )
-    
-      client_o
-        .painter_c
-          .fill__c( [ 0, 60, 50 ] )
-          .rect__c
-          (
-            100,
-            100,
-            200,
-            100,
-            'fill'  //: clear || fill || stroke
-          )
-    
-          .stroke__c( [ 60, 20, 80 ] )
-          .thick__c( 10 )
-          .line__c
-          (
-            500,
-            100,
-            700,
-            200
-          )
-    
-          .fill__c( [ 120, 60, 50 ] )
-          .circle__c
-          (
-            200, 300,
-            100
-          )
-    
-          .stroke__c
-          (
-            [ 180, 50, 50 ],
-            6
-          )
-          .arc__c
-          (
-            300, 500,
-            100,
-            Math.PI*1.5, Math.PI*.2,
-            //false
-          )
-    
-          .fill__c( [ 240, 60, 50 ] )
-          .pieSlice__c
-          (
-            500, 300,
-            80,
-            Math.PI*2, Math.PI*.5,
-            true    //: reverse
-          )
-    }
-  }
-  ,
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   //=== SCRIPTS ===
   script__v
@@ -424,7 +333,7 @@ const STAT_W_o =
 
 
 
-  //=== COMMUNICATION
+  //=== MESSAGES
   message__v
   (
     msg_o
@@ -491,7 +400,6 @@ handleError__v:
   console
     .log`ERROR: ${error_o.message}`
 ,
-
 }
 
 

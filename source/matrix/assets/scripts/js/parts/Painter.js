@@ -1,3 +1,5 @@
+// === Painter.js ===
+
 class Painter
 {
   constructor
@@ -93,30 +95,6 @@ class Painter
     return this
   }
 
-
-
-  clear__c 
-  ()
-  {
-    this
-      .context_o
-        .clearRect
-        (
-          0,
-          0,
-          this
-            .context_o
-              .canvas
-                .width,
-          this
-            .context_o
-              .canvas
-                .height
-        )
-
-    return this
-  }
-  
 
 
   line__c
@@ -329,6 +307,30 @@ class Painter
     this
       .context_o
         .fill()
+
+    return this
+  }
+
+
+
+  clear__c 
+  ()
+  {
+    this
+      .context_o
+        .clearRect
+        (
+          0,
+          0,
+          this
+            .context_o
+              .canvas
+                .width,
+          this
+            .context_o
+              .canvas
+                .height
+        )
 
     return this
   }

@@ -1,69 +1,49 @@
-// === {{C_o.STAT_a[2]}}.js ===
+// === paint.js ===
+
 const PAI_o =
 {
-  worker_o: null,
-
-  offCanvas_o: null,
+  status_o: null,    //: STAT_W_o.status_o
 
 
-
-  init__v:
+  message__v:
   (
-    canvas_s
+    payload_o
   ) =>
   {
-    const canvas_o =
-      document
-        .querySelector( `#${canvas_s}_canvas` )
-
-    PAI_o
-      .offCanvas_o =
-        canvas_o
-          .transferControlToOffscreen()
+    switch
+    (
+      payload_o
+        .task_s
+    )
+    {
+      case 'PUT_status':      //: { client_s, task_s, status_o }
+        PAI_o
+          .status_o =
+            payload_o
+              .status_o
+      
+        break
     
-    PAI_o
-      .worker_o =
-      new Worker( `{{C_o.JS_DIR_s}}${canvas_s}_worker.min.js` )
+      case 'PUT_error':      //: { client_s, task_s, error_s }
+        console.log( `ERROR: ${payload_o.error_s}` ) //... TODO: load error page ...
         
-    PAI_o
-      .worker_o
-        .postMessage
-        (
-          {
-            task_s:   'PUT_offscreen',
-            canvas_o: PAI_o.offCanvas_o
-          },
-          [ PAI_o.offCanvas_o ]
-        )
-  }
-  ,
-
-
-
-  canvas__v:
-  () =>
-  {
-    PAI_o
-      .worker_o
-        .postMessage
-        (
-          {
-            msg: 'offscreen',
-            canvas: PAI_o.offCanvas_o
-          },
-          [ PAI_o.offCanvas_o ]
-        )
+        break
+    
+      default:
+        break
+    }
   }
   ,
 }
 
 
 
-void function
-()
-{
-  ;console.log( '{{C_o.STAT_a[2]}}.js' )
-
-  PAI_o
-    .init__v( '{{C_o.STAT_a[2]}}' )
-} ()
+PAI_o
+  .worker_o =
+    STAT_o
+      .worker__o
+      (
+        '{{C_o.STAT_a[2]}}',
+        PAI_o.message__v,
+        'LogScale Painter'
+      )

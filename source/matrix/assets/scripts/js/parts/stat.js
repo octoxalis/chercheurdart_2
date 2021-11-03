@@ -5,7 +5,7 @@ const STAT_o =
 
 
 
-  message__v:
+  message__v:    //!!! 2. from stat_w.js
   (
     payload_o
   ) =>
@@ -28,38 +28,124 @@ const STAT_o =
   
 
   
-  init__v:    //!!! from index.js
+  canvas__e:    //!!! 4. from section
   (
-    work_s
+    section_s
   ) =>
   {
-    STAT_o
-      .worker_o =
-        new WorkerClient
+    const nav_s =      //: get nav bar height
+      window
+        .getComputedStyle
+        (
+          document
+            .querySelector( `nav` )
+        )
+        .height
+          .slice
+          (
+            0,
+            -2     //: skip ending 'px'
+          )
+      
+    const section_e =
+      document
+        .querySelector( `#${section_s}` )
+  
+    const { width, height } =
+      section_e                       //: outer section has dimensions, not div
+        .getBoundingClientRect()
+  
+    const canvas_e =
+      document
+        .createElement( 'canvas' )
+  
+    canvas_e
+      .id =
+        `${section_s}_canvas`
+
+    const pixel_n =
+      window
+        .devicePixelRatio
+  
+    canvas_e
+      .width =
+        width
+        *
+        pixel_n
+  
+    canvas_e
+      .height =
+        (
+          height
+          -
+          +nav_s        //: number cast
+        )
+        *
+        pixel_n
+  
+    const div_e =
+      section_e
+        .querySelector( `#{{C_o.DIV_ID_s}}_${section_s}` )
+  
+    div_e
+      .insertBefore        //: as div children[0]
+      (
+        canvas_e,
+        div_e
+          .querySelector( `script` )
+      )
+  
+    return canvas_e
+    }
+  ,
+
+
+  worker__o:    //!!! 4. from section
+  (
+    section_s,
+    message__v,
+    script_s
+  ) =>
+  {
+    const worker_o =
+      new WorkerClient
+      (
+        {
+          url_s: '{{C_o.WORKER_FILE_s}}',
+          client_s:  section_s,
+          handleMessage__v: message__v
+        }
+      )
+
+    const canvas_e =
+      STAT_o
+        .canvas__e( section_s )
+
+    const offCanvas_e =
+      canvas_e
+        .transferControlToOffscreen()
+
+    worker_o           //! using port postMessage directly
+      .port_o           //! to avoid error:
+        .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
         (
           {
-            url_s: '{{C_o.WORKER_FILE_s}}',
-            client_s:  '{{C_o.STAT_s}}',
-            handleMessage__v: STAT_o.message__v
-          }
+            client_s:   section_s,
+            script_s:   script_s,
+            task_s:     'PUT_canvas',
+            pixel_n:    window.devicePixelRatio,
+            canvas_e:   offCanvas_e
+          },
+          [ offCanvas_e ]
         )
 
-    STAT_o
-      .worker_o
-        .post__v
-        (
-          { 
-            client_s: '{{C_o.STAT_s}}',
-            task_s: 'GET_scan',
-            work_s: work_s
-          }
-        )
+    return worker_o
   }
   ,
 
 
 
-  adopt__v:
+  adopt__v:    //!!! 3. from listener__v
   (
     stat_s
   ) =>
@@ -138,19 +224,38 @@ const STAT_o =
   }
   ,
 
+
+
+  init__v:    //!!! 1. from index.js
+  (
+    work_s
+  ) =>
+  {
+    STAT_o
+      .worker_o =
+        new WorkerClient
+        (
+          {
+            url_s: '{{C_o.WORKER_FILE_s}}',
+            client_s:  '{{C_o.STAT_s}}',
+            handleMessage__v: STAT_o.message__v
+          }
+        )
+
+    STAT_o
+      .worker_o
+        .post__v
+        (
+          { 
+            client_s: '{{C_o.STAT_s}}',
+            task_s: 'GET_scan',
+            work_s: work_s
+          }
+        )
+  }
+  ,
 }
 
 
-void function 
-()
-{
-  STAT_o
-    .listener__v()
-}()
-
-
-/*//..................
-1. init__v from index.js
-2. message__v from worker
-3. adopt__v from listener__v
-*/
+STAT_o
+  .listener__v()

@@ -1,6 +1,5 @@
-/*
- * COMPONENTS constants for templates
- */
+//=== C_.o.js ===
+
 const CONF_o = require( '../../configure.js' )
 
 const C_o =
