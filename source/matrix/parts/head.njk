@@ -1,13 +1,12 @@
 <head>
+{% include "parts/head/viewport.njk" %}
+{% include "parts/head/css.njk" %}
+
 {% include "parts/head/title.njk" %}
 {% include "parts/head/seo.njk" %}
 {% include "parts/head/description.njk" %}
 {% include "parts/head/manifest.njk" %}
 {% include "parts/head/base_url.njk" %}
 
-<link rel="stylesheet" href="assets/styles/css/index.min.css" />
-{% for _css in css_a %}
-<link rel="stylesheet" href="assets/styles/css/{{_css}}" />
-{% endfor %}
-
+{% include "parts/head/preload.njk" %}
 </head>
