@@ -1,3 +1,4 @@
+
 //=== stat_w.js ===
 
 const RGB_H__n =
@@ -312,182 +313,182 @@ const STAT_W_o =
               .height
           )
           
-    STAT_W_o
-      .scan_a = []
-
-    //=== HUE
-    let capacity_n = 360  //: 0-359
-    
-    STAT_W_o
-      .scan_a
-        ['{{C_o.SCAN_HUE_n}}'] =
-          new Array( capacity_n )
-      
-    STAT_W_o
-      .scan_a
-        ['{{C_o.SCAN_HUE_CAP_n}}'] =
-          new Array( capacity_n )
-      
-    while
-    (
-      --capacity_n >= 0
-    )
-    {
       STAT_W_o
-        .scan_a
-          ['{{C_o.SCAN_HUE_n}}']
-            [capacity_n] = []
-
-      STAT_W_o
-        .scan_a
-          ['{{C_o.SCAN_HUE_CAP_n}}']
-            [capacity_n] = 0
-    }
-    
-    //=== SAT
-    capacity_n = 101  //: 0-100
-    
-    STAT_W_o
-      .scan_a
-        ['{{C_o.SCAN_SAT_n}}'] =
-          new Array( capacity_n )
-      
-    STAT_W_o
-      .scan_a
-        ['{{C_o.SCAN_SAT_CAP_n}}'] =
-          new Array( capacity_n )
-    
-    while
-    (
-      --capacity_n >= 0
-    )
-    {
-      STAT_W_o
-        .scan_a
-          ['{{C_o.SCAN_SAT_n}}']
-            [capacity_n] = []
-
-      STAT_W_o
-        .scan_a
-          ['{{C_o.SCAN_SAT_CAP_n}}']
-            [capacity_n] = 0
-    }
-    
-    //=== LUM
-    capacity_n = 101  //: 0-100
-    
-    STAT_W_o
-      .scan_a
-        ['{{C_o.SCAN_LUM_n}}'] =
-          new Array( capacity_n )
-      
-    STAT_W_o
-      .scan_a
-        ['{{C_o.SCAN_LUM_CAP_n}}'] =
-          new Array( capacity_n )
-    
-    while
-    (
-      --capacity_n >= 0
-    )
-    {
-      STAT_W_o
-        .scan_a
-          ['{{C_o.SCAN_LUM_n}}']
-            [capacity_n] = []
-
-      STAT_W_o
-        .scan_a
-          ['{{C_o.SCAN_LUM_CAP_n}}']
-            [capacity_n] = 0
-    }
-    
-    //: scanning
-    let r_n,
-        g_n,
-        b_n
-    
-    for
-    (
-      let at_n = 0;              // : imageData pointer
-      at_n
-      <
-      imgData_o
-        .data
-          .length;
-      at_n += 4                  //: r,g,b, skip opacity
-    )
-    {
-      r_n =
-        imgData_o
-          .data
-            [at_n]
-    
-      g_n =
-        imgData_o
-          .data
-            [at_n + 1]
-    
-      b_n =
-        imgData_o
-          .data
-            [at_n + 2]
-    
-      let hue_n =
-        RGB_H__n
-        (
-          r_n,
-          g_n,
-          b_n
-        )
-    
-      STAT_W_o
-        .scan_a['{{C_o.SCAN_HUE_n}}']
-          [hue_n]
-            .push( at_n )
-      
-      STAT_W_o
-        .scan_a['{{C_o.SCAN_HUE_CAP_n}}']
-          [hue_n] += 1
-    
-      let sat_n =
-        ~~( RGB_S__n
-        (
-          r_n,
-          g_n,
-          b_n
-        )
-        *
-        100 )
-    
-      STAT_W_o
-        .scan_a['{{C_o.SCAN_SAT_n}}']
-          [sat_n]
-            .push( at_n )
-      
-      STAT_W_o
-        .scan_a['{{C_o.SCAN_SAT_CAP_n}}']
-          [sat_n] += 1
+        .scan_a = []
   
-      let lum_n =
-        ~~( RGB_L__n
-        (
-          r_n,
-          g_n,
-          b_n
-        )
-        *
-        100 )
-    
-      STAT_W_o
-        .scan_a['{{C_o.SCAN_LUM_n}}']
-          [lum_n]
-            .push( at_n )
+      //=== HUE
+      let capacity_n = ~~'{{C_o.HUE_CAP_n}}'
       
       STAT_W_o
-        .scan_a['{{C_o.SCAN_LUM_CAP_n}}']
-          [lum_n] += 1
-    }
+        .scan_a
+          [~~'{{C_o.SCAN_HUE_n}}'] =
+            new Array( capacity_n )
+        
+      STAT_W_o
+        .scan_a
+          [~~'{{C_o.SCAN_HUE_CAP_n}}'] =
+            new Array( capacity_n )
+        
+      while
+      (
+        --capacity_n >= 0
+      )
+      {
+        STAT_W_o
+          .scan_a
+            [~~'{{C_o.SCAN_HUE_n}}']
+              [capacity_n] = []
+  
+        STAT_W_o
+          .scan_a
+            [~~'{{C_o.SCAN_HUE_CAP_n}}']
+              [capacity_n] = 0
+      }
+      
+      //=== SAT
+      capacity_n = ~~'{{C_o.SAT_CAP_n}}'
+      
+      STAT_W_o
+        .scan_a
+          [~~'{{C_o.SCAN_SAT_n}}'] =
+            new Array( capacity_n )
+        
+      STAT_W_o
+        .scan_a
+          [~~'{{C_o.SCAN_SAT_CAP_n}}'] =
+            new Array( capacity_n )
+      
+      while
+      (
+        --capacity_n >= 0
+      )
+      {
+        STAT_W_o
+          .scan_a
+            [~~'{{C_o.SCAN_SAT_n}}']
+              [capacity_n] = []
+  
+        STAT_W_o
+          .scan_a
+            [~~'{{C_o.SCAN_SAT_CAP_n}}']
+              [capacity_n] = 0
+      }
+      
+      //=== LUM
+      capacity_n = ~~'{{C_o.LUM_CAP_n}}'
+      
+      STAT_W_o
+        .scan_a
+          [~~'{{C_o.SCAN_LUM_n}}'] =
+            new Array( capacity_n )
+        
+      STAT_W_o
+        .scan_a
+          [~~'{{C_o.SCAN_LUM_CAP_n}}'] =
+            new Array( capacity_n )
+      
+      while
+      (
+        --capacity_n >= 0
+      )
+      {
+        STAT_W_o
+          .scan_a
+            [~~'{{C_o.SCAN_LUM_n}}']
+              [capacity_n] = []
+  
+        STAT_W_o
+          .scan_a
+            [~~'{{C_o.SCAN_LUM_CAP_n}}']
+              [capacity_n] = 0
+      }
+      
+      //: scanning
+      let r_n,
+          g_n,
+          b_n
+      
+      for
+      (
+        let at_n = 0;              // : imageData pointer
+        at_n
+        <
+        imgData_o
+          .data
+            .length;
+        at_n += 4                  //: r,g,b, skip opacity
+      )
+      {
+        r_n =
+          imgData_o
+            .data
+              [at_n]
+      
+        g_n =
+          imgData_o
+            .data
+              [at_n + 1]
+      
+        b_n =
+          imgData_o
+            .data
+              [at_n + 2]
+      
+        let hue_n =
+          RGB_H__n
+          (
+            r_n,
+            g_n,
+            b_n
+          )
+      
+        STAT_W_o
+          .scan_a[~~'{{C_o.SCAN_HUE_n}}']
+            [hue_n]
+              .push( at_n )
+        
+        STAT_W_o
+          .scan_a[~~'{{C_o.SCAN_HUE_CAP_n}}']
+            [hue_n] += 1
+      
+        let sat_n =
+          ~~( RGB_S__n
+          (
+            r_n,
+            g_n,
+            b_n
+          )
+          *
+          100 )
+      
+        STAT_W_o
+          .scan_a[~~'{{C_o.SCAN_SAT_n}}']
+            [sat_n]
+              .push( at_n )
+        
+        STAT_W_o
+          .scan_a[~~'{{C_o.SCAN_SAT_CAP_n}}']
+            [sat_n] += 1
+    
+        let lum_n =
+          ~~( RGB_L__n
+          (
+            r_n,
+            g_n,
+            b_n
+          )
+          *
+          100 )
+      
+        STAT_W_o
+          .scan_a[~~'{{C_o.SCAN_LUM_n}}']
+            [lum_n]
+              .push( at_n )
+        
+        STAT_W_o
+          .scan_a[~~'{{C_o.SCAN_LUM_CAP_n}}']
+            [lum_n] += 1
+      }
     
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       ;console.timeEnd( 'scan' )
@@ -523,9 +524,8 @@ const STAT_W_o =
     payload_o
   )
   {
-    const client_s =
+    const { client_s, id_s } =
       payload_o
-        .client_s
 
     if
     (
@@ -542,31 +542,49 @@ const STAT_W_o =
     STAT_W_o
       .client_o
         [ client_s ]
-          .canvas_e =
-      payload_o
-        .canvas_e
+          [ id_s ] =
+          {
+            //: canvas_o,
+            //: context_o
+          }
 
-    const pixel_n =
-      payload_o
-        .pixel_n
+    STAT_W_o
+      .client_o
+        [ client_s ]
+          [ id_s ]
+            .canvas_o =
+              payload_o
+                .canvas_e
 
     const context_o =
       payload_o
         .canvas_e
           .getContext( '2d' )    //;console.log( STAT_W_o.client_o[ client_s ] )
 
+    const pixel_n =
+      payload_o
+        .pixel_n
+
+    //XX context_o
+    //XX   .setTransform
+    //XX   (
+    //XX     pixel_n, 0, 0,
+    //XX     pixel_n, 0, 0
+    //XX   )
     context_o
-      .setTransform
+      .scale
       (
-        pixel_n, 0, 0,
-        pixel_n, 0, 0
+        pixel_n,
+        pixel_n
       )
+    
 
     STAT_W_o
       .client_o
         [ client_s ]
-          .context_o =
-            context_o          //;console.log( STAT_W_o.client_o[ client_s ] )
+          [ id_s ]
+            .context_o =
+                context_o
   }
   ,
 
@@ -613,7 +631,6 @@ const STAT_W_o =
           payload_o
         )
     }
-
   }
   ,
 
@@ -644,13 +661,12 @@ handleError__v:
 
 
 //=== CONNECT
+// self.
 onconnect =
 (
   connect_o
 ) =>
 {
-  if( WorkerGlobalScope.ImageDecoder ) console.log( 'ImageDecoder !!!' )
-
   STAT_W_o
     .port_o =
       connect_o

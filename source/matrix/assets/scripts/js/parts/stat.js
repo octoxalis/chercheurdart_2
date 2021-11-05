@@ -1,3 +1,4 @@
+
 //=== stat.js
 const STAT_o =
 {
@@ -5,10 +6,89 @@ const STAT_o =
 
 
 
-  message__v:    //!!! 2. from stat_w.js
+  //=== FUNCTIONS ===
+  elementDim__n
+  (
+    selector_s,
+    dim_s='width'    //: 'width' (default) || 'height'
+  )
+  {
+    return (
+      +( window            //: number cast
+        .getComputedStyle
+        (
+          document
+            .querySelector( selector_s )
+        )
+        [ dim_s ]
+          .slice
+          (
+            0,
+            -2     //: skip ending 'px'
+          )
+        )
+      )
+
+  }
+  ,
+
+
+
+  canvas__e    //!!! 4. from section
+  (
+    section_s,
+    id_s
+  )
+  {
+    const section_e =
+      document
+        .querySelector( `#${section_s}` )
+  
+    const canvas_e =
+      document
+        .createElement( 'canvas' )
+  
+    canvas_e
+      .id =
+        `canvas_${section_s}_${id_s}`
+
+    let dim_n =
+      ~~'{{C_o.STAT_0_CANVAS_n}}'  //: number cast
+      *
+      window
+        .devicePixelRatio
+  
+    canvas_e
+      .width =
+        dim_n
+  
+    canvas_e
+      .height =
+        dim_n
+  
+    const div_e =
+      section_e
+        .querySelector( `#{{C_o.DIV_ID_s}}_${section_s}` )
+  
+    div_e
+      .insertBefore
+      (
+        canvas_e,
+        div_e
+          .querySelector( `script` )
+      )
+  
+    return canvas_e
+  }
+  ,
+
+
+
+  //=== WORK ===
+  message__v    //!!! 2. from stat_w.js
   (
     payload_o
-  ) =>
+  )
   {
     switch
     (
@@ -28,84 +108,12 @@ const STAT_o =
   
 
   
-  canvas__e:    //!!! 4. from section
-  (
-    section_s
-  ) =>
-  {
-    const nav_s =      //: get nav bar height
-      window
-        .getComputedStyle
-        (
-          document
-            .querySelector( `nav` )
-        )
-        .height
-          .slice
-          (
-            0,
-            -2     //: skip ending 'px'
-          )
-      
-    const section_e =
-      document
-        .querySelector( `#${section_s}` )
-  
-    const { width, height } =
-      section_e                       //: outer section has dimensions, not div
-        .getBoundingClientRect()
-  
-    const canvas_e =
-      document
-        .createElement( 'canvas' )
-  
-    canvas_e
-      .id =
-        `${section_s}_canvas`
-
-    const pixel_n =
-      window
-        .devicePixelRatio
-  
-    canvas_e
-      .width =
-        width
-        *
-        pixel_n
-  
-    canvas_e
-      .height =
-        (
-          height
-          -
-          +nav_s        //: number cast
-        )
-        *
-        pixel_n
-  
-    const div_e =
-      section_e
-        .querySelector( `#{{C_o.DIV_ID_s}}_${section_s}` )
-  
-    div_e
-      .insertBefore        //: as div children[0]
-      (
-        canvas_e,
-        div_e
-          .querySelector( `script` )
-      )
-  
-    return canvas_e
-  }
-  ,
-
-
-  worker__o:    //!!! 4. from section
+  worker__o    //!!! 4. from section
   (
     section_s,
     message__v,
     script_s
-  ) =>
+  )
   {
     const worker_o =
       new WorkerClient
@@ -117,27 +125,57 @@ const STAT_o =
         }
       )
 
-    const canvas_e =
-      STAT_o
-        .canvas__e( section_s )
-
-    const offCanvas_e =
-      canvas_e
-        .transferControlToOffscreen()
-
-    worker_o            //! using port postMessage directly
-      .port_o           //! to avoid error:
-        .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+    switch
+    (
+      section_s
+    )
+    {
+      case '{{C_o.STAT_a[0]}}':
+        for
         (
-          {
-            client_s:   section_s,
-            script_s:   script_s,
-            task_s:     'PUT_canvas',
-            pixel_n:    window.devicePixelRatio,
-            canvas_e:   offCanvas_e
-          },
-          [ offCanvas_e ]
+          let id_s
+          of
+          [
+            'hue',
+            'sat',
+            'lum'
+          ]
         )
+        {
+          const canvas_e =
+            STAT_o
+              .canvas__e
+              (
+                section_s,
+                id_s
+              )
+          
+          const offCanvas_e =
+            canvas_e
+              .transferControlToOffscreen()
+          
+          worker_o            //! using port postMessage directly
+            .port_o           //! to avoid error:
+              .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+              (
+                {
+                  client_s:   section_s,
+                  id_s:       id_s,
+                  script_s:   script_s,
+                  task_s:     'PUT_canvas',
+                  pixel_n:    window.devicePixelRatio,
+                  canvas_e:   offCanvas_e
+                },
+                [ offCanvas_e ]
+              )
+
+          }
+            
+        break;
+    
+      default:
+        break;
+    }
 
     return worker_o
   }
@@ -145,10 +183,10 @@ const STAT_o =
 
 
 
-  adopt__v:    //!!! 3. from listener__v
+  adopt__v    //!!! 3. from listener__v
   (
     stat_s
-  ) =>
+  )
   {
     if        //: iframe still there: not yet adopted
     (
@@ -168,7 +206,7 @@ const STAT_o =
           {
             const script_e =
               adopted_e
-                .querySelector( `#${stat_s}_script` )
+                .querySelector( `#script_${stat_s}` )
   
             if
             (
@@ -188,12 +226,12 @@ const STAT_o =
   ,
 
 
-  scanner__v:
-  () =>
+  scanner__v
+  ()
   {
     const img_e =
       document
-        .querySelector( `img[src$="/full/max/0/color.avif"]` )    //: TODO change to jpeg
+        .querySelector( `img[src$="/full/max/0/color.jpeg"]` )    //: TODO change to jpeg
 
     ;console.log( img_e )
 
@@ -221,8 +259,8 @@ const STAT_o =
 
 
 
-  listener__v:
-  () =>
+  listener__v
+  ()
   {
     for
     (
@@ -258,10 +296,10 @@ const STAT_o =
 
 
 
-  init__v:    //!!! 1. from index.js
+  init__v    //!!! 1. from index.js
   (
     work_s
-  ) =>
+  )
   {
     STAT_o
       .worker_o =

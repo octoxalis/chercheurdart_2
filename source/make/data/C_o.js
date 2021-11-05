@@ -223,16 +223,21 @@ const C_o =
   AWAIT_SCAN_n: 100,         //: times
   AWAIT_SCAN_SLEEP_n: 50,    //: ms
 
-  SCAN_HUE_n:     0,
+  HUE_CAP_n:      360,
+  SAT_CAP_n:      101,
+  LUM_CAP_n:      101,
+
+  SCAN_HUE_n:     0,    //: scan_a index
   SCAN_HUE_CAP_n: 1,
   SCAN_SAT_n:     2,
   SCAN_SAT_CAP_n: 3,
   SCAN_LUM_n:     4,
-  SCAN_LUM_CAP_n: 6,
+  SCAN_LUM_CAP_n: 5,
 
 
   //===  STATs ===
   LOG_SCALE_n: 100000,
+  STAT_0_CANVAS_n: 2048,    //: canvas width, height
 
 }
 
