@@ -44,6 +44,6 @@ PAI_o
       .worker__o
       (
         '{{C_o.STAT_a[2]}}',
+        'LogScale Painter',
         PAI_o.message__v,
-        'LogScale Painter'
       )

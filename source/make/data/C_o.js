@@ -88,6 +88,13 @@ const C_o =
     burst:   { icon_s: `&#x22C7;`, legend_s: `burst`},       //: ⋇
     aster:   { icon_s: `&#x229A;`, legend_s: `aster`},       //: ⊚
     paint:   { icon_s: `&#x229C;`, legend_s: `paint`},       //: ⊜
+
+    burst_hue:   { icon_s: `&#x229B;`, legend_s: `couleur`},       //: ⊜
+    burst_sat:   { icon_s: `&#x229A;`, legend_s: `saturation`},    //: ⊜
+    burst_lum:   { icon_s: `&#x2299;`, legend_s: `luminance`},     //: ⊜
+
+    stat_increment:   { icon_s: `&#x2b;`, legend_s: `augmenter`},     //: ⊜
+    stat_decrement:   { icon_s: `&#x2212;`, legend_s: `diminuer`},      //: ⊜
   },
 
 

@@ -40,17 +40,9 @@ const STAT_o =
     id_s
   )
   {
-    const section_e =
-      document
-        .querySelector( `#${section_s}` )
-  
     const canvas_e =
       document
-        .createElement( 'canvas' )
-  
-    canvas_e
-      .id =
-        `canvas_${section_s}_${id_s}`
+        .querySelector( `#canvas_${section_s}_${id_s}` )
 
     let dim_n =
       ~~'{{C_o.STAT_0_CANVAS_n}}'  //: number cast
@@ -65,18 +57,6 @@ const STAT_o =
     canvas_e
       .height =
         dim_n
-  
-    const div_e =
-      section_e
-        .querySelector( `#{{C_o.DIV_ID_s}}_${section_s}` )
-  
-    div_e
-      .insertBefore
-      (
-        canvas_e,
-        div_e
-          .querySelector( `script` )
-      )
   
     return canvas_e
   }
@@ -111,8 +91,8 @@ const STAT_o =
   worker__o    //!!! 4. from section
   (
     section_s,
-    message__v,
-    script_s
+    script_s,
+    message__v
   )
   {
     const worker_o =

@@ -13,16 +13,76 @@
 <section#{{C_o.STAT_a[2]}}>
         display: block;
 </section>
-<section>
+<section#{{C_o.STAT_a[0]}}>
   <div[id^={{C_o.DIV_ID_s}}]>
+          display: grid;
           margin-top: {{S_o.NAV_HEIGHT_s}};
           height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
+    <input />
+    context( copy, next )
     <canvas>
-            background: hsla( 0 0% 25%/1);  /*transparent;*/
+            display:none;
+            grid-area: 1/-1;    /* stacking */
+            background: transparent;
     </canvas>
-    <canvas[id^=canvas_{{C_o.STAT_a[0]}}]>
-      width: {{C_o.STAT_0_CANVAS_n}};
-      height: {{C_o.STAT_0_CANVAS_n}};
+    <!--variant-->
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked />
+    ~
+    <canvas#canvas_{{C_o.STAT_a[0]}}_hue>
+            display: block;
     </canvas>
-  </div>
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked />
+    ~
+    <canvas#canvas_{{C_o.STAT_a[0]}}_sat>
+            display: block;
+    </canvas>
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked />
+    ~
+    <canvas#canvas_{{C_o.STAT_a[0]}}_lum>
+            display: block;
+    </canvas>
+    <div>
+            grid-area: 1/-1;    /* stacking */
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+            padding: {{S_o.PAD_2}};
+            width:  16ch;
+      <label>
+              position: relative;
+              overflow: hidden;
+              width: 4ch;
+              height: auto;    /* ... */
+              font-weight: 500;
+              color: currentColor;
+              text-transform: uppercase;
+              opacity: .2;
+              transition: all ease .2s;
+      </label>
+      <label:before>
+              content: attr( data-legend );
+              position: absolute;
+              left: 1.5em;
+              font-size: 85%;
+              line-height: 2;
+              transform: translateX( -10em );
+              transition: transform ease .5s;
+      </label>
+      <label:hover>
+              width: 16ch;
+              transition: all ease .5s;
+      </label>
+      <label:hover:before>
+              transform: translateX( 0 );
+      </label>
+    </div>
+    <div:hover>
+            filter: saturate(5);
+            transition: all .2s;  /* short fading in */
+      <label>
+              opacity: 1;
+              filter: brightness( {{S_o.brigtness_hi}} );
+              transition: opacity .2s;
+      </label>
+    </div>
 </section>

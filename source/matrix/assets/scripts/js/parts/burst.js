@@ -44,7 +44,7 @@ BUR_o
       .worker__o
       (
         '{{C_o.STAT_a[0]}}',
+        'LogScale Painter',
         BUR_o.message__v,
-        'LogScale Painter'
       )
 

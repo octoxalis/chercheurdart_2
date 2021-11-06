@@ -44,6 +44,6 @@ AST_o
       .worker__o
       (
         '{{C_o.STAT_a[1]}}',
+        'LogScale Painter',
         AST_o.message__v,
-        'LogScale Painter'
       )
