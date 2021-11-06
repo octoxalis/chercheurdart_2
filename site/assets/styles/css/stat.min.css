@@ -1,1 +1,14 @@
-input#IN_aster:checked~section#aster,input#IN_burst:checked~section#burst,input#IN_paint:checked~section#paint{display:block}section>div[id^=DI]{margin-top:2em;height:calc(100vh - 2em)}section>div[id^=DI]>canvas{background:hsla(0 0% 25%/1)}section>div[id^=DI]>canvas[id^=canvas_burst]{width:2048;height:2048}
+input#IN_burst:checked ~ section#burst, input#IN_aster:checked ~ section#aster, input#IN_paint:checked ~ section#paint {
+  display: block;
+}
+section > div[id^=DI] {
+  margin-top: 2em;
+  height: calc( 100vh - 2em);
+}
+section > div[id^=DI] > canvas {
+  background: hsla( 0 0% 25%/1);
+}
+section > div[id^=DI] > canvas[id^=canvas_burst] {
+  width: 2048;
+  height: 2048;
+}
