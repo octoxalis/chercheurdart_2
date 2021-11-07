@@ -7,23 +7,23 @@
   <canvas id="canvas_{{stat_s}}_hue"></canvas>
   <canvas id="canvas_{{stat_s}}_sat"></canvas>
   <canvas id="canvas_{{stat_s}}_lum"></canvas>
-  <div>
-    <label for="IN_{{stat_s}}_hue" data-legend="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}">{{C_o.NAV_LEGEND_o.burst_hue.icon_s}}</label>
-    <label for="IN_{{stat_s}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}">{{C_o.NAV_LEGEND_o.burst_sat.icon_s}}</label>
-    <label for="IN_{{stat_s}}_lum" data-legend="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}">{{C_o.NAV_LEGEND_o.burst_lum.icon_s}}</label>
-    <label for="IN_{{stat_s}}_scale_up" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</label>
-    <label for="IN_{{stat_s}}__scale_down" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</label>
-  </div>
+  <nav>
+    <label for="IN_{{stat_s}}_hue" data-legend="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}" data-icon="substat">&nbsp;<span>&nbsp;</span></label>
+    <label for="IN_{{stat_s}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}" data-icon="substat">&nbsp;<span>&nbsp;</span></label>
+    <label for="IN_{{stat_s}}_lum" data-legend="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}" data-icon="substat">&nbsp;<span>&nbsp;</span></label>
+    <label for="IN_{{stat_s}}_scale_up" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}" data-icon="substat_op"><span>{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
+    <label for="IN_{{stat_s}}__scale_down" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}" data-icon="substat_op"><span>{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
+  </nav>
 {% endif %}
 {% if stat_s === C_o.STAT_a[1] %}
   <input id="IN_{{stat_s}}_hue" name="{{stat_s}}_nav" type="radio">
-  <div>
-  </div>
+  <nav>
+  </nav>
 {% endif %}
 {% if stat_s === C_o.STAT_a[2] %}
   <input id="IN_{{stat_s}}_hue" name="{{stat_s}}_nav" type="radio">
-  <div>
-  </div>
+  <nav>
+  </nav>
 {% endif %}
   <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
 </div>

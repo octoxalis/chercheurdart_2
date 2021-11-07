@@ -206,39 +206,6 @@ const STAT_o =
   ,
 
 
-  scanner__v
-  ()
-  {
-    const img_e =
-      document
-        .querySelector( `img[src$="/full/max/0/color.jpeg"]` )    //: TODO change to jpeg
-
-    ;console.log( img_e )
-
-    if
-    (
-      img_e
-    )
-    {
-
-
-      return  //.........
-      STAT_o
-        .worker_o
-          .post__v
-          (
-            { 
-              client_s: '{{C_o.STAT_s}}',
-              task_s: 'GET_scan',
-              work_s: work_s
-            }
-          )
-    }
-  }
-  ,
-
-
-
   listener__v
   ()
   {
@@ -302,9 +269,6 @@ const STAT_o =
             work_s: work_s
           }
         )
-
-    //XX STAT_o
-    //XX   .scanner__v()
   }
   ,
 }

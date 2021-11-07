@@ -138,7 +138,7 @@ const SCAN_o =
     scan_o
       .hue_a = []
     
-    while
+    whileSCAN_o
     (
       look_n
       <

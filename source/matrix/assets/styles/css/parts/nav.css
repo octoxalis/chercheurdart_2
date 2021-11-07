@@ -4,15 +4,14 @@ nav {
   gap: 4ch;
   width: 100%;
   height: {{S_o.NAV_HEIGHT_s}};
-  background: {{S_o.bgcolor}};
 }
 nav > a:before, nav > label:before {
   content: attr( data-legend );
   position: absolute;
-  left: 1.5em;
+  left: {{S_o.PAD_8}};
   font-size: 85%;
   line-height: 2;
-  transform: translateX( -10em );
+  transform: translateX( -16ch );
   transition: transform ease .5s;
 }
 nav > a {
@@ -29,9 +28,26 @@ nav > a, nav > label {
   opacity: .2;
   transition: all ease .2s;
 }
+nav > a > span, nav > label > span {
+  display: inline-block;
+  width: {{S_o.NAV_LABEL_s}};
+  height: {{S_o.NAV_LABEL_s}};
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  line-height: .85;
+}
+nav > a[data-icon=main] > span, nav > label[data-icon=main] > span {
+  background: {{S_o.nav_main}};
+}
+nav > label[data-icon=stat] > span {
+  background: {{S_o.nav_stat}};
+}
 nav > a:hover, nav > label:hover {
-  width: 10ch;
+  width: 12ch;
   transition: all ease .5s;
+}
+nav > a:hover > span, nav > label:hover > span {
+  border: 1px solid transparent;
 }
 nav > a:hover:before, nav > label:hover:before {
   transform: translateX( 0 );

@@ -5,17 +5,16 @@ context( stack, new )
         gap: 4ch;
         width: 100%;
         height: {{S_o.NAV_HEIGHT_s}};
-        background: {{S_o.bgcolor}};
     <a:before>
             context( copy, next )
     </a>
     <label:before>
             content: attr( data-legend );
             position: absolute;
-            left: 1.5em;
-            font-size: 85%;
+            left: {{S_o.PAD_8}};
+            font-size: 85%;    /* block round_label: line-height: .85; */
             line-height: 2;
-            transform: translateX( -10em );
+            transform: translateX( -16ch );
             transition: transform ease .5s;
     </label>
     <a>
@@ -34,12 +33,50 @@ context( stack, new )
             opacity: .2;
             transition: all ease .2s;
     </label>
+    <a>
+      <span>
+      context( copy, next )
+      </span>
+    </a>
+    <label>
+      <span>
+      context( block, round_label )
+      </span>
+    </label>
+    <!--variant-->
+    <a[data-icon=main]>
+      <span>
+      context( copy, next )
+      </span>
+    </a>
+    <label[data-icon=main]>
+      <span>
+              background: {{S_o.nav_main}};
+      </span>
+    </label>
+    <!--variant-->
+    <label[data-icon=stat]>
+      <span>
+              background:  {{S_o.nav_stat}};
+      </span>
+    </label>
+    <!--variant-->
     <a:hover>
             context( copy, next )
     </a>
     <label:hover>
-            width: 10ch;
+            width: 12ch;
             transition: all ease .5s;
+    </label>
+    <a:hover>
+      <span>
+      context( copy, next )
+      </span>
+    </a>
+    <label:hover>
+      <span>
+              border: 1px solid transparent;
+      </span>
     </label>
     <!--variant-->
     <a:hover:before>

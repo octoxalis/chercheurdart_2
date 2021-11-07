@@ -20,47 +20,22 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_lum {
   display: block;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > div {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav {
+  z-index: 1;
   grid-area: 1/-1;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  justify-content: flex-start;
+  gap: {{S_o.PAD_4}};
   padding: {{S_o.PAD_2}};
   width: 16ch;
-}
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > div > label {
-  position: relative;
-  overflow: hidden;
-  width: 4ch;
   height: auto;
-  font-weight: 500;
-  color: currentColor;
-  text-transform: uppercase;
-  opacity: .2;
-  transition: all ease .2s;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > div > label:before {
-  content: attr( data-legend );
-  position: absolute;
-  left: 1.5em;
-  font-size: 85%;
-  line-height: 2;
-  transform: translateX( -10em );
-  transition: transform ease .5s;
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label[data-icon=substat] > span {
+  text-align: center;
+  background: {{S_o.nav_substat}};
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > div > label:hover {
-  width: 16ch;
-  transition: all ease .5s;
-}
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > div > label:hover:before {
-  transform: translateX( 0 );
-}
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > div:hover {
-  filter: saturate(5);
-  transition: all .2s;
-}
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > div:hover > label {
-  opacity: 1;
-  filter: brightness( {{S_o.brigtness_hi}} );
-  transition: opacity .2s;
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label[data-icon=substat_op] > span {
+  text-align: center;
+  background: {{S_o.nav_substat_op}};
 }

@@ -31,8 +31,8 @@ const C_o =
   IMG_MAX_PATH_s:    '/full/max/0/',    //: IOR
 
   //=== FILE NAMES
-  SCAN_FILE_s:       'scan.json',
-  SCAN_IFRAME_s:     'scan_iframe',
+  //XX SCAN_FILE_s:       'scan.json',
+  //XX SCAN_IFRAME_s:     'scan_iframe',
   WORKER_FILE_s:     '/assets/scripts/js/stat_w.min.js',
 
 
@@ -80,18 +80,24 @@ const C_o =
 
   NAV_LEGEND_o:    //: property names === SECTION_a + STAT_a
   {
-    home:    { icon_s: `&#x2302;`, legend_s: `accueil` },    //: ⌂
-    article: { icon_s: `&#x2263;`, legend_s: `article` },    //: ≣
-    galerie: { icon_s: `&#x22A1;`, legend_s: `galerie` },    //: ⊡
+    main: { icon_s: `&#8226;`},    //: BULLET •
+    stat: { icon_s: `&#8718;`},    //: END OF PROOF ∎
+    substat: { icon_s: `&#8728;`},    //: RING OPERATOR ∘
+
+
+
+    home:    { icon_s: `&#8226;`, legend_s: `accueil` },    //: ⌂
+    article: { icon_s: `&#8226;`, legend_s: `article` },    //: ≣
+    galerie: { icon_s: `&#8226;`, legend_s: `galerie` },    //: ⊡
     //XX stat:    { icon_s: `&#x2237;`, legend_s: `analyse`},     //: ∷
 
-    burst:   { icon_s: `&#x22C7;`, legend_s: `burst`},       //: ⋇
-    aster:   { icon_s: `&#x229A;`, legend_s: `aster`},       //: ⊚
-    paint:   { icon_s: `&#x229C;`, legend_s: `paint`},       //: ⊜
+    burst:   { icon_s: `&#8718;`, legend_s: `burst`},       //: ⋇
+    aster:   { icon_s: `&#8718;`, legend_s: `aster`},       //: ⊚
+    paint:   { icon_s: `&#8718;`, legend_s: `paint`},       //: ⊜
 
-    burst_hue:   { icon_s: `&#x229B;`, legend_s: `couleur`},       //: ⊜
-    burst_sat:   { icon_s: `&#x229A;`, legend_s: `saturation`},    //: ⊜
-    burst_lum:   { icon_s: `&#x2299;`, legend_s: `luminance`},     //: ⊜
+    burst_hue:   { icon_s: `&#8728;`, legend_s: `couleur`},       //: ⊜
+    burst_sat:   { icon_s: `&#8728;`, legend_s: `saturation`},    //: ⊜
+    burst_lum:   { icon_s: `&#8728;`, legend_s: `luminance`},     //: ⊜
 
     stat_increment:   { icon_s: `&#x2b;`, legend_s: `augmenter`},     //: ⊜
     stat_decrement:   { icon_s: `&#x2212;`, legend_s: `diminuer`},      //: ⊜

@@ -86,8 +86,16 @@ const S_o =
   S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`,
   S_o.accept_hi =     `hsla(${S_o.accept_hue} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`,
   S_o.cancel_hi =     `hsla(${S_o.cancel_hue} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`,
+
+  S_o.nav_main =       `hsla(${S_o.hue_p + 0} ${S_o.sat_ne} ${S_o.lum_hi_3} /1)`,
+  S_o.nav_stat =       `hsla(${S_o.hue_p + 40} ${S_o.sat_ne} ${S_o.lum_hi_3} /1)`,
+  S_o.nav_substat =    `hsla(${S_o.hue_p + 60} ${S_o.sat_ne} ${S_o.lum_hi_3} /1)`,
+  S_o.nav_substat_op = `hsla(${S_o.hue_p + 120} ${S_o.sat_ne} ${S_o.lum_hi_3} /1)`,
+
   
   S_o.NAV_HEIGHT_s = S_o.PAD_8,
+  S_o.NAV_LABEL_s  = S_o.PAD_4,
+
 
   
 
