@@ -78,11 +78,18 @@ const C_o =
     'paint',
   ],
 
+  HTML_CHAR_o:
+  {
+    bullet_s:  '&#8857;',    //: BULLET •
+  },
+
   NAV_LEGEND_o:    //: property names === SECTION_a + STAT_a
   {
-    main: { icon_s: `&#8226;`},    //: BULLET •
-    stat: { icon_s: `&#8718;`},    //: END OF PROOF ∎
-    substat: { icon_s: `&#8728;`},    //: RING OPERATOR ∘
+
+    //XX placeholder: { icon_s: `&#8226;`},    //: BULLET •
+    main:        { icon_s: `&#8226;`},    //: BULLET •
+    stat:        { icon_s: `&#8901;`},    //: DOT OPERATOR ⋅
+    substat:     { icon_s: `&#8728;`},    //: RING OPERATOR ∘
 
 
 
@@ -240,12 +247,15 @@ const C_o =
   SAT_CAP_n:      101,
   LUM_CAP_n:      101,
 
-  SCAN_HUE_n:     0,    //: scan_a index
-  SCAN_HUE_CAP_n: 1,
-  SCAN_SAT_n:     2,
-  SCAN_SAT_CAP_n: 3,
-  SCAN_LUM_n:     4,
-  SCAN_LUM_CAP_n: 5,
+  SCAN_HUE_n:      0,    //: scan_a index
+  SCAN_HUE_CAP_n:  1,
+  SCAN_HUE_RANK_n: 2,
+  SCAN_SAT_n:      3,
+  SCAN_SAT_CAP_n:  4,
+  SCAN_SAT_RANK_n: 5,
+  SCAN_LUM_n:      6,
+  SCAN_LUM_CAP_n:  7,
+  SCAN_LUM_RANK_n: 8,
 
 
   //===  STATs ===

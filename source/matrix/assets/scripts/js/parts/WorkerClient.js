@@ -6,46 +6,28 @@ class WorkerClient
     worker_o    //: { url_s, client_s, handleMessage__v }
   )
   {
-    this
-      .url_s =
+    Object
+      .assign
+      (
+        this,
         worker_o
-          .url_s
-
-    this
-      .client_s =
-        worker_o
-          .client_s
-
-    this
-      .handleMessage__v =
-        worker_o
-          .handleMessage__v
-
-    this
-      .port_o = null
-
-    this
-      .init__v()
-}
-
-
-
-  init__v
-  ()
-  {
-    const shared_o =
-      new SharedWorker ( this.url_s )
+      )
 
     this
       .port_o =
-        shared_o
+        new SharedWorker
+        (
+          this
+            .url_s
+        )
           .port
 
     this
       .port_o
         .onerror =
-          this
-            .error__v
+          error_o =>
+            console
+              .log`ERROR: ${error_o.message}`
   
     this
       .port_o
@@ -57,18 +39,7 @@ class WorkerClient
                  msg_o
                    .data
               )
-  }
-
-
-
-  error__v
-  (
-    error_o
-  )
-  {
-    console
-      .log`ERROR: ${error_o.message}`
-  }
+    }
 
 
 

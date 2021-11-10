@@ -1,7 +1,7 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1586-de_coster--new_york-sothebys--1625-young_woman.html',
+  permalink: '1586-de_coster--new_york-sothebys--1625-young_woman--burst.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
@@ -19,11 +19,18 @@
     `galerie`,
   ],
 
+  stat_a:
+  [
+    `burst`,
+  ],
+
   script_a:
   [
+    'stat.min.js',
   ],
   css_a:
   [
+    'stat.min.css',
   ],
 
   version_a:
@@ -33,7 +40,7 @@
 
   //=== IMAGES
   'young_woman':
-      `₍₉ Jeune femme tenant une quenouille
+      `₍₉ &nbsp;
       1586-de_coster--new_york-sothebys--1625-young_woman₎`
   ,
 
@@ -45,23 +52,19 @@
 ////
 ‹Adam de Coster›
 ////
+
 //========================================
 = {{title_s}}
 
 ₍₀ {{abstract_s}}
   {{F_o.versionList__s(version_a)}}₎
+  {{young_woman}}
+
+* pass:[<a href={{U_o.url_s}}{{workID_s}}.html>Présentation</a>]
 
 //---------------------------------------
-== Presentation
-
-Passé en vente chez Sotheby's à New York, cette {{young_woman}} constitue un jalon essentiel pour la reconstitution de l'oeuvre de l'artiste.
-
 == Colorimétrie
 
-* pass:[<a href={{U_o.url_s}}{{workID_s}}--burst.html>burst</a>]
-* pass:[<a href={{U_o.url_s}}{{workID_s}}--aster.html>aster</a>]
-
-
-== Analyse
+Graphique de rayonnement à échelle logarithmique
 
 {% end_doc %}

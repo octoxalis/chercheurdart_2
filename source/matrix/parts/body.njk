@@ -1,13 +1,17 @@
 {% set _work_s = '' %}
+{% set _stat_s = '' %}
 {% if workID_s %}
 {% set _work_s = ' data-work_s=' + workID_s %}
 {% endif %}
+{% if stat_a %}
+{% set _stat_s = ' data-stat_s=' + stat_a[0] %}
+{% endif %}
 
-<body{{_work_s}}>
+<body{{_work_s}}{{_stat_s}}>
 {% include "parts/body/nav_input.njk" %}
 <a id="{{C_o.PAGE_TOP}}"></a>
 {% include "parts/body/main.njk" %}
-{% if stat_a %}
+{% if _stat_s %}
 {% include "parts/body/stat.njk" %}
 {% endif %}
 {% include "parts/body/nav.njk" %}    <!-- at end to be upper layer -->

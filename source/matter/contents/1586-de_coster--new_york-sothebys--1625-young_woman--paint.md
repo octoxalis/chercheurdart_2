@@ -1,15 +1,15 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1586-de_coster--new_york-sothebys--1625-young_woman.html',
+  permalink: '1586-de_coster--new_york-sothebys--1625-young_woman--paint.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
   doc_n:      1024,
-  title_s:    `Adam de Coster`,
-  subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
-  abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
+  title_s:    `Jeune femme par Adam de Coster (1625 c.)`,
+  subtitle_s: `A. de Coster Jeune femme (1625 c.)`,
+  abstract_s: `Un nocture flamand`,
   workID_s:   '1586-de_coster--new_york-sothebys--1625-young_woman',
   //... issue_n: -1,
 
@@ -19,11 +19,18 @@
     `galerie`,
   ],
 
+  stat_a:
+  [
+    `paint`,
+  ],
+
   script_a:
   [
+    'stat.min.js',
   ],
   css_a:
   [
+    'stat.min.css',
   ],
 
   version_a:
@@ -33,7 +40,7 @@
 
   //=== IMAGES
   'young_woman':
-      `₍₉ Jeune femme tenant une quenouille
+      `₍₉ Jeune femme (1625 c.) par Adam de Coster
       1586-de_coster--new_york-sothebys--1625-young_woman₎`
   ,
 
@@ -54,14 +61,9 @@
 //---------------------------------------
 == Presentation
 
-Passé en vente chez Sotheby's à New York, cette {{young_woman}} constitue un jalon essentiel pour la reconstitution de l'oeuvre de l'artiste.
+* {{young_woman}}
 
 == Colorimétrie
 
-* pass:[<a href={{U_o.url_s}}{{workID_s}}--burst.html>burst</a>]
-* pass:[<a href={{U_o.url_s}}{{workID_s}}--aster.html>aster</a>]
-
-
-== Analyse
-
+L'analyse colorimétrique...
 {% end_doc %}

@@ -31,11 +31,12 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav {
   width: 16ch;
   height: auto;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label[data-icon=substat] > span {
-  text-align: center;
-  background: {{S_o.nav_substat}};
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label > span[data-icon=substat] {
+  border: 2px solid {{S_o.nav_substat}};
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label[data-icon=substat_op] > span {
-  text-align: center;
-  background: {{S_o.nav_substat_op}};
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label > span[data-icon=substat_op] {
+  border: 2px solid {{S_o.nav_substat_op}};
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label:hover > span[data-icon] {
+  border: 2px solid transparent;
 }

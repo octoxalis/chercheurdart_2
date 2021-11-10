@@ -37,14 +37,27 @@ const BUR_o =
 }
 
 
+void function
+()
+{
+  BUR_o
+    .worker_o =
+      STAT_o
+        .worker__o
+        (
+          '{{C_o.STAT_a[0]}}',
+          'LogScale Painter ColorBurst',
+          BUR_o.message__v,
+        )
 
-BUR_o
-  .worker_o =
-    STAT_o
-      .worker__o
+  BUR_o
+    .worker_o
+      .post__v
       (
-        '{{C_o.STAT_a[0]}}',
-        'LogScale Painter',
-        BUR_o.message__v,
+        { 
+          client_s: '{{C_o.STAT_a[0]}}',
+          task_s: 'PUT_draw',
+        }
       )
 
+} ()

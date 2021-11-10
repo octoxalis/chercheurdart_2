@@ -4,15 +4,15 @@ class Painter
 {
   constructor
   (
-    paint_o    //: { context_o, }
+    context_o
   )
   {
     this
       .context_o =
-        paint_o
-          .context_o
+        context_o
 
-    this.opacity_n = 1
+    this
+      .opacity_n = 1
   }
 
 

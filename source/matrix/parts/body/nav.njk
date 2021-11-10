@@ -1,11 +1,11 @@
 <nav>
-  <a href="index.html" data-legend="{{C_o.NAV_LEGEND_o.home.legend_s}}" data-icon="main">&nbsp;<span>&nbsp;</span></a>
+  <a href="index.html" data-legend="{{C_o.NAV_LEGEND_o.home.legend_s}}"><span data-icon="main">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></a>
 {% for _section in section_a %}
-  <label id="{{C_o.LABEL_ID_s}}_{{_section}}" for="{{C_o.INPUT_ID_s}}_{{_section}}" data-legend="{{C_o.NAV_LEGEND_o[_section].legend_s}}" data-icon="main">&nbsp;<span>&nbsp;</span></label>
+  <label id="{{C_o.LABEL_ID_s}}_{{_section}}" for="{{C_o.INPUT_ID_s}}_{{_section}}" data-legend="{{C_o.NAV_LEGEND_o[_section].legend_s}}"><span data-icon="main">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
 {% endfor %}
 {% if stat_a %}
   {% for _stat in stat_a %}
-    <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[loop.index0]}}" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[loop.index0]}}" data-legend="{{C_o.NAV_LEGEND_o[_stat].legend_s}}" data-icon="stat">&nbsp;<span>&nbsp;</span></label>
+    <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[loop.index0]}}" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[loop.index0]}}" data-legend="{{C_o.NAV_LEGEND_o[_stat].legend_s}}"><span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
   {% endfor %}
 {% endif %}
 </nav>

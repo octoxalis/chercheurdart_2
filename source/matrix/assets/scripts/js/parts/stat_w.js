@@ -1,6 +1,5 @@
 
 //=== stat_w.js ===
-
 const RGB_H__n =
 (
   r_n,
@@ -100,6 +99,10 @@ const RGB_L__n =
   //=== STAT_W_o ===
 const STAT_W_o =
 {
+  //... PI2_n:    Math.PI * 2,
+
+  //... RADDEG_n: 180 / Math.PI,
+
   port_o: null,
 
   status_o:
@@ -113,6 +116,7 @@ const STAT_W_o =
     'GET_scan',
     'GET_status',
     'PUT_canvas',
+    'PUT_draw',
   ]
   ,
 
@@ -120,17 +124,24 @@ const STAT_W_o =
   //:[
   //:   [0]: hue_a[]
   //:   [1]: hueCapacities_a
-  //:   [2]: sat_a[]
-  //:   [3]: satCapacities_a[],
-  //:   [4]: lum_a[]
-  //:   [5]: lumCapacities_a[],
+  //:   [2]: hueRank_a
+  //:   [3]: sat_a[]
+  //:   [4]: satCapacities_a[],
+  //:   [5]: satRank_a[],
+  //:   [6]: lum_a[]
+  //:   [7]: lumCapacities_a[],
+  //:   [8]: lumRank_a[],
   //:],
 
-  client_o: {},   //: {{C_o.STAT_a[0]}}: { client_o, canvas_e, context_o }
+
+
+  client_o: {},   //: {{C_o.STAT_a[0]}}: client_o{ hue_o{ canvas_e, context_o}, ... }
                   //: {{C_o.STAT_a[1]}}
                   //: {{C_o.STAT_a[2]}}
 
   script_o: new Set,   //: importScript loaded
+
+  //?? canvasDim_n: {{C_o.STAT_0_CANVAS_n}},
 
 
 
@@ -314,7 +325,7 @@ const STAT_W_o =
           )
           
       STAT_W_o
-        .scan_a = []
+        .scan_a = new Array( 1 + ~~'{{C_o.SCAN_LUM_RANK_n}}' )
   
       //=== HUE
       let capacity_n = ~~'{{C_o.HUE_CAP_n}}'
@@ -442,6 +453,7 @@ const STAT_W_o =
             b_n
           )
       
+        //: HUE
         STAT_W_o
           .scan_a[~~'{{C_o.SCAN_HUE_n}}']
             [hue_n]
@@ -451,6 +463,7 @@ const STAT_W_o =
           .scan_a[~~'{{C_o.SCAN_HUE_CAP_n}}']
             [hue_n] += 1
       
+        //: SAT
         let sat_n =
           ~~( RGB_S__n
           (
@@ -470,6 +483,7 @@ const STAT_W_o =
           .scan_a[~~'{{C_o.SCAN_SAT_CAP_n}}']
             [sat_n] += 1
     
+        //: LUM
         let lum_n =
           ~~( RGB_L__n
           (
@@ -490,9 +504,77 @@ const STAT_W_o =
             [lum_n] += 1
       }
     
+      const rank__a =    //: utility function
+      (
+        capacity_a
+      ) =>
+      {
+        const capacity_n =
+          capacity_a
+            .length
+
+        let rank_a =
+          new Array( capacity_n )
+
+        for
+        (
+          let at_n=0;
+          at_n < capacity_n;
+          ++at_n
+        )
+        {
+          rank_a
+            [at_n] =
+              [
+                capacity_a
+                  [at_n],
+                at_n
+              ]
+        }
+
+        rank_a
+          .sort
+          (
+            (
+              a,
+              b
+            ) =>  //: descending order
+              b[0]
+              -
+              a[0]
+          )
+
+        return rank_a
+      }
+
+      STAT_W_o
+        .scan_a[~~'{{C_o.SCAN_HUE_RANK_n}}'] =
+          rank__a
+          (
+            STAT_W_o
+              .scan_a[~~'{{C_o.SCAN_HUE_CAP_n}}']
+          )      //: hue rankMax_n is at [0][0]
+  
+      STAT_W_o
+        .scan_a[~~'{{C_o.SCAN_SAT_RANK_n}}'] =
+          rank__a
+          (
+            STAT_W_o
+              .scan_a[~~'{{C_o.SCAN_SAT_CAP_n}}']
+          )      //: sat rankMax_n is at [0][0]
+  
+      STAT_W_o
+        .scan_a[~~'{{C_o.SCAN_LUM_RANK_n}}'] =
+          rank__a
+          (
+            STAT_W_o
+              .scan_a[~~'{{C_o.SCAN_LUM_CAP_n}}']
+          )      //: lum rankMax_n is at [0][0]
+
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       ;console.timeEnd( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //;console.log( STAT_W_o.scan_a )
     }
   }
   ,
@@ -531,18 +613,18 @@ const STAT_W_o =
     (
       !  STAT_W_o
         .client_o
-          [ client_s ]
+          [ `${client_s}_o` ]
     )
     {
       STAT_W_o
         .client_o
-          [ client_s ] = {}
+          [ `${client_s}_o` ] = {}
     }
 
     STAT_W_o
       .client_o
-        [ client_s ]
-          [ id_s ] =
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ] =
           {
             //: canvas_o,
             //: context_o
@@ -550,8 +632,8 @@ const STAT_W_o =
 
     STAT_W_o
       .client_o
-        [ client_s ]
-          [ id_s ]
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ]
             .canvas_o =
               payload_o
                 .canvas_e
@@ -559,7 +641,7 @@ const STAT_W_o =
     const context_o =
       payload_o
         .canvas_e
-          .getContext( '2d' )    //;console.log( STAT_W_o.client_o[ client_s ] )
+          .getContext( '2d' )
 
     const pixel_n =
       payload_o
@@ -574,21 +656,108 @@ const STAT_W_o =
     context_o
       .scale
       (
-        pixel_n,
-        pixel_n
+        pixel_n * .5,
+        pixel_n * .5
       )
     
 
     STAT_W_o
       .client_o
-        [ client_s ]
-          [ id_s ]
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ]
             .context_o =
                 context_o
   }
   ,
 
 
+
+  put_draw__v
+  (
+    payload_o
+  )
+  {
+    STAT_W_o
+      [ `put_draw_${payload_o.client_s}__v` ]( payload_o )
+  }
+  ,
+
+
+
+  put_draw_burst__v
+  (
+    payload_o
+  )
+  {
+    const hue_a = []
+
+    let at_n = 0
+
+    for
+    (
+      let freq_n
+      of
+      STAT_W_o
+        .scan_a
+          [ ~~'{{C_o.SCAN_HUE_CAP_n}}' ]
+    )
+    {
+      hue_a
+        [ at_n ] =
+          freq_n
+          ?
+            {
+              frequency_n: freq_n,
+              hsl_a: [ at_n, 100, 50 ]
+            }
+          :
+            null
+
+      ++at_n
+    }
+
+    const { client_s } =
+      payload_o
+
+    //.....................................
+    const burst_o =
+    {
+      color_a: hue_a,
+      range_n: 360,
+      canvas_o:
+        STAT_W_o
+          .client_o
+            [ `${client_s}_o` ]
+              .hue_o
+                .canvas_o,
+      median_n: 
+        STAT_W_o
+          .client_o
+            [ `${client_s}_o` ]
+              .hue_o
+                .canvas_o
+                  .width
+        >>
+        1,
+      maxfreq_n:
+        STAT_W_o
+          .scan_a[ ~~'{{C_o.SCAN_HUE_RANK_n}}' ]
+            [0]
+              [0]
+      ,
+      //... onHueChange:
+      //... ,
+      //... onHueTrace:
+      //... ,
+    }
+
+    burst_c =
+      new ColorBurst( burst_o )
+
+  }
+  ,
+
+  
 
   //=== MESSAGES
   message__v

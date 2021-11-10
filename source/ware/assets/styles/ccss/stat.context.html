@@ -51,17 +51,18 @@
             padding: {{S_o.PAD_2}};
             width:  16ch;
             height: auto;
-      <label[data-icon=substat]>
-        <span>
-                text-align: center;
-                background: {{S_o.nav_substat}};
+      <label>
+        <span[data-icon=substat]>
+                border: 2px solid {{S_o.nav_substat}};
+        </span>
+      <!--variant-->
+        <span[data-icon=substat_op]>
+                border: 2px solid {{S_o.nav_substat_op}};
         </span>
       </label>
-      <!--variant-->
-      <label[data-icon=substat_op]>
-        <span>
-                text-align: center;
-                background: {{S_o.nav_substat_op}};
+      <label:hover>
+        <span[data-icon]>
+                border: 2px solid transparent;
         </span>
       </label>
     </nav>

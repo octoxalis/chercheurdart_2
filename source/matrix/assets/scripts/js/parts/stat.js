@@ -245,7 +245,8 @@ const STAT_o =
 
   init__v    //!!! 1. from index.js
   (
-    work_s
+    work_s,
+    //?? stat_s
   )
   {
     STAT_o
@@ -266,7 +267,8 @@ const STAT_o =
           { 
             client_s: '{{C_o.STAT_s}}',
             task_s: 'GET_scan',
-            work_s: work_s
+            work_s: work_s,
+            //?? stat_s: stat_s
           }
         )
   }

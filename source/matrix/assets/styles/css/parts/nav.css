@@ -4,6 +4,7 @@ nav {
   gap: 4ch;
   width: 100%;
   height: {{S_o.NAV_HEIGHT_s}};
+  background: {{S_o.bgcolor}};
 }
 nav > a:before, nav > label:before {
   content: attr( data-legend );
@@ -22,39 +23,35 @@ nav > a, nav > label {
   position: relative;
   overflow: hidden;
   width: 4ch;
-  font-weight: 500;
+  font-weight: 300;
   color: currentColor;
   text-transform: uppercase;
-  opacity: .2;
+  opacity: .25;
   transition: all ease .2s;
 }
 nav > a > span, nav > label > span {
   display: inline-block;
   width: {{S_o.NAV_LABEL_s}};
   height: {{S_o.NAV_LABEL_s}};
-  border: 1px solid currentColor;
   border-radius: 50%;
   line-height: .85;
+  text-align: center;
 }
-nav > a[data-icon=main] > span, nav > label[data-icon=main] > span {
-  background: {{S_o.nav_main}};
+nav > a > span[data-icon=main], nav > label > span[data-icon=main] {
+  border: 2px solid {{S_o.nav_main}};
 }
-nav > label[data-icon=stat] > span {
-  background: {{S_o.nav_stat}};
+nav > label > span[data-icon=stat] {
+  border: 2px solid {{S_o.nav_stat}};
 }
 nav > a:hover, nav > label:hover {
   width: 12ch;
   transition: all ease .5s;
 }
 nav > a:hover > span, nav > label:hover > span {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 nav > a:hover:before, nav > label:hover:before {
   transform: translateX( 0 );
-}
-nav:hover {
-  filter: saturate(5);
-  transition: all .2s;
 }
 nav:hover > a, nav:hover > label {
   opacity: 1;

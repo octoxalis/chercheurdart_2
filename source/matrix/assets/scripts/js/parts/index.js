@@ -201,19 +201,18 @@ void function
     IND_o
       .main_input__v()
 
-    const work_s =      //: stat page
+    const { work_s, stat_s } =
       document
         .querySelector( 'body' )
           .dataset
-            .work_s
 
-    if
-    (
-      work_s
-    )
-    {
-      STAT_o
-        .init__v( work_s )
-    }
+    stat_s
+    &&
+    STAT_o
+      .init__v
+      (
+        work_s,
+        //?? stat_s
+      )
   }
 } ()

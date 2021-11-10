@@ -90,10 +90,10 @@ void async function ()
 
     M4_o.burst_o =
     {
-      container_e: selectorBurstHue_e,
-      burst_s: 'ca_media_4_selector_burst_hue_paint',
-      width_n:  boxWidth_n,
-      height_n: boxHeight_n,
+      container_e: selectorBurstHue_e,  //XX
+      burst_s: 'ca_media_4_selector_burst_hue_paint',  //XX
+      width_n:  boxWidth_n,  //XX
+      height_n: boxHeight_n,  //XX
       range_n: 360,
       color_a : hue_a,
       maxfreq_n: M4_o.scan_c.hueRankMax__n(),
@@ -143,6 +143,8 @@ void async function ()
     }
 
     M4_o.burst_c = new ColorBurst( M4_o.burst_o )
+
+    
     const selectorAsterHue_e = document.getElementById( 'ca_media_4_processor_aster_hue' )
     const expand_a = document.querySelectorAll( '.ca_media_4_processor_subchart' )
     expand_a.forEach( expand_e =>

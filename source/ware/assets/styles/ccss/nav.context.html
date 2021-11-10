@@ -5,6 +5,7 @@ context( stack, new )
         gap: 4ch;
         width: 100%;
         height: {{S_o.NAV_HEIGHT_s}};
+        background: {{S_o.bgcolor}};
     <a:before>
             context( copy, next )
     </a>
@@ -27,42 +28,40 @@ context( stack, new )
             position: relative;
             overflow: hidden;
             width: 4ch;
-            font-weight: 500;
+            font-weight: 300;
             color: currentColor;
             text-transform: uppercase;
-            opacity: .2;
+            opacity: .25;
             transition: all ease .2s;
     </label>
     <a>
       <span>
-      context( copy, next )
+        context( copy, next )
       </span>
     </a>
     <label>
       <span>
-      context( block, round_label )
+        context( block, round_label )
       </span>
     </label>
     <!--variant-->
-    <a[data-icon=main]>
-      <span>
-      context( copy, next )
+    <a>
+      <span[data-icon=main]>
+        context( copy, next )
       </span>
     </a>
-    <label[data-icon=main]>
-      <span>
-              background: {{S_o.nav_main}};
+    <label>
+      <span[data-icon=main]>
+              border: 2px solid {{S_o.nav_main}};
       </span>
-    </label>
-    <!--variant-->
-    <label[data-icon=stat]>
-      <span>
-              background:  {{S_o.nav_stat}};
+      <!--variant-->
+      <span[data-icon=stat]>
+              border: 2px solid {{S_o.nav_stat}};
       </span>
     </label>
     <!--variant-->
     <a:hover>
-            context( copy, next )
+      context( copy, next )
     </a>
     <label:hover>
             width: 12ch;
@@ -70,12 +69,12 @@ context( stack, new )
     </label>
     <a:hover>
       <span>
-      context( copy, next )
+        context( copy, next )
       </span>
     </a>
     <label:hover>
       <span>
-              border: 1px solid transparent;
+              border: 2px solid transparent;
       </span>
     </label>
     <!--variant-->
@@ -88,8 +87,6 @@ context( stack, new )
 </nav>
 <!--variant-->
 <nav:hover>
-        filter: saturate(5);
-        transition: all .2s;  /* short fading in */
   <a>
           context( copy, next )
   </a>
