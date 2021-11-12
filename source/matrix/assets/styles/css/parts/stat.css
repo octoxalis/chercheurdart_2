@@ -10,6 +10,7 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input, section#{{C_o.STA
   display: none;
   grid-area: 1/-1;
   background: transparent;
+  border: 1px solid red;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_hue {
   display: block;
@@ -30,6 +31,7 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav {
   padding: {{S_o.PAD_2}};
   width: 16ch;
   height: auto;
+  background: transparent;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label > span[data-icon=substat] {
   border: 2px solid {{S_o.nav_substat}};

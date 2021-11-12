@@ -22,8 +22,12 @@
     context( copy, next )
     <canvas>
             display:none;
+    </canvas>
+    <!--variant-->
+    <canvas>
             grid-area: 1/-1;    /* stacking */
             background: transparent;
+            border: 1px solid red;      /* test */
     </canvas>
     <!--variant-->
     <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked />
@@ -51,6 +55,7 @@
             padding: {{S_o.PAD_2}};
             width:  16ch;
             height: auto;
+            background: transparent;
       <label>
         <span[data-icon=substat]>
                 border: 2px solid {{S_o.nav_substat}};

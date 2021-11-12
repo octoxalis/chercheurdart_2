@@ -220,6 +220,30 @@ class ColorBurst
 
 
 
+  clear__v
+  ()
+  {
+    const context_o =
+      this
+        .canvas_o
+          .getContext( '2d' )
+
+    context_o
+      .clearRect
+      (
+        0,
+        0,
+        this
+          .canvas_o
+            .width,
+        this
+          .canvas_o
+            .height
+      )
+  }
+
+
+
   //... handleEvent ( mouse_e )
   //... {
   //...   if ( mouse_e.type === 'mousemove' || mouse_e.type === 'click' )

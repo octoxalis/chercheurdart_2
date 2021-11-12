@@ -105,6 +105,8 @@ const STAT_W_o =
 
   port_o: null,
 
+  pixel_n: 1,    //: window.devicePixelRatio
+
   status_o:
   {
     scan_b: false,
@@ -117,6 +119,7 @@ const STAT_W_o =
     'GET_status',
     'PUT_canvas',
     'PUT_draw',
+    'PUT_scale',
   ]
   ,
 
@@ -262,6 +265,39 @@ const STAT_W_o =
     return true
   }
   ,
+
+
+  scale__n      // scale canvas
+  (
+    client_s,
+    id_s,
+    ratio_n
+  )
+  {
+    const translate_n =
+      STAT_W_o
+        .client_o
+          [ `${client_s}_o` ]
+            [ `${id_s}_o` ]
+              .canvas_o
+                .width
+      *
+      .5
+      *
+      ( 1 - ratio_n )
+
+    STAT_W_o
+      .client_o
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ]
+            .context_o
+              .setTransform
+              (
+                ratio_n, 0, 0, ratio_n,
+                translate_n,
+                translate_n,
+              )
+},
 
 
 
@@ -628,6 +664,7 @@ const STAT_W_o =
           {
             //: canvas_o,
             //: context_o
+            //: burst_c
           }
 
     STAT_W_o
@@ -643,23 +680,10 @@ const STAT_W_o =
         .canvas_e
           .getContext( '2d' )
 
-    const pixel_n =
-      payload_o
-        .pixel_n
-
-    //XX context_o
-    //XX   .setTransform
-    //XX   (
-    //XX     pixel_n, 0, 0,
-    //XX     pixel_n, 0, 0
-    //XX   )
-    context_o
-      .scale
-      (
-        pixel_n * .5,
-        pixel_n * .5
-      )
-    
+    STAT_W_o
+      .pixel_n =
+        payload_o
+          .pixel_n       //;console.log( STAT_W_o.pixel_n )
 
     STAT_W_o
       .client_o
@@ -667,6 +691,14 @@ const STAT_W_o =
           [ `${id_s}_o` ]
             .context_o =
                 context_o
+                
+    //-- STAT_W_o
+    //--   .scale__n
+    //--   (
+    //--     client_s,
+    //--     id_s,
+    //--     1
+    //--   )
   }
   ,
 
@@ -716,7 +748,7 @@ const STAT_W_o =
       ++at_n
     }
 
-    const { client_s } =
+    const { client_s, id_s } =
       payload_o
 
     //.....................................
@@ -730,15 +762,18 @@ const STAT_W_o =
             [ `${client_s}_o` ]
               .hue_o
                 .canvas_o,
-      median_n: 
-        STAT_W_o
-          .client_o
-            [ `${client_s}_o` ]
-              .hue_o
-                .canvas_o
-                  .width
-        >>
-        1,
+      median_n:
+        (
+          STAT_W_o
+            .client_o
+              [ `${client_s}_o` ]
+                .hue_o
+                  .canvas_o
+                    .width
+        )
+        *
+        .5,
+
       maxfreq_n:
         STAT_W_o
           .scan_a[ ~~'{{C_o.SCAN_HUE_RANK_n}}' ]
@@ -751,13 +786,69 @@ const STAT_W_o =
       //... ,
     }
 
-    burst_c =
-      new ColorBurst( burst_o )
+    //... STAT_W_o
+    //...   .client_o
+    //...     [ `${client_s}_o` ]
+    console.log( payload_o )
+          
+    STAT_W_o
+      .client_o
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ]
+            .burst_c =
+              new ColorBurst( burst_o )
 
   }
   ,
 
   
+
+  put_scale__v
+  (
+    payload_o
+  )
+  {
+    STAT_W_o
+      [ `put_scale_${payload_o.client_s}__v` ]( payload_o )
+  }
+  ,
+
+
+
+  put_scale_burst__v
+  (
+    payload_o
+  )
+  {
+    const { client_s, id_s, scale_n } =
+      payload_o
+
+
+    STAT_W_o
+      .client_o
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ]
+            .burst_c
+              .clear__v()    //!!! before scaling
+
+    STAT_W_o
+      .scale__n      // scale canvas
+      (
+        client_s,
+        id_s,
+        scale_n
+      )
+
+    STAT_W_o
+      .client_o
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ]
+            .burst_c
+              .draw__v()
+  }
+  ,
+
+
 
   //=== MESSAGES
   message__v

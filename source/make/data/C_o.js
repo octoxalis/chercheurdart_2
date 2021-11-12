@@ -260,7 +260,9 @@ const C_o =
 
   //===  STATs ===
   LOG_SCALE_n: 100000,
-  STAT_0_CANVAS_n: 2048,    //: canvas width, height
+  STAT_0_CANVAS_n: 512,    //: canvas width, height
+  BURST_SCALE_MIN_n: .25,
+  BURST_SCALE_MAX_n: 4,
 
 }
 
