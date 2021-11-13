@@ -4,7 +4,11 @@ const BUR_o =
 {
   status_o: null,    //: STAT_W_o.status_o
 
+  center_n: 0,
+  
   scale_n: 1,
+
+  hue_n: 0,    //: selected hue
 
 
 
@@ -43,9 +47,82 @@ const BUR_o =
   listener__v
   ()
   {
+    document
+      .getElementById( `canvas_{{C_o.STAT_a[0]}}_hue` )
+        ?.addEventListener
+        (
+          'click',
+          (
+            click_o
+          ) =>
+          {
+            const atX_n =
+              click_o
+                .offsetX
+              *
+              window
+                .devicePixelRatio
+              -
+              BUR_o
+                .center_n
+  
+             const atY_n =
+              click_o
+                .offsetY
+              *
+              window
+                .devicePixelRatio
+              -
+              BUR_o
+                .center_n
+  
+            let angle_n =
+              Math
+                .atan2
+                (
+                  atY_n,
+                  atX_n
+                )
+              *
+              180
+              /
+              Math
+                .PI
+  
+            if
+            (
+              angle_n
+              <
+              0
+            )
+            {
+              angle_n += 360
+            }
+  
+            BUR_o
+              .hue_n =
+                ~~(
+                    (
+                      angle_n
+                      +
+                      90    //: rotation to have hue 0 at 12:00 not 3:00
+                    )
+                    %
+                    360
+                  )
+  
+            document
+              .getElementById( `{{C_o.STAT_a[0]}}_hue_n` )
+              .innerHTML =
+                BUR_o
+                  .hue_n
+          }
+        )
+
+
     for
     (
-      let button_s
+      let trigger_s
       of
       [
         'scale_up',
@@ -53,75 +130,119 @@ const BUR_o =
       ]
     )
     {
-      const listen_e =
-        document
-          .querySelector( `label[for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_${button_s}"]` )
-          
-      listen_e
-      &&
-      listen_e
-        .addEventListener
-        (
-          'click',
+      document
+        .getElementById( `{{C_o.STAT_a[0]}}_${trigger_s}` )
+          ?.addEventListener
           (
-            event_o
-          ) =>
-          {
-            //;console.log( event_o.target.getAttribute( 'for' )?.includes( 'scale_up' ) )
-            if
+            'click',
             (
               event_o
-                .target
-                  ?.getAttribute( 'for' )
-                    ?.includes( 'scale_up' )
-              &&
-              BUR_o
-                .scale_n
-              <
-              4 //?? ~~'{{C_o.BURST_SCALE_MAX_n}}'
-            )
+            ) =>
             {
+              if
+              (
+                event_o
+                  .target
+                    ?.id
+                      ?.includes( 'scale_up' )
+                &&
+                BUR_o
+                  .scale_n
+                <
+                16.0 //?? ~~'{{C_o.BURST_SCALE_MAX_n}}'
+              )
+              {
+                
+                BUR_o
+                  .scale_n += .2
+              }
               
+              if
+              (
+                event_o
+                  .target
+                    ?.id
+                      ?.includes( 'scale_down' )
+                &&
+                BUR_o
+                  .scale_n
+                >
+                .25  //?? ~~'{{C_o.BURST_SCALE_MIN_n}}'
+              )
+              {
+                
+                BUR_o
+                  .scale_n -= .2
+              }
+  
               BUR_o
-                .scale_n += .25
+                .worker_o
+                  .post__v
+                  (
+                    { 
+                      client_s: '{{C_o.STAT_a[0]}}',
+                      id_s: 'hue',
+                      task_s: 'PUT_scale',
+                      scale_n: BUR_o.scale_n
+                    }
+                  )
             }
-            
-            if
+          )
+    }
+
+    for
+    (
+      let trigger_s
+      of
+      [
+        'sat',
+        'lum',
+      ]
+    )
+    {
+      document
+        .querySelector( `label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_${trigger_s}"]` )
+          ?.addEventListener
+          (
+            'click',
             (
               event_o
-                .target
-                  ?.getAttribute( 'for' )
-                    ?.includes( 'scale_down' )
+            ) =>
+            {
+              //;console.log( event_o.target?.getAttribute( 'for' ) )
+  
+              const id_s =
+                event_o
+                  .target
+                    ?.getAttribute( 'for' )
+                      ?.slice
+                      (
+                        -3
+                      )    //;console.log( id_s )
+  
+              id_s
               &&
               BUR_o
-                .scale_n
-              >
-              .25  //?? ~~'{{C_o.BURST_SCALE_MIN_n}}'
-            )
-            {
-              
-              BUR_o
-                .scale_n -= .25
+                .worker_o
+                  .post__v
+                  (
+                    { 
+                      client_s: '{{C_o.STAT_a[0]}}',
+                      id_s: id_s,
+                      hue_n: BUR_o.hue_n,
+                      task_s: 'PUT_draw',
+                    }
+                  )
+                
             }
-
-            ;console.log( BUR_o.scale_n )
-
-            BUR_o
-              .worker_o
-                .post__v
-                (
-                  { 
-                    client_s: '{{C_o.STAT_a[0]}}',
-                    id_s: 'hue',
-                    task_s: 'PUT_scale',
-                    scale_n: BUR_o.scale_n
-                  }
-                )
-          }
-        )
+          )
     }
   }
   ,
+
+
+
+
 }
 
 
@@ -151,6 +272,16 @@ void function
       )
 
   BUR_o
-   .listener__v()
+    .center_n =
+      document
+        .getElementById( `canvas_{{C_o.STAT_a[0]}}_hue` )
+          .width
+      *
+      .5
+      *
+      window
+        .devicePixelRatio
 
+  BUR_o
+   .listener__v()
 } ()

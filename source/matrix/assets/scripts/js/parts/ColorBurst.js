@@ -23,6 +23,12 @@ class ColorBurst
       )
 
     this
+      .context_o =
+        burst_o
+          .canvas_o
+            .getContext( '2d' )
+
+    this
     .unit_n =
       360
       *
@@ -35,34 +41,8 @@ class ColorBurst
       .paint_c =
         new Painter
         (
-          burst_o
-            .canvas_o
-              .getContext( '2d' )
-        )
-
-
-    burst_o
-      .onHueChange
-    &&
-    this
-      .canvas_o
-        .addEventListener
-        (
-          'click',
-          this,
-          false
-        )
-    
-    burst_o
-      .onHueTrace
-    &&
-    this
-      .canvas_o
-        .addEventListener
-        (
-          'mousemove',
-          this,
-          false
+          this
+            .context_o
         )
 
     this
@@ -223,41 +203,18 @@ class ColorBurst
   clear__v
   ()
   {
-    const context_o =
-      this
-        .canvas_o
-          .getContext( '2d' )
-
-    context_o
-      .clearRect
-      (
-        0,
-        0,
-        this
-          .canvas_o
-            .width,
-        this
-          .canvas_o
-            .height
-      )
+    this
+      .context_o
+        .clearRect
+        (
+          0,
+          0,
+          this
+            .canvas_o
+              .width,
+          this
+            .canvas_o
+              .height
+        )
   }
-
-
-
-  //... handleEvent ( mouse_e )
-  //... {
-  //...   if ( mouse_e.type === 'mousemove' || mouse_e.type === 'click' )
-  //...   {
-  //...     let bound_o = this.canvas_o.getBoundingClientRect()
-  //...     const atX_n =  mouse_e.clientX - ( bound_o.left + ( bound_o.width / 2 ) )
-  //...     const atY_n =  mouse_e.clientY - ( bound_o.top + ( bound_o.height / 2 ) )
-  //...     let angle_n = Math.atan2( atY_n, atX_n ) * 180 / Math.PI
-  //...     if ( angle_n < 0 ) angle_n += 360
-  //...     this.hue_n = ~~( ( angle_n + 90 ) % 360 )    // +90 rotation to have hue 0 at 12:00 not 3:00
-  //...     if ( ( mouse_e.type === 'mousemove' ) && this.onHueTrace ) this.onHueTrace( this.hue_n )
-  //...     else if ( this.onHueChange ) this.onHueChange( this.hue_n )
-  //...     return false
-  //...   }
-  //... }
-
 }

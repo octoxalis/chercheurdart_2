@@ -15,19 +15,86 @@
 </section>
 <section#{{C_o.STAT_a[0]}}>
   <div[id^={{C_o.DIV_ID_s}}]>
-          display: grid;
-          margin-top: {{S_o.NAV_HEIGHT_s}};
           height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
     <input />
     context( copy, next )
     <canvas>
             display:none;
     </canvas>
+    <nav>
+            z-index: 1;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: {{S_o.PAD_4}};
+            padding: {{S_o.PAD_2}};
+            width:  24ch;
+      <label>
+        <span[data-icon=substat]>
+                border: 2px solid {{S_o.nav_substat}};
+        </span>
+      </label>
+      <label:hover>
+        <span[data-icon]>
+                border: 2px solid transparent;
+        </span>
+      </label>
+    </nav>
+    <nav#{{C_o.STAT_a[0]}}_nav>
+            height: 24ch;
+            border-radius: 50%;
+            background: hsla( 220 17% 17%/.7);
+            opacity: 1; /*.2;*/
+            transition: opacity ease 2s;
+      <label>
+              position: relative;
+              top: 20%;
+              left: 4ch;
+              width: 20ch;
+        <span:not( [data-icon] )>
+                margin-left: 1ch;
+                font-weight: 700;
+        </span>
+        <span[data-icon=substat]>
+                border: 2px solid {{S_o.nav_substat}};
+        </span>
+      </label>
+      <label:hover>
+        <span[data-icon]>
+                border: 2px solid transparent;
+        </span>
+      </label>
+    </nav>
+    <nav#{{C_o.STAT_a[0]}}_nav:hover>
+            opacity: 1;
+            transition: opacity ease .2s;
+            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+        </nav>
+    <nav#{{C_o.STAT_a[0]}}_op>
+            top:  {{S_o.PAD_6}};
+            left: 0;
+            height: fit-content;
+            background: transparent;
+      <label>
+        <span[data-icon=substat_op]>
+                border: 2px solid {{S_o.nav_substat_op}};
+        </span>
+      </label>
+      <label:hover>
+        <span[data-icon]>
+                border: 2px solid transparent;
+        </span>
+      </label>
+    </nav>
     <!--variant-->
     <canvas>
-            grid-area: 1/-1;    /* stacking */
             background: transparent;
-            border: 1px solid red;      /* test */
+            /*border: 1px solid red;       test */
     </canvas>
     <!--variant-->
     <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked />
@@ -45,30 +112,5 @@
     <canvas#canvas_{{C_o.STAT_a[0]}}_lum>
             display: block;
     </canvas>
-    <nav>
-            z-index: 1;
-            grid-area: 1/-1;    /* stacking */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            gap: {{S_o.PAD_4}};
-            padding: {{S_o.PAD_2}};
-            width:  16ch;
-            height: auto;
-            background: transparent;
-      <label>
-        <span[data-icon=substat]>
-                border: 2px solid {{S_o.nav_substat}};
-        </span>
-      <!--variant-->
-        <span[data-icon=substat_op]>
-                border: 2px solid {{S_o.nav_substat_op}};
-        </span>
-      </label>
-      <label:hover>
-        <span[data-icon]>
-                border: 2px solid transparent;
-        </span>
-      </label>
-    </nav>
+  </div>
 </section>

@@ -28,7 +28,7 @@ class LogScale
             scale_o
               .minval_n
             ||
-            1
+            1.0
           )
 
     this
@@ -39,7 +39,7 @@ class LogScale
             scale_o
                .maxval_n
             ||
-            100000    //: {{C_o.LOG_SCALE_n}}
+            1000000    //: {{C_o.LOG_MAX_VAL_n}}
           )
 
     this

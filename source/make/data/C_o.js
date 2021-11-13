@@ -102,12 +102,13 @@ const C_o =
     aster:   { icon_s: `&#8718;`, legend_s: `aster`},       //: ⊚
     paint:   { icon_s: `&#8718;`, legend_s: `paint`},       //: ⊜
 
-    burst_hue:   { icon_s: `&#8728;`, legend_s: `couleur`},       //: ⊜
-    burst_sat:   { icon_s: `&#8728;`, legend_s: `saturation`},    //: ⊜
-    burst_lum:   { icon_s: `&#8728;`, legend_s: `luminance`},     //: ⊜
+    burst_hue:   { icon_s: `&#8728;`, legend_s: `chromaticité`},       //: ⊜
+    burst_hue_ratio:   { icon_s: `&#8728;`, legend_s: `proportion`},       //: ⊜
+    burst_sat:   { icon_s: `&#8728;`, legend_s: `intensité`},    //: ⊜
+    burst_lum:   { icon_s: `&#8728;`, legend_s: `luminosité`},     //: ⊜
 
-    stat_increment:   { icon_s: `&#x2b;`, legend_s: `augmenter`},     //: ⊜
-    stat_decrement:   { icon_s: `&#x2212;`, legend_s: `diminuer`},      //: ⊜
+    stat_increment:   { icon_s: `&#x2b;`, legend_s: `agrandir`},     //: ⊜
+    stat_decrement:   { icon_s: `&#x2212;`, legend_s: `réduire`},      //: ⊜
   },
 
 
@@ -259,10 +260,10 @@ const C_o =
 
 
   //===  STATs ===
-  LOG_SCALE_n: 100000,
-  STAT_0_CANVAS_n: 512,    //: canvas width, height
-  BURST_SCALE_MIN_n: .25,
-  BURST_SCALE_MAX_n: 4,
+  LOG_MAX_VAL_n:     1000000,
+  STAT_0_CANVAS_n:   2048,    //: canvas width, height
+  BURST_SCALE_MIN_n: .25,     //: 1/4
+  BURST_SCALE_MAX_n: 16,      //: 16/1
 
 }
 

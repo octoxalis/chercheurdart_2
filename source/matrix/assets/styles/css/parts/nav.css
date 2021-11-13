@@ -44,7 +44,7 @@ nav > label > span[data-icon=stat] {
   border: 2px solid {{S_o.nav_stat}};
 }
 nav > a:hover, nav > label:hover {
-  width: 12ch;
+  width: 16ch;
   transition: all ease .5s;
 }
 nav > a:hover > span, nav > label:hover > span {

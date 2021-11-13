@@ -683,7 +683,7 @@ const STAT_W_o =
     STAT_W_o
       .pixel_n =
         payload_o
-          .pixel_n       //;console.log( STAT_W_o.pixel_n )
+          .pixel_n
 
     STAT_W_o
       .client_o
@@ -691,14 +691,6 @@ const STAT_W_o =
           [ `${id_s}_o` ]
             .context_o =
                 context_o
-                
-    //-- STAT_W_o
-    //--   .scale__n
-    //--   (
-    //--     client_s,
-    //--     id_s,
-    //--     1
-    //--   )
   }
   ,
 
@@ -710,13 +702,13 @@ const STAT_W_o =
   )
   {
     STAT_W_o
-      [ `put_draw_${payload_o.client_s}__v` ]( payload_o )
+      [ `put_draw_${payload_o.client_s}_${payload_o.id_s}__v` ]( payload_o )
   }
   ,
 
 
 
-  put_draw_burst__v
+  put_draw_burst_hue__v
   (
     payload_o
   )
@@ -786,11 +778,6 @@ const STAT_W_o =
       //... ,
     }
 
-    //... STAT_W_o
-    //...   .client_o
-    //...     [ `${client_s}_o` ]
-    console.log( payload_o )
-          
     STAT_W_o
       .client_o
         [ `${client_s}_o` ]
@@ -809,13 +796,13 @@ const STAT_W_o =
   )
   {
     STAT_W_o
-      [ `put_scale_${payload_o.client_s}__v` ]( payload_o )
+      [ `put_scale_${payload_o.client_s}_${payload_o.id_s}__v` ]( payload_o )
   }
   ,
 
 
 
-  put_scale_burst__v
+  put_scale_burst_hue__v
   (
     payload_o
   )
@@ -849,6 +836,88 @@ const STAT_W_o =
   ,
 
 
+
+  put_draw_burst_sat__v
+  (
+    payload_o
+  )
+  {
+    const hue_a = []
+
+    let at_n = 0
+
+    for
+    (
+      let freq_n
+      of
+      STAT_W_o
+        .scan_a
+          [ ~~'{{C_o.SCAN_HUE_CAP_n}}' ]
+    )
+    {
+      hue_a
+        [ at_n ] =
+          freq_n
+          ?
+            {
+              frequency_n: freq_n,
+              hsl_a: [ at_n, 100, 50 ]
+            }
+          :
+            null
+
+      ++at_n
+    }
+
+    const { client_s, id_s } =
+      payload_o
+
+    //.....................................
+    const burst_o =
+    {
+      color_a: hue_a,
+      range_n: 360,
+      canvas_o:
+        STAT_W_o
+          .client_o
+            [ `${client_s}_o` ]
+              .hue_o
+                .canvas_o,
+      median_n:
+        (
+          STAT_W_o
+            .client_o
+              [ `${client_s}_o` ]
+                .hue_o
+                  .canvas_o
+                    .width
+        )
+        *
+        .5,
+
+      maxfreq_n:
+        STAT_W_o
+          .scan_a[ ~~'{{C_o.SCAN_HUE_RANK_n}}' ]
+            [0]
+              [0]
+      ,
+      //... onHueChange:
+      //... ,
+      //... onHueTrace:
+      //... ,
+    }
+
+    STAT_W_o
+      .client_o
+        [ `${client_s}_o` ]
+          [ `${id_s}_o` ]
+            .burst_c =
+              new ColorBurst( burst_o )
+
+  }
+  ,
+
+  
 
   //=== MESSAGES
   message__v

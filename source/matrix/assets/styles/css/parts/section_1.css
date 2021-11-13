@@ -12,6 +12,7 @@ section#{{C_o.SECTION_a[1]}} > figure > * {
   grid-area: 1/-1;
 }
 section#{{C_o.SECTION_a[1]}} > figure > img {
+  object-fit: contain;
   max-width: 100%;
   height: auto;
   border-style: solid;
