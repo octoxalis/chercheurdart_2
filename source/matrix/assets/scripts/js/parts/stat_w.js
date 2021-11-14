@@ -99,10 +99,6 @@ const RGB_L__n =
   //=== STAT_W_o ===
 const STAT_W_o =
 {
-  //... PI2_n:    Math.PI * 2,
-
-  //... RADDEG_n: 180 / Math.PI,
-
   port_o: null,
 
   pixel_n: 1,    //: window.devicePixelRatio
@@ -123,28 +119,37 @@ const STAT_W_o =
   ]
   ,
 
+  //XX AWAIT_SCAN_n: 100,         //: times
+  //XX AWAIT_SCAN_SLEEP_n: 50,    //: ms
+
+
   scan_a: null,
   //:[
   //:   [0]: hue_a[]
-  //:   [1]: hueCapacities_a
+  //:   [1]: hueFrequency_a
   //:   [2]: hueRank_a
   //:   [3]: sat_a[]
-  //:   [4]: satCapacities_a[],
+  //:   [4]: satFrequency_a[],
   //:   [5]: satRank_a[],
   //:   [6]: lum_a[]
-  //:   [7]: lumCapacities_a[],
+  //:   [7]: lumFrequency_a[],
   //:   [8]: lumRank_a[],
   //:],
-
-
+  SCAN_HUE_n:      0,    //: scan_a hue indices
+  SCAN_HUE_FREQ_n: 1,    //: scan_a hue frequencies
+  SCAN_HUE_RANK_n: 2,    //: scan_a hue frequency ranks (higher frequency first)
+  SCAN_SAT_n:      3,
+  SCAN_SAT_FREQ_n: 4,
+  SCAN_SAT_RANK_n: 5,
+  SCAN_LUM_n:      6,
+  SCAN_LUM_FREQ_n: 7,
+  SCAN_LUM_RANK_n: 8,
 
   client_o: {},   //: {{C_o.STAT_a[0]}}: client_o{ hue_o{ canvas_e, context_o}, ... }
                   //: {{C_o.STAT_a[1]}}
                   //: {{C_o.STAT_a[2]}}
 
   script_o: new Set,   //: importScript loaded
-
-  //?? canvasDim_n: {{C_o.STAT_0_CANVAS_n}},
 
 
 
@@ -227,9 +232,9 @@ const STAT_W_o =
     client_s
   )
   {
-    let times_n = 100    //: {{C_o.AWAIT_SCAN_n}} = 5s
+    let times_n = 100    //: wait up to 100 * 50ms = 5s
 
-    while                   //: wait for scan
+    while                //: wait for scan
     (
       ! STAT_W_o
         .status_o
@@ -244,7 +249,7 @@ const STAT_W_o =
       )
       {
         await STAT_W_o
-          .sleep__v( 50 )    //: {{C_o.AWAIT_SCAN_SLEEP_n}}
+          .sleep__v( 50 )    //: 50 ms sleep
       }
       else
       {
@@ -252,8 +257,8 @@ const STAT_W_o =
           .post__v
             (
               {
-                client_s: client_s,
                 task_s: 'PUT_error',
+                client_s: client_s,
                 error_s: 'scan is not available'
               }
             )
@@ -361,19 +366,19 @@ const STAT_W_o =
           )
           
       STAT_W_o
-        .scan_a = new Array( 1 + ~~'{{C_o.SCAN_LUM_RANK_n}}' )
+        .scan_a = new Array( 1 + STAT_W_o.SCAN_LUM_RANK_n )
   
       //=== HUE
-      let capacity_n = ~~'{{C_o.HUE_CAP_n}}'
+      let capacity_n = 360
       
       STAT_W_o
         .scan_a
-          [~~'{{C_o.SCAN_HUE_n}}'] =
+          [STAT_W_o.SCAN_HUE_n] =
             new Array( capacity_n )
         
       STAT_W_o
         .scan_a
-          [~~'{{C_o.SCAN_HUE_CAP_n}}'] =
+          [STAT_W_o.SCAN_HUE_FREQ_n] =
             new Array( capacity_n )
         
       while
@@ -383,26 +388,26 @@ const STAT_W_o =
       {
         STAT_W_o
           .scan_a
-            [~~'{{C_o.SCAN_HUE_n}}']
+            [STAT_W_o.SCAN_HUE_n]
               [capacity_n] = []
   
         STAT_W_o
           .scan_a
-            [~~'{{C_o.SCAN_HUE_CAP_n}}']
+            [STAT_W_o.SCAN_HUE_FREQ_n]
               [capacity_n] = 0
       }
       
       //=== SAT
-      capacity_n = ~~'{{C_o.SAT_CAP_n}}'
+      capacity_n = 101    // renge [0...100]
       
       STAT_W_o
         .scan_a
-          [~~'{{C_o.SCAN_SAT_n}}'] =
+          [STAT_W_o.SCAN_SAT_n] =
             new Array( capacity_n )
         
       STAT_W_o
         .scan_a
-          [~~'{{C_o.SCAN_SAT_CAP_n}}'] =
+          [STAT_W_o.SCAN_SAT_FREQ_n] =
             new Array( capacity_n )
       
       while
@@ -412,26 +417,26 @@ const STAT_W_o =
       {
         STAT_W_o
           .scan_a
-            [~~'{{C_o.SCAN_SAT_n}}']
+            [STAT_W_o.SCAN_SAT_n]
               [capacity_n] = []
   
         STAT_W_o
           .scan_a
-            [~~'{{C_o.SCAN_SAT_CAP_n}}']
+            [STAT_W_o.SCAN_SAT_FREQ_n]
               [capacity_n] = 0
       }
       
       //=== LUM
-      capacity_n = ~~'{{C_o.LUM_CAP_n}}'
+      capacity_n =  101    // renge [0...100]
       
       STAT_W_o
         .scan_a
-          [~~'{{C_o.SCAN_LUM_n}}'] =
+          [STAT_W_o.SCAN_LUM_n] =
             new Array( capacity_n )
         
       STAT_W_o
         .scan_a
-          [~~'{{C_o.SCAN_LUM_CAP_n}}'] =
+          [STAT_W_o.SCAN_LUM_FREQ_n] =
             new Array( capacity_n )
       
       while
@@ -441,12 +446,12 @@ const STAT_W_o =
       {
         STAT_W_o
           .scan_a
-            [~~'{{C_o.SCAN_LUM_n}}']
+            [STAT_W_o.SCAN_LUM_n]
               [capacity_n] = []
   
         STAT_W_o
           .scan_a
-            [~~'{{C_o.SCAN_LUM_CAP_n}}']
+            [STAT_W_o.SCAN_LUM_FREQ_n]
               [capacity_n] = 0
       }
       
@@ -491,12 +496,12 @@ const STAT_W_o =
       
         //: HUE
         STAT_W_o
-          .scan_a[~~'{{C_o.SCAN_HUE_n}}']
+          .scan_a[STAT_W_o.SCAN_HUE_n]
             [hue_n]
               .push( at_n )
         
         STAT_W_o
-          .scan_a[~~'{{C_o.SCAN_HUE_CAP_n}}']
+          .scan_a[STAT_W_o.SCAN_HUE_FREQ_n]
             [hue_n] += 1
       
         //: SAT
@@ -511,12 +516,12 @@ const STAT_W_o =
           100 )
       
         STAT_W_o
-          .scan_a[~~'{{C_o.SCAN_SAT_n}}']
+          .scan_a[STAT_W_o.SCAN_SAT_n]
             [sat_n]
               .push( at_n )
         
         STAT_W_o
-          .scan_a[~~'{{C_o.SCAN_SAT_CAP_n}}']
+          .scan_a[STAT_W_o.SCAN_SAT_FREQ_n]
             [sat_n] += 1
     
         //: LUM
@@ -531,12 +536,12 @@ const STAT_W_o =
           100 )
       
         STAT_W_o
-          .scan_a[~~'{{C_o.SCAN_LUM_n}}']
+          .scan_a[STAT_W_o.SCAN_LUM_n]
             [lum_n]
               .push( at_n )
         
         STAT_W_o
-          .scan_a[~~'{{C_o.SCAN_LUM_CAP_n}}']
+          .scan_a[STAT_W_o.SCAN_LUM_FREQ_n]
             [lum_n] += 1
       }
     
@@ -584,27 +589,27 @@ const STAT_W_o =
       }
 
       STAT_W_o
-        .scan_a[~~'{{C_o.SCAN_HUE_RANK_n}}'] =
+        .scan_a[STAT_W_o.SCAN_HUE_RANK_n] =
           rank__a
           (
             STAT_W_o
-              .scan_a[~~'{{C_o.SCAN_HUE_CAP_n}}']
+              .scan_a[STAT_W_o.SCAN_HUE_FREQ_n]
           )      //: hue rankMax_n is at [0][0]
   
       STAT_W_o
-        .scan_a[~~'{{C_o.SCAN_SAT_RANK_n}}'] =
+        .scan_a[STAT_W_o.SCAN_SAT_RANK_n] =
           rank__a
           (
             STAT_W_o
-              .scan_a[~~'{{C_o.SCAN_SAT_CAP_n}}']
+              .scan_a[STAT_W_o.SCAN_SAT_FREQ_n]
           )      //: sat rankMax_n is at [0][0]
   
       STAT_W_o
-        .scan_a[~~'{{C_o.SCAN_LUM_RANK_n}}'] =
+        .scan_a[STAT_W_o.SCAN_LUM_RANK_n] =
           rank__a
           (
             STAT_W_o
-              .scan_a[~~'{{C_o.SCAN_LUM_CAP_n}}']
+              .scan_a[STAT_W_o.SCAN_LUM_FREQ_n]
           )      //: lum rankMax_n is at [0][0]
 
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -624,8 +629,8 @@ const STAT_W_o =
       .post__v
       (
         {
-          //: CLIENT_ALL_s
           task_s: 'PUT_status',
+          //: CLIENT_ALL_s
           status_o: STAT_W_o.status_o
   
         },
@@ -701,6 +706,7 @@ const STAT_W_o =
     payload_o
   )
   {
+                                     ;console.log( payload_o )
     STAT_W_o
       [ `put_draw_${payload_o.client_s}_${payload_o.id_s}__v` ]( payload_o )
   }
@@ -723,7 +729,7 @@ const STAT_W_o =
       of
       STAT_W_o
         .scan_a
-          [ ~~'{{C_o.SCAN_HUE_CAP_n}}' ]
+          [ STAT_W_o.SCAN_HUE_FREQ_n ]
     )
     {
       hue_a
@@ -768,7 +774,7 @@ const STAT_W_o =
 
       maxfreq_n:
         STAT_W_o
-          .scan_a[ ~~'{{C_o.SCAN_HUE_RANK_n}}' ]
+          .scan_a[ STAT_W_o.SCAN_HUE_RANK_n ]
             [0]
               [0]
       ,
@@ -842,7 +848,11 @@ const STAT_W_o =
     payload_o
   )
   {
-    const hue_a = []
+    const hue_n =
+      payload_o
+        .hue_n
+
+    const sat_a = []
 
     let at_n = 0
 
@@ -852,16 +862,16 @@ const STAT_W_o =
       of
       STAT_W_o
         .scan_a
-          [ ~~'{{C_o.SCAN_HUE_CAP_n}}' ]
+          [ STAT_W_o.SCAN_SAT_FREQ_n ]
     )
     {
-      hue_a
+      sat_a
         [ at_n ] =
           freq_n
           ?
             {
               frequency_n: freq_n,
-              hsl_a: [ at_n, 100, 50 ]
+              hsl_a: [ hue_n, at_n, 50 ]
             }
           :
             null
@@ -875,20 +885,20 @@ const STAT_W_o =
     //.....................................
     const burst_o =
     {
-      color_a: hue_a,
-      range_n: 360,
+      color_a: sat_a,
+      range_n: 101,
       canvas_o:
         STAT_W_o
           .client_o
             [ `${client_s}_o` ]
-              .hue_o
+              .sat_o
                 .canvas_o,
       median_n:
         (
           STAT_W_o
             .client_o
               [ `${client_s}_o` ]
-                .hue_o
+                .sat_o
                   .canvas_o
                     .width
         )
@@ -897,7 +907,7 @@ const STAT_W_o =
 
       maxfreq_n:
         STAT_W_o
-          .scan_a[ ~~'{{C_o.SCAN_HUE_RANK_n}}' ]
+          .scan_a[ STAT_W_o.SCAN_SAT_RANK_n ]
             [0]
               [0]
       ,
@@ -913,7 +923,6 @@ const STAT_W_o =
           [ `${id_s}_o` ]
             .burst_c =
               new ColorBurst( burst_o )
-
   }
   ,
 

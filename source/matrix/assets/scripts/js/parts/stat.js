@@ -6,50 +6,22 @@ const STAT_o =
 
 
 
-  //=== FUNCTIONS ===
-  elementDim__n
-  (
-    selector_s,
-    dim_s='width'    //: 'width' (default) || 'height'
-  )
-  {
-    return (
-      +( window            //: number cast
-        .getComputedStyle
-        (
-          document
-            .querySelector( selector_s )
-        )
-        [ dim_s ]
-          .slice
-          (
-            0,
-            -2     //: skip ending 'px'
-          )
-        )
-      )
-
-  }
-  ,
-
-
-
   canvas__e    //!!! 4. from section
   (
     section_s,
     id_s
   )
   {
-    const canvas_e =
-      document
-        .querySelector( `#canvas_${section_s}_${id_s}` )
-
-    let dim_n =
-      ~~'{{C_o.STAT_0_CANVAS_n}}'  //: number cast
+    const dim_n =
+      2048            //: default canvas dimension (square)
       *
       window
         .devicePixelRatio
   
+    const canvas_e =
+      document
+        .querySelector( `#canvas_${section_s}_${id_s}` )
+
     canvas_e
       .width =
         dim_n
@@ -265,8 +237,8 @@ const STAT_o =
         .post__v
         (
           { 
-            client_s: '{{C_o.STAT_s}}',
             task_s: 'GET_scan',
+            client_s: '{{C_o.STAT_s}}',
             work_s: work_s,
             //?? stat_s: stat_s
           }

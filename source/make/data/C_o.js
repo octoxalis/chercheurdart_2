@@ -98,15 +98,16 @@ const C_o =
     galerie: { icon_s: `&#8226;`, legend_s: `galerie` },    //: ⊡
     //XX stat:    { icon_s: `&#x2237;`, legend_s: `analyse`},     //: ∷
 
-    burst:   { icon_s: `&#8718;`, legend_s: `burst`},       //: ⋇
-    aster:   { icon_s: `&#8718;`, legend_s: `aster`},       //: ⊚
-    paint:   { icon_s: `&#8718;`, legend_s: `paint`},       //: ⊜
+    burst: { icon_s: `&#8718;`, legend_s: `burst`},       //: ⋇
+    aster: { icon_s: `&#8718;`, legend_s: `aster`},       //: ⊚
+    paint: { icon_s: `&#8718;`, legend_s: `paint`},       //: ⊜
 
-    burst_hue:   { icon_s: `&#8728;`, legend_s: `chromaticité`},       //: ⊜
-    burst_hue_ratio:   { icon_s: `&#8728;`, legend_s: `proportion`},       //: ⊜
-    burst_sat:   { icon_s: `&#8728;`, legend_s: `intensité`},    //: ⊜
-    burst_lum:   { icon_s: `&#8728;`, legend_s: `luminosité`},     //: ⊜
-
+    burst_hue:  { icon_s: `&#8728;`, legend_s: `chromaticité`},       //: ⊜
+    burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},    //: ⊜
+    burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},     //: ⊜
+    
+    burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},       //: ⊜
+    
     stat_increment:   { icon_s: `&#x2b;`, legend_s: `agrandir`},     //: ⊜
     stat_decrement:   { icon_s: `&#x2212;`, legend_s: `réduire`},      //: ⊜
   },
@@ -234,37 +235,7 @@ const C_o =
   KEY_n:     CONF_o.KEY_n,
 
   //=== SHARED WORKER ===
-  WORKER_MSG_o:
-  {
-    wait:  false,
-    ready: true,
-  },
-
   CLIENT_ALL_s: undefined,
-  AWAIT_SCAN_n: 100,         //: times
-  AWAIT_SCAN_SLEEP_n: 50,    //: ms
-
-  HUE_CAP_n:      360,
-  SAT_CAP_n:      101,
-  LUM_CAP_n:      101,
-
-  SCAN_HUE_n:      0,    //: scan_a index
-  SCAN_HUE_CAP_n:  1,
-  SCAN_HUE_RANK_n: 2,
-  SCAN_SAT_n:      3,
-  SCAN_SAT_CAP_n:  4,
-  SCAN_SAT_RANK_n: 5,
-  SCAN_LUM_n:      6,
-  SCAN_LUM_CAP_n:  7,
-  SCAN_LUM_RANK_n: 8,
-
-
-  //===  STATs ===
-  LOG_MAX_VAL_n:     1000000,
-  STAT_0_CANVAS_n:   2048,    //: canvas width, height
-  BURST_SCALE_MIN_n: .25,     //: 1/4
-  BURST_SCALE_MAX_n: 16,      //: 16/1
-
 }
 
 module.exports = C_o

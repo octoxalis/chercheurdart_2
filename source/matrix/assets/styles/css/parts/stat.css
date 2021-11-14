@@ -14,7 +14,6 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input, section#{{C_o.STA
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav {
   z-index: 1;
   position: absolute;
-  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: {{S_o.PAD_4}};
@@ -27,44 +26,45 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label > span[data-
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label:hover > span[data-icon] {
   border: 2px solid transparent;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_nav {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] {
+  display: none;
   height: 24ch;
+  padding-top: {{S_o.PAD_10}};
   border-radius: 50%;
   background: hsla( 220 17% 17%/.7);
   opacity: 1;
   transition: opacity ease 2s;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_nav > label {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label {
   position: relative;
-  top: 20%;
   left: 4ch;
   width: 20ch;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_nav > label > span:not( [data-icon] ) {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span:not( [data-icon] ) {
   margin-left: 1ch;
   font-weight: 700;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_nav > label > span[data-icon=substat] {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span[data-icon=substat] {
   border: 2px solid {{S_o.nav_substat}};
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_nav > label:hover > span[data-icon] {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:hover > span[data-icon] {
   border: 2px solid transparent;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_nav:hover {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}]:hover {
   opacity: 1;
   transition: opacity ease .2s;
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_op {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_scale {
   top: {{S_o.PAD_6}};
   left: 0;
   height: fit-content;
   background: transparent;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_op > label > span[data-icon=substat_op] {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_scale > label > span[data-icon=substat_op] {
   border: 2px solid {{S_o.nav_substat_op}};
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_op > label:hover > span[data-icon] {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_scale > label:hover > span[data-icon] {
   border: 2px solid transparent;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > canvas {
@@ -78,4 +78,13 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_lum {
   display: block;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ nav#nav_{{C_o.STAT_a[0]}}_hue {
+  display: flex;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ~ nav#nav_{{C_o.STAT_a[0]}}_sat {
+  display: flex;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ nav#nav_{{C_o.STAT_a[0]}}_lum {
+  display: flex;
 }

@@ -4,12 +4,14 @@ const BUR_o =
 {
   status_o: null,    //: STAT_W_o.status_o
 
-  center_n: 0,
-  
+  hueTrace_e: null,
+
+  hueFreeze_b: false,    //: freeze || unfreeze hue selection
+
   scale_n: 1,
-
-  hue_n: 0,    //: selected hue
-
+  
+  hue_n: 0,          //: selected hue
+  
 
 
   message__v:
@@ -47,91 +49,139 @@ const BUR_o =
   listener__v
   ()
   {
-    document
-      .getElementById( `canvas_{{C_o.STAT_a[0]}}_hue` )
-        ?.addEventListener
+    const center_n =
+      document
+        .getElementById( `canvas_{{C_o.STAT_a[0]}}_hue` )
+          .width
+      *
+      .5      //: width / 2
+      *
+      window
+        .devicePixelRatio
+
+    BUR_o
+      .hueTrace_e =
+        document
+          .getElementById( `{{C_o.STAT_a[0]}}_hue_n` )
+
+
+    //=== HUE SELECTION ===
+    const traceHandler__v =
+    event_o =>
+    {
+      if
+      (
+        ! BUR_o
+          .hueFreeze_b
+      )
+      {
+        const x_n =
+          event_o
+            .offsetX
+          *
+          window
+            .devicePixelRatio
+          -
+          center_n
+  
+         const y_n =
+          event_o
+            .offsetY
+          *
+          window
+            .devicePixelRatio
+          -
+          center_n
+  
+        let angle_n =
+          ~~(
+            Math
+              .atan2
+              (
+                y_n,
+                x_n
+              )
+            *
+            180
+            /
+            Math
+              .PI
+          )
+          +
+          90    //: rotation to have hue 0 at 12:00 not 3:00
+  
+        if
         (
-          'click',
-          (
-            click_o
-          ) =>
-          {
-            const atX_n =
-              click_o
-                .offsetX
-              *
-              window
-                .devicePixelRatio
-              -
-              BUR_o
-                .center_n
-  
-             const atY_n =
-              click_o
-                .offsetY
-              *
-              window
-                .devicePixelRatio
-              -
-              BUR_o
-                .center_n
-  
-            let angle_n =
-              Math
-                .atan2
-                (
-                  atY_n,
-                  atX_n
-                )
-              *
-              180
-              /
-              Math
-                .PI
-  
-            if
-            (
-              angle_n
-              <
-              0
-            )
-            {
-              angle_n += 360
-            }
-  
-            BUR_o
-              .hue_n =
-                ~~(
-                    (
-                      angle_n
-                      +
-                      90    //: rotation to have hue 0 at 12:00 not 3:00
-                    )
-                    %
-                    360
-                  )
-  
-            document
-              .getElementById( `{{C_o.STAT_a[0]}}_hue_n` )
-              .innerHTML =
-                BUR_o
-                  .hue_n
-          }
+          angle_n
+          <
+          0
         )
+        {
+          angle_n += 360
+        }
+  
+        BUR_o
+          .hueTrace_e
+            .innerHTML =
+              angle_n
+              %
+              360
+      }
+      
+      if
+      (
+        event_o
+          .type
+        ===
+        'click'
+      )
+      {
+        BUR_o
+          .hueFreeze_b =    //: toggle hueFreeze_b
+            ! BUR_o
+                .hueFreeze_b
+      }
+    }
 
-
+    //=== HUE TRACE ===
     for
     (
-      let trigger_s
+      let event_s
       of
       [
-        'scale_up',
-        'scale_down',
+        'click',
+        'mousemove'
       ]
     )
     {
       document
-        .getElementById( `{{C_o.STAT_a[0]}}_${trigger_s}` )
+        .getElementById( `canvas_{{C_o.STAT_a[0]}}_hue` )
+          ?.addEventListener
+          (
+            event_s,
+            traceHandler__v
+          )
+    }
+
+
+
+    //=== CANVAS SCALING ===
+    const RANGE_MIN_n = .25
+    const RANGE_MAX_n = 16.0
+    const STEP_n      = .2
+      
+    for
+    (
+      let scale_s
+      of
+      [
+        'inc',    //: + STEP_n
+        'dec',    //: - STEP_n
+      ]
+    )
+    {
+      document
+        .getElementById( `{{C_o.STAT_a[0]}}_scale_${scale_s}` )
           ?.addEventListener
           (
             'click',
@@ -139,22 +189,26 @@ const BUR_o =
               event_o
             ) =>
             {
+              let step_n = 0
+                STEP_n
+
               if
               (
                 event_o
                   .target
                     ?.id
-                      ?.includes( 'scale_up' )
+                      ?.includes( '_inc' )
                 &&
                 BUR_o
                   .scale_n
-                <
-                16.0 //?? ~~'{{C_o.BURST_SCALE_MAX_n}}'
+                <=
+                RANGE_MAX_n
+                -
+                STEP_n
               )
               {
-                
-                BUR_o
-                  .scale_n += .2
+                step_n =
+                  STEP_n
               }
               
               if
@@ -162,37 +216,49 @@ const BUR_o =
                 event_o
                   .target
                     ?.id
-                      ?.includes( 'scale_down' )
+                      ?.includes( '_dec' )
                 &&
                 BUR_o
                   .scale_n
-                >
-                .25  //?? ~~'{{C_o.BURST_SCALE_MIN_n}}'
+                >=
+                RANGE_MIN_n
+                +
+                STEP_n
               )
               {
-                
-                BUR_o
-                  .scale_n -= .2
+                step_n =
+                  -STEP_n
               }
+
+              if
+              (
+                step_n
+              )
+              {
+                BUR_o
+                  .scale_n +=
+                    step_n
   
-              BUR_o
-                .worker_o
-                  .post__v
-                  (
-                    { 
-                      client_s: '{{C_o.STAT_a[0]}}',
-                      id_s: 'hue',
-                      task_s: 'PUT_scale',
-                      scale_n: BUR_o.scale_n
-                    }
-                  )
+                BUR_o
+                  .worker_o
+                    .post__v
+                    (
+                      { 
+                        task_s: 'PUT_scale',
+                        client_s: '{{C_o.STAT_a[0]}}',
+                        id_s: 'hue',
+                        scale_n: BUR_o.scale_n
+                      }
+                    )
+              }
             }
           )
     }
 
+    //=== STAT PERMUTATION ===
     for
     (
-      let trigger_s
+      let stat_s
       of
       [
         'sat',
@@ -201,7 +267,7 @@ const BUR_o =
     )
     {
       document
-        .querySelector( `label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_${trigger_s}"]` )
+        .querySelector( `label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_${stat_s}"]` )
           ?.addEventListener
           (
             'click',
@@ -209,16 +275,11 @@ const BUR_o =
               event_o
             ) =>
             {
-              //;console.log( event_o.target?.getAttribute( 'for' ) )
-  
               const id_s =
                 event_o
                   .target
                     ?.getAttribute( 'for' )
-                      ?.slice
-                      (
-                        -3
-                      )    //;console.log( id_s )
+                      ?.slice( -3 )         //: element ID ends with: 'hue' || 'sat' || 'lum'
   
               id_s
               &&
@@ -227,10 +288,13 @@ const BUR_o =
                   .post__v
                   (
                     { 
+                      task_s: 'PUT_draw',
                       client_s: '{{C_o.STAT_a[0]}}',
                       id_s: id_s,
-                      hue_n: BUR_o.hue_n,
-                      task_s: 'PUT_draw',
+                      hue_n:
+                        +(BUR_o            //: number cast
+                          .hueTrace_e
+                            .innerHTML)
                     }
                   )
                 
@@ -239,10 +303,6 @@ const BUR_o =
     }
   }
   ,
-
-
-
-
 }
 
 
@@ -265,22 +325,11 @@ void function
       .post__v
       (
         { 
+          task_s: 'PUT_draw',
           client_s: '{{C_o.STAT_a[0]}}',
           id_s: 'hue',
-          task_s: 'PUT_draw',
         }
       )
-
-  BUR_o
-    .center_n =
-      document
-        .getElementById( `canvas_{{C_o.STAT_a[0]}}_hue` )
-          .width
-      *
-      .5
-      *
-      window
-        .devicePixelRatio
 
   BUR_o
    .listener__v()

@@ -20,7 +20,7 @@ class ColorBurst
       (
         this,
         burst_o
-      )
+      )                    ;console.log( this )
 
     this
       .context_o =
@@ -101,18 +101,14 @@ class ColorBurst
    */
   draw__v
   (
-    pie_n
+    pie_n=1.0
   )
   {
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
     ;console.time( 'draw__v' )
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
     const arc_n =
-      (
-        pie_n
-        ||
-        1.0
-      )
+      pie_n
       /
       this
         .color_a

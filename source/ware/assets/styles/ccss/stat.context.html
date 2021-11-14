@@ -28,7 +28,7 @@
     <nav>
             z-index: 1;
             position: absolute;
-            display: flex;
+            /*display: flex;*/
             flex-direction: column;
             justify-content: flex-start;
             gap: {{S_o.PAD_4}};
@@ -45,15 +45,17 @@
         </span>
       </label>
     </nav>
-    <nav#{{C_o.STAT_a[0]}}_nav>
+    <!--variant-->
+    <nav[id^=nav_{{C_o.STAT_a[0]}}]>
+            display: none;
             height: 24ch;
+            padding-top: {{S_o.PAD_10}};
             border-radius: 50%;
             background: hsla( 220 17% 17%/.7);
             opacity: 1; /*.2;*/
             transition: opacity ease 2s;
       <label>
               position: relative;
-              top: 20%;
               left: 4ch;
               width: 20ch;
         <span:not( [data-icon] )>
@@ -64,18 +66,19 @@
                 border: 2px solid {{S_o.nav_substat}};
         </span>
       </label>
+      <!--variant-->
       <label:hover>
         <span[data-icon]>
                 border: 2px solid transparent;
         </span>
       </label>
     </nav>
-    <nav#{{C_o.STAT_a[0]}}_nav:hover>
+    <nav[id^=nav_{{C_o.STAT_a[0]}}]:hover>
             opacity: 1;
             transition: opacity ease .2s;
             box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
         </nav>
-    <nav#{{C_o.STAT_a[0]}}_op>
+    <nav#{{C_o.STAT_a[0]}}_scale>
             top:  {{S_o.PAD_6}};
             left: 0;
             height: fit-content;
@@ -112,5 +115,21 @@
     <canvas#canvas_{{C_o.STAT_a[0]}}_lum>
             display: block;
     </canvas>
+    <!--variant-->
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked />
+    ~
+    <nav#nav_{{C_o.STAT_a[0]}}_hue>
+            display: flex;
+    </nav>
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked />
+    ~
+    <nav#nav_{{C_o.STAT_a[0]}}_sat>
+            display: flex;
+    </nav>
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked />
+    ~
+    <nav#nav_{{C_o.STAT_a[0]}}_lum>
+            display: flex;
+    </nav>
   </div>
 </section>
