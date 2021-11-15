@@ -113,15 +113,12 @@ const STAT_W_o =
   [
     'GET_scan',
     'GET_status',
+    'GET_frequency',
     'PUT_canvas',
     'PUT_draw',
     'PUT_scale',
   ]
   ,
-
-  //XX AWAIT_SCAN_n: 100,         //: times
-  //XX AWAIT_SCAN_SLEEP_n: 50,    //: ms
-
 
   scan_a: null,
   //:[
@@ -145,7 +142,7 @@ const STAT_W_o =
   SCAN_LUM_FREQ_n: 7,
   SCAN_LUM_RANK_n: 8,
 
-  client_o: {},   //: {{C_o.STAT_a[0]}}: client_o{ hue_o{ canvas_e, context_o}, ... }
+  stat_o: {},     //: {{C_o.STAT_a[0]}}: stat_o{ hue_o{ canvas_e, context_o}, ... }
                   //: {{C_o.STAT_a[1]}}
                   //: {{C_o.STAT_a[2]}}
 
@@ -229,7 +226,7 @@ const STAT_W_o =
 
   async waitScan__v
   (
-    client_s
+    stat_s
   )
   {
     let times_n = 100    //: wait up to 100 * 50ms = 5s
@@ -258,7 +255,7 @@ const STAT_W_o =
             (
               {
                 task_s: 'PUT_error',
-                client_s: client_s,
+                stat_s: stat_s,
                 error_s: 'scan is not available'
               }
             )
@@ -272,18 +269,18 @@ const STAT_W_o =
   ,
 
 
-  scale__n      // scale canvas
+  scale__n
   (
-    client_s,
-    id_s,
+    stat_s,
+    part_s,
     ratio_n
   )
   {
     const translate_n =
       STAT_W_o
-        .client_o
-          [ `${client_s}_o` ]
-            [ `${id_s}_o` ]
+        .stat_o
+          [ `${stat_s}_o` ]
+            [ `${part_s}_o` ]
               .canvas_o
                 .width
       *
@@ -292,9 +289,9 @@ const STAT_W_o =
       ( 1 - ratio_n )
 
     STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ]
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
             .context_o
               .setTransform
               (
@@ -307,6 +304,25 @@ const STAT_W_o =
 
 
   //=== GET    
+  get_status__v
+  ()
+  {
+    STAT_W_o
+      .post__v
+      (
+        {
+          task_s: 'PUT_status',
+          //: CLIENT_ALL_s
+          status_o: STAT_W_o.status_o
+  
+        },
+        [ STAT_W_o.status_o ]
+      )
+  }
+  ,
+
+
+
   async get_scan__v
   (
     payload_o
@@ -364,6 +380,14 @@ const STAT_W_o =
             bitmap_o
               .height
           )
+
+      STAT_W_o
+        .capacity_n =
+          bitmap_o
+            .width
+          *
+          bitmap_o
+            .height      //;console.log( STAT_W_o.capacity_n )
           
       STAT_W_o
         .scan_a = new Array( 1 + STAT_W_o.SCAN_LUM_RANK_n )
@@ -622,50 +646,67 @@ const STAT_W_o =
   
 
 
-  get_status__v
-  ()
+  get_frequency__v
+  (
+    payload_o
+  )
   {
+    const { part_s, frequency_n } =
+      payload_o
+
+    const atpart_s =
+      part_s
+        .toUpperCase()
+
+    let index_n =
+      STAT_W_o
+        [ `SCAN_${atpart_s}_FREQ_n` ]
+
     STAT_W_o
       .post__v
       (
         {
-          task_s: 'PUT_status',
+          task_s: 'PUT_frequency',
           //: CLIENT_ALL_s
-          status_o: STAT_W_o.status_o
-  
-        },
-        [ STAT_W_o.status_o ]
-      )
+          part_s: part_s,
+          frequency_n: STAT_W_o
+                         .scan_a
+                         [ index_n ]
+                           [ frequency_n ],
+          capacity_n: STAT_W_o
+                        .capacity_n
+        }
+      )           //;console.log( STAT_W_o.scan_a[ index_n ][ frequency_n ] )
   }
   ,
 
 
 
   //=== PUT    
-  put_canvas__v        //: client OffScreenCanvas
+  put_canvas__v        //: offScreenCanvas
   (
     payload_o
   )
   {
-    const { client_s, id_s } =
+    const { stat_s, part_s } =
       payload_o
 
     if
     (
       !  STAT_W_o
-        .client_o
-          [ `${client_s}_o` ]
+        .stat_o
+          [ `${stat_s}_o` ]
     )
     {
       STAT_W_o
-        .client_o
-          [ `${client_s}_o` ] = {}
+        .stat_o
+          [ `${stat_s}_o` ] = {}
     }
 
     STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ] =
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ] =
           {
             //: canvas_o,
             //: context_o
@@ -673,9 +714,9 @@ const STAT_W_o =
           }
 
     STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ]
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
             .canvas_o =
               payload_o
                 .canvas_e
@@ -691,9 +732,9 @@ const STAT_W_o =
           .pixel_n
 
     STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ]
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
             .context_o =
                 context_o
   }
@@ -706,75 +747,138 @@ const STAT_W_o =
     payload_o
   )
   {
-                                     ;console.log( payload_o )
-    STAT_W_o
-      [ `put_draw_${payload_o.client_s}_${payload_o.id_s}__v` ]( payload_o )
-  }
-  ,
+    const { stat_s, part_s } =
+      payload_o
 
-
-
-  put_draw_burst_hue__v
-  (
-    payload_o
-  )
-  {
-    const hue_a = []
-
+    let range_n
+        
+    switch
+    (
+      part_s
+    )
+    {
+      case 'hue':
+        range_n =
+          360
+  
+        break
+    
+      case 'sat':
+      case 'lum':
+        range_n =
+          101
+        
+        break
+    
+      default:
+        break
+    }
+  
+    const upart_s =
+      part_s
+        .toUpperCase()
+  
+    const freq_s =
+      `SCAN_${upart_s}_FREQ_n`
+  
+    const rank_s =
+      `SCAN_${upart_s}_RANK_n`
+  
+    const part_a = []
+  
     let at_n = 0
-
+  
     for
     (
       let freq_n
       of
       STAT_W_o
         .scan_a
-          [ STAT_W_o.SCAN_HUE_FREQ_n ]
+          [
+            STAT_W_o
+              [freq_s]
+          ]
     )
     {
-      hue_a
+      let hue_n,
+          sat_n,
+          lum_n
+  
+      switch
+      (
+        part_s
+      )
+      {
+        case 'hue':
+          hue_n = at_n
+  
+          sat_n = 100
+  
+          lum_n = 50    //: neutral
+  
+          break
+      
+        case 'sat':
+          hue_n = payload_o.hue_n
+  
+          sat_n = at_n
+  
+          lum_n = 50
+          
+          break
+      
+        case 'lum':
+          hue_n = payload_o.hue_n
+  
+          sat_n = 0    //: neutral
+  
+          lum_n = at_n
+          
+          break
+      
+        default:
+          break
+      }
+  
+      part_a
         [ at_n ] =
           freq_n
           ?
             {
               frequency_n: freq_n,
-              hsl_a: [ at_n, 100, 50 ]
+              hsl_a: [ hue_n, sat_n, lum_n ]
             }
           :
             null
-
+  
       ++at_n
     }
-
-    const { client_s, id_s } =
-      payload_o
-
-    //.....................................
+  
     const burst_o =
     {
-      color_a: hue_a,
-      range_n: 360,
+      color_a: part_a,
+      range_n: range_n,
       canvas_o:
         STAT_W_o
-          .client_o
-            [ `${client_s}_o` ]
-              .hue_o
+          .stat_o
+            [ `${stat_s}_o` ]
+              [ `${part_s}_o` ]
                 .canvas_o,
       median_n:
         (
           STAT_W_o
-            .client_o
-              [ `${client_s}_o` ]
-                .hue_o
+            .stat_o
+              [ `${stat_s}_o` ]
+                [ `${part_s}_o` ]
                   .canvas_o
                     .width
         )
         *
         .5,
-
+  
       maxfreq_n:
         STAT_W_o
-          .scan_a[ STAT_W_o.SCAN_HUE_RANK_n ]
+          .scan_a[ STAT_W_o[rank_s] ]
             [0]
               [0]
       ,
@@ -783,150 +887,52 @@ const STAT_W_o =
       //... onHueTrace:
       //... ,
     }
-
+  
     STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ]
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
             .burst_c =
               new ColorBurst( burst_o )
-
   }
   ,
 
-  
+
 
   put_scale__v
   (
     payload_o
   )
   {
-    STAT_W_o
-      [ `put_scale_${payload_o.client_s}_${payload_o.id_s}__v` ]( payload_o )
-  }
-  ,
-
-
-
-  put_scale_burst_hue__v
-  (
-    payload_o
-  )
-  {
-    const { client_s, id_s, scale_n } =
+    const { stat_s, part_s, scale_n } =
       payload_o
 
 
     STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ]
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
             .burst_c
               .clear__v()    //!!! before scaling
 
     STAT_W_o
       .scale__n      // scale canvas
       (
-        client_s,
-        id_s,
+        stat_s,
+        part_s,
         scale_n
       )
 
     STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ]
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
             .burst_c
               .draw__v()
   }
   ,
 
 
-
-  put_draw_burst_sat__v
-  (
-    payload_o
-  )
-  {
-    const hue_n =
-      payload_o
-        .hue_n
-
-    const sat_a = []
-
-    let at_n = 0
-
-    for
-    (
-      let freq_n
-      of
-      STAT_W_o
-        .scan_a
-          [ STAT_W_o.SCAN_SAT_FREQ_n ]
-    )
-    {
-      sat_a
-        [ at_n ] =
-          freq_n
-          ?
-            {
-              frequency_n: freq_n,
-              hsl_a: [ hue_n, at_n, 50 ]
-            }
-          :
-            null
-
-      ++at_n
-    }
-
-    const { client_s, id_s } =
-      payload_o
-
-    //.....................................
-    const burst_o =
-    {
-      color_a: sat_a,
-      range_n: 101,
-      canvas_o:
-        STAT_W_o
-          .client_o
-            [ `${client_s}_o` ]
-              .sat_o
-                .canvas_o,
-      median_n:
-        (
-          STAT_W_o
-            .client_o
-              [ `${client_s}_o` ]
-                .sat_o
-                  .canvas_o
-                    .width
-        )
-        *
-        .5,
-
-      maxfreq_n:
-        STAT_W_o
-          .scan_a[ STAT_W_o.SCAN_SAT_RANK_n ]
-            [0]
-              [0]
-      ,
-      //... onHueChange:
-      //... ,
-      //... onHueTrace:
-      //... ,
-    }
-
-    STAT_W_o
-      .client_o
-        [ `${client_s}_o` ]
-          [ `${id_s}_o` ]
-            .burst_c =
-              new ColorBurst( burst_o )
-  }
-  ,
-
-  
 
   //=== MESSAGES
   message__v
@@ -974,7 +980,7 @@ const STAT_W_o =
 
 
 
-post__v    //: post to client
+post__v    //: post to stat
 (
   payload_o
 )
@@ -987,13 +993,16 @@ post__v    //: post to client
 
 
 
-handleError__v:
+handleError__v
 (
   error_o
-) =>
+)
+{
   console
     .log`ERROR: ${error_o.message}`
+}
 ,
+
 }
 
 

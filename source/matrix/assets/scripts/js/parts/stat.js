@@ -8,8 +8,8 @@ const STAT_o =
 
   canvas__e    //!!! 4. from section
   (
-    section_s,
-    id_s
+    stat_s,
+    part_s
   )
   {
     const dim_n =
@@ -20,7 +20,7 @@ const STAT_o =
   
     const canvas_e =
       document
-        .querySelector( `#canvas_${section_s}_${id_s}` )
+        .querySelector( `#canvas_${stat_s}_${part_s}` )
 
     canvas_e
       .width =
@@ -62,7 +62,7 @@ const STAT_o =
   
   worker__o    //!!! 4. from section
   (
-    section_s,
+    stat_s,
     script_s,
     message__v
   )
@@ -72,20 +72,20 @@ const STAT_o =
       (
         {
           url_s: '{{C_o.WORKER_FILE_s}}',
-          client_s:  section_s,
+          stat_s: stat_s,
           handleMessage__v: message__v
         }
       )
 
     switch
     (
-      section_s
+      stat_s
     )
     {
       case '{{C_o.STAT_a[0]}}':
         for
         (
-          let id_s
+          let part_s
           of
           [
             'hue',
@@ -98,8 +98,8 @@ const STAT_o =
             STAT_o
               .canvas__e
               (
-                section_s,
-                id_s
+                stat_s,
+                part_s
               )
           
           const offCanvas_e =
@@ -111,8 +111,8 @@ const STAT_o =
               .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
               (
                 {
-                  client_s:   section_s,
-                  id_s:       id_s,
+                  stat_s:   stat_s,
+                  part_s:       part_s,
                   script_s:   script_s,
                   task_s:     'PUT_canvas',
                   pixel_n:    window.devicePixelRatio,
@@ -227,7 +227,7 @@ const STAT_o =
         (
           {
             url_s: '{{C_o.WORKER_FILE_s}}',
-            client_s:  '{{C_o.STAT_s}}',
+            stat_s:  '{{C_o.STAT_s}}',
             handleMessage__v: STAT_o.message__v
           }
         )
@@ -238,7 +238,7 @@ const STAT_o =
         (
           { 
             task_s: 'GET_scan',
-            client_s: '{{C_o.STAT_s}}',
+            stat_s: '{{C_o.STAT_s}}',
             work_s: work_s,
             //?? stat_s: stat_s
           }

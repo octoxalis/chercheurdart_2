@@ -4,8 +4,8 @@
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_hue" name="{{stat_s}}_nav" type="radio" checked>
   <canvas id="canvas_{{stat_s}}_hue"></canvas>
   <nav id="nav_{{stat_s}}_hue">
-    <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}<span id="{{stat_s}}_hue_ratio_n">0</span></label>
     <label>{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}<span id="{{stat_s}}_hue_n">0</span></label>
+    <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}<span id="{{stat_s}}_hue_ratio_n">0</span></label>
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_lum" data-legend="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
   </nav>
@@ -13,8 +13,8 @@
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_sat" name="{{stat_s}}_nav" type="radio">
   <canvas id="canvas_{{stat_s}}_sat"></canvas>
   <nav id="nav_{{stat_s}}_sat">
-    <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}<span id="{{stat_s}}_sat_ratio_n">0</span></label>
     <label>{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}<span id="{{stat_s}}_sat_n">0</span></label>
+    <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}<span id="{{stat_s}}_sat_ratio_n">0</span></label>
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_hue" data-legend="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_lum" data-legend="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
   </nav>
@@ -22,8 +22,8 @@
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_lum" name="{{stat_s}}_nav" type="radio">
   <canvas id="canvas_{{stat_s}}_lum"></canvas>
   <nav id="nav_{{stat_s}}_lum">
-    <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}<span id="{{stat_s}}_lum_ratio_n">0</span></label>
     <label>{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}<span id="{{stat_s}}_lum_n">0</span></label>
+    <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}<span id="{{stat_s}}_lum_ratio_n">0</span></label>
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_hue" data-legend="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
   </nav>
@@ -33,7 +33,11 @@
     <label id="{{stat_s}}_scale_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
   </nav>
 {% endif %}
-{% if stat_s === C_o.STAT_a[1] %}
+  <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
+</div>
+
+
+{#% if stat_s === C_o.STAT_a[1] %}
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_hue" name="{{stat_s}}_nav" type="radio">
   <nav>
   </nav>
@@ -42,6 +46,4 @@
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_hue" name="{{stat_s}}_nav" type="radio">
   <nav>
   </nav>
-{% endif %}
-  <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
-</div>
+{% endif %#}

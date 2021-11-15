@@ -39,7 +39,7 @@ class LogScale
             scale_o
                .maxval_n
             ||
-            1000000    //: maximum log value
+            1000000.0    //: maximum log value
           )
 
     this

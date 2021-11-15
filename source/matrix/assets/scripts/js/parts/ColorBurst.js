@@ -20,7 +20,7 @@ class ColorBurst
       (
         this,
         burst_o
-      )                    ;console.log( this )
+      )                   ;console.log( this )
 
     this
       .context_o =
@@ -29,13 +29,14 @@ class ColorBurst
             .getContext( '2d' )
 
     this
-    .unit_n =
-      360
-      *
-      Math.PI * 2    // H_o.PI2_n is full circle (360°)
-      /
-      burst_o
-        .range_n
+      .unit_n =
+        burst_o
+          .range_n
+        *
+        2 * Math.PI    //: full circle (360°)
+        /
+        burst_o
+          .range_n
 
     this
       .paint_c =
@@ -67,6 +68,13 @@ class ColorBurst
       *
       this
         .unit_n
+      -             //: substract PI/2 to start at 12:00 not 3:00
+      (
+        Math
+          .PI
+        *
+        .5
+      )
 
     const x_n =
       (

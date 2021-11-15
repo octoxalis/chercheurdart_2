@@ -15,10 +15,10 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav {
   z-index: 1;
   position: absolute;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: {{S_o.PAD_4}};
+  justify-content: center;
+  gap: {{S_o.PAD_2}};
   padding: {{S_o.PAD_2}};
-  width: 24ch;
+  width: 28ch;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label > span[data-icon=substat] {
   border: 2px solid {{S_o.nav_substat}};
@@ -28,20 +28,20 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav > label:hover > span
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] {
   display: none;
-  height: 24ch;
-  padding-top: {{S_o.PAD_10}};
+  height: 28ch;
+  padding: {{S_o.PAD_8}};
   border-radius: 50%;
   background: hsla( 220 17% 17%/.7);
-  opacity: 1;
   transition: opacity ease 2s;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label {
   position: relative;
-  left: 4ch;
-  width: 20ch;
+  width: 100%;
+  line-height: 1.5;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span:not( [data-icon] ) {
-  margin-left: 1ch;
+  margin-left: 2ch;
+  font-size: 140%;
   font-weight: 700;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span[data-icon=substat] {
@@ -69,6 +69,7 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > nav#{{C_o.STAT_a[0]}}_sc
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > canvas {
   background: transparent;
+  cursor: crosshair;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_hue {
   display: block;
