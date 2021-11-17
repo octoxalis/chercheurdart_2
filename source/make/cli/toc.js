@@ -301,7 +301,7 @@ const TOC_o =
           .doc_n
         <
         X_o
-          .HIDDEN_DOCS_n
+          .CHART_DOCS_n    //: skip works chart documents
       )
       {
         ++count_n

@@ -13,8 +13,9 @@
 <section#{{C_o.STAT_a[2]}}>
         display: block;
 </section>
-<section#{{C_o.STAT_a[0]}}>
-  <div[id^={{C_o.DIV_ID_s}}]>
+
+<section>
+  <div[id^={{C_o.DIV_ID_s}}_stat]>
           height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
           display: flex;
           flex-direction: column;
@@ -46,40 +47,8 @@
       </label>
     </nav>
     <!--variant-->
-    <nav[id^=nav_{{C_o.STAT_a[0]}}]>
-            display: none;
-            height: 28ch;
-            padding: {{S_o.PAD_8}};
-            border-radius: 50%;
-            background: hsla( 220 17% 17%/.7);
-            transition: opacity ease 2s;
-      <label>
-              position: relative;
-              width: 100%;
-              line-height: 1.5;
-              <span:not( [data-icon] )>
-                margin-left: 2ch;
-                font-size: 140%;
-                font-weight: 700;
-        </span>
-        <span[data-icon=substat]>
-                border: 2px solid {{S_o.nav_substat}};
-        </span>
-      </label>
-      <!--variant-->
-      <label:hover>
-        <span[data-icon]>
-                border: 2px solid transparent;
-        </span>
-      </label>
-    </nav>
-    <nav[id^=nav_{{C_o.STAT_a[0]}}]:hover>
-            opacity: 1;
-            transition: opacity ease .2s;
-            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
-        </nav>
-    <nav#{{C_o.STAT_a[0]}}_scale>
-            top:  {{S_o.PAD_6}};
+    <nav[id$=_scale]>
+            top:  {{S_o.PAD_8}};
             left: 0;
             height: fit-content;
             background: transparent;
@@ -95,10 +64,58 @@
       </label>
     </nav>
     <!--variant-->
+    <nav[id^=nav_{{C_o.STAT_a[0]}}]>
+            display: none;
+            height: 28ch;
+            padding: {{S_o.PAD_8}};
+            border-radius: 50%;
+            background: hsla( 220 17% 17%/.7);
+            transition: opacity ease 2s;
+      <label>
+              position: relative;
+              width: 100%;
+              display: flex;
+              flex-grow: 1;
+        <span:not( [data-icon] )>
+                flex-grow: 2;
+                font-size: 140%;
+                font-weight: 500;
+        </span>
+        <!--variant-->
+        <span[data-icon=substat]>
+                border: 2px solid {{S_o.nav_substat}};
+        </span>
+      </label>
+      <!--variant-->
+      <label:first-of-type>
+              display: flex;
+              flex-direction: column;
+              flex-grow: 0;
+              justify-items: center;
+              text-align: center;
+        <span:not( [data-icon] )>
+                flex-grow: 0;
+                margin: 0;
+                width: 100%;
+        </span>
+      </label>
+      <!--variant-->
+      <label:hover>
+        <span[data-icon]>
+                border: 2px solid transparent;
+        </span>
+      </label>
+    </nav>
+    <nav[id^=nav_{{C_o.STAT_a[0]}}]:hover>
+            opacity: 1;
+            transition: opacity ease .2s;
+            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+    </nav>
+    <!--variant-->
     <canvas>
             background: transparent;
-            /*border: 1px solid red;       test */
             cursor: crosshair;
+            /*border: 1px solid red;       test */
     </canvas>
     <!--variant-->
     <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked />

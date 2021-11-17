@@ -20,7 +20,7 @@ class ColorBurst
       (
         this,
         burst_o
-      )                   ;console.log( this )
+      )                   //;console.log( this )
 
     this
       .context_o =

@@ -126,7 +126,8 @@ const BUR_o =
           .trace_o
             [ `${part_s}Ratio_e` ]
               .innerHTML =
-                `${frequency_n}`
+                frequency_n
+                  .toLocaleString()
       
         break
     

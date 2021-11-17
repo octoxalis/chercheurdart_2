@@ -1,7 +1,26 @@
 <!DOCTYPE html>
-<div id="DI_paint">
+<div id="DI_stat_paint">
+  <input id="IN_paint_img" name="paint_nav" type="radio" checked>
+  <input id="IN_paint_settings" name="paint_nav" type="radio">
+
+  <canvas id="canvas_paint_img"></canvas>
+  
+  <nav id="paint_scale">
+    <label for="IN_paint_settings" data-legend="réglages"><span data-icon="substat_op">&#8801;</span></label>
+    <label id="paint_scale_inc" data-legend="agrandir"><span data-icon="substat_op">&#43;</span></label>
+    <label id="paint_scale_dec" data-legend="réduire"><span data-icon="substat_op">&#8722;</span></label>
+  </nav>
+
+  <div id="DI_paint_settings">
+    <aside id="paint_settings_units">
+      <nav id="aside_paint_scale">
+        <label for="IN_paint_img" data-legend="fermer"><span data-icon="substat_op">&#215;</span></label>
+      </nav>
+    </aside>
+    <canvas id="canvas_paint_settings"></canvas>
+    <aside id="paint_settings_state">
+    </aside>
+  </div>
+
   <script id=script_paint data-src="/assets/scripts/js/paint.min.js"></script>
 </div>
-
-
-

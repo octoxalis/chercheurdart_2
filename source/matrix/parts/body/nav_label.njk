@@ -5,7 +5,7 @@
 {% endfor %}
 {% if stat_a %}
   {% for _stat in stat_a %}
-    <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[loop.index0]}}" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[loop.index0]}}" data-legend="{{C_o.NAV_LEGEND_o[_stat].legend_s}}"><span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
+    <label id="{{C_o.LABEL_ID_s}}_{{_stat}}" for="{{C_o.INPUT_ID_s}}_{{_stat}}" data-legend="{{C_o.NAV_LEGEND_o[_stat].legend_s}}"><span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
   {% endfor %}
 {% endif %}
 </nav>

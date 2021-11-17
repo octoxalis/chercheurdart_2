@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      1024,
+  doc_n:      7168,
   title_s:    `Adam de Coster`,
   subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
   abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
@@ -65,6 +65,6 @@
 //---------------------------------------
 == Colorimétrie
 
-Graphique de rayonnement à échelle logarithmique
+Graphique de rayonnement (burst) à échelle logarithmique
 
 {% end_doc %}

@@ -1,0 +1,63 @@
+<section#{{C_o.STAT_a[2]}}>
+        background: hsla( 100 17% 28%/1 );
+  <div>
+    <!--<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings />-->
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
+            display: none;
+            z-index: 10;
+            position: absolute;
+            top: {{S_o.PAD_8}};
+            left: 0;
+            width: 100vw;
+            height: 512px;
+            transform: translateY( -512px );
+            transition: transform 1s ease;
+    </div>
+  </div>
+  <div>
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_img:checked />
+    ~
+    <canvas#canvas_{{C_o.STAT_a[2]}}_img>
+            display: block;
+    </canvas>
+    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked />
+    ~
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
+            display: flex;
+            width: 100vw;
+            background: red;
+            transform: translateY( 0 );
+            transition: transform 1s ease;
+      <aside>
+              flex-grow: 1;
+      </aside>
+      <aside>
+        <nav#aside_{{C_o.STAT_a[2]}}_scale>
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 0;
+                top: 0;
+                left: 0;
+                padding: {{S_o.PAD_2}};
+                width: 100%;
+                height: fit-content;
+                background: transparent;
+          <label>
+            <span[data-icon=substat_op]>
+                    border: 2px solid {{S_o.nav_substat_op}};
+            </span>
+          </label>
+        </nav>
+        <label:hover>
+          <span[data-icon]>
+                  border: 2px solid transparent;
+          </span>
+        </label>
+      </aside>
+      <canvas>
+              width: calc( 3 * 360px );
+      </canvas>
+    </div>
+  </div>
+</section>

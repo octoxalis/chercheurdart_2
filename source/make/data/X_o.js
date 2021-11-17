@@ -13,19 +13,28 @@ const X_o =
   AT_DOCN_n:   0,      //: doc_n in docs_a
   AT_TOPICS_n: 4,      //: [topic_s,...]
 
-  ARTICLE_n:   0,      //: 0-1023
-  WORKS_n:     1,      //: 1024-
-  NEWS_n:      2,      //: 2048-
-                                  //... _n: 3,      //: 3072-
-  SITE_n:      4,      //: 4096-
-  TECH_n:      5,      //: 5120-
-  UI_n:        6,      //: 6144-
-  HIDDEN_n:    7,      //: 7168-8191
+  //XX ARTICLE_n:   0,      //: 0-1023
+  //XX WORKS_n:     1,      //: 1024-
+  //XX NEWS_n:      2,      //: 2048-
+  //XX                                 //... _n: 3,      //: 3072-
+  //XX SITE_n:      4,      //: 4096-
+  //XX TECH_n:      5,      //: 5120-
+  //XX UI_n:        6,      //: 6144-
+  //XX HIDDEN_n:    7,      //: 7168-8191
+  ARTICLE_n:     0,      //: 0-1023
+  NEWS_n:        1,      //: 1024-
+  SITE_n:        3,      //: 3072-
+  TECH_n:        4,      //: 4096-
+  WORKS_n:       5,      //: 5120-
+  WORKS_CHART_n: 7,      //: 7168-
+  HIDDEN_n:      10,     //: 10240-
 
-  CAT_RANGE_n:   7,     //: 8 categories
-  RANGE_SHIFT_n: 10,    //: ... of 1024 documents
 
-  HIDDEN_DOCS_n: ( 1 << 10 ) * 7,    //:  ( 1 << X_o.RANGE_SHIFT_n ) * X_o.CAT_RANGE_n
+  CAT_RANGE_n:   10,     //: 11 categories
+  RANGE_SHIFT_n: 10,     //: ... of 1024 documents
+
+  CHART_DOCS_n:  ( 1 << 10 ) * 7,     //:  ( 1 << X_o.RANGE_SHIFT_n ) * X_o.CAT_RANGE_n
+  HIDDEN_DOCS_n: ( 1 << 10 ) * 10,    //:  ( 1 << X_o.RANGE_SHIFT_n ) * X_o.CAT_RANGE_n
 }
 
 

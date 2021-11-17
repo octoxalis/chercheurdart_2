@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      1024,
+  doc_n:      5120,
   title_s:    `Adam de Coster`,
   subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
   abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
@@ -60,6 +60,7 @@ Passé en vente chez Sotheby's à New York, cette {{young_woman}} constitue un j
 
 * pass:[<a href={{U_o.url_s}}{{workID_s}}--burst.html>burst</a>]
 * pass:[<a href={{U_o.url_s}}{{workID_s}}--aster.html>aster</a>]
+* pass:[<a href={{U_o.url_s}}{{workID_s}}--paint.html>paint</a>]
 
 
 == Analyse

@@ -1,31 +1,9 @@
-<!--
-<div>
-  <label for="toc_link_a" data-list="link_n">4</label>
-  <input id="toc_link_a" type="checkbox">
-  <ul data-list="link_a">
-    <li>
-      <a href="1586-de_coster--new_york-sothebys--1625-young_woman.html">Jeune femme (1625 c.) par Adam de Coster</a>
-      <label for="L_1586-de_coster--new_york-sothebys--1625-young_woman" tabindex="-1" data-ins="₀">${C_o.INFO_s}</label>
-      <input id="L_1586-de_coster--new_york-sothebys--1625-young_woman" type="checkbox">
-      <ins>
-        <span data-ins="₀">
-          <b data--="stamp"><bold>14 octobre 2021</bold> à 12:00:00</b>
-          <b data--="abstract">A. de Coster Jeune femme 1625 c.</b>
-        </span>
-      </ins>
-    </li>
-  </ul>
-</div>
--->
-
-
-
 {% set _count_n = 0 %}
 {% set _page_a = collections.collection %}
 
 {% set _link_a %}
 {% for _page_o in _page_a %}
-  {% if _page_o.doc_n  > X_o.DOC_INDEX_n and _page_o.doc_n < X_o.HIDDEN_DOCS_n  %}
+  {% if _page_o.doc_n  > X_o.DOC_INDEX_n and _page_o.doc_n < X_o.CHART_DOCS_n  %}
   {% set _count_n += 1 %}
   {% set _id_s += 1 %}
 

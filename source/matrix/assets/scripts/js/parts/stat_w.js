@@ -750,6 +750,33 @@ const STAT_W_o =
     const { stat_s, part_s } =
       payload_o
 
+    if
+    (
+      STAT_W_o
+        .scan_a
+          [STAT_W_o.SCAN_HUE_FREQ_n]
+            [ payload_o.hue_n ]
+      ===
+      0
+    )
+    {
+      STAT_W_o
+        .stat_o
+          [ `${stat_s}_o` ]
+            .sat_o
+              .burst_c
+                .clear__v()
+
+      STAT_W_o
+        .stat_o
+          [ `${stat_s}_o` ]
+            .lum_o
+              .burst_c
+                .clear__v()
+
+      return
+    }
+    //-->
     let range_n
         
     switch

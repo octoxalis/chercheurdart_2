@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      7168,
+  doc_n:      10240,
   title_s:    `Style guide`,
   subtitle_s: `AsciiDoc subset used in chercheurd.art`,
   abstract_s: `Style guide for *chercheurd.art*`,

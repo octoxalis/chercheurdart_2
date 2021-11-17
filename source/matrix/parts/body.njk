@@ -12,9 +12,9 @@
 <a id="{{C_o.PAGE_TOP}}"></a>
 {% include "parts/body/main.njk" %}
 {% if _stat_s %}
-{% include "parts/body/stat.njk" %}
+{% include "parts/body/stat_iframe.njk" %}
 {% endif %}
-{% include "parts/body/nav.njk" %}    <!-- at end to be upper layer -->
+{% include "parts/body/nav_label.njk" %}    <!-- at end to be upper layer -->
 <a id="goto_{{C_o.PAGE_TOP}}" href=#{{C_o.PAGE_TOP}}>{{C_o.UP_ARROW_s}}</a>
 {% include "parts/body/svg_inline.njk" %}
 {% if C_o.SERVICE_b === true %}

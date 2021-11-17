@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<div id="{{C_o.DIV_ID_s}}_stat_{{stat_s}}">
+  <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_hue" name="{{stat_s}}_nav" type="radio" checked>
+  <canvas id="canvas_{{stat_s}}_hue"></canvas>
+  <nav id="nav_{{stat_s}}_hue">
+    <label>{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}<span id="{{stat_s}}_hue_n">0</span></label>
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
+  </nav>
+
+  <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
+</div>
