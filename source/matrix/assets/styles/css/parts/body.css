@@ -1,4 +1,5 @@
 body {
+  --nav_width: 16ch;
   position: relative;
   overflow-X: hidden;
   min-height: 200vh;

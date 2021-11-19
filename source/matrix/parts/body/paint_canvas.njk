@@ -11,16 +11,78 @@
     <label id="{{stat_s}}_scale_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
   </nav>
 
+
+
+
   <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_settings">
-    <aside id="{{stat_s}}_settings_units">
-      <nav id="aside_{{stat_s}}_scale">
+    <aside id="aside_{{stat_s}}_settings">
+      <nav id="nav_{{stat_s}}_settings">
         <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_close.icon_s}}</span></label>
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_origin" data-legend="{{C_o.NAV_LEGEND_o.paint_origin.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.paint_origin.icon_s}}</span></label>
       </nav>
-    </aside>
-    <canvas id="canvas_{{stat_s}}_settings"></canvas>
-    <aside id="{{stat_s}}_settings_state">
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_hue">
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_grade_hue" name="tarzan" list="{{stat_s}}_settings_datalist_grade" />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_precision_hue" name="tarzan" list="{{stat_s}}_settings_datalist_precision" />
+        <datalist id="{{stat_s}}_settings_datalist_grade" value=1>
+          <option>graduations</option>
+          <option>1</option>
+          <option>0.5</option>
+          <option>0.2</option>
+          <option>0.01</option>
+        </datalist>
+        <datalist id="{{stat_s}}_settings_datalist_precision" value=1>
+          <option>precision</option>
+          <option>1</option>
+          <option>3</option>
+          <option>9</option>
+          <option>17</option>
+        </datalist>
+        <canvas id="canvas_{{stat_s}}_hue"></canvas>
+        <label>
+          <input type="text" readonly value=123 />
+          <input type="text" readonly value=0,001 />
+          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>&nbsp;</span>
+        </label>
+      </div>
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_sat">
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_grade_sat" name="tarzan" list="{{stat_s}}_settings_datalist_grade" />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_precision_sat" name="tarzan" list="{{stat_s}}_settings_datalist_precision" />
+        <canvas id="canvas_{{stat_s}}_sat"></canvas>
+        <label>
+          <input type="text" readonly value=123 />
+          <input type="text" readonly value=0,001 />
+          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>&nbsp;</span>
+        </label>
+      </div>
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_lum">
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_grade_lum" name="tarzan" list="{{stat_s}}_settings_datalist_grade" />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_precision_sat" name="tarzan" list="{{stat_s}}_settings_datalist_precision" />
+        <canvas id="canvas_{{stat_s}}_lum"></canvas>
+        <label>
+          <input type="text" readonly value=123 />
+          <input type="text" readonly value=0,001 />
+          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>&nbsp;</span>
+        </label>
+      </div>
     </aside>
   </div>
 
+
+
+
   <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
 </div>
+
+<!--
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+
+
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+      <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+-->

@@ -16,7 +16,7 @@ context( stack, new )
             font-size: 85%;    /* block round_label: line-height: .85; */
             line-height: 2;
             transform: translateX( -16ch );
-            transition: transform ease .5s;
+            transition: transform ease .3s;
     </label>
     <a>
       context( block, link_raw )
@@ -27,7 +27,7 @@ context( stack, new )
     <label>
             position: relative;
             overflow: hidden;
-            width: 4ch;
+            width: var(--nav_width);
             font-weight: 300;
             color: currentColor;
             text-transform: uppercase;
@@ -64,8 +64,8 @@ context( stack, new )
       context( copy, next )
     </a>
     <label:hover>
-            width: 16ch;
-            transition: all ease .5s;
+            width: var(--nav_width);
+            transition: all ease .3s;
     </label>
     <a:hover>
       <span>

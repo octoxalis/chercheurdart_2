@@ -3,46 +3,110 @@ section#{{C_o.STAT_a[2]}} {
 }
 section#{{C_o.STAT_a[2]}} > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
   display: none;
-  z-index: 10;
+  z-index: 1;
   position: absolute;
   top: {{S_o.PAD_8}};
   left: 0;
-  width: 100vw;
-  height: 512px;
-  transform: translateY( -512px );
-  transition: transform 1s ease;
+  width: calc( 2 * (50px + 100px) );
+  height: fit-content;
+  background: hsla( 190 28% 50% /1);
+  transform: translateX( calc( -2 * (50px + 100px) ) );
+  transition: transform .5s ease;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_img:checked ~ canvas#canvas_{{C_o.STAT_a[2]}}_img {
   display: block;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
-  display: flex;
-  width: 100vw;
-  background: red;
-  transform: translateY( 0 );
-  transition: transform 1s ease;
+  display: block;
+  top: {{S_o.PAD_8}};
+  transform: translateX( 0 );
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside {
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 4fr 4fr;
+  grid-gap: 0;
+  width: calc( 2 * (50px + 100px) );
+  height: auto;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav#aside_{{C_o.STAT_a[2]}}_scale {
-  display: flex;
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav#nav_{{C_o.STAT_a[2]}}_settings {
+  grid-area: 1 / 1 / 2 / 3;
   flex-direction: column;
-  justify-content: center;
-  gap: 0;
-  top: 0;
-  left: 0;
-  padding: {{S_o.PAD_2}};
-  width: 100%;
-  height: fit-content;
-  background: transparent;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav#aside_{{C_o.STAT_a[2]}}_scale > label > span[data-icon=substat_op] {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav#nav_{{C_o.STAT_a[2]}}_settings > label > span[data-icon=substat_op] {
   border: 2px solid {{S_o.nav_substat_op}};
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > label:hover > span[data-icon] {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav#nav_{{C_o.STAT_a[2]}}_settings > label:hover > span[data-icon] {
   border: 2px solid transparent;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > canvas {
-  width: calc( 3 * 360px );
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div {
+  display: flex;
+  flex-direction: column;
+  gap: {{S_o.PAD_1}};
+  padding: {{S_o.PAD_2}};
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > input[list] {
+  padding: {{S_o.PAD_1}} {{S_o.PAD_4}};
+  width: 100px;
+  height: {{S_o.PAD_6}};
+  color: currentColor;
+  background: transparent;
+  border: 1px solid {{S_o.ins_shadow_ne}};
+  font-size: 65%;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > canvas {
+  width: 100px;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label {
+  position: relative;
+  top: -50px;
+  left: -{{S_o.PAD_3}};
+  display: flex;
+  justify-content: flex-end;
+  gap: {{S_o.PAD_3}};
+  padding: 2px 0;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > input {
+  width: 6ch;
+  height: {{S_o.PAD_4}};
+  color: currentColor;
+  background: transparent;
+  font-size: 65%;
+  font-weight: 300;
+  border: none;
+  opacity: 0;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > input:first-of-type {
+  width: 3ch;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > input:hover {
+  opacity: 1;
+  transition: all .5s;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > span {
+  width: {{S_o.PAD_2}};
+  height: {{S_o.PAD_2}};
+  background: {{S_o.nav_substat_op}};
+  border-radius: 50%;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue {
+  grid-area: 2 / 1 / 4 / 2;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue > canvas#canvas_{{C_o.STAT_a[2]}}_hue {
+  height: calc( 360px * 2 );
+  background: hsla(0 50% 50%/1);
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_sat {
+  grid-area: 2 / 2 / 3 / 3;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_sat > canvas#canvas_{{C_o.STAT_a[2]}}_sat {
+  height: calc( 100px * 2 );
+  background: hsla(100 50% 50%/1);
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_lum {
+  grid-area: 3 / 2 / 4 / 3;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_lum > canvas#canvas_{{C_o.STAT_a[2]}}_lum {
+  height: calc( 100px * 2 );
+  background: hsla(200 50% 50%/1);
 }

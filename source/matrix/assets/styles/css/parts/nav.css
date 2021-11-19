@@ -13,7 +13,7 @@ nav > a:before, nav > label:before {
   font-size: 85%;
   line-height: 2;
   transform: translateX( -16ch );
-  transition: transform ease .5s;
+  transition: transform ease .3s;
 }
 nav > a {
   text-decoration: none;
@@ -22,7 +22,7 @@ nav > a {
 nav > a, nav > label {
   position: relative;
   overflow: hidden;
-  width: 4ch;
+  width: var(--nav_width);
   font-weight: 300;
   color: currentColor;
   text-transform: uppercase;
@@ -44,8 +44,8 @@ nav > label > span[data-icon=stat] {
   border: 2px solid {{S_o.nav_stat}};
 }
 nav > a:hover, nav > label:hover {
-  width: 16ch;
-  transition: all ease .5s;
+  width: var(--nav_width);
+  transition: all ease .3s;
 }
 nav > a:hover > span, nav > label:hover > span {
   border: 2px solid transparent;

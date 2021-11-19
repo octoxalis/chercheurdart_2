@@ -108,10 +108,13 @@ const C_o =
     
     burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},       //: ⊜
     
-    stat_open:      { icon_s: `&#8801;`, legend_s: `réglages`},     //: ⊜
+    stat_open:      { icon_s: `&#8801;`, legend_s: `palette`},     //: ⊜
     stat_close:     { icon_s: `&#215;`, legend_s: `fermer`},     //: ⊜
     stat_increment: { icon_s: `&#43;`, legend_s: `agrandir`},     //: ⊜
     stat_decrement: { icon_s: `&#8722;`, legend_s: `réduire`},      //: ⊜
+
+    paint_origin:   { icon_s: `&#8722;`, legend_s: `original`},
+    paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
   },
 
 
