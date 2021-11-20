@@ -1,9 +1,6 @@
 nav {
   display: flex;
   justify-content: center;
-  gap: 4ch;
-  width: 100%;
-  height: {{S_o.NAV_HEIGHT_s}};
   background: {{S_o.bgcolor}};
 }
 nav > a:before, nav > label:before {

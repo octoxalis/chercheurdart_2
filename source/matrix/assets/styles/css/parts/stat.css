@@ -27,7 +27,7 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label:hover > span[data-icon] {
   border: 2px solid transparent;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$=_scale] {
-  top: {{S_o.PAD_8}};
+  top: {{S_o.PAD_6}};
   left: 0;
   height: fit-content;
   background: transparent;

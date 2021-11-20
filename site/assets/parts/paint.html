@@ -21,47 +21,33 @@
         <label for="IN_paint_origin" data-legend="original"><span data-icon="substat_op">&#8722;</span></label>
       </nav>
       <div id="DI_paint_hue">
-        <input id="IN_paint_settings_grade_hue" name="tarzan" list="paint_settings_datalist_grade" />
-        <input id="IN_paint_settings_precision_hue" name="tarzan" list="paint_settings_datalist_precision" />
-        <datalist id="paint_settings_datalist_grade" value=1>
-          <option>graduations</option>
-          <option>1</option>
-          <option>0.5</option>
-          <option>0.2</option>
-          <option>0.01</option>
-        </datalist>
-        <datalist id="paint_settings_datalist_precision" value=1>
-          <option>precision</option>
-          <option>1</option>
-          <option>3</option>
-          <option>9</option>
-          <option>17</option>
-        </datalist>
+        <input id="IN_paint_settings_grade_hue" type=range min=0 max=100 />
+        <input id="IN_paint_settings_precision_hue" type=range min=0 max=100 />
         <canvas id="canvas_paint_hue"></canvas>
         <label>
-          <input type="text" readonly value=123 />
-          <input type="text" readonly value=0,001 />
           <span data-icon=&nbsp;>&nbsp;</span>
+          <output type="text">123</output>
+          <output type="text">0,001</output>
         </label>
       </div>
       <div id="DI_paint_sat">
-        <input id="IN_paint_settings_grade_sat" name="tarzan" list="paint_settings_datalist_grade" />
-        <input id="IN_paint_settings_precision_sat" name="tarzan" list="paint_settings_datalist_precision" />
+        <input id="IN_paint_settings_grade_sat" type=range min=0 max=100 />
+        <input id="IN_paint_settings_precision_sat" type=range min=0 max=100 />
         <canvas id="canvas_paint_sat"></canvas>
         <label>
-          <input type="text" readonly value=123 />
-          <input type="text" readonly value=0,001 />
           <span data-icon=&nbsp;>&nbsp;</span>
+          <output type="text">123</output>
+          <output type="text">0,001</output>
         </label>
       </div>
       <div id="DI_paint_lum">
-        <input id="IN_paint_settings_grade_lum" name="tarzan" list="paint_settings_datalist_grade" />
-        <input id="IN_paint_settings_precision_sat" name="tarzan" list="paint_settings_datalist_precision" />
+        <input id="IN_paint_settings_grade_lum" type=range min=0 max=100 />
+        <input id="IN_paint_settings_precision_lum" type=range min=0 max=100 />
         <canvas id="canvas_paint_lum"></canvas>
         <label>
-          <input type="text" readonly value=123 />
-          <input type="text" readonly value=0,001 />
           <span data-icon=&nbsp;>&nbsp;</span>
+          <output type="text">123</output>
+          <output type="text">0,001</output>
         </label>
       </div>
     </aside>
@@ -72,17 +58,3 @@
 
   <script id=script_paint data-src="/assets/scripts/js/paint.min.js"></script>
 </div>
-
-<!--
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-
-
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
-      <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
--->

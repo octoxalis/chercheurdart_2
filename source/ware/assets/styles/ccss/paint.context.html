@@ -6,9 +6,9 @@
             display: none;
             z-index: 1;
             position: absolute;
-            top: {{S_o.PAD_8}};
+            top: {{S_o.PAD_6}};
             left: 0;
-            width: calc( 2 * (50px + 100px) );
+            width: calc( 2 * (120px + 100px) );
             height: fit-content;
             background: hsla( 190 28% 50% /1);            /*TEMPORARY*/
             transform: translateX( calc( -2 * (50px + 100px) ) );
@@ -26,18 +26,23 @@
     ~
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
             display: block;
-            top: {{S_o.PAD_8}};
+            top: {{S_o.PAD_6}};
             transform: translateX( 0 );
       <aside>
 	      display: grid;
-	      grid-template-columns: 1fr 1fr;
-	      grid-template-rows: 1fr 4fr 4fr;
+	      /*grid-template-columns: auto auto;*/
+	      grid-template-rows: auto 1fr 1fr;
               grid-gap: 0;
-              width: calc( 2 * (50px + 100px) );
+              padding: 0 {{S_o.PAD_4}} {{S_o.PAD_4}} {{S_o.PAD_4}} ;
+              width: calc( 2 * (120px + 100px) );
               height: auto;
         <nav#nav_{{C_o.STAT_a[2]}}_settings>
 	        grid-area: 1 / 1 / 2 / 3;
-                flex-direction: column;
+                /*flex-direction: row;*/
+                justify-content: space-between;
+                gap: 1em;
+                margin: {{S_o.PAD_2}} 0 {{S_o.PAD_8}} 0;
+                width: 100%;
           <label>
             <span[data-icon=substat_op]>
                     border: 2px solid {{S_o.nav_substat_op}};
@@ -52,53 +57,73 @@
         <div>
                   display: flex;
                   flex-direction: column;
-                  gap: {{S_o.PAD_1}};
-                  padding: {{S_o.PAD_2}};
-          <datalist>
-          </datalist>
-          <input[list] />
-                padding: {{S_o.PAD_1}} {{S_o.PAD_4}};
-                width: 100px;
-                height: {{S_o.PAD_6}};
-                color: currentColor;
-                background: transparent;
-                border: 1px solid {{S_o.ins_shadow_ne}};
-                font-size: 65%;
+                  align-content: flex-end;
+                  padding: {{S_o.PAD_4}};
+          <input[type=range] />
+                  /*-webkit-appearance: none;*/
+                  position: absolute;
+                  margin: -{{S_o.PAD_4}} 0;
+                  width: 100px;
+                  background: transparent;
+          <input[type=range]:nth-of-type( 2n ) />
+                  width: 200px;
+                  transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg );
+                  transform-origin: top left;
+          <input[type=range]:focus />
+                  outline: none;
+          <input[type=range]::-webkit-slider-runnable-track />
+                  width: 100px;
+                  height: 16px;
+          <input[type=range]::-webkit-slider-thumb />
+                  -webkit-appearance: none;
+                  /*height: 1px;*/
+                  /*width:  1px;*/
+                  /*background: hsla( 200 17% 94%/1);*/
+                  cursor: pointer;
           <canvas>
                 width: 100px;
           </canvas>
           <label>
                   position: relative;
-                  top: -50px;
-                  left: -{{S_o.PAD_3}};
+                  top: -100px;
+                  left: {{S_o.PAD_3}};
                   display: flex;
-                  justify-content: flex-end;
-                  gap: {{S_o.PAD_3}};
-                  padding: 2px 0;
-            <input />
+                  flex-direction: row-reverse;
+                  justify-content: space-between;
+                  width: 100px;
+            <output>
                     width: 6ch;
                     height: {{S_o.PAD_4}};
                     color: currentColor;
                     background: transparent;
                     font-size: 65%;
-                    font-weight: 300;
+                    font-weight: 500;
                     border: none;
                     opacity: 0;
-            <input:first-of-type />
+                    line-height: 1.2;    /* vertical centering */
+
+            </output>
+            <output:first-of-type>
                     width: 3ch;
-            <input:hover />
-                    opacity: 1;
-                    transition: all .5s;
+            </output>
             <span>
-                    width: {{S_o.PAD_2}};
-                    height: {{S_o.PAD_2}};
+                    width: {{S_o.PAD_3}};
+                    height: {{S_o.PAD_3}};
                     background:  {{S_o.nav_substat_op}};
                     border-radius: 50%;
             </span>
+            <span:hover>
+            </span>
+            ~
+            <output>
+                  opacity: 1;    /* reveal */
+            </output>
           </label>
         </div>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue>
 	        grid-area: 2 / 1 / 4 / 2;
+          <input[type=range]:nth-of-type( 2n ) />
+                  width: calc( 360px * 2 );
           <canvas#canvas_{{C_o.STAT_a[2]}}_hue>
                   height: calc( 360px * 2 );
                   background: hsla(0 50% 50%/1);
