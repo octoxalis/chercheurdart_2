@@ -42,8 +42,9 @@
   
   //=== IMAGES
   '1748_arion':
-      `₍₉ Arion (1748-50) par François Boucher
-      1703-boucher--princeton-university--1748-arion₎`
+`₍₉
+Arion
+1703-boucher--princeton-university--1748-arion₎`
   ,
   
 }
@@ -58,8 +59,10 @@
 //========================================
 = {{title_s}}
 
-₍₀ {{abstract_s}}
-  {{F_o.versionList__s(version_a)}}₎
+₍₀
+{{abstract_s}}
+{{F_o.versionList__s(version_a)}}
+₎
 
 //---------------------------------------
 == Presentation

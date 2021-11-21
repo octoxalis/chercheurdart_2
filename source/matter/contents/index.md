@@ -49,8 +49,10 @@
 //========================================
 = {{title_s}}
 
-₍₀ {{abstract_s}}
-  {{F_o.versionList__s(version_a)}}₎
+₍₀
+{{abstract_s}}
+{{F_o.versionList__s(version_a)}}
+₎
 
 //---------------------------------------
 == Contenu en ligne
@@ -59,24 +61,29 @@ include::{index_toc}[]
 == Avertissement
 
 **{{A_o.NAME_s}}** est délibéremment 
-₍₀ expérimental
-  Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
-  - **Google Chrome** (je recommande tout particulièrement {Brave}, pour des raisons de confidentialité)
-  - **Mozilla Firefox**.
+₍₀
+expérimental
+Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
+- **Google Chrome** (je recommande tout particulièrement {Brave}, pour des raisons de confidentialité)
+- **Mozilla Firefox**.
 
-  La page {site_tech} donne un aperçu de son infrastructure
-  La page {guide} détaille son fonctionnement₎!
+La page {site_tech} donne un aperçu de son infrastructure
+La page {guide} détaille son fonctionnement
+₎
+!
 
 == Confidentialité
 
 **{{A_o.NAME_s}}** respecte l'
-₍₀ anonymité
-  nul **cookie**,
-  nul **enregistrement** de votre adresse Internet Protocol,
-  nul **traçage** de vos interactions sur chaque page,
-  nulle **information personelle** transmise à de tierces parties:
-  &nbsp;
-  **nous ne moneyons pas votre profil comportemental** &hellip;₎
+₍₀
+anonymité
+nul **cookie**,
+nul **enregistrement** de votre adresse Internet Protocol,
+nul **traçage** de vos interactions sur chaque page,
+nulle **information personelle** transmise à de tierces parties:
+&nbsp;
+**nous ne moneyons pas votre profil comportemental** &hellip;
+₎
 de votre visite!
 
 == Colophon

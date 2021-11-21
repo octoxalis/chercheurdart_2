@@ -1,17 +1,15 @@
 <section#{{C_o.STAT_a[2]}}>
-        background: hsla( 100 17% 28%/1 );
+        /*background: hsla( 100 17% 28%/1 );*/           /*TEMPORARY*/
   <div>
-    <!--<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings />-->
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
             display: none;
             z-index: 1;
             position: absolute;
             top: {{S_o.PAD_6}};
             left: 0;
-            width: calc( 2 * (120px + 100px) );
+            width: 320px;
             height: fit-content;
-            background: hsla( 190 28% 50% /1);            /*TEMPORARY*/
-            transform: translateX( calc( -2 * (50px + 100px) ) );
+            transform: translateX( -320px );
             transition: transform .5s ease;
     </div>
   </div>
@@ -30,17 +28,15 @@
             transform: translateX( 0 );
       <aside>
 	      display: grid;
-	      /*grid-template-columns: auto auto;*/
 	      grid-template-rows: auto 1fr 1fr;
               grid-gap: 0;
               padding: 0 {{S_o.PAD_4}} {{S_o.PAD_4}} {{S_o.PAD_4}} ;
-              width: calc( 2 * (120px + 100px) );
-              height: auto;
+              width: 320px;
+              height: fit-content;
         <nav#nav_{{C_o.STAT_a[2]}}_settings>
 	        grid-area: 1 / 1 / 2 / 3;
-                /*flex-direction: row;*/
+                flex-direction: column;
                 justify-content: space-between;
-                gap: 1em;
                 margin: {{S_o.PAD_2}} 0 {{S_o.PAD_8}} 0;
                 width: 100%;
           <label>
@@ -59,27 +55,24 @@
                   flex-direction: column;
                   align-content: flex-end;
                   padding: {{S_o.PAD_4}};
+                  height: fit-content;
+                  align-self: end;
           <input[type=range] />
-                  /*-webkit-appearance: none;*/
                   position: absolute;
                   margin: -{{S_o.PAD_4}} 0;
                   width: 100px;
                   background: transparent;
+                  cursor: pointer;
+                  transform: scaleY( .3 );
           <input[type=range]:nth-of-type( 2n ) />
                   width: 200px;
-                  transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg );
+                  transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg ) scaleY( .3 );
                   transform-origin: top left;
           <input[type=range]:focus />
                   outline: none;
           <input[type=range]::-webkit-slider-runnable-track />
                   width: 100px;
                   height: 16px;
-          <input[type=range]::-webkit-slider-thumb />
-                  -webkit-appearance: none;
-                  /*height: 1px;*/
-                  /*width:  1px;*/
-                  /*background: hsla( 200 17% 94%/1);*/
-                  cursor: pointer;
           <canvas>
                 width: 100px;
           </canvas>
@@ -148,6 +141,9 @@
       <canvas>
       </canvas>
 
+    </div>
+    <div:hover>
+            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
     </div>
   </div>
 </section>

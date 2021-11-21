@@ -20,20 +20,6 @@ const ADOC_o =
     extension_registry: null
   }
   ,
-
-
-
-  convert__s:
-    input_s =>
-      ADOC_o
-        .ad_o
-          .convert
-          (
-            input_s,
-            ADOC_o
-              .options_o
-          )
-  ,
 }
 
 
@@ -62,6 +48,13 @@ module.exports =
   convert__s:
     input_s =>
       ADOC_o
-        .convert__s( input_s )
-,
+        .ad_o
+          .convert
+          (
+            input_s,
+            ADOC_o
+              .options_o
+          )
+  ,
+
 }

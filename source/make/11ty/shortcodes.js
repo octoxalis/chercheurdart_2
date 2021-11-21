@@ -14,22 +14,22 @@ const CODES_o =
     section_s
   ) =>
   {
-    content_s =
+    let doc_s =
       PREP_o
-        .ins__s( content_s )
+        .convert__s( content_s )
 
-    let output_s =
+    doc_s =
       `<section id="${section_s}">`
       + ADOC_o
-          .convert__s( content_s )
+          .convert__s( doc_s )
 
-    output_s +=
+    doc_s +=
     `</div>\n`                 //: first close last chapter div
       + C_o.TOPICS_REPLACE_s      //: to be replaced by topics to documents list
       + C_o.COMMENTS_REPLACE_s     //: to be replaced by comment part, if issue_n is defined
       + `</section>\n`         //: \n is mandatory
 
-    return output_s
+    return doc_s
   }
   ,
 }

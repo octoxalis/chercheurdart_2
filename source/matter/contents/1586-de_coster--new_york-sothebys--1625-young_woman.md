@@ -33,8 +33,9 @@
 
   //=== IMAGES
   'young_woman':
-      `₍₉ Jeune femme tenant une quenouille
-      1586-de_coster--new_york-sothebys--1625-young_woman₎`
+`₍₉
+Jeune femme
+1586-de_coster--new_york-sothebys--1625-young_woman₎`
   ,
 
 }
@@ -48,8 +49,10 @@
 //========================================
 = {{title_s}}
 
-₍₀ {{abstract_s}}
-  {{F_o.versionList__s(version_a)}}₎
+₍₀
+{{abstract_s}}
+{{F_o.versionList__s(version_a)}}
+₎
 
 //---------------------------------------
 == Presentation

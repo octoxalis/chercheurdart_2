@@ -40,8 +40,9 @@
 
   //=== IMAGES
   'young_woman':
-      `₍₉ &nbsp;
-      1586-de_coster--new_york-sothebys--1625-young_woman₎`
+`₍₉
+&#8918;
+1586-de_coster--new_york-sothebys--1625-young_woman₎`
   ,
 
 }
@@ -56,9 +57,12 @@
 //========================================
 = {{title_s}}
 
-₍₀ {{abstract_s}}
-  {{F_o.versionList__s(version_a)}}₎
-  {{young_woman}}
+₍₀
+{{abstract_s}}
+{{F_o.versionList__s(version_a)}}
+₎
+
+{{young_woman}}
 
 * pass:[<a href={{U_o.url_s}}{{workID_s}}.html>Présentation</a>]
 

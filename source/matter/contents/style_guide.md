@@ -35,26 +35,29 @@
 
   //=== IMAGES
   '1748_arion':
-      `₍₉ Arion
-      1703-boucher--princeton-university--1748-arion₎`
+  `₍₉
+  Arion
+  1703-boucher--princeton-university--1748-arion₎`
   ,
 
   //=== BIBLIO
   // NB: inside ins, html markup can be used if ins is enclosed in an AsciiDoc pass directive
   '1989_langdon':
-      `₍₂ Claude Lorrain
-      1989-langdon₊₊**p.123**₊₊f.123₊₊On peut ajouter une __précision__...₊₊link<index.html>"link"₊₊image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"₊₊etc.₎`
+`₍₂
+Claude Lorrain
+1989-langdon₊₊**p.123**₊₊f.123₊₊On peut ajouter une __précision__...₊₊link<index.html>"link"₊₊image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"₊₊etc.₎`
   ,
   
 }
 ---
 {% _doc section_a[0] %}
-//LINKS
+// LINKS (ins inner link has to be passed)
+
 :chercheurdart: {{U_o.url_s}}index.html[chercheurd.art]
-// ins inner link has to be passed
 :chercheur_dart: pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]
 
-//INCLUDES (path is relative to source dir)
+// INCLUDES (path is relative to source dir)
+
 :index_toc: {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html
 :tab_artist: {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
 
@@ -68,8 +71,10 @@
 //========================================
 = {{title_s}}
 
-₍₀ {{abstract_s}}
-  {{F_o.versionList__s(version_a)}}₎
+₍₀
+{{abstract_s}}
+{{F_o.versionList__s(version_a)}}
+₎
 
 //---------------------------------------
 == Articles en ligne
@@ -131,15 +136,19 @@ Les blocs insérés en ligne se composent de deux parties:
 === TEXTE (txt) specifier_s = ₀
 
 Le texte précédent l'
-₍₀ appel (prinpipal_s)
-  parenthèse ouverte (caractère substring)
-  specifier_s: 0-99 (caractères substring)₎
+₍₀
+appel (prinpipal_s)
+parenthèse ouverte (caractère substring)
+specifier_s: 0-99 (caractères substring)
+₎
 est suivi de la
-₍₀ référence (subsid_s)
-  newline
-  indentation (espaces)
-  référence (mono ou multiligne)
-  parenthèse fermée (caractère substring)₎
+₍₀
+référence (subsid_s)
+newline
+indentation (espaces)
+référence (mono ou multiligne)
+parenthèse fermée (caractère substring)
+₎
 suite du texte.
 
 .horizontal line
@@ -147,9 +156,11 @@ suite du texte.
 
 === DEFINITION (def) specifier_s = ₁
 
-₍₁ Définition multiple (single level list)
+₍₁
+Définition multiple (single level list)
 definition primo
-definition secondo₎
+definition secondo
+₎
 
 .horizontal line
 '''
@@ -163,30 +174,38 @@ Dans sa monographie {{1989_langdon}}, H. Langdon a décrit ce tableau...
 
 === CITATION (quo) specifier_s = ₃
 
-₍₃ Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
-  F. Nietzsche
-  Crépuscule des idoles
-  Maximes et pointes § 33₎
+₍₃
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis.
+F. Nietzsche
+Crépuscule des idoles
+Maximes et pointes § 33
+₎
 
-₍₃ Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
-  A. Dupin
-  {chercheurdart}₎
+₍₃
+Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
+A. Dupin
+{chercheurdart}
+₎
 
 .horizontal line
 '''
 
 ===  TABLE (tab) specifier_s = ₄
 
-₍₄ Example 1 - inline table
-  20_50_30
-  2_1_0
-  TITLE_0₊TITLE_1₊TITLE_2
-  ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
-  ROW_1_0₊ROW_1_1₊{chercheur_dart}₎
+₍₄
+Example 1 - inline table
+20_50_30
+2_1_0
+TITLE_0₊TITLE_1₊TITLE_2
+ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
+ROW_1_0₊ROW_1_1₊{chercheur_dart}
+₎
 
-₍₀ Example 2 - AsciiDoc include table
-  __ generated with CLI table script__
-  using file name₎ +
+₍₀
+Example 2 - AsciiDoc include table
+__ generated with CLI table script__
+using file name
+₎ +
 //!!! insert break
 include::{tab_artist}[]
 
@@ -202,17 +221,36 @@ include::{tab_artist}[]
 === Insert markup
 
 Use AsciiDoc pass:[] to insert link, images...
-₍₀<> par exemple:
-  image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"
-  link<index.html>"link"
-  `code_line = 1234`
-  __italic__
-  **bold**₎
+₍₀~
+par exemple:
+image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"
+link<index.html>"link"
+`code_line = 1234`
+__italic__
+**bold**
+₎
 
 //----------------------------------------
 == Link
 
 link:#article__anchor_1234[Reference]
+
+//----------------------------------------
+== Org mode
+
+¯include:file¯ parts/Table_des_artistes.ins
+₌file₌
+
+¯link:chercheurdart¯ https://chercheurd.art/
+₌chercheurdart₊path/to/file.html₌
+
+¯img:coster_woman¯ 1586-de_coster--new_york-sothebys--1625-young_woman
+₌coster_woman₊Jeune femme 1625 c.₌
+
+¯func:stamp__s¯ F_o.stamp__s
+₌stamp__s₊2021-11-21T17:00:00Z₌
+
+
 
 //----------------------------------------
 // References

@@ -163,6 +163,8 @@ const C_o =
   UP_ARROW_s:           '&#8593;',
   IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
 
+  PICT_s:               '&#8918;',    //: 
+
   SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
   
   //=== DB ID
@@ -187,7 +189,14 @@ const C_o =
   //=== INSERT
   INS_PRINCIPAL_s:     '₌',    //: subscript =
   INS_DELIM_s:         '₊₊',   //: subscript ++
-  INS_PASS_s:          '<>',   //: use adoc pass:[...]
+  INS_PASS_s:          '~',    //: use adoc pass:[...]
+
+  //=== PREPROCESS ===
+  PRE_DEC_DELIM_s:     '¯',
+  PRE_REF_DELIM_s:     '₌',
+  PRE_ARG_DELIM_s:     '₊',
+  PRE_KEY_DELIM_s:     ':',
+
 
   //=== REPLACE
   GALERY_REPLACE_s:    '<del for=section_galery hidden ></del>',
