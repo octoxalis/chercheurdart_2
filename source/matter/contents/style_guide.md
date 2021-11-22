@@ -4,7 +4,7 @@
   permalink: 'style_guide.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
-  //-- expires_n: 10,
+  // - expires_n: 10,
 
   doc_n:      10240,
   title_s:    `Style guide`,
@@ -51,23 +51,6 @@ Claude Lorrain
 }
 ---
 {% _doc section_a[0] %}
-// LINKS (ins inner link has to be passed)
-
-:chercheurdart: {{U_o.url_s}}index.html[chercheurd.art]
-:chercheur_dart: pass:[<a href=https://chercheurdart-2.netlify.app>chercheurd.art</a>]
-
-// INCLUDES (path is relative to source dir)
-
-:index_toc: {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html
-:tab_artist: {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
-
-// TOPICS
-////
-‹Claude Gelée›
-‹Nicolas Poussin›
-‹Charles Lebrun›
-‹François Boucher›
-////
 //========================================
 = {{title_s}}
 
@@ -76,59 +59,77 @@ Claude Lorrain
 {{F_o.versionList__s(version_a)}}
 ₎
 
-//---------------------------------------
-== Articles en ligne
-include::{index_toc}[]
+# --------------------------------------
+# MOVE TO TOP
+# --------------------------------------
+¯link:chercheurdart¯ {{U_o.url_s}}
 
-//----------------------------------------
+¯link:chercheur_dart¯ https://chercheurdart-2.netlify.app
+
+¯include:toc¯ {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html
+¯include:tab_artist¯ {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
+
+# TOPICS
+#+begin_comment
+‹Claude Gelée›
+‹Nicolas Poussin›
+‹Charles Lebrun›
+‹François Boucher›
+#+end_comment
+
+
+== Articles en ligne
+₌toc₌
+
+# ---------------------------------------
 == Header h2
 
 Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 === Header h3
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 ==== Header h4
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 ===== Header h5
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
 ====== Header h6
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 
-//----------------------------------------
+# ---------------------------------------
 == Alinea avec un titre de 37 caractères
 
 .paragraph
-Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis. Tincidunt massa erat quisque augue nostra pellentesque auctor suspendisse mus orci, ultricies phasellus maecenas dapibus sem suscipit enim cras nullam molestie non, facilisi purus porta congue etiam class ornare nulla cursus. Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
+Lorem ipsum dolor sit amet consectetur adipiscing elit mollis dignissim duis, nunc tincidunt cras ultricies felis morbi blandit ut mattis sociosqu dis, congue velit gravida fames libero eget habitasse commodo venenatis..
 
 
-//----------------------------------------
-anchor:article__anchor_1234[]
-Voici une référence
+# ---------------------------------------
+== Référence
 
-//----------------------------------------
+¯anchor:article__anchor_1234¯ Voici une référence
+
+
+# ---------------------------------------
 == List
 
-.unordered
-* primo
-* secondo
-  - un
-  - deux
-* tertio
+NB: Dont use `*` as 1rst level (conflict with h1... headers); use `-` instead
 
-//----------------------------------------
+.unordered
+- primo
+- secondo
+  * un
+  * deux
+- tertio
+
+# ---------------------------------------
 == Insert
 
 Les blocs insérés en ligne se composent de deux parties:
 
-* appel (prinpipal_s)
-* référence (subsid_s)
+- appel (prinpipal_s)
+- référence (subsid_s)
 
 .horizontal line
 '''
@@ -184,7 +185,7 @@ Maximes et pointes § 33
 ₍₃
 Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes.
 A. Dupin
-{chercheurdart}
+₌chercheur_dart₊Le site Chercheur d'Art₌
 ₎
 
 .horizontal line
@@ -198,7 +199,7 @@ Example 1 - inline table
 2_1_0
 TITLE_0₊TITLE_1₊TITLE_2
 ROW_0_0₊ROW_0_1 is a bit longer₊ROW_0_2
-ROW_1_0₊ROW_1_1₊{chercheur_dart}
+ROW_1_0₊ROW_1_1₊₌chercheur_dart₊Chercheur d'Art₌
 ₎
 
 ₍₀
@@ -206,8 +207,9 @@ Example 2 - AsciiDoc include table
 __ generated with CLI table script__
 using file name
 ₎ +
-//!!! insert break
-include::{tab_artist}[]
+# !!! insert break
+₌tab_artist₌
+
 
 .horizontal line
 '''
@@ -226,36 +228,65 @@ par exemple:
 image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"
 link<index.html>"link"
 `code_line = 1234`
-__italic__
-**bold**
+ __italic__
+ **bold**
 ₎
 
-//----------------------------------------
+# ---------------------------------------
 == Link
 
-link:#article__anchor_1234[Reference]
+[[#article__anchor_1234][Reference]]
 
-//----------------------------------------
+# ---------------------------------------
 == Org mode
 
-¯include:file¯ parts/Table_des_artistes.ins
-₌file₌
+Link has been declared at page top
 
-¯link:chercheurdart¯ https://chercheurd.art/
-₌chercheurdart₊path/to/file.html₌
+Link with path added to href and link text: ₌chercheurdart₊style_guide.html₊Le Guide!₌
+
+Link with only a link text: ₌chercheurdart₊Le Site!₌
+
+Link with not even a link text (invalid): ₌chercheurdart₌
 
 ¯img:coster_woman¯ 1586-de_coster--new_york-sothebys--1625-young_woman
 ₌coster_woman₊Jeune femme 1625 c.₌
 
-¯func:stamp__s¯ F_o.stamp__s
+¯eval:stamp__s¯ F_o.stamp__s
 ₌stamp__s₊2021-11-21T17:00:00Z₌
 
+¯include:file¯ {{C_o.CONTENT_PARTS_DIR_s}}include_test.adoc
+₌file₊3 5-8₌
+
+Next line is a line comment.
+# This is a line comment.
+Previous line is a line comment (it is concatenad with line before).
+
+comment has been removed @@REMOVE@@ from this line.
+
+A block comment follows:
+#+begin_comment
+This is a block comment.
+It can span multiple line.
+As well as other markup.
+#+end_comment
+It has been removed!
+
+[[#article__anchor_1234][Reference]]
+
+[[https://chercheurd.art][Chercheur d'Art]]
+
+*** H3 Title
+**** H4 Title
+***** H5 Title
+
+Line break at end of this line +
+without blank line after.
 
 
-//----------------------------------------
-// References
+# ---------------------------------------
+# References
 
-//----------------------------------------
-// Comments
+# ---------------------------------------
+# Comments
 
 {% end_doc %}

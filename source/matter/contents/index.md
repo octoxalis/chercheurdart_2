@@ -60,7 +60,7 @@ include::{index_toc}[]
 
 == Avertissement
 
-**{{A_o.NAME_s}}** est délibéremment 
+ **{{A_o.NAME_s}}** est délibéremment 
 ₍₀
 expérimental
 Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
@@ -74,7 +74,7 @@ La page {guide} détaille son fonctionnement
 
 == Confidentialité
 
-**{{A_o.NAME_s}}** respecte l'
+ **{{A_o.NAME_s}}** respecte l'
 ₍₀
 anonymité
 nul **cookie**,
@@ -82,12 +82,12 @@ nul **enregistrement** de votre adresse Internet Protocol,
 nul **traçage** de vos interactions sur chaque page,
 nulle **information personelle** transmise à de tierces parties:
 &nbsp;
-**nous ne moneyons pas votre profil comportemental** &hellip;
+ **nous ne moneyons pas votre profil comportemental** &hellip;
 ₎
 de votre visite!
 
 == Colophon
 
-**{{A_o.NAME_s}}** est généré avec la complicité de {11ty}
+ **{{A_o.NAME_s}}** est généré avec la complicité de {11ty}
 
 {% end_doc %}

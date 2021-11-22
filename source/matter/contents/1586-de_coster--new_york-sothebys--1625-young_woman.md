@@ -61,9 +61,9 @@ Passé en vente chez Sotheby's à New York, cette {{young_woman}} constitue un j
 
 == Colorimétrie
 
-* pass:[<a href={{U_o.url_s}}{{workID_s}}--burst.html>burst</a>]
-* pass:[<a href={{U_o.url_s}}{{workID_s}}--paint.html>paint</a>]
-// * pass:[<a href={{U_o.url_s}}{{workID_s}}--aster.html>aster</a>]
+- pass:[<a href={{U_o.url_s}}{{workID_s}}--burst.html>burst</a>]
+- pass:[<a href={{U_o.url_s}}{{workID_s}}--paint.html>paint</a>]
+// - pass:[<a href={{U_o.url_s}}{{workID_s}}--aster.html>aster</a>]
 
 == Analyse
 

@@ -196,6 +196,19 @@ const C_o =
   PRE_REF_DELIM_s:     '₌',
   PRE_ARG_DELIM_s:     '₊',
   PRE_KEY_DELIM_s:     ':',
+  PRE_RANGE_DELIM_s:   ' ',    //: 1-4 6-8 ...
+  PRE_LINES_DELIM_s:   '-',
+  //?? PRE_OPEN_LINK_s:     '[',
+  //?? PRE_CLOSE_LINK_s:    ']',
+  PRE_BLOCK_START_s:  '#',
+  PRE_BLOCK_OPEN_s:   '+begin_',
+  PRE_BLOCK_CLOSE_s:  '+end_',
+  PRE_INLINE_COMMENT_s: '@@',    //: open + close delimiter
+
+  PRE_HEADER_s: '*',
+  PRE_MD_HEADER_s: '#',
+
+
 
 
   //=== REPLACE

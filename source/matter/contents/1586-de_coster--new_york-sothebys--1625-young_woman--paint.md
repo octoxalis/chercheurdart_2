@@ -64,7 +64,7 @@
 ₎
 {{young_woman}}
 
-* pass:[<a href={{U_o.url_s}}{{workID_s}}.html>Présentation</a>]
+- pass:[<a href={{U_o.url_s}}{{workID_s}}.html>Présentation</a>]
 
 //---------------------------------------
 == Colorimétrie interactive
