@@ -67,77 +67,6 @@ enclosing """consecutive comment""" chars
 
 
 
-""" BLOCK MARKUP """
-""" syntax: §§§(inc|ins|img|tab)~~~KEY~~~VALUE§§§ """
-
-""" INCLUDE (auto invocation) """
-type: inc
-
-§§§ inc
-~~~
-Example 2 - included table
-~~~
-{{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
-§§§
-
-
-
-""" INSERT """
-type: ins
-
-§§§ ins
-~~~
-insert_ref
-~~~
-₍₀
-newline
-indentation (espaces)
-référence (mono ou multiligne)
-parenthèse fermée (caractère substring)₎
-§§§
-!!! insert_ref~~~référence (subsid_s) !!!
-
-
-
-""" IMAGE """
-type: img
-
-§§§ img
-~~~
-arion
-~~~
-₍₉
-Arion
-1703-boucher--princeton-university--1748-arion₎
-§§§
-
-!!! arion~~~Arion par F. Boucher !!!
-
-
-
-""" TABLE """
-type: tab
-
-§§§ tab
-~~~
-tab_1
-~~~
-20_50_30
-2_1_0
-TITLE_0
-TITLE_1
-TITLE_2
-ROW_0_0
-ROW_0_1 is a bit longer
-ROW_0_2
-ROW_1_0
-ROW_1_1
-[[[https://chercheurd.art~~~Chercheur d'Art]]]
-§§§
-!!! tab_1~~~Example 1 - inline table!!!
-
-
-
 """ DIRECT REFERENCE """
 """ LINK """
 """ syntax: [[[href~~~link_s]]] """
@@ -161,31 +90,100 @@ ROW_1_1
 
 
 
+""" BLOCK MARKUP """
+"""
+syntax: |||(inc|ins)~~~KEY~~~VALUE|||
+"""
+
+""" INCLUDE """
+type: inc
+
+||| inc
+~~~
+tab_2
+~~~
+{{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
+|||
+!!! tab_2~~~Example 2 - included table !!!
+
+
+
+""" INSERT """
+type: ins
+
+||| ins
+~~~
+insert_ref
+~~~
+₍₀
+newline
+indentation (espaces)
+référence (mono ou multiligne)
+parenthèse fermée (caractère substring)₎
+|||
+!!! insert_ref~~~référence (subsid_s) !!!
+
+
+
+""" IMAGE """
+type: img
+
+|||
+~~~
+arion
+~~~
+₍₉
+Arion
+1703-boucher--princeton-university--1748-arion₎
+|||
+!!! arion~~~Arion par F. Boucher !!!
+
+
+
+""" TABLE """
+type: tab
+
+||| tab
+~~~
+tab_1
+~~~
+₍₄
+20_50_30
+2_1_0
+TITLE_0
+TITLE_1
+TITLE_2
+ROW_0_0
+ROW_0_1 is a bit longer
+ROW_0_2
+ROW_1_0
+ROW_1_1
+[[[https://chercheurd.art~~~Chercheur d'Art]]]₎
+|||
+!!! tab_1~~~Example 1 - inline table!!!
+
+
+
 """ INLINE MARKUP """
 
-|||1 HEADER 1
-|||6 HEADER 6
+""" HEADERS """
+§§§1 HEADER 1
+§§§6 HEADER 6
 
 
-
-""" ANYWHERE IN LINE """
 
 """ BOLD """
-
-before :::BOLD CHARS::: after
+before :::bold chars::: after
 
 
 
 """ ITALIC """
-
-before ///ITALIC CHARS/// after
+before ///italic chars/// after
 
 
 
 """ EMPHASIS """
-
-before ___EMPHASIS CHARS___ after
-
+before ___emphasis chars___ after
 
 
 #+end_comment
