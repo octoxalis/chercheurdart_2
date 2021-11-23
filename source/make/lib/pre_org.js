@@ -1,22 +1,18 @@
-const FS_o =
-  require( 'fs-extra' )
-
 const REX_o =
   require( './regex.js' )
 
-const C_o =
-  require( '../data/C_o.js' )
+const P_o =
+  require( '../data/P_o.js' )
 
 const F_o =
   require( '../data/F_o.js' )
 
-const I_re =
-  REX_o
-    .new__re( 'i' )
 
-const GM_re =
-  REX_o
-    .new__re( 'gm' )
+
+const PRE_o =
+{
+  escape_a: []
+}
 
 
 
@@ -28,7 +24,8 @@ module
       {
         let match_a
 
-        for
+        
+        for        //: store escape
         (
           match_a
           of
@@ -38,42 +35,56 @@ module
               content_s
                 .matchAll
                 (
-                  GM_re
-                  `
-                  ${C_o.PRE_DEC_DELIM_s}
-                  (
-                    [^${C_o.PRE_DEC_DELIM_s}]+?
-                  )
-                  ${C_o.PRE_DEC_DELIM_s}
-                  \s+
-                  (
-                  [\s\S]+?
-                  )
-                  \n
-                  `
+                  P_o
+                    .escape_re
                 )
             )
         )
         {
-          let
-          [
-            replace_s,
-            key_s,
-            value_s
-          ] =
-            match_a              //;console.table( [replace_s, key_s, value_s ] )
-
+                         //;console.table( [match_a[0], match_a[1], match_a.index] )
           const
-          [
-            keyword_s,
-            ref_s
-          ] =
-            key_s
-              .split( C_o.PRE_KEY_DELIM_s )  //;console.table( [keyword_s, ref_s ] )
+            [
+              replace_s,
+              escape_s
+            ] =
+              match_a
 
-          for
+          const index_s =
+            `${P_o.ESCAPE_s}${match_a.index}`
+
+          PRE_o
+            .escape_a
+              .push
+              (
+                {
+                  index_s,
+                  escape_s
+                }
+
+              )
+
+          content_s =
+            content_s
+              .replace
+              (
+                replace_s,
+                index_s
+              )                //;console.log( content_s )
+        }
+
+        for
+        (
+          let type_s
+          of
+          [
+            'comment_block_re',
+            'comment_inline_re'
+          ]
+        )
+        {
+          for        //: remove block comments
           (
-            let replace_a
+            match_a
             of
             Array
               .from
@@ -81,369 +92,24 @@ module
                 content_s
                   .matchAll
                   (
-                    GM_re
-                    `
-                    ${C_o.PRE_REF_DELIM_s}
-                    ${ref_s}
-                    (
-                    ${C_o.PRE_ARG_DELIM_s}+?
-                    (
-                      [^${C_o.PRE_REF_DELIM_s}]+?
-                    )
-                    )?
-                    ${C_o.PRE_REF_DELIM_s}
-                    `
+                    P_o
+                      [type_s]
                   )
               )
-          )
-          {
-            let
-            [
-              occurence_s,
-              arg_,
-            ] =
-              replace_a
-
-              if
-              (
-                arg_
-                &&
-                arg_
-                  .startsWith( C_o.PRE_ARG_DELIM_s )
-              )
-              {
-                arg_ =
-                  arg_
-                    .slice( 1 )      //: skip PRE_ARG_DELIM_s
-              }      
-      
-            switch
-            (
-              keyword_s
-            )
-            {
-              case 'img':        //=== IMAGE ===
-
-                content_s =
-                  content_s
-                    .replace
-                    (
-                      occurence_s,
-                      `₍₉
-                      ${arg_}
-                      ${value_s}₎`
-                    )
-              
-                break
-          
-              case 'link':        //=== LINK ===
-
-                let link_s
-
-                if
-                (
-                  arg_
-                )
-                {
-                  const
-                  [
-                    arg1_s,
-                    arg2_s,
-                  ] =
-                    arg_
-                      .split( C_o.PRE_ARG_DELIM_s )
-
-                  if
-                  (
-                    arg1_s
-                      .endsWith( 'html' )
-                  )
-                  {
-                    link_s =
-                      `[[${value_s}${arg1_s}][${arg2_s || ''}]]`
-                  }
-                  else
-                  {
-                    link_s =
-                    `[[${value_s}][${arg1_s}]]`
-                  }
-                }
-                else
-                {
-                  link_s =
-                  `[[${value_s}][LIEN]]`    //: anomaly: we should have an
-                }
-
-                content_s =
-                  content_s
-                    .replace
-                    (
-                      occurence_s,
-                      link_s
-                    )
-              
-                break
-          
-              case 'eval':        //=== FUNCTION CALL ===
-
-                const result_s =
-                eval ( `${value_s}( '${arg_}' )` )
-
-                content_s =
-                  content_s
-                    .replace
-                    (
-                      occurence_s,
-                      `pass:[${result_s}]`    //!!! REMOVE AsciiDoc pass:
-                    )
-                
-                break
-            
-              case 'include':        //=== INCLUDE ===
-
-                const include_s =
-                  FS_o
-                    .readFileSync
-                    (
-                      value_s,
-                      {
-                        encoding:'utf-8',
-                        flag:'r'
-                      }
-                    )
-
-                let line_s = ''
-
-                let line_a =
-                  include_s
-                    .split( '\n' )
-
-                
-                if
-                (
-                  ! arg_
-                )
-                {
-                  line_s =
-                    include_s
-                }
-                else
-                {
-                  const arg_a =
-                    arg_
-                      .split( C_o.PRE_ARG_DELIM_s )
-
-                  const range_a =
-                    arg_a
-                      [0]
-                        .split( C_o.PRE_RANGE_DELIM_s )
-
-                  for
-                  (
-                    let range_s
-                    of
-                    range_a
-                  )
-                  {
-                    let
-                    [
-                      from_s,
-                      to_s
-                    ] =
-                      range_s
-                        .split( C_o.PRE_LINES_DELIM_s )
-
-                      to_s =
-                        to_s
-                        ||
-                        from_s
-                    
-                    line_s +=
-                      line_a
-                        .slice
-                        (
-                          +from_s - 1,
-                          +to_s
-                        )
-                        .join( '\n' )
-                      +
-                      '\n\n'            //: ranges as paragraphs
-                  }
-                }
-
-                content_s =
-                  content_s
-                    .replace
-                    (
-                       occurence_s,
-                       line_s
-                    )
-                                      
-                break
-            
-              default:
-                break
-            }
-          }
-
-          let replacing_s =
-            keyword_s
-            ===
-            'anchor'
-            ?
-              `pass:[<a id="${ref_s}">${value_s}</a>\n]`    //!!! REMOVE AsciiDoc pass: //: keep newline
-            :
-              ''        //: remove org markup except for anchor
-    
-          content_s =
-            content_s
-              .replace
-              (
-                replace_s,
-                replacing_s
-              )
-        }
-
-        //=== LINKS === !!! AFTER previous link process
-        for
-        (
-          match_a
-          of
-          Array
-            .from
-            (
-              content_s
-                .matchAll
-                (
-                  GM_re
-                  `
-                  \[\[
-                  (
-                  [^\]]+?
-                  )
-                  \]\[
-                  (
-                  [^\]]+?
-                  )
-                  \]\]
-                  `
-                )
-            )
-        )
-        {
-          const
-          [
-            replace_s,
-            link_s,
-            name_s
-          ] =
-            match_a
-
-          content_s =
-            content_s
-              .replace
-              (
-                replace_s,
-                `pass:[<a href="${link_s}">${name_s}</a>]`    //!!! REMOVE AsciiDoc pass:
-              )
-        }
-
-        //=== INLINE COMMENT ===
-        for
-        (
-          match_a
-          of
-          Array
-            .from
-            (
-              content_s
-                .matchAll
-                (
-                  GM_re
-                  `
-                  ${C_o.PRE_INLINE_COMMENT_s}
-                  (
-                  [\s\S]*
-                  )
-                  ${C_o.PRE_INLINE_COMMENT_s}
-                  `
-                )
-            )
-        )
-        {
-          const
-          [
-            replace_s,
-            comment_s
-          ] =
-            match_a
-
-          content_s =
-            content_s
-              .replace
-              (
-                replace_s,
-                ''
-              )
-        }
-
-        //=== LINE COMMENT ===
-        for
-        (
-          match_a
-          of
-          Array
-            .from
-            (
-              content_s
-                .matchAll
-                (
-                  GM_re
-                  `
-                  \n
-                  ${C_o.PRE_BLOCK_START_s}
-                  (
-                  [^\n]*
-                  )
-                  `
-                )
-            )
-        )
-        {
-          const
-          [
-            replace_s,
-            comment_s
-          ] =
-            match_a
-
-          if
-          (
-            ! comment_s
-              .startsWith( C_o.PRE_BLOCK_OPEN_s )    //: exclude block comment
-            &&
-            ! comment_s
-              .startsWith( C_o.PRE_BLOCK_CLOSE_s )    //: exclude block comment
           )
           {
             content_s =
               content_s
                 .replace
                 (
-                  replace_s,
+                  match_a[0],
                   ''
                 )
           }
-        }
+        }                //;console.log( content_s )
 
-        //=== BLOCK COMMENT ===
-        const open_s =
-          `${C_o.PRE_BLOCK_START_s}\\${C_o.PRE_BLOCK_OPEN_s}comment`    //: escape +begin
 
-        const close_s =
-          `${C_o.PRE_BLOCK_START_s}\\${C_o.PRE_BLOCK_CLOSE_s}comment`   //: escape +end
-
-        for
+        for        //: block
         (
           match_a
           of
@@ -453,36 +119,97 @@ module
               content_s
                 .matchAll
                 (
-                  GM_re
-                  `
-                  ${open_s}
-                  (
-                  [\s\S]*?
-                  )
-                  ${close_s}
-                  `
+                  P_o
+                    .block_re
                 )
             )
         )
         {
           const
+            [
+              replace_s,
+              type_s,
+              key_s,
+              value_s
+            ] =
+              match_a
+
+          //-- ;console.table
+          //-- (
+          //--   [
+          //--     replace_s,
+          //--     type_s,
+          //--     key_s,
+          //--     value_s
+          //--   ]
+          //-- )
+          
+//...
+
+          //... content_s =
+          //...   content_s
+          //...     .replace
+          //...     (
+          //...       replace_s,
+          //...       result_
+          //...     )
+        }                ;console.log( content_s )
+        
+
+        for
+        (
+          let type_s
+          of
           [
-            replace_s,
-            comment_s
-          ] =
+            'bold',
+            'italic',
+            'emphasis',
+          ]
+        )
+        {
+          for        //: text markup
+          (
             match_a
-
-          content_s =
-            content_s
-              .replace
+            of
+            Array
+              .from
               (
-                replace_s,
-                ''
+                content_s
+                  .matchAll
+                  (
+                    P_o
+                      [`${type_s}_re`]
+                  )
               )
-        }
+          )
+          {
+            const
+              [
+                replace_s,
+                match_s
+              ] =
+                match_a
 
-        //=== HEADERS ===
-        for
+            const
+              [
+                open_s,
+                close_s
+              ] =
+                P_o
+                  [`${type_s}_a`]
+
+
+            content_s =
+              content_s
+                .replace
+                (
+                  replace_s,
+                  `${open_s}${match_s}${close_s}`
+                )
+          }
+        }                //;console.log( content_s )
+
+        for        //: headers markup
         (
           match_a
           of
@@ -492,44 +219,34 @@ module
               content_s
                 .matchAll
                 (
-                  GM_re
-                  `
-                  \n
-                  (
-                  \*{1,6}
-                  )
-                  \s+?
-                  (
-                  [^\n]*
-                  )
-                  `
+                  P_o
+                    .header_re
                 )
             )
         )
         {
-          const
-          [
-            replace_s,
-            markup_s,
+          let
+            [
+              replace_s,
+              level_s,
+              header_s
+            ] =
+              match_a
+
+          header_s =
             header_s
-          ] =
-            match_a
-
-          let level_n =
-            markup_s
-              .length
+              .trim()
 
           content_s =
             content_s
               .replace
               (
                 replace_s,
-                `pass:[\n<h${level_n}>${header_s}</h${level_n}>]`    //!!! REMOVE AsciiDoc pass:
-              )
+                `<h${level_s}>${header_s}</h${level_s}>`
+              )                //;console.log( content_s )
         }
 
-        //=== LINE BREAK ===
-        for
+        for        //: links
         (
           match_a
           of
@@ -539,29 +256,124 @@ module
               content_s
                 .matchAll
                 (
-                  GM_re
-                  `
-                  \+
-                  \n
-                  `
+                  P_o
+                    .link_re
                 )
             )
         )
         {
           const
-          [
-            replace_s,
-            break_s
-          ] =
-            match_a
+            [
+              replace_s,
+              href_s,
+              link_s
+            ] =
+              match_a
 
           content_s =
             content_s
               .replace
               (
                 replace_s,
-                `pass:[<br>]\n`    //!!! REMOVE AsciiDoc pass:
+                `<a href="${href_s}">${link_s}</a>`
               )
+        }                //;console.log( content_s )
+
+        for        //: img
+        (
+          match_a
+          of
+          Array
+            .from
+            (
+              content_s
+                .matchAll
+                (
+                  P_o
+                    .img_re
+                )
+            )
+        )
+        {
+          const
+            [
+              replace_s,
+              src,
+              alt_s
+            ] =
+              match_a
+
+          content_s =
+            content_s
+              .replace
+              (
+                replace_s,
+                `<img src="${src}" alt="${alt_s}">`
+              )
+        }                //;console.log( content_s )
+
+        for        //: call
+        (
+          match_a
+          of
+          Array
+            .from
+            (
+              content_s
+                .matchAll
+                (
+                  P_o
+                    .call_re
+                )
+            )
+        )
+        {
+          const
+            [
+              replace_s,
+              function_s,
+              arg_s
+            ] =
+              match_a
+
+          const result_ =
+            eval( `${function_s}( ${arg_s} )` )                //;console.log( result_ )
+
+          content_s =
+            content_s
+              .replace
+              (
+                replace_s,
+                result_
+              )
+        }                ;console.log( content_s )
+
+
+
+
+
+
+
+
+
+
+        for        //: restore escape
+        (
+          let escape_o
+          of
+          PRE_o
+            .escape_a
+        )
+        {
+          content_s =
+            content_s
+              .replace
+              (
+                escape_o
+                  .index_s,
+                escape_o
+                  .escape_s
+              )                //;console.log( content_s )
         }
 
         return content_s

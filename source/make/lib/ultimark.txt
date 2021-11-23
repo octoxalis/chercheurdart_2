@@ -1,7 +1,18 @@
-//=== COMMENTS ===
+""" ESCAPE MARKUP """
+use ^^^
+
+^^^
+enclosing
+consecutive
+lines
+^^^
+
+
+
+""" COMMENTS """
 use """
 
-//: BLOCK
+""" COMMENT BLOCK
 
 """
 enclosing
@@ -9,98 +20,93 @@ consecutive
 lines
 """
 
-//: INLINE
+""" COMMENT INLINE
 
 enclosing """consecutive""" chars
 
 
-//: LINE
 
-""" starting line
-
-
-
-//=== BLOCKS ===
-
-!!! BEGINING LINE
-//: DECLARATION
-use §§§
-
-§§§type+++NAME+++ID§§§
+""" BLOCK MARKUP """
+""" begining after a newline
+use ~~~ as delimiter
 
 
-//: INCLUDE
-use inc
+""" DECLARATION
+syntax: §§§type~~~ID~~~VALUE§§§
+""" REFERENCE
+syntax: !!!ID~~~PARAMS!!!
+""" PARAMS
+syntax: param1; param2;...  (; as delimiter)
 
 
-//: INSERT
-use ins
+
+""" INCLUDE
+type: inc
 
 
-//: IMAGE
-use img
 
-//: LIST
-use lis
-
-//: TABLE
-use tab
+""" INSERT
+type: ins
 
 
-!!! ANYWHERE IN LINE
-//: REFERENCE
-use !!!
 
-enclosing !!!ID+++params!!! chars
+""" IMAGE
+type: img
 
-
-//: LINK
-
-use [[[ ]]]
-use \s\s\s between link and description
-
-[[[https://chercheurd.art+++Chercheur d'Art]]]
-[[[page.html+++Chercheur d'Art]]]
+§§§img~~~coster_woman~~~1586-de_coster--new_york-sothebys--1625-young_woman§§§
+!!!coster_woman~~~Jeune femme 1625 c.!!!
 
 
-//: FUNCTION
-use  ((( )))
-use \s\s\s between ID and params
 
-(((F_o.stamp__s+++arg1 arg2)))
+""" LIST
+type: lis
 
 
-//=== MARKUP ===
 
-!!! BEGINING LINE
-//: HEADER
-use |||1...6
+""" TABLE
+type: tab
+
+
+
+""" DIRECT REFERENCE
+""" LINK
+syntax: ###LINK~~~DESCRIPTION###
+
+###https://chercheurd.art~~~Chercheur d'Art###
+###page.html~~~Chercheur d'Art###
+
+
+
+""" FUNCTION
+syntax:  (((FUNCTION~~~ARGS)))
+
+(((F_o.stamp__s~~~arg1 arg2)))
+
+
+
+""" INLINE MARKUP """
+""" STARTING LINE
+""" HEADER
+syntax: |||{1,6}
 
 |||1 HEADER 1
-|||2 HEADER 2
-|||3 HEADER 3
-|||4 HEADER 4
-|||5 HEADER 5
+"""...
 |||6 HEADER 6
 
 
-!!! ANYWHERE IN LINE
-//: BOLD
-use :::
+""" ANYWHERE IN LINE
+""" BOLD
+syntax: :::CHARS:::
 
-enclosing :::consecutive::: chars
 
-//: ITALIC
-use ///
 
-enclosing ///consecutive/// chars
+""" ITALIC
+suntax: ///CHARS///
 
-//: STRIKETHRU
-use ---
 
-enclosing ---consecutive--- chars
+""" STRIKETHRU
+syntax: ---CHARS---
 
-//: UNDERLINE
-use ___
 
-enclosing ___consecutive___ chars
+""" UNDERLINE
+syntax: ___CHARS___

@@ -8,8 +8,8 @@ const A_o = require( './A_o.js' )
 
 const U_o =
 {
-  dev_b: true,   //: development/production switch
-  //~ dev_b: false,  //!!!! REMEMBER TO ADJUST SERVICE_PATH_s & SERVICE_SCOPE_s
+  //~ dev_b: true,   //: development/production switch
+  dev_b: false,  //!!!! REMEMBER TO ADJUST SERVICE_PATH_s & SERVICE_SCOPE_s
   url_s: null,
 
   PRO_s: process.env.URL_s,
