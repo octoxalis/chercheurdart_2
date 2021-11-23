@@ -1,0 +1,106 @@
+//=== COMMENTS ===
+use """
+
+//: BLOCK
+
+"""
+enclosing
+consecutive
+lines
+"""
+
+//: INLINE
+
+enclosing """consecutive""" chars
+
+
+//: LINE
+
+""" starting line
+
+
+
+//=== BLOCKS ===
+
+!!! BEGINING LINE
+//: DECLARATION
+use §§§
+
+§§§type+++NAME+++ID§§§
+
+
+//: INCLUDE
+use inc
+
+
+//: INSERT
+use ins
+
+
+//: IMAGE
+use img
+
+//: LIST
+use lis
+
+//: TABLE
+use tab
+
+
+!!! ANYWHERE IN LINE
+//: REFERENCE
+use !!!
+
+enclosing !!!ID+++params!!! chars
+
+
+//: LINK
+
+use [[[ ]]]
+use \s\s\s between link and description
+
+[[[https://chercheurd.art+++Chercheur d'Art]]]
+[[[page.html+++Chercheur d'Art]]]
+
+
+//: FUNCTION
+use  ((( )))
+use \s\s\s between ID and params
+
+(((F_o.stamp__s+++arg1 arg2)))
+
+
+//=== MARKUP ===
+
+!!! BEGINING LINE
+//: HEADER
+use |||1...6
+
+|||1 HEADER 1
+|||2 HEADER 2
+|||3 HEADER 3
+|||4 HEADER 4
+|||5 HEADER 5
+|||6 HEADER 6
+
+
+!!! ANYWHERE IN LINE
+//: BOLD
+use :::
+
+enclosing :::consecutive::: chars
+
+//: ITALIC
+use ///
+
+enclosing ///consecutive/// chars
+
+//: STRIKETHRU
+use ---
+
+enclosing ---consecutive--- chars
+
+//: UNDERLINE
+use ___
+
+enclosing ___consecutive___ chars

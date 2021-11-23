@@ -205,7 +205,7 @@ const C_o =
   PRE_BLOCK_CLOSE_s:  '+end_',
   PRE_INLINE_COMMENT_s: '@@',    //: open + close delimiter
 
-  PRE_HEADER_s: '*',
+  PRE_HEADER_s:    '*',
   PRE_MD_HEADER_s: '#',
 
 
