@@ -7,9 +7,9 @@
   // - expires_n: 10,
 
   doc_n:      10241,
-  title_s:    `Freemark cheatsheet`,
-  subtitle_s: `Freemark markup used in chercheurd.art`,
-  abstract_s: `Freemark reference for chercheurd.art`,
+  title_s:    `3Mark cheatsheet`,
+  subtitle_s: `3Mark markup used in chercheurd.art`,
+  abstract_s: `3Mark reference for chercheurd.art`,
   //issue_n:    -1,
 
   section_a:
@@ -24,7 +24,6 @@
 
   css_a:
   [
-    //XX 'freemark.css'
   ],
 
   version_a:
@@ -35,157 +34,191 @@
 }
 ---
 {% _doc section_a[0] %}
-= {{title_s}}
+§§§1 {{title_s}}
 
-#+begin_comment
-
-
-""" ESCAPE MARKUP """
-
+§§§2 0. LOAD INCLUDED FILES
+___
+||| inc
+~~~
+3mark_test
+~~~
+{{C_o.CONTENT_PARTS_DIR_s}}3mark_test.txt
+|||
+||| inc
+~~~
+3mark_test_nested
+~~~
+{{C_o.CONTENT_PARTS_DIR_s}}3mark_test_nested.txt
+|||
+§§§2 1. ESCAPE MARKUP
 ^^^
-enclosing
-consecutive escaped
-lines
+these lines have been escaped::: <br>
+§§§1 HEADER 1 <br>
+[[[https://threemark.dev~~~3Mark]]]
 ^^^
+then restored
 
+§§§2 2. COMMENT BLOCK
 
-
-""" COMMENTS """
-""" COMMENT BLOCK """
-
-"""
-enclosing
+a block comment...
+###
+enclosed
 consecutive comment
 lines
-"""
+###
+have been removed
 
+§§§2 3. COMMENT INLINE
 
+an inlined comment ...###enclosed consecutive inlined comment### have been removed
+___
+§§§2 4. LINK
+###
+syntax: [[[href~~~link_s]]]
+###
 
-""" COMMENT INLINE """
+[[[https://threemark.dev~~~3Mark]]]
+-->
+[[[page.html~~~Local link]]]
 
-enclosing """consecutive comment""" chars
-
-
-
-""" DIRECT REFERENCE """
-""" LINK """
-""" syntax: [[[href~~~link_s]]] """
-
-
-[[[https://chercheurd.art~~~Chercheur d'Art]]] --> [[[page.html~~~Chercheur d'Art]]]
-
-
-
-""" IMAGE """
-""" syntax: <<<src~~~caption_s>>> """
+§§§2 5. IMAGE
+###
+syntax: <<<src~~~caption_s>>>
+###
 
 <<<image_src~~~Image_caption>>>
 
-
-
-""" CALL """
-""" syntax: (((function_name~~~'args', 'enclosed', 'in', 'apos'))) """
+§§§2 6. CALL
+###
+syntax: (((function_name~~~'args', 'enclosed', 'in', 'apos')))
+###
 
 (((F_o.stamp__s~~~'2021-09-16T08:12:00Z')))
 
-
-
-""" BLOCK MARKUP """
-"""
+§§§2 7. BLOCK INSERT (NOT YET)
+###
 syntax: |||(inc|ins)~~~KEY~~~VALUE|||
-"""
-
-""" INCLUDE """
+###
+___
+§§§2 8. INCLUDE
+###
 type: inc
+###
 
-||| inc
+Include whole file
+
+=== inc
 ~~~
-tab_2
+3mark_test
 ~~~
-{{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
-|||
-!!! tab_2~~~Example 2 - included table !!!
+===
 
+Include selected lines of file
 
+=== inc
+~~~
+3mark_test
+~~~
+1-3, 6, 9-40
+===
+___
+§§§2 9. BOLD
+before ***bold chars*** after
 
-""" INSERT """
+§§§2 91. STRONG
+before !!!strong chars!!! after
+
+§§§2 10. ITALIC
+before ///italic chars/// after
+
+§§§2 11. EMPHASIS
+before &&&emphasis chars&&& after
+
+§§§2 12. CODE
+before ```code chars``` after
+
+§§§2 13. CITE
+before """cite chars""" after
+
+§§§2 14. DELETE
+before ---delete chars--- after
+
+§§§2 15. HORIZONTAL LINE
+before
+___
+after
+
+§§§2 16. BREAK LINE
+before +++
+after
+___
+§§§2 NOT YET
+§§§2 101.INSERT
+###
 type: ins
-
+###
+###
 ||| ins
 ~~~
 insert_ref
 ~~~
-₍₀
-newline
-indentation (espaces)
-référence (mono ou multiligne)
-parenthèse fermée (caractère substring)₎
 |||
-!!! insert_ref~~~référence (subsid_s) !!!
+###
 
+###
+=== insert_ref~~~référence (subsid_s) ===
+###
 
-
-""" IMAGE """
+§§§2 102. INSERT IMAGE
+###
 type: img
-
+###
+###
 |||
 ~~~
 arion
 ~~~
-₍₉
-Arion
-1703-boucher--princeton-university--1748-arion₎
 |||
-!!! arion~~~Arion par F. Boucher !!!
+###
 
+###
+=== arion~~~Arion par F. Boucher ===
+###
 
-
-""" TABLE """
+§§§2 103. INSERT TABLE
+###
 type: tab
+###
 
+###
 ||| tab
 ~~~
 tab_1
 ~~~
-₍₄
-20_50_30
-2_1_0
-TITLE_0
-TITLE_1
-TITLE_2
-ROW_0_0
-ROW_0_1 is a bit longer
-ROW_0_2
-ROW_1_0
-ROW_1_1
-[[[https://chercheurd.art~~~Chercheur d'Art]]]₎
 |||
-!!! tab_1~~~Example 1 - inline table!!!
+###
 
+###
+=== tab_1~~~Example 1 - inline table===
+###
 
+___
+§§§2 EXPERIMENTAL
 
-""" INLINE MARKUP """
-
-""" HEADERS """
-§§§1 HEADER 1
-§§§6 HEADER 6
-
-
-
-""" BOLD """
-before :::bold chars::: after
-
-
-
-""" ITALIC """
-before ///italic chars/// after
-
-
-
-""" EMPHASIS """
-before ___emphasis chars___ after
-
-
-#+end_comment
+§§§2 201. LIST
+:::
+  un
+  deux
+    primo
+    secondo
+  trois
+  quatre
+    one
+      1
+      2
+      3
+    two
+  cinq
+:::
 
 {% end_doc %}
