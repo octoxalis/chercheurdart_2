@@ -38,18 +38,18 @@
 
 §§§2 0. LOAD INCLUDED FILES
 ___
-||| inc
++++ inc
 ~~~
 3mark_test
 ~~~
 {{C_o.CONTENT_PARTS_DIR_s}}3mark_test.txt
-|||
-||| inc
++++
++++ inc
 ~~~
 3mark_test_nested
 ~~~
 {{C_o.CONTENT_PARTS_DIR_s}}3mark_test_nested.txt
-|||
++++
 §§§2 1. ESCAPE MARKUP
 ^^^
 these lines have been escaped::: <br>
@@ -97,7 +97,7 @@ syntax: (((function_name~~~'args', 'enclosed', 'in', 'apos')))
 
 §§§2 7. BLOCK INSERT (NOT YET)
 ###
-syntax: |||(inc|ins)~~~KEY~~~VALUE|||
+syntax: +++(inc|ins)~~~KEY~~~VALUE+++
 ###
 ___
 §§§2 8. INCLUDE
@@ -149,7 +149,7 @@ ___
 after
 
 §§§2 16. BREAK LINE
-before +++
+before ,,,
 after
 ___
 §§§2 NOT YET
@@ -158,11 +158,11 @@ ___
 type: ins
 ###
 ###
-||| ins
++++ ins
 ~~~
 insert_ref
 ~~~
-|||
++++
 ###
 
 ###
@@ -174,11 +174,11 @@ insert_ref
 type: img
 ###
 ###
-|||
++++
 ~~~
 arion
 ~~~
-|||
++++
 ###
 
 ###
@@ -191,11 +191,11 @@ type: tab
 ###
 
 ###
-||| tab
++++ tab
 ~~~
 tab_1
 ~~~
-|||
++++
 ###
 
 ###

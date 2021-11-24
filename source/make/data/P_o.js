@@ -5,11 +5,11 @@ const REX_o =
 /* CHARS
   //-- open solo
   hrule:      _
-  break:      +
+  break:      ,
   //-- open === close
   escape:     ^
   comment  :  #
-  block:      |
+  block:      +
   reference:  =
   header:     §
   bold:       *
@@ -72,7 +72,7 @@ $
       .new__re( 'gm' )
 `
 ^
-\|{3}
+\+{3}
 \s*
 (inc|ins)                //: type_s
 \s*
@@ -87,7 +87,7 @@ $
 [\s\S]+?                 //: value_s
 )
 \s*
-\|{3}
+\+{3}
 $
 `
 ,
@@ -288,7 +288,7 @@ $
       .new__re( 'gm' )
 `
 \s+?
-\+{3}
+,{3}
 $
 `
 ,
