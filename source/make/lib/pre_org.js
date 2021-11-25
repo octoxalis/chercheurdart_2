@@ -14,8 +14,7 @@ const PRE_o =
   token_a:
     [
       'escape',
-      'comment_block',
-      'comment_inline',
+      'comment',
 
       'block',
       'reference',
@@ -34,6 +33,7 @@ const PRE_o =
       'delete',
       'hrule',
       'break',
+      'raw',
 
       'list'
     ]
@@ -91,21 +91,6 @@ const PRE_o =
 
 
 
-  comment_block__a:
-    match_a =>
-      PRE_o
-        .comment__a( match_a )
-  ,
-
-
-
-  comment_inline__a:
-    match_a =>
-      PRE_o
-        .comment__a( match_a )
-  ,
-
-
   block_inc__a:
     match_a =>
     {
@@ -149,7 +134,7 @@ const PRE_o =
   block__a:
     match_a =>
       PRE_o
-        [ `block_${match_a[1]}__a` ]( match_a )    //: match_a[1] = type_s
+        [ `block_${match_a[1] || 'inc'}__a` ]( match_a )    //: match_a[1] = type_s default to inc
   ,
 
 
@@ -248,7 +233,7 @@ const PRE_o =
   reference__a:        //========== TODO
     match_a =>
       PRE_o
-        [ `reference_${match_a[1]}__a` ]( match_a )    //: match_a[1] = type_s
+        [ `reference_${match_a[1] || 'inc'}__a` ]( match_a )    //: match_a[1] = type_s default to inc
   ,
 
 
@@ -381,14 +366,6 @@ const PRE_o =
           P_o
             [ `${tag_s}_a` ]
 
-                                  //;console.table
-                                  //(
-                                  //  [
-                                  //  open_s,
-                                  //  close_s
-                                  //  ]
-                                  //)
-
       return (
         [
           replaced_s,
@@ -484,6 +461,37 @@ const PRE_o =
 
 
 
+  raw__a:
+    match_a =>
+    {
+      const
+        [
+          replaced_s,
+          raw_s
+        ] =
+          match_a
+
+      return (
+        [
+          replaced_s,
+          raw_s
+            .replaceAll
+            (
+              '<',
+              '&lt;'
+            )
+            .replaceAll
+            (
+              '>',
+              '&gt;'
+            )
+        ]
+      )
+    }
+  ,
+
+
+
   hrule__a:
     match_a =>
       PRE_o
@@ -547,7 +555,7 @@ const PRE_o =
     
         let list_s = ''
 
-        let indent_n = 0
+        let indent_n = -1
 
         let ati_n = 0
 

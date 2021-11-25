@@ -4,23 +4,25 @@ const REX_o =
 
 /* CHARS
   //-- open solo
+  break:      |
   hrule:      _
-  break:      ,
   //-- open === close
-  escape:     ^
-  comment  :  #
-  block:      +
-  reference:  =
   header:     §
   bold:       *
-  strong:     !
+  strong:     °
+  emphasis:   !
   italic:     /
-  emphasis:   &
-  code:       `
   cite:       "
   delete:     -
-
+  code:       `
+  raw:        =
+  
   list        :
+
+  escape:     \
+  comment  :  #
+  block:      @
+  reference:  +
   //-- open !== close
   link:       <>
   img:        []
@@ -33,119 +35,111 @@ const P_o =
     REX_o
       .new__re( 'gm' )
 `
-^
-\^{3}
+\\{3}
 (
 [\s\S]*?
 )
-\^{3}
-$
+\\{3}
 `
   ,
 
-  comment_block_re:
+
+
+  comment_re:
     REX_o
       .new__re( 'gm' )
 `
-^
 #{3}
-\n
 [\s\S]*?
-\n
 #{3}
-$
 `
 ,
 
-  comment_inline_re:
-    REX_o
-      .new__re( 'gm' )
-`
-#{3}
-[\s\S]*?
-#{3}
-`
-,
+
 
   block_re:
     REX_o
       .new__re( 'gm' )
 `
 ^
-\+{3}
+@{3}
 \s*
-(inc|ins)                //: type_s
-\s*
-~{3}
+(inc|ins){0,1}                //: type_s
 \s*
 (
 [\s\S]+?                 //: key_s
 )
-~{3}
+\.{3}
 \s*
 (
 [\s\S]+?                 //: value_s
 )
 \s*
-\+{3}
+@{3}
 $
 `
 ,
+
+
 
   reference_re:
     REX_o
       .new__re( 'gm' )
 `
-={3}
+\+{3}
 \s*
-(inc|ins)                //: type_s
-\s*
-~{3}
+(inc|ins){0,1}          //: type_s
 \s*
 (
 [\s\S]+?                //: key_s
 )
 \s*
-~{3}
+\.{3}
 (
 [\s\S]*?                //: value_s
 )
 \s*
-={3}
+\+{3}
 `
 ,
+
+
 
   link_re:
     REX_o
       .new__re( 'gm' )
 `
-\[{3}
+<{3}
 (
 [\s\S]+?                 //: href_s
 )
-~{3}
+\.{3}
 (
 [\s\S]+?                 //: link_s
 )
-\]{3}
+>{3}
 `
 ,
+
+
 
   img_re:
     REX_o
       .new__re( 'gm' )
 `
-<{3}
+\[{3}
 (
 [\w]+?                   //: src
 )
-~{3}
+\.{3}
 (
 [\s\S]+?                 //: alt_s
 )
->{3}
+\]{3}
 `
 ,
+
+
 
   call_re:
     REX_o
@@ -155,13 +149,15 @@ $
 (
 [\s\S]+?                   //: function_s
 )
-~{3}
+\.{3}
 (
 [\s\S]+?                 //: arg_s (comma separated)
 )
 \){3}
 `
 ,
+
+
 
   header_re:
     REX_o
@@ -179,6 +175,8 @@ $
 `
 ,
 
+
+
   bold_re:
     REX_o
       .new__re( 'gm' )
@@ -191,17 +189,21 @@ $
 `
 ,
 
+
+
   strong_re:
     REX_o
       .new__re( 'gm' )
 `
-!{3}
+°{3}
 (
 [\s\S]+?                 //: bold_s
 )
-!{3}
+°{3}
 `
 ,
+
+
 
   italic_re:
     REX_o
@@ -215,15 +217,17 @@ $
 `
 ,
 
+
+
   emphasis_re:
     REX_o
       .new__re( 'gm' )
 `
-&{3}
+!{3}
 (
 [\s\S]+?                 //: underline_s
 )
-&{3}
+!{3}
 `
 ,
 
@@ -271,6 +275,20 @@ $
 
 
 
+  raw_re:
+    REX_o
+      .new__re( 'gm' )
+`
+={3}
+(
+[\s\S]+?                 //: cite_s
+)
+={3}
+`
+,
+
+
+
   hrule_re:
     REX_o
       .new__re( 'gm' )
@@ -288,7 +306,7 @@ $
       .new__re( 'gm' )
 `
 \s+?
-,{3}
+\|{3}
 $
 `
 ,
