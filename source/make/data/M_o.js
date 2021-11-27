@@ -7,24 +7,24 @@ const REX_o =
 //: break:      |
 //: hrule:      _
                     //-- open === close
-//: bold:       *
-//: strong:     °
-//: emphasis:   +
+//: bold:       + // *
+//: strong:     * // °
+//: emphasis:   ^ // +
 //: italic:     /
 //: cite:       "
 //: delete:     -
 //: code:       `
 //: raw:        =
 //
-//: header:     ^
+//: header:     § // ^
 //: list        :
 //: listo       ;
 //
 //: escape:     \
 //: comment  :  #
 //
-//: block:      §
-//: reference:  !
+//: block:      & // §
+//: reference:  ! // !
                     //-- open !== close
 //: link:       <>
 //: img:        []
