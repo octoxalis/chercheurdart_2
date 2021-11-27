@@ -253,14 +253,13 @@ module.exports =
   }
 
     return (
-      `pass:[Versions ${C_o.INS_DELIM_s}`    //: AsciiDoc
+      `Versions<br>`
       +  list_s
           .slice
           (
             0,
             -1    //: remove last \n
           )
-      + `]`    //: AsciiDoc
     )
   }
   ,

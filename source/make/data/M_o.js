@@ -1,35 +1,43 @@
-//=== P_o.js ===
+//=== M_o.js ===
 const REX_o =
   require( '../lib/regex.js' )
 
-/* CHARS
-  //-- open solo
-  break:      |
-  hrule:      _
-  //-- open === close
-  header:     §
-  bold:       *
-  strong:     °
-  emphasis:   !
-  italic:     /
-  cite:       "
-  delete:     -
-  code:       `
-  raw:        =
-  
-  list        :
+//=== CHARS ===
+                    //-- standalone
+//: break:      |
+//: hrule:      _
+                    //-- open === close
+//: bold:       *
+//: strong:     °
+//: emphasis:   +
+//: italic:     /
+//: cite:       "
+//: delete:     -
+//: code:       `
+//: raw:        =
+//
+//: header:     ^
+//: list        :
+//: listo       ;
+//
+//: escape:     \
+//: comment  :  #
+//
+//: block:      §
+//: reference:  !
+                    //-- open !== close
+//: link:       <>
+//: img:        []
+//: call:       ()
 
-  escape:     \
-  comment  :  #
-  block:      @
-  reference:  +
-  //-- open !== close
-  link:       <>
-  img:        []
-  call:       ()
-*/
+                    //-- reserved
+//: reserved:   ~   //: URLs separator
+//: reserved:   ?   //: empty table cells
+//: reserved:   @   //: ...
+//: reserved:   &   //: ...
 
-const P_o =
+
+const M_o =
 {
   escape_re:
     REX_o
@@ -62,20 +70,22 @@ const P_o =
       .new__re( 'gm' )
 `
 ^
-@{3}
-\s*
-(inc|ins){0,1}                //: type_s
+§{3}
 \s*
 (
-[\s\S]+?                 //: key_s
+[a-z]{0,3}   //: type_s
+)
+\s+?
+(
+[^\.]+?      //: key_s
 )
 \.{3}
 \s*
 (
-[\s\S]+?                 //: value_s
+[\s\S]+?     //: value_s
 )
 \s*
-@{3}
+§{3}        //!!! MUST NOT end on a new line
 $
 `
 ,
@@ -86,9 +96,9 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\+{3}
+!{3}
 \s*
-(inc|ins){0,1}          //: type_s
+(inc){0,1}          //: type_s
 \s*
 (
 [\s\S]+?                //: key_s
@@ -99,7 +109,7 @@ $
 [\s\S]*?                //: value_s
 )
 \s*
-\+{3}
+!{3}
 `
 ,
 
@@ -129,11 +139,11 @@ $
 `
 \[{3}
 (
-[\w]+?                   //: src
+[\s\S]+?                 //: alt_s
 )
 \.{3}
 (
-[\s\S]+?                 //: alt_s
+[\s\S]+?                 //: src
 )
 \]{3}
 `
@@ -161,15 +171,15 @@ $
 
   header_re:
     REX_o
-      .new__re( 'gm' )
+      .new__re( 'gm' )    //: ^\^{3}[1-6][\s\S]+?$
 `
 ^
-§{3}
+\^{3}
 (
-[1-6]{1}                 //: level_s
+[1-6]                 //: level_s
 )
 (
-[\s\S]+?                 //: header_s
+[\s\S]+?              //: header_s
 )
 $
 `
@@ -223,11 +233,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-!{3}
+\+{3}
 (
-[\s\S]+?                 //: underline_s
+[\s\S]+
 )
-!{3}
+\+{3}
 `
 ,
 
@@ -289,15 +299,15 @@ $
 
 
 
-  hrule_re:
-    REX_o
-      .new__re( 'gm' )
-`
-^
-_{3}
-$
-`
-,
+   hrule_re:
+     REX_o
+       .new__re( 'gm' )
+ `
+ ^
+ _{3}
+ $
+ `
+ ,
 
 
 
@@ -348,7 +358,23 @@ $
 
   link_a:     [ '<a href="', '">', '</a>' ],        //:`<a href="${href_s}">${link_s}</a>`
   img_a:      [ '<img src="', '" alt="', '">' ],    //: `<img src="${src}" alt="${alt_s}">`
+
+
+  
+  extend__v:
+    (
+      {
+        regex_s,
+        regex_f
+      }
+    ) =>
+    {
+      M_o
+        [ `${regex_s}_re` ] =
+          regex_f
+    }
+,
 }
 
 
-module.exports = P_o
+module.exports = M_o

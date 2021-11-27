@@ -1,11 +1,14 @@
 const FS_o =
   require( 'fs-extra' )
 
-const P_o =
-  require( '../data/P_o.js' )
+const M_o =
+  require( '../data/M_o.js' )
 
 const F_o =
-  require( '../data/F_o.js' )
+  require( '../data/F_o.js' )    //: required by CALL
+
+const C_o =
+  require( '../data/C_o.js' )    //: required by CALL
 
 
 
@@ -15,9 +18,6 @@ const PRE_o =
     [
       'escape',
       'comment',
-
-      'block',
-      'reference',
 
       'link',
       'img',
@@ -35,7 +35,9 @@ const PRE_o =
       'break',
       'raw',
 
-      'list'
+      'list',
+      'reference',
+      'block',
     ]
   ,
 
@@ -57,7 +59,7 @@ const PRE_o =
           match_a
 
       const replacing_s =
-        `${P_o.ESCAPE_s}${match_a.index}`
+        `${M_o.ESCAPE_s}${match_a.index}`
 
       PRE_o
         .escape_a
@@ -103,22 +105,25 @@ const PRE_o =
         ] =
           match_a
 
-          PRE_o
-            .inc_a
-              [ `${key_s.trim()}` ] =
-                //PRE_o
-                //  .convert__s
-                //  (
-                    FS_o
-                      .readFileSync
-                      (
-                        value_s.trim(),
-                        {
-                          encoding:'utf-8',
-                          flag:'r'
-                        }
-                      )
-                  //)
+
+      if
+      (
+        type_s
+      )
+      {
+        PRE_o
+          .inc_a
+            [ `${key_s.trim()}` ] =
+              FS_o
+                .readFileSync
+                (
+                  value_s.trim(),
+                  {
+                    encoding:'utf-8',
+                    flag:'r'
+                  }
+                )
+      }
 
       return (
         [
@@ -130,12 +135,39 @@ const PRE_o =
   ,
 
 
-  
   block__a:
     match_a =>
-      PRE_o
-        [ `block_${match_a[1] || 'inc'}__a` ]( match_a )    //: match_a[1] = type_s default to inc
-  ,
+    {
+      let
+        [
+          replaced_s,
+          type_s,
+        ] =
+          match_a
+
+          //;;console.table(
+          //;  [
+          //;    replaced_s,
+          //;    type_s,
+          //;  ]
+          //;)
+
+      type_s =
+        type_s
+        ||
+        'inc'
+
+      return (
+        PRE_o
+          [ `block_${type_s}__a` ]
+          ?
+            PRE_o
+              [ `block_${type_s}__a` ]( match_a )
+          :
+            null
+      )
+    }
+    ,
 
 
 
@@ -151,7 +183,7 @@ const PRE_o =
         ] =
           match_a
 
-      const content_s =
+      const source_s =
         PRE_o
           .inc_a
             [ `${key_s.trim()}` ]
@@ -162,11 +194,11 @@ const PRE_o =
       (
         value_s
         &&
-        content_s
+        source_s
       )
       {
         const content_a =
-          content_s
+          source_s
             ?.split( '\n' )
 
         for
@@ -216,7 +248,7 @@ const PRE_o =
       else
       {
         extract_s =
-          content_s
+          source_s
       }
 
       return (
@@ -258,7 +290,7 @@ const PRE_o =
         inter_s,
         close_s
       ] =
-        P_o
+        M_o
           [ `${tag_s}_a` ]
       
 
@@ -303,7 +335,7 @@ const PRE_o =
       const
       [
         replaced_s,
-        function_s,
+        process_s,
         arg_s
       ] =
         match_a
@@ -311,7 +343,7 @@ const PRE_o =
       return (
         [
           replaced_s,
-          eval( `${function_s}( ${arg_s} )` )    //: replacing_s
+          eval( `${process_s}( ${arg_s} )` )    //: replacing_s
         ]
       )
     }
@@ -363,7 +395,7 @@ const PRE_o =
           open_s,
           close_s
         ] =
-          P_o
+          M_o
             [ `${tag_s}_a` ]
 
       return (
@@ -492,15 +524,15 @@ const PRE_o =
 
 
 
-  hrule__a:
-    match_a =>
-      PRE_o
-        .tag__a
-        (
-          match_a,
-          'hrule'
-        )
-  ,
+   hrule__a:  //: without blank lines before and after
+     match_a =>
+       PRE_o
+         .tag__a
+         (
+           match_a,
+           'hrule'
+         )
+   ,
 
 
 
@@ -619,8 +651,8 @@ const PRE_o =
 
 
 
-  convert__s:
-    content_s =>
+  process__s:
+    source_s =>
     {  
       let match_a
   
@@ -639,18 +671,17 @@ const PRE_o =
           Array
             .from
             (
-              content_s
+              source_s
                 .matchAll
                 (
-                  P_o
+                  M_o
                     [ `${token_s}_re` ]
                 )
             )
         )
         {
-                                     //;console.log( P_o[ `${token_s}_re` ] )
-          content_s =
-            content_s
+          source_s =
+            source_s
               .replace
               (
                 ...PRE_o
@@ -667,12 +698,12 @@ const PRE_o =
           .escape_a
       )
       {
-        content_s =
-          content_s
+        source_s =
+          source_s
             .replace( ...escape_a )
       }
     
-      return content_s
+      return source_s
     }
     ,
 }
@@ -682,19 +713,48 @@ const PRE_o =
 module
   .exports =
   {
-    convert__s:
-      content_s =>
+    extend__v:
+      (
+        {
+          process_s,
+          process_f
+        }
+      ) =>
+      {
+        if
+        (
+          ! PRE_o
+              .token_a
+                .includes( process_s )
+        )
+        {
+          PRE_o
+            .token_a
+              .push ( process_s )
+        }
+
+        PRE_o
+          [ `${process_s}__a` ] =        //: override if exists
+            process_f              //;console.table( PRE_o[ `${process_s}__a` ].toString() )
+
+      }
+    ,
+
+
+
+    process__s:
+      source_s =>
       {
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        ;console.time( 'convert__s' )
+        ;console.time( 'process__s' )
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        const convert_s =
+        const html_s =
           PRE_o
-            .convert__s( content_s )
+            .process__s( source_s )
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        ;console.timeEnd( 'convert__s' )
+        ;console.timeEnd( 'process__s' )
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-        return convert_s
+        return html_s
       }
   }

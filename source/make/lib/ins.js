@@ -3,7 +3,10 @@ const FS_o  = require( 'fs-extra' )
 const DB_o  = require( './db.js' )
 const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
-const ASC_o = require( './asciidoc.js' )
+//XX const ASC_o = require( './asciidoc.js' )
+const PRE_o =
+  require( './3mark.js' )
+
 
 const C_o   = require( '../data/C_o.js' )
 const I_o   = require( '../data/I_o.js' )
@@ -33,7 +36,7 @@ const INS_o =
 parse__s:
 (
   specifier_s,
-  subsid_s
+  value_s
 ) =>
 {
   INS_o
@@ -58,8 +61,7 @@ parse__s:
     INS_o
       [`${method_s}Line__v`]
       (
-        subsid_s
-          .trim()
+        value_s
       )
 
     switch
@@ -73,8 +75,8 @@ parse__s:
       case C_o.INS_TAB_s:
       case C_o.INS_DEF_s:
         return (
-          ASC_o
-            .parse__s
+          PRE_o
+            .process__s
             (
               INS_o
                 .text_s
@@ -99,7 +101,7 @@ parse__s:
 
 txtLine__v:    //: ₀
 (
-  line_s
+  value_s
 ) =>
 {
   INS_o
@@ -107,7 +109,7 @@ txtLine__v:    //: ₀
       INS_o
         .txt__s
         (
-          line_s,
+          value_s,
           C_o.INS_TXT_s
         )
 }
@@ -115,31 +117,13 @@ txtLine__v:    //: ₀
 
 
 
-imgLine__v:    //: ₁
-(
-  line_s
-) =>
-{
-  let imgId_s = line_s
-
-  INS_o
-    .legend__v( imgId_s )
-      
-  INS_o
-    .image__v( imgId_s )
-}
-,
-
-
-
-
 refLine__v:    //: ₂
 (
-  line_s
+  value_s
 ) =>
 {
   const ref_s =
-    line_s
+    value_s
       .trim()
 
   INS_o
@@ -155,7 +139,7 @@ refLine__v:    //: ₂
 
 quoLine__v:    //: ₃
 (
-  line_s
+  value_s
 ) =>
 {
   INS_o
@@ -163,7 +147,7 @@ quoLine__v:    //: ₃
       INS_o
         .txt__s
         (
-          line_s,
+          value_s,
           C_o.INS_QUO_s
         )
 }
@@ -174,7 +158,7 @@ quoLine__v:    //: ₃
 
 tabLine__v:    //: ₄
 (
-  line_s
+  value_s
 ) =>
 {
   INS_o
@@ -182,7 +166,7 @@ tabLine__v:    //: ₄
       INS_o
         .table__s
         (
-          line_s,
+          value_s,
           C_o.INS_TAB_s
         )
 }
@@ -193,7 +177,7 @@ tabLine__v:    //: ₄
 
 defLine__v:    //: ₅
 (
-  line_s
+  value_s
 ) =>
 {
   INS_o
@@ -201,7 +185,7 @@ defLine__v:    //: ₅
       INS_o
         .txt__s
         (
-          line_s,
+          value_s,
           C_o.INS_DEF_s
         )
 }
@@ -210,9 +194,27 @@ defLine__v:    //: ₅
 
 
 
+imgLine__v:    //: ₉
+(
+  value_s
+) =>
+{
+  let imgId_s = value_s
+
+  INS_o
+    .legend__v( imgId_s )
+      
+  INS_o
+    .image__v( imgId_s )
+}
+,
+
+
+
+
 txt__s:
 (
-  line_s,
+  value_s,
   specifier_s
 ) =>
 {
@@ -220,15 +222,15 @@ txt__s:
 
   for
   (
-    let part_s
+    let line_s
     of
-    line_s
-      .split( C_o.INS_DELIM_s )
+    value_s
+      .split( C_o.INS_VAL_DELIM_s )
   )
   {
     text_s +=
       `<${C_o.ROW_TAG_s}>`
-      + part_s
+      + line_s
           .trim()
       + `</${C_o.ROW_TAG_s}>`
   }
@@ -246,18 +248,22 @@ txt__s:
 
 reference__s:
 (
-  refId_s
+  value_s
 ) =>
 {
-  const  [ biblio_s, ...position_a ] =
-    refId_s
-      .split( C_o.ID_WORD_DELIM_s )
+  const
+    [
+      biblio_s,
+      ...position_a
+    ] =
+      value_s
+        .split( C_o.INS_VAL_DELIM_s )
 
   const biblio_o =
     INS_o
       .db_o
         .biblio
-          [`${biblio_s}`]
+          [ `${biblio_s}` ]
 
   let ref_s =
   `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_REF_s}>`
@@ -322,7 +328,7 @@ reference__s:
 
 table__s:
 (
-  line_s,
+  value_s,
   specifier_s
 ) =>
 {
@@ -338,10 +344,15 @@ table__s:
 
   for
   (
-    let atline_s
+    let line_s
     of
-    line_s
-      .split( C_o.INS_DELIM_s )
+    value_s
+      .trim()
+      .split
+      (
+        C_o
+          .INS_VAL_DELIM_s
+      )
   )
   {
     switch
@@ -350,23 +361,21 @@ table__s:
     )
     {
       case 0:        //: 1st line: column widths
-        colw_s =
-          atline_s
-            .trim()
+        ;    //: colw_s, cola_s already declared
+        [
+          colw_s,
+          cola_s
+        ] =
+          line_s
+            .split( C_o.WORDS_DELIM_s )
+          
+        css_s +=
+          INS_o
+            .tableWidth__s( colw_s )
 
         css_s +=
           INS_o
-            .tableWidth__s( atline_s )
-        break
-
-      case 1:        //: 2nd line: column align
-        cola_s =
-          atline_s
-            .trim()
-
-        css_s +=
-          INS_o
-            .tableAlign__s( atline_s )
+            .tableAlign__s( cola_s )
 
         break
 
@@ -375,9 +384,8 @@ table__s:
           INS_o
             .tableRow__s
             (
-              atline_s
-                .split( C_o.CELL_DELIM_s ),
-              row_n
+              line_s
+                .trim()
             )
     }
 
@@ -401,17 +409,16 @@ table__s:
 
 tableWidth__s:
 (
-  width_s
+  colw_s
 ) =>
 {
   const width_a =
-    width_s
-      .trim()
-        .split
-        (
-          C_o
-            .WORDS_CONCAT_s
-        )
+    colw_s
+      .split
+      (
+        C_o
+          .WORDS_CONCAT_s
+      )
 
   const col_n =
     width_a
@@ -429,14 +436,14 @@ tableWidth__s:
   )
   {
     ruleset_s +=
-      `.colw_${width_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
+      `.colw_${colw_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
       + `{width: calc((${col_s} - ${+col_s * C_o.CELL_RATIO_n}) * 1%)}\n`
 
     ++index_n
   }
 
   return (
-    `.colw_${width_s} > ${C_o.ROW_TAG_s}:nth-child(-n+${col_n}){filter:brightness(${S_o.brigtness_lo});font-weight:600}\n`
+    `.colw_${colw_s} > ${C_o.ROW_TAG_s}:nth-child(-n+${col_n}){filter:brightness(${S_o.brigtness_lo});font-weight:600}\n`
     + ruleset_s
     )
 }
@@ -446,15 +453,11 @@ tableWidth__s:
 
 tableAlign__s:
 (
-  align_s
+  cola_s
 ) =>
 {
-  align_s = 
-    align_s
-      .trim()
-
   const align_a =
-    align_s
+    cola_s
       .split
       (
         C_o
@@ -477,7 +480,7 @@ tableAlign__s:
   )
   {
     ruleset_s +=
-      `.cola_${align_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
+      `.cola_${cola_s} > ${C_o.ROW_TAG_s}:nth-child(${col_n}n+${index_n})`
       + `{text-align: ${C_o.CELL_ALIGN_a[+col_s]}}\n`
 
     ++index_n
@@ -491,25 +494,27 @@ tableAlign__s:
 
 tableRow__s:
 (
-  row_a,
-  row_n      //!!! not used
+  cell_s
 ) =>
 {
   let row_s = ''
 
-  for
-  (
-    let cell_s
-    of
-    row_a
-  )
-  {
+    if
+    (
+      cell_s
+        .includes
+        ( C_o.CELL_EMPTY_s )
+    )
+    {
+      cell_s =
+        C_o.CELL_EMPTY_ENTITY_s
+    }
+
     row_s +=
       `<${C_o.ROW_TAG_s}>`
       + cell_s
           .trim()
       + `</${C_o.ROW_TAG_s}>`
-  }
 
   return row_s
 }
@@ -517,61 +522,44 @@ tableRow__s:
 
 
 
-  legend__v:
-  (
-    imgId_s
-  ) =>
-  {
-    const [ artist_s, collection_s ] =
-      imgId_s
-        .split( C_o.ID_PART_DELIM_s )
-    
-    const artist_o =
-      INS_o
-        .db_o
-          .artist
-            [`${artist_s}`]
-    
-    const collection_o =
-      INS_o
-        .db_o
-          .collection
-            [`${collection_s}`]
-    
-    const work_o =
-      INS_o
-        .db_o
-          .work
-            [ imgId_s ]
-
-    let year_s =
-      NUM_o
-        .rangeFromFloat__s
+css__v:
+(
+  permalink_s
+) =>
+{
+  const path_s =
+    C_o.CSS_SITE_DIR_s
+    + permalink_s
+        .replace
         (
-          work_o
-            .year_n
+          'html',
+          'css'
         )
 
-    const height_s =
-      NUM_o
-        .decimalSub__s( work_o.w_height_n )
-
-    const width_s =
-      NUM_o
-        .decimalSub__s( work_o.w_width_n )
-
+  const css_s =
     INS_o
-      .legend_s =
-        `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s}>`
-        + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
-        + `</${C_o.TABLE_TAG_s}>`
-  }
-  ,
+      .css_s
+  
+  FS_o
+    .writeFile
+    (
+      path_s,
+      css_s,
+      'utf8',
+      out_o =>    //: callback_f
+        {
+          const out_s =
+            out_o
+            ?
+              'ERROR'
+            :
+              'OK'
+          console
+            .log( `\n----\nWriting ${path_s}: (${out_s})\n----\n` )
+        }
+    )
+}
+,
 
 
 
@@ -758,9 +746,67 @@ tableRow__s:
 
 
 
+  legend__v:
+  (
+    imgId_s
+  ) =>
+  {
+    const [ artist_s, collection_s ] =
+      imgId_s
+        .split( C_o.ID_PART_DELIM_s )
+    
+    const artist_o =
+      INS_o
+        .db_o
+          .artist
+            [`${artist_s}`]
+    
+    const collection_o =
+      INS_o
+        .db_o
+          .collection
+            [`${collection_s}`]
+    
+    const work_o =
+      INS_o
+        .db_o
+          .work
+            [ imgId_s ]
+
+    let year_s =
+      NUM_o
+        .rangeFromFloat__s
+        (
+          work_o
+            .year_n
+        )
+
+    const height_s =
+      NUM_o
+        .decimalSub__s( work_o.w_height_n )
+
+    const width_s =
+      NUM_o
+        .decimalSub__s( work_o.w_width_n )
+
+    INS_o
+      .legend_s =
+        `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s}>`
+        + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
+        + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
+        + `</${C_o.TABLE_TAG_s}>`
+  }
+  ,
+
+
+
   //?? keyVal__a:
-  //?? line_s =>
-  //??   line_s
+  //?? value_s =>
+  //??   value_s
   //??     .slice( 1 )    //: skip START_s char
   //??     .split( C_o.KEYVAL_DELIM_s )
   //??     .map
@@ -770,48 +816,7 @@ tableRow__s:
   //??           .trim()
   //??     )
   //?? ,
-
-
-  css__v:
-  (
-    permalink_s
-  ) =>
-  {
-    const path_s =
-      C_o.CSS_SITE_DIR_s
-      + permalink_s
-          .replace
-          (
-            'html',
-            'css'
-          )
-
-    const css_s =
-      INS_o
-        .css_s
-    
-    FS_o
-      .writeFile
-      (
-        path_s,
-        css_s,
-        'utf8',
-        out_o =>    //: callback_f
-          {
-            const out_s =
-              out_o
-              ?
-                'ERROR'
-              :
-                'OK'
-            console
-              .log( `\n----\nWriting ${path_s}: (${out_s})\n----\n` )
-          }
-      )
-  }
-  ,
 }
-
 
 
 
@@ -819,7 +824,7 @@ module.exports =
 {
   insert__s
   (
-    content_s,
+    processed_s,
     permalink_s
   )
   {
@@ -842,23 +847,23 @@ module.exports =
       Array
         .from
         (
-          content_s
+          processed_s
             .trim()
             .matchAll
             (
               REX_o
-                .new__re( 'gms' )    //: collect all <ins> tags
+                .new__re( 'gms' )    //: collect all INS_OPEN_s blocks
                   `${C_o.INS_OPEN_s}
                   (
-                  [₀-₉]{1,3}            //: specifier_s: 1 to 3 subscript digits
+                  [₀-₉]{1,3}                //: specifier_s
                   )
-                  \s*?
+                  ${C_o.INS_DELIM_s}
                   (
-                  [^${C_o.INS_PRINCIPAL_s}]*?
+                  [^${C_o.INS_DELIM_s}]+?   //: key_s
                   )
-                  ${C_o.INS_PRINCIPAL_s}
+                  ${C_o.INS_DELIM_s}
                   (
-                  [^${C_o.INS_CLOSE_s}]+?  //: everything up to close
+                  [^${C_o.INS_DELIM_s}]+?   //: value_s
                   )
                   ${C_o.INS_CLOSE_s}`
             )
@@ -873,10 +878,19 @@ module.exports =
       [
         replace_s,
         specifier_s,
-        principal_s,
-        subsid_s
+        key_s,
+        value_s
       ] =
         match_a
+
+      //;console.table(
+      //;  [
+      //;    replace_s,
+      //;    specifier_s,
+      //;    key_s,
+      //;    value_s
+      //;  ]
+      //;  )
 
         switch
       (
@@ -888,8 +902,8 @@ module.exports =
         //?? case C_o.INS_QUO_s:
         //?? case C_o.INS_TAB_s:
         case C_o.INS_IMG_s:
-          principal_s =
-            `<em>${principal_s}</em>`
+          key_s =
+            `<em>${key_s}</em>`
 
           break
       
@@ -902,21 +916,21 @@ module.exports =
           .parse__s
           (
             specifier_s,
-            subsid_s
+            value_s
               .trim()
           )
 
-      content_s =
-        content_s
+      processed_s =
+        processed_s
           .replace
           (
             replace_s,
             `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1" data-ins=${specifier_s}>`
-            + principal_s
+            + key_s
                 .trim()
             + `</label>`
             + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
-            + `<ins>`      //: remove ins tag data-- attribute
+            + `<ins>`
             + ins_s
             +`</ins>`
           )
@@ -928,8 +942,8 @@ module.exports =
     INS_o
       .css__v( permalink_s )
 
-    content_s =
-      content_s
+    processed_s =
+      processed_s
         .replace    //: add gallery asides (gray and color)
         (
           C_o.GALERY_REPLACE_s,    //: custom tag deleted after section insertion
@@ -948,7 +962,7 @@ module.exports =
             ''    //: remove
         )
     
-    return content_s
+    return processed_s
   }
 ,
 

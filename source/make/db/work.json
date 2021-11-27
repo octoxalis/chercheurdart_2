@@ -1,6 +1,6 @@
 [
 	{
-		"id_s" : "1703-boucher--princeton-university--1748-arion",
+		"id_s" : "1703-boucher~princeton-university~1748-arion",
 		"artist_s" : "1703-boucher",
 		"year_n" : 1748.2,
 		"subject_s" : "Arion chevauchant son dauphin",
@@ -11,7 +11,7 @@
 		"default_a" : null
 	},
 	{
-		"id_s" : "1586-de_coster--new_york-sothebys--1625-young_woman",
+		"id_s" : "1586-de_coster~new_york-sothebys~1625-young_woman",
 		"artist_s" : "1586-de_coster",
 		"year_n" : 1625.5,
 		"subject_s" : "A young woman holding a distaff before a lit candle",
@@ -22,7 +22,7 @@
 		"default_a" : null
 	},
 	{
-		"id_s" : "2021-dev--paris-dev--2021-sample",
+		"id_s" : "2021-dev~paris-dev~2021-sample",
 		"artist_s" : "2021-dev",
 		"year_n" : 2021,
 		"subject_s" : "A sample",

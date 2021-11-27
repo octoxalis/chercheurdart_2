@@ -1,5 +1,5 @@
 const C_o =
-  require( '../data/C_o.js' )
+  require( '../../data/C_o.js' )
 
 
 
@@ -38,7 +38,7 @@ ADOC_o
     ADOC_o
       .registry_o
 
-require( '../adoc/ins-inline-macro-processor.js' )
+require( '../../adoc/ins-inline-macro-processor.js' )
 ( ADOC_o.registry_o )
 
 

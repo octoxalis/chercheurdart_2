@@ -1,48 +1,41 @@
-const FS_o  = require( 'fs-extra' )
+const MARK_o =
+  require( '../lib/3mark.js' )
 
-const PREP_o = require( '../lib/prep.js' )
-const ADOC_o = require( '../lib/adoc.js' )
-const C_o    = require( '../data/C_o.js' )
-
+const MARK_INS_o =
+  require( '../lib/3mark-ins.js' )
+  
+const MARK_HEAD_o =
+  require( '../lib/3mark-header.js' )
+  
 
 
 const CODES_o =
 {
-  doc__s:    //: asciidoc section
+  section__s:    //: 3mark section
   (
-    content_s,
+    source_s,
     section_s
   ) =>
   {
-    //--let doc_s =
-    //--  PREP_o
-    //--    .convert__s( content_s )
-    //--
-    //--doc_s =
-    //--  `<section id="${section_s}">`
-    //--  + ADOC_o
-    //--      .convert__s( doc_s )
-    //--
-    //--doc_s +=
-    //--`</div>\n`                 //: first close last chapter div
-    //--  + C_o.TOPICS_REPLACE_s      //: to be replaced by topics to documents list
-    //--  + C_o.COMMENTS_REPLACE_s     //: to be replaced by comment part, if issue_n is defined
-    //--  + `</section>\n`         //: \n is mandatory
-    let doc_s =
+    MARK_HEAD_o      //: extension at section level
+      .extend__v()
+      
+    MARK_INS_o
+      .extend__v()
+
+    let processed_s =
       `<section id="${section_s}">`
-      + `<div>`
-      + PREP_o
-          .convert__s( content_s )
-      +
-        `</div>\n`                 //: first close last chapter div
-          //-- + C_o.TOPICS_REPLACE_s      //: to be replaced by topics to documents list
-          //-- + C_o.COMMENTS_REPLACE_s     //: to be replaced by comment part, if issue_n is defined
-          + `</section>\n`         //: \n is mandatory
-  
-    return doc_s
+      + MARK_o
+          .process__s( source_s )
+      + `</div>\n`                 //: first close last chapter div
+        //... + C_o.TOPICS_REPLACE_s      //: to be replaced by topics to documents list
+        //... + C_o.COMMENTS_REPLACE_s     //: to be replaced by comment part, if issue_n is defined
+      + `</section>\n`         //: \n is mandatory
+
+    return processed_s
   }
   ,
-  }
+}
 
 
 
@@ -50,12 +43,12 @@ const CODES_o =
 module.exports =
   make_o =>
   {
-    for
+    for        //: paired shortcodes
     (
-      const code_s
+      let code_s
       of
-      [        //=== paired shortcodes
-        'doc',
+      [
+        'section',
       ]
     )
     {
@@ -64,13 +57,13 @@ module.exports =
         (
           `_${code_s}`,        //: paired shortcodes have a leading underscore
           (
-            content_s,
+            source_s,
             ...arg_
           ) =>
             CODES_o
               [ `${code_s}__s` ]
               (
-                content_s,
+                source_s,
                 ...arg_
               )
         )

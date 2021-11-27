@@ -137,9 +137,34 @@ const C_o =
 
 
   //=== HTML-BODY: EXTEND MARKUP ===
-  INS_OPEN_s:   '₍',       //: document preprocessor delimiter
-  INS_CLOSE_s:  '₎',       //: document preprocessor delimiter
+  INFO_s    :           '&#x2139;',
+  UP_ARROW_s:           '&#8593;',
+  IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
 
+  PICT_s:               '&#8918;',    //: 
+
+  SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
+  
+  //=== DB ID
+  //-- 1586-de_coster--new_york-sothebys--1625-young_woman
+
+  ID_PART_DELIM_s:     '~',   //: between parts
+  //-- ID_SUBPART_DELIM_s:        '-',    //: between subparts
+  ID_WORD_DELIM_s:     '₊₊',   //: between multi word subpart
+
+  WORDS_DELIM_s:       ' ',
+  WORDS_CONCAT_s:      '_',    //: underline
+
+  //=== COMMENT
+  //-- 2021-09-14T12:44:07Z₊₊Daniel₊₊Markdown subset markup test₀
+
+  COMMENT_INTRO_s:     '₀',
+  COMMENT_DELIM_s:     '₊₊',   //: subscript ++ between stamp_s, name_s, intro_s
+
+  //=== TABLE
+  CELL_DELIM_s:        '₊',    //: subscript ++
+
+  //=== INSERT
   INS_TXT_s:  '₀',        //: text insert
   INS_DEF_s:  '₁',        //: definition list
   INS_REF_s:  '₂',        //: reference insert
@@ -159,56 +184,14 @@ const C_o =
     '₉':  'img',
   },
 
-  INFO_s    :           '&#x2139;',
-  UP_ARROW_s:           '&#8593;',
-  IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
-
-  PICT_s:               '&#8918;',    //: 
-
-  SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
-  
-  //=== DB ID
-  //-- 1586-de_coster--new_york-sothebys--1625-young_woman
-
-  ID_PART_DELIM_s:     '--',   //: between parts
-  //-- ID_SUBPART_DELIM_s:        '-',    //: between subparts
-  ID_WORD_DELIM_s:     '₊₊',   //: between multi word subpart
-
-  WORDS_DELIM_s:       ' ',
-  WORDS_CONCAT_s:      '_',
-
-  //=== COMMENT
-  //-- 2021-09-14T12:44:07Z₊₊Daniel₊₊Markdown subset markup test₀
-
-  COMMENT_INTRO_s:     '₀',
-  COMMENT_DELIM_s:     '₊₊',   //: subscript ++ between stamp_s, name_s, intro_s
-
-  //=== TABLE
-  CELL_DELIM_s:        '₊',    //: subscript ++
-
-  //=== INSERT
   INS_PRINCIPAL_s:     '₌',    //: subscript =
-  INS_DELIM_s:         '₊₊',   //: subscript ++
-  INS_PASS_s:          '~',    //: use adoc pass:[...]
+  INS_OPEN_s:       'INS_OPEN:::', 
+  INS_CLOSE_s:      ':::INS_CLOSE',
+  INS_DELIM_s:      '⁝',           //: &#8285;
+  INS_VAL_DELIM_s:  '⁞',           //: &#8286;
+
 
   //=== PREPROCESS ===
-  PRE_DEC_DELIM_s:     '¯',
-  PRE_REF_DELIM_s:     '₌',
-  PRE_ARG_DELIM_s:     '₊',
-  PRE_KEY_DELIM_s:     ':',
-  PRE_RANGE_DELIM_s:   ' ',    //: 1-4 6-8 ...
-  PRE_LINES_DELIM_s:   '-',
-  //?? PRE_OPEN_LINK_s:     '[',
-  //?? PRE_CLOSE_LINK_s:    ']',
-  PRE_BLOCK_START_s:  '#',
-  PRE_BLOCK_OPEN_s:   '+begin_',
-  PRE_BLOCK_CLOSE_s:  '+end_',
-  PRE_INLINE_COMMENT_s: '@@',    //: open + close delimiter
-
-  PRE_HEADER_s:    '*',
-  PRE_MD_HEADER_s: '#',
-
-
 
 
   //=== REPLACE
@@ -232,6 +215,9 @@ const C_o =
   ],
 
   CELL_RATIO_n: .1,
+
+  CELL_EMPTY_s: '???',
+  CELL_EMPTY_ENTITY_s: '&#8280;',    //: ⁘
 
   //=== HTML-BODY ANCHORS
   //-- ANCHOR_DELIM_s : '__',

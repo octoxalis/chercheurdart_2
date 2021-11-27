@@ -20,7 +20,7 @@ const BUI_o =
   
   buildStart__v:
   (
-    data_o
+    //-- data_o
   ) =>
   {
     console.log( `${BUI_o.count_n} Markdown files to process` )
@@ -31,8 +31,8 @@ const BUI_o =
   
   buildEnd__v:
   (
-    end_s,
-    data_o
+    //-- end_s,
+    //-- data_o
   ) =>
   {
     HEAD_o
@@ -47,13 +47,11 @@ const BUI_o =
   
   templateStart__s:
   (
-    input_s,
+    source_s,
     data_o
   ) =>
   {
-    let start_s = input_s
-
-    //... what else?
+    let start_s = source_s
 
     if
     (
@@ -89,10 +87,12 @@ const BUI_o =
   
   templateEnd__s:
   (
-    input_s,
+    html_s,
     data_o
   ) =>
   {
+    //;console.log( html_s )
+
     HEAD_o
       .add__v( data_o )
 
@@ -100,11 +100,11 @@ const BUI_o =
       INS_o
         .insert__s
         (
-          input_s,
+          html_s,
           data_o
             .permalink
         )
-
+    
     if
     (
       data_o
@@ -114,18 +114,18 @@ const BUI_o =
     )
     {
       output_s =
-          output_s
-            .replace
-            (
-              C_o.
-                TOPICS_REPLACE_s,
-              TOP_o
-                .list__v
-                (
-                  data_o
-                    .doc_n
-                )
-            )
+        output_s
+          .replace
+          (
+            C_o.
+              TOPICS_REPLACE_s,
+            TOP_o
+              .list__v
+              (
+                data_o
+                  .doc_n
+              )
+          )
     }
     
     let commentPart_s = ''
@@ -167,11 +167,11 @@ const BUI_o =
   
   headEnd__s:
   (
-    input_s,
+    source_s,
     data_o
   ) =>
   {
-    let end_s = input_s
+    let end_s = source_s
     //... what else?
     return end_s
   }
@@ -181,11 +181,23 @@ const BUI_o =
   
   bodyEnd__s:
   (
-    input_s,
+    source_s,
     data_o
   ) =>
   {
-    let body_s = input_s
+    let body_s =
+      source_s
+        //--.replaceAll
+        //--(
+        //--  '&lt;',
+        //--  '<',
+        //--)
+        //--.replaceAll
+        //--(
+        //--  '&gt;',
+        //--  '>',
+        //--)
+
     //... what else?
     return body_s
   }
@@ -202,7 +214,7 @@ module.exports =
 {
   start__s:
   (
-    input_s,
+    source_s,
     data_o
   ) =>
   {
@@ -225,7 +237,7 @@ module.exports =
       BUI_o
         .templateStart__s
         (
-          input_s,
+          source_s,
           data_o
           )
 
@@ -237,7 +249,7 @@ module.exports =
 
   end__s:
   (
-    input_s,
+    source_s,
     data_o
   ) =>
   {
@@ -248,7 +260,7 @@ module.exports =
       BUI_o
         .templateEnd__s
         (
-          input_s,
+          source_s,
           data_o
         )
 
@@ -281,38 +293,30 @@ module.exports =
 
   head__s:
   (
-    input_s,
+    source_s,
     data_o
   ) =>
-  {
-    return (
-      BUI_o
-        .headEnd__s
-        (
-          input_s,
-          data_o
-        )
-    )
-  }
+    BUI_o
+      .headEnd__s
+      (
+        source_s,
+        data_o
+      )
   ,
 
 
 
   body__s:
   (
-    input_s,
+    source_s,
     data_o
   ) =>
-  {
-    return (
-      BUI_o
-        .bodyEnd__s
-        (
-          input_s,
-          data_o
-        )
-    )
-  }
+    BUI_o
+      .bodyEnd__s
+      (
+        source_s,
+        data_o
+      )
   ,
 
 

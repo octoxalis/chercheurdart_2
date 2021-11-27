@@ -1,6 +1,0 @@
-.colw_2_1_0 > b:nth-child(-n+3){filter:brightness(0.7);font-weight:600}
-.colw_2_1_0 > b:nth-child(3n+1){width: calc((2 - 0.2) * 1%)}
-.colw_2_1_0 > b:nth-child(3n+2){width: calc((1 - 0.1) * 1%)}
-.colw_2_1_0 > b:nth-child(3n+3){width: calc((0 - 0) * 1%)}
-.cola_TITLE_0 > b:nth-child(2n+1){text-align: undefined}
-.cola_TITLE_0 > b:nth-child(2n+2){text-align: left}

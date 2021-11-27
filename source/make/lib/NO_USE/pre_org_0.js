@@ -2,13 +2,13 @@ const FS_o =
   require( 'fs-extra' )
 
 const REX_o =
-  require( './regex.js' )
+  require( '../regex.js' )
 
 const C_o =
-  require( '../data/C_o.js' )
+  require( '../../data/C_o.js' )
 
 const F_o =
-  require( '../data/F_o.js' )
+  require( '../../data/F_o.js' )
 
 const I_re =
   REX_o

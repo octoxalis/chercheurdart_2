@@ -37,7 +37,7 @@
   '1748_arion':
   `₍₉
   Arion
-  1703-boucher--princeton-university--1748-arion₎`
+  1703-boucher~princeton-university~1748-arion₎`
   ,
 
   //=== BIBLIO
@@ -45,7 +45,7 @@
   '1989_langdon':
 `₍₂
 Claude Lorrain
-1989-langdon₊₊**p.123**₊₊f.123₊₊On peut ajouter une __précision__...₊₊link<index.html>"link"₊₊image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"₊₊etc.₎`
+1989-langdon₊₊**p.123**₊₊f.123₊₊On peut ajouter une __précision__...₊₊link<index.html>"link"₊₊image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif>"image"₊₊etc.₎`
   ,
   
 }
@@ -207,7 +207,7 @@ Example 2 - AsciiDoc include table
 __ generated with CLI table script__
 using file name
 ₎ +
-# !!! insert break
+#  insert break
 ₌tab_artist₌
 
 
@@ -225,7 +225,7 @@ using file name
 Use AsciiDoc pass:[] to insert link, images...
 ₍₀~
 par exemple:
-image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher--princeton-university--1748-arion/full/_128/0/gray.avif>"image"
+image<https://chercheurdart-2.netlify.app/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif>"image"
 link<index.html>"link"
 `code_line = 1234`
  __italic__

@@ -1,7 +1,7 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1703-boucher--princeton-university--1748-arion.html',
+  permalink: '1703-boucher~princeton-university~1748-arion.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
@@ -10,7 +10,7 @@
   title_s:    `Arion par François Boucher (1748-50)`,
   subtitle_s: `F. Boucher Arion (1748-50)`,
   abstract_s: `Un décor pour La Muette`,
-  workID_s:   `1703-boucher--princeton-university--1748-arion`,
+  workID_s:   `1703-boucher~princeton-university~1748-arion`,
   //... issue_n: -1,
 
   section_a:
@@ -44,7 +44,7 @@
   '1748_arion':
 `₍₉
 Arion
-1703-boucher--princeton-university--1748-arion₎`
+1703-boucher~princeton-university~1748-arion₎`
   ,
   
 }

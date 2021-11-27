@@ -7,9 +7,9 @@
   // - expires_n: 10,
 
   doc_n:      10241,
-  title_s:    `3Mark cheatsheet`,
-  subtitle_s: `3Mark markup used in chercheurd.art`,
-  abstract_s: `3Mark reference for chercheurd.art`,
+  title_s:    `3mark cheatsheet`,
+  subtitle_s: `3mark markup used in chercheurd.art`,
+  abstract_s: `3mark reference for chercheurd.art`,
   //issue_n:    -1,
 
   section_a:
@@ -24,6 +24,7 @@
 
   css_a:
   [
+    '3mark.css'
   ],
 
   version_a:
@@ -33,122 +34,52 @@
   
 }
 ---
-{% _doc section_a[0] %}
-§§§1 {{title_s}}
+{% _section section_a[0] %}
+^^^1 {{title_s}}
 
-§§§2 1. ESCAPE MARKUP
-\\\
-this block <br>
-§§§1 HEADER 1 <br>
-[[[image_src...Image_caption]]]
-\\\
-and \\\///a few italic words///\\\ inside this line
-have been escaped ||| then restored
-___
+§§§ins₀   {{abstract_s}}...
+{{F_o.versionList__s(version_a)}} §§§
 
+^^^2 Inserted blocks
 
-§§§2 2. COMMENT BLOCK
-a block comment...
-###
-enclosed
-consecutive comment
-lines
-###
-have been removed
-___
+§§§ins₀   key_s...
+value_s_0
+value_s_1
+<<<Chercheur d'Art...index.html>>>
+[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
 
+§§§ins₁   Définition multiple (single level list)...
+<<<Chercheur d'Art...index.html>>>
+[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
 
-§§§2 3. COMMENT INLINE
+§§§ins₃   °°°Pretium scelerisque°°° sed semper +++cubilia aenean suspendisse+++ arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes...
+A. Dupin
+<<<Chercheur d'Art...index.html>>>
+[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
 
-an inlined comment ...
-### enclosed consecutive inlined comment ###
-has been removed
-___
+§§§ins₄   Tabula rasa...
+30_30_30 0_1_2
+Primo
+Secondo
+Tertio
+Un
+Deux
+Trois
+One
+???
+Three
+<<<Chercheur d'Art...index.html>>>
+[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]]
+??? §§§
 
+§§§ins₉   Arion...
+1703-boucher~princeton-university~1748-arion §§§
 
-§§§2 4. LINK
-### syntax: <<<href...link_s>>> ###
-<<<https://threemark.dev...3Mark>>>
--->
-<<<page.html...Local link>>>
-___
+§§§ins₂   Claude Lorrain...
+1989-langdon
+°°°p.123°°°
+On peut ajouter une ///précision///...
+///lien///: <<<Chercheur d'Art...index.html>>>
+///image///: [[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
 
-
-§§§2 5. IMAGE
-### syntax: [[[src...caption_s]]] ###
-[[[image_src...Image_caption]]]
-___
-
-
-§§§2 6. CALL
-### syntax: (((function_name...'args', 'enclosed', 'in', 'apos'))) ###
-(((F_o.stamp__s...'2021-09-16T08:12:00Z')))
-___
-
-
-§§§2 0. LOAD INCLUDED FILES
-@@@ 3mark_test
-...{{C_o.CONTENT_PARTS_DIR_s}}3mark_test.txt @@@
-
-@@@ 3mark_test_nested
-...{{C_o.CONTENT_PARTS_DIR_s}}3mark_test_nested.txt @@@
-___
-
-
-§§§2 8. INCLUDE
-Include whole file |||
-+++ 3mark_test
-... +++
-
-Include selected lines of file |||
-+++ 3mark_test
-...1-3, 6, 9-40 +++
-___
-
-
-§§§2 9. BOLD - STRONG - EMPHASIS - ITALIC - DELETE - CITE - CODE - RAW
-before ***bold chars*** after      |||
-before °°°strong chars°°° after    |||
-before !!!emphasis chars!!! after  |||
-before ///italic chars/// after    |||
-before ---delete chars--- after    |||
-before """cite chars""" after      |||
-before ```code chars``` after      |||
-===<b>some raw</b> <strong>HTML code</strong>===
-
-
-§§§2 9.1 COMBINE
-```///°°°italic and strong code°°°///```
-
----!!!"""emphasis citation deleted"""!!!---
-___
-
-
-§§§2 15. HORIZONTAL LINE
-before
-___
-after
-
-§§§2 16. BREAK LINE
-before |||
-after
-___
-
-
-§§§2 201. LIST
-:::
-un
-deux
-  primo
-  secondo
-trois
-quatre
-  one
-    1
-    2
-    3
-  two
-cinq
-:::
-
-{% end_doc %}
+{% end_section %}

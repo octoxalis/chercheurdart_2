@@ -32,7 +32,7 @@
   ],
 }
 ---
-{% _doc section_a[0] %}
+{% _section section_a[0] %}
 //LINKS
 :site_tech: pass:[<a href=site_tech.html>Technologie du site</a>]
 :guide: pass:[<a href=ui_guide.html>Guide du visiteur</a>]
@@ -90,4 +90,4 @@ de votre visite!
 
  **{{A_o.NAME_s}}** est généré avec la complicité de {11ty}
 
-{% end_doc %}
+{% end_section %}
