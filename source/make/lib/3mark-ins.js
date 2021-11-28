@@ -72,7 +72,7 @@ module
                   .new__re( 'gm' )    //: block_ins__re
                   `
                   ^
-                  §{3}
+                  @{3}
                   \s*
                   (
                   ins           //: type_s
@@ -85,13 +85,13 @@ module
                   (
                   [\s\S]+?      //: key_s
                   )
-                  \.{3}
+                  :{3}
                   \s*
                   (
                   [\s\S]+?      //: value_s
                   )
                   \s*
-                  §{3}        //!!! MUST NOT end on a new line
+                  @{3}        //!!! MUST NOT end on a new line
                   $`
             }
           )

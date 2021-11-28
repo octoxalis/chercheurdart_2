@@ -35,51 +35,19 @@
 }
 ---
 {% _section section_a[0] %}
-^^^1 {{title_s}}
+§§§1 {{title_s}}
 
-§§§ins₀   {{abstract_s}}...
-{{F_o.versionList__s(version_a)}} §§§
 
-^^^2 Inserted blocks
+@@@ins₀   {{abstract_s}} :::
+{{F_o.versionList__s(version_a)}} @@@
 
-§§§ins₀   key_s...
-value_s_0
-value_s_1
-<<<Chercheur d'Art...index.html>>>
-[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
 
-§§§ins₁   Définition multiple (single level list)...
-<<<Chercheur d'Art...index.html>>>
-[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
+§§§2 Inserted blocks
 
-§§§ins₃   °°°Pretium scelerisque°°° sed semper +++cubilia aenean suspendisse+++ arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes...
-A. Dupin
-<<<Chercheur d'Art...index.html>>>
-[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
+@@@dec   key_s:::
+a smart declaration |||
+<<<Chercheur d'Art:::index.html>>> @@@
 
-§§§ins₄   Tabula rasa...
-30_30_30 0_1_2
-Primo
-Secondo
-Tertio
-Un
-Deux
-Trois
-One
-???
-Three
-<<<Chercheur d'Art...index.html>>>
-[[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]]
-??? §§§
-
-§§§ins₉   Arion...
-1703-boucher~princeton-university~1748-arion §§§
-
-§§§ins₂   Claude Lorrain...
-1989-langdon
-°°°p.123°°°
-On peut ajouter une ///précision///...
-///lien///: <<<Chercheur d'Art...index.html>>>
-///image///: [[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif...Le bel Arion]]] §§§
+&&& key_s 1234 &&&
 
 {% end_section %}

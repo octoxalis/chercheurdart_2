@@ -7,34 +7,33 @@ const REX_o =
 //: break:      |
 //: hrule:      _
                     //-- open === close
-//: bold:       + // *
-//: strong:     * // °
-//: emphasis:   ^ // +
+//: strong:     +
+//: emphasis:   ^
 //: italic:     /
 //: cite:       "
 //: delete:     -
 //: code:       `
 //: raw:        =
 //
-//: header:     § // ^
-//: list        :
+//: header:     §
+//: list        °
 //: listo       ;
 //
 //: escape:     \
 //: comment  :  #
 //
-//: block:      & // §
-//: reference:  ! // !
+//: block:      @
+//: reference:  &
                     //-- open !== close
 //: link:       <>
 //: img:        []
 //: call:       ()
 
                     //-- reserved
-//: reserved:   ~   //: URLs separator
-//: reserved:   ?   //: empty table cells
-//: reserved:   @   //: ...
-//: reserved:   &   //: ...
+                    //: reserved:   ?   //: empty table cells
+                    //: reserved:   :   //: block separator
+                    //: reserved:   $   //: ...
+                    //: reserved:   !   //: ...
 
 
 const M_o =
@@ -70,22 +69,20 @@ const M_o =
       .new__re( 'gm' )
 `
 ^
-§{3}
+@{3}
 \s*
-(
-[a-z]{0,3}   //: type_s
-)
+(inc|dec){0,1}   //: type_s: inc || dec
 \s+?
 (
-[^\.]+?      //: key_s
+[\w]+?      //: key_s
 )
-\.{3}
+:{3}
 \s*
 (
 [\s\S]+?     //: value_s
 )
 \s*
-§{3}        //!!! MUST NOT end on a new line
+@{3}        //!!! MUST NOT end on a new line
 $
 `
 ,
@@ -96,20 +93,19 @@ $
     REX_o
       .new__re( 'gm' )
 `
-!{3}
+&{3}
 \s*
-(inc){0,1}          //: type_s
+(inc|dec){0,1}          //: type_s
 \s*
 (
-[\s\S]+?                //: key_s
+[\w]+?                //: key_s
 )
-\s*
-\.{3}
+\s+?
 (
 [\s\S]*?                //: value_s
 )
 \s*
-!{3}
+&{3}
 `
 ,
 
@@ -123,7 +119,7 @@ $
 (
 [\s\S]+?                 //: href_s
 )
-\.{3}
+:{3}
 (
 [\s\S]+?                 //: link_s
 )
@@ -141,7 +137,7 @@ $
 (
 [\s\S]+?                 //: alt_s
 )
-\.{3}
+:{3}
 (
 [\s\S]+?                 //: src
 )
@@ -159,7 +155,7 @@ $
 (
 [\s\S]+?                   //: function_s
 )
-\.{3}
+:{3}
 (
 [\s\S]+?                 //: arg_s (comma separated)
 )
@@ -174,7 +170,7 @@ $
       .new__re( 'gm' )    //: ^\^{3}[1-6][\s\S]+?$
 `
 ^
-\^{3}
+§{3}
 (
 [1-6]                 //: level_s
 )
@@ -187,29 +183,15 @@ $
 
 
 
-  bold_re:
-    REX_o
-      .new__re( 'gm' )
-`
-\*{3}
-(
-[\s\S]+?                 //: bold_s
-)
-\*{3}
-`
-,
-
-
-
   strong_re:
     REX_o
       .new__re( 'gm' )
 `
-°{3}
+\+{3}
 (
-[\s\S]+?                 //: bold_s
+[\s\S]+?                 //: strong_s
 )
-°{3}
+\+{3}
 `
 ,
 
@@ -233,11 +215,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\+{3}
+\^{3}
 (
 [\s\S]+
 )
-\+{3}
+\^{3}
 `
 ,
 
@@ -327,7 +309,7 @@ $
     REX_o
       .new__re( 'gm' )
 `
-:{3}
+°{3}
 \s*?
 (\d|[a-zA-Z])*?
 \n
@@ -335,7 +317,7 @@ $
 [\s\S]+?                   //: function_s
 )
 \n
-:{3}
+°{3}
 `
 ,
 
@@ -347,10 +329,9 @@ $
   hrule_a:    [ '<hr>', '' ],
   break_a:    [ '<br>', '' ],
 
-  bold_a:     [ '<b>', '</b>' ],
   strong_a:   [ '<strong>', '</strong>' ],
-  italic_a:   [ '<i>', '</i>' ],
   emphasis_a: [ '<em>', '</em>' ],
+  italic_a:   [ '<i>', '</i>' ],
   code_a:     [ '<code>', '</code>' ],
   cite_a:     [ '<cite>', '</cite>' ],
   delete_a:   [ '<del>', '</del>' ],

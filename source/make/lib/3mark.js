@@ -19,15 +19,17 @@ const PRE_o =
       'escape',
       'comment',
 
+      'block',
+      'reference',
+
       'link',
       'img',
       'call',
 
       'header',
-      'bold',
       'strong',
-      'italic',
       'emphasis',
+      'italic',
       'code',
       'cite',
       'delete',
@@ -36,8 +38,6 @@ const PRE_o =
       'raw',
 
       'list',
-      'reference',
-      'block',
     ]
   ,
 
@@ -45,6 +45,9 @@ const PRE_o =
   ,
 
   inc_a: []
+  ,
+
+  declare_a: []
   ,
 
 
@@ -105,7 +108,6 @@ const PRE_o =
         ] =
           match_a
 
-
       if
       (
         type_s
@@ -135,6 +137,49 @@ const PRE_o =
   ,
 
 
+  block_dec__a:
+    match_a =>
+    {
+      const
+        [
+          replaced_s,
+          type_s,
+          key_s,
+          value_s
+        ] =
+          match_a
+
+      //;;console.table(
+      //;  [
+      //;    replaced_s,
+      //;    type_s,
+      //;    key_s,
+      //;    value_s
+      //;  ]
+      //;)
+
+      if
+      (
+        type_s
+      )
+      {
+        PRE_o
+          .declare_a
+            [ `${key_s.trim()}` ] =
+              value_s
+      }
+
+      return (
+        [
+          replaced_s,
+          ''          //: remove declaration
+        ]
+      )
+    }
+  ,
+
+
+
   block__a:
     match_a =>
     {
@@ -145,17 +190,10 @@ const PRE_o =
         ] =
           match_a
 
-          //;;console.table(
-          //;  [
-          //;    replaced_s,
-          //;    type_s,
-          //;  ]
-          //;)
-
       type_s =
         type_s
         ||
-        'inc'
+        'dec'
 
       return (
         PRE_o
@@ -262,10 +300,44 @@ const PRE_o =
 
 
 
+  reference_dec__a:
+    match_a =>
+    {
+      const
+        [
+          replaced_s,
+          ,           //: type_s
+          key_s,
+          value_s
+        ] =
+          match_a
+
+          ;console.table(
+            [
+              replaced_s,
+              key_s,
+              value_s
+            ]
+          )
+    
+      return (
+        [
+          replaced_s,
+          PRE_o
+            .declare_a
+              [ `${key_s.trim()}` ]
+        ]
+      )
+    }
+  ,
+
+
+
+
   reference__a:        //========== TODO
     match_a =>
       PRE_o
-        [ `reference_${match_a[1] || 'inc'}__a` ]( match_a )    //: match_a[1] = type_s default to inc
+        [ `reference_${match_a[1] || 'dec'}__a` ]( match_a )    //: match_a[1] = type_s default to declare
   ,
 
 
@@ -405,18 +477,6 @@ const PRE_o =
         ]
       )
     }
-  ,
-
-
-
-  bold__a:
-    match_a =>
-      PRE_o
-        .tag__a
-        (
-          match_a,
-          'bold'
-        )
   ,
 
 
