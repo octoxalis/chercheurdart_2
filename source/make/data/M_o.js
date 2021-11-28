@@ -9,7 +9,6 @@ const REX_o =
                     //-- availabnle
                     //:   $   //: ...
                     //:   +   //: ...
-                    //:   %   //: ...
                     //:   _   //: ...
 
                                 //-- standalone
@@ -18,9 +17,9 @@ const HRULE_CHAR_s =      '\\-'  //: -
                                  //-- open === close
 const STRONG_CHAR_s =     '\\*'  //: *
 const EMPHASIS_CHAR_s =   '\\^'  //: ^
-const ITALIC_CHAR_s =     '/'
+//XXconst ITALIC_CHAR_s =     '/'
 const CITE_CHAR_s =       '"'
-const DELETE_CHAR_s =     '~'
+const DELETE_CHAR_s =     '_'
 const CODE_CHAR_s =       '\\`'  //: `
 const RAW_CHAR_s =        '%'
 
@@ -28,8 +27,8 @@ const HEADER_CHAR_s =     '#'
 const LIST_CHAR_s =       '°'
 //??const LISTO_CHAR_s       
 
+const COMMENT_CHAR_s =    '/'
 const ESCAPE_CHAR_s =     '\\\\'  //: \
-const COMMENT_CHAR_s =    '@'
 
 const BLOCK_CHAR_s =      '\\|'  //: |
 const NESTED_BLOCK_CHAR_s = '!' 
@@ -81,7 +80,7 @@ ${COMMENT_CHAR_s}{3}
 ${BLOCK_CHAR_s}{3}
 \s*
 (inc|dec){0,1}   //: type_s
-\s+?
+\s+
 (
 [\w]+?      //: key_s
 )
@@ -103,19 +102,19 @@ $
       .new__re( 'gm' )
 `
 ${REFERENCE_CHAR_s}{3}
-\s*
+\s*?
 (inc|dec){0,1}          //: type_s
-\s+
+\s+?
 (
 [\w]+?                  //: key_s
 )
-\s+
+\s+?
 (?:::)?                 //!!! BLOC_SEPAR_CHAR_s
 \s*
 (
 [\s\S]*?                //: value_s
 )
-\s*
+\s*?
 ${REFERENCE_CHAR_s}{3}
 `
 ,
@@ -208,17 +207,17 @@ ${STRONG_CHAR_s}{3}
 
 
 
-  italic_re:
-    REX_o
-      .new__re( 'gm' )
-`
-${ITALIC_CHAR_s}{3}
-(
-[\s\S]+?                 //: italic_s
-)
-${ITALIC_CHAR_s}{3}
-`
-,
+//XX   italic_re:
+//XX     REX_o
+//XX       .new__re( 'gm' )
+//XX `
+//XX ${ITALIC_CHAR_s}{3}
+//XX (
+//XX [\s\S]+?                 //: italic_s
+//XX )
+//XX ${ITALIC_CHAR_s}{3}
+//XX `
+//XX ,
 
 
 
@@ -308,7 +307,7 @@ ${RAW_CHAR_s}{3}
     REX_o
       .new__re( 'gm' )
 `
-\s*
+\s*?
 ,{3}
 $
 `
@@ -342,7 +341,7 @@ ${LIST_CHAR_s}{3}
 
   strong_a:   [ '<strong>', '</strong>' ],
   emphasis_a: [ '<em>', '</em>' ],
-  italic_a:   [ '<i>', '</i>' ],
+  //XX italic_a:   [ '<i>', '</i>' ],
   code_a:     [ '<code>', '</code>' ],
   cite_a:     [ '<cite>', '</cite>' ],
   delete_a:   [ '<del>', '</del>' ],

@@ -29,7 +29,7 @@ const PRE_o =
       'header',
       'strong',
       'emphasis',
-      'italic',
+      //XX 'italic',
       'code',
       'cite',
       'delete',
@@ -531,15 +531,15 @@ const PRE_o =
 
 
 
-  italic__a:
-    match_a =>
-      PRE_o
-        .tag__a
-        (
-          match_a,
-          'italic'
-        )
-  ,
+//XX  italic__a:
+//XX    match_a =>
+//XX      PRE_o
+//XX        .tag__a
+//XX        (
+//XX          match_a,
+//XX          'italic'
+//XX        )
+//XX  ,
 
 
 
