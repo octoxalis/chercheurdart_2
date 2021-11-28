@@ -10,6 +10,9 @@ const M_o =
   const C_o =
   require( '../data/C_o.js' )
 
+const BLOCK_CHAR_s = '\\|'
+
+
 
 const block_ins__a =
 match_a =>    //: block_ins__a
@@ -72,7 +75,7 @@ module
                   .new__re( 'gm' )    //: block_ins__re
                   `
                   ^
-                  @{3}
+                  ${BLOCK_CHAR_s}{3}
                   \s*
                   (
                   ins           //: type_s
@@ -91,7 +94,7 @@ module
                   [\s\S]+?      //: value_s
                   )
                   \s*
-                  @{3}        //!!! MUST NOT end on a new line
+                  ${BLOCK_CHAR_s}{3}                  //!!! MUST NOT end on a new line
                   $`
             }
           )

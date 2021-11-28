@@ -3,37 +3,46 @@ const REX_o =
   require( '../lib/regex.js' )
 
 //=== CHARS ===
-                    //-- standalone
-//: break:      |
-//: hrule:      _
-                    //-- open === close
-//: strong:     +
-//: emphasis:   ^
-//: italic:     /
-//: cite:       "
-//: delete:     -
-//: code:       `
-//: raw:        =
-//
-//: header:     §
-//: list        °
-//: listo       ;
-//
-//: escape:     \
-//: comment  :  #
-//
-//: block:      @
-//: reference:  &
-                    //-- open !== close
-//: link:       <>
-//: img:        []
-//: call:       ()
-
                     //-- reserved
-                    //: reserved:   ?   //: empty table cells
-                    //: reserved:   :   //: block separator
-                    //: reserved:   $   //: ...
-                    //: reserved:   !   //: ...
+                    //:   ?   //: empty table cells
+                    //:   :   //: block separator
+                    //-- availabnle
+                    //:   $   //: ...
+                    //:   +   //: ...
+                    //:   %   //: ...
+                    //:   _   //: ...
+
+                                //-- standalone
+const BREAK_CHAR_s =      ','
+const HRULE_CHAR_s =      '\\-'  //: -
+                                 //-- open === close
+const STRONG_CHAR_s =     '\\*'  //: *
+const EMPHASIS_CHAR_s =   '\\^'  //: ^
+const ITALIC_CHAR_s =     '/'
+const CITE_CHAR_s =       '"'
+const DELETE_CHAR_s =     '~'
+const CODE_CHAR_s =       '\\`'  //: `
+const RAW_CHAR_s =        '%'
+
+const HEADER_CHAR_s =     '#'
+const LIST_CHAR_s =       '°'
+//??const LISTO_CHAR_s       
+
+const ESCAPE_CHAR_s =     '\\\\'  //: \
+const COMMENT_CHAR_s =    '@'
+
+const BLOCK_CHAR_s =      '\\|'  //: |
+const NESTED_BLOCK_CHAR_s = '!' 
+const REFERENCE_CHAR_s =  '='
+                                 //-- open !== close
+const LINK_OPEN_CHAR_s =  '<'
+const LINK_CLOSE_CHAR_s =  '>'
+const IMG_OPEN_CHAR_s =   '\\['  //: [
+const IMG_CLOSE_CHAR_s =  '\\]'  //: ]
+const CALL_OPEN_CHAR_s =  '\\('  //: (
+const CALL_CLOSE_CHAR_s = '\\)'  //: )
+
+const BLOC_SEPAR_CHAR_s = ':'
 
 
 const M_o =
@@ -42,11 +51,11 @@ const M_o =
     REX_o
       .new__re( 'gm' )
 `
-\\{3}
+${ESCAPE_CHAR_s}{3}
 (
 [\s\S]*?
 )
-\\{3}
+${ESCAPE_CHAR_s}{3}
 `
   ,
 
@@ -56,9 +65,9 @@ const M_o =
     REX_o
       .new__re( 'gm' )
 `
-#{3}
+${COMMENT_CHAR_s}{3}
 [\s\S]*?
-#{3}
+${COMMENT_CHAR_s}{3}
 `
 ,
 
@@ -69,20 +78,20 @@ const M_o =
       .new__re( 'gm' )
 `
 ^
-@{3}
+${BLOCK_CHAR_s}{3}
 \s*
-(inc|dec){0,1}   //: type_s: inc || dec
+(inc|dec){0,1}   //: type_s
 \s+?
 (
 [\w]+?      //: key_s
 )
-:{3}
+${BLOC_SEPAR_CHAR_s}{3}
 \s*
 (
 [\s\S]+?     //: value_s
 )
 \s*
-@{3}        //!!! MUST NOT end on a new line
+${BLOCK_CHAR_s}{3}        //!!! MUST NOT end on a new line
 $
 `
 ,
@@ -93,19 +102,21 @@ $
     REX_o
       .new__re( 'gm' )
 `
-&{3}
+${REFERENCE_CHAR_s}{3}
 \s*
 (inc|dec){0,1}          //: type_s
-\s*
+\s+
 (
-[\w]+?                //: key_s
+[\w]+?                  //: key_s
 )
-\s+?
+\s+
+(?:::)?                 //!!! BLOC_SEPAR_CHAR_s
+\s*
 (
 [\s\S]*?                //: value_s
 )
 \s*
-&{3}
+${REFERENCE_CHAR_s}{3}
 `
 ,
 
@@ -115,15 +126,15 @@ $
     REX_o
       .new__re( 'gm' )
 `
-<{3}
+${LINK_OPEN_CHAR_s}{3}
 (
 [\s\S]+?                 //: href_s
 )
-:{3}
+${BLOC_SEPAR_CHAR_s}{3}
 (
 [\s\S]+?                 //: link_s
 )
->{3}
+${LINK_CLOSE_CHAR_s}{3}
 `
 ,
 
@@ -133,15 +144,15 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\[{3}
+${IMG_OPEN_CHAR_s}{3}
 (
 [\s\S]+?                 //: alt_s
 )
-:{3}
+${BLOC_SEPAR_CHAR_s}{3}
 (
 [\s\S]+?                 //: src
 )
-\]{3}
+${IMG_CLOSE_CHAR_s}{3}
 `
 ,
 
@@ -151,15 +162,15 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\({3}
+${CALL_OPEN_CHAR_s}{3}
 (
 [\s\S]+?                   //: function_s
 )
-:{3}
+${BLOC_SEPAR_CHAR_s}{3}
 (
 [\s\S]+?                 //: arg_s (comma separated)
 )
-\){3}
+${CALL_CLOSE_CHAR_s}{3}
 `
 ,
 
@@ -170,7 +181,7 @@ $
       .new__re( 'gm' )    //: ^\^{3}[1-6][\s\S]+?$
 `
 ^
-§{3}
+${HEADER_CHAR_s}{3}
 (
 [1-6]                 //: level_s
 )
@@ -187,11 +198,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\+{3}
+${STRONG_CHAR_s}{3}
 (
 [\s\S]+?                 //: strong_s
 )
-\+{3}
+${STRONG_CHAR_s}{3}
 `
 ,
 
@@ -201,11 +212,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-/{3}
+${ITALIC_CHAR_s}{3}
 (
 [\s\S]+?                 //: italic_s
 )
-/{3}
+${ITALIC_CHAR_s}{3}
 `
 ,
 
@@ -215,11 +226,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\^{3}
+${EMPHASIS_CHAR_s}{3}
 (
 [\s\S]+
 )
-\^{3}
+${EMPHASIS_CHAR_s}{3}
 `
 ,
 
@@ -229,11 +240,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\`{3}
+${CODE_CHAR_s}{3}
 (
 [\s\S]+?                 //: code_s
 )
-\`{3}
+${CODE_CHAR_s}{3}
 `
 ,
 
@@ -243,11 +254,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-"{3}
+${CITE_CHAR_s}{3}
 (
 [\s\S]+?                 //: cite_s
 )
-"{3}
+${CITE_CHAR_s}{3}
 `
 ,
 
@@ -257,11 +268,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
--{3}
+${DELETE_CHAR_s}{3}
 (
 [\s\S]+?                 //: cite_s
 )
--{3}
+${DELETE_CHAR_s}{3}
 `
 ,
 
@@ -271,11 +282,11 @@ $
     REX_o
       .new__re( 'gm' )
 `
-={3}
+${RAW_CHAR_s}{3}
 (
 [\s\S]+?                 //: cite_s
 )
-={3}
+${RAW_CHAR_s}{3}
 `
 ,
 
@@ -286,7 +297,7 @@ $
        .new__re( 'gm' )
  `
  ^
- _{3}
+ ${HRULE_CHAR_s}{3}
  $
  `
  ,
@@ -297,8 +308,8 @@ $
     REX_o
       .new__re( 'gm' )
 `
-\s+?
-\|{3}
+\s*
+,{3}
 $
 `
 ,
@@ -309,7 +320,7 @@ $
     REX_o
       .new__re( 'gm' )
 `
-°{3}
+${LIST_CHAR_s}{3}
 \s*?
 (\d|[a-zA-Z])*?
 \n
@@ -317,7 +328,7 @@ $
 [\s\S]+?                   //: function_s
 )
 \n
-°{3}
+${LIST_CHAR_s}{3}
 `
 ,
 

@@ -35,19 +35,14 @@
 }
 ---
 {% _section section_a[0] %}
-§§§1 {{title_s}}
+###1 3Mark
+
+|||dec   VERSION:::
+!!!ins₀   {{abstract_s}} :::
+{{F_o.versionList__s(version_a)}} !!! |||
+
+=== VERSION ===
 
 
-@@@ins₀   {{abstract_s}} :::
-{{F_o.versionList__s(version_a)}} @@@
-
-
-§§§2 Inserted blocks
-
-@@@dec   key_s:::
-a smart declaration |||
-<<<Chercheur d'Art:::index.html>>> @@@
-
-&&& key_s 1234 &&&
 
 {% end_section %}

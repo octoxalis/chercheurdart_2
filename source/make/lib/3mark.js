@@ -38,6 +38,7 @@ const PRE_o =
       'raw',
 
       'list',
+
     ]
   ,
 
@@ -140,7 +141,7 @@ const PRE_o =
   block_dec__a:
     match_a =>
     {
-      const
+      let
         [
           replaced_s,
           type_s,
@@ -163,16 +164,35 @@ const PRE_o =
         type_s
       )
       {
+        if
+        (
+          value_s
+            .startsWith( '!!!' )    //: nested block
+        )
+        {
+          value_s =
+            PRE_o
+            .process__s
+            (
+              value_s
+                .replaceAll    //: for nested block
+                (
+                  '!!!',
+                  '|||'
+                )
+            )
+        }
+
         PRE_o
           .declare_a
             [ `${key_s.trim()}` ] =
               value_s
-      }
+        }
 
       return (
         [
           replaced_s,
-          ''          //: remove declaration
+          ''            //: remove declaration
         ]
       )
     }
@@ -312,20 +332,38 @@ const PRE_o =
         ] =
           match_a
 
-          ;console.table(
-            [
-              replaced_s,
-              key_s,
-              value_s
-            ]
-          )
+          //;;console.table(
+          //;  [
+          //;    replaced_s,
+          //;    key_s,
+          //;    value_s
+          //;  ]
+          //;)
     
-      return (
+          //;console.table( PRE_o.token_a )
+
+      let declare_s =
+        PRE_o
+          .declare_a
+            [ `${key_s.trim()}` ]
+          
+          //;console.log( declare_s )
+
+      //--if
+      //--(
+      //--  declare_s
+      //--    .startsWith( '!!!' )    //: nested block
+      //--)
+      //--{
+      //--  declare_s =
+      //--    PRE_o
+      //--      .process__s( declare_s )
+      //--}
+
+          return (
         [
           replaced_s,
-          PRE_o
-            .declare_a
-              [ `${key_s.trim()}` ]
+          declare_s
         ]
       )
     }
@@ -790,7 +828,7 @@ module
         {
           PRE_o
             .token_a
-              .push ( process_s )
+              .push( process_s )
         }
 
         PRE_o
