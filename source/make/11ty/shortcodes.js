@@ -1,17 +1,17 @@
 const MARK_o =
-  require( '../lib/3mark.js' )
+  require( '../lib/2mark.js' )
 
 const MARK_INS_o =
-  require( '../lib/3mark-ins.js' )
+  require( '../lib/2mark-ins.js' )
   
 const MARK_HEAD_o =
-  require( '../lib/3mark-header.js' )
+  require( '../lib/2mark-header.js' )
   
 
 
 const CODES_o =
 {
-  section__s:    //: 3mark section
+  section__s:    //: 2mark section
   (
     source_s,
     section_s

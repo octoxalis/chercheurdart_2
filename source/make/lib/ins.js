@@ -5,7 +5,7 @@ const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
 //XX const ASC_o = require( './asciidoc.js' )
 const PRE_o =
-  require( './3mark.js' )
+  require( './2mark.js' )
 
 
 const C_o   = require( '../data/C_o.js' )
