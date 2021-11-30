@@ -1,6 +1,10 @@
 //-- const REX_o =
 //--   require( './regex.js' )
 
+const F_o =
+  require( '../data/F_o.js' )
+
+
 const PRE_o =
   require( './2mark.js' )
 
@@ -19,9 +23,11 @@ match_a =>    //: header__a
     header_s
       .trim()
 
-  let anteDiv = ''
+  let anteDiv_s = ''
 
-  let postDiv = ''
+  let postDiv_s = ''
+
+  let anchor_s = ''
 
   if
   (
@@ -30,17 +36,25 @@ match_a =>    //: header__a
     2
   )
   {
-    anteDiv =
+    anteDiv_s =
       '</div><hr>'    //: horizontal line after h2 blocks
-    postDiv =
+
+    postDiv_s =
       '<div>'
+
+    const id_s =
+      F_o
+        .slug__s( header_s )
+
+    anchor_s =
+      `<a id="${id_s}"></a>`
   }
 
 
     return (
       [
         replaced_s,
-        `${anteDiv}<h${level_s}>${header_s}</h${level_s}>${postDiv}`
+        `${anteDiv_s}${anchor_s}<h${level_s}>${header_s}</h${level_s}>${postDiv_s}`
       ]
     )
   }

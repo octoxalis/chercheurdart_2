@@ -3,22 +3,22 @@ const REX_o =
   require( '../lib/regex.js' )
 
 //=== SYNTAX ===
-                        //-- exclude (tween charw)
+                        //-- exclude (orphan tween char)
 //:    \        escape      
 //:    /        comment     
-                        //-- format (tween charw)
+                        //-- format (tween char)
 //:    #        header      
 //:    -        hrule       
 //:    ,        break       
 //:    *        strong      
 //:    ^        emphasis    
-                        //-- link (pair char)
-//:    <>       link        
-//:    []       img         
-//:    ()       call        
+                        //-- link  (triple char)
+//:    < : >       link        
+//:    [ : ]       img         
+//:    ( : )       call        
                         //-- block (triple char)
 //:    ^ : !    block       
-//:    ¨ : §    reference   
+//:    ¨ : §    reference  () 
 
                         //-- specifier (solo char)
 //:    =        declare     
@@ -105,10 +105,10 @@ $
 
   break_re:
     REX_o
-     .new__re( 'gm' )
+     .new__re( 'g' )
 `
-\s*?
-,{2}
+\s+?                    //: space before is mandatory
+${BREAK_CHAR_s}{2}
 $
 `
 ,

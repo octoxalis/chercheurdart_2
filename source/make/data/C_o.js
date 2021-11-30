@@ -31,8 +31,6 @@ const C_o =
   IMG_MAX_PATH_s:    '/full/max/0/',    //: IOR
 
   //=== FILE NAMES
-  //XX SCAN_FILE_s:       'scan.json',
-  //XX SCAN_IFRAME_s:     'scan_iframe',
   WORKER_FILE_s:     '/assets/scripts/js/stat_w.min.js',
 
 
@@ -66,7 +64,6 @@ const C_o =
   [
     'article',
     'galerie',
-    //XX'stat',
   ],
 
   STAT_s: 'stat',
@@ -117,6 +114,22 @@ const C_o =
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
   },
 
+  //=== REPLACE
+  GALERY_REPLACE_s:    '<del for=section_galery hidden ></del>',
+  TOPICS_REPLACE_s:    '<del for=div_topics hidden ></del>',
+  COMMENTS_REPLACE_s:  '<del for=div_comment hidden ></del>',
+  STAT_REPLACE_a:
+  [
+                       '<del for=burst_div hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
+                       '<del for=div_aster hidden ></del>',    //: idem
+                       '<del for=div_paint hidden ></del>',    //: idem
+  ],
+
+
+  //=== HTML-BODY ANCHORS
+  //-- ANCHOR_DELIM_s : '__',
+  PAGE_TOP: 'page_top',
+  
 
   //=== HTML-BODY: TAGS ===
   INPUT_ID_s:       'IN',
@@ -135,22 +148,18 @@ const C_o =
   IOR_DIM_TAG_s:    'i',
   CHAPTER_TAG_s:    'h2',
 
+  //=== LIST ===
+  LIST_INDENT_n:  2,
 
   //=== HTML-BODY: EXTEND MARKUP ===
   INFO_s    :           '&#x2139;',
   UP_ARROW_s:           '&#8593;',
   IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
-
-  PICT_s:               '&#8918;',    //: 
-
-  SPECIF_DELIM_s:      ' ',    //: between specifier and content (insert)
   
   //=== DB ID
   //-- 1586-de_coster--new_york-sothebys--1625-young_woman
 
   ID_PART_DELIM_s:     '~',   //: between parts
-  //-- ID_SUBPART_DELIM_s:        '-',    //: between subparts
-  ID_WORD_DELIM_s:     '₊₊',   //: between multi word subpart
 
   WORDS_DELIM_s:       ' ',
   WORDS_CONCAT_s:      '_',    //: underline
@@ -170,7 +179,7 @@ const C_o =
   INS_REF_s:  '₂',        //: reference insert
   INS_QUO_s:  '₃',        //: quotation insert
   INS_TAB_s:  '₄',        //: table insert
-  //..............
+  //...
   INS_IMG_s:  '₉',        //: image insert
 
   INS_METHOD_o:
@@ -191,20 +200,6 @@ const C_o =
   INS_VAL_DELIM_s:  '⁞',           //: &#8286;
 
 
-  //=== PREPROCESS ===
-
-
-  //=== REPLACE
-  GALERY_REPLACE_s:    '<del for=section_galery hidden ></del>',
-  TOPICS_REPLACE_s:    '<del for=div_topics hidden ></del>',
-  COMMENTS_REPLACE_s:  '<del for=div_comment hidden ></del>',
-  STAT_REPLACE_a:
-  [
-                       '<del for=burst_div hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
-                       '<del for=div_aster hidden ></del>',    //: idem
-                       '<del for=div_paint hidden ></del>',    //: idem
-  ],
-
 
   //=== HTML-BODY: TABLE
   CELL_ALIGN_a:
@@ -215,22 +210,10 @@ const C_o =
   ],
 
   CELL_RATIO_n: .1,
-
   CELL_EMPTY_s: '__',                //: double underline
   CELL_EMPTY_ENTITY_s: '&#8280;',    //: ⁘
-
-  //=== HTML-BODY ANCHORS
-  //-- ANCHOR_DELIM_s : '__',
-  PAGE_TOP: 'page_top',
-
-
-  //=== ADOC ===
-  ADOC_DATA_s:       'ad',
-  MACRO_INSERT_s:    'ins',
   
-  BLOCK_PREAMBLE_s:  'preamble',
-  BLOCK_SECTION_s:   'section_level',
-  BLOCK_PARAGRAPH_s: 'paragraph',
+  MACRO_INSERT_s:    'ins',
 
 
   //=== DB ===

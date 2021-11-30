@@ -57,7 +57,7 @@ Horizontal rule after
 
 --
 
-Break after,,
+Break after  ,,
 Break before
 
 
@@ -72,6 +72,11 @@ Primo
 Secondo
   One
   Two
+    1
+      Uno
+    2
+      Ein
+      Zwei
 Tertio
 ++
 

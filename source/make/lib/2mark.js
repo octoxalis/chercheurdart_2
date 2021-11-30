@@ -10,8 +10,10 @@ const F_o =
 const C_o =
   require( '../data/C_o.js' )    //: required by CALL
 
-const BLOCK_OPEN_s =  '^'       //: see ins no escape here
-const BLOCK_CLOSE_s =  '!'       //: see ins no escape here
+  
+
+const BLOCK_OPEN_s    = '^'    //: see ins no escape here
+const BLOCK_CLOSE_s   = '!'    //: see ins no escape here
 const BLOCK_DECLARE_s = '='    //: after BLOCK_OPEN_s
 const BLOCK_INCLUDE_s = '+'    //: after BLOCK_OPEN_s
 
@@ -356,9 +358,23 @@ const PRE_o =
             indent_n
           )
           {
+            while
+            (
+              indent_n
+              >
+              ati_n
+            )
+            {
+              list_s +=
+                `</${listType_s}>`
+
+              indent_n -=
+                C_o
+                  .LIST_INDENT_n
+            }
+
             list_s +=
-              `</${listType_s}>`
-              + `<li>${line_s.trim()}`
+              `<li>${line_s.trim()}`
           }
           else
           {
@@ -366,7 +382,7 @@ const PRE_o =
               `<${listType_s}>`
               + `<li>${line_s.trim()}`
           }
-          
+
           indent_n =
             ati_n
         }

@@ -15,6 +15,7 @@ h6 {
   font-weight: 400;
 }
 ul {
+  margin: {{S_o.PAD_2}} 0;
   border-left: 1px solid {{S_o.shadow_ne}};
 }
 ul > li {
