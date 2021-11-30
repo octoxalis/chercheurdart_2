@@ -105,7 +105,7 @@ $
 
   break_re:
     REX_o
-     .new__re( 'g' )
+     .new__re( 'gm' )
 `
 \s+?                    //: space before is mandatory
 ${BREAK_CHAR_s}{2}
