@@ -380,13 +380,21 @@ table__s:
         break
 
       default:
-        table_s +=
-          INS_o
-            .tableRow__s
-            (
-              line_s
-                .trim()
-            )
+        if
+        (
+          line_s
+          !==
+          ''      //: empty line for readibility: continue
+        )
+        {
+          table_s +=
+            INS_o
+              .tableRow__s
+              (
+                line_s
+                  .trim()
+              )
+        }
     }
 
     ++row_n
@@ -502,8 +510,7 @@ tableRow__s:
     if
     (
       cell_s
-        .includes
-        ( C_o.CELL_EMPTY_s )
+        .startsWith( C_o.CELL_EMPTY_s )
     )
     {
       cell_s =

@@ -11,8 +11,8 @@ const M_o =
   require( '../data/C_o.js' )
 
 const BLOCK_OPEN_s =  '\\^'
-const BLOCK_CLOSE_s = '\\$'
-const BLOCK_SEPAR_CHAR_s = '='
+const BLOCK_CLOSE_s = '!'
+const BLOCK_SEPAR_CHAR_s = ':'
 
 
 
@@ -74,7 +74,7 @@ ${BLOCK_OPEN_s}
 (
 [^${BLOCK_SEPAR_CHAR_s}]+?
 )
-${BLOCK_SEPAR_CHAR_s}
+${BLOCK_SEPAR_CHAR_s}{2}
 \s+?
 (
 [^${BLOCK_CLOSE_s}]+?     //: value_s

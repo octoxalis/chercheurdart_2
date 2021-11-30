@@ -216,7 +216,7 @@ const C_o =
 
   CELL_RATIO_n: .1,
 
-  CELL_EMPTY_s: '???',
+  CELL_EMPTY_s: '__',                //: double underline
   CELL_EMPTY_ENTITY_s: '&#8280;',    //: ⁘
 
   //=== HTML-BODY ANCHORS

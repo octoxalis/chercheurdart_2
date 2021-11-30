@@ -45,7 +45,6 @@ Escaped lines or inline parts are not processed
 
 This a //very short// inline comment (very short commented out)
 
-
 ##2 Formating
 
 **Strong** inline
@@ -62,10 +61,10 @@ Break after,,
 Break before
 
 
-<< https://chercheurdart-2.netlify.app  =  Chercheur d'Art >>
+<< Link to example  ::  https://example.app >>
 
 
-[[ /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif  =  Arion par F. Boucher ]]
+[[ Arion par F. Boucher  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif ]]
 
 
 ++
@@ -77,77 +76,78 @@ Tertio
 ++
 
 
-(( F_o.stamp__s  =  '2021-09-16T08:12:00Z' ))
+(( F_o.stamp__s  ::  '2021-09-16T08:12:00Z' ))
 
 
 ##3 Inserted blocks
 
-^₀  key_s =
+^₀  key_s ::
 value_s_0
-value_s_1 = value_2
-<<Chercheur d'Art  =  index.html>>
-[[/assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif  =  Le bel Arion]] $$
+value_s_1 :: value_2
+<< Chercheur d'Art  ::  index.html >>
+[[ Le bel Arion  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif ]] !!
 
 
-^₁  Définition multiple (single level list) =
+^₁  Définition multiple (single level list) ::
 Primo
-Secondo $$
+Secondo !!
 
 
-^₂  Claude Lorrain =
+^₂  Claude Lorrain ::
 1989-langdon
 p.123
 On peut ajouter un **lien**
-<<Chercheur d'Art  =  index.html>> $$
+<< Chercheur d'Art  ::  index.html >> !!
 
 
-^₃  **Pretium scelerisque** sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes. =
+^₃  **Pretium scelerisque** sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes. ::
 A. Dupin
-<<Chercheur d'Art  =  index.html>> $$
+<< Chercheur d'Art  ::  index.html >> !!
 
 
-^₄  Tabula rasa =
+^₄  Tabula rasa ::
 30_30_30 0_1_2
 Primo
 Secondo
 Tertio
+
 Un
 Deux
 Trois
+
 One
-???
+__Two is escaped
 Three
-<<Chercheur d'Art  =  index.html>>
-???
-??? $$
+
+<< Chercheur d'Art  ::  index.html >>
+__Empty is escaped
+Last cell !!
 
 
-^₉  Arion  =
-1703-boucher~princeton-university~1748-arion $$
+^₉  Arion  ::
+1703-boucher~princeton-university~1748-arion !!
 
 
 
 
-##3 Declaration + réference
+##3 Declaration, réference, include
 
-^+  MARK_TEST  =  {{C_o.CONTENT_PARTS_DIR_s}}2mark_test.txt $$
-§+  MARK_TEST  °°
-§+  MARK_TEST  =  1-3, 6, 9-40 °°
-
-
-^!  DECLARE_VAL  = A simple value to reference $$
-§!  DECLARE_VAL  °°
+^+  MARK_TEST  ::  {{C_o.CONTENT_PARTS_DIR_s}}2mark_test.txt !!
+¨+  MARK_TEST  §§
+¨+  MARK_TEST  ::  1-3, 6, 9-40 §§
 
 
-^!  VERSION_ID  =
-^₀  {{abstract_s}}  =
-{{F_o.versionList__s(version_a)}} $$
-
-§!  VERSION_ID  °°
-
-Once more!
-§!  VERSION_ID  °°
+^=  DECLARE_VAL  :: A simple value to reference !!
+¨=  DECLARE_VAL  §§
 
 
+^=  VERSION_ID  ::
+^₀  {{abstract_s}}  ::
+{{F_o.versionList__s(version_a)}} !!
+
+¨=  VERSION_ID  §§
+
+Once more
+¨=  VERSION_ID  §§
 
 {% end_section %}

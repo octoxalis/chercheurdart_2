@@ -2,30 +2,48 @@
 const REX_o =
   require( '../lib/regex.js' )
 
-//=== CHARS ===
-                      //-- reserved
-                      //:   ?   //: empty table cells
-                      //-- availabnle
-                      //:   +
-                      //:   _
-                      //:   "
-                      //:   _
-                      //:   %
-                      //:   `  //: keep Mark use
+//=== SYNTAX ===
+                        //-- exclude (tween charw)
+//:    \        escape      
+//:    /        comment     
+                        //-- format (tween charw)
+//:    #        header      
+//:    -        hrule       
+//:    ,        break       
+//:    *        strong      
+//:    ^        emphasis    
+                        //-- link (pair char)
+//:    <>       link        
+//:    []       img         
+//:    ()       call        
+                        //-- block (triple char)
+//:    ^ : !    block       
+//:    ¨ : §    reference   
 
-                                //-- standalone
-const BREAK_CHAR_s =        ','
+                        //-- specifier (solo char)
+//:    =        declare     
+//:    +        include     
+
+                        //-- reserved
+//:    _        CELL_EMPTY_s       
+                        //-- available
+//:    "
+//:    %
+//:    ¤
+//:    °
+//:    ~
+
+
+                                //-- open only
 const HRULE_CHAR_s =        '\\-'  //: -
-                                   //-- open === close
-const STRONG_CHAR_s =       '\\*'  //: *
-const EMPHASIS_CHAR_s =     '\\^'  //: ^
-  
+const BREAK_CHAR_s =        ','
 const HEADER_CHAR_s =       '#'
-const LIST_CHAR_s =         '\\+'
-//??const LISTO_CHAR_s       
-
+                                //-- open === close
 const COMMENT_CHAR_s =      '/'
 const ESCAPE_CHAR_s =       '\\\\'  //: \
+const STRONG_CHAR_s =       '\\*'  //: *
+const EMPHASIS_CHAR_s =     '\\^'  //: ^
+const LIST_CHAR_s =         '\\+'
                                  //-- open !== close
 const LINK_OPEN_CHAR_s =   '<'
 const LINK_CLOSE_CHAR_s =   '>'
@@ -35,11 +53,12 @@ const CALL_OPEN_CHAR_s =   '\\('     //: (
 const CALL_CLOSE_CHAR_s =  '\\)'     //: )
 
 const BLOCK_OPEN_s =       '\\^'
-const BLOCK_CLOSE_s =      '\\$'
-const BLOCK_SEPAR_CHAR_s = '='
-const REFERENCE_OPEN_s =   '§'
-const REFERENCE_CLOSE_s =  '°'
-const BLOCK_DECLARE_s =    '!'      //: after BLOCK_OPEN_s
+const BLOCK_CLOSE_s =      '!'
+const BLOCK_SEPAR_CHAR_s = ':'
+const REFERENCE_OPEN_s =   '¨'
+const REFERENCE_CLOSE_s =  '§'
+
+const BLOCK_DECLARE_s =    '='      //: after BLOCK_OPEN_s
 const BLOCK_INCLUDE_s =    '\\+'    //: after BLOCK_OPEN_s
 
 
@@ -148,11 +167,11 @@ ${EMPHASIS_CHAR_s}{2}
 `
 ${LINK_OPEN_CHAR_s}{2}
 (
-[^${BLOCK_SEPAR_CHAR_s}]+?  //: href_s
+[^${BLOCK_SEPAR_CHAR_s}]+?  //: legend_s
 )
-${BLOCK_SEPAR_CHAR_s}
+${BLOCK_SEPAR_CHAR_s}{2}
 (
-[^${LINK_CLOSE_CHAR_s}]+?  //: link_s
+[^${LINK_CLOSE_CHAR_s}]+?  //: href_s
 )
 ${LINK_CLOSE_CHAR_s}{2}
 `
@@ -166,11 +185,11 @@ ${LINK_CLOSE_CHAR_s}{2}
 `
 ${IMG_OPEN_CHAR_s}{2}
 (
-[^${BLOCK_SEPAR_CHAR_s}]+?                 //: alt_s
+[^${BLOCK_SEPAR_CHAR_s}]+?           //: alt_s
 )
-${BLOCK_SEPAR_CHAR_s}
+${BLOCK_SEPAR_CHAR_s}{2}
 (
-[^${IMG_CLOSE_CHAR_s}]+?                 //: src
+[^${IMG_CLOSE_CHAR_s}]+?             //: src
 )
 ${IMG_CLOSE_CHAR_s}{2}
 `
@@ -204,7 +223,7 @@ ${CALL_OPEN_CHAR_s}{2}
 (
 [^${BLOCK_SEPAR_CHAR_s}]+?         //: function_s
 )
-${BLOCK_SEPAR_CHAR_s}
+${BLOCK_SEPAR_CHAR_s}{2}
 (
 [^${CALL_CLOSE_CHAR_s}]+?         //: arg_s (comma separated)
 )
@@ -219,7 +238,7 @@ ${CALL_CLOSE_CHAR_s}{2}
 //=== BLOCKS ===
   block_re:
     REX_o
-      .new__re( 'gm' )      //: /^\^(!|+)\s+?([\w]+?)¤([^\$+?)\${2}$/
+      .new__re( 'gm' )
 `
 ^
 ${BLOCK_OPEN_s}
@@ -229,12 +248,12 @@ ${BLOCK_OPEN_s}
 [\w]+?      //: key_s
 )
 \s+?
-${BLOCK_SEPAR_CHAR_s}
+${BLOCK_SEPAR_CHAR_s}{2}
 \s+?
 (
 [^${BLOCK_CLOSE_s}]+?     //: value_s
 )
-${BLOCK_CLOSE_s}{2}        //!!! MUST NOT end on a new line
+${BLOCK_CLOSE_s}{2}        //: MUST NOT end on a new line
 $
 `
 ,

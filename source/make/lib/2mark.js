@@ -11,7 +11,8 @@ const C_o =
   require( '../data/C_o.js' )    //: required by CALL
 
 const BLOCK_OPEN_s =  '^'       //: see ins no escape here
-const BLOCK_DECLARE_s = '!'    //: after BLOCK_OPEN_s
+const BLOCK_CLOSE_s =  '!'       //: see ins no escape here
+const BLOCK_DECLARE_s = '='    //: after BLOCK_OPEN_s
 const BLOCK_INCLUDE_s = '+'    //: after BLOCK_OPEN_s
 
   
@@ -209,8 +210,8 @@ const PRE_o =
     const
     [
       replaced_s,
+      legend_s,
       src_s,
-      descriptor_s
     ] =
       match_a
   
@@ -227,7 +228,7 @@ const PRE_o =
     return (
       [
         replaced_s,
-        `${open_s}${src_s}${inter_s}${descriptor_s}${close_s}`    //:replacing_s
+        `${open_s}${src_s}${inter_s}${legend_s}${close_s}`    //:replacing_s
       ]
     )
   }
@@ -452,7 +453,7 @@ const PRE_o =
             PRE_o
             .process__s
             (
-              `${value_s}$$`    //: add missing BLOCK_CLOSE_s
+              `${value_s}${BLOCK_CLOSE_s}${BLOCK_CLOSE_s}`    //: add missing BLOCK_CLOSE_s
             )
         }
 
