@@ -230,7 +230,7 @@ const PRE_o =
     return (
       [
         replaced_s,
-        `${open_s}${src_s}${inter_s}${legend_s}${close_s}`    //:replacing_s
+        `${open_s}${src_s.trim()}${inter_s}${legend_s.trim()}${close_s}`    //:replacing_s
       ]
     )
   }

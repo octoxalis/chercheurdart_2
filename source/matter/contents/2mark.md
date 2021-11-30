@@ -1,15 +1,15 @@
 ---js
 {
   layout:   'frame.njk',
-  permalink: '2mark.html',
+  permalink: 'TweenMark.html',
   tags:    [ 'collection' ],
   eleventyExcludeFromCollections: false,
   // - expires_n: 10,
 
   doc_n:    10241,
-  title_s:   `2mark cheatsheet`,
-  subtitle_s: `2mark markup used in chercheurd.art`,
-  abstract_s: `2mark reference for chercheurd.art`,
+  title_s:   `TweenMark preprocessor`,
+  subtitle_s: `TweenMark markup used in chercheurd.art`,
+  abstract_s: `TweenMark reference for chercheurd.art`,
   //issue_n:   -1,
 
   section_a:
@@ -24,7 +24,7 @@
 
   css_a:
   [
-   '2mark.css'
+   'TweenMark.css'
   ],
 
   version_a:
@@ -35,7 +35,15 @@
 }
 ---
 {% _section section_a[0] %}
-##1 3Mark Markdown preprocessor
+// DECLARATIONS //
+^= CHERCHEURDART_SITE  :: << Chercheur d'Art  ::  index.html >> !!
+
+
+
+##1 {{title_s}}
+
+^₀  {{abstract_s}}  ::  {{F_o.versionList__s(version_a)}} !!
+
 
 ##2 Exclude
 
@@ -63,6 +71,8 @@ Break before
 
 << Link to example  ::  https://example.app >>
 
+¨= CHERCHEURDART_SITE §§
+
 
 [[ Arion par F. Boucher  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif ]]
 
@@ -88,7 +98,7 @@ Tertio
 
 ^₀  key_s ::
 value_s_0
-value_s_1 :: value_2
+value_s_1
 << Chercheur d'Art  ::  index.html >>
 [[ Le bel Arion  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif ]] !!
 
@@ -137,12 +147,12 @@ Last cell !!
 
 ##2 Declaration, réference, include
 
-^+  MARK_TEST  ::  {{C_o.CONTENT_PARTS_DIR_s}}2mark_test.txt !!
+^+  MARK_TEST  ::  {{C_o.CONTENT_PARTS_DIR_s}}TweenMark_test.txt !!
 ¨+  MARK_TEST  §§
 ¨+  MARK_TEST  ::  1-3, 6, 9-40 §§
 
 
-^=  DECLARE_VAL  :: A simple value to reference !!
+^=  DECLARE_VAL  :: << Chercheur d'Art  ::  index.html >> !!
 ¨=  DECLARE_VAL  §§
 
 
