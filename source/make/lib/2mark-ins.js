@@ -12,7 +12,7 @@ const M_o =
 
 const BLOCK_OPEN_s =  '\\^'
 const BLOCK_CLOSE_s = '!'
-const BLOCK_SEPAR_CHAR_s = ':'
+const BLOCK_SEPAR_s = ':'
 
 
 
@@ -29,13 +29,17 @@ match_a =>    //: block_ins__a
       match_a
 
   const val_s =
-    value_s
-      .replaceAll
-      (
-        '\n',
-        C_o
-          .INS_VAL_DELIM_s
-      )
+    PRE_o
+      .process__s
+        (
+          value_s
+            .replaceAll
+            (
+              '\n',
+              C_o
+                .INS_VAL_DELIM_s
+            )
+        )
 
   return (
     [
@@ -72,9 +76,9 @@ ${BLOCK_OPEN_s}
 )
 \s+?
 (
-[^${BLOCK_SEPAR_CHAR_s}]+?
+[^${BLOCK_SEPAR_s}]+?
 )
-${BLOCK_SEPAR_CHAR_s}{2}
+${BLOCK_SEPAR_s}{2}
 \s+?
 (
 [^${BLOCK_CLOSE_s}]+?     //: value_s

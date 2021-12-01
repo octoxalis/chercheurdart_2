@@ -4,6 +4,9 @@ const KS_o  = require( 'klaw-sync' )
 const C_o =   require( '../data/C_o.js' )
 const T_o =   require( '../data/T_o.js' )
 
+const BLOCK_OPEN_s  = '^'
+const BLOCK_SEPAR_s = '::'
+const BLOCK_CLOSE_s = '!!'
 
 const TAB_o =
 {
@@ -14,9 +17,10 @@ const TAB_o =
   ) =>
   {
     const path_s =
-      C_o
-        .ADOC_PARTS_DIR_s
-      + `${file_s}.${C_o.MACRO_INSERT_s}`
+      'source/'      //: relative to CLI script
+      +  C_o
+          .CONTENT_PARTS_DIR_s
+      + `${file_s}.${C_o.TABLE_INSERT_s}`
 
     const title_s =
       file_s
@@ -26,15 +30,18 @@ const TAB_o =
           C_o.WORDS_DELIM_s             //: space separator
         )
 
-    const macro_s =
-      `${C_o.INS_OPEN_s}${C_o.INS_TAB_s} `
-      + `${title_s}${C_o.INS_PRINCIPAL_s}${ins_s}${C_o.INS_CLOSE_s}`    //: principal_s is empty
+    const block_s =
+      `${BLOCK_OPEN_s}${C_o.INS_TAB_s} ` //: space after INS_TAB_s
+      + title_s
+      + ` ${BLOCK_SEPAR_s}\n`           //: newline after BLOCK_SEPAR_s
+      + ins_s
+      + ` ${BLOCK_CLOSE_s}`            //: space before BLOCK_CLOSE_s
 
     FS_o
       .writeFile
       (
         path_s,
-        macro_s,
+        block_s,
         'utf8',
         out_o =>    //: callback_f
           {
@@ -112,8 +119,9 @@ const TAB_o =
       }
 
       table_s +=
-        row_a
-          .join( C_o.CELL_DELIM_s )
+        '\n'
+        +  row_a
+            .join( '\n' )
       
       if
       (
@@ -124,8 +132,7 @@ const TAB_o =
       )
       {
         table_s +=
-          C_o
-            .INS_DELIM_s
+          '\n'     //: blank line between rows for readibility
       }
 
       if
@@ -179,14 +186,12 @@ const TAB_o =
     return (
       width_s
       + C_o
-          .INS_DELIM_s
+          .WORDS_DELIM_s
       + align_s
-      + C_o
-          .INS_DELIM_s
+      + '\n'
       + title_a
-          .join( C_o.CELL_DELIM_s )
-      + C_o
-          .INS_DELIM_s
+          .join( '\n' )
+      + '\n'
       + table_s
       )
   }
@@ -339,7 +344,7 @@ void function
                 .log( error_o )
             )
           }
-          //>
+          //-->
           TAB_o
             .write__v
             (

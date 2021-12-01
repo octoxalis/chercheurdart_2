@@ -45,10 +45,10 @@ const PRE_o =
   escape_a: []
   ,
 
-  inc_a: []
+  include_a: []
   ,
 
-  dec_a: []
+  declare_a: []
   ,
 
 
@@ -386,14 +386,26 @@ const PRE_o =
           indent_n =
             ati_n
         }
-    
-        list_s +=
-          `</${listType_s}>`    //: close list
+        
+        while
+        (
+          indent_n
+          >=
+          0    //: close list
+        )
+        {
+          list_s +=
+          `</${listType_s}>`
+
+          indent_n -=
+            C_o
+              .LIST_INDENT_n
+        }
     
       return (
         [
           replaced_s,
-          list_s          //!!! TEMPORARY remove
+          list_s
         ]
       )
     }
@@ -419,7 +431,7 @@ const PRE_o =
       )
       {
         PRE_o
-          .inc_a
+          .include_a
             [ `${key_s.trim()}` ] =
               FS_o
                 .readFileSync
@@ -459,6 +471,10 @@ const PRE_o =
         type_s
       )
       {
+        value_s =
+           value_s
+             .trim()
+
         if
         (
           value_s
@@ -469,15 +485,15 @@ const PRE_o =
             PRE_o
             .process__s
             (
-              `${value_s}${BLOCK_CLOSE_s}${BLOCK_CLOSE_s}`    //: add missing BLOCK_CLOSE_s
+              `${value_s}${BLOCK_CLOSE_s}${BLOCK_CLOSE_s}`    //: add skiped BLOCK_CLOSE_s
             )
         }
 
         PRE_o
-          .dec_a
+          .declare_a
             [ `${key_s.trim()}` ] =
               value_s
-        }
+      }
 
       return (
         [
@@ -505,10 +521,10 @@ const PRE_o =
         type_s
       )
       {
-        case BLOCK_DECLARE_s:
-          type_s = 'dec'
-          
-          break
+        //??case BLOCK_DECLARE_s:
+        //??  type_s = 'dec'
+        //??  
+        //??  break
       
         case BLOCK_INCLUDE_s:
           type_s = 'inc'
@@ -516,18 +532,13 @@ const PRE_o =
           break
       
         default:
-          return
+          type_s = 'dec'
       }
 
       return (
         PRE_o
-          [ `block_${type_s}__a` ]
-          ?
-            PRE_o
-              [ `block_${type_s}__a` ]( match_a )
-          :
-            null
-      )
+          ?.[ `block_${type_s}__a` ]( match_a )
+)
     }
     ,
 
@@ -547,7 +558,7 @@ const PRE_o =
 
       const source_s =
         PRE_o
-          .inc_a
+          .include_a
             [ `${key_s}` ]
 
       let extract_s = ''
@@ -637,7 +648,7 @@ const PRE_o =
 
       let declare_s =
         PRE_o
-          .dec_a
+          .declare_a
             [ `${key_s}` ]
           
           return (
@@ -666,10 +677,10 @@ const PRE_o =
         type_s
       )
       {
-        case BLOCK_DECLARE_s:
-          type_s = 'dec'
-          
-          break
+        //??case BLOCK_DECLARE_s:
+        //??  type_s = 'dec'
+        //??  
+        //??  break;
       
         case BLOCK_INCLUDE_s:
           type_s = 'inc'
@@ -677,7 +688,7 @@ const PRE_o =
           break
       
         default:
-          return
+          type_s = 'dec'
       }
 
   return (
@@ -784,13 +795,13 @@ module
       source_s =>
       {
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        ;console.time( 'process__s' )
+        //;console.time( 'process__s' )
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         const html_s =
           PRE_o
             .process__s( source_s )
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        ;console.timeEnd( 'process__s' )
+        //;console.timeEnd( 'process__s' )
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
         return html_s

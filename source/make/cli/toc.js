@@ -321,15 +321,13 @@ const TOC_o =
     }
 
     toc_s =         //!!! don't put AsciiDoc pass:[] in md file
-      `pass:[`
-      + `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
+      `</p>\n`    //: close node.getContent() enclosing paragraph (see adoc/preamble)
       + `<label for=toc_link_a data-list=link_n>${count_n}</label>`
       + `<input id=toc_link_a type=checkbox />`
       + `<ul data-list=link_a>`
       + toc_s
       + `</ul>`
       + `<p>`       //: open idem
-      + `]`
 
     FS_o
       .writeFile

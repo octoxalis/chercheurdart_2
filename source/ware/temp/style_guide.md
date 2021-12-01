@@ -67,7 +67,7 @@ Claude Lorrain
 ¯link:chercheur_dart¯ https://chercheurdart-2.netlify.app
 
 ¯include:toc¯ {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html
-¯include:tab_artist¯ {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.MACRO_INSERT_s}}
+¯include:tab_artist¯ {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.{{C_o.TABLE_INSERT_s}}
 
 # TOPICS
 #+begin_comment

@@ -3,7 +3,6 @@ const FS_o  = require( 'fs-extra' )
 const DB_o  = require( './db.js' )
 const REX_o = require( './regex.js' )
 const NUM_o = require( './number.js' )
-//XX const ASC_o = require( './asciidoc.js' )
 const PRE_o =
   require( './2mark.js' )
 

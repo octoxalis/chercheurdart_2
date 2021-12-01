@@ -1,7 +1,7 @@
 ---js
 {
   layout:   'frame.njk',
-  permalink: 'TweenMark.html',
+  permalink: 'tweenmark.html',
   tags:    [ 'collection' ],
   eleventyExcludeFromCollections: false,
   // - expires_n: 10,
@@ -24,7 +24,7 @@
 
   css_a:
   [
-   'TweenMark.css'
+   'tweenmark.css'
   ],
 
   version_a:
@@ -35,14 +35,27 @@
 }
 ---
 {% _section section_a[0] %}
-// DECLARATIONS //
-^= CHERCHEURDART_SITE  :: << Chercheur d'Art  ::  index.html >> !!
+// 1°. Includes //
+^+  __TABULA_RASA  ::  {{C_o.CONTENT_PARTS_DIR_s}}tabula_rasa.td !!
+^+  __CLI_TABLE    ::  {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.td !!
+^+  __MARK_TEST    ::  {{C_o.CONTENT_PARTS_DIR_s}}tweenmark_test.txt !!
 
+// 2°. Simple declarations //
+^=  __SITE         ::  << Chercheur d'Art  ::  index.html >> !!
+^=  __DECLARE_VAL  ::  << Chercheur d'Art  ::  index.html >> !!
 
+// 3°. Block declarations last //
+^=  __VERSION_ID   :: 
+^₀  {{abstract_s}}  ::  {{F_o.versionList__s(version_a)}} !!
+
+//=== END DECLARATIONS ===//
 
 ##1 {{title_s}}
 
-^₀  {{abstract_s}}  ::  {{F_o.versionList__s(version_a)}} !!
+^₀  {{abstract_s}}
+::  {{F_o.versionList__s(version_a)}} !!
+
+
 
 
 ##2 Exclude
@@ -51,7 +64,8 @@
 Escaped lines or inline parts are not processed
 \\
 
-This a //very short// inline comment (very short commented out)
+// Comment on a whole line, not inside a line //
+Previous line was a comment.
 
 ##2 Formating
 
@@ -71,7 +85,7 @@ Break before
 
 << Link to example  ::  https://example.app >>
 
-¨= CHERCHEURDART_SITE §§
+¨= __SITE §§
 
 
 [[ Arion par F. Boucher  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif ]]
@@ -87,11 +101,12 @@ Secondo
     2
       Ein
       Zwei
-Tertio
 ++
 
 
 (( F_o.stamp__s  ::  '2021-09-16T08:12:00Z' ))
+
+
 
 
 ##2 Inserted blocks
@@ -119,24 +134,10 @@ On peut ajouter un **lien**
 A. Dupin
 << Chercheur d'Art  ::  index.html >> !!
 
+Included table example:
+¨+  __TABULA_RASA  §§
 
-^₄  Tabula rasa ::
-30_30_30 0_1_2
-Primo
-Secondo
-Tertio
-
-Un
-Deux
-Trois
-
-One
-__Two is escaped
-Three
-
-<< Chercheur d'Art  ::  index.html >>
-__Empty is escaped
-Last cell !!
+¨+  __CLI_TABLE  §§
 
 
 ^₉  Arion  ::
@@ -145,24 +146,29 @@ Last cell !!
 
 
 
-##2 Declaration, réference, include
+##2 Include, declaration, réference
 
-^+  MARK_TEST  ::  {{C_o.CONTENT_PARTS_DIR_s}}TweenMark_test.txt !!
-¨+  MARK_TEST  §§
-¨+  MARK_TEST  ::  1-3, 6, 9-40 §§
+Place directives at the **document top**:
+++
+1. Includes
+2. Simple declaration
+3. Block declarations
+++
 
 
-^=  DECLARE_VAL  :: << Chercheur d'Art  ::  index.html >> !!
-¨=  DECLARE_VAL  §§
+Include: 
+¨+  __MARK_TEST  §§
 
+Include selection: 
+¨+  __MARK_TEST  ::  6, 9-40 §§
 
-^=  VERSION_ID  ::
-^₀  {{abstract_s}}  ::
-{{F_o.versionList__s(version_a)}} !!
+Use **double underscore** prefix for ID
 
-¨=  VERSION_ID  §§
+¨=  __VERSION_ID  §§
 
-Once more
-¨=  VERSION_ID  §§
+// inline reference //
+Once more: ¨=  __VERSION_ID  §§
+
+¨=  __DECLARE_VAL  §§
 
 {% end_section %}

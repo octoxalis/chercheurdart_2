@@ -33,61 +33,69 @@
 }
 ---
 {% _section section_a[0] %}
-//LINKS
-:site_tech: pass:[<a href=site_tech.html>Technologie du site</a>]
-:guide: pass:[<a href=ui_guide.html>Guide du visiteur</a>]
-:Brave: pass:[<a href=https://brave.com><bold>Brave</bold></a>]
-:11ty: https://www.11ty.dev[Eleventy]
+//  INCLUDES  //
+^+  INDEX_TOC  ::  {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html  !!
 
-//INCLUDES
-:index_toc: {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html
+//  LINKS  //
+^=  __SITE_TECH  ::  <<  Technologie du site  ::  site_tech.html  >>  !!
+^=  __GUIDE      ::  <<  Guide du visiteur  ::  ui_guide.html  >>  !!
+^=  __BRAVE      ::  <<  **Brave**  ::  https://brave.com  >>  !!
+^=  __11TY       ::  <<  **Eleventy**  ::  https://www.11ty.dev  >>  !!
 
-// TOPICS
-////
+//=== END DECLARATIONS ===//
+
+//  TOPICS
 ‹François Boucher›
-////
-//========================================
-= {{title_s}}
+//
 
-₍₀
-{{abstract_s}}
-{{F_o.versionList__s(version_a)}}
-₎
 
-//---------------------------------------
-== Contenu en ligne
-include::{index_toc}[]
 
-== Avertissement
+
+##1 {{title_s}}
+
+^₀  {{abstract_s}}  ::
+{{F_o.versionList__s(version_a)}}  !!
+
+
+
+
+##2 Contenu en ligne
+¨+  INDEX_TOC  §§
+
+
+
+
+##2 Avertissement
 
  **{{A_o.NAME_s}}** est délibéremment 
-₍₀
-expérimental
+^₀  expérimental  ::
 Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
-- **Google Chrome** (je recommande tout particulièrement {Brave}, pour des raisons de confidentialité)
+- **Google Chrome** (je recommande tout particulièrement ¨=  __BRAVE  §§, pour des raisons de confidentialité)
 - **Mozilla Firefox**.
 
-La page {site_tech} donne un aperçu de son infrastructure
-La page {guide} détaille son fonctionnement
-₎
-!
+La page ¨=  __SITE_TECH  §§ donne un aperçu de son infrastructure
+La page ¨=  __GUIDE  §§ détaille son fonctionnement  !!
 
-== Confidentialité
+
+
+
+##2 Confidentialité
 
  **{{A_o.NAME_s}}** respecte l'
-₍₀
-anonymité
+^₀  anonymité  ::
 nul **cookie**,
 nul **enregistrement** de votre adresse Internet Protocol,
 nul **traçage** de vos interactions sur chaque page,
 nulle **information personelle** transmise à de tierces parties:
 &nbsp;
- **nous ne moneyons pas votre profil comportemental** &hellip;
-₎
+ **nous ne moneyons pas votre profil comportemental** &hellip;  !!
 de votre visite!
 
-== Colophon
 
- **{{A_o.NAME_s}}** est généré avec la complicité de {11ty}
+
+
+##2 Colophon
+
+ **{{A_o.NAME_s}}** est généré avec la complicité de ¨=  __11TY  §§
 
 {% end_section %}

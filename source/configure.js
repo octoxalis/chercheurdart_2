@@ -32,8 +32,8 @@ module.exports =
   CSS_SITE_DIR_s:       '../site/assets/styles/css/',
   LIB_PARTS_DIR_s:      'make/lib/parts/',
   CONTENT_PARTS_DIR_s:  'matter/contents/parts/',
+  //XXADOC_PARTS_DIR_s:     'source/matter/contents/parts/',
   CONTEXT_PARTS_DIR_s:  'source/matrix/assets/styles/css/parts/',
-  ADOC_PARTS_DIR_s:     'source/matter/contents/parts/',
   WARE_DIR_s:           'source/ware/',
 
   CONTENTS_PATH_s:      'source/matter/contents',

@@ -54,7 +54,7 @@ const CALL_CLOSE_CHAR_s =  '\\)'     //: )
 
 const BLOCK_OPEN_s =       '\\^'
 const BLOCK_CLOSE_s =      '!'
-const BLOCK_SEPAR_CHAR_s = ':'
+const BLOCK_SEPAR_s =      ':'
 const REFERENCE_OPEN_s =   '¨'
 const REFERENCE_CLOSE_s =  '§'
 
@@ -83,9 +83,11 @@ ${ESCAPE_CHAR_s}{2}
     REX_o
       .new__re( 'gm' )
 `
+^
 ${COMMENT_CHAR_s}{2}
 [\s\S]*?
 ${COMMENT_CHAR_s}{2}
+$
 `
 ,
 
@@ -167,9 +169,9 @@ ${EMPHASIS_CHAR_s}{2}
 `
 ${LINK_OPEN_CHAR_s}{2}
 (
-[^${BLOCK_SEPAR_CHAR_s}]+?  //: legend_s
+[^${BLOCK_SEPAR_s}]+?  //: legend_s
 )
-${BLOCK_SEPAR_CHAR_s}{2}
+${BLOCK_SEPAR_s}{2}
 (
 [^${LINK_CLOSE_CHAR_s}]+?  //: href_s
 )
@@ -185,9 +187,9 @@ ${LINK_CLOSE_CHAR_s}{2}
 `
 ${IMG_OPEN_CHAR_s}{2}
 (
-[^${BLOCK_SEPAR_CHAR_s}]+?           //: alt_s
+[^${BLOCK_SEPAR_s}]+?           //: alt_s
 )
-${BLOCK_SEPAR_CHAR_s}{2}
+${BLOCK_SEPAR_s}{2}
 (
 [^${IMG_CLOSE_CHAR_s}]+?             //: src
 )
@@ -221,9 +223,9 @@ ${LIST_CHAR_s}{2}
 `
 ${CALL_OPEN_CHAR_s}{2}
 (
-[^${BLOCK_SEPAR_CHAR_s}]+?         //: function_s
+[^${BLOCK_SEPAR_s}]+?         //: function_s
 )
-${BLOCK_SEPAR_CHAR_s}{2}
+${BLOCK_SEPAR_s}{2}
 (
 [^${CALL_CLOSE_CHAR_s}]+?         //: arg_s (comma separated)
 )
@@ -248,7 +250,7 @@ ${BLOCK_OPEN_s}
 [\w]+?      //: key_s
 )
 \s+?
-${BLOCK_SEPAR_CHAR_s}{2}
+${BLOCK_SEPAR_s}{2}
 \s+?
 (
 [^${BLOCK_CLOSE_s}]+?     //: value_s
@@ -271,7 +273,7 @@ ${REFERENCE_OPEN_s}
 [\w]+?                  //: key_s
 )
 \s+?                          //: space
-${BLOCK_SEPAR_CHAR_s}*?
+${BLOCK_SEPAR_s}*?
 \s*?
 (
 [^${REFERENCE_CLOSE_s}]*?     //: value_s

@@ -13,9 +13,9 @@ const C_o =
   CONTEXT_INPUT_FILE_s:  CONF_o.CONTEXT_INPUT_FILE_s,
   CONTEXT_PARTS_DIR_s:   CONF_o.CONTEXT_PARTS_DIR_s,
   CSS_SITE_DIR_s:        CONF_o.CSS_SITE_DIR_s,
-  ADOC_PARTS_DIR_s:      CONF_o.ADOC_PARTS_DIR_s,
   LIB_PARTS_DIR_s:       CONF_o.LIB_PARTS_DIR_s,
   CONTENT_PARTS_DIR_s:   CONF_o.CONTENT_PARTS_DIR_s,
+  //XXADOC_PARTS_DIR_s:      CONF_o.ADOC_PARTS_DIR_s,
   COM_OUTPUT_DIR_s:      CONF_o.COM_OUTPUT_DIR_s,
   TOPICS_DIR_s:          CONF_o.TOPICS_DIR_s,
   HTML_PARTS_DIR_s:      CONF_o.HTML_PARTS_DIR_s,
@@ -193,7 +193,8 @@ const C_o =
     '₉':  'img',
   },
 
-  INS_PRINCIPAL_s:     '₌',    //: subscript =
+
+  //XX INS_PRINCIPAL_s:     '₌',    //: subscript =
   INS_OPEN_s:       'INS_OPEN:::', 
   INS_CLOSE_s:      ':::INS_CLOSE',
   INS_DELIM_s:      '⁝',           //: &#8285;
@@ -213,7 +214,7 @@ const C_o =
   CELL_EMPTY_s: '__',                //: double underline
   CELL_EMPTY_ENTITY_s: '&#8280;',    //: ⁘
   
-  MACRO_INSERT_s:    'ins',
+  TABLE_INSERT_s:    'td',
 
 
   //=== DB ===

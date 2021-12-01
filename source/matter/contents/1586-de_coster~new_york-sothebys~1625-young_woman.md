@@ -1,0 +1,76 @@
+---js
+{
+  layout:    'frame.njk',
+  permalink: '1586-de_coster~new_york-sothebys~1625-young_woman.html',
+  tags:      [ 'collection' ],
+  eleventyExcludeFromCollections: false,
+  //-- expires_n: 10,
+
+  doc_n:      5120,
+  title_s:    `Adam de Coster`,
+  subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
+  abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
+  workID_s:   '1586-de_coster~new_york-sothebys~1625-young_woman',
+  //... issue_n: -1,
+
+  section_a:
+  [
+    `article`,
+    `galerie`,
+  ],
+
+  script_a:
+  [
+  ],
+  css_a:
+  [
+  ],
+
+  version_a:
+  [
+    '2021-10-14T12:00:00Z'
+  ],
+
+}
+---
+{% _section section_a[0] %}
+^=  __YOUNG_WOMAN  ::
+^₉  Jeune femme  :: 1586-de_coster~new_york-sothebys~1625-young_woman !!
+
+//=== END DECLARATIONS ===//
+
+// TOPICS
+‹Adam de Coster›
+//
+
+
+
+
+##1  {{title_s}}
+
+^₀  {{abstract_s}}  ::
+{{F_o.versionList__s(version_a)}}  !!
+
+
+
+
+##2  Presentation
+
+Passé en vente chez Sotheby's à New York, cette ¨=  __YOUNG_WOMAN  §§ constitue un jalon essentiel pour la reconstitution de l'oeuvre de l'artiste.
+
+
+
+
+##2  Colorimétrie
+
+++
+<<  burst  ::  {{U_o.url_s}}{{workID_s}}--burst.html  >>
+<<  paint  ::  {{U_o.url_s}}{{workID_s}}--paint.html  >>
+++
+//  <<  aster  ::  {{U_o.url_s}}{{workID_s}}--aster.html  >>  //
+
+
+
+##2  Analyse
+
+{% end_section %}
