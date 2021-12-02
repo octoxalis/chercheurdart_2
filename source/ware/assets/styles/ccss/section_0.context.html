@@ -26,23 +26,34 @@
           width: calc((var(--threshold) - 100%) * 1000);
           text-align: end;
           float: left;
+  </h2>
+  <h1>
+          margin: {{S_o.PAD_10}} 0;  /* slightly above relative p */
+          --font_max: 40px;
+          --font_scale: 4vw;
+          font-weight: 600;
+  </h1>
+  +
+  <p>
+          position: relative;         /* to position comment dialog */
+          margin: {{S_o.PAD_6}} 2vmin 0 auto;     /* keep right space for goto_top button */
+          min-width: var(--col_width);
+          width: calc( (var(--threshold) - 100%) * 1000 );
+    <label>
+            --font_max: 32px;
+            --font_scale: 2.5vw;
+            font-weight: 500;
+  </label>
+  </p>
+  <h2>
+          margin-top: -{{S_o.PAD_4}};     /* vertical-align with <p> */
           --font_max: 32px;
           --font_scale: 3vw;
           font-weight: 600;
   </h2>
-  <h1>
-          margin-top: 3rem;  /* div align */
-  </h1>
-  <h2>
-          margin-top: -.7rem;     /* vertical-align with <p> */
-  </h2>
-
-  <div:first-of-type>
-          margin-top: 3.5rem;  /* h1 align */
-  </div>
   <div>
           position: relative;         /* to position comment dialog */
-          margin: 0 2vmin 0 auto;     /* keep right space for goto_top button */
+          margin: {{S_o.PAD_16}} 2vmin 0 auto;     /* keep right space for goto_top button */
           min-width: var(--col_width);
           width: calc( (var(--threshold) - 100%) * 1000 );
     <hr><!-- !!! occurs inside chapter -->
@@ -55,8 +66,8 @@
     context( stack, new )
     <p>
             max-width: {{S_o.PARAGRAPH_WIDTH_s}};
-            margin-bottom: {{S_o.PAD_10}};
-            margin-top: 0;
+            margin-bottom: {{S_o.PAD_4}};
+            /*margin-top: {{S_o.PAD_10}} 0 {{S_o.PAD_10}} 0;*/
       <a>
               context( block, link_regular )
       </a>

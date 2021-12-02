@@ -35,28 +35,25 @@
 ---
 {% _section section_a[0] %}
 ^=  __YOUNG_WOMAN  ::
-^₉  Jeune femme  :: 1586-de_coster~new_york-sothebys~1625-young_woman !!
+^₉  {{C_o.INS_DISPLAY_s}}  :: 1586-de_coster~new_york-sothebys~1625-young_woman !!
 
 //=== END DECLARATIONS ===//
-
-// TOPICS
+//  TOPICS
 ‹Adam de Coster›
 //
 
 
 
-
 ##1  {{title_s}}
 
-^₀  {{abstract_s}}  ::
-{{F_o.versionList__s(version_a)}}  !!
+¨=  __YOUNG_WOMAN  §§
 
 
 
 
 ##2  Presentation
 
-Passé en vente chez Sotheby's à New York, cette ¨=  __YOUNG_WOMAN  §§ constitue un jalon essentiel pour la reconstitution de l'oeuvre de l'artiste.
+Passé en vente chez Sotheby's à New York, cette toile constitue un jalon essentiel pour la reconstitution de l'oeuvre de l'artiste.
 
 
 

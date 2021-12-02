@@ -193,8 +193,8 @@ const C_o =
     '₉':  'img',
   },
 
+  INS_DISPLAY_s: 'HIDDEN',
 
-  //XX INS_PRINCIPAL_s:     '₌',    //: subscript =
   INS_OPEN_s:       'INS_OPEN:::', 
   INS_CLOSE_s:      ':::INS_CLOSE',
   INS_DELIM_s:      '⁝',           //: &#8285;

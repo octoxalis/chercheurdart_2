@@ -42,7 +42,7 @@
 ---
 {% _section section_a[0] %}
 ^=  __YOUNG_WOMAN  ::
-^₉  &#8918;  :: 1586-de_coster~new_york-sothebys~1625-young_woman !!
+^₉  {{C_o.INS_DISPLAY_s}}  :: 1586-de_coster~new_york-sothebys~1625-young_woman !!
 
 //=== END DECLARATIONS ===//
 //  TOPICS
@@ -53,16 +53,14 @@
 
 ##1  {{title_s}}
 
-^₀  {{abstract_s}}  ::
-{{F_o.versionList__s(version_a)}}  !!
-
 ¨=  __YOUNG_WOMAN  §§
-<<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
 
 
 
 ##2  Colorimétrie
+
+<<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
 Graphique de rayonnement (aster) à échelle logarithmique
 

@@ -35,6 +35,7 @@ const INS_o =
 parse__s:
 (
   specifier_s,
+  key_s,
   value_s
 ) =>
 {
@@ -60,7 +61,8 @@ parse__s:
     INS_o
       [`${method_s}Line__v`]
       (
-        value_s
+        value_s,
+        key_s
       )
 
     switch
@@ -195,11 +197,10 @@ defLine__v:    //: ₅
 
 imgLine__v:    //: ₉
 (
-  value_s
+  imgId_s,    //: value_s
+  key_s
 ) =>
 {
-  let imgId_s = value_s
-
   INS_o
     .legend__v( imgId_s )
       
@@ -922,20 +923,40 @@ module.exports =
           .parse__s
           (
             specifier_s,
+            key_s,
             value_s
               .trim()
           )
+
+      let checked_s = ''
+
+      let hidden_s = ''
+
+      if
+      (
+        key_s
+          .includes( C_o.INS_DISPLAY_s )
+      )
+      {
+        key_s = ''    //: remove INS_DISPLAY_s
+
+        hidden_s =
+          ' hidden'    //: empty label
+
+        checked_s =
+          ' checked'    //: always display insert
+      }
 
       processed_s =
         processed_s
           .replace
           (
             replace_s,
-            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1" data-ins=${specifier_s}>`
+            `<label for="${C_o.INSERT_ID_s}${INS_o.index_n}" tabindex="-1" data-ins=${specifier_s}${hidden_s}>`
             + key_s
-                .trim()
+               .trim()
             + `</label>`
-            + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox" />`
+            + `<input id="${C_o.INSERT_ID_s}${INS_o.index_n}" type="checkbox"${checked_s}/>`
             + `<ins>`
             + ins_s
             +`</ins>`
