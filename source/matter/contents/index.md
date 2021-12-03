@@ -34,13 +34,13 @@
 ---
 {% _section section_a[0] %}
 //  INCLUDES  //
-^+  INDEX_TOC  ::  {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html  !!
+[[+  INDEX_TOC  ::  {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html  ]]
 
 //  LINKS  //
-^=  __SITE_TECH  ::  <<  Technologie du site  ::  site_tech.html  >>  !!
-^=  __GUIDE      ::  <<  Guide du visiteur  ::  ui_guide.html  >>  !!
-^=  __BRAVE      ::  <<  **Brave**  ::  https://brave.com  >>  !!
-^=  __11TY       ::  <<  **Eleventy**  ::  https://www.11ty.dev  >>  !!
+[[=  SITE_TECH  ::  <<  Technologie du site  ::  site_tech.html  >>  ]]
+[[=  GUIDE      ::  <<  Guide du visiteur  ::  ui_guide.html  >>  ]]
+[[=  BRAVE      ::  <<  **Brave**  ::  https://brave.com  >>  ]]
+[[=  11TY       ::  <<  **Eleventy**  ::  https://www.11ty.dev  >>  ]]
 
 //=== END DECLARATIONS ===//
 
@@ -53,14 +53,14 @@
 
 ##1 {{title_s}}
 
-^₀  {{abstract_s}}  ::
-{{F_o.versionList__s(version_a)}}  !!
+[[₀  {{abstract_s}}  ::
+{{F_o.versionList__s(version_a)}}  ]]
 
 
 
 
 ##2 Contenu en ligne
-¨+  INDEX_TOC  §§
+||+  INDEX_TOC  ||
 
 
 
@@ -68,13 +68,12 @@
 ##2 Avertissement
 
  **{{A_o.NAME_s}}** est délibéremment 
-^₀  expérimental  ::
+[[₀  expérimental  ::
 Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
-- **Google Chrome** (je recommande tout particulièrement ¨=  __BRAVE  §§, pour des raisons de confidentialité)
+- **Google Chrome** (de préférence ||  BRAVE  ||, pour des raisons de confidentialité)
 - **Mozilla Firefox**.
-
-La page ¨=  __SITE_TECH  §§ donne un aperçu de son infrastructure
-La page ¨=  __GUIDE  §§ détaille son fonctionnement  !!
+La page ||  SITE_TECH  || donne un aperçu de son infrastructure
+La page ||  GUIDE  || détaille son fonctionnement  ]]
 
 
 
@@ -82,13 +81,13 @@ La page ¨=  __GUIDE  §§ détaille son fonctionnement  !!
 ##2 Confidentialité
 
  **{{A_o.NAME_s}}** respecte l'
-^₀  anonymité  ::
+[[₀  anonymité  ::
 nul **cookie**,
 nul **enregistrement** de votre adresse Internet Protocol,
 nul **traçage** de vos interactions sur chaque page,
 nulle **information personelle** transmise à de tierces parties:
 &nbsp;
- **nous ne moneyons pas votre profil comportemental** &hellip;  !!
+ **nous ne moneyons pas votre profil comportemental** &hellip;  ]]
 de votre visite!
 
 
@@ -96,6 +95,6 @@ de votre visite!
 
 ##2 Colophon
 
- **{{A_o.NAME_s}}** est généré avec la complicité de ¨=  __11TY  §§
+ **{{A_o.NAME_s}}** est généré avec la complicité de ||  11TY  ||
 
 {% end_section %}

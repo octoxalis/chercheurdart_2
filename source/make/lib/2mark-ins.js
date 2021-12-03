@@ -10,8 +10,8 @@ const M_o =
   const C_o =
   require( '../data/C_o.js' )
 
-const BLOCK_OPEN_s =  '\\^'
-const BLOCK_CLOSE_s = '!'
+const BLOCK_OPEN_s =  '\\['
+const BLOCK_CLOSE_s = '\\]'
 const BLOCK_SEPAR_s = ':'
 
 
@@ -70,7 +70,7 @@ module
                   .new__re( 'gm' )    //: block_ins__re
 `
 ^
-${BLOCK_OPEN_s}
+${BLOCK_OPEN_s}{2}
 (
 [₀-₉]{1,3}    //: specifier_s
 )

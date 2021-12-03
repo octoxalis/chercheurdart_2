@@ -12,16 +12,17 @@ const REX_o =
 //:    ,        break       
 //:    *        strong      
 //:    ^        emphasis    
+//:    =        list
                         //-- link  (triple char)
 //:    < : >       link        
-//:    [ : ]       img         
+//:    ! : !       img         
 //:    ( : )       call        
                         //-- block (triple char)
-//:    ^ : !    block       
-//:    ¨ : §    reference  () 
+//:    [ : ]       block       
+//:    | : |       reference
 
                         //-- specifier (solo char)
-//:    =        declare     
+//:    \s       declare     
 //:    +        include     
 
                         //-- reserved
@@ -29,37 +30,36 @@ const REX_o =
                         //-- available
 //:    "
 //:    %
-//:    ¤
 //:    °
 //:    ~
+//:    ¤
 
 
                                 //-- open only
-const HRULE_CHAR_s =        '\\-'  //: -
+const HRULE_CHAR_s =        '\\-'     //: -
 const BREAK_CHAR_s =        ','
 const HEADER_CHAR_s =       '#'
                                 //-- open === close
 const COMMENT_CHAR_s =      '/'
-const ESCAPE_CHAR_s =       '\\\\'  //: \
-const STRONG_CHAR_s =       '\\*'  //: *
-const EMPHASIS_CHAR_s =     '\\^'  //: ^
-const LIST_CHAR_s =         '\\+'
-                                 //-- open !== close
+const ESCAPE_CHAR_s =       '\\\\'   //: \
+const STRONG_CHAR_s =       '\\*'    //: *
+const EMPHASIS_CHAR_s =     '\\^'    //: ^
+const LIST_CHAR_s =         '='
+const IMG_CHAR_s =          '!'
+                                 //-- open !==+ close
 const LINK_OPEN_CHAR_s =   '<'
 const LINK_CLOSE_CHAR_s =   '>'
-const IMG_OPEN_CHAR_s =    '\\['     //: [
-const IMG_CLOSE_CHAR_s =   '\\]'     //: ]
 const CALL_OPEN_CHAR_s =   '\\('     //: (
 const CALL_CLOSE_CHAR_s =  '\\)'     //: )
 
-const BLOCK_OPEN_s =       '\\^'
-const BLOCK_CLOSE_s =      '!'
+const BLOCK_OPEN_s =       '\\['
+const BLOCK_CLOSE_s =      '\\]'
 const BLOCK_SEPAR_s =      ':'
-const REFERENCE_OPEN_s =   '¨'
-const REFERENCE_CLOSE_s =  '§'
+const REFERENCE_OPEN_s =   '\\|'      // |
+const REFERENCE_CLOSE_s =  '\\|'      // |
 
-const BLOCK_DECLARE_s =    '='      //: after BLOCK_OPEN_s
 const BLOCK_INCLUDE_s =    '\\+'    //: after BLOCK_OPEN_s
+const BLOCK_DECLARE_s =    '='      //: after BLOCK_OPEN_s
 
 
 
@@ -185,15 +185,15 @@ ${LINK_CLOSE_CHAR_s}{2}
     REX_o
       .new__re( 'gm' )
 `
-${IMG_OPEN_CHAR_s}{2}
+${IMG_CHAR_s}{2}
 (
 [^${BLOCK_SEPAR_s}]+?           //: alt_s
 )
 ${BLOCK_SEPAR_s}{2}
 (
-[^${IMG_CLOSE_CHAR_s}]+?             //: src
+[^${IMG_CHAR_s}]+?             //: src
 )
-${IMG_CLOSE_CHAR_s}{2}
+${IMG_CHAR_s}{2}
 `
 ,
 
@@ -243,7 +243,7 @@ ${CALL_CLOSE_CHAR_s}{2}
       .new__re( 'gm' )
 `
 ^
-${BLOCK_OPEN_s}
+${BLOCK_OPEN_s}{2}
 (${BLOCK_DECLARE_s}|${BLOCK_INCLUDE_s})   //: type_s
 \s+?
 (
@@ -266,8 +266,8 @@ $
     REX_o
       .new__re( 'gm' )
 `
-${REFERENCE_OPEN_s}
-(${BLOCK_DECLARE_s}|${BLOCK_INCLUDE_s})   //: type_s
+${REFERENCE_OPEN_s}{2}
+(${BLOCK_DECLARE_s}|${BLOCK_INCLUDE_s}|\s)   //: type_s (optional for reference)
 \s+?
 (
 [\w]+?                  //: key_s

@@ -36,23 +36,24 @@
 ---
 {% _section section_a[0] %}
 // 1°. Includes //
-[[+  TABULA_RASA  ::  {{C_o.CONTENT_PARTS_DIR_s}}tabula_rasa.td ]]
-[[+  CLI_TABLE    ::  {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.td ]]
-[[+  MARK_TEST    ::  {{C_o.CONTENT_PARTS_DIR_s}}tweenmark_test.txt ]]
+^+  __TABULA_RASA  ::  {{C_o.CONTENT_PARTS_DIR_s}}tabula_rasa.td !!
+^+  __CLI_TABLE    ::  {{C_o.CONTENT_PARTS_DIR_s}}Table_des_artistes.td !!
+^+  __MARK_TEST    ::  {{C_o.CONTENT_PARTS_DIR_s}}tweenmark_test.txt !!
 
 // 2°. Simple declarations //
-[[=  DECLARE_VAL  ::  << Chercheur d'Art  ::  index.html >> ]]
+^=  __SITE         ::  << Chercheur d'Art  ::  index.html >> !!
+^=  __DECLARE_VAL  ::  << Chercheur d'Art  ::  index.html >> !!
 
 // 3°. Block declarations last //
-[[=  VERSION_ID   :: 
-[[₀  {{abstract_s}}  ::  {{F_o.versionList__s(version_a)}} ]]
+^=  __VERSION_ID   :: 
+^₀  {{abstract_s}}  ::  {{F_o.versionList__s(version_a)}} !!
 
-// END DECLARATIONS //
+//=== END DECLARATIONS ===//
 
 ##1 {{title_s}}
 
-[[₀  {{abstract_s}}
-::  {{F_o.versionList__s(version_a)}} ]]
+^₀  {{abstract_s}}
+::  {{F_o.versionList__s(version_a)}} !!
 
 
 
@@ -84,11 +85,13 @@ Break before
 
 << Link to example  ::  https://example.app >>
 
+¨= __SITE §§
 
-!! Arion par F. Boucher  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif !!
+
+[[ Arion par F. Boucher  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif ]]
 
 
-==
+++
 Primo
 Secondo
   One
@@ -98,7 +101,7 @@ Secondo
     2
       Ein
       Zwei
-==
+++
 
 
 (( F_o.stamp__s  ::  '2021-09-16T08:12:00Z' ))
@@ -108,37 +111,37 @@ Secondo
 
 ##2 Inserted blocks
 
-[[₀  key_s ::
+^₀  key_s ::
 value_s_0
 value_s_1
 << Chercheur d'Art  ::  index.html >>
-!! Le bel Arion  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif !! ]]
+[[ Le bel Arion  ::  /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif ]] !!
 
 
-[[₁  Définition multiple (single level list) ::
+^₁  Définition multiple (single level list) ::
 Primo
-Secondo ]]
+Secondo !!
 
 
-[[₂  Claude Lorrain ::
+^₂  Claude Lorrain ::
 1989-langdon
 p.123
 On peut ajouter un **lien**
-<< Chercheur d'Art  ::  index.html >> ]]
+<< Chercheur d'Art  ::  index.html >> !!
 
 
-[[₃  **Pretium scelerisque** sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes. ::
+^₃  **Pretium scelerisque** sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes. ::
 A. Dupin
-<< Chercheur d'Art  ::  index.html >> ]]
+<< Chercheur d'Art  ::  index.html >> !!
 
 Included table example:
-||+  TABULA_RASA  ||
+¨+  __TABULA_RASA  §§
 
-||+  CLI_TABLE  ||
+¨+  __CLI_TABLE  §§
 
 
-[[₉  Arion  ::
-1703-boucher~princeton-university~1748-arion ]]
+^₉  Arion  ::
+1703-boucher~princeton-university~1748-arion !!
 
 
 
@@ -146,27 +149,26 @@ Included table example:
 ##2 Include, declaration, réference
 
 Place directives at the **document top**:
-==
+++
 1. Includes
 2. Simple declaration
 3. Block declarations
-==
+++
 
 
-##6 Include file
-||+  MARK_TEST  ||
+Include: 
+¨+  __MARK_TEST  §§
 
-##6 Include selected lines
-||+  MARK_TEST  ::  6, 9-40 ||
+Include selection: 
+¨+  __MARK_TEST  ::  6, 9-40 §§
 
+Use **double underscore** prefix for ID
 
-##6 Reference
-||  DECLARE_VAL  ||
-
-||  VERSION_ID  ||
+¨=  __VERSION_ID  §§
 
 // inline reference //
-Once more:
-||  VERSION_ID  ||
+Once more: ¨=  __VERSION_ID  §§
+
+¨=  __DECLARE_VAL  §§
 
 {% end_section %}

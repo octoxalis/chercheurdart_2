@@ -12,9 +12,8 @@ const C_o =
 
   
 
-const BLOCK_OPEN_s    = '^'    //: see ins no escape here
-const BLOCK_CLOSE_s   = '!'    //: see ins no escape here
-const BLOCK_DECLARE_s = '='    //: after BLOCK_OPEN_s
+const BLOCK_OPEN_s    = '[['    //: see ins no escape here
+const BLOCK_CLOSE_s   = ']]'    //: see ins no escape here
 const BLOCK_INCLUDE_s = '+'    //: after BLOCK_OPEN_s
 
   
@@ -485,7 +484,7 @@ const PRE_o =
             PRE_o
             .process__s
             (
-              `${value_s}${BLOCK_CLOSE_s}${BLOCK_CLOSE_s}`    //: add skiped BLOCK_CLOSE_s
+              `${value_s}${BLOCK_CLOSE_s}`    //: add skiped BLOCK_CLOSE_s
             )
         }
 
@@ -521,11 +520,6 @@ const PRE_o =
         type_s
       )
       {
-        //??case BLOCK_DECLARE_s:
-        //??  type_s = 'dec'
-        //??  
-        //??  break
-      
         case BLOCK_INCLUDE_s:
           type_s = 'inc'
 
@@ -677,11 +671,6 @@ const PRE_o =
         type_s
       )
       {
-        //??case BLOCK_DECLARE_s:
-        //??  type_s = 'dec'
-        //??  
-        //??  break;
-      
         case BLOCK_INCLUDE_s:
           type_s = 'inc'
 

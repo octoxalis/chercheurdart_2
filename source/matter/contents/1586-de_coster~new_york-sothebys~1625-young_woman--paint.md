@@ -49,8 +49,8 @@
 }
 ---
 {% _section section_a[0] %}
-^=  __YOUNG_WOMAN  ::
-^₉  {{C_o.INS_DISPLAY_s}}  :: 1586-de_coster~new_york-sothebys~1625-young_woman !!
+[[=  YOUNG_WOMAN  ::
+[[₉  {{C_o.INS_DISPLAY_s}}  :: 1586-de_coster~new_york-sothebys~1625-young_woman ]]
 
 //=== END DECLARATIONS ===//
 //  TOPICS
@@ -61,7 +61,7 @@
 
 ##1  {{title_s}}
 
-¨=  __YOUNG_WOMAN  §§
+||  YOUNG_WOMAN  ||
 
 
 

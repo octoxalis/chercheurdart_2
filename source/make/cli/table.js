@@ -4,9 +4,9 @@ const KS_o  = require( 'klaw-sync' )
 const C_o =   require( '../data/C_o.js' )
 const T_o =   require( '../data/T_o.js' )
 
-const BLOCK_OPEN_s  = '^'
+const BLOCK_OPEN_s  = '[['
 const BLOCK_SEPAR_s = '::'
-const BLOCK_CLOSE_s = '!!'
+const BLOCK_CLOSE_s = ']]'
 
 
 

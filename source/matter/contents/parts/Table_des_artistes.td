@@ -1,4 +1,4 @@
-^₄ Table des artistes ::
+[[₄ Table des artistes ::
 20_20_20_20_20 0_0_0_0_0
 ID
 PRENOM
@@ -16,4 +16,4 @@ Paris
 Adam
 de Coster
 1586
-Mechelen !!
+Mechelen ]]

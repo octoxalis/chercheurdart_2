@@ -1,4 +1,4 @@
-^₄  Tabula rasa ::
+[[₄  Tabula rasa ::
 30_30_30 0_1_2
 Primo
 Secondo
@@ -14,4 +14,4 @@ Three
 
 << Chercheur d'Art  ::  index.html >>
 __Empty is escaped
-Last cell  !!
+Last cell  ]]
