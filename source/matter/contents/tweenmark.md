@@ -69,15 +69,15 @@
 
 Place directives at **document top**:
 ==
-1. includes
-2. simple declarations
-3. block declarations
+  1. includes
+  2. simple declarations
+  3. block declarations
 ==
 
 use 2 lines
 ==
-1. identificator (uppercase)
-2. assignment
+  1. identificator (uppercase)
+  2. assignment
 ==
 
 
@@ -122,16 +122,16 @@ Horizontal rule after
    '2021-09-16T08:12:00Z' ))
 
 
-==  A list with a ^^formated legend^^
-Primo
-Secondo
-  One
-  **Two**
-    1
-      Uno
-    2
-      ^^Ein^^
-      ^^Zwei^^
+==  An indented list with a ^^formated legend^^
+    Primo
+    Secondo
+      One
+      **Two**
+        1
+          Uno
+        2
+          ^^Ein^^
+          ^^Zwei^^
 ==
 
 
@@ -144,22 +144,19 @@ Secondo
      value_s_1
      << Chercheur d'Art  ::  index.html >>
      !! Le bel Arion  ::
-        /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif !!
-]]
+        /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif !!  ]]
 
 
 [[₁  Multiple definition (single level list) ::
      Primo
-     Secondo
-]]
+     Secondo  ]]
 
 
 [[₂  Claude Lorrain ::
      1989-langdon
      p.123
      On peut ajouter un **lien**
-     << Chercheur d'Art  ::  index.html >>
-]]
+     << Chercheur d'Art  ::  index.html >>  ]]
 
 
 [[₃  **Quote** Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes. ::
@@ -175,8 +172,7 @@ Secondo
 
 **Image block**
 [[₉  Arion  ::
-     1703-boucher~princeton-university~1748-arion
-]]
+     1703-boucher~princeton-university~1748-arion  ]]
 
 
 
@@ -197,5 +193,6 @@ Secondo
 // inline reference //
 Once more
 ||  VERSION_ID  ||
+
 
 {% end_section %}

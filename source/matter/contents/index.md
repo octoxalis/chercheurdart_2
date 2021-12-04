@@ -34,13 +34,21 @@
 ---
 {% _section section_a[0] %}
 //  INCLUDES  //
-[[+  INDEX_TOC  ::  {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html  ]]
+[[+  INDEX_TOC  ::
+     {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html  ]]
 
 //  LINKS  //
-[[=  SITE_TECH  ::  <<  Technologie du site  ::  site_tech.html  >>  ]]
-[[=  GUIDE      ::  <<  Guide du visiteur  ::  ui_guide.html  >>  ]]
-[[=  BRAVE      ::  <<  **Brave**  ::  https://brave.com  >>  ]]
-[[=  11TY       ::  <<  **Eleventy**  ::  https://www.11ty.dev  >>  ]]
+[[=  SITE_TECH  ::
+     <<  Technologie du site  ::  site_tech.html  >>  ]]
+
+[[=  GUIDE  ::
+     <<  Guide du visiteur  ::  ui_guide.html  >>  ]]
+
+[[=  BRAVE  ::
+     <<  **Brave**  ::  https://brave.com  >>  ]]
+
+[[=  11TY  ::
+     <<  **Eleventy**  ::  https://www.11ty.dev  >>  ]]
 
 //=== END DECLARATIONS ===//
 
@@ -54,7 +62,7 @@
 ##1 {{title_s}}
 
 [[₀  {{abstract_s}}  ::
-{{F_o.versionList__s(version_a)}}  ]]
+     {{F_o.versionList__s(version_a)}}  ]]
 
 
 
@@ -69,11 +77,11 @@
 
  **{{A_o.NAME_s}}** est délibéremment 
 [[₀  expérimental  ::
-Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
-- **Google Chrome** (de préférence ||  BRAVE  ||, pour des raisons de confidentialité)
-- **Mozilla Firefox**.
-La page ||  SITE_TECH  || donne un aperçu de son infrastructure
-La page ||  GUIDE  || détaille son fonctionnement  ]]
+     Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
+     - **Google Chrome** (de préférence ||  BRAVE  ||, pour des raisons de confidentialité)
+     - **Mozilla Firefox**.
+     La page ||  SITE_TECH  || donne un aperçu de son infrastructure
+     La page ||  GUIDE  || détaille son fonctionnement  ]]
 
 
 
@@ -82,12 +90,11 @@ La page ||  GUIDE  || détaille son fonctionnement  ]]
 
  **{{A_o.NAME_s}}** respecte l'
 [[₀  anonymité  ::
-nul **cookie**,
-nul **enregistrement** de votre adresse Internet Protocol,
-nul **traçage** de vos interactions sur chaque page,
-nulle **information personelle** transmise à de tierces parties:
-&nbsp;
- **nous ne moneyons pas votre profil comportemental** &hellip;  ]]
+     aucun **cookie**,
+     aucun **enregistrement** de votre adresse Internet Protocol,
+     aucun **traçage** de vos interactions,
+     aucune **information personelle** transmise à de tierces parties:  ,,
+    votre **profil comportemental** ne fait pas l'objet d'une monétisation subreptice &hellip;  ]]
 de votre visite!
 
 
