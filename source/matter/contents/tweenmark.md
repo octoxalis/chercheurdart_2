@@ -140,29 +140,33 @@ Secondo
 ##2 4. Insertions
 
 [[₀  key_s ::
-value_s_0
-value_s_1
-<< Chercheur d'Art  ::  index.html >>
-!! Le bel Arion  ::
-   /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif !! ]]
+     value_s_0
+     value_s_1
+     << Chercheur d'Art  ::  index.html >>
+     !! Le bel Arion  ::
+        /assets/media/img/1703-boucher~princeton-university~1748-arion/full/_128/0/gray.avif !!
+]]
 
 
 [[₁  Multiple definition (single level list) ::
-Primo
-Secondo ]]
+     Primo
+     Secondo
+]]
 
 
 [[₂  Claude Lorrain ::
-1989-langdon
-p.123
-On peut ajouter un **lien**
-<< Chercheur d'Art  ::  index.html >> ]]
+     1989-langdon
+     p.123
+     On peut ajouter un **lien**
+     << Chercheur d'Art  ::  index.html >>
+]]
 
 
 [[₃  **Quote** Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes. ::
-A. Dupin
-**Link**  ,,
-<< Chercheur d'Art  ::  index.html >> ]]
+     A. Dupin
+     **Link**  ,,
+     << Chercheur d'Art  ::  index.html >>
+]]
 
 **Included tables**
 ||+  TABULA_RASA  ||
@@ -171,7 +175,8 @@ A. Dupin
 
 **Image block**
 [[₉  Arion  ::
-1703-boucher~princeton-university~1748-arion ]]
+     1703-boucher~princeton-university~1748-arion
+]]
 
 
 
