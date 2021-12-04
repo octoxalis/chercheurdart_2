@@ -8,4 +8,4 @@
 8
 9
 10
-END 3MARK_TEST
+END

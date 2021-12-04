@@ -4,6 +4,11 @@ const PAI_o =
 {
   status_o: null,    //: STAT_W_o.status_o
 
+  ui:
+  {
+    
+  }
+  ,
 
   message__v:
   (
@@ -34,6 +39,55 @@ const PAI_o =
     }
   }
   ,
+
+
+
+
+  listener__v
+  ()
+  {
+    for
+    (
+      let sub_s
+      of
+      [
+        'hue',
+        'sat',
+        'lum',
+      ]
+    )
+    {
+      const listen_e =
+        document
+          .getElementById( `canvas_{{C_o.STAT_a[2]}}_${sub_s}` )
+          
+      listen_e
+      &&
+      listen_e
+        .addEventListener
+        (
+          'click',
+          click_o =>
+          {
+            console.log( click_o )
+
+            const
+            {
+              offsetX: atx_n,
+              offsetY: aty_n
+            } =
+              click_o
+
+            console.log( +atx_n + ' / ' + ~~( aty_n >>> 1 ) )
+
+          }
+        )
+    }
+  }
+  ,
+
+
+
 }
 
 
@@ -47,3 +101,7 @@ PAI_o
         'LogScale Painter',
         PAI_o.message__v,
       )
+
+
+PAI_o
+  .listener__v()

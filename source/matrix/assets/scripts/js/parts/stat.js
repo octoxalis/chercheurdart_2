@@ -169,7 +169,7 @@ const STAT_o =
                 .src =
                 script_e
                   .dataset
-                    .src
+                    .src  
             }
           }
         )

@@ -289,12 +289,12 @@ const PRE_o =
       const
         [
           replaced_s,
-          type_s,
+          key_s,
           value_s
         ] =
           match_a
-    
-        const indent__n =
+
+        const indent__n =    //: local function
           line_s =>
           {
             let at_n = 0
@@ -313,14 +313,39 @@ const PRE_o =
             return at_n
           }
     
-        let listType_s =
-          type_s
-          ?
-            'ol'
-          :
-            'ul'
+
+
+        let legend_s = ''
+
+        let type_s =
+          'ul'
+
+        if
+        (
+          key_s
+        )
+        {
+          legend_s =
+            key_s
+              .trim()
+
+          if
+            (
+              legend_s
+                .startsWith( 'O ' )
+            )
+            {
+              type_s =
+                'ol'
+  
+              legend_s =
+                legend_s
+                  .slice( 2 )    //: skip 'O '
+            }
+          }
+
     
-        let list_s = ''
+        let list_s = '' 
     
         let indent_n = -1
     
@@ -365,7 +390,7 @@ const PRE_o =
             )
             {
               list_s +=
-                `</${listType_s}>`
+                `</${type_s}>`
 
               indent_n -=
                 C_o
@@ -378,7 +403,7 @@ const PRE_o =
           else
           {
             list_s +=
-              `<${listType_s}>`
+              `<${type_s}>`
               + `<li>${line_s.trim()}`
           }
 
@@ -394,7 +419,7 @@ const PRE_o =
         )
         {
           list_s +=
-          `</${listType_s}>`
+          `</${type_s}>`
 
           indent_n -=
             C_o
@@ -404,7 +429,7 @@ const PRE_o =
       return (
         [
           replaced_s,
-          list_s
+          `${legend_s}${list_s}`
         ]
       )
     }

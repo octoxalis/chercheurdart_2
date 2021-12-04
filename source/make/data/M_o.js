@@ -154,7 +154,7 @@ ${STRONG_CHAR_s}{2}
 `
 ${EMPHASIS_CHAR_s}{2}
 (
-[\s\S]+
+[\s\S]+?
 )
 ${EMPHASIS_CHAR_s}{2}
 `
@@ -205,10 +205,12 @@ ${IMG_CHAR_s}{2}
 `
 ${LIST_CHAR_s}{2}
 \s*?
-(\d|[a-zA-Z])*?
+(
+[^\n]*?                    //: key_s
+)
 \n
 (
-[\s\S]+?                   //: function_s
+[\s\S]+?                   //: value_s
 )
 \n
 ${LIST_CHAR_s}{2}
