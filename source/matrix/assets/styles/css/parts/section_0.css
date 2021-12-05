@@ -140,9 +140,10 @@ p > label + input:checked + ins > a > img {
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
-  --font_max: 20px;
-  --font_scale: 2.2vw;
-  font-weight: {{S_o.FONT_BOLD_s}};
+  --font_max: 18px;
+  --font_scale: 2vw;
+  font-weight: 400;
+  font-style: italic;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
   --font_max: 20px;
@@ -150,12 +151,6 @@ p > label + input:checked + ins > a > img {
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
-  --font_max: 18px;
-  --font_scale: 2vw;
-  font-weight: 400;
-  font-style: italic;
-}
-{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
@@ -193,11 +188,10 @@ p > label + input:checked + ins > a > img {
   font-size: 100%;
 }
 {{C_o.LABEL_TAG_s}}[data-ins={{C_o.INS_QUO_s}}] {
-  display: block;
-  margin: 0 0 -.2rem .4rem;
-  padding-left: .8rem;
-  border-left: .5rem solid {{S_o.shadow_ne}};
-  font-style: italic;
+  margin-left: {{S_o.PAD_6}};
+}
+{{C_o.LABEL_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]:before {
+  content: '\2014\00A0';
 }
 a {
   color: currentColor;
@@ -210,5 +204,14 @@ a:hover {
   transition: opacity .2s;
 }
 strong, bold {
+  font-weight: {{S_o.FONT_BOLD_s}};
+}
+blockquote {
+  display: block;
+  padding-left: {{S_o.PAD_4}};
+  border-left: .5rem solid {{S_o.shadow_ne}};
+  font-style: italic;
+  --font_max: 20px;
+  --font_scale: 2.2vw;
   font-weight: {{S_o.FONT_BOLD_s}};
 }

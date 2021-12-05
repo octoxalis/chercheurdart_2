@@ -13,6 +13,7 @@ const REX_o =
 //:    *        strong      
 //:    ^        emphasis    
 //:    =        list
+//:    "        quote
                         //-- link  (triple char)
 //:    < : >       link        
 //:    ! : !       img         
@@ -28,7 +29,6 @@ const REX_o =
                         //-- reserved
 //:    _        CELL_EMPTY_s       
                         //-- available
-//:    "
 //:    %
 //:    °
 //:    ~
@@ -44,8 +44,9 @@ const COMMENT_CHAR_s =      '/'
 const ESCAPE_CHAR_s =       '\\\\'   //: \
 const STRONG_CHAR_s =       '\\*'    //: *
 const EMPHASIS_CHAR_s =     '\\^'    //: ^
-const LIST_CHAR_s =         '='
 const IMG_CHAR_s =          '!'
+const LIST_CHAR_s =         '='
+const QUOTE_CHAR_s =        '"'
                                  //-- open !==+ close
 const LINK_OPEN_CHAR_s =   '<'
 const LINK_CLOSE_CHAR_s =   '>'
@@ -157,6 +158,22 @@ ${EMPHASIS_CHAR_s}{2}
 [\s\S]+?
 )
 ${EMPHASIS_CHAR_s}{2}
+`
+,
+
+
+
+  quote_re:
+    REX_o
+      .new__re( 'gm' )
+`
+${QUOTE_CHAR_s}{2}
+\s+?
+(
+[\s\S]+?                   //: value_s
+)
+\s+?
+${QUOTE_CHAR_s}{2}
 `
 ,
 
@@ -293,6 +310,7 @@ ${REFERENCE_CLOSE_s}{2}
   break_a:    [ '<br>', '' ],
   strong_a:   [ '<strong>', '</strong>' ],
   emphasis_a: [ '<em>', '</em>' ],
+  quote_a:    [ '<blockquote>', '</blockquote>' ],
   link_a:     [ '<a href="', '">', '</a>' ],        //:`<a href="${href_s}">${link_s}</a>`
   img_a:      [ '<img src="', '" alt="', '">' ],    //: `<img src="${src}" alt="${alt_s}">`
 

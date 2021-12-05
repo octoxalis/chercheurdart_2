@@ -27,6 +27,7 @@ const PRE_o =
 
       'hrule',
       'break',
+      'quote',
       'header',
       'strong',
       'emphasis',
@@ -198,6 +199,55 @@ const PRE_o =
           match_a,
           'emphasis'
         )
+  ,
+
+
+
+  quote__a:
+    match_a =>
+    {
+      //;console.log( match_a[1] )
+      let match_s =
+        match_a[1]
+
+      const line_a =
+        match_a[1]
+          .split( '\n\n' )    //: paragraph delimiter
+
+      if
+      (
+        line_a
+          .length
+        >
+        1
+      )
+      {
+        match_s =
+          `<p>${line_a.join( '</p><p>' )}</p>`
+      }
+
+      match_s =
+        match_s
+          .replaceAll
+          (
+            '\n',
+            '<br>'
+          )
+
+      //;console.log( match_s )
+      match_a[1] =
+        match_s
+
+      const quote_s =
+        PRE_o
+          .tag__a
+          (
+            match_a,
+            'quote'
+          )
+
+      return quote_s
+    }
   ,
 
 
@@ -715,7 +765,10 @@ const PRE_o =
 
 
   process__s:
-    source_s =>
+  (
+    source_s,
+    token_a      //: optional (subset of PRE_o.token_a)
+  ) =>
     {  
       let match_a
   
@@ -737,6 +790,8 @@ const PRE_o =
               source_s
                 .matchAll
                 (
+                  token_a
+                  ||
                   M_o
                     [ `${token_s}_re` ]
                 )

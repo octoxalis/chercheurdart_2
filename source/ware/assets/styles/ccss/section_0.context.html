@@ -147,7 +147,7 @@
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
           <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
-          context( block, reference_1 )
+          context( block, reference_2 )
           </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
@@ -160,10 +160,6 @@
           context( block, reference_2 )
           </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
-          context( block, reference_2 )
-          </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
           <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
@@ -199,11 +195,10 @@
         </{{C_o.TABLE_TAG_s}}>
       </ins>
       <{{C_o.LABEL_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
-              display: block;
-              margin: 0 0 -.2rem .4rem;
-              padding-left: .8rem;
-              border-left: .5rem solid {{S_o.shadow_ne}};
-              font-style: italic;
+              margin-left: {{S_o.PAD_6}};
+      </{{C_o.LABEL_TAG_s}}>
+      <{{C_o.LABEL_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]:before>
+              content: '\2014\00A0';
       </{{C_o.LABEL_TAG_s}}>
     </p>
     <a>
@@ -218,6 +213,13 @@
     <bold>
             font-weight: {{S_o.FONT_BOLD_s}};
     </bold>
+    <blockquote>
+            display: block;
+            padding-left: {{S_o.PAD_4}};
+            border-left: .5rem solid {{S_o.shadow_ne}};
+            font-style: italic;
+    context( block, reference_1 )
+    </blockquote>
     context( url, list.context.html )
     context( url, comment_iframe.context.html )
     context( url, comment_form.context.html )

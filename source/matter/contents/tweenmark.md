@@ -135,12 +135,22 @@ Horizontal rule after
 ==
 
 
+""  Pretium scelerisque sed semper cubilia aenean suspendisse arcu.
+
+    Purus neque **ridiculus** natoque.
+    Facilisis vel duis cras velit hendrerit eros nisi montes.  ""
+
+[[₃  A. Dupin  ::
+     Source
+     << Chercheur d'Art  ::  index.html >>  ]]
+
+
 
 
 ##2 4. Insertions
 
 [[₀  key_s ::
-     value_s_0
+     value_s_0      
      value_s_1
      << Chercheur d'Art  ::  index.html >>
      !! Le bel Arion  ::
@@ -158,12 +168,6 @@ Horizontal rule after
      On peut ajouter un **lien**
      << Chercheur d'Art  ::  index.html >>  ]]
 
-
-[[₃  **Quote** Pretium scelerisque sed semper cubilia aenean suspendisse arcu purus neque ridiculus natoque, facilisis vel duis cras velit hendrerit eros nisi montes. ::
-     A. Dupin
-     **Link**  ,,
-     << Chercheur d'Art  ::  index.html >>
-]]
 
 **Included tables**
 ||+  TABULA_RASA  ||

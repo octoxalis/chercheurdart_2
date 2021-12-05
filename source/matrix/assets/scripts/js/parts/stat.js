@@ -31,7 +31,7 @@ const STAT_o =
         dim_n
   
     return canvas_e
-  }
+  }   
   ,
 
 
