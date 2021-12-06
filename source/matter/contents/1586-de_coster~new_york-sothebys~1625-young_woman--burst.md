@@ -31,6 +31,7 @@
   css_a:
   [
     'stat.min.css',
+    'burst.min.css',
   ],
 
   version_a:

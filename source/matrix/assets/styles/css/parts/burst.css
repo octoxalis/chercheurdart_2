@@ -1,0 +1,59 @@
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] {
+  display: none;
+  height: 320px;
+  padding: {{S_o.PAD_8}};
+  border-radius: 50%;
+  transition: opacity ease 2s;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span:not( [data-icon] ) {
+  flex-grow: 2;
+  font-size: 140%;
+  font-weight: 500;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span[data-icon=substat] {
+  border: 2px solid {{S_o.nav_substat}};
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:first-of-type {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  justify-items: center;
+  text-align: center;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:first-of-type > span:not( [data-icon] ) {
+  flex-grow: 0;
+  margin: 0;
+  width: 100%;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:hover > span[data-icon] {
+  border: 2px solid transparent;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}]:hover {
+  opacity: 1;
+  transition: opacity ease .2s;
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_hue {
+  display: block;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_sat {
+  display: block;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_lum {
+  display: block;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ nav#nav_{{C_o.STAT_a[0]}}_hue {
+  display: flex;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ~ nav#nav_{{C_o.STAT_a[0]}}_sat {
+  display: flex;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ nav#nav_{{C_o.STAT_a[0]}}_lum {
+  display: flex;
+}

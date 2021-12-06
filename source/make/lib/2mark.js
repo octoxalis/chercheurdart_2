@@ -206,7 +206,6 @@ const PRE_o =
   quote__a:
     match_a =>
     {
-      //;console.log( match_a[1] )
       let match_s =
         match_a[1]
 
@@ -234,19 +233,17 @@ const PRE_o =
             '<br>'
           )
 
-      //;console.log( match_s )
       match_a[1] =
         match_s
 
-      const quote_s =
+      return (
         PRE_o
           .tag__a
           (
             match_a,
             'quote'
           )
-
-      return quote_s
+      )
     }
   ,
 
