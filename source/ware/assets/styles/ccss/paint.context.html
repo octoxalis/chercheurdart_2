@@ -1,6 +1,11 @@
 <section#{{C_o.STAT_a[2]}}>
         /*background: hsla( 100 17% 28%/1 );*/           /*TEMPORARY*/
   <div>
+    <canvas>
+            display: block;
+            position: absolute;
+            border: 1px solid red;    /* TEMPORARY */
+    </canvas>   
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
             display: none;
             z-index: 1;
@@ -15,11 +20,6 @@
   </div>
   <!--variant-->
   <div>
-    <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_img:checked />
-    ~
-    <canvas#canvas_{{C_o.STAT_a[2]}}_img>
-            display: block;
-    </canvas>
     <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked />
     ~
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>

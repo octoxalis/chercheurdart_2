@@ -1,3 +1,8 @@
+section#{{C_o.STAT_a[2]}} > div > canvas {
+  display: block;
+  position: absolute;
+  border: 1px solid red;
+}
 section#{{C_o.STAT_a[2]}} > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
   display: none;
   z-index: 1;
@@ -8,9 +13,6 @@ section#{{C_o.STAT_a[2]}} > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_setting
   height: fit-content;
   transform: translateX( -320px );
   transition: transform .5s ease;
-}
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_img:checked ~ canvas#canvas_{{C_o.STAT_a[2]}}_img {
-  display: block;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
   display: block;

@@ -60,6 +60,54 @@ const STAT_o =
   
 
   
+  putCanvas__v
+  (
+    stat_s,
+    script_s,
+    worker_o,
+    canvas_a
+  )
+  {
+    for
+    (
+      let part_s
+      of
+      canvas_a
+    )
+    {
+      const canvas_e =
+        STAT_o
+          .canvas__e
+          (
+            stat_s,
+            part_s
+          )
+      
+      const offCanvas_e =
+        canvas_e
+          .transferControlToOffscreen()
+      
+      worker_o            //! using port postMessage directly
+        .port_o           //! to avoid error:
+          .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+          (
+            {
+              stat_s:     stat_s,
+              part_s:     part_s,
+              script_s:   script_s,
+              task_s:     'PUT_canvas',
+              pixel_n:    window.devicePixelRatio,
+              canvas_e:   offCanvas_e
+            },
+            [ offCanvas_e ]
+          )
+
+      }
+  }
+  ,
+
+
+
   worker__o    //!!! 4. from section
   (
     stat_s,
@@ -83,48 +131,35 @@ const STAT_o =
     )
     {
       case '{{C_o.STAT_a[0]}}':
-        for
-        (
-          let part_s
-          of
-          [
-            'hue',
-            'sat',
-            'lum'
-          ]
-        )
-        {
-          const canvas_e =
-            STAT_o
-              .canvas__e
-              (
-                stat_s,
-                part_s
-              )
-          
-          const offCanvas_e =
-            canvas_e
-              .transferControlToOffscreen()
-          
-          worker_o            //! using port postMessage directly
-            .port_o           //! to avoid error:
-              .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
-              (
-                {
-                  stat_s:   stat_s,
-                  part_s:       part_s,
-                  script_s:   script_s,
-                  task_s:     'PUT_canvas',
-                  pixel_n:    window.devicePixelRatio,
-                  canvas_e:   offCanvas_e
-                },
-                [ offCanvas_e ]
-              )
-
-          }
+        STAT_o
+          .putCanvas__v
+          (
+            stat_s,
+            script_s,
+            worker_o,
+            [
+              'hue',
+              'sat',
+              'lum'
+            ]
+          )
             
         break;
     
+      case '{{C_o.STAT_a[1]}}':
+        STAT_o
+          .putCanvas__v
+          (
+            stat_s,
+            script_s,
+            worker_o,
+            [
+              'initial',
+              'processed'
+            ]
+          )
+        break
+
       default:
         break;
     }
