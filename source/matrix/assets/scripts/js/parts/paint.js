@@ -79,7 +79,6 @@ const PAI_o =
               click_o
 
             console.log( +atx_n + ' / ' + ~~( aty_n >>> 1 ) )
-
           }
         )
     }
