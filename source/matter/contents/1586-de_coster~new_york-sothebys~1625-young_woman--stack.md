@@ -1,12 +1,12 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1586-de_coster~new_york-sothebys~1625-young_woman.html',
+  permalink: '1586-de_coster~new_york-sothebys~1625-young_woman--stack.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      5120,
+  doc_n:      7171,
   title_s:    `Adam de Coster`,
   subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
   abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
@@ -19,11 +19,19 @@
     `galerie`,
   ],
 
+  stat_a:
+  [
+    `stack`,
+  ],
+
   script_a:
   [
+    'stat.min.js',
   ],
   css_a:
   [
+    'stat.min.css',
+    'stack.min.css',
   ],
 
   version_a:
@@ -31,12 +39,16 @@
     '2021-10-14T12:00:00Z'
   ],
 
+  layer_a:      //: images
+  [
+    'img_1',
+    'img_2',
+  ],
 }
 ---
 {% _section section_a[0] %}
 [[=  YOUNG_WOMAN  ::
-     [[₉  {{C_o.INS_DISPLAY_s}}  ::
-          1586-de_coster~new_york-sothebys~1625-young_woman ]]
+     [[₉  {{C_o.INS_DISPLAY_s}}  :: 1586-de_coster~new_york-sothebys~1625-young_woman ]]
 
 //=== END DECLARATIONS ===//
 //  TOPICS
@@ -52,24 +64,11 @@
 
 
 
-##2  Presentation
-
-Passé en vente chez Sotheby's à New York, cette toile constitue un jalon essentiel pour la reconstitution de l'oeuvre de l'artiste.
-
-
-
-
 ##2  Colorimétrie
 
-==
-<<  burst  ::  {{U_o.url_s}}{{workID_s}}--burst.html  >>
-<<  paint  ::  {{U_o.url_s}}{{workID_s}}--paint.html  >>
-<<  stack  ::  {{U_o.url_s}}{{workID_s}}--stack.html  >>
-==
-//  <<  aster  ::  {{U_o.url_s}}{{workID_s}}--aster.html  >>  //
+<<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
 
-
-##2  Analyse
+Modification
 
 {% end_section %}

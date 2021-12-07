@@ -1,4 +1,3 @@
-
 //=== stat.js
 const STAT_o =
 {
@@ -211,6 +210,7 @@ const STAT_o =
     }
   }
   ,
+  
 
 
   listener__v
@@ -220,10 +220,11 @@ const STAT_o =
     (
       let stat_s
       of
-      [
+      [            //: C_o.STAT_a
         'burst',
         'aster',
         'paint',
+        'stack',
       ]
     )
     {
@@ -252,8 +253,11 @@ const STAT_o =
 
   init__v    //!!! 1. from index.js
   (
-    work_s,
-    //?? stat_s
+    {
+      work_s,
+      //-- stat_s,
+      //-- layer_s
+    }
   )
   {
     STAT_o
@@ -275,7 +279,8 @@ const STAT_o =
             task_s: 'GET_scan',
             stat_s: '{{C_o.STAT_s}}',
             work_s: work_s,
-            //?? stat_s: stat_s
+            //-- stat_s: stat_s,
+            //-- layer_s: layer_s
           }
         )
   }

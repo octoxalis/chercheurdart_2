@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<div id="{{C_o.DIV_ID_s}}_stat_{{stat_s}}">
+  <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" name="{{stat_s}}_nav" type="radio" checked>
+  <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" name="{{stat_s}}_nav" type="radio">
+
+  <canvas id="canvas_{{stat_s}}_layer_0"></canvas>
+
+  <nav id="{{stat_s}}_scale">
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+    <label id="{{stat_s}}_scale_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
+    <label id="{{stat_s}}_scale_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
+  </nav>
+
+
+
+  <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_settings">
+    <aside id="aside_{{stat_s}}_settings">
+      <nav id="nav_{{stat_s}}_settings">
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_close.icon_s}}</span></label>
+      </nav>
+
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_shape">
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_circle">{{C_o.NAV_LEGEND_o.stack_circle.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_circle" type="radio" checked>
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_square">{{C_o.NAV_LEGEND_o.stack_square.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_square" type="radio" checked>
+      </div>
+
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_dimension">
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_dimension">{{C_o.NAV_LEGEND_o.stack_dimension.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_dimension" type=range min=10 max=1000 />
+      </div>
+
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers">
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_layers">{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>
+        <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_stack">
+          <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_stack_dimension"></div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
+</div>
+  

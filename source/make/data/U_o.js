@@ -51,4 +51,3 @@ U_o
   .setup__v()
 
 module.exports = U_o
-    

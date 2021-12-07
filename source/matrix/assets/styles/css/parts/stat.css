@@ -1,4 +1,4 @@
-input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked ~ section#{{C_o.STAT_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked ~ section#{{C_o.STAT_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked ~ section#{{C_o.STAT_a[2]}} {
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked ~ section#{{C_o.STAT_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked ~ section#{{C_o.STAT_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked ~ section#{{C_o.STAT_a[2]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}:checked ~ section#{{C_o.STAT_a[3]}} {
   display: block;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] {

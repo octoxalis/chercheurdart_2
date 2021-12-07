@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<div id="DI_stat_stack">
+  <input id="IN_stack_img" name="stack_nav" type="radio" checked>
+  <input id="IN_stack_settings" name="stack_nav" type="radio">
+
+  <canvas id="canvas_stack_layer_0"></canvas>
+
+  <nav id="stack_scale">
+    <label for="IN_stack_settings" data-legend="palette"><span data-icon="substat_op">&#8801;</span></label>
+    <label id="stack_scale_inc" data-legend="agrandir"><span data-icon="substat_op">&#43;</span></label>
+    <label id="stack_scale_dec" data-legend="réduire"><span data-icon="substat_op">&#8722;</span></label>
+  </nav>
+
+
+
+  <div id="DI_stack_settings">
+    <aside id="aside_stack_settings">
+      <nav id="nav_stack_settings">
+        <label for="IN_stack_img" data-legend="fermer"><span data-icon="substat_op">&#215;</span></label>
+      </nav>
+
+      <div id="DI_stack_shape">
+        <label for="IN_stack_settings_circle">cercle</label>
+        <input id="IN_stack_settings_circle" type="radio" checked>
+        <label for="IN_stack_settings_square">carré</label>
+        <input id="IN_stack_settings_square" type="radio" checked>
+      </div>
+
+      <div id="DI_stack_dimension">
+        <label for="IN_stack_settings_dimension">dimension</label>
+        <input id="IN_stack_settings_dimension" type=range min=10 max=1000 />
+      </div>
+
+      <div id="DI_stack_layers">
+        <label for="IN_stack_settings_layers">superposition</label>
+        <div id="DI_stack_layers_stack">
+          <div id="DI_stack_layers_stack_dimension"></div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <script id=script_stack data-src="/assets/scripts/js/stack.min.js"></script>
+</div>
+  

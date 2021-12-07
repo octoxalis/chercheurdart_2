@@ -1,0 +1,137 @@
+<section#{{C_o.STAT_a[3]}}>
+        /*background: hsla( 100 17% 28%/1 );*/           /*TEMPORARY*/
+  <div>
+    <canvas>
+            display: block;
+            position: absolute;
+    </canvas>
+    <canvas[id$=_layer_0]>
+            background: red;
+    </canvas>
+    <canvas[id$=_layer_1]>
+            background: blue;
+    </canvas>
+    <canvas[id$=_layer_2]>
+            background: blue;
+    </canvas>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
+            --stack_dim: 512px;
+            display: none;
+            z-index: 1;
+            position: absolute;
+            top: {{S_o.PAD_6}};
+            left: 0;
+            width: calc( var(--stack_dim) + {{S_o.PAD_8}} );
+            transform: translateX( -(var(--stack_dim) + {{S_o.PAD_8}} ) );
+            transition: transform .5s ease;
+    </div>
+  </div>
+  <!--variant-->
+  <div>
+          <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings:checked />
+          ~
+          <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
+                  display: block;
+                  top: {{S_o.PAD_6}};
+                  transform: translateX( 0 );
+      <aside>
+              display: grid;
+              grid-template-columns: 1fr;
+              grid-template-rows: 1fr 2fr 1fr calc( 2rem + var(--stack_dim) + {{S_o.PAD_8}} );
+              grid-gap: 0px;
+              padding: 0 {{S_o.PAD_4}} {{S_o.PAD_4}} {{S_o.PAD_4}} ;
+              width: var(--stack_dim);
+              height: fit-content;
+        <nav#nav_{{C_o.STAT_a[3]}}_settings>
+                grid-area: 1 / 1 / 2 / 2;
+                flex-direction: column;
+                justify-content: space-between; 
+                margin: {{S_o.PAD_2}} 0 {{S_o.PAD_8}} 0;
+                width: 100%;
+                height: fit-content;
+                <label>
+            <span[data-icon=substat_op]>
+                    border: 2px solid {{S_o.nav_substat_op}};
+            </span>
+          </label>
+          <label:hover>
+            <span[data-icon]>
+                    border: 2px solid transparent;
+            </span>
+          </label>
+        </nav>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_shape>
+                grid-area: 2 / 1 / 3 / 2;
+                display: flex;
+                /*flex-direction: row;*/
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                padding: {{S_o.PAD_4}};
+                height: fit-content;
+          <label>
+                    width: 30%;
+          </label>
+          <input />
+                    width: 256px;
+        </div>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_dimension>
+	        grid-area: 3 / 1 / 4 / 2;
+                display: flex;
+                /*flex-direction: row;*/
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                padding: {{S_o.PAD_4}};
+                height: fit-content;
+          <label>
+                  width: 30%;
+          </label>
+          <input[type=range] />
+                    width: 256px;
+                    background: transparent;
+                    cursor: pointer;
+                    transform: scaleY( .3 );
+          <input[type=range]:focus />
+                  outline: none;
+          <input[type=range]::-webkit-slider-runnable-track />
+                  width: 100px;
+                  height: 16px;
+        </div>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers>
+                --stack_window_dim: 64px;
+                --stack_window_radius: 50;
+                grid-area: 4 / 1 / 5 / 2;
+                display: flex;
+                flex-direction: column;
+          <label>
+                  position: relative;
+                  top: 0;
+                  left: {{S_o.PAD_4}};
+                  width: 100%;
+                  height: 2rem;
+                  text-align: left;
+          </label>
+          <div>
+                position: relative;
+                top: -2rem;
+                width: var(--stack_dim);
+                height: var(--stack_dim);
+                border: 1px solid {{S_o.ins_shadow_ne}};
+            <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_stack_dimension>
+                    position: absolute;
+                    top:  45%;
+                    left: 45%;
+                    width: var(--stack_window_dim);
+                    height: var(--stack_window_dim);
+                    background: hsla( 220 25% 72%/.5);   /* TEMPORARY */
+                    border: 1px solid {{S_o.ins_shadow_ne}};
+                    border-radius: calc( var(--stack_window_radius) * 1% );
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div:hover>
+            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+    </div>
+  </div>
+</section>

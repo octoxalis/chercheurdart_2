@@ -1,4 +1,4 @@
-// === paint.js ===
+// === stack.js ===
 
 const PAI_o =
 {
@@ -57,9 +57,9 @@ const PAI_o =
       let sub_s
       of
       [
-        'hue',
-        'sat',
-        'lum',
+        //... 'hue',
+        //... 'sat',
+        //... 'lum',
       ]
     )
     {
@@ -77,14 +77,6 @@ const PAI_o =
           {
             console.log( click_o )
 
-            const
-            {
-              offsetX: atx_n,
-              offsetY: aty_n
-            } =
-              click_o
-
-            console.log( +atx_n + ' / ' + ~~( aty_n >>> 1 ) )
           }
         )
     }

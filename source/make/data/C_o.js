@@ -73,6 +73,7 @@ const C_o =
     'burst',
     'aster',
     'paint',
+    'stack',
   ],
 
   HTML_CHAR_o:
@@ -98,6 +99,7 @@ const C_o =
     burst: { icon_s: `&#8718;`, legend_s: `burst`},       //: ⋇
     aster: { icon_s: `&#8718;`, legend_s: `aster`},       //: ⊚
     paint: { icon_s: `&#8718;`, legend_s: `paint`},       //: ⊜
+    stack: { icon_s: `&#8718;`, legend_s: `stack`},       //: ⊜
 
     burst_hue:  { icon_s: `&#8728;`, legend_s: `chromaticité`},       //: ⊜
     burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},    //: ⊜
@@ -112,6 +114,12 @@ const C_o =
 
     paint_origin:   { icon_s: `&#8722;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
+
+    stack_circle:     { icon_s: `&nbsp;`,  legend_s: `cercle`},
+    stack_square:     { icon_s: `&nbsp;`,  legend_s: `carré`},
+    stack_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
+    stack_layers:     { icon_s: `&nbsp;`,  legend_s: `superposition`},
+    stack_layers_up:  { icon_s: `&nbsp;`,  legend_s: `monter`},
   },
 
   //=== REPLACE
