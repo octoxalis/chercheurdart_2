@@ -21,9 +21,17 @@
 
       <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_shape">
         <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_circle">{{C_o.NAV_LEGEND_o.stack_circle.legend_s}}</label>
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_circle" type="radio" checked>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hellipse" type="radio" checked>
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hellipse">{{C_o.NAV_LEGEND_o.stack_hellipse.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hellipse" type="radio">
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vellipse">{{C_o.NAV_LEGEND_o.stack_vellipse.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vellipse" type="radio">
         <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_square">{{C_o.NAV_LEGEND_o.stack_square.legend_s}}</label>
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_square" type="radio" checked>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_square" type="radio">
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hrect">{{C_o.NAV_LEGEND_o.stack_hrect.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hrect" type="radio">
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vrect">{{C_o.NAV_LEGEND_o.stack_vrect.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vrect" type="radio">
       </div>
 
       <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_dimension">
@@ -31,11 +39,29 @@
         <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_dimension" type=range min=10 max=1000 />
       </div>
 
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers">
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_list">
         <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_layers">{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>
-        <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_stack">
-          <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_stack_dimension"></div>
+        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_list">
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_1">item_1</li>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_0">original</li>
+        </ul>
+      </div>
+
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective">
+        <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_settings_perspective">
+          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_perspective_range">{{C_o.NAV_LEGEND_o.stack_perspective.legend_s}}</label>
+          <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_perspective_range" type=range min=-60 max=60 />
         </div>
+        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_stack">
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1">
+            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_img" src="" />
+            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_clip"></div>
+          </li>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original">
+            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_img" src="" />
+            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_clip"></div>
+          </li>
+        </ul>
       </div>
 
     </aside>
@@ -43,4 +69,3 @@
 
   <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
 </div>
-  

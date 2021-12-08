@@ -116,10 +116,14 @@ const C_o =
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
     stack_circle:     { icon_s: `&nbsp;`,  legend_s: `cercle`},
+    stack_hellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse horiz`},
+    stack_vellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse verti`},
     stack_square:     { icon_s: `&nbsp;`,  legend_s: `carré`},
+    stack_hrect:     { icon_s: `&nbsp;`,  legend_s: `rect horiz`},
+    stack_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
     stack_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
-    stack_layers:     { icon_s: `&nbsp;`,  legend_s: `superposition`},
-    stack_layers_up:  { icon_s: `&nbsp;`,  legend_s: `monter`},
+    stack_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
+    stack_perspective:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
   },
 
   //=== REPLACE

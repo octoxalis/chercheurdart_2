@@ -21,9 +21,17 @@
 
       <div id="DI_stack_shape">
         <label for="IN_stack_settings_circle">cercle</label>
-        <input id="IN_stack_settings_circle" type="radio" checked>
+        <input id="IN_stack_settings_hellipse" type="radio" checked>
+        <label for="IN_stack_settings_hellipse">ellipse horiz</label>
+        <input id="IN_stack_settings_hellipse" type="radio">
+        <label for="IN_stack_settings_vellipse">ellipse verti</label>
+        <input id="IN_stack_settings_vellipse" type="radio">
         <label for="IN_stack_settings_square">carré</label>
-        <input id="IN_stack_settings_square" type="radio" checked>
+        <input id="IN_stack_settings_square" type="radio">
+        <label for="IN_stack_settings_hrect">rect horiz</label>
+        <input id="IN_stack_settings_hrect" type="radio">
+        <label for="IN_stack_settings_vrect">rect verti</label>
+        <input id="IN_stack_settings_vrect" type="radio">
       </div>
 
       <div id="DI_stack_dimension">
@@ -31,11 +39,29 @@
         <input id="IN_stack_settings_dimension" type=range min=10 max=1000 />
       </div>
 
-      <div id="DI_stack_layers">
-        <label for="IN_stack_settings_layers">superposition</label>
-        <div id="DI_stack_layers_stack">
-          <div id="DI_stack_layers_stack_dimension"></div>
+      <div id="DI_stack_list">
+        <label for="IN_stack_settings_layers">empilement</label>
+        <ul id="DI_stack_layers_list">
+          <li id="DI_stack_layers_item_1">item_1</li>
+          <li id="DI_stack_layers_item_0">original</li>
+        </ul>
+      </div>
+
+      <div id="DI_stack_perspective">
+        <div id="DI_stack_settings_perspective">
+          <label for="IN_stack_settings_perspective_range">perspective</label>
+          <input  id="IN_stack_settings_perspective_range" type=range min=-60 max=60 />
         </div>
+        <ul id="DI_stack_perspective_stack">
+          <li id="DI_stack_perspective_item_1">
+            <img id="DI_stack_perspective_item_1_img" src="" />
+            <div id="DI_stack_perspective_item_1_clip"></div>
+          </li>
+          <li id="DI_stack_perspective_original">
+            <img id="DI_stack_perspective_original_img" src="" />
+            <div id="DI_stack_perspective_original_clip"></div>
+          </li>
+        </ul>
       </div>
 
     </aside>
@@ -43,4 +69,3 @@
 
   <script id=script_stack data-src="/assets/scripts/js/stack.min.js"></script>
 </div>
-  
