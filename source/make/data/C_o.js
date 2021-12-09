@@ -115,6 +115,7 @@ const C_o =
     paint_origin:   { icon_s: `&#8722;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
+    stack_shape:     { icon_s: `&nbsp;`,  legend_s: `forme`},
     stack_circle:     { icon_s: `&nbsp;`,  legend_s: `cercle`},
     stack_hellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse horiz`},
     stack_vellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse verti`},
@@ -123,7 +124,7 @@ const C_o =
     stack_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
     stack_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
     stack_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
-    stack_perspective:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
+    stack_rotation:  { icon_s: `&nbsp;`,  legend_s: `rotation`},
   },
 
   //=== REPLACE

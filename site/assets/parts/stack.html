@@ -16,31 +16,60 @@
   <div id="DI_stack_settings">
     <aside id="aside_stack_settings">
       <nav id="nav_stack_settings">
-        <label for="IN_stack_img" data-legend="fermer"><span data-icon="substat_op">&#215;</span></label>
+        <label for="IN_stack_img" data-legend="fermer">
+          <span data-icon="substat_op">&#215;</span>
+        </label>
       </nav>
 
       <div id="DI_stack_shape">
-        <label for="IN_stack_settings_circle">cercle</label>
-        <input id="IN_stack_settings_hellipse" type="radio" checked>
-        <label for="IN_stack_settings_hellipse">ellipse horiz</label>
-        <input id="IN_stack_settings_hellipse" type="radio">
-        <label for="IN_stack_settings_vellipse">ellipse verti</label>
-        <input id="IN_stack_settings_vellipse" type="radio">
-        <label for="IN_stack_settings_square">carré</label>
-        <input id="IN_stack_settings_square" type="radio">
-        <label for="IN_stack_settings_hrect">rect horiz</label>
-        <input id="IN_stack_settings_hrect" type="radio">
-        <label for="IN_stack_settings_vrect">rect verti</label>
-        <input id="IN_stack_settings_vrect" type="radio">
-      </div>
+        <label>forme</label>
+        <div id="DI_stack_shape_items">
+          <input id="IN_stack_settings_circle" name=stack_shape type="radio" checked>
+          <label for="IN_stack_settings_circle">
+            <svg class="svg_icon">
+              <use href="#stack_circle"></use>
+            </svg>
+          </label>
+          <input id="IN_stack_settings_hellipse" name=stack_shape type="radio">
+          <label for="IN_stack_settings_hellipse">
+            <svg class="svg_icon">
+              <use href="#stack_helipse"></use>
+            </svg>
+          </label>
+          <input id="IN_stack_settings_vellipse" name=stack_shape type="radio">
+          <label for="IN_stack_settings_vellipse">
+            <svg class="svg_icon">
+              <use href="#stack_velipse"></use>
+            </svg>
+          </label>
+          <input id="IN_stack_settings_square" name=stack_shape type="radio">
+          <label for="IN_stack_settings_square">
+            <svg class="svg_icon">
+              <use href="#stack_square"></use>
+            </svg>
+          </label>
+          <input id="IN_stack_settings_hrect" name=stack_shape type="radio">
+          <label for="IN_stack_settings_hrect">
+            <svg class="svg_icon">
+              <use href="#stack_hrect"></use>
+            </svg>
+          </label>
+          <input id="IN_stack_settings_vrect" name=stack_shape type="radio">
+          <label for="IN_stack_settings_vrect">
+            <svg class="svg_icon">
+              <use href="#stack_vrect"></use>
+            </svg>
+          </label>
+        </div>
+      </div>  
 
-      <div id="DI_stack_dimension">
-        <label for="IN_stack_settings_dimension">dimension</label>
-        <input id="IN_stack_settings_dimension" type=range min=10 max=1000 />
+      <div id="DI_stack_dimension_range">
+        <label for="IN_stack_settings_dimension_range">dimension</label>
+        <input  id="IN_stack_settings_dimension_range" type=range min=10 max=1000 />
       </div>
 
       <div id="DI_stack_list">
-        <label for="IN_stack_settings_layers">empilement</label>
+        <label>empilement</label>
         <ul id="DI_stack_layers_list">
           <li id="DI_stack_layers_item_1">item_1</li>
           <li id="DI_stack_layers_item_0">original</li>
@@ -48,24 +77,31 @@
       </div>
 
       <div id="DI_stack_perspective">
-        <div id="DI_stack_settings_perspective">
-          <label for="IN_stack_settings_perspective_range">perspective</label>
-          <input  id="IN_stack_settings_perspective_range" type=range min=-60 max=60 />
-        </div>
         <ul id="DI_stack_perspective_stack">
-          <li id="DI_stack_perspective_item_1">
-            <img id="DI_stack_perspective_item_1_img" src="" />
-            <div id="DI_stack_perspective_item_1_clip"></div>
-          </li>
           <li id="DI_stack_perspective_original">
             <img id="DI_stack_perspective_original_img" src="" />
             <div id="DI_stack_perspective_original_clip"></div>
           </li>
+          <li id="DI_stack_perspective_item_1">
+            <img id="DI_stack_perspective_item_1_img" src="" />
+            <div id="DI_stack_perspective_item_1_clip"></div>
+          </li>
+          <li id="DI_stack_perspective_item_2">
+            <img id="DI_stack_perspective_item_2_img" src="" />
+            <div id="DI_stack_perspective_item_2_clip"></div>
+          </li>
         </ul>
+      </div>
+
+      <div id="DI_stack_rotation_range">
+        <label for="IN_stack_settings_rotation_range">rotation</label>
+        <input  id="IN_stack_settings_rotation_range" type=range min=-60 max=60 />
       </div>
 
     </aside>
   </div>
 
+
+<svg id="svg_symbols" aria-hidden="true"><symbol id="stack_square" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></symbol><symbol id="stack_hrect" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12"/></symbol><symbol id="stack_vrect" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18"/></symbol><symbol id="stack_circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle></symbol><symbol id="stack_helipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="6"/></symbol><symbol id="stack_velipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6" ry="9"/></symbol></svg>
   <script id=script_stack data-src="/assets/scripts/js/stack.min.js"></script>
-</div>
+</div>  
