@@ -4,14 +4,13 @@
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" name="{{stat_s}}_nav" type="radio">
 
   <canvas id="canvas_{{stat_s}}_layer_0"></canvas>
+  <canvas id="canvas_{{stat_s}}_layer_1"></canvas>
 
   <nav id="{{stat_s}}_scale">
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
     <label id="{{stat_s}}_scale_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
     <label id="{{stat_s}}_scale_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
   </nav>
-
-
 
   <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_settings">
     <aside id="aside_{{stat_s}}_settings">
@@ -61,18 +60,29 @@
             </svg>
           </label>
         </div>
-      </div>  
+      </div>
 
       <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_dimension_range">
         <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_dimension_range">{{C_o.NAV_LEGEND_o.stack_dimension.legend_s}}</label>
         <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_dimension_range" type=range min=10 max=1000 />
       </div>
-
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_list">
+  
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers">
         <label>{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>
-        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_list">
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_1">item_1</li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_0">original</li>
+        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_items">
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_0">
+            <label>original</label>
+            <label>{{C_o.NAV_LEGEND_o.stack_layers_remove.legend_s}}</label>
+          </li>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_1" draggable=true>  <!-- programatically added -->
+            <label>item_1</label>
+            <label>{{C_o.NAV_LEGEND_o.stack_layers_remove.legend_s}}</label>
+          </li>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add">
+            <label>{{C_o.NAV_LEGEND_o.stack_layers_add.legend_s}}</label>
+            <label for="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add_check">{{C_o.NAV_LEGEND_o.stack_layers_upload.legend_s}}</label>
+            <input id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add_check" type="checkbox"/>
+          </li>
         </ul>
       </div>
 
@@ -101,6 +111,34 @@
     </aside>
   </div>
 
+  <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layer_animation">
+    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_backward" name={{stat_s}}_animation type="radio">
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_backward">
+      <svg class="svg_icon">
+        <use href="#stack_anim_backward"></use>
+      </svg>
+    </label>
+    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_play" name={{stat_s}}_animation type="radio">
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_play">
+      <svg class="svg_icon">
+        <use href="#stack_anim_play"></use>
+      </svg>
+    </label>
+    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_stop" name={{stat_s}}_animation type="radio">
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_stop">
+      <svg class="svg_icon">
+        <use href="#stack_anim_pause"></use>
+      </svg>
+    </label>
+    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_forward" name={{stat_s}}_animation type="radio">
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_forward">
+      <svg class="svg_icon">
+        <use href="#stack_anim_forward"></use>
+      </svg>
+    </label>
+  </div>
+
 {% include "parts/body/stack_svg.njk" %}
   <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
-</div>  
+</div>
+    
