@@ -1,5 +1,4 @@
 <section#{{C_o.STAT_a[3]}}>
-        /*background: hsla( 100 17% 28%/1 );*/           /*TEMPORARY*/  
   <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
     <canvas>
             display: block;
@@ -29,7 +28,7 @@
             justify-content: space-between;
             gap: 1%;
             position: fixed;
-            top: calc( 100vh - 5vmin );
+            top: 90vh;
             margin: auto;
             padding: {{S_o.PAD_2}};
             width: 180px;
@@ -111,6 +110,7 @@
             +
             <label>
                     outline: 3px solid {{S_o.ins_shadow_ne}};
+                    filter: brightness( {{S_o.brigtness_lo}} );
             </label>
             <input />
                     display: none;
@@ -130,24 +130,34 @@
                       text-align: center;
                       border: 1px solid {{S_o.ins_shadow_ne}};
                       border-radius: 4px;
-                      cursor: pointer;
-              </label>
-              <label:hover>
               </label>
               <label:nth-of-type(1)>
-                      width: 90%;
-              </label>
-              <label:hover>
-                      filter: brightness( {{S_o.brigtness_lo}} );
+                      flex-grow: 1;
               </label>
               <input />
                       display: none;
+              <input:checked />
+              +
+              <label>
+                      outline: 3px solid {{S_o.ins_shadow_ne}};
+                      filter: brightness( {{S_o.brigtness_lo}} );
+              </label>
               <label:nth-of-type(2)>
-                      width: 8%;
+                      width: 50%;
               </label>
             </li>
             <li:before>
                     content: '';        
+            </li>
+            <li:not(:first-child):not(:last-child)>
+              <label>
+                      cursor: pointer;
+              </label>
+            </li>
+            <li:not(:first-child):not(:last-child)>
+              <label:hover>
+                        filter: brightness( {{S_o.brigtness_lo}} );
+              </label>
             </li>
           </ul>
         </div>
@@ -172,35 +182,52 @@
                   width: 200px;
                   height: 16px;
         </div>
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_perspective>
-                display: flex;  
-                flex-direction: column;
+
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_align>
+                padding: {{S_o.PAD_2}};
+          <input />
+                  display: none;
+          <label>
+                  margin-left: {{S_o.PAD_1}};
+                  padding: {{S_o.PAD_1}} {{S_o.PAD_8}};
+                  outline: 2px solid {{S_o.ins_shadow_ne}};
+          </label>
           <ul>
-                  --stack_capacity: 2;
-                  --stack_rotation: 0deg; /*-25deg;*/
-                  --stack_scale: .4;
-                  --stack_offset: 32;
-                  --stack_item_bg: calc( ( var(--stack_order) * .1 ) + .3 );
-                  position: relative;
-                  margin: 0;
-                  width:  var(--stack_dim);
-                  height: var(--stack_dim);
-                  border: none;
+                  margin-top: 2px;
+                  height: 0;
+                  transform: scaleY( 0 );
+                  transform-origin: center top;
+          </ul>
+
+          <input:checked />
+          +
+          <label>
+                background: hsla( 220 25% 50%/.1 );  /* TEMPORARY */
+                filter: brightness( {{S_o.brigtness_lo}} );
+          </label>
+          <input:checked />
+          ~
+          <ul>  
+                  display: flex;        
+                  flex-direction: column;
+                  justify-content: flex-start;
                   background: hsla( 220 25% 50%/.1 );  /* TEMPORARY */
-                  perspective: 500vw;
+                  height: auto;
+                  border: none;
+                  transform: scaleY( 1 );
+                  transition: .2s;
+                  transition-delay: .15s;
             <li>
-                    --stack_translate: calc( ( var(--stack_capacity) - var(--stack_order) ) * var(--stack_offset ) );
-                    position: absolute;
-                    padding: 0;
-                    width:  var(--stack_dim);
-                    height: var(--stack_dim);
-                    list-style: none;
-                    cursor: move;
-                    background: hsla( 220 25% 50%/.5 );  /* TEMPORARY */
-                    transform-origin:  center;
-                    transform: translate( calc( (var(--stack_translate) + var(--move_itemX)) * 1px ), calc( ( var(--stack_translate) + var(--move_itemY) ) * -1px ) )
-                               scale( var(--stack_scale) )
-                               rotateY( var(--stack_rotation) );
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 0 {{S_o.PAD_1}};
+                    padding: {{S_o.PAD_1}};
+                    border: 1px solid {{S_o.ins_shadow_ne}};
+                    list-style: none;   
+              <label>
+                      text-align: center;
+                      border-radius: 4px;
+              </label>
             </li>
             <li:before>
                     content: '';
@@ -209,23 +236,7 @@
                 context( copy, next )
             </li>
             <li:focus>
-                border: 2px solid hsla( 40 50% 17%/1);  /* TEMPORARY */
                 filter: invert( .5 );
-            </li>
-            <li:nth-child(1)>
-                    --stack_order: 0;
-                    --move_itemX: 0;    /* immutable */
-                    --move_itemY: 0;    /* immutable */
-            </li>
-            <li:nth-child(2)>
-                --stack_order: 1;
-                --move_itemX: 0;
-                --move_itemY: -50;
-            </li>
-            <li:nth-child(3)>
-                --stack_order: 2;
-                --move_itemX: -10;
-                --move_itemY: 0;
             </li>
           </ul>
         </div>

@@ -107,7 +107,7 @@ const C_o =
     
     burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},       //: ⊜
     
-    stat_open:      { icon_s: `&#8801;`, legend_s: `palette`},     //: ⊜
+    stat_open:      { icon_s: `&#10059;`, legend_s: `palette`},     //: ⊜
     stat_close:     { icon_s: `&#215;`, legend_s: `fermer`},     //: ⊜
     stat_increment: { icon_s: `&#43;`, legend_s: `agrandir`},     //: ⊜
     stat_decrement: { icon_s: `&#8722;`, legend_s: `réduire`},      //: ⊜
@@ -124,10 +124,12 @@ const C_o =
     //XX stack_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
     stack_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
     stack_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
-    stack_layers_add:     { icon_s: `&nbsp;`,  legend_s: `ajouter`},        //: plus
+    stack_layers_align:     { icon_s: `&nbsp;`,  legend_s: `alignement`},        //: plus
+    //XX stack_layers_add:     { icon_s: `&nbsp;`,  legend_s: `ajouter`},        //: plus
+    stack_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675;`},      //: downdash
     stack_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673;`},      //: updash
-    stack_layers_remove:     { icon_s: `&nbsp;`,  legend_s: `&#128465;`},    //: waste basket
-    stack_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
+    stack_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `&#8861;`},    //: waste basket
+    //XX stack_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
   },
 
   //=== REPLACE

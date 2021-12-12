@@ -71,41 +71,38 @@
         <label>{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>
         <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_items">
           <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_0">
-            <label>original</label>
-            <label>{{C_o.NAV_LEGEND_o.stack_layers_remove.legend_s}}</label>
+            <label>original (layer_0)</label>
           </li>
           <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_1" draggable=true>  <!-- programatically added -->
-            <label>item_1</label>
-            <label>{{C_o.NAV_LEGEND_o.stack_layers_remove.legend_s}}</label>
+            <label>layer_1</label>
           </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add">
-            <label>{{C_o.NAV_LEGEND_o.stack_layers_add.legend_s}}</label>
-            <label for="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add_check">{{C_o.NAV_LEGEND_o.stack_layers_upload.legend_s}}</label>
-            <input id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add_check" type="checkbox"/>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_2" draggable=true>  <!-- programatically added -->
+            <label>layer_2</label>
           </li>
-        </ul>
-      </div>
-
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective">
-        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_stack">
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original">
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_img" src="" />
-            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_clip"></div>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_change">
+            <label for="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_download">{{C_o.NAV_LEGEND_o.stack_layers_download.legend_s}}</label>
+            <!--<input id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add_check" type="checkbox"/>-->
+            <label for="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_upload">{{C_o.NAV_LEGEND_o.stack_layers_upload.legend_s}}</label>
           </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1">
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_img" src="" />
-            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_clip"></div>
-          </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2">
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2_img" src="" />
-            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2_clip"></div>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_hide">
+            <label>{{C_o.NAV_LEGEND_o.stack_layers_hide.legend_s}}</label>
           </li>
         </ul>
       </div>
 
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_rotation_range">
-        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_rotation_range">{{C_o.NAV_LEGEND_o.stack_rotation.legend_s}}</label>
-        <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_rotation_range" type=range min=-60 max=60 />
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_align">
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_align" type="checkbox"/>
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_align">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
+        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_stack">
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_1">
+            <label>layer_1</label>
+            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_1_img" src="" />
+          </li>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_2">
+            <label>layer_2</label>
+            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_2_img" src="" />
+          </li>
+        </ul> 
       </div>
 
     </aside>
@@ -141,4 +138,29 @@
 {% include "parts/body/stack_svg.njk" %}
   <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
 </div>
-    
+
+
+
+      <!--
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective">
+        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_stack">
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original">
+            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_img" src="" />
+            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_clip"></div>
+          </li> 
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1">
+            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_img" src="" />
+            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_clip"></div>
+          </li>
+          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2">
+            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2_img" src="" />
+            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2_clip"></div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_rotation_range">
+        <label for="{{C_o.input_ID_s}}_{{stat_s}}_settings_rotation_range">{{C_o.NAV_LEGEND_o.stack_rotation.legend_s}}</label>
+        <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_rotation_range" type=range min=-60 max=60 />
+      </div>
+      -->
