@@ -3,8 +3,8 @@
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" name="{{stat_s}}_nav" type="radio" checked>
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" name="{{stat_s}}_nav" type="radio">
 
-  <canvas id="canvas_{{stat_s}}_layer_0"></canvas>
-  <canvas id="canvas_{{stat_s}}_layer_1"></canvas>
+  <canvas id="canvas_{{stat_s}}_layer_0" draggable=true></canvas>
+  <canvas id="canvas_{{stat_s}}_layer_1" draggable=true></canvas>
 
   <nav id="{{stat_s}}_scale">
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
@@ -73,36 +73,50 @@
           <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_0">
             <label>original (layer_0)</label>
           </li>
+
           <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_1" draggable=true>  <!-- programatically added -->
             <label>layer_1</label>
+            <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_1_check" name={{stat_s}}_align type="checkbox">
+            <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_1_check">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
           </li>
           <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_2" draggable=true>  <!-- programatically added -->
             <label>layer_2</label>
+            <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_2_check" name={{stat_s}}_align type="checkbox">
+            <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_2_check">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
           </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_change">
-            <label for="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_download">{{C_o.NAV_LEGEND_o.stack_layers_download.legend_s}}</label>
-            <!--<input id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_add_check" type="checkbox"/>-->
-            <label for="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_upload">{{C_o.NAV_LEGEND_o.stack_layers_upload.legend_s}}</label>
-          </li>
+
           <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_hide">
             <label>{{C_o.NAV_LEGEND_o.stack_layers_hide.legend_s}}</label>
           </li>
         </ul>
-      </div>
 
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_align">
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_align" type="checkbox"/>
-        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_align">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
-        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_stack">
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_1">
-            <label>layer_1</label>
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_1_img" src="" />
-          </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_2">
-            <label>layer_2</label>
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_align_layer_2_img" src="" />
-          </li>
-        </ul> 
+        <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_add_local">
+          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add">{{C_o.NAV_LEGEND_o.stack_layers_add.legend_s}}</label>
+
+          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_remote">{{C_o.NAV_LEGEND_o.stack_layers_download.legend_s}}</label>
+          <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_remote" name={{stat_s}}_add type="checkbox"/>
+          <select name="pets" id="pet-select">
+              <option value="">--Please choose an option--</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="hamster">Hamster</option>
+              <option value="parrot">Parrot</option>
+              <option value="spider">Spider</option>
+              <option value="goldfish">Goldfish</option>
+          </select>
+
+          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_local">{{C_o.NAV_LEGEND_o.stack_layers_upload.legend_s}}</label>
+          <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_local" name={{stat_s}}_add type="checkbox"/>
+          <form id="form_{{stat_s}}_add_file">
+            <!--<img id="ca_form__user_file_img_thumb"/>-->
+            <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_file">Sélectionnez un fichier image (JPEG)</label>
+            <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_file" type="file" accept="image/jpeg" />
+            <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_fileID">Descriptif</label>
+            <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_fileID" type="text" />
+          </form>
+
+        </div>
+
       </div>
 
     </aside>
@@ -141,26 +155,16 @@
 
 
 
-      <!--
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective">
-        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_stack">
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original">
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_img" src="" />
-            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_original_clip"></div>
-          </li> 
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1">
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_img" src="" />
-            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_1_clip"></div>
-          </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2">
-            <img id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2_img" src="" />
-            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_perspective_item_2_clip"></div>
-          </li>
-        </ul>
-      </div>
+          <!--
+          <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_add" type="checkbox"/>
+          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add">{{C_o.NAV_LEGEND_o.stack_layers_add.legend_s}}</label>
+          <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_add_layer">
+            <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_add_download">
+              <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add">{{C_o.NAV_LEGEND_o.stack_layers_download.legend_s}}</label>
+            </li>
+            <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_add_upload">
+              <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_local">{{C_o.NAV_LEGEND_o.stack_layers_upload.legend_s}}</label>
+            </li>
+          </ul>
+          -->
 
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_rotation_range">
-        <label for="{{C_o.input_ID_s}}_{{stat_s}}_settings_rotation_range">{{C_o.NAV_LEGEND_o.stack_rotation.legend_s}}</label>
-        <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_rotation_range" type=range min=-60 max=60 />
-      </div>
-      -->

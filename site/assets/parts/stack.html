@@ -3,8 +3,8 @@
   <input id="IN_stack_img" name="stack_nav" type="radio" checked>
   <input id="IN_stack_settings" name="stack_nav" type="radio">
 
-  <canvas id="canvas_stack_layer_0"></canvas>
-  <canvas id="canvas_stack_layer_1"></canvas>
+  <canvas id="canvas_stack_layer_0" draggable=true></canvas>
+  <canvas id="canvas_stack_layer_1" draggable=true></canvas>
 
   <nav id="stack_scale">
     <label for="IN_stack_settings" data-legend="palette"><span data-icon="substat_op">&#10059;</span></label>
@@ -73,36 +73,50 @@
           <li id="DI_stack_layers_item_0">
             <label>original (layer_0)</label>
           </li>
+
           <li id="DI_stack_layers_item_1" draggable=true>  <!-- programatically added -->
             <label>layer_1</label>
+            <input id="IN_stack_layers_item_1_check" name=stack_align type="checkbox">
+            <label for="IN_stack_layers_item_1_check">&#8917;</label>
           </li>
           <li id="DI_stack_layers_item_2" draggable=true>  <!-- programatically added -->
             <label>layer_2</label>
+            <input id="IN_stack_layers_item_2_check" name=stack_align type="checkbox">
+            <label for="IN_stack_layers_item_2_check">&#8917;</label>
           </li>
-          <li id="DI_stack_layers_change">
-            <label for="DI_stack_layers_download">&#8675;</label>
-            <!--<input id="DI_stack_layers_add_check" type="checkbox"/>-->
-            <label for="DI_stack_layers_upload">&#8673;</label>
-          </li>
+
           <li id="DI_stack_layers_hide">
             <label>&#8861;</label>
           </li>
         </ul>
-      </div>
 
-      <div id="DI_stack_align">
-        <input id="IN_stack_align" type="checkbox"/>
-        <label for="IN_stack_align">alignement</label>
-        <ul id="DI_stack_align_stack">
-          <li id="DI_stack_align_layer_1">
-            <label>layer_1</label>
-            <img id="DI_stack_align_layer_1_img" src="" />
-          </li>
-          <li id="DI_stack_align_layer_2">
-            <label>layer_2</label>
-            <img id="DI_stack_align_layer_2_img" src="" />
-          </li>
-        </ul> 
+        <div id="DI_stack_add_local">
+          <label for="IN_stack_add">ajouter</label>
+
+          <label for="IN_stack_add_remote">&#8675; Chercheur d'Art</label>
+          <input  id="IN_stack_add_remote" name=stack_add type="checkbox"/>
+          <select name="pets" id="pet-select">
+              <option value="">--Please choose an option--</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="hamster">Hamster</option>
+              <option value="parrot">Parrot</option>
+              <option value="spider">Spider</option>
+              <option value="goldfish">Goldfish</option>
+          </select>
+
+          <label for="IN_stack_add_local">&#8673; Fichier local</label>
+          <input  id="IN_stack_add_local" name=stack_add type="checkbox"/>
+          <form id="form_stack_add_file">
+            <!--<img id="ca_form__user_file_img_thumb"/>-->
+            <label for="IN_stack_add_file">Sélectionnez un fichier image (JPEG)</label>
+            <input  id="IN_stack_add_file" type="file" accept="image/jpeg" />
+            <label for="IN_stack_add_fileID">Descriptif</label>
+            <input id="IN_stack_add_fileID" type="text" />
+          </form>
+
+        </div>
+
       </div>
 
     </aside>
@@ -142,26 +156,16 @@
 
 
 
-      <!--
-      <div id="DI_stack_perspective">
-        <ul id="DI_stack_perspective_stack">
-          <li id="DI_stack_perspective_original">
-            <img id="DI_stack_perspective_original_img" src="" />
-            <div id="DI_stack_perspective_original_clip"></div>
-          </li> 
-          <li id="DI_stack_perspective_item_1">
-            <img id="DI_stack_perspective_item_1_img" src="" />
-            <div id="DI_stack_perspective_item_1_clip"></div>
-          </li>
-          <li id="DI_stack_perspective_item_2">
-            <img id="DI_stack_perspective_item_2_img" src="" />
-            <div id="DI_stack_perspective_item_2_clip"></div>
-          </li>
-        </ul>
-      </div>
+          <!--
+          <input id="IN_stack_add" type="checkbox"/>
+          <label for="IN_stack_add">ajouter</label>
+          <ul id="DI_stack_add_layer">
+            <li id="DI_stack_add_download">
+              <label for="IN_stack_add">&#8675; Chercheur d'Art</label>
+            </li>
+            <li id="DI_stack_add_upload">
+              <label for="IN_stack_add_local">&#8673; Fichier local</label>
+            </li>
+          </ul>
+          -->
 
-      <div id="DI_stack_rotation_range">
-        <label for="_stack_settings_rotation_range"></label>
-        <input  id="IN_stack_settings_rotation_range" type=range min=-60 max=60 />
-      </div>
-      -->
