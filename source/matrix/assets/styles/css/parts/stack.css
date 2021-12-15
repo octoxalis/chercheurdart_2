@@ -124,7 +124,11 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li {
   padding: {{S_o.PAD_1}};
   list-style: none;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li > label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li > div {
+  flex-grow: 1;
+  padding: 0;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li > div > label, div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li > label {
   text-align: center;
   border: 1px solid {{S_o.ins_shadow_ne}};
   border-radius: 4px;
@@ -151,54 +155,21 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li:not(:first-child):not(:l
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li:not(:first-child):not(:last-child) > label:hover {
   filter: brightness( {{S_o.brigtness_lo}} );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add {
   display: flex;
   flex-direction: column;
   padding: {{S_o.PAD_2}};
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > label:first-of-type {
-  text-transform: uppercase;
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > label:not(:first-of-type) {
-  margin-left: {{S_o.PAD_2}};
-  outline: 2px solid {{S_o.ins_shadow_ne}};
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add > input, div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add > input + div {
   display: none;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input + form {
-  display: none;
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input + select {
-  display: none;
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input:checked + select {
-  display: block;
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input:checked + form {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add > input:checked + div {
   display: flex;
   flex-direction: column;
-  margin-left: {{S_o.PAD_2}};
-  padding: {{S_o.PAD_2}} 0 0 {{S_o.PAD_2}};
+  padding: {{S_o.PAD_2}};
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input:checked + form > label {
-  padding: {{S_o.PAD_1}} {{S_o.PAD_8}};
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input:checked + form > label:first-of-type {
-  outline: 2px solid {{S_o.ins_shadow_ne}};
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input:checked + form > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_file {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add > input:checked + div > input, div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add > input:checked + div > iframe {
   display: none;
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input:checked + form > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_fileID {
-  padding: {{S_o.PAD_1}};
-  width: 100%;
-  color: currentColor;
-  background: hsla( 220 25% 50%/.1 );
-  border-color: transparent;
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local > input:checked + form > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_fileID:focus {
-  outline: none;
 }
 div[id$="_range"] {
   display: flex;
@@ -222,6 +193,12 @@ div[id$="_range"] > input[type=range]:focus {
 div[id$="_range"] > input[type=range]::-webkit-slider-runnable-track {
   width: 200px;
   height: 16px;
+}
+dialog#dialog_{{C_o.STAT_a[3]}}_imgs {
+  position: absolute;
+  width: 500px;
+  height: 200px;
+  background: green;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings:hover {
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};

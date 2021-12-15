@@ -121,10 +121,6 @@
                     display: none;
           </div>
         </div>
-
-
-
-
         context( stack, new )
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers>
                 padding: {{S_o.PAD_2}};
@@ -139,6 +135,13 @@
                     margin: {{S_o.PAD_1}};
                     padding: {{S_o.PAD_1}};
                     list-style: none;
+              <div>
+                      flex-grow: 1;
+                      padding: 0;
+                <label>
+                context( copy, next )
+                </label>
+              </div>
               <label>
                       text-align: center;
                       border: 1px solid {{S_o.ins_shadow_ne}};
@@ -174,68 +177,30 @@
             </li>
           </ul>
         </div>
-
         context( stack, new )
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers>
-          <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add_local>
-                display: flex;
-                flex-direction: column;
-                padding: {{S_o.PAD_2}};
-            <label:first-of-type>
-                  text-transform: uppercase;
-            </label>
-            <label:not(:first-of-type)>
-                    margin-left: {{S_o.PAD_2}};
-                    outline: 2px solid {{S_o.ins_shadow_ne}};
-            </label>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add>
+              display: flex;
+              flex-direction: column;
+              padding: {{S_o.PAD_2}};
+          <input />
+          context( copy, next )
+          +
+          <div>
+                  display: none;
+          </div>
+          <input:checked />
+          +
+          <div>
+                  display: flex;
+                  flex-direction: column;
+                  padding: {{S_o.PAD_2}};
             <input />
-                    display: none;
-            +
-            <form>
-                    display: none;
-            </form>
-            <input />
-            +
-            <select>
-                    display: none;
-            </select>
-            
-            <input:checked />
-            +
-            <select>
-                    display: block;
-            </select>
-                    
-            <input:checked />
-            +
-            <form>
-                    display: flex;
-                    flex-direction: column;
-                    margin-left: {{S_o.PAD_2}};
-                    padding: {{S_o.PAD_2}} 0 0 {{S_o.PAD_2}};
-              <label>
-                      /* text-transform: uppercase; */
-                      padding: {{S_o.PAD_1}} {{S_o.PAD_8}};
-              </label>
-              <label:first-of-type>
-                      outline: 2px solid {{S_o.ins_shadow_ne}};
-              </label>
-              <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_file />
-                      display: none;
-              <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_fileID />
-                      padding: {{S_o.PAD_1}};
-                      width: 100%;
-                      color: currentColor;
-                      background: hsla( 220 25% 50%/.1 );  /* TEMPORARY */
-                      /*border-bottom: 1px solid {{S_o.ins_shadow_ne}};*/
-                      /*outline: none;*/
-                      border-color: transparent;
-              <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_fileID:focus />
-                      outline: none;
-            </form>
+            context( copy, next )
+            <iframe>
+                  display: none;
+            </iframe>
           </div>
         </div>
-        
         context( stack, new )
         <div[id$="_range"]>
                 display: flex;
@@ -258,9 +223,13 @@
                   width: 200px;
                   height: 16px;
         </div>
-
-
       </aside>
+      <dialog#dialog_{{C_o.STAT_a[3]}}_imgs>
+              position: absolute;
+              width: 500px;
+              height: 200px;  /* TEMPORARY */
+              background: green;
+      </dialog>
     </div>
     <!--variant-->
     context( stack, new )

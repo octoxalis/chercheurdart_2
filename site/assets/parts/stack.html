@@ -85,41 +85,26 @@
             <label for="IN_stack_layers_item_2_check">&#8917;</label>
           </li>
 
+          <li id="_stack_add">
+            <div id="DI_stack_add">
+              <label for="IN_stack_add">&#8853;</label>
+              <input  id="IN_stack_add" type="checkbox"/>
+              <div>
+                <label id="LA_stack_add_remote">&#8675; Chercheur d'Art</label>
+                <iframe id="IF_stack_add_remote" name=stack_iframe src="/assets/parts/stack_imgs.html"></iframe>
+                <label for="IN_stack_add_local">&#8673; Fichier local</label>
+                <input id="IN_stack_add_local" type="file" accept="image/jpeg" />
+              </div>
+            </div>
+          </li>
           <li id="DI_stack_layers_hide">
             <label>&#8861;</label>
           </li>
         </ul>
 
-        <div id="DI_stack_add_local">
-          <label for="IN_stack_add">ajouter</label>
-
-          <label for="IN_stack_add_remote">&#8675; Chercheur d'Art</label>
-          <input  id="IN_stack_add_remote" name=stack_add type="checkbox"/>
-          <select name="pets" id="pet-select">
-              <option value="">--Please choose an option--</option>
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-              <option value="hamster">Hamster</option>
-              <option value="parrot">Parrot</option>
-              <option value="spider">Spider</option>
-              <option value="goldfish">Goldfish</option>
-          </select>
-
-          <label for="IN_stack_add_local">&#8673; Fichier local</label>
-          <input  id="IN_stack_add_local" name=stack_add type="checkbox"/>
-          <form id="form_stack_add_file">
-            <!--<img id="ca_form__user_file_img_thumb"/>-->
-            <label for="IN_stack_add_file">Sélectionnez un fichier image (JPEG)</label>
-            <input  id="IN_stack_add_file" type="file" accept="image/jpeg" />
-            <label for="IN_stack_add_fileID">Descriptif</label>
-            <input id="IN_stack_add_fileID" type="text" />
-          </form>
-
-        </div>
-
       </div>
-
     </aside>
+    <!--<dialog id="DI_stack_imgs"></dialog>-->
   </div>
 
   <div id="DI_stack_layer_animation">
@@ -153,19 +138,3 @@
 <svg id="svg_symbols" aria-hidden="true"><symbol id="stack_square" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></symbol><symbol id="stack_hrect" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12"/></symbol><symbol id="stack_vrect" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18"/></symbol><symbol id="stack_circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle></symbol><symbol id="stack_helipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="6"/></symbol><symbol id="stack_velipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6" ry="9"/></symbol><symbol id="stack_anim_backward" viewBox="0 0 24 24"><polygon points="11 19 2 12 11 5 11 19"></polygon><polygon points="22 19 13 12 22 5 22 19"></polygon></symbol><symbol id="stack_anim_play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></symbol><symbol id="stack_anim_pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></symbol><symbol id="stack_anim_forward" viewBox="0 0 24 24"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></symbol></svg>
   <script id=script_stack data-src="/assets/scripts/js/stack.min.js"></script>
 </div>
-
-
-
-          <!--
-          <input id="IN_stack_add" type="checkbox"/>
-          <label for="IN_stack_add">ajouter</label>
-          <ul id="DI_stack_add_layer">
-            <li id="DI_stack_add_download">
-              <label for="IN_stack_add">&#8675; Chercheur d'Art</label>
-            </li>
-            <li id="DI_stack_add_upload">
-              <label for="IN_stack_add_local">&#8673; Fichier local</label>
-            </li>
-          </ul>
-          -->
-

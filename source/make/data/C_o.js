@@ -125,11 +125,11 @@ const C_o =
     //XX stack_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
     stack_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
     stack_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
-    stack_layers_align:     { icon_s: `&nbsp;`,  legend_s: `&#8917;`},        //: plus
-    stack_layers_add:     { icon_s: `&nbsp;`,  legend_s: `ajouter`},        //: plus
+    stack_layers_align:     { icon_s: `&nbsp;`,  legend_s: `&#8917;`},        //: 
+    stack_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `&#8861;`},         //: minus
+    stack_layers_add:     { icon_s: `&nbsp;`,  legend_s: `&#8853;`},          //: plus
     stack_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675; ${A_o.NAME_s}`},      //: downdash
     stack_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673; Fichier local`},      //: updash
-    stack_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `&#8861;`},    //: waste basket
     //XX stack_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
   },
 
@@ -155,6 +155,7 @@ const C_o =
   LABEL_ID_s:       'LA',
   IFRAME_ID_s:      'IF',
   DIV_ID_s:         'DI',
+  LIST_ID_s:        'LI',
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',
