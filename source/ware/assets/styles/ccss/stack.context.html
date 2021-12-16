@@ -55,6 +55,7 @@
             transition: .2s;
       <label:hover>
               filter: brightness( {{S_o.brigtness_lo}} );
+              background: {{S_o.ins_shadow_ne}};
       </label>
     </div>
   </div>
@@ -110,12 +111,14 @@
             </label>
             <label:hover>
                     filter: brightness( {{S_o.brigtness_lo}} );
+                    background: {{S_o.ins_shadow_ne}};
             </label>
             <input:checked />
             +
             <label>
                     outline: 3px solid {{S_o.ins_shadow_ne}};
                     filter: brightness( {{S_o.brigtness_lo}} );
+                    background: {{S_o.ins_shadow_ne}};
             </label>
             <input />
                     display: none;
@@ -157,6 +160,7 @@
               <label>
                       outline: 3px solid {{S_o.ins_shadow_ne}};
                       filter: brightness( {{S_o.brigtness_lo}} );
+                      background: {{S_o.ins_shadow_ne}};
               </label>
               <label:nth-of-type(2)>
                       width: 15%;
@@ -173,6 +177,7 @@
             <li:not(:first-child):not(:last-child)>
               <label:hover>
                         filter: brightness( {{S_o.brigtness_lo}} );
+                        background: {{S_o.ins_shadow_ne}};
               </label>
             </li>
           </ul>
@@ -182,6 +187,10 @@
               display: flex;
               flex-direction: column;
               padding: {{S_o.PAD_2}};
+            <label:hover>
+                    filter: brightness( {{S_o.brigtness_lo}} );
+                    background: {{S_o.ins_shadow_ne}};
+            </label>
           <input />
           context( copy, next )
           +
@@ -193,7 +202,16 @@
           <div>
                   display: flex;
                   flex-direction: column;
-                  padding: {{S_o.PAD_2}};
+                  padding: 0 {{S_o.PAD_2}};
+            <label>
+                    width: 50%;
+                    border: 1px solid {{S_o.ins_shadow_ne}};
+                    cursor: pointer;
+            </label>
+            <label:hover>
+                    filter: brightness( {{S_o.brigtness_lo}} );
+                    background: {{S_o.ins_shadow_ne}};
+            </label>
             <input />
             context( copy, next )
             <iframe>
@@ -224,12 +242,61 @@
                   height: 16px;
         </div>
       </aside>
-      <dialog#dialog_{{C_o.STAT_a[3]}}_imgs>
-              position: absolute;
-              width: 500px;
-              height: 200px;  /* TEMPORARY */
-              background: green;
-      </dialog>
+      <aside#aside_{{C_o.STAT_a[3]}}_imgs>
+              display: grid;
+              position: relative;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+        <input />
+                display: none;
+        <div>
+                grid-area: 1/-1;    /* stacking */
+                display: none;
+                position: fixed;
+                left: 50%;
+                right: 50%;
+                transform: translateX(-50%, -50%);
+                top: 50%;
+                bottom: 50%;
+                width: 50vw;
+                transform: translateY(-50%, -50%);
+                height: 20vh;  /* TEMPORARY */
+                background: {{S_o.bg_lower}};
+        </div>
+        <input:checked />
+        +
+        <div>
+                display: block;
+                box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+                overflow: auto;
+                resize: both;
+          <header>
+                  display: flex;
+                  padding: {{S_o.PAD_2}};
+                  border: 1px solid {{S_o.ins_shadow_ne}};
+            <label:not(:nth-of-type( 2 ))>
+                padding: {{S_o.PAD_1}};
+                width: 25%;
+                text-align: center;
+                background: transparent;
+            </label>
+            <label:nth-of-type( 2 )>
+                    flex-grow: 1;
+                    padding: {{S_o.PAD_1}};
+                    text-align: center;
+            </label>
+            <label:not(:nth-of-type( 2 )):hover>
+                  filter: brightness( {{S_o.brigtness_lo}} );
+                  background: {{S_o.ins_shadow_ne}};
+            </label>
+          </header>
+          <div>
+
+          </div>
+        </div>
+      </aside>
     </div>
     <!--variant-->
     context( stack, new )
