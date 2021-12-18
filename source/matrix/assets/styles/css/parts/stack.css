@@ -9,7 +9,7 @@ section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > canvas
   background: blue;
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > canvas[id$=_layer_2] {
-  background: blue;
+  background: yellow;
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings {
   display: none;
@@ -211,57 +211,6 @@ div[id$="_range"] > input[type=range]:focus {
 div[id$="_range"] > input[type=range]::-webkit-slider-runnable-track {
   width: 200px;
   height: 16px;
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs {
-  display: grid;
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs > input {
-  display: none;
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs > div {
-  grid-area: 1/-1;
-  display: none;
-  position: fixed;
-  left: 50%;
-  right: 50%;
-  transform: translateX(-50%, -50%);
-  top: 50%;
-  bottom: 50%;
-  width: 50vw;
-  transform: translateY(-50%, -50%);
-  height: 20vh;
-  background: {{S_o.bg_lower}};
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs > input:checked + div {
-  display: block;
-  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
-  overflow: auto;
-  resize: both;
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs > input:checked + div > header {
-  display: flex;
-  padding: {{S_o.PAD_2}};
-  border: 1px solid {{S_o.ins_shadow_ne}};
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs > input:checked + div > header > label:not(:nth-of-type( 2 )) {
-  padding: {{S_o.PAD_1}};
-  width: 25%;
-  text-align: center;
-  background: transparent;
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs > input:checked + div > header > label:nth-of-type( 2 ) {
-  flex-grow: 1;
-  padding: {{S_o.PAD_1}};
-  text-align: center;
-}
-aside#aside_{{C_o.STAT_a[3]}}_imgs > input:checked + div > header > label:not(:nth-of-type( 2 )):hover {
-  filter: brightness( {{S_o.brigtness_lo}} );
-  background: {{S_o.ins_shadow_ne}};
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings:hover {
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};

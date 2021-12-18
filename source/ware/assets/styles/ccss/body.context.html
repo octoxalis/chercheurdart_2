@@ -1,9 +1,10 @@
 context( stack, new )
 <body>
+        --min_height: 200vh;
         --nav_width: 12ch;
         position: relative;
         overflow-X: hidden;    /* no HZ space bar */
-        min-height: 200vh;     /* needed for sticky nav child */
+        min-height: var(--min_height);     /* needed for sticky nav child */
         color: {{S_o.textcolor}};
         background: {{S_o.bgcolor}};
         font-family: {{S_o.FONT_BODY_s}};

@@ -67,7 +67,7 @@ context( stack, new )
         position: absolute;
         top: 0;
         width: {{S_o.FULL_WIDTH_s}};
-        min-height: {{S_o.FULL_HEIGHT_s}};
+        min-height: var(--min_height);
         height: fit-content;
         background: {{S_o.bgcolor}};
   <iframe>
@@ -91,3 +91,4 @@ context( url, stat.context.html )
 context( url, burst.context.html )
 context( url, paint.context.html )
 context( url, stack.context.html )
+context( url, img_fs.context.html )

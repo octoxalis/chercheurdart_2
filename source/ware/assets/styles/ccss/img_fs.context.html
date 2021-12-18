@@ -1,0 +1,129 @@
+<aside#aside_{{C_o.STAT_a[3]}}_imgs>
+        display: grid;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+  <input />
+          display: none;
+  <div>
+          grid-area: 1/-1;    /* stacking */
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 25%;
+          width: 75vw;
+          min-height: 20ex;  /* TEMPORARY */
+          background: {{S_o.bg_lower}};
+  </div>
+  <input:checked />
+  +
+  <div>
+          display: block;
+          box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+          overflow: auto;
+          resize: both;
+    <header>
+            display: flex;
+            padding: {{S_o.PAD_1}};
+            border-bottom: 1px solid {{S_o.ins_shadow_ne}};
+    <label:nth-of-type( 2 )>
+            flex-grow: 1;
+            padding: {{S_o.PAD_1}};
+            text-align: center;
+    </label>
+    <label:not(:nth-of-type( 2 ))>
+            padding: {{S_o.PAD_1}};
+            width: 25%;
+            text-align: center;
+            background: transparent;
+    </label>
+    <label:not(:nth-of-type( 2 )):hover>
+            filter: brightness( {{S_o.brigtness_lo}} );
+            background: {{S_o.ins_shadow_ne}};
+    </label>
+    </header>
+
+    <div#img_list>
+              display: flex;
+              padding: {{S_o.PAD_1}};
+      <main>
+      context( copy, next )
+      </main>
+      <aside>
+              display: flex;
+              flex-direction: column;
+              padding: {{S_o.PAD_2}};
+              width: fit-content;
+              height: 100%;
+              background: transparent;
+      </aside>
+    </div>
+  </div>
+</aside>
+context( stack, new )
+<main>
+        flex-grow: 1;
+        border-right: 1px solid {{S_o.ins_shadow_ne}};
+  /* --------------- */
+  <details>
+          position: relative;
+          width: auto;
+          height: auto;
+          overflow: hidden;
+          max-height: 2.5em !important;
+          transition: all 0.1s ease;
+    <summary>
+            position: relative;
+            margin-top: 0.25em;
+            color: #99e;
+            padding: 0.1em 0.5em 0.2em;
+            background: #444;
+            font-size: 90%;
+    </summary>
+    <div>
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 0.5em 0.86em;
+            padding: 0.5em 0em 0.5em 1.5em;
+            border-left: 0.1em #ccc dotted;
+            border-bottom: 0.1em #ccc dotted;
+    <input />
+            display: none;
+    <label>
+            margin: 0;
+            font-size: 85%;
+    </label>
+    <label:hover>
+            filter: brightness( {{S_o.brigtness_hi}} );
+            background: {{S_o.ins_shadow_ne}};
+    </label>
+    <input:checked />
+    +
+    <label>
+            border: 2px solid {{S_o.shadow_ne}};
+            border-radius: 4px;
+            background: {{S_o.table}};
+    </label>
+    </div>
+  </details>
+  <details::-webkit-details-marker>
+          display: none;
+  </details>
+  <details[open]>
+          height: auto;
+          max-height: 99em !important;
+          transition: all 1.2s ease;
+    <summary>
+            background: #66e;
+            color: #eee;
+    <summary>
+  </details>
+  <details:not([open])>
+    <div>
+            height: 0px !important;
+    </div>
+  </details>
+  /* --------------- */
+</main>

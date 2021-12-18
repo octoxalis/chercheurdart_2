@@ -1,8 +1,9 @@
 body {
+  --min_height: 200vh;
   --nav_width: 12ch;
   position: relative;
   overflow-X: hidden;
-  min-height: 200vh;
+  min-height: var(--min_height);
   color: {{S_o.textcolor}};
   background: {{S_o.bgcolor}};
   font-family: {{S_o.FONT_BODY_s}};

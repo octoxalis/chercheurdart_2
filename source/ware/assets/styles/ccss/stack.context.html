@@ -5,13 +5,13 @@
             position: absolute;
     </canvas>
     <canvas[id$=_layer_0]>
-            background: red;
+            background: red;    /* TEMPORARY */
     </canvas>
     <canvas[id$=_layer_1]>
-            background: blue;
+            background: blue;    /* TEMPORARY */
     </canvas>
     <canvas[id$=_layer_2]>
-            background: blue;
+            background: yellow;    /* TEMPORARY */
     </canvas>
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
             display: none;
@@ -240,61 +240,6 @@
           <input[type=range]::-webkit-slider-runnable-track />
                   width: 200px;
                   height: 16px;
-        </div>
-      </aside>
-      <aside#aside_{{C_o.STAT_a[3]}}_imgs>
-              display: grid;
-              position: relative;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-        <input />
-                display: none;
-        <div>
-                grid-area: 1/-1;    /* stacking */
-                display: none;
-                position: fixed;
-                left: 50%;
-                right: 50%;
-                transform: translateX(-50%, -50%);
-                top: 50%;
-                bottom: 50%;
-                width: 50vw;
-                transform: translateY(-50%, -50%);
-                height: 20vh;  /* TEMPORARY */
-                background: {{S_o.bg_lower}};
-        </div>
-        <input:checked />
-        +
-        <div>
-                display: block;
-                box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
-                overflow: auto;
-                resize: both;
-          <header>
-                  display: flex;
-                  padding: {{S_o.PAD_2}};
-                  border: 1px solid {{S_o.ins_shadow_ne}};
-            <label:not(:nth-of-type( 2 ))>
-                padding: {{S_o.PAD_1}};
-                width: 25%;
-                text-align: center;
-                background: transparent;
-            </label>
-            <label:nth-of-type( 2 )>
-                    flex-grow: 1;
-                    padding: {{S_o.PAD_1}};
-                    text-align: center;
-            </label>
-            <label:not(:nth-of-type( 2 )):hover>
-                  filter: brightness( {{S_o.brigtness_lo}} );
-                  background: {{S_o.ins_shadow_ne}};
-            </label>
-          </header>
-          <div>
-
-          </div>
         </div>
       </aside>
     </div>

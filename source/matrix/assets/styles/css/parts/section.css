@@ -65,7 +65,7 @@ section {
   position: absolute;
   top: 0;
   width: {{S_o.FULL_WIDTH_s}};
-  min-height: {{S_o.FULL_HEIGHT_s}};
+  min-height: var(--min_height);
   height: fit-content;
   background: {{S_o.bgcolor}};
 }

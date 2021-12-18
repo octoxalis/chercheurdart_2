@@ -131,6 +131,8 @@ const C_o =
     stack_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675; ${A_o.NAME_s}`},      //: downdash
     stack_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673; Fichier local`},      //: updash
     //XX stack_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
+    open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
+    close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
   },
 
   //=== REPLACE
