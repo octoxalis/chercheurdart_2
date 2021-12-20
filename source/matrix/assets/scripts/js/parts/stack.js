@@ -95,7 +95,7 @@ const STACK_o =
                       adopted_e
                         .querySelector( `#script_stack_imgs` ) 
                     
-                    ;console.log(`#script_stack_imgs`)
+                    //;console.log(`#script_stack_imgs`)
           
                     if
                     (
