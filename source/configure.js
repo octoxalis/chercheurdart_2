@@ -37,6 +37,7 @@ module.exports =
   WARE_DIR_s:           'source/ware/',
 
   CONTENTS_PATH_s:      'source/matter/contents',
+  DB_PATH_s:            'source/make/db/',
   TABLE_INPUT_PATH_s:   'source/make/db/table',
   
   CONTEXT_INPUT_FILE_s: 'source/ware/assets/styles/ccss/html.context.html',

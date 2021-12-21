@@ -18,15 +18,5 @@
 		"death_date_n" : 1643,
 		"birth_place_s" : "Mechelen",
 		"death_place_s" : "Antwerpen"
-	},
-	{
-		"id_s" : "2021-dev",
-		"forename_s" : "Daniel",
-		"lastname_s" : "Dev",
-		"nickname_s" : null,
-		"birth_date_n" : 2000,
-		"death_date_n" : 2000,
-		"birth_place_s" : "Paris",
-		"death_place_s" : "Paris"
 	}
 ]

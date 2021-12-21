@@ -27,6 +27,7 @@ const C_o =
   CONTENTS_PATH_s:       CONF_o.CONTENTS_PATH_s,
   CONTENT_PARTS_PATH_s:  CONF_o.CONTENT_PARTS_PATH_s,
   ADOC_TEMP_PATH_s:      CONF_o.ADOC_TEMP_PATH_s,
+  DB_PATH_s:             CONF_o.DB_PATH_s,
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
   IMG_MAX_PATH_s:    '/full/max/0/',    //: IOR

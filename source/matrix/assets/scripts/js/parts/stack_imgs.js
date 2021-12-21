@@ -25,7 +25,7 @@ const S_IMGS_o =
       (
         document
           .createRange()
-          .createContextualFragment( `<img src="/assets/media/img/${work_s}/full/_128/0/gray.avif">` )
+          .createContextualFragment( `<img src="{{C_o.IMG_DIR_s}}${work_s}/full/_128/0/gray.avif">` )
       )
   }
   ,
@@ -37,7 +37,7 @@ const S_IMGS_o =
   {
     const listen_e =
       document
-        .getElementById( `DI_img_list_items` )
+        .getElementById( `main_img_list` )
         
     listen_e
     &&
