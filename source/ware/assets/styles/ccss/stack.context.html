@@ -1,18 +1,13 @@
+<:root>
+        --{{C_o.STAT_a[3]}}_img_width: 50;
+</:root>
 <section#{{C_o.STAT_a[3]}}>
   <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
-    <canvas>
+    <img />
             display: block;
             position: absolute;
-    </canvas>
-    <canvas[id$=_layer_0]>
-            background: red;    /* TEMPORARY */
-    </canvas>
-    <canvas[id$=_layer_1]>
-            background: blue;    /* TEMPORARY */
-    </canvas>
-    <canvas[id$=_layer_2]>
-            background: yellow;    /* TEMPORARY */
-    </canvas>
+            width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * 1% );
+            object-fit: scale-down;
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
             display: none;
             z-index: 1;
@@ -31,7 +26,7 @@
             top: 90vh;
             margin: auto;
             padding: {{S_o.PAD_2}};
-            width: 180px;
+            width: fit-content;
             border: 1px solid {{S_o.ins_shadow_ne}};
             border-radius: 4px;
             cursor: pointer;
@@ -46,6 +41,9 @@
               border: 1px solid transparent;
               border-radius: 4px;
               cursor: pointer;
+      </label>
+      <label:last-of-type>
+              margin-left: {{S_o.PAD_8}};
       </label>
     </div>
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation:hover>
@@ -163,7 +161,7 @@
                       background: {{S_o.ins_shadow_ne}};
               </label>
               <label:nth-of-type(2)>
-                      width: 15%;
+                      width: 8%;
               </label>
             </li>
             <li:before>

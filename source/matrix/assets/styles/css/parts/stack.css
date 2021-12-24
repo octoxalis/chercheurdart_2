@@ -1,15 +1,11 @@
-section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > canvas {
+:root {
+  --{{C_o.STAT_a[3]}}_img_width: 50;
+}
+section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img {
   display: block;
   position: absolute;
-}
-section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > canvas[id$=_layer_0] {
-  background: red;
-}
-section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > canvas[id$=_layer_1] {
-  background: blue;
-}
-section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > canvas[id$=_layer_2] {
-  background: yellow;
+  width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * 1% );
+  object-fit: scale-down;
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings {
   display: none;
@@ -29,7 +25,7 @@ section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{
   top: 90vh;
   margin: auto;
   padding: {{S_o.PAD_2}};
-  width: 180px;
+  width: fit-content;
   border: 1px solid {{S_o.ins_shadow_ne}};
   border-radius: 4px;
   cursor: pointer;
@@ -46,6 +42,9 @@ section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
+}
+section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation > label:last-of-type {
+  margin-left: {{S_o.PAD_8}};
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation:hover {
   opacity: 1;
@@ -148,7 +147,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li > input:checked + label 
   background: {{S_o.ins_shadow_ne}};
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li > label:nth-of-type(2) {
-  width: 15%;
+  width: 8%;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers > ul > li:before {
   content: '';

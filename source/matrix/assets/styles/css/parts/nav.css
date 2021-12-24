@@ -1,7 +1,6 @@
 nav {
   display: flex;
   justify-content: center;
-  background: {{S_o.bgcolor}};
 }
 nav > a:before, nav > label:before {
   content: attr( data-legend );

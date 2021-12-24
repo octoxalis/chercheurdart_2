@@ -1,4 +1,5 @@
 // === stack_imgs.js ===
+//--STACK_o
 
 const S_IMGS_o =
 {
@@ -35,13 +36,13 @@ const S_IMGS_o =
   listener__v
   ()
   {
-    const listen_e =
+    const list_e =
       document
         .getElementById( `main_img_list` )
         
-    listen_e
+    list_e
     &&
-    listen_e
+    list_e
       .addEventListener
       (
         'click',
@@ -57,14 +58,54 @@ const S_IMGS_o =
           &&
           S_IMGS_o
             .displayImg__v( work_s )
-    }
+        }
+      )
+
+    const select_e =
+      document
+        .getElementById( `button_{{C_o.STAT_a[3]}}_imgs_select` )
+        
+    select_e
+    &&
+    select_e
+      .addEventListener
+      (
+        'click',
+        click_o =>
+        {
+          for
+          (
+            let input_e
+            of
+            Array
+            .from
+            (
+              list_e
+                .querySelectorAll( 'input:checked' )
+            )
+          )
+          {
+            STACK_o
+              .addWork__v
+              (
+                input_e
+                  .id
+              )
+          }
+        }
       )
   }
   ,
 
 
-
 }
+
+
+
+
+S_IMGS_o
+  .listener__v()
+
 
 
 
@@ -77,7 +118,3 @@ const S_IMGS_o =
 //...??        'LogScale Painter',
 //...??        S_IMGS_o.message__v,
 //...??      )
-
-
-S_IMGS_o
-  .listener__v()

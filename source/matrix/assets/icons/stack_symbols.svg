@@ -24,24 +24,26 @@
     <ellipse cx="12" cy="12" rx="6" ry="9" />
   </symbol>
   
-  <symbol id="stack_anim_backward" viewBox="0 0 24 24">
-    <polygon points="11 19 2 12 11 5 11 19"></polygon>
-    <polygon points="22 19 13 12 22 5 22 19"></polygon>
-  </symbol>
-  
   <symbol id="stack_anim_play" viewBox="0 0 24 24">
     <polygon points="5 3 19 12 5 21 5 3"></polygon>
   </symbol>
   
-  <symbol id="stack_anim_pause" viewBox="0 0 24 24">
-    <rect x="6" y="4" width="4" height="16"></rect>
-    <rect x="14" y="4" width="4" height="16"></rect>
+  <!--
+  <symbol id="stack_anim_backward" viewBox="0 0 24 24">
+    <polygon points="11 19 2 12 11 5 11 19"></polygon>
+    <polygon points="22 19 13 12 22 5 22 19"></polygon>
   </symbol>
   
   <symbol id="stack_anim_forward" viewBox="0 0 24 24">
     <polygon points="13 19 22 12 13 5 13 19"></polygon>
     <polygon points="2 19 11 12 2 5 2 19"></polygon>
   </symbol>
+
+  <symbol id="stack_anim_pause" viewBox="0 0 24 24">
+    <rect x="6" y="4" width="4" height="16"></rect>
+    <rect x="14" y="4" width="4" height="16"></rect>
+  </symbol>
+  -->
   
 </svg>
   

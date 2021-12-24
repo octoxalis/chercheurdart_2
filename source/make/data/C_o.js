@@ -178,6 +178,7 @@ const C_o =
   INFO_s    :           '&#x2139;',
   UP_ARROW_s:           '&#8593;',
   IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
+  LAYER_INDEX_s:        '&#8942;',
   
   //=== DB ID
   //-- 1586-de_coster--new_york-sothebys--1625-young_woman

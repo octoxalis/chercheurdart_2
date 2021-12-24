@@ -24,7 +24,7 @@ const I_TREE_o =
       artist_s,
       subject_s
     } =
-      work_o             ;console.log( work_o.id_s )
+      work_o
 
     const artist_o =
       I_TREE_o
@@ -36,14 +36,14 @@ const I_TREE_o =
                 .id_s
               ===
               artist_s
-          )             //;console.log( artist_o )
+          )
 
     const
     {
       forename_s,
       lastname_s,
     } =
-      artist_o             //;console.log( forename_s + ' ' + lastname_s )
+      artist_o
 
     const summary_s =
       id_s
@@ -102,7 +102,7 @@ const I_TREE_o =
               'utf8',
               'r'
             )
-        )    //;console.log( work_a )
+        )
 
     I_TREE_o
       .artist_a =
@@ -117,7 +117,7 @@ const I_TREE_o =
                 'utf8',
                 'r'
               )
-          )    //;console.log( I_TREE_o.artist_a )
+          )
 
     let imgsList_s = ''
 
@@ -130,7 +130,7 @@ const I_TREE_o =
     {
       const entry_o =
         I_TREE_o
-          .identity__o( work_o )      //;console.log( entry_o )
+          .identity__o( work_o )
 
       imgsList_s +=
         I_TREE_o
@@ -140,7 +140,7 @@ const I_TREE_o =
               .id_s,
             entry_o
           )
-    }      //;console.log( imgsList_s )
+    }
 
     FS_o.
       writeFile
@@ -152,7 +152,6 @@ const I_TREE_o =
           console
             .log( error_o ?? `-- Writing ${I_TREE_o.OUTPUT_s}` )
       )
-
   }
 }
 

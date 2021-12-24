@@ -1,60 +1,58 @@
 <!DOCTYPE html>
-<div id="{{C_o.DIV_ID_s}}_stat_{{stat_s}}">
-  <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" name="{{stat_s}}_nav" type="radio" checked>
-  <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" name="{{stat_s}}_nav" type="radio">
+<div id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_img" name="{{C_o.STAT_a[3]}}_nav" type="radio" checked>
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings" name="{{C_o.STAT_a[3]}}_nav" type="radio">
 
-  <canvas id="canvas_{{stat_s}}_layer_0" draggable=true></canvas>
-  <canvas id="canvas_{{stat_s}}_layer_1" draggable=true></canvas>
-
-  <nav id="{{stat_s}}_scale">
-    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
-    <label id="{{stat_s}}_scale_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
-    <label id="{{stat_s}}_scale_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
+  <nav id="{{C_o.STAT_a[3]}}_scale">
+    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
+    <label id="{{C_o.STAT_a[3]}}_scale_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
+    <label id="{{C_o.STAT_a[3]}}_scale_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
   </nav>
 
-  <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_settings">
-    <aside id="aside_{{stat_s}}_settings">
-      <nav id="nav_{{stat_s}}_settings">
-        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}">
+  <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings">
+    <aside id="aside_{{C_o.STAT_a[3]}}_settings">
+      <nav id="nav_{{C_o.STAT_a[3]}}_settings">
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_img" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}">
           <span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_close.icon_s}}</span>
         </label>
       </nav>
-
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_shape">
+      
+      <!--
+      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_shape">
         <label>{{C_o.NAV_LEGEND_o.stack_shape.legend_s}}</label>
-        <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_shape_items">
-          <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_circle" name={{stat_s}}_shape type="radio" checked>
-          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_circle">
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_shape_items">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_circle" name={{C_o.STAT_a[3]}}_shape type="radio" checked>
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_circle">
             <svg class="svg_icon">
               <use href="#stack_circle"></use>
             </svg>
           </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hellipse" name={{stat_s}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hellipse">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hellipse" name={{C_o.STAT_a[3]}}_shape type="radio">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hellipse">
             <svg class="svg_icon">
               <use href="#stack_helipse"></use>
             </svg>
           </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vellipse" name={{stat_s}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vellipse">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vellipse" name={{C_o.STAT_a[3]}}_shape type="radio">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vellipse">
             <svg class="svg_icon">
               <use href="#stack_velipse"></use>
             </svg>
           </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_square" name={{stat_s}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_square">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_square" name={{C_o.STAT_a[3]}}_shape type="radio">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_square">
             <svg class="svg_icon">
               <use href="#stack_square"></use>
             </svg>
           </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hrect" name={{stat_s}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hrect">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hrect" name={{C_o.STAT_a[3]}}_shape type="radio">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hrect">
             <svg class="svg_icon">
               <use href="#stack_hrect"></use>
             </svg>
           </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vrect" name={{stat_s}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_vrect">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vrect" name={{C_o.STAT_a[3]}}_shape type="radio">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vrect">
             <svg class="svg_icon">
               <use href="#stack_vrect"></use>
             </svg>
@@ -62,78 +60,47 @@
         </div>
       </div>
 
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_dimension_range">
-        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_dimension_range">{{C_o.NAV_LEGEND_o.stack_dimension.legend_s}}</label>
-        <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_dimension_range" type=range min=10 max=1000 />
+      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_dimension_range">
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_dimension_range">{{C_o.NAV_LEGEND_o.stack_dimension.legend_s}}</label>
+        <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_dimension_range" type=range min=10 max=1000 />
       </div>
+      -->
   
-      <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers">
+      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers">
         <label>{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>
-        <ul id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_items">
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_0">
-            <label>original (layer_0)</label>
-          </li>
-
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_1" draggable=true>  <!-- programatically added -->
-            <label>layer_1</label>
-            <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_1_check" name={{stat_s}}_align type="checkbox">
-            <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_1_check">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
-          </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_item_2" draggable=true>  <!-- programatically added -->
-            <label>layer_2</label>
-            <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_2_check" name={{stat_s}}_align type="checkbox">
-            <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layers_item_2_check">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
-          </li>
-
-          <li id="{{C_o.LI_ID_s}}_{{stat_s}}_add">
-            <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_add">
-              <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add">{{C_o.NAV_LEGEND_o.stack_layers_add.legend_s}}</label>
-              <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_add" type="checkbox"/>
+        <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_items">
+          <li id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[3]}}_add">
+            <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add">
+              <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add">{{C_o.NAV_LEGEND_o.stack_layers_add.legend_s}}</label>
+              <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add" type="checkbox"/>
               <div>
-                <label id="{{C_o.LABEL_ID_s}}_{{stat_s}}_add_remote" for="{{C_o.INPUT_ID_s}}_stack_imgs">{{C_o.NAV_LEGEND_o.  stack_layers_download.legend_s}}</label>
-                <iframe id="{{C_o.IFRAME_ID_s}}_{{stat_s}}_add_remote" name={{stat_s}}_iframe src="/assets/parts/{{stat_s}}_imgs.html"></iframe>
-                <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_local">{{C_o.NAV_LEGEND_o.stack_layers_upload.  legend_s}}</label>
-                <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_add_local" type="file" accept="image/jpeg" />
+                <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_add_remote" for="{{C_o.INPUT_ID_s}}_stack_imgs">{{C_o.NAV_LEGEND_o.  stack_layers_download.legend_s}}</label>
+                <iframe id="{{C_o.IFRAME_ID_s}}_{{C_o.STAT_a[3]}}_add_remote" name={{C_o.STAT_a[3]}}_iframe src="/assets/parts/{{C_o.STAT_a[3]}}_imgs.html"></iframe>
+                <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_local">{{C_o.NAV_LEGEND_o.stack_layers_upload.  legend_s}}</label>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add_local" type="file" accept="image/jpeg" />
               </div>
             </div>
           </li>
-          <li id="{{C_o.DIV_ID_s}}_{{stat_s}}_layers_hide">
+          <li id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[3]}}_layers_hide">
             <label>{{C_o.NAV_LEGEND_o.stack_layers_hide.legend_s}}</label>
           </li>
         </ul>
 
       </div>
     </aside>
-    <!--<aside id="{{C_o.DIV_ID_s}}_{{stat_s}}_imgs"></aside>-->
   </div>
 
-  <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_layer_animation">
-    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_backward" name={{stat_s}}_animation type="radio">
-    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_backward">
-      <svg class="svg_icon">
-        <use href="#stack_anim_backward"></use>
-      </svg>
-    </label>
-    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_play" name={{stat_s}}_animation type="radio">
-    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_play">
+  <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation">
+    <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play" name={{C_o.STAT_a[3]}}_animation type="radio">
+    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play">
       <svg class="svg_icon">
         <use href="#stack_anim_play"></use>
-      </svg>
-    </label>
-    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_stop" name={{stat_s}}_animation type="radio">
-    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_stop">
-      <svg class="svg_icon">
-        <use href="#stack_anim_pause"></use>
-      </svg>
-    </label>
-    <input  id="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_forward" name={{stat_s}}_animation type="radio">
-    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_layer_animation_forward">
-      <svg class="svg_icon">
-        <use href="#stack_anim_forward"></use>
       </svg>
     </label>
   </div>
 
 {% include "parts/body/stack_svg.njk" %}
-  <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
+  <script id=script_{{C_o.STAT_a[3]}} data-src="/assets/scripts/js/{{C_o.STAT_a[3]}}.min.js"></script>
 </div>
+
+
