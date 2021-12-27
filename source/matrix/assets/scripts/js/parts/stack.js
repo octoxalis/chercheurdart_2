@@ -4,19 +4,10 @@ const STACK_o =
 {
   status_o: null,    //: STAT_W_o.status_o
 
-  imgDrag:    //: after layer_align
-  {
-    img_e: null,
-  },
-
-  ui:
-  {
-    //... pointerX_n
-    //... pointerY_n
-    //... radius_n
-    //... stacking_n
-  }
-  ,
+  //?? imgDrag:    //: after layer_align
+  //?? {
+  //??   img_e: null,
+  //?? },
 
   message__v:
   (
@@ -57,7 +48,7 @@ const STACK_o =
   {
     document
       .getElementById( parent_s )
-      ?.appendChild( fragment_e )
+        ?.appendChild( fragment_e )
   }
   ,
 
@@ -579,10 +570,10 @@ const STACK_o =
       document
         .querySelector( `img[data-layer_n="${layer_n}"]` )
 
-    STACK_o
-      .imgDrag
-        .img_e =
-          img_e
+    //?? STACK_o
+    //??   .imgDrag
+    //??     .img_e =
+    //??       img_e
 
     const method_s =
       document
@@ -666,18 +657,19 @@ const STACK_o =
     remove_b=false
   ) =>
   {
-    if
-    (
-      STACK_o
-        .imgDrag
-          .img_e
-      ===
-      null
-    )
-    {
-      return
-    }
-    //->
+    //?? if
+    //?? (
+    //??   STACK_o
+    //??     .imgDrag
+    //??       .img_e
+    //??   ===
+    //??   null
+    //?? )
+    //?? {
+    //??   return
+    //?? }
+    //?? //->
+
     const down__v =
     (
       event_e
@@ -779,6 +771,8 @@ const STACK_o =
                 .dataset
                   .offy)
             )
+
+      return false
     }
 
 
@@ -806,27 +800,29 @@ const STACK_o =
     }
   
 
-    
+
     if
     (
       remove_b    //: stop dragging when deslecting align input
     )
     {
-      STACK_o
-        .imgDrag
-          .img_e =
-            null        //: reset to prevent drag
+      //?? STACK_o
+      //??   .imgDrag
+      //??     .img_e =
+      //??       null        //: reset to prevent drag
 
       img_e
         .removeEventListener
         (
           'pointerdown',
           down__v
-        )            //;console.log( img_e )
+        )
 
+                      //;console.log( 'stop dragImg__v!!!' )
       return
     }
     //->
+                      //;console.log( 'dragImg__v!!!' )
     let gapX_n    = 0
     let gapY_n    = 0
     let offsetX_n = 0
