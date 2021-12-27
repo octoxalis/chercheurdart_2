@@ -67,11 +67,13 @@
       -->
   
       <div id="DI_stack_layers">
-        <label>empilement</label>
-        <ul id="DI_stack_layers_items">
-          <li id="LI_stack_add">
+        <!--<label></label>-->
+        <ul id="DI_stack_layers_items"></ul>
+
+        <ul id="DI_stack_layers_tools">
+          <li>
             <div id="DI_stack_add">
-              <label for="IN_stack_add">&#8853;</label>
+              <label for="IN_stack_add">ajouter</label>
               <input  id="IN_stack_add" type="checkbox"/>
               <div>
                 <label id="LA_stack_add_remote" for="IN_stack_imgs">&#8675; Chercheur d'Art</label>
@@ -81,23 +83,45 @@
               </div>
             </div>
           </li>
-          <li id="LI_stack_layers_hide">
-            <label>&#8861;</label>
+          <li>
+            <label id="LA_stack_hide">retirer</label>
           </li>
+
+          <li>
+            <label id="LA_stack_up">monter</label>
+          </li>
+          <li>
+            <label id="LA_stack_down">descendre</label>
+          </li>
+
+          <li>
+            <label id="LA_stack_increase">agrandir</label>
+          </li>
+          <li>
+            <label id="LA_stack_decrease">réduire</label>
+          </li>
+          
+          <li>
+            <input id="IN_stack_align" type="checkbox"/>
+            <label id="LA_stack_align" for="IN_stack_align">aligner</label>
+          </li>
+          
         </ul>
 
       </div>
     </aside>
   </div>
 
-  <div id="DI_stack_layer_animation">
-    <input  id="IN_stack_layer_animation_play" name=stack_animation type="radio">
-    <label for="IN_stack_layer_animation_play">
-      <svg class="svg_icon">
-        <use href="#stack_anim_play"></use>
-      </svg>
-    </label>
-  </div>
+  <ul id="DI_stack_layer_animation">
+    <li id="LI_stack_layer_animation_play">
+      <input  id="IN_stack_layer_animation_play" name=stack_animation type="radio">
+      <label for="IN_stack_layer_animation_play">
+        <svg class="svg_icon">
+          <use href="#stack_anim_play"></use>
+        </svg>
+      </label>
+    </li>
+  </ul>
 
 
 <svg id="svg_symbols" aria-hidden="true"><symbol id="stack_square" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></symbol><symbol id="stack_hrect" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12"/></symbol><symbol id="stack_vrect" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18"/></symbol><symbol id="stack_circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle></symbol><symbol id="stack_helipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="6"/></symbol><symbol id="stack_velipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6" ry="9"/></symbol><symbol id="stack_anim_play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></symbol></svg>

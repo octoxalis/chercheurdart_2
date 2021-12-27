@@ -67,9 +67,11 @@
       -->
   
       <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers">
-        <label>{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>
-        <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_items">
-          <li id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[3]}}_add">
+        <!--<label>{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>-->
+        <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_items"></ul>
+
+        <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_tools">
+          <li>
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_add">
               <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add">{{C_o.NAV_LEGEND_o.stack_layers_add.legend_s}}</label>
               <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_add" type="checkbox"/>
@@ -81,23 +83,45 @@
               </div>
             </div>
           </li>
-          <li id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[3]}}_layers_hide">
-            <label>{{C_o.NAV_LEGEND_o.stack_layers_hide.legend_s}}</label>
+          <li>
+            <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_hide">{{C_o.NAV_LEGEND_o.stack_layers_hide.legend_s}}</label>
           </li>
+
+          <li>
+            <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_up">{{C_o.NAV_LEGEND_o.stack_layers_up.legend_s}}</label>
+          </li>
+          <li>
+            <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_down">{{C_o.NAV_LEGEND_o.stack_layers_down.legend_s}}</label>
+          </li>
+
+          <li>
+            <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_increase">{{C_o.NAV_LEGEND_o.stack_layers_increase.legend_s}}</label>
+          </li>
+          <li>
+            <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_decrease">{{C_o.NAV_LEGEND_o.stack_layers_decrease.legend_s}}</label>
+          </li>
+          
+          <li>
+            <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_align" type="checkbox"/>
+            <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_align" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_align">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
+          </li>
+          
         </ul>
 
       </div>
     </aside>
   </div>
 
-  <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation">
-    <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play" name={{C_o.STAT_a[3]}}_animation type="radio">
-    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play">
-      <svg class="svg_icon">
-        <use href="#stack_anim_play"></use>
-      </svg>
-    </label>
-  </div>
+  <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation">
+    <li id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play">
+      <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play" name={{C_o.STAT_a[3]}}_animation type="radio">
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play">
+        <svg class="svg_icon">
+          <use href="#stack_anim_play"></use>
+        </svg>
+      </label>
+    </li>
+  </ul>
 
 {% include "parts/body/stack_svg.njk" %}
   <script id=script_{{C_o.STAT_a[3]}} data-src="/assets/scripts/js/{{C_o.STAT_a[3]}}.min.js"></script>

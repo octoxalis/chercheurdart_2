@@ -325,7 +325,8 @@ module.exports =
 
 
 
-void function ()
+void function
+()
 {
   const MD_DIR_s =
     C_o

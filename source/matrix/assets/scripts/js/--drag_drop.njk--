@@ -1,5 +1,5 @@
 {% set _js %}
-{% include "./parts/stack.js" %}
+{% include "./parts/drag_drop.js" %}
 {% endset %}
 
 {% include "assets/scripts/js/minify.njk" %}

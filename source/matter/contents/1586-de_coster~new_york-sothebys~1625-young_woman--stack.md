@@ -41,8 +41,7 @@
 
   layer_a:      //: images
   [
-    'img_1',
-    'img_2',
+    '1703-boucher~princeton-university~1748-arion'
   ],
 }
 ---

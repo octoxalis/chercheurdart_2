@@ -1,13 +1,27 @@
 <:root>
         --{{C_o.STAT_a[3]}}_img_width: 50;
 </:root>
+
 <section#{{C_o.STAT_a[3]}}>
   <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
     <img />
             display: block;
             position: absolute;
-            width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * 1% );
             object-fit: scale-down;
+    <img[data-layer_n="0"] />
+            width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_0) * 1% );
+    <img[data-layer_n="1"] />
+            width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_1) * 1% );
+    <img[data-layer_n="2"] />
+            width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_2) * 1% );
+
+    <img[data-layer_b="0"] />
+            display: none;
+    <img class="layer_align" />
+            border: 4px dotted {{S_o.highlight}};
+            opacity: .5;
+            cursor: move;
+            z-index: 100;    /* set at top level */
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
             display: none;
             z-index: 1;
@@ -18,44 +32,51 @@
             transform: translateX( -(var(--stack_dim) + {{S_o.PAD_4}} ) );
             transition: .5s ease;
     </div>
-    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation>
-            display: flex;
-            justify-content: space-between;
-            gap: 1%;
-            position: fixed;
-            top: 90vh;
-            margin: auto;
-            padding: {{S_o.PAD_2}};
-            width: fit-content;
-            border: 1px solid {{S_o.ins_shadow_ne}};
-            border-radius: 4px;
-            cursor: pointer;
-            opacity: .1;
-            transform: scale( .8 );
-            transition: .2s;
-      <input />
-              display: none;
-      <label>
-              display: grid;
-              place-items: center;
-              border: 1px solid transparent;
+    <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation>
+              display: flex;
+              justify-content: space-between;
+              gap: 1%;
+              position: fixed;
+              top: 90vh;
+              margin: auto;
+              padding: {{S_o.PAD_2}};
+              width: fit-content;
+              border: 1px solid {{S_o.ins_shadow_ne}};
               border-radius: 4px;
               cursor: pointer;
-      </label>
-      <label:last-of-type>
-              margin-left: {{S_o.PAD_8}};
-      </label>
-    </div>
-    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation:hover>
-            /*box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};*/
-            opacity: 1;
-            transform: scale( 1 );
-            transition: .2s;
-      <label:hover>
-              filter: brightness( {{S_o.brigtness_lo}} );
-              background: {{S_o.ins_shadow_ne}};
-      </label>
-    </div>
+              opacity: .1;
+              transform: scale( .8 );
+              transition: .2s;
+      <li>
+        <input />
+                display: none;
+        <label>
+                display: grid;
+                place-items: center;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                cursor: pointer;
+        </label>
+        <label:last-of-type>
+                margin-left: {{S_o.PAD_8}};
+        </label>
+        <label[data-layer_b="0"]>
+                display: none;
+        </label>
+      </li>
+    </ul>
+    <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation:hover>
+      <li>
+              /*box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};*/
+              opacity: 1;
+              transform: scale( 1 );
+              transition: .2s;
+        <label:hover>
+                filter: brightness( {{S_o.brigtness_lo}} );
+                background: {{S_o.ins_shadow_ne}};
+        </label>
+      </li>
+    </ul>
   </div>
   <!--variant-->
   <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
@@ -129,6 +150,8 @@
                 text-transform: uppercase;
           </label>
           <ul>
+                  display: flex;
+                  flex-wrap: wrap;
                   border: none;
             <li>
                     display: flex;
@@ -144,12 +167,10 @@
                 </label>
               </div>
               <label>
+                      width: 100%;
                       text-align: center;
                       border: 1px solid {{S_o.ins_shadow_ne}};
                       border-radius: 4px;
-              </label>
-              <label:nth-of-type(1)>
-                      flex-grow: 1;
               </label>
               <input />
                       display: none;
@@ -160,22 +181,47 @@
                       filter: brightness( {{S_o.brigtness_lo}} );
                       background: {{S_o.ins_shadow_ne}};
               </label>
-              <label:nth-of-type(2)>
-                      width: 8%;
-              </label>
             </li>
             <li:before>
                     content: '';        
             </li>
-            <li:not(:first-child):not(:last-child)>
+            <li[data-layer_b="0"]>
+                    display: none;
+            </li>
+
+          </ul>
+          <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_items>
+            <li>
+                      width: 100%;
+              <input:checked />
+              +
+              <label>
+                      border: 2px solid {{S_o.shadow_ne}};
+                      border-radius: 4px;
+                      background: {{S_o.table}};
+              </label>
+            </li>
+            <li:not(:first-child)>
               <label>
                       cursor: pointer;
               </label>
-            </li>
-            <li:not(:first-child):not(:last-child)>
               <label:hover>
                         filter: brightness( {{S_o.brigtness_lo}} );
                         background: {{S_o.ins_shadow_ne}};
+              </label>
+            </li>
+          </ul>
+          <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_tools>
+            <li>
+                      width: 48%;
+              <label>
+                      font-size: 85%;
+                      text-transform: uppercase;
+              </label>
+              <label:hover>
+                        filter: brightness( {{S_o.brigtness_lo}} );
+                        background: {{S_o.ins_shadow_ne}};
+                        cursor: pointer;
               </label>
             </li>
           </ul>
@@ -185,10 +231,14 @@
               display: flex;
               flex-direction: column;
               padding: {{S_o.PAD_2}};
-            <label:hover>
-                    filter: brightness( {{S_o.brigtness_lo}} );
-                    background: {{S_o.ins_shadow_ne}};
-            </label>
+          <label>
+                  font-size: 85%;
+                  text-transform: uppercase;
+          </label>
+          <label:hover>
+                  filter: brightness( {{S_o.brigtness_lo}} );
+                  background: {{S_o.ins_shadow_ne}};
+          </label>
           <input />
           context( copy, next )
           +
@@ -202,9 +252,9 @@
                   flex-direction: column;
                   padding: 0 {{S_o.PAD_2}};
             <label>
-                    width: 50%;
                     border: 1px solid {{S_o.ins_shadow_ne}};
                     cursor: pointer;
+                    background: {{S_o.table}};
             </label>
             <label:hover>
                     filter: brightness( {{S_o.brigtness_lo}} );

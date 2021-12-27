@@ -1,0 +1,6 @@
+---js
+{
+  layout:    `assets/scripts/js/drag_drop.njk`,
+  permalink: `assets/scripts/js/drag_drop.min.js`,
+}
+---

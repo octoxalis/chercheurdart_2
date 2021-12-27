@@ -125,10 +125,19 @@ const C_o =
     //XX stack_hrect:     { icon_s: `&nbsp;`,  legend_s: `rect horiz`},
     //XX stack_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
     stack_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
-    stack_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
-    stack_layers_align:     { icon_s: `&nbsp;`,  legend_s: `&#8917;`},        //: 
-    stack_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `&#8861;`},         //: minus
-    stack_layers_add:     { icon_s: `&nbsp;`,  legend_s: `&#8853;`},          //: plus
+    //?? stack_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
+
+    stack_layers_add:      { icon_s: `&nbsp;`,  legend_s: `ajouter`},
+    stack_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `retirer`},
+
+    stack_layers_up:       { icon_s: `&nbsp;`,  legend_s: `monter`},
+    stack_layers_down:     { icon_s: `&nbsp;`,  legend_s: `descendre`},
+
+    stack_layers_increase:     { icon_s: `&nbsp;`,  legend_s: `agrandir`},
+    stack_layers_decrease:   { icon_s: `&nbsp;`,  legend_s: `réduire`},
+
+    stack_layers_align:    { icon_s: `&nbsp;`,  legend_s: `aligner`},
+
     stack_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675; ${A_o.NAME_s}`},      //: downdash
     stack_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673; Fichier local`},      //: updash
     //XX stack_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
@@ -146,6 +155,10 @@ const C_o =
                        '<del for=div_aster hidden ></del>',    //: idem
                        '<del for=div_paint hidden ></del>',    //: idem
   ],
+
+
+  //=== STACK TOOLS ===
+  IMG_RESIZE_n: .025,
 
 
   //=== HTML-BODY ANCHORS

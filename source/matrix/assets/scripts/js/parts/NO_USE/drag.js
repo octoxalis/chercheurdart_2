@@ -16,7 +16,7 @@ class DragElement
     drag_e,
     keep_b
   )
-  {      
+  {
     this
       .drag_e =
         drag_e
