@@ -22,7 +22,7 @@ section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > .layer
   border: 4px dotted {{S_o.highlight}};
   opacity: .5;
   cursor: move;
-  z-index: 100;
+  z-index: {{C_o.DRAG_IMG_Z_n}};
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings {
   display: none;
@@ -33,6 +33,9 @@ section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{
   width: calc( var(--stack_dim) + {{S_o.PAD_4}} );
   transform: translateX( -(var(--stack_dim) + {{S_o.PAD_4}} ) );
   transition: .5s ease;
+}
+section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > .layer_align ~ nav#{{C_o.STAT_a[3]}}_scale, section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > .layer_align ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings {
+  z-index: {{C_o.DRAG_SETTINGS_Z_n}};
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation {
   display: flex;

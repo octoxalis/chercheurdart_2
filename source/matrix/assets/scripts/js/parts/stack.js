@@ -4,6 +4,8 @@ const STACK_o =
 {
   status_o: null,    //: STAT_W_o.status_o
 
+  drag_c: null,
+
   //?? imgDrag:    //: after layer_align
   //?? {
   //??   img_e: null,
@@ -570,11 +572,6 @@ const STACK_o =
       document
         .querySelector( `img[data-layer_n="${layer_n}"]` )
 
-    //?? STACK_o
-    //??   .imgDrag
-    //??     .img_e =
-    //??       img_e
-
     const method_s =
       document
         .querySelector( `#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_align:checked` )
@@ -628,214 +625,63 @@ const STACK_o =
       }
     }
 
-    document
-      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings` )
-        .checked =
-          false      //: close settings before dragging to align
-
-    document
-      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_img` )
-        .checked =
-          true
-    
     STACK_o
-      .dragImg__v
+      .toggleSettings__v
       (
-        img_e,
-         method_s
-         ===
-         'remove'      //: false if add: start drag
-      )
-  }
+        method_s
+        ===
+        'add'      //: start dragging
+     )
+    
+    if
+    (
+      method_s
+      ===
+      'remove'      //: stop dragging
+    )
+    {
+      STACK_o
+        .drag_c
+          .disable__v()
+
+      return
+    }
+    //->
+    if
+    (
+      STACK_o
+        .drag_c
+    )
+    {
+      STACK_o
+        .drag_c
+          .enable__v()
+
+      return
+    }
+    //->
+    STACK_o
+      .drag_c =
+          new DragElement( img_e )
+}
   ,
 
 
 
-  dragImg__v:
+  toggleSettings__v:
   (
-    img_e,
-    remove_b=false
+    set_b=false
   ) =>
   {
-    //?? if
-    //?? (
-    //??   STACK_o
-    //??     .imgDrag
-    //??       .img_e
-    //??   ===
-    //??   null
-    //?? )
-    //?? {
-    //??   return
-    //?? }
-    //?? //->
+    document
+      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_img` )
+        .checked =
+          set_b         //: true to close
 
-    const down__v =
-    (
-      event_e
-    ) =>
-    {
-      gapX_n =
-        event_e
-          .clientX
-        -
-        offsetX_n
-  
-      gapY_n =
-        event_e
-          .clientY
-        -
-        offsetY_n
-  
-      listen__v
-      (
-        [
-          'move',
-          'up'
-        ],
-        'add'
-      )
-  
-      //?? return false
-    }
-
-
-
-    const move__v =
-    (
-      event_e
-    ) =>
-    {
-      event_e
-        .preventDefault()
-
-      atX_n =
-        event_e
-          .clientX
-        -
-        gapX_n
-  
-      atY_n =
-        event_e
-          .clientY
-        -
-        gapY_n
-  
-      offsetX_n =
-        atX_n
-  
-      offsetY_n =
-        atY_n
-  
-      img_e
-        .style
-          .transform =
-            `translate3d(${atX_n}px, ${atY_n}px, 0)`//      ;console.log( `${atX_n}px /  ${atY_n}px` )
-      
-      //??return false
-    }
-        
-
-
-    const up__v =
-    (
-      event_o    //: not used
-    ) =>
-    {
-      listen__v
-      (            //: remove
-        [
-          'move',
-          'up'
-        ]
-      )
-
-      img_e
-        .dataset
-          .offx =
-            ~~(             //: float to integer
-              atX_n
-              +
-              +(img_e        //: number cast
-                .dataset
-                  .offx)
-            )
-
-      img_e
-        .dataset
-          .offy =
-            ~~(
-              atY_n
-              +
-              +(img_e        //: number cast
-                .dataset
-                  .offy)
-            )
-
-      //?? return false
-    }
-
-
-
-    const listen__v =
-    (
-      event_a,
-      method_s='remove'
-    ) =>
-    {
-      for
-      (
-        let event_s
-        of
-        event_a
-      )
-      {
-        img_e
-          [ `${method_s}EventListener` ]
-          (
-            `pointer${event_s}`,
-            eval( `${event_s}__v` )
-          )
-      }
-    }
-  
-
-
-    if
-    (
-      remove_b    //: stop dragging when deslecting align input
-    )
-    {
-      //?? STACK_o
-      //??   .imgDrag
-      //??     .img_e =
-      //??       null        //: reset to prevent drag
-
-      img_e
-        .removeEventListener
-        (
-          'pointerdown',
-          down__v
-        )
-
-                      //;console.log( 'stop dragImg__v!!!' )
-      return
-    }
-    //->
-                      //;console.log( 'dragImg__v!!!' )
-    let gapX_n    = 0
-    let gapY_n    = 0
-    let offsetX_n = 0
-    let offsetY_n = 0
-    let atX_n     = 0
-    let atY_n     = 0
-  
-    img_e
-      .addEventListener
-      (
-        'pointerdown',
-        down__v
-      )
+    document
+      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings` )
+        .checked =
+          ! set_b      //: close settings before dragging  //: false to close
   }
   ,
 

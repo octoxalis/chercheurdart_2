@@ -21,7 +21,7 @@
             border: 4px dotted {{S_o.highlight}};
             opacity: .5;
             cursor: move;
-            z-index: 100;    /* set at top level */
+            z-index: {{C_o.DRAG_IMG_Z_n}};
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
             display: none;
             z-index: 1;
@@ -32,21 +32,31 @@
             transform: translateX( -(var(--stack_dim) + {{S_o.PAD_4}} ) );
             transition: .5s ease;
     </div>
+    <img class="layer_align" />
+    ~
+    <nav#{{C_o.STAT_a[3]}}_scale>
+    context( copy, next )
+    </nav>
+    <img class="layer_align" />
+    ~
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
+            z-index: {{C_o.DRAG_SETTINGS_Z_n}};
+   </div>
     <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation>
-              display: flex;
-              justify-content: space-between;
-              gap: 1%;
-              position: fixed;
-              top: 90vh;
-              margin: auto;
-              padding: {{S_o.PAD_2}};
-              width: fit-content;
-              border: 1px solid {{S_o.ins_shadow_ne}};
-              border-radius: 4px;
-              cursor: pointer;
-              opacity: .1;
-              transform: scale( .8 );
-              transition: .2s;
+            display: flex;
+            justify-content: space-between;
+            gap: 1%;
+            position: fixed;
+            top: 90vh;
+            margin: auto;
+            padding: {{S_o.PAD_2}};
+            width: fit-content;
+            border: 1px solid {{S_o.ins_shadow_ne}};
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: .1;
+            transform: scale( .8 );
+            transition: .2s;
       <li>
         <input />
                 display: none;

@@ -159,6 +159,8 @@ const C_o =
 
   //=== STACK TOOLS ===
   IMG_RESIZE_n: .025,
+  DRAG_IMG_Z_n: 100,
+  DRAG_SETTINGS_Z_n: 101,
 
 
   //=== HTML-BODY ANCHORS
