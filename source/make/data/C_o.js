@@ -137,6 +137,7 @@ const C_o =
     stack_layers_decrease:   { icon_s: `&nbsp;`,  legend_s: `réduire`},
 
     stack_layers_align:    { icon_s: `&nbsp;`,  legend_s: `aligner`},
+    stack_layers_clip:     { icon_s: `&nbsp;`,  legend_s: `délimiter`},
 
     stack_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675; ${A_o.NAME_s}`},      //: downdash
     stack_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673; Fichier local`},      //: updash

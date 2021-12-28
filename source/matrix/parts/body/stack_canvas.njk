@@ -17,55 +17,6 @@
         </label>
       </nav>
       
-      <!--
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_shape">
-        <label>{{C_o.NAV_LEGEND_o.stack_shape.legend_s}}</label>
-        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_shape_items">
-          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_circle" name={{C_o.STAT_a[3]}}_shape type="radio" checked>
-          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_circle">
-            <svg class="svg_icon">
-              <use href="#stack_circle"></use>
-            </svg>
-          </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hellipse" name={{C_o.STAT_a[3]}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hellipse">
-            <svg class="svg_icon">
-              <use href="#stack_helipse"></use>
-            </svg>
-          </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vellipse" name={{C_o.STAT_a[3]}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vellipse">
-            <svg class="svg_icon">
-              <use href="#stack_velipse"></use>
-            </svg>
-          </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_square" name={{C_o.STAT_a[3]}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_square">
-            <svg class="svg_icon">
-              <use href="#stack_square"></use>
-            </svg>
-          </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hrect" name={{C_o.STAT_a[3]}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_hrect">
-            <svg class="svg_icon">
-              <use href="#stack_hrect"></use>
-            </svg>
-          </label>
-          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vrect" name={{C_o.STAT_a[3]}}_shape type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_vrect">
-            <svg class="svg_icon">
-              <use href="#stack_vrect"></use>
-            </svg>
-          </label>
-        </div>
-      </div>
-
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_dimension_range">
-        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_dimension_range">{{C_o.NAV_LEGEND_o.stack_dimension.legend_s}}</label>
-        <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings_dimension_range" type=range min=10 max=1000 />
-      </div>
-      -->
-  
       <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers">
         <!--<label>{{C_o.NAV_LEGEND_o.stack_layers.legend_s}}</label>-->
         <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layers_items"></ul>
@@ -104,6 +55,11 @@
           <li>
             <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_align" type="checkbox"/>
             <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_align" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_align">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
+          </li>
+          
+          <li>
+            <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_clip" type="checkbox"/>
+            <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_clip" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_clip">{{C_o.NAV_LEGEND_o.stack_layers_clip.legend_s}}</label>
           </li>
           
         </ul>

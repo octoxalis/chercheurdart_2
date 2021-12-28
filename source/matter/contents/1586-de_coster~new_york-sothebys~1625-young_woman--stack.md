@@ -44,6 +44,33 @@
   [
     '1703-boucher~princeton-university~1748-arion'
   ],
+
+  /*===------------------------
+  __layer_a:
+  [
+    {
+      id_s: '1703-boucher~princeton-university~1748-arion',
+      size_n: 1.23,
+      offset_a: [ 123, 321 ],    //: [ offsetX, offsetY ],
+      step_n: 1234,    //: ms
+    }
+    ,
+    //...
+  ],
+
+  __clip_a:
+  [
+    {
+      top:   123,
+      left:  123,
+      width: 123,
+      left:  123
+    }
+    ,
+    //...
+  ],
+  ===*/
+
 }
 ---
 {% _section section_a[0] %}

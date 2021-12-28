@@ -17,55 +17,6 @@
         </label>
       </nav>
       
-      <!--
-      <div id="DI_stack_shape">
-        <label>découpe</label>
-        <div id="DI_stack_shape_items">
-          <input id="IN_stack_settings_circle" name=stack_shape type="radio" checked>
-          <label for="IN_stack_settings_circle">
-            <svg class="svg_icon">
-              <use href="#stack_circle"></use>
-            </svg>
-          </label>
-          <input id="IN_stack_settings_hellipse" name=stack_shape type="radio">
-          <label for="IN_stack_settings_hellipse">
-            <svg class="svg_icon">
-              <use href="#stack_helipse"></use>
-            </svg>
-          </label>
-          <input id="IN_stack_settings_vellipse" name=stack_shape type="radio">
-          <label for="IN_stack_settings_vellipse">
-            <svg class="svg_icon">
-              <use href="#stack_velipse"></use>
-            </svg>
-          </label>
-          <input id="IN_stack_settings_square" name=stack_shape type="radio">
-          <label for="IN_stack_settings_square">
-            <svg class="svg_icon">
-              <use href="#stack_square"></use>
-            </svg>
-          </label>
-          <input id="IN_stack_settings_hrect" name=stack_shape type="radio">
-          <label for="IN_stack_settings_hrect">
-            <svg class="svg_icon">
-              <use href="#stack_hrect"></use>
-            </svg>
-          </label>
-          <input id="IN_stack_settings_vrect" name=stack_shape type="radio">
-          <label for="IN_stack_settings_vrect">
-            <svg class="svg_icon">
-              <use href="#stack_vrect"></use>
-            </svg>
-          </label>
-        </div>
-      </div>
-
-      <div id="DI_stack_dimension_range">
-        <label for="IN_stack_settings_dimension_range">dimension</label>
-        <input  id="IN_stack_settings_dimension_range" type=range min=10 max=1000 />
-      </div>
-      -->
-  
       <div id="DI_stack_layers">
         <!--<label></label>-->
         <ul id="DI_stack_layers_items"></ul>
@@ -104,6 +55,11 @@
           <li>
             <input id="IN_stack_align" type="checkbox"/>
             <label id="LA_stack_align" for="IN_stack_align">aligner</label>
+          </li>
+          
+          <li>
+            <input id="IN_stack_clip" type="checkbox"/>
+            <label id="LA_stack_clip" for="IN_stack_clip">délimiter</label>
           </li>
           
         </ul>

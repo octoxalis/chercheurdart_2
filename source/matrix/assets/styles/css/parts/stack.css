@@ -24,6 +24,13 @@ section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > .layer
   cursor: move;
   z-index: {{C_o.DRAG_IMG_Z_n}};
 }
+section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > canvas#canvas_{{C_o.STAT_a[3]}}_clip {
+  display: block;
+  position: absolute;
+  border: 4px dotted {{S_o.highlight}};
+  background: {{S_o.shadow_lo}};
+  z-index: {{C_o.DRAG_IMG_Z_n}};
+}
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings {
   display: none;
   z-index: 1;

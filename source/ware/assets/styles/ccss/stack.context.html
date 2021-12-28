@@ -22,6 +22,14 @@
             opacity: .5;
             cursor: move;
             z-index: {{C_o.DRAG_IMG_Z_n}};
+    <canvas#canvas_{{C_o.STAT_a[3]}}_clip>
+            display: block;
+            position: absolute;
+            border: 4px dotted {{S_o.highlight}};
+            background: {{S_o.shadow_lo}};
+            /*box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};*/
+            z-index: {{C_o.DRAG_IMG_Z_n}};
+        </canvas>
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_settings>
             display: none;
             z-index: 1;
@@ -249,7 +257,7 @@
                   filter: brightness( {{S_o.brigtness_lo}} );
                   background: {{S_o.ins_shadow_ne}};
           </label>
-          <input />
+          <input />    /* !!! keep after label and before div */
           context( copy, next )
           +
           <div>
@@ -278,7 +286,7 @@
           </div>
         </div>
         context( stack, new )
-        <div[id$="_range"]>
+        <div[id$="_range"]>        /*!!! REMOVE */
                 display: flex;
                 /*flex-direction: row;*/
                 flex-wrap: wrap;

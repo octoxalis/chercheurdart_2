@@ -345,9 +345,41 @@ const STACK_o =
             'data-layer_b',
             '0'
           )
+
+        if
+        (
+          node_e
+            .checked
+        )
+        {
+          node_e
+            .checked =
+              false
+        }
+
+        if
+        (
+          node_e
+            .draggable
+        )
+        {
+          node_e
+            .removeAttribute( 'draggable' )
+        }
+
+        if
+        (
+          node_e
+            .classList
+              .contains( 'layer_align' )
+        )
+        {
+          node_e
+            .classList
+              .remove( 'layer_align' )
+        }
       }
     }
-
   }
   ,
 
@@ -358,7 +390,7 @@ const STACK_o =
     pivot_s
   ) =>
   {
-    const list_e =
+    const selected_e =
       STACK_o
         .selected__a()
         ?.[0]
@@ -366,7 +398,7 @@ const STACK_o =
 
     if
     (
-      ! list_e    //: no selection
+      ! selected_e    //: no selection
     )
     {
       return void alert( `Aucune image n'est sélectionnée` )
@@ -420,7 +452,7 @@ const STACK_o =
     }
 
     const layer_n =
-      list_e
+      selected_e
         .dataset
           .layer_n
 
@@ -550,21 +582,31 @@ const STACK_o =
     op_s
   ) =>
   {
-    const list_e =
+    const selected_e =
       STACK_o
         .selected__a()
         ?.[0]
 
     if
     (
-      ! list_e    //: no selection
+      ! selected_e    //: no selection
     )
     {
-      return void alert( `Aucune image n'est sélectionnée` )
+      alert( `Aucune image n'est sélectionnée` )
+
+      const input_e =
+        document
+          .querySelector( `#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_align` )  ;console.log( input_e )
+      
+      input_e
+        .checked =
+          false
+
+      return
     }
 
     const layer_n =
-      list_e
+      selected_e
         ?.dataset
           ?.layer_n
 
@@ -641,8 +683,8 @@ const STACK_o =
     )
     {
       STACK_o
-        .drag_c
-          .disable__v()
+        ?.drag_c
+          ?.disable__v()
 
       return
     }
@@ -663,7 +705,50 @@ const STACK_o =
     STACK_o
       .drag_c =
           new DragElement( img_e )
-}
+  }
+  ,
+
+
+  clip__v:
+  (
+    op_s
+  ) =>
+  {
+    const img_e =
+      document
+        .querySelector( `img[data-layer_n="0"]` )
+
+    const
+    {
+      width,
+      height,
+      top,
+      left
+    } =
+      img_e
+        .getBoundingClientRect()      ;console.table( [      width,
+          height,
+          top,
+          left
+    ] )
+
+    const canvas_e =
+      STACK_o
+        .beforeNode__v
+        (
+          STACK_o
+            .fragment__e
+            (
+              `<canvas id=canvas_{{C_o.STAT_a[3]}}_clip width=${~~width} height=${~~height}>`
+              + `</canvas>`
+            ),
+          '{{C_o.STAT_a[3]}}_scale'
+        )
+
+    STACK_o
+      .toggleSettings__v( true )
+    
+  }
   ,
 
 
@@ -749,7 +834,7 @@ const STACK_o =
         )
     }
 
-    //=== ADD LAYER ===
+    //=== LAYERS OPs ===
     for
     (
       let op_s
@@ -762,7 +847,8 @@ const STACK_o =
         'down',
         'increase',
         'decrease',
-        'align'
+        'align',
+        'clip',
       ]
     )
     {
