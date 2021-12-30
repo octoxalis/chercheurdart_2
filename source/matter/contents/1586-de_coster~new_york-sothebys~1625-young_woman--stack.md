@@ -33,6 +33,7 @@
   [
     'stat.min.css',
     'stack.min.css',
+    'clip_1703-boucher~princeton-university~1748-arion.min.css',
   ],
 
   version_a:
@@ -45,31 +46,19 @@
     '1703-boucher~princeton-university~1748-arion'
   ],
 
-  /*===------------------------
-  __layer_a:
+  clip_a:
   [
     {
-      id_s: '1703-boucher~princeton-university~1748-arion',
-      size_n: 1.23,
-      offset_a: [ 123, 321 ],    //: [ offsetX, offsetY ],
-      step_n: 1234,    //: ms
+      id_s:  '1703-boucher~princeton-university~1748-arion',
+      top:    0,
+      left:   0,
+      width:  300,
+      height: 250,
+      size:   1
     }
     ,
     //...
   ],
-
-  __clip_a:
-  [
-    {
-      top:   123,
-      left:  123,
-      width: 123,
-      left:  123
-    }
-    ,
-    //...
-  ],
-  ===*/
 
 }
 ---

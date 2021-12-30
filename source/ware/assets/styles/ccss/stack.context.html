@@ -1,15 +1,21 @@
 <:root>
-        --{{C_o.STAT_a[3]}}_img_width: 50;
+        --{{C_o.STAT_a[3]}}_img_width: 100;
 </:root>
 
+<body>
+        overflow: auto;
+</body>
 <section#{{C_o.STAT_a[3]}}>
   <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
     <img />
             display: block;
-            position: absolute;
-            object-fit: scale-down;
+            object-fit: none;
+            object-position: 0% 0%;
     <img[data-layer_n="0"] />
-            width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_0) * 1% );
+            /*width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_0) * 1% );*/
+            opacity: 1;             /* TEMPORARY for stack_clip dev*/
+    <img:not([data-layer_n="0"]) />  /* TEMPORARY for stack_clip dev*/
+            /*display: none;*/
     <img[data-layer_n="1"] />
             width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_1) * 1% );
     <img[data-layer_n="2"] />

@@ -17,7 +17,7 @@ module.exports =
   DATA_PATH_s:          'make/data',
   INCLUDES_PATH_s:      'matrix',
   CONTENT_PARTS_PATH_s: 'matter/contents/parts',
-  ADOC_TEMP_PATH_s:     'make/adoc/templates',
+  //XXADOC_TEMP_PATH_s:     'make/adoc/templates',
 
   MAKE_DIR_s:           'make/11ty/',
   CONTENT_DIR_s:        'matter/contents/',

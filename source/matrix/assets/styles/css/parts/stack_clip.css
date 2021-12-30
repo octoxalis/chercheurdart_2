@@ -1,0 +1,123 @@
+details[data--="{{C_o.STAT_a[3]}}_details"] {
+  --clip_height: 2em;
+  --offsetX: calc( var(--clip_width) * .5 );
+  --offsetY: calc( ( var(--clip_height) * .5 ) + {{S_o.PAD_8}} + {{S_o.PAD_8}} );
+  z-index: 100;
+  position: absolute;
+  width: var(--clip_width);
+  top: calc( var(--clip_top) - var(--offsetY) );
+  left: calc( var(--clip_left) - var(--offsetX) );
+  transform: translate( var(--offsetX), var(--offsetY) );
+  transition: .25s ease;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary::-webkit-details-marker {
+  background: url( marker_circle.svg );
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary:hover > span {
+  opacity: 1;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary {
+  padding: {{S_o.PAD_1}};
+  width: 100%;
+  height: {{S_o.PAD_8}};
+  color: transparent;
+  list-style-image: url( marker_circle.svg );
+  cursor: pointer;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span {
+  opacity: 0;
+  position: relative;
+  top: -{{S_o.PAD_2}};
+  transition: .4s;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span > label {
+  position: relative;
+  padding: {{S_o.PAD_1}} {{S_o.PAD_4}};
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span > label > span {
+  display: inline-block;
+  width: {{S_o.NAV_LABEL_s}};
+  height: {{S_o.NAV_LABEL_s}};
+  border-radius: 50%;
+  line-height: .85;
+  text-align: center;
+  background: red;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header {
+  display: flex;
+  flex-wrap: wrap;
+  padding: {{S_o.PAD_1}};
+  height: {{S_o.PAD_8}};
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > label {
+  width: 6ch;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > input[type=range] {
+  flex-grow: 1;
+  background: transparent;
+  cursor: pointer;
+  transform: scaleY( .3 );
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > input[type=range]:focus {
+  outline: none;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > input[type=range]::-webkit-slider-runnable-track {
+  width: 100px;
+  height: 16px;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article {
+  height: var(--clip_height);
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] {
+  display: none;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] + img {
+  display: none;
+  width: var(--clip_width);
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + img {
+  display: block;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] {
+  display: none;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] + div {
+  display: none;
+  width: var(--clip_width);
+}
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + div {
+  display: block;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] {
+  transform: translate( 0, 0 );
+  transition: .25s ease;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > summary {
+  opacity: 0;
+  transition: .4s;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > summary:hover {
+  opacity: 1;
+  border: 1px solid {{S_o.ins_shadow_ne}};
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > summary:hover > span {
+  opacity: 1;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > header {
+  opacity: 0;
+  transition: .4s;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > header:hover {
+  opacity: 1;
+  border: 1px solid {{S_o.ins_shadow_ne}};
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div {
+  height: var(--clip_height);
+  border: 2px solid {{S_o.ins_shadow_ne}};
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > img {
+  border: 2px solid {{S_o.ins_shadow_ne}};
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div:hover, details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > img:hover {
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+}

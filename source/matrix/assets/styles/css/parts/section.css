@@ -64,9 +64,8 @@ section {
   content-visibility: auto;
   position: absolute;
   top: 0;
-  width: {{S_o.FULL_WIDTH_s}};
+  min-width: {{S_o.FULL_WIDTH_s}};
   min-height: var(--min_height);
-  height: fit-content;
   background: {{S_o.bgcolor}};
 }
 section > iframe {

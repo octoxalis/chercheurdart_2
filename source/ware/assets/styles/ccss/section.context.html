@@ -66,9 +66,9 @@ context( stack, new )
         content-visibility: auto;   /* ?????????????? */
         position: absolute;
         top: 0;
-        width: {{S_o.FULL_WIDTH_s}};
+        min-width: {{S_o.FULL_WIDTH_s}};
         min-height: var(--min_height);
-        height: fit-content;
+        /*height: fit-content;*/
         background: {{S_o.bgcolor}};
   <iframe>
           display: none;
@@ -91,4 +91,5 @@ context( url, stat.context.html )
 context( url, burst.context.html )
 context( url, paint.context.html )
 context( url, stack.context.html )
+context( url, stack_clip.context.html )
 context( url, img_fs.context.html )

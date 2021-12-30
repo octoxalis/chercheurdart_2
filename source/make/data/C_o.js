@@ -16,7 +16,7 @@ const C_o =
   CSS_SITE_DIR_s:        CONF_o.CSS_SITE_DIR_s,
   LIB_PARTS_DIR_s:       CONF_o.LIB_PARTS_DIR_s,
   CONTENT_PARTS_DIR_s:   CONF_o.CONTENT_PARTS_DIR_s,
-  //XXADOC_PARTS_DIR_s:      CONF_o.ADOC_PARTS_DIR_s,
+  //XX ADOC_PARTS_DIR_s:      CONF_o.ADOC_PARTS_DIR_s,
   COM_OUTPUT_DIR_s:      CONF_o.COM_OUTPUT_DIR_s,
   TOPICS_DIR_s:          CONF_o.TOPICS_DIR_s,
   HTML_PARTS_DIR_s:      CONF_o.HTML_PARTS_DIR_s,
@@ -26,7 +26,7 @@ const C_o =
   INCLUDES_PATH_s:       CONF_o.INCLUDES_PATH_s,
   CONTENTS_PATH_s:       CONF_o.CONTENTS_PATH_s,
   CONTENT_PARTS_PATH_s:  CONF_o.CONTENT_PARTS_PATH_s,
-  ADOC_TEMP_PATH_s:      CONF_o.ADOC_TEMP_PATH_s,
+  //XX ADOC_TEMP_PATH_s:      CONF_o.ADOC_TEMP_PATH_s,
   DB_PATH_s:             CONF_o.DB_PATH_s,
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
@@ -87,7 +87,7 @@ const C_o =
   {
 
     //XX placeholder: { icon_s: `&#8226;`},    //: BULLET •
-    main:        { icon_s: `&#8226;`},    //: BULLET •
+    main:        { icon_s: `&nbsp;`},     //: SPACE
     stat:        { icon_s: `&#8901;`},    //: DOT OPERATOR ⋅
     substat:     { icon_s: `&#8728;`},    //: RING OPERATOR ∘
 
@@ -109,10 +109,10 @@ const C_o =
     
     burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},       //: ⊜
     
-    stat_open:      { icon_s: `&#10059;`, legend_s: `palette`},     //: ⊜
-    stat_close:     { icon_s: `&#215;`, legend_s: `fermer`},     //: ⊜
-    stat_increment: { icon_s: `&#43;`, legend_s: `agrandir`},     //: ⊜
-    stat_decrement: { icon_s: `&#8722;`, legend_s: `réduire`},      //: ⊜
+    stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},     //: ⊜
+    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},     //: ⊜
+    stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},     //: ⊜
+    stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},      //: ⊜
 
     paint_origin:   { icon_s: `&#8722;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},

@@ -3,6 +3,46 @@
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_img" name="{{C_o.STAT_a[3]}}_nav" type="radio" checked>
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings" name="{{C_o.STAT_a[3]}}_nav" type="radio">
 
+
+
+
+  <details id="details_1234_1234_1234_1234" data--="{{C_o.STAT_a[3]}}_details" data-work_s=1703-boucher~princeton-university~1748-arion>
+    <summary>
+      <span>
+        <label for="{{C_o.INPUT_ID_s}}_clip_1234_1234_1234_1234_0">
+          <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
+        </label>
+        <label for="{{C_o.INPUT_ID_s}}_clip_1234_1234_1234_1234_1">
+          <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
+        </label>
+        <label for="{{C_o.INPUT_ID_s}}_clip_1234_1234_1234_1234_2">
+          <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
+        </label>
+      </span>
+    </summary>
+    <div>
+      <header>
+        <label>opacité</label>
+        <input id="{{C_o.INPUT_ID_s}}_details_1234_1234_1234_1234_opacity" type=range min=0 max=100 />
+        <label>rideau</label>
+        <input id="{{C_o.INPUT_ID_s}}_details_1234_1234_1234_1234_curtain" type=range min=0 max=100 />
+      </header>
+      <article>
+        <input id="{{C_o.INPUT_ID_s}}_clip_1234_1234_1234_1234_0" type="radio" name="clip_1234_1234_1234_1234" />
+        <img id="img_clip_1234_1234_1234_1234_0"
+             src="/assets/media/img/1703-boucher~princeton-university~1748-arion/full/max/0/color.avif" data-size_n="1">
+        <input id="{{C_o.INPUT_ID_s}}_clip_1234_1234_1234_1234_1" type="radio" name="clip_1234_1234_1234_1234" />
+        <img id="img_clip_1234_1234_1234_1234_1"
+             src="/assets/media/img/1586-de_coster~new_york-sothebys~1625-young_woman/full/max/0/color.avif" data-size_n="1">
+        <input id="{{C_o.INPUT_ID_s}}_clip_1234_1234_1234_1234_2" type="radio" name="clip_1234_1234_1234_1234" checked />
+        <div><!--TEMPORARY--></div>
+      </article>
+    </div>
+  </details>
+
+
+
+
   <nav id="{{C_o.STAT_a[3]}}_scale">
     <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
     <label id="{{C_o.STAT_a[3]}}_scale_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
@@ -37,13 +77,14 @@
           <li>
             <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_hide">{{C_o.NAV_LEGEND_o.stack_layers_hide.legend_s}}</label>
           </li>
-
+          <!--
           <li>
             <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_up">{{C_o.NAV_LEGEND_o.stack_layers_up.legend_s}}</label>
           </li>
           <li>
             <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_down">{{C_o.NAV_LEGEND_o.stack_layers_down.legend_s}}</label>
           </li>
+          -->
 
           <li>
             <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_increase">{{C_o.NAV_LEGEND_o.stack_layers_increase.legend_s}}</label>
@@ -57,30 +98,18 @@
             <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_align" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_align">{{C_o.NAV_LEGEND_o.stack_layers_align.legend_s}}</label>
           </li>
           
+          <!--
           <li>
             <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_clip" type="checkbox"/>
             <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[3]}}_clip" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_clip">{{C_o.NAV_LEGEND_o.stack_layers_clip.legend_s}}</label>
           </li>
-          
+          -->
         </ul>
 
       </div>
     </aside>
   </div>
 
-  <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation">
-    <li id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play">
-      <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play" name={{C_o.STAT_a[3]}}_animation type="radio">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_layer_animation_play">
-        <svg class="svg_icon">
-          <use href="#stack_anim_play"></use>
-        </svg>
-      </label>
-    </li>
-  </ul>
-
 {% include "parts/body/stack_svg.njk" %}
   <script id=script_{{C_o.STAT_a[3]}} data-src="/assets/scripts/js/{{C_o.STAT_a[3]}}.min.js"></script>
 </div>
-
-

@@ -1,14 +1,14 @@
 nav {
   display: flex;
   justify-content: center;
+  padding: {{S_o.PAD_2}};
 }
 nav > a:before, nav > label:before {
   content: attr( data-legend );
   position: absolute;
-  left: {{S_o.PAD_8}};
   font-size: 85%;
-  line-height: 2;
-  transform: translateX( -16ch );
+  transform: scale( 0 );
+  transform-origin: center;
   transition: transform ease .3s;
 }
 nav > a {
@@ -16,6 +16,7 @@ nav > a {
   border: 0;
 }
 nav > a, nav > label {
+  display: grid;
   position: relative;
   overflow: hidden;
   width: var(--nav_width);
@@ -26,6 +27,7 @@ nav > a, nav > label {
   transition: all ease .2s;
 }
 nav > a > span, nav > label > span {
+  grid-area: 1/-1;
   display: inline-block;
   width: {{S_o.NAV_LABEL_s}};
   height: {{S_o.NAV_LABEL_s}};
@@ -34,20 +36,19 @@ nav > a > span, nav > label > span {
   text-align: center;
 }
 nav > a > span[data-icon=main], nav > label > span[data-icon=main] {
-  border: 2px solid {{S_o.nav_main}};
+  background: red;
 }
 nav > label > span[data-icon=stat] {
-  border: 2px solid {{S_o.nav_stat}};
+  background: yellow;
 }
 nav > a:hover, nav > label:hover {
-  width: var(--nav_width);
   transition: all ease .3s;
 }
 nav > a:hover > span, nav > label:hover > span {
-  border: 2px solid transparent;
+  background: transparent;
 }
 nav > a:hover:before, nav > label:hover:before {
-  transform: translateX( 0 );
+  transform: scale( 1 );
 }
 nav:hover > a, nav:hover > label {
   opacity: 1;

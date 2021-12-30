@@ -2,6 +2,7 @@ context( stack, new )
 <nav>
         display: flex;
         justify-content: center;
+        padding: {{S_o.PAD_2}};
         /*gap: 4ch;*/
         /*width: 100%;*/
         /*height: {{S_o.NAV_HEIGHT_s}};*/
@@ -12,10 +13,12 @@ context( stack, new )
     <label:before>
             content: attr( data-legend );
             position: absolute;
-            left: {{S_o.PAD_8}};
+            /*left: {{S_o.PAD_8}};*/
             font-size: 85%;    /* block round_label: line-height: .85; */
-            line-height: 2;
-            transform: translateX( -16ch );
+            /*line-height: 2;*/
+            /*transform: translateX( -16ch );*/
+            transform: scale( 0 );
+            transform-origin: center;
             transition: transform ease .3s;
     </label>
     <a>
@@ -25,6 +28,7 @@ context( stack, new )
       context( copy, next )
     </a>
     <label>
+            display: grid;
             position: relative;
             overflow: hidden;
             width: var(--nav_width);
@@ -41,6 +45,7 @@ context( stack, new )
     </a>
     <label>
       <span>
+        grid-area: 1/-1;
         context( block, round_label )
       </span>
     </label>
@@ -52,11 +57,13 @@ context( stack, new )
     </a>
     <label>
       <span[data-icon=main]>
-              border: 2px solid {{S_o.nav_main}};
+              /*border: 2px solid {{S_o.nav_main}};*/
+              background: red;
       </span>
       <!--variant-->
       <span[data-icon=stat]>
-              border: 2px solid {{S_o.nav_stat}};
+              /*border: 2px solid {{S_o.nav_stat}};*/
+              background: yellow;
       </span>
     </label>
     <!--variant-->
@@ -64,7 +71,7 @@ context( stack, new )
       context( copy, next )
     </a>
     <label:hover>
-            width: var(--nav_width);
+            /*width: var(--nav_width);*/
             transition: all ease .3s;
     </label>
     <a:hover>
@@ -74,7 +81,8 @@ context( stack, new )
     </a>
     <label:hover>
       <span>
-              border: 2px solid transparent;
+              /*border: 2px solid transparent;*/
+              background: transparent;
       </span>
     </label>
     <!--variant-->
@@ -82,7 +90,8 @@ context( stack, new )
       context( copy, next )
     </a>
     <label:hover:before>
-            transform: translateX( 0 );
+            /*transform: translateX( 0 );*/
+            transform: scale( 1 );
     </label>
 </nav>
 <!--variant-->

@@ -1,13 +1,16 @@
 :root {
-  --{{C_o.STAT_a[3]}}_img_width: 50;
+  --{{C_o.STAT_a[3]}}_img_width: 100;
+}
+body {
+  overflow: auto;
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img {
   display: block;
-  position: absolute;
-  object-fit: scale-down;
+  object-fit: none;
+  object-position: 0% 0%;
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img[data-layer_n="0"] {
-  width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_0) * 1% );
+  opacity: 1;
 }
 section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img[data-layer_n="1"] {
   width: calc( var(--{{C_o.STAT_a[3]}}_img_width) * var(--{{C_o.STAT_a[3]}}_img_ratio_1) * 1% );

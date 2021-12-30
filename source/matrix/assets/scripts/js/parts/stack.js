@@ -385,6 +385,7 @@ const STACK_o =
 
 
 
+  /*
   moveNode__v:
   (
     pivot_s
@@ -463,9 +464,11 @@ const STACK_o =
     move__v( `img[data-layer_n="${layer_n}"]` )
   }
   ,
+  */
 
 
 
+  /*
   up__v:
   (
     op_s
@@ -475,9 +478,11 @@ const STACK_o =
       .moveNode__v( 'previous' )
   }
   ,
+  */
 
 
 
+  /*
   down__v:
   (
     op_s
@@ -487,6 +492,7 @@ const STACK_o =
       .moveNode__v( 'next' )
   }
   ,
+  */
 
 
 
@@ -709,6 +715,7 @@ const STACK_o =
   ,
 
 
+  /*
   clip__v:
   (
     op_s
@@ -726,11 +733,7 @@ const STACK_o =
       left
     } =
       img_e
-        .getBoundingClientRect()      ;console.table( [      width,
-          height,
-          top,
-          left
-    ] )
+        .getBoundingClientRect()
 
     const canvas_e =
       STACK_o
@@ -750,7 +753,7 @@ const STACK_o =
     
   }
   ,
-
+  */
 
 
   toggleSettings__v:
@@ -843,12 +846,12 @@ const STACK_o =
         'add_remote',
         'add_local',
         'hide',
-        'up',
-        'down',
+        //XX 'up',
+        //XX 'down',
         'increase',
         'decrease',
         'align',
-        'clip',
+        //XX 'clip',
       ]
     )
     {
@@ -885,6 +888,7 @@ const STACK_o =
               .work_s
       )
 
+    /*???????????????????
     for
     (
       work_s
@@ -895,7 +899,7 @@ const STACK_o =
           document
             .querySelector( 'body' )
               .dataset
-                .layer_s    //: compared works
+                ?.layer_s    //: compared works
                 .split( ' ' )
         )
     )
@@ -903,6 +907,7 @@ const STACK_o =
       STACK_o
         .addWork__v( work_s )
     }
+    */
 
     STACK_o
       .listener__v()
