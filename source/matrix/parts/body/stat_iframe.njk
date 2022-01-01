@@ -1,5 +1,8 @@
-{% for _stat in stat_a %}
-  <section id={{_stat}}>
-    <iframe id={{C_o.IFRAME_ID_s}}_{{_stat}} name=IF_{{_stat}} src="assets/parts/{{_stat}}.html"></iframe>
-  </section>
-{% endfor %}
+{% set _path = '' %}
+{% if stat_s === C_o.STAT_a[3] %}
+{% set _path = workID_s + '--' %}
+{% endif %}
+
+<section id="{{stat_s}}">
+  <iframe id="{{C_o.IFRAME_ID_s}}_{{stat_s}}" name="IF_{{stat_s}}" src="assets/parts/{{_path}}{{stat_s}}.html"></iframe>
+</section>

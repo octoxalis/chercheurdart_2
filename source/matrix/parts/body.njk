@@ -3,8 +3,8 @@
 {% if workID_s %}
 {% set _work_s = ' data-work_s=' + workID_s %}
 {% endif %}
-{% if stat_a %}
-{% set _stat_s = ' data-stat_s=' + stat_a[0] %}
+{% if stat_s %}
+{% set _stat_s = ' data-stat_s=' + stat_s %}
 {% endif %}
 {% if layer_a %}
 {% set _layer_s = ' data-layer_s="' + layer_a.join( ' ' ) + '"' %}
@@ -14,7 +14,7 @@
 {% include "parts/body/nav_input.njk" %}
 <a id="{{C_o.PAGE_TOP}}"></a>
 {% include "parts/body/main.njk" %}
-{% if _stat_s %}
+{% if stat_s %}
 {% include "parts/body/stat_iframe.njk" %}
 {% endif %}
 {% include "parts/body/nav_label.njk" %}    <!-- at end to be upper layer -->

@@ -19,10 +19,7 @@
     `galerie`,
   ],
 
-  stat_a:
-  [
-    `burst`,
-  ],
+  stat_s: `burst`,
 
   script_a:
   [

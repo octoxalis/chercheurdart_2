@@ -3,9 +3,7 @@
 {% for _section in section_a %}
   <label id="{{C_o.LABEL_ID_s}}_{{_section}}" for="{{C_o.INPUT_ID_s}}_{{_section}}" data-legend="{{C_o.NAV_LEGEND_o[_section].legend_s}}"><span data-icon="main">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
 {% endfor %}
-{% if stat_a %}
-  {% for _stat in stat_a %}
-    <label id="{{C_o.LABEL_ID_s}}_{{_stat}}" for="{{C_o.INPUT_ID_s}}_{{_stat}}" data-legend="{{C_o.NAV_LEGEND_o[_stat].legend_s}}"><span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
-  {% endfor %}
+{% if stat_s %}
+  <label id="{{C_o.LABEL_ID_s}}_{{stat_s}}" for="{{C_o.INPUT_ID_s}}_{{stat_s}}" data-legend="{{C_o.NAV_LEGEND_o[stat_s].legend_s}}"><span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
 {% endif %}
 </nav>

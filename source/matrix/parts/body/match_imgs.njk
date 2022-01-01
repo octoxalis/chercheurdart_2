@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<aside id="aside_match_imgs">
+  <input id="IN_match_imgs" type="checkbox"/>
+  <div draggable=true>
+    <header>
+      <label for="IN_match_imgs">Abandonner</label>
+      <label>IMAGES</label>
+      <label id="button_match_imgs_select" for="IN_match_imgs">Selectionner</label>
+    </header>
+    <div id="img_list">
+      <main id="main_img_list">
+        {% include "parts/body/parts/imgs_tree.html" %}
+      </main>
+      <aside id="aside_img_thumb"></aside><!-- !!! initialy empty -->
+    </div>
+  </div>
+  <script id=script_match_imgs data-src="/assets/scripts/js/match_imgs.min.js"></script>
+</aside>

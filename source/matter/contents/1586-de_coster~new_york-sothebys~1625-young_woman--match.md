@@ -1,12 +1,12 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1586-de_coster~new_york-sothebys~1625-young_woman--paint.html',
+  permalink: '1586-de_coster~new_york-sothebys~1625-young_woman--match.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      7170,
+  doc_n:      7171,
   title_s:    `Adam de Coster`,
   subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
   abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
@@ -19,16 +19,18 @@
     `galerie`,
   ],
 
-  stat_s: `paint`,
+  stat_s: `match`,
 
   script_a:
   [
     'stat.min.js',
+    'drag.min.js',
   ],
   css_a:
   [
     'stat.min.css',
-    'paint.min.css',
+    'match.min.css',
+    '1586-de_coster~new_york-sothebys~1625-young_woman--match.min.css',
   ],
 
   version_a:
@@ -36,6 +38,11 @@
     '2021-10-14T12:00:00Z'
   ],
 
+  layer_a:      //: images
+  [
+    '1703-boucher~princeton-university~1748-arion'
+  ],
+  
 }
 ---
 {% _section section_a[0] %}

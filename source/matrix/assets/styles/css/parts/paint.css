@@ -5,10 +5,10 @@ section#{{C_o.STAT_a[2]}} > div > canvas {
 section#{{C_o.STAT_a[2]}} > div > canvas[id$=_layer_0] {
   background: red;
 }
-section#{{C_o.STAT_a[2]}} > div > canvas[id$=_stack_1] {
+section#{{C_o.STAT_a[2]}} > div > canvas[id$=_match_1] {
   background: blue;
 }
-section#{{C_o.STAT_a[2]}} > div > canvas[id$=_stack_2] {
+section#{{C_o.STAT_a[2]}} > div > canvas[id$=_match_2] {
   background: blue;
 }
 section#{{C_o.STAT_a[2]}} > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {

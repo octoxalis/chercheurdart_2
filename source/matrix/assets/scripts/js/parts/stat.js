@@ -224,7 +224,7 @@ const STAT_o =
         'burst',
         'aster',
         'paint',
-        'stack',
+        'match',
       ]
     )
     {

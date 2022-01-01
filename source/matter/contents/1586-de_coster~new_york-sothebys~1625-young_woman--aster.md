@@ -19,10 +19,7 @@
     `galerie`,
   ],
 
-  stat_a:
-  [
-    `aster`,
-  ],
+  stat_s: `aster`,
 
   script_a:
   [

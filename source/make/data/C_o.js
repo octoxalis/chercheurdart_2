@@ -75,7 +75,7 @@ const C_o =
     'burst',
     'aster',
     'paint',
-    'stack',
+    'match',
   ],
 
   HTML_CHAR_o:
@@ -101,7 +101,7 @@ const C_o =
     burst: { icon_s: `&#8718;`, legend_s: `burst`},       //: ⋇
     aster: { icon_s: `&#8718;`, legend_s: `aster`},       //: ⊚
     paint: { icon_s: `&#8718;`, legend_s: `paint`},       //: ⊜
-    stack: { icon_s: `&#8718;`, legend_s: `stack`},       //: ⊜
+    match: { icon_s: `&#8718;`, legend_s: `corrélation`},       //: ⊜
 
     burst_hue:  { icon_s: `&#8728;`, legend_s: `chromaticité`},       //: ⊜
     burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},    //: ⊜
@@ -117,31 +117,31 @@ const C_o =
     paint_origin:   { icon_s: `&#8722;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
-    stack_shape:     { icon_s: `&nbsp;`,  legend_s: `découpe`},
-    //XX stack_circle:     { icon_s: `&nbsp;`,  legend_s: `cercle`},
-    //XX stack_hellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse horiz`},
-    //XX stack_vellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse verti`},
-    //XX stack_square:     { icon_s: `&nbsp;`,  legend_s: `carré`},
-    //XX stack_hrect:     { icon_s: `&nbsp;`,  legend_s: `rect horiz`},
-    //XX stack_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
-    stack_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
-    //?? stack_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
+    match_shape:     { icon_s: `&nbsp;`,  legend_s: `découpe`},
+    //XX match_circle:     { icon_s: `&nbsp;`,  legend_s: `cercle`},
+    //XX match_hellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse horiz`},
+    //XX match_vellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse verti`},
+    //XX match_square:     { icon_s: `&nbsp;`,  legend_s: `carré`},
+    //XX match_hrect:     { icon_s: `&nbsp;`,  legend_s: `rect horiz`},
+    //XX match_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
+    match_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
+    //?? match_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
 
-    stack_layers_add:      { icon_s: `&nbsp;`,  legend_s: `ajouter`},
-    stack_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `retirer`},
+    match_layers_add:      { icon_s: `&nbsp;`,  legend_s: `ajouter`},
+    match_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `retirer`},
 
-    stack_layers_up:       { icon_s: `&nbsp;`,  legend_s: `monter`},
-    stack_layers_down:     { icon_s: `&nbsp;`,  legend_s: `descendre`},
+    match_layers_up:       { icon_s: `&nbsp;`,  legend_s: `monter`},
+    match_layers_down:     { icon_s: `&nbsp;`,  legend_s: `descendre`},
 
-    stack_layers_increase:     { icon_s: `&nbsp;`,  legend_s: `agrandir`},
-    stack_layers_decrease:   { icon_s: `&nbsp;`,  legend_s: `réduire`},
+    match_layers_increase:     { icon_s: `&nbsp;`,  legend_s: `agrandir`},
+    match_layers_decrease:   { icon_s: `&nbsp;`,  legend_s: `réduire`},
 
-    stack_layers_align:    { icon_s: `&nbsp;`,  legend_s: `aligner`},
-    stack_layers_clip:     { icon_s: `&nbsp;`,  legend_s: `délimiter`},
+    match_layers_align:    { icon_s: `&nbsp;`,  legend_s: `aligner`},
+    match_layers_clip:     { icon_s: `&nbsp;`,  legend_s: `délimiter`},
 
-    stack_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675; ${A_o.NAME_s}`},      //: downdash
-    stack_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673; Fichier local`},      //: updash
-    //XX stack_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
+    match_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675; ${A_o.NAME_s}`},      //: downdash
+    match_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673; Fichier local`},      //: updash
+    //XX match_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
     close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
   },
@@ -158,7 +158,7 @@ const C_o =
   ],
 
 
-  //=== STACK TOOLS ===
+  //=== MATCH TOOLS ===
   IMG_RESIZE_n: .025,
   DRAG_IMG_Z_n: 100,
   DRAG_SETTINGS_Z_n: 101,

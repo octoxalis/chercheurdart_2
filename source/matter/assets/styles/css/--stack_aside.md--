@@ -1,7 +1,0 @@
----js
-{
-  layout:    `assets/styles/css/stack_aside.njk`,
-  permalink: `assets/styles/css/stack_aside.min.css`,
-}
-
----

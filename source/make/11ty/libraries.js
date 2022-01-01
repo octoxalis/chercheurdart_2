@@ -12,9 +12,6 @@ module.exports = make_o =>
     (
       'md',
       require( 'markdown-it' )( markdown_o )
-      //XX .use( require( 'markdown-it-attrs' ) )
-      //XX .use( require( 'markdown-it-deflist' ) )
-      //XX .use( require( 'markdown-it-include' ), make_o.dirs_o.contentPartsDir_s )
     )
 
   make_o

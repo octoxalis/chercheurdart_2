@@ -64,7 +64,7 @@ Passé en vente chez Sotheby's à New York, cette toile constitue un jalon essen
 ==
 <<  burst  ::  {{U_o.url_s}}{{workID_s}}--burst.html  >>
 <<  paint  ::  {{U_o.url_s}}{{workID_s}}--paint.html  >>
-<<  stack  ::  {{U_o.url_s}}{{workID_s}}--stack.html  >>
+<<  match  ::  {{U_o.url_s}}{{workID_s}}--match.html  >>
 ==
 //  <<  aster  ::  {{U_o.url_s}}{{workID_s}}--aster.html  >>  //
 

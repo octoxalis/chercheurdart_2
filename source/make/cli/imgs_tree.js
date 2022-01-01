@@ -9,7 +9,7 @@ const I_TREE_o =
 
   ARTIST_DB_s: `${C_o.DB_PATH_s}artist.json`,
 
-  OUTPUT_s: 'source/matrix/parts/body/parts/stack_details.html',
+  OUTPUT_s: 'source/matrix/parts/body/parts/imgs_tree.html',
 
   artist_a: null,
 
