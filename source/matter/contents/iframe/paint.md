@@ -1,6 +1,6 @@
 ---js
 {
-  layout:    `parts/body/paint_canvas.njk`,
+  layout:    `parts/body/iframe_paint.njk`,
   permalink: `assets/parts/paint.html`,
 
   stat_s: 'paint',

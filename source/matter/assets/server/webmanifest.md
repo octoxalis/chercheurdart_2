@@ -1,6 +1,6 @@
 ---js
 {
-  layout:    `parts/webmanifest.njk`,
+  layout:    `parts/server/webmanifest.njk`,
   permalink: `asset-manifest.json`,
 
   nomap_b: true,

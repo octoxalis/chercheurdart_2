@@ -5,11 +5,11 @@ const C_o = require( '../data/C_o.js' )
 
 const I_TREE_o =
 {
-  WORK_DB_s: `${C_o.DB_PATH_s}work.json`,
+  work_db_s: `${C_o.DB_PATH_s}work.json`,
 
-  ARTIST_DB_s: `${C_o.DB_PATH_s}artist.json`,
+  artist_db_s: `${C_o.DB_PATH_s}artist.json`,
 
-  OUTPUT_s: 'source/matrix/parts/body/parts/imgs_tree.html',
+  output_s: 'source/matrix/parts/body/parts/imgs_tree.html',
 
   artist_a: null,
 
@@ -98,7 +98,7 @@ const I_TREE_o =
             .readFileSync
             (
               I_TREE_o
-                .WORK_DB_s,
+                .work_db_s,
               'utf8',
               'r'
             )
@@ -113,7 +113,7 @@ const I_TREE_o =
               .readFileSync
               (
                 I_TREE_o
-                  .ARTIST_DB_s,
+                  .artist_db_s,
                 'utf8',
                 'r'
               )
@@ -146,11 +146,11 @@ const I_TREE_o =
       writeFile
       (
         I_TREE_o
-          .OUTPUT_s,
+          .output_s,
         imgsList_s,
         error_o =>
           console
-            .log( error_o ?? `-- Writing ${I_TREE_o.OUTPUT_s}` )
+            .log( error_o ?? `-- Writing ${I_TREE_o.output_s}` )
       )
   }
 }

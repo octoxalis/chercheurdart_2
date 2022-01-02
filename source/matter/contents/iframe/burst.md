@@ -1,6 +1,6 @@
 ---js
 {
-  layout:    `parts/body/burst_canvas.njk`,
+  layout:    `parts/body/iframe_burst.njk`,
   permalink: `assets/parts/burst.html`,
 
   stat_s: 'burst',

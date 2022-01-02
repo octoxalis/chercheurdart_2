@@ -1,7 +1,7 @@
 ---js
 {
   date: `2020-11-14`,
-  layout:    `sitemap.njk`,
+  layout:    `parts/server/sitemap.njk`,
   permalink: `sitemap.xml`,
   tags:      [ `notag` ],
   eleventyExcludeFromCollections: false,

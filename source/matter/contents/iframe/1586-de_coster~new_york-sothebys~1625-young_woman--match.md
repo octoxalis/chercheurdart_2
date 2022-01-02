@@ -1,6 +1,6 @@
 ---js
 {
-  layout:    `parts/body/match_canvas.njk`,
+  layout:    `parts/body/iframe_match.njk`,
   permalink: `assets/parts/1586-de_coster~new_york-sothebys~1625-young_woman--match.html`,
 
   stat_s: 'match',
