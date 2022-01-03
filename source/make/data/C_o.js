@@ -159,9 +159,9 @@ const C_o =
 
 
   //=== MATCH TOOLS ===
-  IMG_RESIZE_n: .025,
-  DRAG_IMG_Z_n: 100,
-  DRAG_SETTINGS_Z_n: 101,
+  //XX IMG_RESIZE_n: .025,
+  //XX DRAG_IMG_Z_n: 100,
+  //XX DRAG_SETTINGS_Z_n: 101,
 
 
   //=== HTML-BODY ANCHORS

@@ -114,6 +114,8 @@ const STAT_W_o =
     'GET_scan',
     'GET_status',
     'GET_frequency',
+    'GET_img',
+
     'PUT_canvas',
     'PUT_draw',
     'PUT_scale',
@@ -679,6 +681,84 @@ const STAT_W_o =
       )           //;console.log( STAT_W_o.scan_a[ index_n ][ frequency_n ] )
   }
   ,
+
+
+
+  async get_img__v
+  (
+    payload_o
+  )
+  {
+    try
+    {
+      const response_o =
+        await fetch
+        (
+          payload_o
+            .url_s
+        )
+
+      const blob_o =
+        await response_o
+          .blob()           ;console.log( blob_o )
+
+
+      let
+      {
+        x_n,
+        y_n,
+        width_n,
+        height_n,
+        scale_n
+      } = payload_o           ;console.log( payload_o )
+
+      const cropX_n =
+        width_n
+        -
+        x_n
+        
+      const cropY_n =
+        height_n
+        -
+        y_n
+        
+
+      const bitmap_o =
+        await createImageBitmap
+        (
+          blob_o,
+          payload_o.x_n,
+          payload_o.y_n,
+          cropX_n,
+          cropY_n,
+          //... {
+          //...   resizeWidth: 123,
+          //...   resizeHeight: 123,
+          //...   resizeQuality: 'high'
+          //... }
+        )
+
+        payload_o
+          .canvas_e
+            .getContext( '2d' )
+              .drawImage
+              (
+                bitmap_o,
+                x_n,
+                y_n,
+              )
+    }
+    catch
+    (
+      error_o    //: not used
+    )
+    {
+      console
+        .log(`ERROR DETECTED @imgsLoad_w.js: ${ error_o }`)
+    }
+  }
+  ,
+
 
 
 

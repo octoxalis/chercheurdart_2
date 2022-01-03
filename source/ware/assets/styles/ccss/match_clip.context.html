@@ -2,15 +2,14 @@
 </:root>
 
 <details[data--="{{C_o.STAT_a[3]}}_details"]>
-        --clip_height: 2em;
         --offsetX: calc( var(--clip_width) * .5 );
         --offsetY: calc( ( var(--clip_height) * .5 ) + {{S_o.PAD_8}} + {{S_o.PAD_8}} );
 
         z-index: 100;               /* TEMPORARY */
         position: absolute;
         width: var(--clip_width);
-        top:  calc( var(--clip_top) - var(--offsetY) );
-        left:  calc( var(--clip_left) - var(--offsetX) );
+        top:  calc( var(--clip_top) - var(--offsetY) + {{S_o.PAD_8}} + var(--reference_padding) );  /* summary height */
+        left:  calc( var(--clip_left) - var(--offsetX) + var(--reference_padding) );
         transform: translate( var(--offsetX), var(--offsetY) );
         transition: .25s ease;
   <summary::-webkit-details-marker>
@@ -126,8 +125,8 @@
     </header>
     <article>
       <div>
-              height: var(--clip_height);
-              border: 2px solid {{S_o.ins_shadow_ne}};
+        height: var(--clip_height);
+        border: 2px solid {{S_o.ins_shadow_ne}};
       </div>
       <img>
               border: 2px solid {{S_o.ins_shadow_ne}};

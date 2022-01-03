@@ -24,7 +24,8 @@
   script_a:
   [
     'stat.min.js',
-    'drag.min.js',
+    //XX 'drag.min.js',
+    'imgsLoad.min.js',
   ],
   css_a:
   [
