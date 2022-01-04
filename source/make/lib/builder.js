@@ -7,6 +7,7 @@ const MARK_o = require( './markup.js' )
 const COM_o  = require( './comment.js' )
 
 const C_o    = require( '../data/C_o.js' )
+const F_o    = require( '../data/F_o.js' )
 
 
 
@@ -146,6 +147,8 @@ const BUI_o =
               .issue_n
           )
     }
+
+    //;console.log( F_o.data__( 'comment_0' ) )
 
     return (
       MARK_o

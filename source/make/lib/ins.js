@@ -10,6 +10,7 @@ const PRE_o =
 const C_o   = require( '../data/C_o.js' )
 const I_o   = require( '../data/I_o.js' )
 const S_o   = require( '../data/S_o.js' )
+const F_o   = require( '../data/F_o.js' )
 
 
 
@@ -202,7 +203,9 @@ imgLine__v:    //: ₉
 ) =>
 {
   INS_o
-    .legend__v( imgId_s )
+    .legend_s =
+      F_o
+        .legend__s( imgId_s )
       
   INS_o
     .image__v( imgId_s )
@@ -748,64 +751,6 @@ css__v:
     }
 
     return dim_a
-  }
-  ,
-
-
-
-  legend__v:
-  (
-    imgId_s
-  ) =>
-  {
-    const [ artist_s, collection_s ] =
-      imgId_s
-        .split( C_o.ID_PART_DELIM_s )
-    
-    const artist_o =
-      INS_o
-        .db_o
-          .artist
-            [`${artist_s}`]
-    
-    const collection_o =
-      INS_o
-        .db_o
-          .collection
-            [`${collection_s}`]
-    
-    const work_o =
-      INS_o
-        .db_o
-          .work
-            [ imgId_s ]
-
-    let year_s =
-      NUM_o
-        .rangeFromFloat__s
-        (
-          work_o
-            .year_n
-        )
-
-    const height_s =
-      NUM_o
-        .decimalSub__s( work_o.w_height_n )
-
-    const width_s =
-      NUM_o
-        .decimalSub__s( work_o.w_width_n )
-
-    INS_o
-      .legend_s =
-        `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s}>`
-        + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
-        + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
-        + `</${C_o.TABLE_TAG_s}>`
   }
   ,
 

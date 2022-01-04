@@ -67,19 +67,100 @@
   </div>
   <div>
     <article>
-          height: var(--height_n);
+            display: grid;
+            height: var(--height_n);
       <input[id^="{{C_o.INPUT_ID_s}}_clip_"] />
               display: none;
       +
       <canvas>
               display: none;
+              grid-area: 1/-1;
               width: var(--width_n);
       </canvas>
+      +
+      <figcaption>
+              display: none;
+              grid-area: 1/-1;
+              padding: {{S_o.PAD_2}};
+              opacity: 0;
+              /*transition: opacity 1s;*/
+      </figcaption>
+      <label>
+        context( copy, next )
+        </label>
+        <input />
+        context( copy, next )
+        <aside>
+                display: none;
+        </aside>
+  
       <input:checked />
       +
       <canvas>
               display: block;
       </canvas>
+      +
+      <figcaption>
+              display: block;
+              z-index: 1;
+              opacity: 0;
+              transition-property: opacity box-shadow;
+              transition-delay: .25s;
+              transition-duration: .5s;
+      </figcaption>
+      +
+      <label>
+              display: block;
+              z-index: 2;
+              position: relative;
+              top: -{{S_o.PAD_8}};
+              right: 0;
+      </label>
+      <aside>
+              position: absolute;
+              top: 0;
+              min-width: var(--width_n);
+              height: 300px;  /* TEMPORARY */
+              background: red;
+      </aside>
+      
+
+      <input:checked />
+      +
+      <canvas>
+      </canvas>
+      +
+      <figcaption>
+      </figcaption>
+      +
+      <label>
+      </label>
+      +
+      <input:checked />
+      +
+      <aside>
+              display: block;
+              z-index: 10;
+              box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+              transform: translateY( var(--height_n) );
+              transition-property: transform;
+              transition-delay: .1s;
+              transition-duration: .5s;
+      </aside>
+
+
+      <input:checked />
+      +
+      <canvas>
+      </canvas>
+      +
+      <figcaption:hover>
+              opacity: 1;
+              transition-property: opacity;
+              transition-delay: 2s;
+              transition-duration: 1s;
+        </figcaption>
+
       <input[id^="{{C_o.INPUT_ID_s}}_clip_"] />
               display: none;
       +
@@ -131,12 +212,19 @@
       <canvas>
               border: 2px solid {{S_o.ins_shadow_ne}};
       </canvas>
+      
       <div:hover>
-        context( copy, next )
-        </div>
-        <canvas:hover>
-            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+      context( copy, next )
+      </div>
+      <canvas:hover>
+      context( copy, next )
       </canvas>
+      <figcaption:hover>
+              box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+              transition-property: box-shadow;
+              transition-delay: .25s;
+              transition-duration: .5s;
+      </figcaption>
     </article>
   </div>
 </details>

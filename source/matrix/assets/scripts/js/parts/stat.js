@@ -3,6 +3,15 @@ const STAT_o =
 {
   worker_o: null,
 
+  get_scan_a:    //: stats needing scan
+  [
+    '{{C_o.STAT_a[0]}}',
+    '{{C_o.STAT_a[1]}}',
+    '{{C_o.STAT_a[2]}}',
+    //-- '{{C_o.STAT_a[3]}}',    //: no scan
+  ]
+  ,
+
 
 
   canvas__e    //!!! 4. from section
@@ -253,11 +262,8 @@ const STAT_o =
 
   init__v    //!!! 1. from index.js
   (
-    {
-      work_s,
-      //-- stat_s,
-      //-- layer_s
-    }
+    work_s,
+    stat_s,
   )
   {
     STAT_o
@@ -271,18 +277,24 @@ const STAT_o =
           }
         )
 
-    STAT_o
-      .worker_o
-        .post__v
-        (
-          { 
-            task_s: 'GET_scan',
-            stat_s: '{{C_o.STAT_s}}',
-            work_s: work_s,
-            //-- stat_s: stat_s,
-            //-- layer_s: layer_s
-          }
-        )
+    if
+    (
+      STAT_o
+        .get_scan_a
+          .includes( stat_s )
+    )
+    {
+      STAT_o
+        .worker_o
+          .post__v
+          (
+            { 
+              task_s: 'GET_scan',
+              stat_s: '{{C_o.STAT_s}}',
+              work_s: work_s,
+            }
+          )
+    }
   }
   ,
 }

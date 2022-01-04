@@ -20,6 +20,7 @@ const DATA_a =    // default exported data: front matter properties list
 
   'A_o',
   'C_o',
+  'F_o',
 ]
 
 module.exports =

@@ -6,6 +6,9 @@ const MARK_INS_o =
   
 const MARK_HEAD_o =
   require( '../lib/2mark-header.js' )
+
+const F_o =
+  require( '../data/F_o.js' )
   
 
 
@@ -35,6 +38,28 @@ const CODES_o =
     return processed_s
   }
   ,
+
+
+  keyval__s:
+  (
+    source_s,
+    key_s
+  ) =>
+  {
+    F_o
+      .data__v
+      (
+        key_s,
+        MARK_o
+          .process__s( source_s )
+      )
+
+    //;console.log( key_s )
+    //;console.log( F_o.data__( key_s ) )
+
+
+  }
+
 }
 
 
@@ -49,6 +74,7 @@ module.exports =
       of
       [
         'section',
+        'keyval'
       ]
     )
     {

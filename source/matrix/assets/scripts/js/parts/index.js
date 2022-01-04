@@ -205,7 +205,6 @@ void function
       {
         work_s,
         stat_s,
-        layer_a
       } =
         document
           .querySelector( 'body' )
@@ -216,9 +215,8 @@ void function
     STAT_o
       .init__v
       (
-        document
-          .querySelector( 'body' )
-            .dataset
+        work_s,
+        stat_s,
       )
   }
 } ()

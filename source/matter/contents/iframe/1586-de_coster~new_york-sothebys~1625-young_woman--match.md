@@ -33,3 +33,6 @@
   ],
 }
 ---
+{%  _keyval  permalink + '_0' %}
+Ceci est un commentaire
+{% end_keyval %}

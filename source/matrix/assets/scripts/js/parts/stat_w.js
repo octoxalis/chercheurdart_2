@@ -332,6 +332,7 @@ const STAT_W_o =
   {
     if
     (
+
       ! STAT_W_o
         .scan_a    //: already loaded?
     )
@@ -1066,7 +1067,6 @@ const STAT_W_o =
           .toLowerCase()
           +
           '__v'
-
 
       STAT_W_o
         [ method_s ]

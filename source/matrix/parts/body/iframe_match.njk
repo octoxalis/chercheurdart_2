@@ -42,6 +42,17 @@
   data-scale_n="{{link_o.scale}}"
   data-src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif">
 </canvas>
+<figcaption>
+{{F_o.legend__s( link_o.id_s )}}
+</figcaption>
+<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">
+plus...
+</label>
+<input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal" type="checkbox" />
+<aside>
+<b>{{F_o.data__( 'comment_0' )}}</b>
+<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">FERMER</label>
+</aside>
 
 {% endfor %}
 {% endset%}
