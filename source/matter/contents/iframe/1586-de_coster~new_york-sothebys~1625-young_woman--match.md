@@ -9,25 +9,27 @@
 
   node_a:
   [
-    {                 //: node_o  //: id_s = `${top_n}_${left_n}_${width_n}_${height_n}`
-      top_n:    1000,
-      left_n:   694,
-      width_n:  1388,  //: right --> var(--width_n)
-      height_n: 2000,  //: bottom
-                      //: inset( var(--top) var(--right) var(--bottom) var(--left) )
+    //: node_o  --> id_s = `${top_n}_${left_n}_${width_n}_${height_n}`
+    {
+      top_n:    370,
+      left_n:   550,
+      width_n:  300,
+      height_n: 200,
+
       link_a:
       [
-        {             //: link_o
-          id_s: '1703-boucher~princeton-university~1748-arion',
-          x_n:   200,
-          y_n:   100,
-          scale: 1,
-        },
+        //: link_o
+        {
+          id_s:    '1703-boucher~princeton-university~1748-arion',
+          coord_s: '968 468',    //: center point
+          scale:   1.5,          //: stretch
+        }
+        ,
         //...
       ]
     }
     ,
+    //...
   ],
-
 }
 ---

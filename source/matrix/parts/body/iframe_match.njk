@@ -34,14 +34,15 @@
 <div><!--EMPTY--></div>
 {% for link_o in node_o.link_a %}
 <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{loop.index}}" type="radio" name="clip_{{_id_s}}" />
-<!--<img id="img_clip_{{_id_s}}_{{loop.index}}"
-     src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif"
-     data-scale_n="{{link_o.scale}}" data-size_n="1">-->
-<canvas id="canvas_{{_id_s}}_{{loop.index}}"
-     data-src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif"
-     data-scale_n="{{link_o.scale}}" data-size_n="1"
-     data-x_n="{{link_o.x_n}}" data-y_n="{{link_o.y_n}}"
-     width={{node_o.width_n}} height={{node_o.height_n}}></canvas>
+
+<canvas
+  id="canvas_{{_id_s}}_{{loop.index}}"
+  width={{node_o.width_n}} height={{node_o.height_n}}
+  data-coord_s="{{link_o.coord_s}}"
+  data-scale_n="{{link_o.scale}}"
+  data-src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif">
+</canvas>
+
 {% endfor %}
 {% endset%}
 

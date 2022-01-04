@@ -2,14 +2,14 @@
 </:root>
 
 <details[data--="{{C_o.STAT_a[3]}}_details"]>
-        --offsetX: calc( var(--clip_width) * .5 );
-        --offsetY: calc( ( var(--clip_height) * .5 ) + {{S_o.PAD_8}} + {{S_o.PAD_8}} );
+        --offsetX: calc( var(--width_n) * .5 );
+        --offsetY: calc( ( var(--height_n) * .5 ) + {{S_o.PAD_8}} + {{S_o.PAD_8}} );
 
         z-index: 100;               /* TEMPORARY */
         position: absolute;
-        width: var(--clip_width);
-        top:  calc( var(--clip_top) - var(--offsetY) + {{S_o.PAD_8}} + var(--reference_padding) );  /* summary height */
-        left:  calc( var(--clip_left) - var(--offsetX) + var(--reference_padding) );
+        width: var(--width_n);
+        top:  calc( var(--top_n) - var(--offsetY) + {{S_o.PAD_8}} + var(--reference_padding) );  /* summary height */
+        left:  calc( var(--left_n) - var(--offsetX) + var(--reference_padding) );
         transform: translate( var(--offsetX), var(--offsetY) );
         transition: .25s ease;
   <summary::-webkit-details-marker>
@@ -67,25 +67,25 @@
   </div>
   <div>
     <article>
-          height: var(--clip_height);
+          height: var(--height_n);
       <input[id^="{{C_o.INPUT_ID_s}}_clip_"] />
               display: none;
       +
-      <img>
+      <canvas>
               display: none;
-              width: var(--clip_width);
-      </img>
+              width: var(--width_n);
+      </canvas>
       <input:checked />
       +
-      <img>
+      <canvas>
               display: block;
-      </img>
+      </canvas>
       <input[id^="{{C_o.INPUT_ID_s}}_clip_"] />
               display: none;
       +
       <div>
               display: none;
-              width: var(--clip_width);
+              width: var(--width_n);
       </div>
       <input:checked />
       +
@@ -125,18 +125,18 @@
     </header>
     <article>
       <div>
-        height: var(--clip_height);
+        height: var(--height_n);
         border: 2px solid {{S_o.ins_shadow_ne}};
       </div>
-      <img>
+      <canvas>
               border: 2px solid {{S_o.ins_shadow_ne}};
-      </img>
+      </canvas>
       <div:hover>
         context( copy, next )
         </div>
-        <img:hover>
+        <canvas:hover>
             box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
-      </img>
+      </canvas>
     </article>
   </div>
 </details>

@@ -691,62 +691,54 @@ const STAT_W_o =
   {
     try
     {
-      const response_o =
-        await fetch
-        (
-          payload_o
-            .url_s
-        )
-
-      const blob_o =
-        await response_o
-          .blob()           ;console.log( blob_o )
-
-
       let
       {
+        rect_s,
+        scale_n,
+        url_s,
+        canvas_e
+      } = payload_o           //;console.log( payload_o )
+
+      let
+      [
         x_n,
         y_n,
         width_n,
-        height_n,
-        scale_n
-      } = payload_o           ;console.log( payload_o )
-
-      const cropX_n =
-        width_n
-        -
-        x_n
-        
-      const cropY_n =
         height_n
-        -
-        y_n
-        
+      ] =
+        rect_s
+          .split( ' ' )
+
+      const response_o =
+        await fetch( url_s )
+
+      const blob_o =
+        await response_o
+          .blob()           //;console.log( blob_o )
 
       const bitmap_o =
         await createImageBitmap
         (
           blob_o,
-          payload_o.x_n,
-          payload_o.y_n,
-          cropX_n,
-          cropY_n,
-          //... {
-          //...   resizeWidth: 123,
-          //...   resizeHeight: 123,
-          //...   resizeQuality: 'high'
-          //... }
+          x_n - ( width_n / scale_n * .5 ),    //: center point
+          y_n - ( height_n / scale_n * .5 ),   //: idem
+          width_n / scale_n,
+          height_n / scale_n,
+          {
+            resizeWidth:  width_n,
+            resizeHeight: height_n,
+            resizeQuality: 'high'
+          }
         )
 
-        payload_o
-          .canvas_e
-            .getContext( '2d' )
-              .drawImage
-              (
-                bitmap_o,
-                x_n,
-                y_n,
-              )
+      canvas_e
+        .getContext( '2d' )
+          .drawImage
+          (
+            bitmap_o,
+            0,
+            0,
+          )
     }
     catch
     (

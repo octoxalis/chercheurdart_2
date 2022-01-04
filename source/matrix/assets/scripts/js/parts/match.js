@@ -41,6 +41,69 @@ const MATCH_o =
   listener__v
   ()
   {
+    document
+      .getElementById( '{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}' )
+        .addEventListener
+        (
+          'click',
+          click_o =>
+          {
+            const target_e =
+              click_o
+                .target
+                  .closest( `details` )    //;console.log( target_e  )
+  
+            if
+            (
+              target_e
+              &&
+              ! target_e
+                  .dataset
+                    .loaded
+            )
+            {
+              for
+              (
+                let canvas_e
+                of
+                Array
+                  .from
+                  (
+                    target_e
+                      .querySelectorAll( `canvas[data-src]` )
+                  )
+              )
+              {
+                const offCanvas_e =
+                  canvas_e
+                    .transferControlToOffscreen()
+          
+                MATCH_o
+                  .worker_o            //! using port postMessage directly
+                    .port_o           //! to avoid error:
+                      .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+                      (
+                        {
+                          task_s:   'GET_img',
+                          pixel_n:  window.devicePixelRatio,
+                          rect_s:   `${canvas_e.dataset.coord_s} ${canvas_e.width} ${canvas_e.height}`,
+                          scale_n:  canvas_e.dataset.scale_n,
+                          url_s:    canvas_e.dataset.src,
+                          canvas_e: offCanvas_e,
+                        },
+                        [ offCanvas_e ]
+                      )
+              }
+  
+              target_e
+                .dataset
+                  .loaded =
+                    true
+            }
+          }
+        )  
+
+    
   }
   ,
 
@@ -58,46 +121,8 @@ const MATCH_o =
             MATCH_o.message__v,
           )
     
-    for
-    (
-      let canvas_e
-      of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `canvas[data-src]` )
-        )
-    )
-    {
-      const offCanvas_e =
-        canvas_e
-          .transferControlToOffscreen()  //...
-
-      MATCH_o
-        .worker_o            //! using port postMessage directly
-          .port_o           //! to avoid error:
-            .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
-            (
-              {
-                task_s:   'GET_img',
-                pixel_n:  window.devicePixelRatio,
-                x_n:      canvas_e.dataset.x_n,
-                y_n:      canvas_e.dataset.y_n,
-                width_n:  canvas_e.width,
-                height_n: canvas_e.height,
-                scale_n:  canvas_e.dataset.scale_n,
-                url_s:    canvas_e.dataset.src,
-                canvas_e: offCanvas_e,
-              },
-              [ offCanvas_e ]
-            )
-    }
-
     MATCH_o
       .listener__v()
-
-
   }
 }
 
