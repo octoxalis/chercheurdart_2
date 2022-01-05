@@ -91,7 +91,7 @@ const C_o =
     stat:        { icon_s: `&#8901;`},    //: DOT OPERATOR ⋅
     substat:     { icon_s: `&#8728;`},    //: RING OPERATOR ∘
 
-
+    close:       { legend_s: `&#215;`},       //: ×
 
     home:    { icon_s: `&#8226;`, legend_s: `accueil` },    //: ⌂
     article: { icon_s: `&#8226;`, legend_s: `article` },    //: ≣
@@ -110,7 +110,7 @@ const C_o =
     burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},       //: ⊜
     
     stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},     //: ⊜
-    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},     //: ⊜
+    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},      //: ⊜
     stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},     //: ⊜
     stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},      //: ⊜
 

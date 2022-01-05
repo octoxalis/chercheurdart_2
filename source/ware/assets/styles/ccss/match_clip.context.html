@@ -15,11 +15,13 @@
   <summary::-webkit-details-marker>
           background: url( marker_circle.svg );
   </summary>
+  <!--variant-->
   <summary:hover>
     <span>
             opacity: 1;
     </span>
   </summary>
+  <!--variant-->
   <summary>
           padding: {{S_o.PAD_1}};
           width: 100%;
@@ -52,19 +54,9 @@
       <label>
               width: 6ch;
       </label>
-      <input[type=range] />
-              /*width: 100px;*/
-              flex-grow: 1;
-              background: transparent;
-              cursor: pointer;
-              transform: scaleY( .3 );
-      <input[type=range]:focus />
-              outline: none;
-      <input[type=range]::-webkit-slider-runnable-track />
-              width: 100px;
-              height: 16px;
     </header>
   </div>
+  <!--variant-->
   <div>
     <article>
             display: grid;
@@ -83,17 +75,14 @@
               grid-area: 1/-1;
               padding: {{S_o.PAD_2}};
               opacity: 0;
-              /*transition: opacity 1s;*/
       </figcaption>
-      <label>
-        context( copy, next )
-        </label>
-        <input />
-        context( copy, next )
-        <aside>
-                display: none;
-        </aside>
-  
+      <!--variant-->
+      <input />
+      context( copy, next )
+      <aside>
+              display: none;
+      </aside>
+      <!--variant-->
       <input:checked />
       +
       <canvas>
@@ -101,30 +90,24 @@
       </canvas>
       +
       <figcaption>
-              display: block;
+              display: grid;
               z-index: 1;
               opacity: 0;
               transition-property: opacity box-shadow;
               transition-delay: .25s;
               transition-duration: .5s;
+        <label>
+                grid-area: 1/-1;
+        </label>
       </figcaption>
-      +
-      <label>
-              display: block;
-              z-index: 2;
-              position: relative;
-              top: -{{S_o.PAD_8}};
-              right: 0;
-      </label>
       <aside>
               position: absolute;
-              top: 0;
+              top: {{S_o.PAD_8}};
+              padding: {{S_o.PAD_2}};
               min-width: var(--width_n);
-              height: 300px;  /* TEMPORARY */
-              background: red;
+              background: {{S_o.bg_lower}};
       </aside>
-      
-
+      <!--variant-->
       <input:checked />
       +
       <canvas>
@@ -132,22 +115,17 @@
       +
       <figcaption>
       </figcaption>
-      +
-      <label>
-      </label>
       +
       <input:checked />
       +
       <aside>
               display: block;
               z-index: 10;
-              box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
               transform: translateY( var(--height_n) );
               transition-property: transform;
               transition-delay: .1s;
               transition-duration: .5s;
       </aside>
-
 
       <input:checked />
       +
@@ -157,17 +135,17 @@
       <figcaption:hover>
               opacity: 1;
               transition-property: opacity;
-              transition-delay: 2s;
-              transition-duration: 1s;
-        </figcaption>
-
+              transition-delay: 1s;
+              transition-duration: .5s;
+      </figcaption>
+      <!--variant-->
       <input[id^="{{C_o.INPUT_ID_s}}_clip_"] />
-              display: none;
       +
       <div>
               display: none;
               width: var(--width_n);
       </div>
+      <!--variant-->
       <input:checked />
       +
       <div>
@@ -177,10 +155,6 @@
   </div>
 </details>
 
-<details[data--="{{C_o.STAT_a[3]}}_details"]:not([open])>
-
-</details>
-
 <details[data--="{{C_o.STAT_a[3]}}_details"][open]>
         transform: translate( 0, 0 );
         transition: .25s ease;
@@ -188,6 +162,7 @@
           opacity: 0;
           transition: .4s;
   </summary>
+  <!--variant-->
   <summary:hover>
           opacity: 1;
           border: 1px solid {{S_o.ins_shadow_ne}};
@@ -195,24 +170,27 @@
             opacity: 1;
     </span>
   </summary>
+
+
   <div>
     <header>
           opacity: 0;
           transition: .4s;
     </header>
+    <!--variant-->
     <header:hover>
           opacity: 1;
           border: 1px solid {{S_o.ins_shadow_ne}};
     </header>
     <article>
       <div>
-        height: var(--height_n);
-        border: 2px solid {{S_o.ins_shadow_ne}};
+              height: var(--height_n);
+              border: 2px solid {{S_o.ins_shadow_ne}};
       </div>
       <canvas>
               border: 2px solid {{S_o.ins_shadow_ne}};
       </canvas>
-      
+      <!--variant-->
       <div:hover>
       context( copy, next )
       </div>

@@ -15,8 +15,6 @@ const NORMAL_s  = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuu
 
 const F_o =
 {
-  data_o: {},
-
   stamp__s:    //: UTC: 2021-09-14T12:44:07Z
   (
     stamp_s
@@ -96,28 +94,6 @@ const F_o =
 
 module.exports =
 {
-  data__:
-  (
-    key_s,
-  ) =>
-    F_o
-      .data_o
-        [ key_s ]
-  ,
-
-
-  data__v:
-  (
-    key_s,
-    value_
-  ) =>
-    F_o
-      .data_o
-        [ key_s ] =
-        value_
-  ,
-
-
   tagEscape__s:
     content_s =>
       content_s
@@ -294,7 +270,8 @@ module.exports =
 
   legend__s:
   (
-    workId_s
+    workId_s,
+    full_b=true
   ) =>
   {
     const db_o =
@@ -336,16 +313,27 @@ module.exports =
       NUM_o
         .decimalSub__s( work_o.w_width_n )
 
-    return (
+    let legend_s =
       `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s}>`
       + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
       + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
-      + `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
-      + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
-      + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
-      + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
-      + `</${C_o.TABLE_TAG_s}>`
-    )
+
+      if
+      (
+        full_b
+      )
+      {
+        legend_s +=
+          `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
+          + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
+          + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
+          + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
+      }
+
+      legend_s +=
+        `</${C_o.TABLE_TAG_s}>`
+
+    return legend_s
   }
   ,
 

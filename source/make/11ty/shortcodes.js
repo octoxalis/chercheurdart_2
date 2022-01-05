@@ -7,8 +7,8 @@ const MARK_INS_o =
 const MARK_HEAD_o =
   require( '../lib/2mark-header.js' )
 
-const F_o =
-  require( '../data/F_o.js' )
+const FLY_o =
+  require( '../lib/flyer.js' )
   
 
 
@@ -40,24 +40,18 @@ const CODES_o =
   ,
 
 
-  keyval__s:
+  flyer__s:
   (
     source_s,
     key_s
   ) =>
   {
-    F_o
-      .data__v
+    FLY_o
+      .flyer__v
       (
         key_s,
-        MARK_o
-          .process__s( source_s )
+        source_s
       )
-
-    //;console.log( key_s )
-    //;console.log( F_o.data__( key_s ) )
-
-
   }
 
 }
@@ -74,7 +68,7 @@ module.exports =
       of
       [
         'section',
-        'keyval'
+        'flyer'
       ]
     )
     {

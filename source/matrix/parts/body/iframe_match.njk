@@ -1,3 +1,6 @@
+{% set data_o = D_o.data__o( permalink, collections.all ) %}
+{%- set _template_s %}
+
 <!DOCTYPE html>
 <div id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}_img" name="{{C_o.STAT_a[3]}}_nav" type="radio" checked>
@@ -43,39 +46,36 @@
   data-src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif">
 </canvas>
 <figcaption>
-{{F_o.legend__s( link_o.id_s )}}
+<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">&nbsp;</label>
 </figcaption>
-<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">
-plus...
-</label>
 <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal" type="checkbox" />
-<aside>
-<b>{{F_o.data__( 'comment_0' )}}</b>
-<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">FERMER</label>
-</aside>
+<aside data-flyer_n={{loop.index}}></aside>
 
 {% endfor %}
 {% endset%}
 
-
-  <details id="details_{{_id_s}}" data--="{{C_o.STAT_a[3]}}_details">
-    <summary>
-      <span>
-      {{_summary}}
-      </span>
-    </summary>
-    <div>
-      <article>
-      {{_article}}
-      </article>
-    </div>
-  </details>
+<details id="details_{{_id_s}}" data--="{{C_o.STAT_a[3]}}_details">
+  <summary>
+    <span>
+    {{_summary}}
+    </span>
+  </summary>
+  <div>
+    <article>
+    {{_article}}
+    </article>
+  </div>
+</details>
 
 
 {% endfor %}
 
 <img id="img_{{workID_s}}_reference" src="{{C_o.IMG_DIR_s}}{{workID_s}}/full/max/0/color.avif" loading=lazy />
 
-{% include "parts/body/match_svg.njk" %}
+{#% include "parts/body/match_svg.njk" %#}
   <script id=script_{{C_o.STAT_a[3]}} data-src="/assets/scripts/js/{{C_o.STAT_a[3]}}.min.js"></script>
 </div>
+
+{% endset -%}
+
+{{- _template_s | safe | template_end( data_o ) -}}{# post process #}

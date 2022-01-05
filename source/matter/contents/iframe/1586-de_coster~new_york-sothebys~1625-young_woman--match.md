@@ -9,8 +9,7 @@
 
   node_a:
   [
-    //: node_o  --> id_s = `${top_n}_${left_n}_${width_n}_${height_n}`
-    {
+    {                  //: node_a[0]
       top_n:    370,
       left_n:   550,
       width_n:  300,
@@ -18,8 +17,8 @@
 
       link_a:
       [
-        //: link_o
-        {
+        
+        {                //: link_a[0]
           id_s:    '1703-boucher~princeton-university~1748-arion',
           coord_s: '968 468',    //: center point
           scale:   1.5,          //: stretch
@@ -33,6 +32,10 @@
   ],
 }
 ---
-{%  _keyval  permalink + '_0' %}
-Ceci est un commentaire
-{% end_keyval %}
+{%  _flyer  1 %}
+{{F_o.legend__s( node_a[0].link_a[0].id_s, false )}}
+--
+^^Commentaire^^ mis en **forme**.  ,,
+<< Chercheur d'Art  ::  index.html >>
+{% end_flyer %}
+

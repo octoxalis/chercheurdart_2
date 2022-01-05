@@ -51,19 +51,6 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header {
 details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > label {
   width: 6ch;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > input[type=range] {
-  flex-grow: 1;
-  background: transparent;
-  cursor: pointer;
-  transform: scaleY( .3 );
-}
-details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > input[type=range]:focus {
-  outline: none;
-}
-details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > input[type=range]::-webkit-slider-runnable-track {
-  width: 100px;
-  height: 16px;
-}
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article {
   display: grid;
   height: var(--height_n);
@@ -82,51 +69,43 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.I
   padding: {{S_o.PAD_2}};
   opacity: 0;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > label, details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input, details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > aside {
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input, details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > aside {
   display: none;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas {
   display: block;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption {
-  display: block;
+  display: grid;
   z-index: 1;
   opacity: 0;
   transition-property: opacity box-shadow;
   transition-delay: .25s;
   transition-duration: .5s;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption + label {
-  display: block;
-  z-index: 2;
-  position: relative;
-  top: -{{S_o.PAD_8}};
-  right: 0;
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption > label {
+  grid-area: 1/-1;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > aside {
   position: absolute;
-  top: 0;
+  top: {{S_o.PAD_8}};
+  padding: {{S_o.PAD_2}};
   min-width: var(--width_n);
-  height: 300px;
-  background: red;
+  background: {{S_o.bg_lower}};
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption + label + input:checked + aside {
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption + input:checked + aside {
   display: block;
   z-index: 10;
-  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
-  transform: translate( 0, var(--height_n) );
+  transform: translateY( var(--height_n) );
   transition-property: transform;
   transition-delay: .1s;
-  transition-duration: 1s;
+  transition-duration: .5s;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption:hover {
   opacity: 1;
   transition-property: opacity;
-  transition-delay: 2s;
-  transition-duration: 1s;
-}
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] {
-  display: none;
+  transition-delay: 1s;
+  transition-duration: .5s;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] + div {
   display: none;

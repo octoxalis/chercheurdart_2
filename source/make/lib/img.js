@@ -50,6 +50,7 @@ module.exports =
       const gms_re =
         REX_o
           .new__re( 'gms' )
+          
       const s_re =
         REX_o
           .new__re( 's' )

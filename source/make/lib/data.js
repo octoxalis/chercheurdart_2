@@ -23,7 +23,8 @@ const DATA_a =    // default exported data: front matter properties list
   'F_o',
 ]
 
-module.exports =
+module
+  .exports =
 {
   data__o
   (
@@ -76,13 +77,11 @@ module.exports =
             DATA_a
           )
           {
-            export_o[prop_s] =
-              data_o
-                [prop_s]
+            export_o
+              [prop_s] =
+                data_o
+                  [prop_s]
           }
-
-
-
         }
       }
     }

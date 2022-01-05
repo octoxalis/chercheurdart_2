@@ -5,9 +5,9 @@ const INS_o  = require( './ins.js' )
 const TOP_o =  require( './topics.js' )
 const MARK_o = require( './markup.js' )
 const COM_o  = require( './comment.js' )
+const FLY_o  = require( './flyer.js' )
 
 const C_o    = require( '../data/C_o.js' )
-const F_o    = require( '../data/F_o.js' )
 
 
 
@@ -93,15 +93,18 @@ const BUI_o =
   ) =>
   {
     //;console.log( html_s )
-
     HEAD_o
       .add__v( data_o )
 
     let output_s =
+      FLY_o
+        .flyer__s( html_s )
+
+    output_s =
       INS_o
         .insert__s
         (
-          html_s,
+          output_s,
           data_o
             .permalink
         )
@@ -190,17 +193,6 @@ const BUI_o =
   {
     let body_s =
       source_s
-        //--.replaceAll
-        //--(
-        //--  '&lt;',
-        //--  '<',
-        //--)
-        //--.replaceAll
-        //--(
-        //--  '&gt;',
-        //--  '>',
-        //--)
-
     //... what else?
     return body_s
   }
@@ -331,15 +323,12 @@ module.exports =
 void function
 ()
 {
-  const MD_DIR_s =
-    C_o
-      .CONTENT_DIR_s    //: all Mardown files to process
-
   BUI_o
     .file_a =
       require( 'klaw-sync' )
       (
-        MD_DIR_s,
+        C_o
+          .CONTENT_DIR_s,    //: all Mardown files to process
         {
           nodir: true,
           depthLimit: 0    //: no subdirectory
