@@ -15,9 +15,9 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: {{S_o.PAD_6}};
+  gap: {{S_o.PAD_2}};
   padding: {{S_o.PAD_2}};
-  width: 320px;
+  width: 360px;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label > span[data-icon=substat] {
   border: 2px solid {{S_o.nav_substat}};
