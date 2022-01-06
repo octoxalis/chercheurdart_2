@@ -1,5 +1,20 @@
-<:root>
-</:root>
+<body>
+        overflow: auto;
+</body>
+
+<section#{{C_o.STAT_a[3]}}>
+  <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
+          --reference_padding: {{S_o.PAD_16}};
+
+          align-items: flex-start;
+          padding: var(--reference_padding);
+    <img />
+            display: block;
+            position: relative;
+            object-position: 0% 0%;
+            object-fit: none;
+  </div>
+</section>
 
 <details[data--="{{C_o.STAT_a[3]}}_details"]>
         --offsetX: calc( var(--width_n) * .5 );
@@ -12,6 +27,31 @@
         left:  calc( var(--left_n) - var(--offsetX) + var(--reference_padding) );
         transform: translate( var(--offsetX), var(--offsetY) );
         transition: .25s ease;
+  <summary>
+          margin-bottom: {{S_o.PAD_2}};
+          padding: {{S_o.PAD_1}};
+          width: 100%;
+          height: {{S_o.PAD_6}};    /* as marker.svg */
+          color: transparent;
+          list-style-image: url( marker_circle.svg );  /* ::marker */
+          cursor: pointer;
+    <span>
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            height: {{S_o.PAD_6}};    /* as marker.svg */
+            transition: .4s;
+      <label>
+              position: relative;
+              padding: 0 {{S_o.PAD_4}};
+        <span>
+                context( block, round_label )
+                background: red;      /* TEMPORARY */
+        </span>
+      </label>
+    </span>
+  </summary>
+  <!--variant-->
   <summary::-webkit-details-marker>
           background: url( marker_circle.svg );
   </summary>
@@ -21,41 +61,7 @@
             opacity: 1;
     </span>
   </summary>
-  <!--variant-->
-  <summary>
-          padding: {{S_o.PAD_1}};
-          width: 100%;
-          height: {{S_o.PAD_8}};    /* as marker.svg */
-          color: transparent;
-          list-style-image: url( marker_circle.svg );  /* ::marker */
-          cursor: pointer;
-    <span>
-            opacity: 0;
-            position: relative;
-            top: -{{S_o.PAD_2}};
-            transition: .4s;
-      <label>
-              position: relative;
-              padding: {{S_o.PAD_1}} {{S_o.PAD_4}};
-        <span>
-                context( block, round_label )
-                background: red;      /* TEMPORARY */
-        </span>
-      </label>
-    </span>
-  </summary>
-  +
-  <div>
-    <header>
-          display: flex;
-          flex-wrap: wrap;
-          padding: {{S_o.PAD_1}};
-          height: {{S_o.PAD_8}};
-      <label>
-              width: 6ch;
-      </label>
-    </header>
-  </div>
+
   <!--variant-->
   <div>
     <article>
@@ -70,12 +76,12 @@
               width: var(--width_n);
       </canvas>
       +
-      <figcaption>
+      <label>
               display: none;
+              z-index: 1;
               grid-area: 1/-1;
-              padding: {{S_o.PAD_2}};
-              opacity: 0;
-      </figcaption>
+      </label>
+
       <!--variant-->
       <input />
       context( copy, next )
@@ -89,23 +95,22 @@
               display: block;
       </canvas>
       +
-      <figcaption>
-              display: grid;
-              z-index: 1;
-              opacity: 0;
-              transition-property: opacity box-shadow;
+      <label>
+              display: block;
+              transition-property: box-shadow;
               transition-delay: .25s;
               transition-duration: .5s;
-        <label>
-                grid-area: 1/-1;
-        </label>
-      </figcaption>
+      </label>
+      +
+      <input />
+      +
       <aside>
               position: absolute;
               top: {{S_o.PAD_8}};
               padding: {{S_o.PAD_2}};
               min-width: var(--width_n);
               background: {{S_o.bg_lower}};
+              font-size: 90%;
       </aside>
       <!--variant-->
       <input:checked />
@@ -113,31 +118,20 @@
       <canvas>
       </canvas>
       +
-      <figcaption>
-      </figcaption>
+      <label>
+      </label>
       +
       <input:checked />
       +
       <aside>
               display: block;
-              z-index: 10;
+              z-index: 2;        /* above label for box-shadow */
               transform: translateY( var(--height_n) );
               transition-property: transform;
               transition-delay: .1s;
               transition-duration: .5s;
       </aside>
 
-      <input:checked />
-      +
-      <canvas>
-      </canvas>
-      +
-      <figcaption:hover>
-              opacity: 1;
-              transition-property: opacity;
-              transition-delay: 1s;
-              transition-duration: .5s;
-      </figcaption>
       <!--variant-->
       <input[id^="{{C_o.INPUT_ID_s}}_clip_"] />
       +
@@ -165,30 +159,20 @@
   <!--variant-->
   <summary:hover>
           opacity: 1;
-          border: 1px solid {{S_o.ins_shadow_ne}};
+          /*border: 1px solid {{S_o.ins_shadow_ne}};*/
     <span>
             opacity: 1;
     </span>
   </summary>
 
-
   <div>
-    <header>
-          opacity: 0;
-          transition: .4s;
-    </header>
-    <!--variant-->
-    <header:hover>
-          opacity: 1;
-          border: 1px solid {{S_o.ins_shadow_ne}};
-    </header>
     <article>
       <div>
               height: var(--height_n);
               border: 2px solid {{S_o.ins_shadow_ne}};
       </div>
       <canvas>
-              border: 2px solid {{S_o.ins_shadow_ne}};
+              /*border: 2px solid {{S_o.ins_shadow_ne}};*/
       </canvas>
       <!--variant-->
       <div:hover>
@@ -197,12 +181,20 @@
       <canvas:hover>
       context( copy, next )
       </canvas>
-      <figcaption:hover>
+      <label:hover>
               box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
               transition-property: box-shadow;
               transition-delay: .25s;
               transition-duration: .5s;
-      </figcaption>
+      </label>
     </article>
   </div>
 </details>
+
+<svg class="svg_icon">
+        --svg_icon_dim: 24px;
+        fill: {{S_o.highlight}};
+        stroke: none;
+        width:var(--svg_icon_dim);
+        height:var(--svg_icon_dim);
+</svg>

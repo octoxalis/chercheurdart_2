@@ -1,7 +1,7 @@
 ---js
 {
-  layout:    `assets/styles/css/match.njk`,
-  permalink: `assets/styles/css/match.min.css`,
+  layout:    `assets/styles/css/stat_match.njk`,
+  permalink: `assets/styles/css/stat_match.min.css`,
 }
 
 ---

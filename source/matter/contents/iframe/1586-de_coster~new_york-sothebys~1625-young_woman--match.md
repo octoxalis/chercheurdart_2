@@ -36,6 +36,10 @@
 {{F_o.legend__s( node_a[0].link_a[0].id_s, false )}}
 --
 ^^Commentaire^^ mis en **forme**.  ,,
+
+Rembrandt firmly belonged to the tradition of the “universal” artist, a designation well established in the Netherlands by the Dutch theorist Karel van Mander (1548–1606) for identifying great masters, such as Raphael (1483–1520) and Lucas van Leyden (1494–1533), who worked in a variety of media and depicted a broad range of subjects.2 However, from the very earliest years of his career, when he was still active in Leiden, Rembrandt redefined the essence of this concept by emphasizing, as well, the emotional and spiritual realms of the human experience in his art. ,,
+
 << Chercheur d'Art  ::  index.html >>
 {% end_flyer %}
+
 

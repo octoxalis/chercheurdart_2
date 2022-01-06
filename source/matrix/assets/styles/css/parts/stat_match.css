@@ -1,3 +1,17 @@
+body {
+  overflow: auto;
+}
+section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} {
+  --reference_padding: {{S_o.PAD_16}};
+  align-items: flex-start;
+  padding: var(--reference_padding);
+}
+section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img {
+  display: block;
+  position: relative;
+  object-position: 0% 0%;
+  object-fit: none;
+}
 details[data--="{{C_o.STAT_a[3]}}_details"] {
   --offsetX: calc( var(--width_n) * .5 );
   --offsetY: calc( ( var(--height_n) * .5 ) + {{S_o.PAD_8}} + {{S_o.PAD_8}} );
@@ -9,29 +23,25 @@ details[data--="{{C_o.STAT_a[3]}}_details"] {
   transform: translate( var(--offsetX), var(--offsetY) );
   transition: .25s ease;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > summary::-webkit-details-marker {
-  background: url( marker_circle.svg );
-}
-details[data--="{{C_o.STAT_a[3]}}_details"] > summary:hover > span {
-  opacity: 1;
-}
 details[data--="{{C_o.STAT_a[3]}}_details"] > summary {
+  margin-bottom: {{S_o.PAD_2}};
   padding: {{S_o.PAD_1}};
   width: 100%;
-  height: {{S_o.PAD_8}};
+  height: {{S_o.PAD_6}};
   color: transparent;
   list-style-image: url( marker_circle.svg );
   cursor: pointer;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span {
   opacity: 0;
-  position: relative;
-  top: -{{S_o.PAD_2}};
+  position: absolute;
+  top: 0;
+  height: {{S_o.PAD_6}};
   transition: .4s;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span > label {
   position: relative;
-  padding: {{S_o.PAD_1}} {{S_o.PAD_4}};
+  padding: 0 {{S_o.PAD_4}};
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span > label > span {
   display: inline-block;
@@ -42,14 +52,11 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span > label > span {
   text-align: center;
   background: red;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header {
-  display: flex;
-  flex-wrap: wrap;
-  padding: {{S_o.PAD_1}};
-  height: {{S_o.PAD_8}};
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary::-webkit-details-marker {
+  background: url( marker_circle.svg );
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > summary + div > header > label {
-  width: 6ch;
+details[data--="{{C_o.STAT_a[3]}}_details"] > summary:hover > span {
+  opacity: 1;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article {
   display: grid;
@@ -63,11 +70,10 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.I
   grid-area: 1/-1;
   width: var(--width_n);
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] + canvas + figcaption {
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] + canvas + label {
   display: none;
+  z-index: 1;
   grid-area: 1/-1;
-  padding: {{S_o.PAD_2}};
-  opacity: 0;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input, details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > aside {
   display: none;
@@ -75,36 +81,26 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input, details[dat
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas {
   display: block;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption {
-  display: grid;
-  z-index: 1;
-  opacity: 0;
-  transition-property: opacity box-shadow;
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + label {
+  display: block;
+  transition-property: box-shadow;
   transition-delay: .25s;
   transition-duration: .5s;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption > label {
-  grid-area: 1/-1;
-}
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > aside {
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + label + input + aside {
   position: absolute;
   top: {{S_o.PAD_8}};
   padding: {{S_o.PAD_2}};
   min-width: var(--width_n);
   background: {{S_o.bg_lower}};
+  font-size: 90%;
 }
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption + input:checked + aside {
+details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + label + input:checked + aside {
   display: block;
-  z-index: 10;
+  z-index: 2;
   transform: translateY( var(--height_n) );
   transition-property: transform;
   transition-delay: .1s;
-  transition-duration: .5s;
-}
-details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + figcaption:hover {
-  opacity: 1;
-  transition-property: opacity;
-  transition-delay: 1s;
   transition-duration: .5s;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input[id^="{{C_o.INPUT_ID_s}}_clip_"] + div {
@@ -124,29 +120,24 @@ details[data--="{{C_o.STAT_a[3]}}_details"][open] > summary {
 }
 details[data--="{{C_o.STAT_a[3]}}_details"][open] > summary:hover {
   opacity: 1;
-  border: 1px solid {{S_o.ins_shadow_ne}};
 }
 details[data--="{{C_o.STAT_a[3]}}_details"][open] > summary:hover > span {
   opacity: 1;
-}
-details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > header {
-  opacity: 0;
-  transition: .4s;
-}
-details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > header:hover {
-  opacity: 1;
-  border: 1px solid {{S_o.ins_shadow_ne}};
 }
 details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div {
   height: var(--height_n);
   border: 2px solid {{S_o.ins_shadow_ne}};
 }
-details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > canvas {
-  border: 2px solid {{S_o.ins_shadow_ne}};
-}
-details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div:hover, details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > canvas:hover, details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > figcaption:hover {
+details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div:hover, details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > canvas:hover, details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > label:hover {
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
   transition-property: box-shadow;
   transition-delay: .25s;
   transition-duration: .5s;
+}
+.svg_icon {
+  --svg_icon_dim: 24px;
+  fill: {{S_o.highlight}};
+  stroke: none;
+  width: var(--svg_icon_dim);
+  height: var(--svg_icon_dim);
 }

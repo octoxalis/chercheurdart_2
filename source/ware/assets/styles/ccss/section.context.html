@@ -4,18 +4,22 @@ context( stack, new )
         font-weight:600;
         /*text-transform:uppercase;*/
 </h3>
+
 <h4>
         --font_scale: 2.75vw;
         font-weight: 400;
 </h4>
+
 <h5>
         --font_scale: 2.5vw;
         font-weight: 400;
 </h5>
+
 <h6>
         --font_scale: 2.25vw;
         font-weight: 400;
 </h6>
+
 <ul>
         margin: {{S_o.PAD_2}} 0;
         context( block, vertical_hr )
@@ -32,6 +36,7 @@ context( stack, new )
           context( block, list_marker )
   </li>
 </ul>
+
 <pre>
         width: 100%;
         background: {{S_o.shadow_lo}};
@@ -42,9 +47,11 @@ context( stack, new )
         white-space: normal;
   </code>
 </pre>
+
 <label[for]>
         cursor: pointer;
 </label>
+
 <!--
 <blockquote>
         margin: 0 0 1rem 1rem;
@@ -54,6 +61,7 @@ context( stack, new )
     </p>
 </blockquote>
 -->
+
 <{{C_o.ROW_TAG_s}}[data--=abstract]>
         font-style: italic;
         padding-left: {{S_o.PAD_8}};
@@ -61,6 +69,8 @@ context( stack, new )
 <{{C_o.ROW_TAG_s}}[data--=stamp]>
         font-size: 90%;
 </{{C_o.ROW_TAG_s}}>
+
+
 <section>
         display: none;
         content-visibility: auto;   /* ?????????????? */
@@ -68,28 +78,27 @@ context( stack, new )
         top: 0;
         min-width: {{S_o.FULL_WIDTH_s}};
         min-height: var(--min_height);
-        /*height: fit-content;*/
         background: {{S_o.bgcolor}};
   <iframe>
           display: none;
   </iframe>
 </section>
+
 <!--variant-->
 <input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked />
 ~
 <section#{{C_o.SECTION_a[0]}}>
         context( copy, next )
 </section>
+
 <input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked />
 ~
 <section#{{C_o.SECTION_a[1]}}>
         display: block;
 </section>
+
+
+
 context( url, section_0.context.html )
 context( url, section_1.context.html )
-context( url, stat.context.html )
-context( url, burst.context.html )
-context( url, paint.context.html )
-context( url, match.context.html )
-context( url, match_clip.context.html )
-context( url, img_fs.context.html )
+context( url, section_2.context.html )

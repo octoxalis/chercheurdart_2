@@ -25,12 +25,12 @@
   [
     'stat.min.js',
     //XX 'drag.min.js',
-    'imgsLoad.min.js',
+    //XX'imgsLoad.min.js',
   ],
   css_a:
   [
     'stat.min.css',
-    'match.min.css',
+    'stat_match.min.css',
     '1586-de_coster~new_york-sothebys~1625-young_woman--match.min.css',
   ],
 

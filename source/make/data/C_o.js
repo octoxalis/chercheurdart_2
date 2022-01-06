@@ -64,19 +64,18 @@ const C_o =
   //=== HTML-BODY: SECTIONS ===
   SECTION_a:
   [
-    'article',
-    'galerie',
+    'article',    //: section[0]
+    'galerie',    //: section[1]
   ],
-
-  STAT_s: 'stat',
-
-  STAT_a:
+  STAT_a:         //: section[2]
   [
     'burst',
     'aster',
     'paint',
     'match',
   ],
+
+  STAT_s: 'stat',
 
   HTML_CHAR_o:
   {

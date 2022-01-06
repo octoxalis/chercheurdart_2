@@ -28,7 +28,7 @@
   css_a:
   [
     'stat.min.css',
-    'paint.min.css',
+    'stat_paint.min.css',
   ],
 
   version_a:

@@ -21,58 +21,57 @@
   + node_o.height_n %}
 
 {% set _summary %}
-<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0">
-  <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
-</label>
+  <label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0">
+    <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
+  </label>
 {% for link_o in node_o.link_a %}
-<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{loop.index}}">
-  <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
-</label>
+  <label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{loop.index}}">
+    <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
+  </label>
 {% endfor %}
 {% endset%}
 
 
 {% set _article %}
-<input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0" type="radio" name="clip_{{_id_s}}" checked />
-<div><!--EMPTY--></div>
+  <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0" type="radio" name="clip_{{_id_s}}" checked />
+  <div><!--EMPTY--></div>
 {% for link_o in node_o.link_a %}
-<input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{loop.index}}" type="radio" name="clip_{{_id_s}}" />
-
-<canvas
-  id="canvas_{{_id_s}}_{{loop.index}}"
-  width={{node_o.width_n}} height={{node_o.height_n}}
-  data-coord_s="{{link_o.coord_s}}"
-  data-scale_n="{{link_o.scale}}"
-  data-src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif">
-</canvas>
-<figcaption>
-<label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">&nbsp;</label>
-</figcaption>
-<input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal" type="checkbox" />
-<aside data-flyer_n={{loop.index}}></aside>
+  <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{loop.index}}" type="radio" name="clip_{{_id_s}}" />
+  
+  <canvas
+    id="canvas_{{_id_s}}_{{loop.index}}"
+    width={{node_o.width_n}} height={{node_o.height_n}}
+    data-coord_s="{{link_o.coord_s}}"
+    data-scale_n="{{link_o.scale}}"
+    data-src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif">
+  </canvas>
+  <!--<figcaption>-->
+    <label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">&nbsp;</label>
+  <!--</figcaption>-->
+  <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal" type="checkbox" />
+  <aside data-flyer_n={{loop.index}}></aside>
 
 {% endfor %}
 {% endset%}
 
-<details id="details_{{_id_s}}" data--="{{C_o.STAT_a[3]}}_details">
-  <summary>
-    <span>
-    {{_summary}}
-    </span>
-  </summary>
-  <div>
-    <article>
-    {{_article}}
-    </article>
-  </div>
-</details>
+  <details id="details_{{_id_s}}" data--="{{C_o.STAT_a[3]}}_details">
+    <summary>
+      <span>
+      {{_summary}}
+      </span>
+    </summary>
+    <div>
+      <article>
+      {{_article}}
+      </article>
+    </div>
+  </details>
 
 
 {% endfor %}
 
-<img id="img_{{workID_s}}_reference" src="{{C_o.IMG_DIR_s}}{{workID_s}}/full/max/0/color.avif" loading=lazy />
+  <img id="img_{{workID_s}}_reference" src="{{C_o.IMG_DIR_s}}{{workID_s}}/full/max/0/color.avif" loading=lazy />
 
-{#% include "parts/body/match_svg.njk" %#}
   <script id=script_{{C_o.STAT_a[3]}} data-src="/assets/scripts/js/{{C_o.STAT_a[3]}}.min.js"></script>
 </div>
 
