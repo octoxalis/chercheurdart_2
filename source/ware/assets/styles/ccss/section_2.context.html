@@ -12,39 +12,44 @@
             cursor: crosshair;
     </canvas>
     <nav>
-            z-index: 1;
-            position: absolute;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: {{S_o.PAD_2}};
+            gap: {{S_o.PAD_6}};
+            z-index: 1;
+            position: absolute;
             padding: {{S_o.PAD_2}};
             width: 360px;
       <label>
         <span[data-icon=substat]>
-                border: 2px solid {{S_o.nav_substat}};
+                background: {{S_o.nav_spot_stat}};
         </span>
       </label>
       <label:hover>
         <span[data-icon]>
-                border: 2px solid transparent;
+                background: transparent;
         </span>
       </label>
     </nav>
     
     <!--variant-->
-    <nav[id$=_scale]>
-            top:  {{S_o.PAD_6}};
-            left: 0;
+    <nav[id$="_settings"]>
+            top:  {{S_o.PAD_8}};
+            left: {{S_o.PAD_2}};
             height: fit-content;
-      <label>
-        <span[data-icon=substat_op]>
-                border: 2px solid {{S_o.nav_substat_op}};
+      <label:nth-of-type( 1 )>
+        <span>
+                background: {{S_o.nav_spot_set_1}};
+        </span>
+      </label>
+      <label:nth-of-type( 2 )>
+        <span>
+                background: {{S_o.nav_spot_set_2}};
         </span>
       </label>
       <label:hover>
-        <span[data-icon]>
-                border: 2px solid transparent;
+        <span>
+                background: transparent;
         </span> 
       </label>
     </nav>

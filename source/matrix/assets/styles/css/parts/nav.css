@@ -35,16 +35,26 @@ nav > a > span, nav > label > span {
   line-height: .85;
   text-align: center;
 }
-nav > a > span[data-icon=main], nav > label > span[data-icon=main] {
-  background: red;
+nav > a > span[data-icon=main] {
+  background: {{S_o.nav_spot_home}};
 }
-nav > label > span[data-icon=stat] {
-  background: yellow;
+nav > label:nth-of-type( 1 ) > span[data-icon=main] {
+  background: {{S_o.nav_spot_article}};
+}
+nav > label:nth-of-type( 2 ) > span[data-icon=main] {
+  background: {{S_o.nav_spot_gallery}};
+}
+nav > label:nth-of-type( 3 ) > span[data-icon=main] {
+  background: {{S_o.nav_spot_stat}};
 }
 nav > a:hover, nav > label:hover {
   transition: all ease .3s;
 }
-nav > a:hover > span, nav > label:hover > span {
+nav > a:hover {
+  text-decoration: none;
+  border: 0;
+}
+nav > a:hover > span[data-icon=main], nav > label:hover > span[data-icon=main] {
   background: transparent;
 }
 nav > a:hover:before, nav > label:hover:before {

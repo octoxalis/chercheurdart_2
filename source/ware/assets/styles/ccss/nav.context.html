@@ -45,16 +45,22 @@ context( stack, new )
     <!--variant-->
     <a>
       <span[data-icon=main]>
-        context( copy, next )
+              background: {{S_o.nav_spot_home}};
       </span>
     </a>
-    <label>
+    <label:nth-of-type( 1 )>
       <span[data-icon=main]>
-              background: red;
+              background: {{S_o.nav_spot_article}};
       </span>
-      <!--variant-->
-      <span[data-icon=stat]>
-              background: yellow;
+    </label>
+    <label:nth-of-type( 2 )>
+      <span[data-icon=main]>
+              background: {{S_o.nav_spot_gallery}};
+      </span>
+    </label>
+    <label:nth-of-type( 3 )>
+      <span[data-icon=main]>
+              background: {{S_o.nav_spot_stat}};
       </span>
     </label>
     <!--variant-->
@@ -65,12 +71,13 @@ context( stack, new )
             transition: all ease .3s;
     </label>
     <a:hover>
-      <span>
+      context( block, link_raw )
+      <span[data-icon=main]>
         context( copy, next )
       </span>
     </a>
     <label:hover>
-      <span>
+      <span[data-icon=main]>
               background: transparent;
       </span>
     </label>
@@ -85,7 +92,7 @@ context( stack, new )
 <!--variant-->
 <nav:hover>
   <a>
-          context( copy, next )
+    context( copy, next )
   </a>
   <label>
         opacity: 1;

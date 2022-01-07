@@ -315,7 +315,7 @@ const BUR_o =
       
     for
     (
-      let scale_s
+      let settings_s
       of
       [
         'inc',    //: + STEP_n
@@ -324,7 +324,7 @@ const BUR_o =
     )
     {
       document
-        .getElementById( `{{C_o.STAT_a[0]}}_scale_${scale_s}` )
+        .getElementById( `{{C_o.STAT_a[0]}}_settings_${settings_s}` )
           ?.addEventListener
           (
             'click',

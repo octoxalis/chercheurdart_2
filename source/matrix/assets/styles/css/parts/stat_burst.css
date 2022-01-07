@@ -19,9 +19,6 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.S
   font-weight: 500;
   line-height: 1.5;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span[data-icon=substat] {
-  border: 2px solid {{S_o.nav_substat}};
-}
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:first-of-type {
   flex-grow: 0;
 }
@@ -29,9 +26,6 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.S
   flex-grow: 0;
   margin: 0;
   width: 100%;
-}
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:hover > span[data-icon] {
-  border: 2px solid transparent;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}]:hover {
   opacity: 1;

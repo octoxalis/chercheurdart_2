@@ -50,7 +50,7 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span > label > span {
   border-radius: 50%;
   line-height: .85;
   text-align: center;
-  background: red;
+  background: {{S_o.match_spot}};
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > summary::-webkit-details-marker {
   background: url( marker_circle.svg );
@@ -94,7 +94,6 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + ca
   min-width: var(--width_n);
   height: var(--height_n);
   overflow-Y: auto;
-  background: {{S_o.bg_lower}};
   font-size: 90%;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + canvas + label + input:checked + aside {
