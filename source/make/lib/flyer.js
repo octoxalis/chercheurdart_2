@@ -31,7 +31,6 @@ const FLY_o =
   ) =>
   {
         //;console.log( FLY_o.flyer_o )
-
     for
     (
       const match_a
@@ -46,9 +45,11 @@ const FLY_o =
                 .new__re( 'gm' )
                 `<aside
                 \s+
-                data-flyer_n=
+                data-flyer=
                 (
-                \d+
+                \d+    //: node
+                _      //: underline separator
+                \d+    //: link
                 )
                 >`
             )

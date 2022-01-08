@@ -5,7 +5,8 @@
   <nav id="nav_{{stat_s}}_hue">
     <label>{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}<span id="{{stat_s}}_hue_n">0</span></label>
     <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}<span id="{{stat_s}}_hue_ratio_n">0</span></label>
-    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}">
+      <span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
     <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_lum" data-legend="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}"><span data-icon="substat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span></label>
   </nav>
 
@@ -28,8 +29,12 @@
   </nav>
   
   <nav id="{{stat_s}}_settings">
-    <label id="{{stat_s}}_settings_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
-    <label id="{{stat_s}}_settings_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
+    <label id="{{stat_s}}_settings_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}">
+      <span data-role=increment>{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
+    <label id="{{stat_s}}_settings_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}">
+      <span data-role=decrement>{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
   </nav>
   <script id=script_{{stat_s}} data-src="/assets/scripts/js/{{stat_s}}.min.js"></script>
 </div>

@@ -5,7 +5,8 @@
   <nav id="nav_burst_hue">
     <label>chromaticité<span id="burst_hue_n">0</span></label>
     <label>fréquence<span id="burst_hue_ratio_n">0</span></label>
-    <label for="IN_burst_sat" data-legend="intensité"><span data-icon="substat">&nbsp;</span></label>
+    <label for="IN_burst_sat" data-legend="intensité">
+      <span data-icon="substat">&nbsp;</span></label>
     <label for="IN_burst_lum" data-legend="luminosité"><span data-icon="substat">&nbsp;</span></label>
   </nav>
 
@@ -28,8 +29,12 @@
   </nav>
   
   <nav id="burst_settings">
-    <label id="burst_settings_inc" data-legend="agrandir"><span data-icon="substat_op">&nbsp;</span></label>
-    <label id="burst_settings_dec" data-legend="réduire"><span data-icon="substat_op">&nbsp;</span></label>
+    <label id="burst_settings_inc" data-legend="agrandir">
+      <span data-role=increment>&nbsp;</span>
+    </label>
+    <label id="burst_settings_dec" data-legend="réduire">
+      <span data-role=decrement>&nbsp;</span>
+    </label>
   </nav>
   <script id=script_burst data-src="/assets/scripts/js/burst.min.js"></script>
 </div>

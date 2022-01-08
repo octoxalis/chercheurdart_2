@@ -20,7 +20,7 @@
         --offsetX: calc( var(--width_n) * .5 );
         --offsetY: calc( ( var(--height_n) * .5 ) + {{S_o.PAD_8}} + {{S_o.PAD_8}} );
 
-        z-index: 100;               /* TEMPORARY */
+        z-index: 10;
         position: absolute;
         width: var(--width_n);
         top:  calc( var(--top_n) - var(--offsetY) + {{S_o.PAD_8}} + var(--reference_padding) );  /* summary height */
@@ -151,6 +151,7 @@
 </details>
 
 <details[data--="{{C_o.STAT_a[3]}}_details"][open]>
+        z-index: 20;
         transform: translate( 0, 0 );
         transition: .25s ease;
   <summary>
@@ -191,6 +192,9 @@
     </article>
   </div>
 </details>
+~
+<img />
+        z-index: 15;
 
 <svg class="svg_icon">
         --svg_icon_dim: 24px;

@@ -6,9 +6,15 @@
   <canvas id="canvas_{{stat_s}}_layer_0"></canvas>
 
   <nav id="{{stat_s}}_settings">
-    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_open.icon_s}}</span></label>
-    <label id="{{stat_s}}_settings_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
-    <label id="{{stat_s}}_settings_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
+    <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}">
+      <span data-role=open>{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
+    <label id="{{stat_s}}_settings_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}">
+      <span data-role=increment>{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
+    <label id="{{stat_s}}_settings_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}">
+      <span data-role=decrement>{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
   </nav>
 
 
@@ -16,35 +22,39 @@
   <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_settings">
     <aside id="aside_{{stat_s}}_settings">
       <nav id="nav_{{stat_s}}_settings">
-        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_close.icon_s}}</span></label>
-        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_origin" data-legend="{{C_o.NAV_LEGEND_o.paint_origin.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.paint_origin.icon_s}}</span></label>
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_img" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}">
+          <span data-role=open>{{C_o.NAV_LEGEND_o.stat_close.icon_s}}</span>
+        </label>
+        <label for="{{C_o.INPUT_ID_s}}_{{stat_s}}_origin" data-legend="{{C_o.NAV_LEGEND_o.paint_origin.legend_s}}">
+          <span data-role=origin>{{C_o.NAV_LEGEND_o.empty}}</span>
+        </label>
       </nav>
       <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_hue">
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_grade_hue" type=range min=0 max=100 />
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_precision_hue" type=range min=0 max=100 />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hue_grade" type=range min=0 max=100 />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_hue_precision" type=range min=0 max=360 />
         <canvas id="canvas_{{stat_s}}_hue"></canvas>
         <label id=canvas_{{stat_s}}_hue_trace>
-          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>&nbsp;</span>
+          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>{{C_o.NAV_LEGEND_o.empty}}</span>
           <output type="text">123</output>
           <output type="text">0,001</output>
         </label>
       </div>
       <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_sat">
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_grade_sat" type=range min=0 max=100 />
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_precision_sat" type=range min=0 max=100 />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_sat_grade" type=range min=0 max=100 />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_sat_precision" type=range min=0 max=100 />
         <canvas id="canvas_{{stat_s}}_sat"></canvas>
         <label id=canvas_{{stat_s}}_sat_trace>
-          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>&nbsp;</span>
+          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>{{C_o.NAV_LEGEND_o.empty}}</span>
           <output type="text">123</output>
           <output type="text">0,001</output>
         </label>
       </div>
       <div id="{{C_o.DIV_ID_s}}_{{stat_s}}_lum">
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_grade_lum" type=range min=0 max=100 />
-        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_precision_lum" type=range min=0 max=100 />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_lum_grade" type=range min=0 max=100 />
+        <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}_settings_lum_precision" type=range min=0 max=100 />
         <canvas id="canvas_{{stat_s}}_lum"></canvas>
         <label id=canvas_{{stat_s}}_lum_trace>
-          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>&nbsp;</span>
+          <span data-icon={{C_o.NAV_LEGEND_o.paint_cursor.legend_s}}>{{C_o.NAV_LEGEND_o.empty}}</span>
           <output type="text">123</output>
           <output type="text">0,001</output>
         </label>

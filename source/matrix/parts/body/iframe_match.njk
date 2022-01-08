@@ -9,11 +9,16 @@
 
 
   <nav id="{{C_o.STAT_a[3]}}_settings">
-    <label id="{{C_o.STAT_a[3]}}_settings_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_increment.icon_s}}</span></label>
-    <label id="{{C_o.STAT_a[3]}}_settings_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}"><span data-icon="substat_op">{{C_o.NAV_LEGEND_o.stat_decrement.icon_s}}</span></label>
+    <label id="{{C_o.STAT_a[3]}}_settings_inc" data-legend="{{C_o.NAV_LEGEND_o.stat_increment.legend_s}}">
+      <span data-role=increment>{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
+    <label id="{{C_o.STAT_a[3]}}_settings_dec" data-legend="{{C_o.NAV_LEGEND_o.stat_decrement.legend_s}}">
+      <span data-role=increment>{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
   </nav>
 
 {% for node_o in node_a %}
+{% set _oloop = loop.index %}
 {% set _id_s =
   node_o.top_n + '_'
   + node_o.left_n + '_'
@@ -25,7 +30,8 @@
     <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
   </label>
 {% for link_o in node_o.link_a %}
-  <label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{loop.index}}">
+{% set _index = _oloop + '_' + loop.index %}
+  <label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{_index}}">
     <span data-icon="stat">{{C_o.NAV_LEGEND_o.main.icon_s}}</span>
   </label>
 {% endfor %}
@@ -36,18 +42,19 @@
   <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0" type="radio" name="clip_{{_id_s}}" checked />
   <div><!--EMPTY--></div>
 {% for link_o in node_o.link_a %}
-  <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{loop.index}}" type="radio" name="clip_{{_id_s}}" />
+{% set _index = _oloop + '_' + loop.index %}
+  <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_{{_index}}" type="radio" name="clip_{{_id_s}}" />
   
   <canvas
-    id="canvas_{{_id_s}}_{{loop.index}}"
+    id="canvas_{{_id_s}}_{{_index}}"
     width={{node_o.width_n}} height={{node_o.height_n}}
     data-coord_s="{{link_o.coord_s}}"
     data-scale_n="{{link_o.scale}}"
     data-src="/assets/media/img/{{link_o.id_s}}/full/max/0/color.avif">
   </canvas>
-  <label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">&nbsp;</label>
+  <label for="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal">{{C_o.NAV_LEGEND_o.empty}}</label>
   <input id="{{C_o.INPUT_ID_s}}_clip_{{_id_s}}_0_modal" type="checkbox" />
-  <aside data-flyer_n={{loop.index}}></aside>
+  <aside data-flyer={{_index}}></aside>
 
 {% endfor %}
 {% endset%}

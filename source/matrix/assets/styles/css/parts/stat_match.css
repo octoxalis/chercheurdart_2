@@ -15,7 +15,7 @@ section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img {
 details[data--="{{C_o.STAT_a[3]}}_details"] {
   --offsetX: calc( var(--width_n) * .5 );
   --offsetY: calc( ( var(--height_n) * .5 ) + {{S_o.PAD_8}} + {{S_o.PAD_8}} );
-  z-index: 100;
+  z-index: 10;
   position: absolute;
   width: var(--width_n);
   top: calc( var(--top_n) - var(--offsetY) + {{S_o.PAD_8}} + var(--reference_padding) );
@@ -112,6 +112,7 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > div > article > input:checked + di
   display: block;
 }
 details[data--="{{C_o.STAT_a[3]}}_details"][open] {
+  z-index: 20;
   transform: translate( 0, 0 );
   transition: .25s ease;
 }
@@ -134,6 +135,9 @@ details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div:hover, d
   transition-property: box-shadow;
   transition-delay: .25s;
   transition-duration: .5s;
+}
+details[data--="{{C_o.STAT_a[3]}}_details"][open] ~ img {
+  z-index: 15;
 }
 .svg_icon {
   --svg_icon_dim: 24px;

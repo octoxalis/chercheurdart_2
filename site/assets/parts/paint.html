@@ -6,9 +6,15 @@
   <canvas id="canvas_paint_layer_0"></canvas>
 
   <nav id="paint_settings">
-    <label for="IN_paint_settings" data-legend="palette"><span data-icon="substat_op">&nbsp;</span></label>
-    <label id="paint_settings_inc" data-legend="agrandir"><span data-icon="substat_op">&nbsp;</span></label>
-    <label id="paint_settings_dec" data-legend="réduire"><span data-icon="substat_op">&nbsp;</span></label>
+    <label for="IN_paint_settings" data-legend="palette">
+      <span data-role=open>&nbsp;</span>
+    </label>
+    <label id="paint_settings_inc" data-legend="agrandir">
+      <span data-role=increment>&nbsp;</span>
+    </label>
+    <label id="paint_settings_dec" data-legend="réduire">
+      <span data-role=decrement>&nbsp;</span>
+    </label>
   </nav>
 
 
@@ -16,12 +22,16 @@
   <div id="DI_paint_settings">
     <aside id="aside_paint_settings">
       <nav id="nav_paint_settings">
-        <label for="IN_paint_img" data-legend="fermer"><span data-icon="substat_op">&nbsp;</span></label>
-        <label for="IN_paint_origin" data-legend="original"><span data-icon="substat_op">&#8722;</span></label>
+        <label for="IN_paint_img" data-legend="fermer">
+          <span data-role=open>&nbsp;</span>
+        </label>
+        <label for="IN_paint_origin" data-legend="original">
+          <span data-role=origin>&nbsp;</span>
+        </label>
       </nav>
       <div id="DI_paint_hue">
-        <input id="IN_paint_settings_grade_hue" type=range min=0 max=100 />
-        <input id="IN_paint_settings_precision_hue" type=range min=0 max=100 />
+        <input id="IN_paint_settings_hue_grade" type=range min=0 max=100 />
+        <input id="IN_paint_settings_hue_precision" type=range min=0 max=360 />
         <canvas id="canvas_paint_hue"></canvas>
         <label id=canvas_paint_hue_trace>
           <span data-icon=&nbsp;>&nbsp;</span>
@@ -30,8 +40,8 @@
         </label>
       </div>
       <div id="DI_paint_sat">
-        <input id="IN_paint_settings_grade_sat" type=range min=0 max=100 />
-        <input id="IN_paint_settings_precision_sat" type=range min=0 max=100 />
+        <input id="IN_paint_settings_sat_grade" type=range min=0 max=100 />
+        <input id="IN_paint_settings_sat_precision" type=range min=0 max=100 />
         <canvas id="canvas_paint_sat"></canvas>
         <label id=canvas_paint_sat_trace>
           <span data-icon=&nbsp;>&nbsp;</span>
@@ -40,8 +50,8 @@
         </label>
       </div>
       <div id="DI_paint_lum">
-        <input id="IN_paint_settings_grade_lum" type=range min=0 max=100 />
-        <input id="IN_paint_settings_precision_lum" type=range min=0 max=100 />
+        <input id="IN_paint_settings_lum_grade" type=range min=0 max=100 />
+        <input id="IN_paint_settings_lum_precision" type=range min=0 max=100 />
         <canvas id="canvas_paint_lum"></canvas>
         <label id=canvas_paint_lum_trace>
           <span data-icon=&nbsp;>&nbsp;</span>

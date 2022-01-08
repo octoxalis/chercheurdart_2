@@ -4,14 +4,29 @@ const PAI_o =
 {
   status_o: null,    //: STAT_W_o.status_o
 
-  ui:
+  SCALE_H_n: 1,
+  SCALE_V_n: 2,
+
+  hue_o:
   {
-    //... pointerX_n
-    //... pointerY_n
-    //... radius_n
-    //... stacking_n
+    grade_n: 0,
+    precision_n: 0,
   }
   ,
+  sat_o:
+  {
+    grade_n: 0,
+    precision_n: 0,
+  }
+  ,
+  lum_o:
+  {
+    grade_n: 0,
+    precision_n: 0,
+  }
+  ,
+
+
 
   message__v:
   (
@@ -46,6 +61,44 @@ const PAI_o =
 
 
   //... pointer_tracing
+  range__v:
+  (
+    id_s,
+    value_s
+  ) =>
+  {
+    ;console.log( id_s + ': ' + value_s )
+    PAI_o
+  }
+  ,
+
+
+
+  canvas__v:
+  (
+    id_s,
+    offsetX,
+    offsetY
+  ) =>
+  {
+    const atX_n =
+      ~~( +offsetX      //: number cast
+      /
+      PAI_o
+        .SCALE_H_n
+      )
+
+    const atY_n =
+      ~~( +offsetY      //: number cast
+      /
+      PAI_o
+        .SCALE_V_n
+      )
+
+    //;console.log( id_s + ': ' + atY_n + ' / ' + atX_n )
+
+  }
+  ,
 
 
 
@@ -63,30 +116,73 @@ const PAI_o =
       ]
     )
     {
-      const listen_e =
+      for
+      (
+        let range_s
+        of
+        [
+          'grade',
+          'precision'
+        ]
+      )
+      {
+        const range_e =
+          document
+            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings_${sub_s}_${range_s}` )
+            
+        range_e
+        &&
+        range_e
+          .addEventListener
+          (
+            'click',
+            click_o =>
+            {
+              PAI_o
+                .range__v
+                (
+                  click_o
+                    .target
+                      .id,
+                  click_o
+                    .target
+                      .value
+                )
+            }
+          )
+      }
+
+      const canvas_e =
         document
           .getElementById( `canvas_{{C_o.STAT_a[2]}}_${sub_s}` )
           
-      listen_e
+      canvas_e
       &&
-      listen_e
+      canvas_e
         .addEventListener
         (
           'click',
           click_o =>
           {
-            console.log( click_o )
-
             const
             {
-              offsetX: atx_n,
-              offsetY: aty_n
+              offsetX,
+              offsetY
             } =
               click_o
 
-            console.log( +atx_n + ' / ' + ~~( aty_n >>> 1 ) )
+            PAI_o
+              .canvas__v
+              (
+                click_o
+                  .target
+                    .id,
+                offsetX,
+                offsetY
+              )
           }
         )
+
     }
   }
   ,

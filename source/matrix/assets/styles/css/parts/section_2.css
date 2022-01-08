@@ -17,7 +17,7 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav {
   z-index: 1;
   position: absolute;
   padding: {{S_o.PAD_2}};
-  width: 360px;
+  width: {{ S_o.NAV_SETTINGS_s}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label > span[data-icon=substat] {
   background: {{S_o.nav_spot_stat}};
@@ -30,11 +30,14 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] {
   left: {{S_o.PAD_2}};
   height: fit-content;
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label:nth-of-type( 1 ) > span {
+section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=increment] {
   background: {{S_o.nav_spot_set_1}};
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label:nth-of-type( 2 ) > span {
+section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=decrement] {
   background: {{S_o.nav_spot_set_2}};
+}
+section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=open] {
+  background: {{S_o.nav_spot_set_3}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label:hover > span {
   background: transparent;

@@ -44,22 +44,21 @@ context( stack, new )
     </label>
     <!--variant-->
     <a>
-      <span[data-icon=main]>
+      <span[data-role=home]>
               background: {{S_o.nav_spot_home}};
       </span>
     </a>
-    <label:nth-of-type( 1 )>
-      <span[data-icon=main]>
+    <label>
+      <span[data-role={{C_o.SECTION_a[0]}}]>
               background: {{S_o.nav_spot_article}};
       </span>
-    </label>
-    <label:nth-of-type( 2 )>
-      <span[data-icon=main]>
+      <span[data-role={{C_o.SECTION_a[1]}}]>
               background: {{S_o.nav_spot_gallery}};
       </span>
-    </label>
-    <label:nth-of-type( 3 )>
-      <span[data-icon=main]>
+      <span[data-role={{C_o.SECTION_a[2]}}]>
+              background: {{S_o.nav_spot_stat}};
+      </span>
+      <span[data-role={{C_o.STAT_s}}]>
               background: {{S_o.nav_spot_stat}};
       </span>
     </label>
@@ -72,12 +71,12 @@ context( stack, new )
     </label>
     <a:hover>
       context( block, link_raw )
-      <span[data-icon=main]>
+      <span[data-role]>
         context( copy, next )
       </span>
     </a>
     <label:hover>
-      <span[data-icon=main]>
+      <span[data-role]>
               background: transparent;
       </span>
     </label>

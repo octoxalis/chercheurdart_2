@@ -84,13 +84,13 @@ const C_o =
 
   NAV_LEGEND_o:    //: property names === SECTION_a + STAT_a
   {
+    
+    empty:   `&nbsp;`,
+    main:    { icon_s: `&nbsp;`},     //: SPACE
+    stat:    { icon_s: `&#8901;`},    //: DOT OPERATOR ⋅
+    substat: { icon_s: `&#8728;`},    //: RING OPERATOR ∘
 
-    //XX placeholder: { icon_s: `&#8226;`},    //: BULLET •
-    main:        { icon_s: `&nbsp;`},     //: SPACE
-    stat:        { icon_s: `&#8901;`},    //: DOT OPERATOR ⋅
-    substat:     { icon_s: `&#8728;`},    //: RING OPERATOR ∘
-
-    close:       { legend_s: `&#215;`},       //: ×
+    close:   { legend_s: `&#215;`},       //: ×
 
     home:    { icon_s: `&#8226;`, legend_s: `accueil` },    //: ⌂
     article: { icon_s: `&#8226;`, legend_s: `article` },    //: ≣
@@ -113,7 +113,7 @@ const C_o =
     stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},     //: ⊜
     stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},      //: ⊜
 
-    paint_origin:   { icon_s: `&#8722;`, legend_s: `original`},
+    paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
     match_shape:     { icon_s: `&nbsp;`,  legend_s: `découpe`},

@@ -35,16 +35,19 @@ nav > a > span, nav > label > span {
   line-height: .85;
   text-align: center;
 }
-nav > a > span[data-icon=main] {
+nav > a > span[data-role=home] {
   background: {{S_o.nav_spot_home}};
 }
-nav > label:nth-of-type( 1 ) > span[data-icon=main] {
+nav > label > span[data-role={{C_o.SECTION_a[0]}}] {
   background: {{S_o.nav_spot_article}};
 }
-nav > label:nth-of-type( 2 ) > span[data-icon=main] {
+nav > label > span[data-role={{C_o.SECTION_a[1]}}] {
   background: {{S_o.nav_spot_gallery}};
 }
-nav > label:nth-of-type( 3 ) > span[data-icon=main] {
+nav > label > span[data-role={{C_o.SECTION_a[2]}}] {
+  background: {{S_o.nav_spot_stat}};
+}
+nav > label > span[data-role={{C_o.STAT_s}}] {
   background: {{S_o.nav_spot_stat}};
 }
 nav > a:hover, nav > label:hover {
@@ -54,7 +57,7 @@ nav > a:hover {
   text-decoration: none;
   border: 0;
 }
-nav > a:hover > span[data-icon=main], nav > label:hover > span[data-icon=main] {
+nav > a:hover > span[data-role], nav > label:hover > span[data-role] {
   background: transparent;
 }
 nav > a:hover:before, nav > label:hover:before {

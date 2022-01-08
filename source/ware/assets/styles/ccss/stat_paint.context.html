@@ -1,5 +1,4 @@
 <section#{{C_o.STAT_a[2]}}>
-        /*background: hsla( 100 17% 28%/1 );*/           /*TEMPORARY*/
   <div>
     <canvas>
             display: block;
@@ -18,11 +17,11 @@
             display: none;
             z-index: 1;
             position: absolute;
-            top: {{S_o.PAD_6}};
+            top: {{S_o.PAD_8}};
             left: 0;
-            width: 320px;
+            width: {{S_o.NAV_SETTINGS_s}};
             height: fit-content;
-            transform: translateX( -320px );
+            transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
             transition: transform .5s ease;
     </div>
   </div>
@@ -32,39 +31,46 @@
     ~
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
             display: block;
-            top: {{S_o.PAD_6}};
+            top: {{S_o.PAD_8}};
+            height: calc( 100vh - {{S_o.PAD_8}} );
+            overflow-X: hidden;
+            overflow-Y: auto;
             transform: translateX( 0 );
       <aside>
-	      display: grid;
-	      grid-template-rows: auto 1fr 1fr;
-              grid-gap: 0;
+              display: flex;
+              flex-direction: column;
+              gap: {{S_o.PAD_8}};
               padding: 0 {{S_o.PAD_4}} {{S_o.PAD_4}} {{S_o.PAD_4}} ;
-              width: 320px;
+              width: 100%;
               height: fit-content;
-        <nav#nav_{{C_o.STAT_a[2]}}_settings>
-	        grid-area: 1 / 1 / 2 / 3;
+        <nav[id$="_settings"]>
                 flex-direction: column;
-                justify-content: space-between;
-                margin: {{S_o.PAD_2}} 0 {{S_o.PAD_8}} 0;
-                width: 100%;
+                gap: {{S_o.PAD_6}};
           <label>
-            <span[data-icon=substat_op]>
-                    background: {{S_o.nav_substat_op}};
+            <span[data-role=increment]>
+                    background: {{S_o.nav_spot_set_1}};
+            </span>
+            <span[data-role=decrement]>
+                    background: {{S_o.nav_spot_set_2}};
+            </span>
+            <span[data-role=open]>
+                    background: {{S_o.nav_spot_set_3}};
+            </span>
+            <span[data-role=origin]>
+                    background: {{S_o.nav_spot_set_1}};
             </span>
           </label>
           <label:hover>
-            <span[data-icon]>
-                background: transparent;
-            </span>
+            <span>
+                    background: transparent;
+            </span> 
           </label>
         </nav>
         <div>
                   display: flex;
                   flex-direction: column;
-                  align-content: flex-end;
                   padding: {{S_o.PAD_4}};
                   height: fit-content;
-                  align-self: end;
           <input[type=range] />
                   position: absolute;
                   margin: -{{S_o.PAD_4}} 0;
@@ -123,7 +129,6 @@
           </label>
         </div>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue>
-	        grid-area: 2 / 1 / 4 / 2;
           <input[type=range]:nth-of-type( 2n ) />
                   width: calc( 360px * 2 );
           <canvas#canvas_{{C_o.STAT_a[2]}}_hue>
@@ -132,14 +137,12 @@
           </canvas>
         </div>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_sat>
-	        grid-area: 2 / 2 / 3 / 3;
           <canvas#canvas_{{C_o.STAT_a[2]}}_sat>
                 height: calc( 100px * 2 );
                 background: hsla(100 50% 50%/1);
           </canvas>
         </div>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_lum>
-	        grid-area: 3 / 2 / 4 / 3;
           <canvas#canvas_{{C_o.STAT_a[2]}}_lum>
                 height: calc( 100px * 2 );
                 background: hsla(200 50% 50%/1);

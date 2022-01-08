@@ -100,10 +100,10 @@ const STAT_o =
           .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
           (
             {
+              task_s:     'PUT_canvas',
               stat_s:     stat_s,
               part_s:     part_s,
               script_s:   script_s,
-              task_s:     'PUT_canvas',
               pixel_n:    window.devicePixelRatio,
               canvas_e:   offCanvas_e
             },
