@@ -92,55 +92,33 @@ const C_o =
 
     close:   { legend_s: `&#215;`},       //: ×
 
-    home:    { icon_s: `&#8226;`, legend_s: `accueil` },    //: ⌂
-    article: { icon_s: `&#8226;`, legend_s: `article` },    //: ≣
-    galerie: { icon_s: `&#8226;`, legend_s: `galerie` },    //: ⊡
-    //XX stat:    { icon_s: `&#x2237;`, legend_s: `analyse`},     //: ∷
+    home:    { icon_s: `&#8226;`, legend_s: `accueil` },
+    article: { icon_s: `&#8226;`, legend_s: `article` },
+    galerie: { icon_s: `&#8226;`, legend_s: `galerie` },
 
-    burst: { icon_s: `&#8718;`, legend_s: `burst`},       //: ⋇
-    aster: { icon_s: `&#8718;`, legend_s: `aster`},       //: ⊚
-    paint: { icon_s: `&#8718;`, legend_s: `paint`},       //: ⊜
-    match: { icon_s: `&#8718;`, legend_s: `corrélation`},       //: ⊜
+    burst: { icon_s: `&#8718;`, legend_s: `burst`},
+    aster: { icon_s: `&#8718;`, legend_s: `aster`},
+    paint: { icon_s: `&#8718;`, legend_s: `paint`},  
+    match: { icon_s: `&#8718;`, legend_s: `corrélation`},  
 
-    burst_hue:  { icon_s: `&#8728;`, legend_s: `chromaticité`},       //: ⊜
-    burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},    //: ⊜
-    burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},     //: ⊜
+    burst_hue:  { icon_s: `&#8728;`, legend_s: `tonalité`},  
+    burst_sat:  { icon_s: `&#8728;`, legend_s: `chromaticité`},
+    burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},
     
-    burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},       //: ⊜
+    burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},  
     
-    stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},     //: ⊜
-    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},      //: ⊜
-    stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},     //: ⊜
-    stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},      //: ⊜
+    stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
+    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`}, 
+    stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
+    stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`}, 
 
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
-    match_shape:     { icon_s: `&nbsp;`,  legend_s: `découpe`},
-    //XX match_circle:     { icon_s: `&nbsp;`,  legend_s: `cercle`},
-    //XX match_hellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse horiz`},
-    //XX match_vellipse:     { icon_s: `&nbsp;`,  legend_s: `ellipse verti`},
-    //XX match_square:     { icon_s: `&nbsp;`,  legend_s: `carré`},
-    //XX match_hrect:     { icon_s: `&nbsp;`,  legend_s: `rect horiz`},
-    //XX match_vrect:     { icon_s: `&nbsp;`,  legend_s: `rect verti`},
-    match_dimension:  { icon_s: `&nbsp;`,  legend_s: `dimension`},
-    //?? match_layers:     { icon_s: `&nbsp;`,  legend_s: `empilement`},
+    layer_s:          { icon_s: `&nbsp;`,  legend_s: `niveau`},
+    layers_add:      { icon_s: `&nbsp;`,  legend_s: `ajouter`},
+    layers_hide:     { icon_s: `&nbsp;`,  legend_s: `retirer`},
 
-    match_layers_add:      { icon_s: `&nbsp;`,  legend_s: `ajouter`},
-    match_layers_hide:     { icon_s: `&nbsp;`,  legend_s: `retirer`},
-
-    match_layers_up:       { icon_s: `&nbsp;`,  legend_s: `monter`},
-    match_layers_down:     { icon_s: `&nbsp;`,  legend_s: `descendre`},
-
-    match_layers_increase:     { icon_s: `&nbsp;`,  legend_s: `agrandir`},
-    match_layers_decrease:   { icon_s: `&nbsp;`,  legend_s: `réduire`},
-
-    match_layers_align:    { icon_s: `&nbsp;`,  legend_s: `aligner`},
-    match_layers_clip:     { icon_s: `&nbsp;`,  legend_s: `délimiter`},
-
-    match_layers_download:     { icon_s: `&nbsp;`,  legend_s: `&#8675; ${A_o.NAME_s}`},      //: downdash
-    match_layers_upload:     { icon_s: `&nbsp;`,  legend_s: `&#8673; Fichier local`},      //: updash
-    //XX match_rotation:  { icon_s: `&nbsp;`,  legend_s: `perspective`},
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
     close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
   },
@@ -157,10 +135,8 @@ const C_o =
   ],
 
 
-  //=== MATCH TOOLS ===
-  //XX IMG_RESIZE_n: .025,
-  //XX DRAG_IMG_Z_n: 100,
-  //XX DRAG_SETTINGS_Z_n: 101,
+  //=== PAINT TOOLS ===
+  CANVAS_RESIZE_n: .025,
 
 
   //=== HTML-BODY ANCHORS

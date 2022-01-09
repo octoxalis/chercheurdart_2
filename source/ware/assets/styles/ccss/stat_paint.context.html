@@ -1,18 +1,51 @@
+<:root>
+        --{{C_o.STAT_a[2]}}_canvas_width: 100;
+        --{{C_o.STAT_a[2]}}_transX: -100px;
+        --{{C_o.STAT_a[2]}}_trans_factor: 0;
+        --{{C_o.STAT_a[2]}}_perspective: 200vw;
+        --{{C_o.STAT_a[2]}}_rotateY: -60deg;
+</:root>
 <section#{{C_o.STAT_a[2]}}>
   <div>
     <canvas>
             display: block;
             position: absolute;
+            perspective-origin: center left;
+            transform: translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) perspective( var(--{{C_o.STAT_a[2]}}_perspective) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) );
     </canvas>
-    <canvas[id$=_layer_0]>
-            background: red;
+    <canvas[data-layer_n="0"]>
+        --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
+        background: red;
+        /*width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_0) * 1% );*/
+        opacity: 1;             /* TEMPORARY for stack_clip dev*/
     </canvas>
-    <canvas[id$=_match_1]>
-            background: blue;
+    <canvas[data-layer_n="1"]>
+          --{{C_o.STAT_a[2]}}_trans_factor: 1;
+          --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
+          background: blue;
+          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_1) * 1% ); */
+        </canvas>
+    <canvas[data-layer_n="2"]>
+          --{{C_o.STAT_a[2]}}_trans_factor: 2;
+          --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
+          background: green;
+          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
     </canvas>
-    <canvas[id$=_match_2]>
-            background: blue;
+
+    <canvas:not([data-layer_n="0"])>  /* TEMPORARY for dev purpose */
+            /* display: none; */
     </canvas>
+
+    <canvas[data-layer_b="0"]>
+            display: none;
+    </canvas>
+
+
+
+
+
+
+
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
             display: none;
             z-index: 1;
@@ -66,6 +99,62 @@
             </span> 
           </label>
         </nav>
+
+
+        <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items>
+                  width: 100%;
+                  border: none;
+          <li>
+                    padding: 0;
+                    list-style: none;
+            <label>
+                    display: grid;
+                    justify-items: center;
+                    border-radius: 4px;
+                    border: 2px solid {{S_o.shadow_ne}};
+            </label>
+            <label:hover>
+                    filter: brightness( {{S_o.brigtness_lo}} );
+                    background: {{S_o.ins_shadow_ne}};
+          </label>
+          </li>
+          <li:not(:first-child)>
+            <label>
+                    cursor: pointer;
+            </label>
+            <label:hover>
+                      filter: brightness( {{S_o.brigtness_lo}} );
+                      background: {{S_o.ins_shadow_ne}};
+            </label>
+          </li>
+          <li:before>
+                  content: '';        
+          </li>
+          <li[data-layer_b="0"]>
+                  display: none;
+          </li>
+        </ul>
+          
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_toggle>
+                display: flex;
+                flex-direction: column;
+                gap: {{S_o.PAD_2}};
+                padding: 0;
+                width: 100%;
+          <label>
+                  width: 100%;
+                  text-align: center;
+                  text-transform: uppercase;
+                  border-radius: 4px;
+                  border: 2px solid {{S_o.shadow_hi}};
+          </label>
+          <label:hover>
+                  filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );
+          </label>
+        </div>
+
+
+
         <div>
                   display: flex;
                   flex-direction: column;
@@ -91,7 +180,7 @@
                 width: 100px;
                 cursor: crosshair;
           </canvas>
-          <label>
+          <label[id$="_trace"]>
                   position: relative;
                   top: -100px;
                   left: {{S_o.PAD_3}};

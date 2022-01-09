@@ -1,69 +1,89 @@
 <!DOCTYPE html>
 <div id="DI_stat_paint">
-  <input id="IN_paint_img" name="paint_nav" type="radio" checked>
+  <input id="IN_paint_canvas" name="paint_nav" type="radio" checked>
   <input id="IN_paint_settings" name="paint_nav" type="radio">
 
-  <canvas id="canvas_paint_layer_0"></canvas>
+  <!--<canvas data-layer_n=0></canvas>-->
 
   <nav id="paint_settings">
     <label for="IN_paint_settings" data-legend="palette">
-      <span data-role=open>&nbsp;</span>
+      <span data-role="open">&nbsp;</span>
     </label>
     <label id="paint_settings_inc" data-legend="agrandir">
-      <span data-role=increment>&nbsp;</span>
+      <span data-role="increment">&nbsp;</span>
     </label>
     <label id="paint_settings_dec" data-legend="réduire">
-      <span data-role=decrement>&nbsp;</span>
+      <span data-role="decrement">&nbsp;</span>
     </label>
   </nav>
-
-
 
   <div id="DI_paint_settings">
     <aside id="aside_paint_settings">
       <nav id="nav_paint_settings">
-        <label for="IN_paint_img" data-legend="fermer">
-          <span data-role=open>&nbsp;</span>
+        <label for="IN_paint_canvas" data-legend="fermer">
+          <span data-role="open">&nbsp;</span>
         </label>
+        <!--
         <label for="IN_paint_origin" data-legend="original">
-          <span data-role=origin>&nbsp;</span>
+          <span data-role="origin">&nbsp;</span>
         </label>
+        -->
       </nav>
+
+
+
+
+      <ul id="DI_paint_layer_items"></ul>
+
+      <div id="DI_paint_layer_toggle">
+        <label id="LA_paint_layer_add">ajouter</label>
+        <label id="LA_paint_layer_hide">retirer</label>
+      </div>
+    PAI_o
+      .addLayer__v    //: reference work
+      (
+        document
+          .querySelector( 'body' )
+            .dataset
+              .work_s
+      )
+
+
+      
+
+
       <div id="DI_paint_hue">
-        <input id="IN_paint_settings_hue_grade" type=range min=0 max=100 />
-        <input id="IN_paint_settings_hue_precision" type=range min=0 max=360 />
+        <input id="IN_paint_hue_grade" type=range min=0 max=100 value=50 data-tip=50 />
+        <input id="IN_paint_hue_gap" type=range min=0 max=360 value=60 data-tip=60 />
         <canvas id="canvas_paint_hue"></canvas>
-        <label id=canvas_paint_hue_trace>
-          <span data-icon=&nbsp;>&nbsp;</span>
-          <output type="text">123</output>
-          <output type="text">0,001</output>
+        <label id="canvas_paint_hue_trace">
+          <span data-icon="&nbsp;">&nbsp;</span>
+          <output id="output_paint_hue" type="text">123</output>
+          <output id="output_paint_hue_freq" type="text">0,001</output>
         </label>
       </div>
       <div id="DI_paint_sat">
-        <input id="IN_paint_settings_sat_grade" type=range min=0 max=100 />
-        <input id="IN_paint_settings_sat_precision" type=range min=0 max=100 />
+        <input id="IN_paint_sat_grade" type=range min=0 max=100 value=50 data-tip=50 />
+        <input id="IN_paint_sat_gap" type=range min=0 max=100 value=60 data-tip=60 />
         <canvas id="canvas_paint_sat"></canvas>
-        <label id=canvas_paint_sat_trace>
-          <span data-icon=&nbsp;>&nbsp;</span>
-          <output type="text">123</output>
-          <output type="text">0,001</output>
+        <label id="canvas_paint_sat_trace">
+          <span data-icon="&nbsp;">&nbsp;</span>
+          <output id="output_paint_sat" type="text">123</output>
+          <output id="output_paint_sat_freq" type="text">0,001</output>
         </label>
       </div>
       <div id="DI_paint_lum">
-        <input id="IN_paint_settings_lum_grade" type=range min=0 max=100 />
-        <input id="IN_paint_settings_lum_precision" type=range min=0 max=100 />
+        <input id="IN_paint_lum_grade" type=range min=0 max=100 value=50 data-tip=50 />
+        <input id="IN_paint_lum_gap" type=range min=0 max=100 value=60 data-tip=60 />
         <canvas id="canvas_paint_lum"></canvas>
-        <label id=canvas_paint_lum_trace>
-          <span data-icon=&nbsp;>&nbsp;</span>
-          <output type="text">123</output>
-          <output type="text">0,001</output>
+        <label id="canvas_paint_lum_trace">
+          <span data-icon="&nbsp;">&nbsp;</span>
+          <output id="output_paint_lum" type="text">123</output>
+          <output id="output_paint_lum_freq" type="text">0,001</output>
         </label>
       </div>
     </aside>
   </div>
 
-
-
-
-  <script id=script_paint data-src="/assets/scripts/js/paint.min.js"></script>
+  <script id="script_paint" data-src="/assets/scripts/js/paint.min.js"></script>
 </div>

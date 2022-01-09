@@ -1,15 +1,33 @@
+:root {
+  --{{C_o.STAT_a[2]}}_canvas_width: 100;
+  --{{C_o.STAT_a[2]}}_transX: -100px;
+  --{{C_o.STAT_a[2]}}_trans_factor: 0;
+  --{{C_o.STAT_a[2]}}_perspective: 200vw;
+  --{{C_o.STAT_a[2]}}_rotateY: -60deg;
+}
 section#{{C_o.STAT_a[2]}} > div > canvas {
   display: block;
   position: absolute;
+  perspective-origin: center left;
+  transform: translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) perspective( var(--{{C_o.STAT_a[2]}}_perspective) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) );
 }
-section#{{C_o.STAT_a[2]}} > div > canvas[id$=_layer_0] {
+section#{{C_o.STAT_a[2]}} > div > canvas[data-layer_n="0"] {
+  --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
   background: red;
+  opacity: 1;
 }
-section#{{C_o.STAT_a[2]}} > div > canvas[id$=_match_1] {
+section#{{C_o.STAT_a[2]}} > div > canvas[data-layer_n="1"] {
+  --{{C_o.STAT_a[2]}}_trans_factor: 1;
+  --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
   background: blue;
 }
-section#{{C_o.STAT_a[2]}} > div > canvas[id$=_match_2] {
-  background: blue;
+section#{{C_o.STAT_a[2]}} > div > canvas[data-layer_n="2"] {
+  --{{C_o.STAT_a[2]}}_trans_factor: 2;
+  --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
+  background: green;
+}
+section#{{C_o.STAT_a[2]}} > div > canvas[data-layer_b="0"] {
+  display: none;
 }
 section#{{C_o.STAT_a[2]}} > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
   display: none;
@@ -57,6 +75,54 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav[id$="_settings"] > label:hover > span {
   background: transparent;
 }
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items {
+  width: 100%;
+  border: none;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li {
+  padding: 0;
+  list-style: none;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li > label {
+  display: grid;
+  justify-items: center;
+  border-radius: 4px;
+  border: 2px solid {{S_o.shadow_ne}};
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li > label:hover {
+  filter: brightness( {{S_o.brigtness_lo}} );
+  background: {{S_o.ins_shadow_ne}};
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li:not(:first-child) > label {
+  cursor: pointer;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li:not(:first-child) > label:hover {
+  filter: brightness( {{S_o.brigtness_lo}} );
+  background: {{S_o.ins_shadow_ne}};
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li:before {
+  content: '';
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"] {
+  display: none;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_toggle {
+  display: flex;
+  flex-direction: column;
+  gap: {{S_o.PAD_2}};
+  padding: 0;
+  width: 100%;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_toggle > label {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 2px solid {{S_o.shadow_hi}};
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_toggle > label:hover {
+  filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );
+}
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div {
   display: flex;
   flex-direction: column;
@@ -87,7 +153,7 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   width: 100px;
   cursor: crosshair;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label[id$="_trace"] {
   position: relative;
   top: -100px;
   left: {{S_o.PAD_3}};
@@ -96,7 +162,7 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   justify-content: space-between;
   width: 100px;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > output {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label[id$="_trace"] > output {
   width: 6ch;
   height: {{S_o.PAD_4}};
   color: currentColor;
@@ -107,16 +173,16 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   opacity: 0;
   line-height: 1.2;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > output:first-of-type {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label[id$="_trace"] > output:first-of-type {
   width: 3ch;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > span {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label[id$="_trace"] > span {
   width: {{S_o.PAD_3}};
   height: {{S_o.PAD_3}};
   background: {{S_o.nav_substat_op}};
   border-radius: 50%;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label > span:hover ~ output {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div > label[id$="_trace"] > span:hover ~ output {
   opacity: 1;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue > input[type=range]:nth-of-type( 2n ) {
