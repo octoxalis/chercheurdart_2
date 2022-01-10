@@ -5,7 +5,7 @@
 
   <!--<canvas data-layer_n=0></canvas>-->
 
-  <nav id="paint_settings">
+  <nav id="nav_paint_settings">
     <label for="IN_paint_settings" data-legend="palette">
       <span data-role="open">&nbsp;</span>
     </label>
@@ -18,29 +18,19 @@
   </nav>
 
   <div id="DI_paint_settings">
-    <aside id="aside_paint_settings">
-      <nav id="nav_paint_settings">
+    <aside>
+      <nav>
         <label for="IN_paint_canvas" data-legend="fermer">
           <span data-role="open">&nbsp;</span>
         </label>
-        <!--
-        <label for="IN_paint_origin" data-legend="original">
-          <span data-role="origin">&nbsp;</span>
-        </label>
-        -->
       </nav>
-
-
-
 
       <ul id="DI_paint_layer_items"></ul>
 
-      <div id="DI_paint_layer_toggle">
+      <div id="DI_paint_layer_setup">
         <label id="LA_paint_layer_add">ajouter</label>
-        <label id="LA_paint_layer_hide">retirer</label>
+        <label id="LA_paint_layer_hide">masquer</label>
       </div>
-
-      
 
 
       <div id="DI_paint_hue">
@@ -75,6 +65,17 @@
       </div>
     </aside>
   </div>
+
+<div id="DI_paint_layer_position">
+  <label for="LA_paint_layer_perspective">Perspective</label>
+  <input  id="IN_paint_layer_perspective" type=range min=100 max=1000 step=50 value=100 data-tip=100 />
+  <label for="LA_paint_layer_distance">Distance</label>
+  <input  id="IN_paint_layer_distance" type=range min=-200 max=200 step=10 value=-100 data-tip=--100 />
+  <label for="LA_paint_layer_rotate">Rotation</label>
+  <input  id="IN_paint_layer_rotate" type=range min=-100 max=100 step=5 value=0 data-tip=0 />
+  <label for="LA_paint_layer_scale">Rotation</label>
+  <input  id="IN_paint_layer_scale" type=range min=.1 max=1 step=.1 value=.5 data-tip=.5 />
+</div>
 
   <script id="script_paint" data-src="/assets/scripts/js/paint.min.js"></script>
 </div>

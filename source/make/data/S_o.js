@@ -110,7 +110,7 @@ const S_o =
   
   S_o.NAV_HEIGHT_s = S_o.PAD_8,
   S_o.NAV_LABEL_s  = S_o.PAD_4,
-  S_o.NAV_SETTINGS_s = '180px',
+  S_o.NAV_SETTINGS_s = '250px',
 
   
 

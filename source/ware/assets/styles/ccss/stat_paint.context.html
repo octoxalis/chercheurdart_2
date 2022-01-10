@@ -1,34 +1,63 @@
 <:root>
         --{{C_o.STAT_a[2]}}_canvas_width: 100;
-        --{{C_o.STAT_a[2]}}_transX: -100px;
-        --{{C_o.STAT_a[2]}}_trans_factor: 0;
-        --{{C_o.STAT_a[2]}}_perspective: 200vw;
-        --{{C_o.STAT_a[2]}}_rotateY: -60deg;
+        --{{C_o.STAT_a[2]}}_distance_x:  0;        /* factor */
+        --{{C_o.STAT_a[2]}}_perspective: 100;
+        --{{C_o.STAT_a[2]}}_distance:    -100;
+        --{{C_o.STAT_a[2]}}_rotate:      0;
+        --{{C_o.STAT_a[2]}}_scale:       .5;
 </:root>
 <section#{{C_o.STAT_a[2]}}>
   <div>
+        /* height: 200vh;   TEMPORARY */
     <canvas>
+            --{{C_o.STAT_a[2]}}_perspectiveX:  calc(var(--{{C_o.STAT_a[2]}}_perspective) * 1px);
+            --{{C_o.STAT_a[2]}}_translateX:    calc( var(--{{C_o.STAT_a[2]}}_distance) * var(--{{C_o.STAT_a[2]}}_distance_x) * 1px);
+            --{{C_o.STAT_a[2]}}_rotateY:       calc( var(--{{C_o.STAT_a[2]}}_rotate) * 1deg );
             display: block;
             position: absolute;
-            perspective-origin: center left;
-            transform: translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) perspective( var(--{{C_o.STAT_a[2]}}_perspective) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) );
+            perspective-origin: center center;
+            transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) ) scale( var(--{{C_o.STAT_a[2]}}_scale) );
+            /*transform: perspective( 300px ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) );*/
     </canvas>
     <canvas[data-layer_n="0"]>
-        --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
-        background: red;
+        --{{C_o.STAT_a[2]}}_distance_x: -3;
+        background: hsla(0 100% 50%/1);
         /*width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_0) * 1% );*/
         opacity: 1;             /* TEMPORARY for stack_clip dev*/
     </canvas>
     <canvas[data-layer_n="1"]>
-          --{{C_o.STAT_a[2]}}_trans_factor: 1;
-          --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
-          background: blue;
+          --{{C_o.STAT_a[2]}}_distance_x: -2;
+          background: hsla(60 100% 50%/1);
           /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_1) * 1% ); */
-        </canvas>
+    </canvas>
     <canvas[data-layer_n="2"]>
-          --{{C_o.STAT_a[2]}}_trans_factor: 2;
-          --{{C_o.STAT_a[2]}}_translateX: calc( var(--{{C_o.STAT_a[2]}}_transX) * var(--{{C_o.STAT_a[2]}}_trans_factor) );
-          background: green;
+          --{{C_o.STAT_a[2]}}_distance_x: -1;
+          background: hsla(120 100% 50%/1);
+          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
+    </canvas>
+    <canvas[data-layer_n="3"]>
+          --{{C_o.STAT_a[2]}}_distance_x: 0;
+          background: hsla(180 100% 50%/1);
+          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
+    </canvas>
+    <canvas[data-layer_n="4"]>
+          --{{C_o.STAT_a[2]}}_distance_x: 1;
+          background: hsla(240 100% 50%/1);
+          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
+    </canvas>
+    <canvas[data-layer_n="5"]>
+          --{{C_o.STAT_a[2]}}_distance_x: 2;
+          background: hsla(300 100% 50%/1);
+          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
+    </canvas>
+    <canvas[data-layer_n="6"]>
+          --{{C_o.STAT_a[2]}}_distance_x: 3;
+          background: hsla(0 100% 50%/1);
+          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
+    </canvas>
+    <canvas[data-layer_n="7"]>
+          --{{C_o.STAT_a[2]}}_distance_x: 4;
+          background: hsla(60 100% 50%/1);
           /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
     </canvas>
 
@@ -39,12 +68,6 @@
     <canvas[data-layer_b="0"]>
             display: none;
     </canvas>
-
-
-
-
-
-
 
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
             display: none;
@@ -57,6 +80,7 @@
             transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
             transition: transform .5s ease;
     </div>
+
   </div>
   <!--variant-->
   <div>
@@ -76,7 +100,7 @@
               padding: 0 {{S_o.PAD_4}} {{S_o.PAD_4}} {{S_o.PAD_4}} ;
               width: 100%;
               height: fit-content;
-        <nav[id$="_settings"]>
+        <nav>
                 flex-direction: column;
                 gap: {{S_o.PAD_6}};
           <label>
@@ -107,16 +131,26 @@
           <li>
                     padding: 0;
                     list-style: none;
+            <input />
+                    display: none;
             <label>
                     display: grid;
                     justify-items: center;
+                    margin: {{S_o.PAD_1}} 0;
                     border-radius: 4px;
                     border: 2px solid {{S_o.shadow_ne}};
             </label>
-            <label:hover>
+            <label:not(:first-of-type):hover>
                     filter: brightness( {{S_o.brigtness_lo}} );
                     background: {{S_o.ins_shadow_ne}};
-          </label>
+            </label>
+            <!--variant-->
+            <input:checked />
+            +
+            <label>
+                    background: {{S_o.table}};
+            </label>
+
           </li>
           <li:not(:first-child)>
             <label>
@@ -135,7 +169,7 @@
           </li>
         </ul>
           
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_toggle>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup>
                 display: flex;
                 flex-direction: column;
                 gap: {{S_o.PAD_2}};
@@ -152,8 +186,6 @@
                   filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );
           </label>
         </div>
-
-
 
         <div>
                   display: flex;
@@ -217,6 +249,8 @@
             </output>
           </label>
         </div>
+
+
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue>
           <input[type=range]:nth-of-type( 2n ) />
                   width: calc( 360px * 2 );
@@ -245,4 +279,42 @@
             box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
     </div>
   </div>
+
+
+
+  <div>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position>
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: calc( 100vh - 8em );
+            padding: {{S_o.PAD_2}};
+            background: {{S_o.table}};
+            border-radius: 4px;
+            opacity: .1;
+            transition: opacity .3s ease;
+      <label>
+              text-align: left;
+              text-transform: none;
+              font-size: 80%;
+              border: none;
+              opacity: .5;
+      </label>
+      <input[type=range]>
+              position: relative;
+              margin-top: -{{S_o.PAD_1}};    /* up */
+              width: 200px;
+              background: transparent;
+              cursor: pointer;
+              transform: scaleY( .3 );
+      </input>
+    </div>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position:hover>
+            opacity: 1;
+            transition: opacity 2s ease;
+    </div>
+  </div>
+
+
+
 </section>

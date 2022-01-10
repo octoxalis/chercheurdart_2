@@ -115,9 +115,14 @@ const C_o =
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
-    layer_s:          { icon_s: `&nbsp;`,  legend_s: `niveau`},
-    layers_add:      { icon_s: `&nbsp;`,  legend_s: `ajouter`},
-    layers_hide:     { icon_s: `&nbsp;`,  legend_s: `retirer`},
+    layer_s:            { icon_s: `&nbsp;`,  legend_s: `plan`},
+    layers_add:         { icon_s: `&nbsp;`,  legend_s: `ajouter`},
+    layers_hide:        { icon_s: `&nbsp;`,  legend_s: `masquer`},
+    layers_perspective: { icon_s: `&nbsp;`,  legend_s: `Perspective`},
+    layers_distance:    { icon_s: `&nbsp;`,  legend_s: `Distance`},
+    layers_rotation:    { icon_s: `&nbsp;`,  legend_s: `Rotation`},
+    layers_difference:  { icon_s: `&nbsp;`,  legend_s: `Difference`},
+    layers_union:       { icon_s: `&nbsp;`,  legend_s: `Union`},
 
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
     close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
@@ -137,6 +142,7 @@ const C_o =
 
   //=== PAINT TOOLS ===
   CANVAS_RESIZE_n: .025,
+  PAINT_LAYER_n:   4,
 
 
   //=== HTML-BODY ANCHORS

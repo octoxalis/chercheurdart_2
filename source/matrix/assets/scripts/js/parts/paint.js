@@ -26,6 +26,14 @@ const PAI_o =
   }
   ,
 
+  layer_o:
+  {
+    perspective_n: 0,
+    distance_n: 0,
+    rotation_n: 0
+  }
+  ,
+
 
 
   message__v:
@@ -62,7 +70,8 @@ const PAI_o =
 
   range__v:
   (
-    range_e
+    range_e,
+    callback_f
   ) =>
   {
     const value_s =
@@ -85,10 +94,14 @@ const PAI_o =
         .id
           .split( '_' )
 
-    PAI_o
-      [ `${sub_s}_o` ]
-        [ `${range_s}_n` ] =
-          +value_s      //: number cast
+    callback_f
+    &&
+    callback_f
+    (
+      sub_s,
+      range_s,
+      value_s
+    )
   }
   ,
 
@@ -145,8 +158,17 @@ const PAI_o =
 
 
 
-
-
+  layer__n:
+  () =>
+    Array
+      .from
+      (
+        document
+          .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
+            .querySelectorAll( 'li' )
+      )
+      .length
+  ,
 
 
 
@@ -156,11 +178,19 @@ const PAI_o =
   ) =>
   {
     const layer_n =
-      document
-        .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
-          .children
-            .length
-  
+      PAI_o
+        .layer__n()
+
+    if
+    (
+      layer_n
+      >=
+      +'{{C_o.PAINT_LAYER_n}}'
+    )
+    {
+      return void alert( 'Le nombre de plans maximum est atteint ' )
+    }
+    //-->
     let input_s = ''
   
     let id_s = ''
@@ -230,23 +260,8 @@ const PAI_o =
                     )
             }
           ),
-        '{{C_o.STAT_a[2]}}_settings'
+        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position'
       )
-        
-    DOM_o
-      .fragment__e
-      (
-        `<li data-layer_n=${layer_n}>
-          <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_animation_play_${layer_n}" data-layer_n=${layer_n} name={{C_o.STAT_a[2]}}_animation type="radio">
-          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_animation_play_${layer_n}">
-            <svg class="svg_icon">
-              <use href="#stack_circle"></use>
-              <title>${layer_n} {{C_o.LAYER_INDEX_s}} ${work_s}</title>
-            </svg>
-          </label>
-        </li>`,
-        '{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_animation_play'
-      )  
   }
   ,
   
@@ -264,17 +279,27 @@ const PAI_o =
   
   
   
-  hide__v:
-  (
-    op_s
-  ) =>
+  hideLayer__v:
+  () =>
   {
+    const selected_a =
+      PAI_o
+        .selected__a()
+
+    if
+    (
+      ! selected_a
+        .length    //: no selection
+    )
+    {
+      return void alert( `Aucun plan n'est sélectionné` )
+    }
+    //->
     for
     (
       selected_e
       of
-      PAI_o
-        .selected__a()
+      selected_a
     )
     {
       const layer_n =
@@ -400,22 +425,6 @@ const PAI_o =
       )
   }
   ,
-  
-  
-  
-  
-  
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -470,7 +479,16 @@ const PAI_o =
                   .range__v
                   (
                     event_o
-                      .target
+                      .target,
+                    (
+                      sub_s,
+                      range_s,
+                      value_s
+                    ) =>
+                      PAI_o
+                        [ `${sub_s}_o` ]
+                          [ `${range_s}_n` ] =
+                            +value_s      //: number cast
                   )
               }
             )
@@ -510,6 +528,79 @@ const PAI_o =
 
     }
 
+
+    let sub_s = 'layer'
+
+    for
+    (
+      let range_s
+      of
+      [
+        'perspective',
+        'distance',
+        'rotate',
+        'scale',
+      ]
+    )
+    {
+      const range_e =
+        document
+          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_${range_s}` )
+          
+      for
+      (
+        let event_s
+        of
+        [
+          'click',
+          'keydown'
+        ]
+      )
+      {
+        range_e
+        &&
+        range_e
+          .addEventListener
+          (
+            event_s,
+            event_o =>
+            {
+              PAI_o
+                .range__v
+                (
+                  event_o
+                    .target,
+                  (
+                    sub_s,
+                    range_s,
+                    value_s
+                  ) =>
+                    {
+                      PAI_o
+                        [ `${sub_s}_o` ]
+                          [ `${range_s}_n` ] =
+                            +value_s      //: number cast
+
+                      DOM_o
+                        .rootVar__v
+                        (
+                          `--{{C_o.STAT_a[2]}}_${range_s}`,
+                          +value_s
+                        )
+                    }
+                )
+            }
+          )
+      }
+    }
+
+
+
+
+
+
+
+
     const add_e =
       document
         .getElementById( `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_add` )
@@ -530,6 +621,23 @@ const PAI_o =
                   .dataset
                     .work_s
             )
+        }
+      )
+
+    const hide_e =
+      document
+        .getElementById( `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_hide` )
+        
+    hide_e
+    &&
+    hide_e
+      .addEventListener
+      (
+        'click',
+        click_o =>
+        {
+          PAI_o
+            .hideLayer__v()
         }
       )
 
