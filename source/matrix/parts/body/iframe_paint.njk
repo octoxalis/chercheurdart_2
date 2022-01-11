@@ -1,75 +1,97 @@
 <!DOCTYPE html>
 <div id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[2]}}">
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_canvas" name="{{C_o.STAT_a[2]}}_nav" type="radio" checked>
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings" name="{{C_o.STAT_a[2]}}_nav" type="radio">
+    <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_canvas" name="{{C_o.STAT_a[2]}}_nav" type="radio" checked>
+    <input
+    id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings" name="{{C_o.STAT_a[2]}}_nav" type="radio">
 
-  <!--<canvas data-layer_n=0></canvas>-->
+    <!--<canvas data-layer_n=0></canvas>-->
 
-  <nav id="nav_{{C_o.STAT_a[2]}}_settings">
-    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}">
-      <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
-    </label>
-  </nav>
-
-  <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings">
-    <aside>
-      <nav>
-        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_canvas" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}">
-          <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
+    <nav id="nav_{{C_o.STAT_a[2]}}_settings">
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}">
+            <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
         </label>
-      </nav>
+    </nav>
 
-      <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items"></ul>
+    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings">
+        <aside>
+            <nav>
+                <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_canvas" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}">
+                    <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
+                </label>
+            </nav>
 
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup">
-        <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_add">{{C_o.NAV_LEGEND_o.layers_add.legend_s}}</label>
-        <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_hide">{{C_o.NAV_LEGEND_o.layers_hide.legend_s}}</label>
-      </div>
+            <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items"></ul>
+
+            <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup">
+                <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_add">{{C_o.NAV_LEGEND_o.layers_add.legend_s}}</label>
+                <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_hide">{{C_o.NAV_LEGEND_o.layers_hide.legend_s}}</label>
+            </div>
 
 
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue">
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_grade" type=range min=0 max=100 value=50 data-tip=50 />
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap" type=range min=0 max=360 value=60 data-tip=60 />
-        <canvas id="canvas_{{C_o.STAT_a[2]}}_hue"></canvas>
-        <label id="canvas_{{C_o.STAT_a[2]}}_hue_trace">
-          <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
-          <output id="output_{{C_o.STAT_a[2]}}_hue" type="text">123</output>
-          <output id="output_{{C_o.STAT_a[2]}}_hue_freq" type="text">0,001</output>
-        </label>
-      </div>
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_sat">
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_grade" type=range min=0 max=100 value=50 data-tip=50 />
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_gap" type=range min=0 max=100 value=60 data-tip=60 />
-        <canvas id="canvas_{{C_o.STAT_a[2]}}_sat"></canvas>
-        <label id="canvas_{{C_o.STAT_a[2]}}_sat_trace">
-          <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
-          <output id="output_{{C_o.STAT_a[2]}}_sat" type="text">123</output>
-          <output id="output_{{C_o.STAT_a[2]}}_sat_freq" type="text">0,001</output>
-        </label>
-      </div>
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_lum">
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_grade" type=range min=0 max=100 value=50 data-tip=50 />
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_gap" type=range min=0 max=100 value=60 data-tip=60 />
-        <canvas id="canvas_{{C_o.STAT_a[2]}}_lum"></canvas>
-        <label id="canvas_{{C_o.STAT_a[2]}}_lum_trace">
-          <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
-          <output id="output_{{C_o.STAT_a[2]}}_lum" type="text">123</output>
-          <output id="output_{{C_o.STAT_a[2]}}_lum_freq" type="text">0,001</output>
-        </label>
-      </div>
-    </aside>
-  </div>
 
-<div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position">
-  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective" type=range min=100 max=2000 step=50 value=100 data-tip=500 />
-  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective">{{C_o.NAV_LEGEND_o.layers_perspective.legend_s}}</label>
-  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance" type=range min=-200 max=200 step=10 value=-100 data-tip=--100 />
-  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance">{{C_o.NAV_LEGEND_o.layers_distance.legend_s}}</label>
-  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate" type=range min=-100 max=100 step=5 value=0 data-tip=0 />
-  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate">{{C_o.NAV_LEGEND_o.layers_rotate.legend_s}}</label>
-  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale" type=range min=.1 max=1 step=.05 value=.5 data-tip=.5 />
-  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
-</div>
+            <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop">
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_none" type="radio" name=layer_set checked/>
+                <label for="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_none">{{C_o.NAV_LEGEND_o.layers_none.legend_s}}</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_union" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_union">{{C_o.NAV_LEGEND_o.layers_union.legend_s}}</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_difference" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_difference">{{C_o.NAV_LEGEND_o.layers_difference.legend_s}}</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_intersection" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_intersection">{{C_o.NAV_LEGEND_o.layers_intersection.legend_s}}</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_complement" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_complement">{{C_o.NAV_LEGEND_o.layers_complement.legend_s}}</label>
+            </ul>
 
-  <script id="script_{{C_o.STAT_a[2]}}" data-src="/assets/scripts/js/{{C_o.STAT_a[2]}}.min.js"></script>
+
+
+            <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue">
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap" type="range" min="0" max="360" value="60" data-tip="60"/>
+                <canvas id="canvas_{{C_o.STAT_a[2]}}_hue"></canvas>
+                <label id="canvas_{{C_o.STAT_a[2]}}_hue_trace">
+                    <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
+                    <output id="output_{{C_o.STAT_a[2]}}_hue" type="text">123</output>
+                    <output id="output_{{C_o.STAT_a[2]}}_hue_freq" type="text">0,001</output>
+                </label>
+            </div>
+            <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_sat">
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_gap" type="range" min="0" max="100" value="60" data-tip="60"/>
+                <canvas id="canvas_{{C_o.STAT_a[2]}}_sat"></canvas>
+                <label id="canvas_{{C_o.STAT_a[2]}}_sat_trace">
+                    <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
+                    <output id="output_{{C_o.STAT_a[2]}}_sat" type="text">123</output>
+                    <output id="output_{{C_o.STAT_a[2]}}_sat_freq" type="text">0,001</output>
+                </label>
+            </div>
+            <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_lum">
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_gap" type="range" min="0" max="100" value="60" data-tip="60"/>
+                <canvas id="canvas_{{C_o.STAT_a[2]}}_lum"></canvas>
+                <label id="canvas_{{C_o.STAT_a[2]}}_lum_trace">
+                    <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
+                    <output id="output_{{C_o.STAT_a[2]}}_lum" type="text">123</output>
+                    <output id="output_{{C_o.STAT_a[2]}}_lum_freq" type="text">0,001</output>
+                </label>
+            </div>
+        </aside>
+    </div>
+
+    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position">
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective" type="range" min="100" max="2000" step="50" value="100" data-tip="500"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective">{{C_o.NAV_LEGEND_o.layers_perspective.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance" type="range" min="-200" max="200" step="10" value="-100" data-tip="--100"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance">{{C_o.NAV_LEGEND_o.layers_distance.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate" type="range" min="-100" max="100" step="5" value="0" data-tip="0"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate">{{C_o.NAV_LEGEND_o.layers_rotate.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale" type="range" min=".1" max="1" step=".05" value=".5" data-tip=".5"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
+    </div>
+
+    <script id="script_{{C_o.STAT_a[2]}}" data-src="/assets/scripts/js/{{C_o.STAT_a[2]}}.min.js"></script>
 </div>

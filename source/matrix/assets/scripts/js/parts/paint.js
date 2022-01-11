@@ -191,6 +191,17 @@ const PAI_o =
       return void alert( 'Le nombre de plans maximum est atteint ' )
     }
     //-->
+    if
+    (
+      layer_n
+      >
+      1      //: layer_0 doesn't count
+    )
+    {
+      PAI_o
+        .displaySet__v( true )
+    }
+
     let input_s = ''
   
     let id_s = ''
@@ -279,6 +290,88 @@ const PAI_o =
   
   
   
+  operable__a:
+  () =>
+    Array
+      .from
+      (
+        document
+          .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"])` )
+      )
+  ,
+  
+
+
+  masked__n:
+  () =>
+    Array
+      .from
+      (
+        document
+          .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
+            .querySelectorAll( 'li[data-layer_b="0"]' )
+      )
+      ?.length
+  ,
+
+
+
+  mask__v:
+  (
+    node_e
+  ) =>
+  {
+    node_e
+      .dataset
+        .layer_b =
+          0
+
+    if
+    (
+      node_e
+        .checked
+    )
+    {
+      node_e
+        .checked =
+          false
+    }
+  }
+  ,
+
+  
+  
+  unmask__v:
+  (
+    node_e
+  ) =>
+  {
+    node_e
+      .removeAttribute( 'data-layer_b' )
+}
+  ,
+
+  
+  
+  displaySet__v:    //: show/hide set operators
+  (
+    display_b
+  ) =>
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[2]}}_setop_display`,
+        display_b
+        ?
+          'block'
+        :
+          'none'
+      )
+  ,
+
+
+
+
   hideLayer__v:
   () =>
   {
@@ -292,9 +385,65 @@ const PAI_o =
         .length    //: no selection
     )
     {
-      return void alert( `Aucun plan n'est sélectionné` )
+      if
+      (
+        ! PAI_o
+          .masked__n()
+      )
+      {
+        ;console.log( PAI_o.masked__n() )
+        window
+          .alert( `Aucun plan n'est sélectionné.` )
+        return
+      }
+      //-->
+      if
+      (
+        ! window
+          .confirm( `Aucun plan n'est sélectionné.\nVoulez-vous démasquer le premier plan masqué?` )
+      )
+      {
+        return
+      }
+      //->
+      let unmasked_e =
+        document
+          .querySelector( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"]` )
+
+      unmasked_e
+      &&
+      PAI_o
+        .unmask__v( unmasked_e )
+
+      if
+      (
+        PAI_o
+          .layer__n()
+        >
+        1      //: layer_0 doesn't count
+      )
+      {
+        PAI_o
+          .displaySet__v( true )
+      }
     }
-    //->
+
+    if
+    (
+      PAI_o
+        .operable__a()
+          .length
+      -
+      selected_a
+        .length
+      <
+      3      //: 2 operable + layer_0 (not operable)
+    )
+    {
+      PAI_o
+        .displaySet__v( false )
+    }
+
     for
     (
       selected_e
@@ -319,21 +468,8 @@ const PAI_o =
           )
       )
       {
-        node_e
-          .dataset
-            .layer_b =
-              0
-
-        if
-        (
-          node_e
-            .checked
-        )
-        {
-          node_e
-            .checked =
-              false
-        }
+        PAI_o
+          .mask__v( node_e )
       }
     }
   }
@@ -341,94 +477,6 @@ const PAI_o =
   
   
   
-  imgResize__v:
-  (
-    delta_n
-  ) =>
-  {
-    for
-    (
-      selected_e
-      of
-      PAI_o
-        .selected__a()
-    )
-    {
-      const layer_n =
-        selected_e
-          .dataset
-            .layer_n
-  
-      for
-      (
-        canvas_e
-        of
-        Array
-          .from
-          (
-            document
-              .querySelectorAll( `canvas[data-layer_n="${layer_n}"]` )
-          )
-      )
-      {
-        let size_n =
-          delta_n
-          +
-          +(canvas_e           //: number cast
-            .dataset
-              .size_n)
-  
-          canvas_e
-            .dataset
-              .size_n =
-                size_n
-  
-        document
-          .documentElement
-            .style
-              .setProperty
-              (
-                `--{{C_o.STAT_a[2]}}_canvas_ratio_${layer_n}`,
-                size_n
-              )
-      }
-    }
-  }
-  ,
-  
-  
-  
-  increase__v:
-  (
-    op_s
-  ) =>
-  {
-    PAI_o
-      .imgResize__v
-      (
-        +'{{C_o.CANVAS_RESIZE_n}}'
-      )
-  }
-  ,
-  
-  
-  
-  decrease__v:
-  (
-    op_s
-  ) =>
-  {
-    PAI_o
-      .imgResize__v
-      (
-        -'{{C_o.CANVAS_RESIZE_n}}'
-      )
-  }
-  ,
-
-
-
-
   listener__v
   ()
   {

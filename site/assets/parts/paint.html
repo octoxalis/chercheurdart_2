@@ -1,75 +1,97 @@
 <!DOCTYPE html>
 <div id="DI_stat_paint">
-  <input id="IN_paint_canvas" name="paint_nav" type="radio" checked>
-  <input id="IN_paint_settings" name="paint_nav" type="radio">
+    <input id="IN_paint_canvas" name="paint_nav" type="radio" checked>
+    <input
+    id="IN_paint_settings" name="paint_nav" type="radio">
 
-  <!--<canvas data-layer_n=0></canvas>-->
+    <!--<canvas data-layer_n=0></canvas>-->
 
-  <nav id="nav_paint_settings">
-    <label for="IN_paint_settings" data-legend="palette">
-      <span data-role="open">&nbsp;</span>
-    </label>
-  </nav>
-
-  <div id="DI_paint_settings">
-    <aside>
-      <nav>
-        <label for="IN_paint_canvas" data-legend="fermer">
-          <span data-role="open">&nbsp;</span>
+    <nav id="nav_paint_settings">
+        <label for="IN_paint_settings" data-legend="palette">
+            <span data-role="open">&nbsp;</span>
         </label>
-      </nav>
+    </nav>
 
-      <ul id="DI_paint_layer_items"></ul>
+    <div id="DI_paint_settings">
+        <aside>
+            <nav>
+                <label for="IN_paint_canvas" data-legend="fermer">
+                    <span data-role="open">&nbsp;</span>
+                </label>
+            </nav>
 
-      <div id="DI_paint_layer_setup">
-        <label id="LA_paint_layer_add">ajouter</label>
-        <label id="LA_paint_layer_hide">masquer</label>
-      </div>
+            <ul id="DI_paint_layer_items"></ul>
+
+            <div id="DI_paint_layer_setup">
+                <label id="LA_paint_layer_add">ajouter</label>
+                <label id="LA_paint_layer_hide">masquer</label>
+            </div>
 
 
-      <div id="DI_paint_hue">
-        <input id="IN_paint_hue_grade" type=range min=0 max=100 value=50 data-tip=50 />
-        <input id="IN_paint_hue_gap" type=range min=0 max=360 value=60 data-tip=60 />
-        <canvas id="canvas_paint_hue"></canvas>
-        <label id="canvas_paint_hue_trace">
-          <span data-icon="&nbsp;">&nbsp;</span>
-          <output id="output_paint_hue" type="text">123</output>
-          <output id="output_paint_hue_freq" type="text">0,001</output>
-        </label>
-      </div>
-      <div id="DI_paint_sat">
-        <input id="IN_paint_sat_grade" type=range min=0 max=100 value=50 data-tip=50 />
-        <input id="IN_paint_sat_gap" type=range min=0 max=100 value=60 data-tip=60 />
-        <canvas id="canvas_paint_sat"></canvas>
-        <label id="canvas_paint_sat_trace">
-          <span data-icon="&nbsp;">&nbsp;</span>
-          <output id="output_paint_sat" type="text">123</output>
-          <output id="output_paint_sat_freq" type="text">0,001</output>
-        </label>
-      </div>
-      <div id="DI_paint_lum">
-        <input id="IN_paint_lum_grade" type=range min=0 max=100 value=50 data-tip=50 />
-        <input id="IN_paint_lum_gap" type=range min=0 max=100 value=60 data-tip=60 />
-        <canvas id="canvas_paint_lum"></canvas>
-        <label id="canvas_paint_lum_trace">
-          <span data-icon="&nbsp;">&nbsp;</span>
-          <output id="output_paint_lum" type="text">123</output>
-          <output id="output_paint_lum_freq" type="text">0,001</output>
-        </label>
-      </div>
-    </aside>
-  </div>
 
-<div id="DI_paint_layer_position">
-  <input  id="IN_paint_layer_perspective" type=range min=100 max=2000 step=50 value=100 data-tip=500 />
-  <label for="LA_paint_layer_perspective">Perspective</label>
-  <input  id="IN_paint_layer_distance" type=range min=-200 max=200 step=10 value=-100 data-tip=--100 />
-  <label for="LA_paint_layer_distance">Distance</label>
-  <input  id="IN_paint_layer_rotate" type=range min=-100 max=100 step=5 value=0 data-tip=0 />
-  <label for="LA_paint_layer_rotate">Rotation</label>
-  <input  id="IN_paint_layer_scale" type=range min=.1 max=1 step=.05 value=.5 data-tip=.5 />
-  <label for="LA_paint_layer_scale">Échelle</label>
-</div>
+            <ul id="DI_paint_layer_setop">
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_paint_layer_set_none" type="radio" name=layer_set checked/>
+                <label for="{C_o.LABEL_ID_s}}_paint_layer_set_none">Aucune opération</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_paint_layer_set_union" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_paint_layer_set_union">Union</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_paint_layer_set_difference" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_paint_layer_set_difference">Différence</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_paint_layer_set_intersection" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_paint_layer_set_intersection">Intersection</label>
+              <li>
+                <input  id="{C_o.LABEL_ID_s}}_paint_layer_set_complement" type="radio" name=layer_set />
+                <label for="{C_o.LABEL_ID_s}}_paint_layer_set_complement">Complément</label>
+            </ul>
 
-  <script id="script_paint" data-src="/assets/scripts/js/paint.min.js"></script>
+
+
+            <div id="DI_paint_hue">
+                <input id="IN_paint_hue_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
+                <input id="IN_paint_hue_gap" type="range" min="0" max="360" value="60" data-tip="60"/>
+                <canvas id="canvas_paint_hue"></canvas>
+                <label id="canvas_paint_hue_trace">
+                    <span data-icon="&nbsp;">&nbsp;</span>
+                    <output id="output_paint_hue" type="text">123</output>
+                    <output id="output_paint_hue_freq" type="text">0,001</output>
+                </label>
+            </div>
+            <div id="DI_paint_sat">
+                <input id="IN_paint_sat_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
+                <input id="IN_paint_sat_gap" type="range" min="0" max="100" value="60" data-tip="60"/>
+                <canvas id="canvas_paint_sat"></canvas>
+                <label id="canvas_paint_sat_trace">
+                    <span data-icon="&nbsp;">&nbsp;</span>
+                    <output id="output_paint_sat" type="text">123</output>
+                    <output id="output_paint_sat_freq" type="text">0,001</output>
+                </label>
+            </div>
+            <div id="DI_paint_lum">
+                <input id="IN_paint_lum_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
+                <input id="IN_paint_lum_gap" type="range" min="0" max="100" value="60" data-tip="60"/>
+                <canvas id="canvas_paint_lum"></canvas>
+                <label id="canvas_paint_lum_trace">
+                    <span data-icon="&nbsp;">&nbsp;</span>
+                    <output id="output_paint_lum" type="text">123</output>
+                    <output id="output_paint_lum_freq" type="text">0,001</output>
+                </label>
+            </div>
+        </aside>
+    </div>
+
+    <div id="DI_paint_layer_position">
+        <input id="IN_paint_layer_perspective" type="range" min="100" max="2000" step="50" value="100" data-tip="500"/>
+        <label for="LA_paint_layer_perspective">Perspective</label>
+        <input id="IN_paint_layer_distance" type="range" min="-200" max="200" step="10" value="-100" data-tip="--100"/>
+        <label for="LA_paint_layer_distance">Distance</label>
+        <input id="IN_paint_layer_rotate" type="range" min="-100" max="100" step="5" value="0" data-tip="0"/>
+        <label for="LA_paint_layer_rotate">Rotation</label>
+        <input id="IN_paint_layer_scale" type="range" min=".1" max="1" step=".05" value=".5" data-tip=".5"/>
+        <label for="LA_paint_layer_scale">Échelle</label>
+    </div>
+
+    <script id="script_paint" data-src="/assets/scripts/js/paint.min.js"></script>
 </div>

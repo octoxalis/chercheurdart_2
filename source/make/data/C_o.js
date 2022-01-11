@@ -115,16 +115,19 @@ const C_o =
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
-    layer_s:            { icon_s: `&nbsp;`,  legend_s: `plan`},
+    layer_s:            { icon_s: `&nbsp;`,  legend_s: `Plan`},
     layers_add:         { icon_s: `&nbsp;`,  legend_s: `ajouter`},
     layers_hide:        { icon_s: `&nbsp;`,  legend_s: `masquer`},
     layers_perspective: { icon_s: `&nbsp;`,  legend_s: `Perspective`},
     layers_distance:    { icon_s: `&nbsp;`,  legend_s: `Distance`},
     layers_rotate:      { icon_s: `&nbsp;`,  legend_s: `Rotation`},
     layers_scale:       { icon_s: `&nbsp;`,  legend_s: `Échelle`},
-    
-    layers_difference:  { icon_s: `&nbsp;`,  legend_s: `Difference`},
+
+    layers_none:        { icon_s: `&nbsp;`,  legend_s: `Aucune opération`},
     layers_union:       { icon_s: `&nbsp;`,  legend_s: `Union`},
+    layers_difference:  { icon_s: `&nbsp;`,  legend_s: `Différence`},
+    layers_intersection:  { icon_s: `&nbsp;`,  legend_s: `Intersection`},
+    layers_complement:  { icon_s: `&nbsp;`,  legend_s: `Complément`},
 
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
     close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
