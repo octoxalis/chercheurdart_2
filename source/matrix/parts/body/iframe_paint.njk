@@ -61,14 +61,14 @@
   </div>
 
 <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position">
+  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective" type=range min=100 max=2000 step=50 value=100 data-tip=500 />
   <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective">{{C_o.NAV_LEGEND_o.layers_perspective.legend_s}}</label>
-  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective" type=range min=100 max=1000 step=50 value=100 data-tip=100 />
-  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance">{{C_o.NAV_LEGEND_o.layers_distance.legend_s}}</label>
   <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance" type=range min=-200 max=200 step=10 value=-100 data-tip=--100 />
-  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate">{{C_o.NAV_LEGEND_o.layers_rotation.legend_s}}</label>
+  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance">{{C_o.NAV_LEGEND_o.layers_distance.legend_s}}</label>
   <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate" type=range min=-100 max=100 step=5 value=0 data-tip=0 />
-  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale">{{C_o.NAV_LEGEND_o.layers_rotation.legend_s}}</label>
-  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale" type=range min=.1 max=1 step=.1 value=.5 data-tip=.5 />
+  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate">{{C_o.NAV_LEGEND_o.layers_rotate.legend_s}}</label>
+  <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale" type=range min=.1 max=1 step=.05 value=.5 data-tip=.5 />
+  <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
 </div>
 
   <script id="script_{{C_o.STAT_a[2]}}" data-src="/assets/scripts/js/{{C_o.STAT_a[2]}}.min.js"></script>

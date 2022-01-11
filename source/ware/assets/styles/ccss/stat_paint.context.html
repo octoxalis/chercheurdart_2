@@ -1,7 +1,7 @@
 <:root>
         --{{C_o.STAT_a[2]}}_canvas_width: 100;
         --{{C_o.STAT_a[2]}}_distance_x:  0;        /* factor */
-        --{{C_o.STAT_a[2]}}_perspective: 100;
+        --{{C_o.STAT_a[2]}}_perspective: 500;
         --{{C_o.STAT_a[2]}}_distance:    -100;
         --{{C_o.STAT_a[2]}}_rotate:      0;
         --{{C_o.STAT_a[2]}}_scale:       .5;
@@ -77,6 +77,7 @@
             left: 0;
             width: {{S_o.NAV_SETTINGS_s}};
             height: fit-content;
+            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
             transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
             transition: transform .5s ease;
     </div>
@@ -97,7 +98,7 @@
               display: flex;
               flex-direction: column;
               gap: {{S_o.PAD_8}};
-              padding: 0 {{S_o.PAD_4}} {{S_o.PAD_4}} {{S_o.PAD_4}} ;
+              padding: 0 {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_8}};    /* left space for input data-tip */
               width: 100%;
               height: fit-content;
         <nav>
@@ -165,7 +166,7 @@
                   content: '';        
           </li>
           <li[data-layer_b="0"]>
-                  display: none;
+                  opacity: .25;    /* disabled */
           </li>
         </ul>
           
@@ -190,6 +191,7 @@
         <div>
                   display: flex;
                   flex-direction: column;
+                  position: relative;
                   padding: {{S_o.PAD_4}};
                   height: fit-content;
           <input[type=range] />
@@ -275,14 +277,16 @@
       <canvas>
       </canvas>
     </div>
-    <div:hover>
-            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
-    </div>
   </div>
 
 
 
   <div>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position:hover>
+            opacity: 1;
+            transition: opacity 2s ease;
+    </div>
+
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position>
             display: flex;
             flex-direction: column;
@@ -293,25 +297,31 @@
             border-radius: 4px;
             opacity: .1;
             transition: opacity .3s ease;
+      <input[type=range]>
+              position: relative;
+              top: {{S_o.PAD_5}};    /* under following label */
+              width: 200px;
+              background: transparent;
+              cursor: pointer;
+              transform: scaleY( .3 );
+      </input>
       <label>
+              position: relative;
+              top: -{{S_o.PAD_6}};    /* above preceding input */
+              padding: {{S_o.PAD_1}};
               text-align: left;
               text-transform: none;
               font-size: 80%;
               border: none;
               opacity: .5;
       </label>
-      <input[type=range]>
-              position: relative;
-              margin-top: -{{S_o.PAD_1}};    /* up */
-              width: 200px;
-              background: transparent;
-              cursor: pointer;
-              transform: scaleY( .3 );
-      </input>
-    </div>
-    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position:hover>
-            opacity: 1;
-            transition: opacity 2s ease;
+
+      <input[type=range]:focus />
+              outline: none;
+      +
+      <label>
+              background: {{S_o.lighter}};
+        </label>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 :root {
   --{{C_o.STAT_a[2]}}_canvas_width: 100;
   --{{C_o.STAT_a[2]}}_distance_x: 0;
-  --{{C_o.STAT_a[2]}}_perspective: 100;
+  --{{C_o.STAT_a[2]}}_perspective: 500;
   --{{C_o.STAT_a[2]}}_distance: -100;
   --{{C_o.STAT_a[2]}}_rotate: 0;
   --{{C_o.STAT_a[2]}}_scale: .5;
@@ -59,6 +59,7 @@ section#{{C_o.STAT_a[2]}} > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_setting
   left: 0;
   width: {{S_o.NAV_SETTINGS_s}};
   height: fit-content;
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
   transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
   transition: transform .5s ease;
 }
@@ -74,7 +75,7 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   display: flex;
   flex-direction: column;
   gap: {{S_o.PAD_8}};
-  padding: 0 {{S_o.PAD_4}} {{S_o.PAD_4}} {{S_o.PAD_4}} ;
+  padding: 0 {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_8}};
   width: 100%;
   height: fit-content;
 }
@@ -133,7 +134,7 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   content: '';
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"] {
-  display: none;
+  opacity: .25;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup {
   display: flex;
@@ -155,6 +156,7 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div {
   display: flex;
   flex-direction: column;
+  position: relative;
   padding: {{S_o.PAD_4}};
   height: fit-content;
 }
@@ -229,10 +231,11 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   height: calc( 100px * 2 );
   background: hsla(200 50% 50%/1);
 }
-div > div:hover {
-  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position:hover {
+  opacity: 1;
+  transition: opacity 2s ease;
 }
-div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position {
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -243,22 +246,27 @@ div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position {
   opacity: .1;
   transition: opacity .3s ease;
 }
-div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range] {
+  position: relative;
+  top: {{S_o.PAD_5}};
+  width: 200px;
+  background: transparent;
+  cursor: pointer;
+  transform: scaleY( .3 );
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > label {
+  position: relative;
+  top: -{{S_o.PAD_6}};
+  padding: {{S_o.PAD_1}};
   text-align: left;
   text-transform: none;
   font-size: 80%;
   border: none;
   opacity: .5;
 }
-div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range] {
-  position: relative;
-  margin-top: -{{S_o.PAD_1}};
-  width: 200px;
-  background: transparent;
-  cursor: pointer;
-  transform: scaleY( .3 );
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range]:focus {
+  outline: none;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position:hover {
-  opacity: 1;
-  transition: opacity 2s ease;
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range]:focus + label {
+  background: {{S_o.lighter}};
 }

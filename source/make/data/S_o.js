@@ -33,11 +33,13 @@ const S_o =
   PAD_2:  .25 * 2 + 'em',
   PAD_3:  .25 * 3 + 'em',
   PAD_4:  .25 * 4 + 'em',
+  PAD_5:  .25 * 5 + 'em',
   PAD_6:  .25 * 6 + 'em',
   PAD_8:  .25 * 8 + 'em',
   PAD_10: .25 * 10 + 'em',
   PAD_12: .25 * 12 + 'em',
   PAD_16: .25 * 16 + 'em',
+  PAD_20: .25 * 20 + 'em',
 
   hue_cancel:   0,
   hue_accept:   120,
@@ -78,10 +80,12 @@ const S_o =
   S_o.inscolor =  `hsla( ${S_o.hue_p - 60} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /1)`,
   S_o.textcolor = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`,
   S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`,
-  S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`,
+  S_o.bg_higher = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`,
+  S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /1)`,
   S_o.highlight = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_2} /1)`,
   S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`,
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`,
+  S_o.lighter =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /1)`,
   
   S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`,
   S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`,
@@ -110,7 +114,7 @@ const S_o =
   
   S_o.NAV_HEIGHT_s = S_o.PAD_8,
   S_o.NAV_LABEL_s  = S_o.PAD_4,
-  S_o.NAV_SETTINGS_s = '250px',
+  S_o.NAV_SETTINGS_s = '288px',  //: 18em
 
   
 
@@ -181,7 +185,7 @@ module.exports = S_o
   inscolor: 'hsla( 130 94% 86.75% /1)',
   textcolor: 'hsla( 190 28% 99% /1)',
   bgcolor: 'hsla( 190 28% 13.25% /1)',
-  bg_lower: 'hsla( 190 28% 37.75% /1)',
+  bg_higher: 'hsla( 190 28% 37.75% /1)',
   highlight: 'hsla( 190 28% 74.5% /1)',
   insert: 'hsla( 190 28% 37.75% /.1)',
   table: 'hsla( 190 28% 1% /.25)',

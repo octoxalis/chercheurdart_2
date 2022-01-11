@@ -120,7 +120,9 @@ const C_o =
     layers_hide:        { icon_s: `&nbsp;`,  legend_s: `masquer`},
     layers_perspective: { icon_s: `&nbsp;`,  legend_s: `Perspective`},
     layers_distance:    { icon_s: `&nbsp;`,  legend_s: `Distance`},
-    layers_rotation:    { icon_s: `&nbsp;`,  legend_s: `Rotation`},
+    layers_rotate:      { icon_s: `&nbsp;`,  legend_s: `Rotation`},
+    layers_scale:       { icon_s: `&nbsp;`,  legend_s: `Échelle`},
+    
     layers_difference:  { icon_s: `&nbsp;`,  legend_s: `Difference`},
     layers_union:       { icon_s: `&nbsp;`,  legend_s: `Union`},
 

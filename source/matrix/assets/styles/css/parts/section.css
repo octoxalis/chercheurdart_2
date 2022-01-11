@@ -55,11 +55,12 @@ label[for] {
 input[type="range"]:hover:after {
   content: attr( data-tip );
   position: absolute;
+  z-index: 2;
   padding: {{S_o.PAD_1}};
-  top: -{{S_o.PAD_16}};
+  left: -{{S_o.PAD_12}};
   height: 200%;
   color: currentColor;
-  background: {{S_o.bgcolor}};
+  background: {{S_o.lighter}};
   border: 1px solid {{S_o.highlight}};
   border-radius: 4px;
   font-size: 90%;
