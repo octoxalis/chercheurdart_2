@@ -2,9 +2,6 @@
 
 require('dotenv').config({ path: '../env/chercheurdart' })
 
-const A_o = require( './A_o.js' )
-
-
 
 const U_o =
 {

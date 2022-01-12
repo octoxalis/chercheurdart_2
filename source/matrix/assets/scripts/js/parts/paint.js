@@ -68,6 +68,54 @@ const PAI_o =
 
 
 
+  canvas__v:
+  (
+    id_s,
+    offsetX,
+    offsetY
+  ) =>
+  {
+    const atX_n =
+      ~~( +offsetX      //: number cast
+      /
+      PAI_o
+        .SCALE_H_n
+      )
+
+    const atY_n =
+      ~~( +offsetY      //: number cast
+      /
+      PAI_o
+        .SCALE_V_n
+      )
+
+    //;console.log( id_s + ': ' + atY_n + ' / ' + atX_n )
+
+  }
+  ,
+
+
+
+  canvas__e:
+  (
+    work_s,
+    callback_f    //: optional
+  ) =>
+  {
+    const canvas_e =
+      document
+        .createElement( 'canvas' )
+
+    callback_f
+    &&
+    callback_f( canvas_e )
+
+    return canvas_e
+  }
+  ,
+
+
+
   range__v:
   (
     range_e,
@@ -107,57 +155,6 @@ const PAI_o =
 
 
 
-  canvas__v:
-  (
-    id_s,
-    offsetX,
-    offsetY
-  ) =>
-  {
-    const atX_n =
-      ~~( +offsetX      //: number cast
-      /
-      PAI_o
-        .SCALE_H_n
-      )
-
-    const atY_n =
-      ~~( +offsetY      //: number cast
-      /
-      PAI_o
-        .SCALE_V_n
-      )
-
-    //;console.log( id_s + ': ' + atY_n + ' / ' + atX_n )
-
-  }
-  ,
-
-
-
-
-
-
-  canvas__e:
-  (
-    work_s,
-    callback_f    //: optional
-  ) =>
-  {
-    const canvas_e =
-      document
-        .createElement( 'canvas' )
-
-    callback_f
-    &&
-    callback_f( canvas_e )
-
-    return canvas_e
-  }
-  ,
-
-
-
   layer__n:
   () =>
     Array
@@ -168,6 +165,22 @@ const PAI_o =
             .querySelectorAll( 'li' )
       )
       .length
+  ,
+
+
+
+  layerIndex__s:
+  (
+    layer_s
+  )  =>
+    layer_s
+      .slice
+      (
+        layer_s
+          .lastIndexOf( '_' )
+        +
+        1
+      )
   ,
 
 
@@ -201,7 +214,7 @@ const PAI_o =
     )
     {
       PAI_o
-        .displaySet__v( true )
+        .displayOp__v( true )
     }
 
     let name_s
@@ -305,108 +318,6 @@ const PAI_o =
   
   
 
-  operateOn__a:
-  () =>
-    PAI_o
-      .selected__a()
-        .slice( -2 )
-  ,
-
-  
-  
-  selected__a:
-  () =>
-    Array
-      .from
-      (
-        document
-          .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"]) > input:checked` )
-      )
-  ,
-  
-  
-  
-  operable__a:
-  () =>
-    Array
-      .from
-      (
-        document
-          .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"])` )
-      )
-  ,
-  
-
-
-  masked__n:
-  () =>
-    Array
-      .from
-      (
-        document
-          .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
-            .querySelectorAll( 'li[data-layer_b="0"]' )
-      )
-      ?.length
-  ,
-
-
-
-  mask__v:
-  (
-    node_e
-  ) =>
-  {
-    node_e
-      .dataset
-        .layer_b =
-          0
-
-    if
-    (
-      node_e
-        .checked
-    )
-    {
-      node_e
-        .checked =
-          false
-    }
-  }
-  ,
-
-  
-  
-  unmask__v:
-  (
-    node_e
-  ) =>
-  {
-    node_e
-      .removeAttribute( 'data-layer_b' )
-}
-  ,
-
-  
-  
-  displaySet__v:    //: show/hide set operators
-  (
-    display_b
-  ) =>
-    DOM_o
-      .rootVar__v
-      (
-        `--{{C_o.STAT_a[2]}}_setop_display`,
-        display_b
-        ?
-          'block'
-        :
-          'none'
-      )
-  ,
-
-
-
   hideLayer__v:
   () =>
   {
@@ -480,7 +391,7 @@ const PAI_o =
         )
         {
           PAI_o
-            .displaySet__v( true )
+            .displayOp__v( true )
         }
       }
 
@@ -500,7 +411,7 @@ const PAI_o =
     )
     {
       PAI_o
-        .displaySet__v( false )
+        .displayOp__v( false )
     }
 
     for
@@ -536,6 +447,172 @@ const PAI_o =
   
   
   
+  selected__a:
+  () =>
+    Array
+      .from
+      (
+        document
+          .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"]) > input:checked` )
+      )
+  ,
+  
+  
+  
+  operable__a:
+  () =>
+    Array
+      .from
+      (
+        document
+          .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"])` )
+      )
+  ,
+  
+
+
+  operateOn__a:
+  () =>
+    PAI_o
+      .selected__a()
+        .slice( -2 )
+  ,
+
+  
+  
+  masked__n:
+  () =>
+    Array
+      .from
+      (
+        document
+          .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
+            .querySelectorAll( 'li[data-layer_b="0"]' )
+      )
+      ?.length
+  ,
+
+
+
+  mask__v:
+  (
+    node_e
+  ) =>
+  {
+    node_e
+      .dataset
+        .layer_b =
+          0
+
+    if
+    (
+      node_e
+        .checked
+    )
+    {
+      node_e
+        .checked =
+          false
+    }
+  }
+  ,
+
+  
+  
+  unmask__v:
+  (
+    node_e
+  ) =>
+  {
+    node_e
+      .removeAttribute( 'data-layer_b' )
+  }
+  ,
+
+  
+  
+  displayOp__v:
+  (
+    display_b
+  ) =>
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[2]}}_setop_display`,
+        display_b
+        ?
+          'block'
+        :
+          'none'
+      )
+  ,
+
+
+
+  none__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+      ;console.log( 'none__v' )
+  }
+  ,
+
+
+
+  union__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+      ;console.log( 'union__v' )
+      ;console.table( operated_a )
+  }
+  ,
+
+
+
+  difference__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+    ;console.log( 'difference__v' )
+
+  }
+  ,
+
+
+
+  intersection__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+    ;console.log( 'intersection__v' )
+
+  }
+  ,
+
+
+
+  complement__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+    ;console.log( 'complement__v' )
+
+  }
+  ,
+
+
+
   listener__v
   ()
   {
@@ -633,7 +710,6 @@ const PAI_o =
               )
           }
         )
-
     }
 
     //=== GEOMETRY ===
@@ -878,85 +954,6 @@ const PAI_o =
   ,
 
 
-  layerIndex__s:
-  (
-    layer_s
-  )  =>
-    layer_s
-      .slice
-      (
-        layer_s
-          .lastIndexOf( '_' )
-        +
-        1
-      )
-  ,
-
-
-
-  none__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-      ;console.log( 'none__v' )
-  }
-  ,
-
-
-
-  union__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-      ;console.log( 'union__v' )
-      ;console.table( operated_a )
-  }
-  ,
-
-
-
-  difference__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-    ;console.log( 'difference__v' )
-
-  }
-  ,
-
-
-
-  intersection__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-    ;console.log( 'intersection__v' )
-
-  }
-  ,
-
-
-
-  complement__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-    ;console.log( 'complement__v' )
-
-  }
-  ,
-
-
 
   init__v
   ()
@@ -985,8 +982,6 @@ const PAI_o =
   }
 
 }
-
-
 
 
 
