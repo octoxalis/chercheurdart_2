@@ -130,9 +130,10 @@
             <label>
                     display: grid;
                     justify-items: center;
-                    margin: {{S_o.PAD_1}} 0;
-                    border-radius: 4px;
-                    border: 2px solid {{S_o.shadow_ne}};
+                    margin: 2px 0;
+                    border-radius: 2px;
+                    border: 1px solid {{S_o.shadow_ne}};
+                    font-size: 85%;
             </label>
             <label:not(:first-of-type):hover>
                     filter: brightness( {{S_o.brigtness_lo}} );
@@ -166,7 +167,7 @@
         <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop>
                   display: var(--{{C_o.STAT_a[2]}}_setop_display);
           <label>
-                    font-size: 90%;
+                    /*font-size: 90%;*/
                     text-transform: none;
                 </label>
         </div>
@@ -178,7 +179,7 @@
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup>  /* setup */
                 display: flex;
                 flex-direction: column;
-                gap: {{S_o.PAD_2}};
+                gap: {{S_o.PAD_1}};
                 padding: 0;
                 width: 100%;
           <label>
@@ -187,6 +188,7 @@
                   text-transform: uppercase;
                   border-radius: 4px;
                   border: 2px solid {{S_o.shadow_hi}};
+                  font-size: 85%;
           </label>
           <label:hover>
                   filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );

@@ -104,9 +104,10 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
   display: grid;
   justify-items: center;
-  margin: {{S_o.PAD_1}} 0;
-  border-radius: 4px;
-  border: 2px solid {{S_o.shadow_ne}};
+  margin: 2px 0;
+  border-radius: 2px;
+  border: 1px solid {{S_o.shadow_ne}};
+  font-size: 85%;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label:not(:first-of-type):hover {
   filter: brightness( {{S_o.brigtness_lo}} );
@@ -132,13 +133,12 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   display: var(--{{C_o.STAT_a[2]}}_setop_display);
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop > label {
-  font-size: 90%;
   text-transform: none;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup {
   display: flex;
   flex-direction: column;
-  gap: {{S_o.PAD_2}};
+  gap: {{S_o.PAD_1}};
   padding: 0;
   width: 100%;
 }
@@ -148,6 +148,7 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   text-transform: uppercase;
   border-radius: 4px;
   border: 2px solid {{S_o.shadow_hi}};
+  font-size: 85%;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup > label:hover {
   filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );

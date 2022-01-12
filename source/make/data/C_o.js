@@ -126,7 +126,7 @@ const C_o =
     layers_none:        { icon_s: `&nbsp;`,  legend_s: `Aucune opération`},
     layers_union:       { icon_s: `&nbsp;`,  legend_s: `Union`},
     layers_difference:  { icon_s: `&nbsp;`,  legend_s: `Différence`},
-    layers_intersection:  { icon_s: `&nbsp;`,  legend_s: `Intersection`},
+    layers_intersection:{ icon_s: `&nbsp;`,  legend_s: `Intersection`},
     layers_complement:  { icon_s: `&nbsp;`,  legend_s: `Complément`},
 
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
@@ -147,7 +147,7 @@ const C_o =
 
   //=== PAINT TOOLS ===
   CANVAS_RESIZE_n: .025,
-  PAINT_LAYER_n:   4,
+  PAINT_LAYER_n:   8,
 
 
   //=== HTML-BODY ANCHORS

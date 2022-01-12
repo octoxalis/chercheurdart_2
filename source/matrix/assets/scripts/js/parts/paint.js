@@ -172,9 +172,11 @@ const PAI_o =
 
 
 
-  addLayer__v:
+  addLayer__n:
   (
-    work_s
+    work_s,    //: null for operation layer
+    operation_s='',
+    label_s=''
   ) =>
   {
     const layer_n =
@@ -202,6 +204,25 @@ const PAI_o =
         .displaySet__v( true )
     }
 
+    let name_s
+
+    if
+    (
+      work_s
+    )
+    {
+      name_s =
+        work_s
+
+      label_s =
+        '{{C_o.NAV_LEGEND_o.layer_s.legend_s}}'
+    }
+    else
+    {
+      name_s =
+        operation_s
+    }
+
     let input_s = ''
   
     let id_s = ''
@@ -213,7 +234,7 @@ const PAI_o =
       layer_n
     )
     {
-      id_s = `input_${work_s}_${layer_n}`
+      id_s = `input_${name_s}_${layer_n}`
   
       input_s =
         `<input id="${id_s}" data-layer_n=${layer_n} type="checkbox">`
@@ -230,7 +251,7 @@ const PAI_o =
           (
             `<li data-layer_n=${layer_n}>`
             + input_s
-            + `<label ${for_s}>{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n + 1}</label>`
+            + `<label ${for_s}>${label_s} ${layer_n + 1}</label>`
             + `</li>`
           ),
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items'
@@ -244,12 +265,12 @@ const PAI_o =
         PAI_o
           .canvas__e
           (
-            work_s,
+            name_s,
             canvas_e =>      //: callback_f
             {
               //?? canvas_e
               //??   .id =
-              //??     `canvas_${work_s}_${layer_n}`
+              //??     `canvas_${name_s}_${layer_n}`
   
               canvas_e
                 .dataset
@@ -261,6 +282,10 @@ const PAI_o =
                   .size_n =
                     1              //: to increase/decrease
   
+              canvas_e
+                .title =
+                    '{{C_o.NAV_LEGEND_o.layer_s.legend_s}}' + ` ${layer_n + 1}`
+
               document
                 .documentElement
                   .style
@@ -273,9 +298,20 @@ const PAI_o =
           ),
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position'
       )
+
+    return layer_n
   }
   ,
   
+  
+
+  operateOn__a:
+  () =>
+    PAI_o
+      .selected__a()
+        .slice( -2 )
+  ,
+
   
   
   selected__a:
@@ -370,7 +406,7 @@ const PAI_o =
   ,
 
 
-  
+
   hideLayer__v:
   () =>
   {
@@ -390,7 +426,7 @@ const PAI_o =
           .masked__n()
       )
       {
-        ;console.log( PAI_o.masked__n() )
+        //;console.log( PAI_o.masked__n() )
         window
           .alert( `Aucun plan n'est sélectionné.` )
         return
@@ -409,24 +445,48 @@ const PAI_o =
         document
           .querySelector( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"]` )
 
-      unmasked_e
-      &&
-      PAI_o
-        .unmask__v( unmasked_e )
-
       if
       (
-        PAI_o
-          .layer__n()
-        >
-        1      //: layer_0 doesn't count
+        unmasked_e
       )
       {
-        PAI_o
-          .displaySet__v( true )
+        const layer_n =
+          unmasked_e
+            .dataset
+              .layer_n
+    
+        for
+        (
+          node_e
+          of
+          Array
+            .from
+            (
+              document
+                .querySelectorAll( `[data-layer_n="${layer_n}"]` )
+            )
+        )
+        {
+          PAI_o
+            .unmask__v( node_e )
+        }
+  
+        if
+        (
+          PAI_o
+            .layer__n()
+          >
+          2      //: layer_0 doesn't count
+        )
+        {
+          PAI_o
+            .displaySet__v( true )
+        }
       }
-    }
 
+      return
+    }
+    //-->
     if
     (
       PAI_o
@@ -479,6 +539,7 @@ const PAI_o =
   listener__v
   ()
   {
+    //=== SLIDERS ===
     for
     (
       let sub_s
@@ -575,7 +636,7 @@ const PAI_o =
 
     }
 
-
+    //=== GEOMETRY ===
     let sub_s = 'layer'
 
     for
@@ -641,16 +702,10 @@ const PAI_o =
       }
     }
 
-
-
-
-
-
-
-
+    //=== ADD & HIDE ===
     const add_e =
       document
-        .getElementById( `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_add` )
+        .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_add' )
         
     add_e
     &&
@@ -661,7 +716,7 @@ const PAI_o =
         click_o =>
         {
           PAI_o
-            .addLayer__v    //: reference work
+            .addLayer__n    //: reference work
             (
               document
                 .querySelector( 'body' )
@@ -688,6 +743,216 @@ const PAI_o =
         }
       )
 
+    //=== SET OPERATIONS ===
+    const operations_e =
+      document
+        .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop` )
+        
+    operations_e
+    &&
+    operations_e
+      .addEventListener
+      (
+        'click',
+        click_o =>
+        {
+          const id_s =
+            click_o
+              .target
+                .closest( `input` )
+                  ?.id      //;console.log( click_o.target )
+
+          if
+          (
+            id_s
+          )
+          {
+            const op_s =
+              id_s
+                .slice
+                (
+                  id_s
+                    .lastIndexOf( '_' )
+                  +
+                  1      //: skip '_'
+                )
+  
+            if
+            (
+              op_s
+              &&
+              op_s
+              !==
+              'none'    //: do nothing for non operation (only deselect selected operation)
+            )
+            {
+              const operateOn_a =
+                PAI_o
+                  .operateOn__a()    //;console.log( operateOn_a )
+
+              if
+              (
+                operateOn_a
+                  .length      //: empty if no selection
+                <
+                2
+              )
+              {
+                return(
+                  window
+                    .alert( `Deux plans doivent être sélectionnés pour effectuer cette opération.` )
+                )
+              }
+              //-->
+
+              let layerOne_s =
+                PAI_o
+                  .layerIndex__s
+                  (
+                    operateOn_a
+                      [ 0 ]
+                        .dataset
+                          .layer_n
+                  )
+
+
+              let layerTwo_s =
+                PAI_o
+                  .layerIndex__s
+                  (
+                    operateOn_a
+                      [ 1 ]
+                        .dataset
+                          .layer_n
+                  )
+
+              let label_s =
+                op_s
+                ===
+                'union'
+                ?
+                  '{{C_o.NAV_LEGEND_o.layers_union.legend_s}}'
+                :
+                  op_s
+                  ===
+                  'difference'
+                  ?
+                    '{{C_o.NAV_LEGEND_o.layers_difference.legend_s}}'
+                  :
+                    op_s
+                    ===
+                     'intersection'
+                    ?
+                      '{{C_o.NAV_LEGEND_o.layers_intersection.legend_s}}'
+                    :
+                      '{{C_o.NAV_LEGEND_o.layers_complement.legend_s}}'
+
+              const layer_n =
+                PAI_o
+                  .addLayer__n    //: reference work
+                  (
+                    null,      //: no work_s, empty canvas
+                    op_s,
+                    `${label_s} [ ${+layerOne_s + 1} &#8728; ${+layerTwo_s + 1} ] &#8943; Plan `    //: index 1
+                  )
+    
+              if
+              (
+                layer_n
+              )
+              {
+                PAI_o
+                  [ `${op_s}__v` ]
+                  (
+                    layer_n,
+                    operateOn_a
+                  )
+              }
+
+            }
+          }
+        }
+      )
+
+  }
+  ,
+
+
+  layerIndex__s:
+  (
+    layer_s
+  )  =>
+    layer_s
+      .slice
+      (
+        layer_s
+          .lastIndexOf( '_' )
+        +
+        1
+      )
+  ,
+
+
+
+  none__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+      ;console.log( 'none__v' )
+  }
+  ,
+
+
+
+  union__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+      ;console.log( 'union__v' )
+      ;console.table( operated_a )
+  }
+  ,
+
+
+
+  difference__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+    ;console.log( 'difference__v' )
+
+  }
+  ,
+
+
+
+  intersection__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+    ;console.log( 'intersection__v' )
+
+  }
+  ,
+
+
+
+  complement__v:
+  (
+    layer_n,
+    operated_a
+  ) =>
+  {
+    ;console.log( 'complement__v' )
+
   }
   ,
 
@@ -707,7 +972,7 @@ const PAI_o =
           )
 
     PAI_o
-      .addLayer__v    //: reference work
+      .addLayer__n    //: reference work
       (
         document
           .querySelector( 'body' )
