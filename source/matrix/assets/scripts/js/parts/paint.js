@@ -7,32 +7,34 @@ const PAI_o =
   SCALE_H_n: 1,
   SCALE_V_n: 2,
 
-  hue_o:
-  {
-    grade_n: 0,
-    gap_n: 0,
-  }
-  ,
-  sat_o:
-  {
-    grade_n: 0,
-    gap_n: 0,
-  }
-  ,
-  lum_o:
-  {
-    grade_n: 0,
-    gap_n: 0,
-  }
-  ,
+  //??hue_o:
+  //??{
+  //??  grade_n: 0,
+  //??  gap_n: 0,
+  //??}
+  //??,
+  //??sat_o:
+  //??{
+  //??  grade_n: 0,
+  //??  gap_n: 0,
+  //??}
+  //??,
+  //??lum_o:
+  //??{
+  //??  grade_n: 0,
+  //??  gap_n: 0,
+  //??}
+  //??,
 
-  layer_o:
-  {
-    perspective_n: 0,
-    distance_n: 0,
-    rotation_n: 0
-  }
-  ,
+  //??layer_o:
+  //??{
+  //??  perspective_n: 0,
+  //??  distance_n: 0,
+  //??  rotation_n: 0
+  //??}
+  //??,
+
+  layer_a: [],
 
 
 
@@ -187,7 +189,6 @@ const PAI_o =
 
   addLayer__n:
   (
-    work_s,    //: null for operation layer
     operation_s='',
     label_s=''
   ) =>
@@ -221,19 +222,37 @@ const PAI_o =
 
     if
     (
-      work_s
+      operation_s
     )
     {
       name_s =
-        work_s
-
-      label_s =
-        '{{C_o.NAV_LEGEND_o.layer_s.legend_s}}'
+        operation_s
     }
     else
     {
       name_s =
-        operation_s
+        document
+          .querySelector( 'body' )
+            .dataset
+              .work_s
+    }
+
+    let fullLabel_s =
+      '{{C_o.NAV_LEGEND_o.layer_s.legend_s}} '
+      +
+      (
+        layer_n
+        ||
+        '{{C_o.NAV_LEGEND_o.layer_initial.legend_s}}'
+      )
+
+    if
+    (
+      label_s
+    )
+    {
+      fullLabel_s +=
+        ` &#8285; ${label_s}`
     }
 
     let input_s = ''
@@ -264,53 +283,83 @@ const PAI_o =
           (
             `<li data-layer_n=${layer_n}>`
             + input_s
-            + `<label ${for_s}>${label_s} ${layer_n + 1}</label>`
+            + `<label ${for_s}>${fullLabel_s}</label>`
             + `</li>`
           ),
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items'
       )
   
   
+    const newCanvas_e =
+      PAI_o
+        .canvas__e
+        (
+          name_s,
+          canvas_e =>      //: callback_f
+          {
+            //?? canvas_e
+            //??   .id =
+            //??     `canvas_${name_s}_${layer_n}`
   
+            canvas_e
+              .dataset
+                .layer_n =
+                  layer_n
+  
+            canvas_e
+              .dataset
+                .size_n =
+                  1              //: to increase/decrease
+  
+            canvas_e
+              .title =
+                  '{{C_o.NAV_LEGEND_o.layer_s.legend_s}}' + ` ${layer_n + 1}`
+
+            document
+              .documentElement
+                .style
+                  .setProperty
+                  (
+                    `--{{C_o.STAT_a[2]}}_canvas_ratio_${layer_n}`,
+                    1
+                  )
+          }
+        )
+
     DOM_o
       .beforeNode__v
       (
-        PAI_o
-          .canvas__e
-          (
-            name_s,
-            canvas_e =>      //: callback_f
-            {
-              //?? canvas_e
-              //??   .id =
-              //??     `canvas_${name_s}_${layer_n}`
-  
-              canvas_e
-                .dataset
-                  .layer_n =
-                    layer_n
-  
-              canvas_e
-                .dataset
-                  .size_n =
-                    1              //: to increase/decrease
-  
-              canvas_e
-                .title =
-                    '{{C_o.NAV_LEGEND_o.layer_s.legend_s}}' + ` ${layer_n + 1}`
-
-              document
-                .documentElement
-                  .style
-                    .setProperty
-                    (
-                      `--{{C_o.STAT_a[2]}}_canvas_ratio_${layer_n}`,
-                      1
-                    )
-            }
-          ),
+        newCanvas_e,
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position'
       )
+
+    PAI_o
+      .layer_a
+        .push
+        (
+          {          //: sliders state
+            hue_o:
+            {
+              grade_n: 0,
+              gap_n: 0,
+            }
+            ,
+            sat_o:
+            {
+              grade_n: 0,
+              gap_n: 0,
+            }
+            ,
+            lum_o:
+            {
+              grade_n: 0,
+              gap_n: 0,
+            }
+          }
+        )
+
+    //.... worker PUT offscreencanvas
+    //.... worker draw initial image (clone original)
 
     return layer_n
   }
@@ -568,7 +617,6 @@ const PAI_o =
   ) =>
   {
       ;console.log( 'union__v' )
-      ;console.table( operated_a )
   }
   ,
 
@@ -789,17 +837,8 @@ const PAI_o =
       .addEventListener
       (
         'click',
-        click_o =>
-        {
-          PAI_o
-            .addLayer__n    //: reference work
-            (
-              document
-                .querySelector( 'body' )
-                  .dataset
-                    .work_s
-            )
-        }
+        PAI_o
+          .addLayer__n
       )
 
     const hide_e =
@@ -925,11 +964,10 @@ const PAI_o =
 
               const layer_n =
                 PAI_o
-                  .addLayer__n    //: reference work
+                  .addLayer__n
                   (
-                    null,      //: no work_s, empty canvas
                     op_s,
-                    `${label_s} [ ${+layerOne_s + 1} &#8728; ${+layerTwo_s + 1} ] &#8943; Plan `    //: index 1
+                    `${label_s} [ ${layerOne_s} &#8728; ${layerTwo_s} ]`
                   )
     
               if
@@ -960,23 +998,22 @@ const PAI_o =
   {
     PAI_o
       .worker_o =
-        STAT_o
+        PAI_W_o
           .worker__o
           (
             '{{C_o.STAT_a[2]}}',
-            'LogScale Painter',
+            'Painter',
             PAI_o.message__v,
           )
 
-    PAI_o
-      .addLayer__n    //: reference work
-      (
-        document
-          .querySelector( 'body' )
-            .dataset
-              .work_s
-      )
+    //... worker draw sliders initial state
 
+    PAI_o
+      .addLayer__n()    //: reference work
+      
+    PAI_o
+      .addLayer__n()    //: playground
+      
     PAI_o
       .listener__v()
   }

@@ -33,7 +33,8 @@ const C_o =
   IMG_MAX_PATH_s:    '/full/max/0/',    //: IOR
 
   //=== FILE NAMES
-  WORKER_FILE_s:     '/assets/scripts/js/stat_w.min.js',
+  STAT_W_FILE_s:    '/assets/scripts/js/stat_w.min.js',
+  PAINT_W_FILE_s:   '/assets/scripts/js/paint_w.min.js',
 
 
   //=== CONFIGURE FLAG
@@ -110,12 +111,13 @@ const C_o =
     stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`}, 
     stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
-    stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`}, 
+    stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
 
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
     layer_s:            { icon_s: `&nbsp;`,  legend_s: `Plan`},
+    layer_initial:      { icon_s: `&nbsp;`,  legend_s: `initial`},
     layers_add:         { icon_s: `&nbsp;`,  legend_s: `ajouter`},
     layers_hide:        { icon_s: `&nbsp;`,  legend_s: `masquer`},
     layers_perspective: { icon_s: `&nbsp;`,  legend_s: `Perspective`},

@@ -127,7 +127,7 @@ const STAT_o =
       new WorkerClient
       (
         {
-          url_s: '{{C_o.WORKER_FILE_s}}',
+          url_s: '{{C_o.STAT_W_FILE_s}}',
           stat_s: stat_s,
           handleMessage__v: message__v
         }
@@ -155,6 +155,20 @@ const STAT_o =
         break;
     
       case '{{C_o.STAT_a[1]}}':
+        STAT_o
+          .putCanvas__v
+          (
+            stat_s,
+            script_s,
+            worker_o,
+            [
+              'initial',
+              'processed'
+            ]
+          )
+        break
+
+      case '{{C_o.STAT_a[2]}}':
         STAT_o
           .putCanvas__v
           (
@@ -271,7 +285,7 @@ const STAT_o =
         new WorkerClient
         (
           {
-            url_s: '{{C_o.WORKER_FILE_s}}',
+            url_s: '{{C_o.STAT_W_FILE_s}}',
             stat_s:  '{{C_o.STAT_s}}',
             handleMessage__v: STAT_o.message__v
           }
