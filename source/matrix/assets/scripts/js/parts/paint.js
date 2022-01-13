@@ -26,13 +26,14 @@ const PAI_o =
   //??}
   //??,
 
-  //??layer_o:
-  //??{
-  //??  perspective_n: 0,
-  //??  distance_n: 0,
-  //??  rotation_n: 0
-  //??}
-  //??,
+  layer_o:
+  {
+    perspective_n: 100,
+    distance_n:    -100,
+    rotation_n:    0,
+    scale_n:      .5
+  }
+  ,
 
   layer_a: [],
 
@@ -91,7 +92,7 @@ const PAI_o =
         .SCALE_V_n
       )
 
-    //;console.log( id_s + ': ' + atY_n + ' / ' + atX_n )
+    ;console.log( id_s + ': ' + atY_n + ' / ' + atX_n )
 
   }
   ,
@@ -218,19 +219,19 @@ const PAI_o =
         .displayOp__v( true )
     }
 
-    let name_s
+    let work_s
 
     if
     (
       operation_s
     )
     {
-      name_s =
+      work_s =
         operation_s
     }
     else
     {
-      name_s =
+      work_s =
         document
           .querySelector( 'body' )
             .dataset
@@ -266,7 +267,7 @@ const PAI_o =
       layer_n
     )
     {
-      id_s = `input_${name_s}_${layer_n}`
+      id_s = `input_${work_s}_${layer_n}`
   
       input_s =
         `<input id="${id_s}" data-layer_n=${layer_n} type="checkbox">`
@@ -290,22 +291,41 @@ const PAI_o =
       )
   
   
-    const newCanvas_e =
+    const
+    [
+      width_s,
+      height_s
+    ] =
+      document
+        .querySelector( 'body' )
+          .dataset
+            .wh_s
+              .split( '_' )
+
+    const addCanvas_e =
       PAI_o
         .canvas__e
         (
-          name_s,
+          work_s,
           canvas_e =>      //: callback_f
           {
-            //?? canvas_e
-            //??   .id =
-            //??     `canvas_${name_s}_${layer_n}`
+            canvas_e
+              .id =
+                `canvas_{{C_o.STAT_a[2]}}_layer_${layer_n}`
   
             canvas_e
               .dataset
                 .layer_n =
                   layer_n
   
+            canvas_e
+              .width =
+                width_s
+
+            canvas_e
+              .height =
+                height_s
+                
             canvas_e
               .dataset
                 .size_n =
@@ -329,7 +349,7 @@ const PAI_o =
     DOM_o
       .beforeNode__v
       (
-        newCanvas_e,
+        addCanvas_e,
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position'
       )
 
@@ -358,8 +378,59 @@ const PAI_o =
           }
         )
 
-    //.... worker PUT offscreencanvas
+
+
+
+
+    //: worker PUT offscreencanvas
+    //--STAT_o
+    //--  .putCanvas__v
+    //--  (
+    //--    '{{C_o.STAT_a[2]}}',
+    //--    [ `layer_${layer_n}` ],    //: from addCanvas_e.id
+    //--    '',
+    //--    PAI_o
+    //--      .worker_o
+    //--  )
     //.... worker draw initial image (clone original)
+
+    const centerX =
+      +width_s      //: number cast
+      *
+      .5
+
+    const centerY =
+      +height_s      //: number cast
+      *
+      .5
+
+    const offCanvas_e =
+      addCanvas_e
+        .transferControlToOffscreen()
+    
+    PAI_o
+      .worker_o           //! using port postMessage directly
+        .port_o           //! to avoid error:
+          .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+          (
+            {
+              task_s:   'GET_img',
+              pixel_n:  window.devicePixelRatio,
+              rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
+              scale_n:  1,
+              url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
+              canvas_e: offCanvas_e,
+              storeBitmap_b: true
+            },
+            [ offCanvas_e ]
+          )
+
+
+
+
+
+
+
 
     return layer_n
   }
@@ -996,24 +1067,50 @@ const PAI_o =
   init__v
   ()
   {
+    const canvas_a =
+      [
+        'hue',
+        'sat',
+        'lum'
+      ]
+
     PAI_o
       .worker_o =
-        PAI_W_o
+        STAT_o
           .worker__o
-          (
-            '{{C_o.STAT_a[2]}}',
-            'Painter',
-            PAI_o.message__v,
-          )
-
-    //... worker draw sliders initial state
+            (
+              '{{C_o.STAT_a[2]}}',
+              canvas_a,
+              'Painter',
+              PAI_o
+                .message__v,
+            )
 
     PAI_o
       .addLayer__n()    //: reference work
       
     PAI_o
       .addLayer__n()    //: playground
-      
+    
+    for    //: worker draw sliders initial state
+    (
+      let canvas_s
+      of
+      canvas_a
+    )
+    {
+      PAI_o
+        .worker_o
+          .post__v
+          (
+            { 
+              task_s: 'PUT_draw',
+              stat_s: '{{C_o.STAT_a[2]}}',
+              part_s: canvas_s
+            }
+          )
+    }
+
     PAI_o
       .listener__v()
   }

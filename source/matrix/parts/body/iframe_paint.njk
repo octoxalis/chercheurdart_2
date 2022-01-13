@@ -52,7 +52,7 @@
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue">
                 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
                 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap" type="range" min="0" max="360" value="60" data-tip="60"/>
-                <canvas id="canvas_{{C_o.STAT_a[2]}}_hue"></canvas>
+                <canvas id="canvas_{{C_o.STAT_a[2]}}_hue" width=100 height=720></canvas>
                 <label id="canvas_{{C_o.STAT_a[2]}}_hue_trace">
                     <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
                     <output id="output_{{C_o.STAT_a[2]}}_hue" type="text">123</output>
@@ -62,7 +62,7 @@
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_sat">
                 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
                 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_gap" type="range" min="0" max="100" value="60" data-tip="60"/>
-                <canvas id="canvas_{{C_o.STAT_a[2]}}_sat"></canvas>
+                <canvas id="canvas_{{C_o.STAT_a[2]}}_sat" width=100 height=200></canvas>
                 <label id="canvas_{{C_o.STAT_a[2]}}_sat_trace">
                     <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
                     <output id="output_{{C_o.STAT_a[2]}}_sat" type="text">123</output>
@@ -72,7 +72,7 @@
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_lum">
                 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
                 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_gap" type="range" min="0" max="100" value="60" data-tip="60"/>
-                <canvas id="canvas_{{C_o.STAT_a[2]}}_lum"></canvas>
+                <canvas id="canvas_{{C_o.STAT_a[2]}}_lum" width=100 height=200></canvas>
                 <label id="canvas_{{C_o.STAT_a[2]}}_lum_trace">
                     <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
                     <output id="output_{{C_o.STAT_a[2]}}_lum" type="text">123</output>
@@ -83,9 +83,9 @@
     </div>
 
     <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position">
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective" type="range" min="100" max="2000" step="50" value="100" data-tip="500"/>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective" type="range" min="100" max="4000" step="100" value="100" data-tip="1000"/>
         <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective">{{C_o.NAV_LEGEND_o.layers_perspective.legend_s}}</label>
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance" type="range" min="-200" max="200" step="10" value="-100" data-tip="--100"/>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance" type="range" min="-400" max="400" step="10" value="-100" data-tip="-100"/>
         <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance">{{C_o.NAV_LEGEND_o.layers_distance.legend_s}}</label>
         <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate" type="range" min="-100" max="100" step="5" value="0" data-tip="0"/>
         <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate">{{C_o.NAV_LEGEND_o.layers_rotate.legend_s}}</label>

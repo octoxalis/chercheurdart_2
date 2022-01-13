@@ -150,7 +150,7 @@ const STAT_W_o =
 
   script_o: new Set,   //: importScript loaded
 
-
+  imgBitmap_a: new Map(),     //: store for multiple use (ex. {{C_o.STAT_a[2]}})
 
   //=== SCRIPTS ===
   script__v
@@ -305,7 +305,100 @@ const STAT_W_o =
 
 
 
-  //=== GET    
+async bitmap__o
+(
+  payload_o
+)
+{
+  try
+  {
+    let
+    {
+      rect_s,
+      scale_n,
+      url_s,
+      storeBitmap_b
+    } = payload_o           //;console.log( payload_o )
+
+    if
+    (
+      STAT_W_o
+        .imgBitmap_a
+          .has( url_s )
+    )
+    {
+      return (
+        STAT_W_o
+          .imgBitmap_a
+            .get( url_s )
+      )
+    }
+    //-->
+    let
+    [
+      x_n,
+      y_n,
+      width_n,
+      height_n
+    ] =
+      rect_s
+        .split( ' ' )
+
+    const response_o =
+      await fetch( url_s )
+
+    const blob_o =
+      await response_o
+        .blob()           //;console.log( blob_o )
+
+    const bitmap_o =
+      await createImageBitmap
+      (
+        blob_o,
+        x_n - ( width_n / scale_n * .5 ),    //: center point
+        y_n - ( height_n / scale_n * .5 ),   //: idem
+        width_n / scale_n,
+        height_n / scale_n,
+        {
+          resizeWidth:  width_n,
+          resizeHeight: height_n,
+          resizeQuality: 'high'
+        }
+      )
+
+    if
+    (
+      storeBitmap_b
+    )
+    {
+      STAT_W_o
+        .imgBitmap_a
+          .set
+          (
+            url_s,
+            bitmap_o
+          )    ;console.log( STAT_W_o.imgBitmap_a )
+    }
+
+    return bitmap_o
+  }
+  catch
+  (
+    error_o    //: not used
+  )
+  {
+    console
+      .log(`ERROR DETECTED @imgsLoad_w.js: ${ error_o }`)
+
+    return null
+  }
+}
+,
+
+
+
+
+//=== GET    
   get_status__v
   ()
   {
@@ -692,54 +785,19 @@ const STAT_W_o =
   {
     try
     {
-      let
-      {
-        rect_s,
-        scale_n,
-        url_s,
-        canvas_e
-      } = payload_o           //;console.log( payload_o )
-
-      let
-      [
-        x_n,
-        y_n,
-        width_n,
-        height_n
-      ] =
-        rect_s
-          .split( ' ' )
-
-      const response_o =
-        await fetch( url_s )
-
-      const blob_o =
-        await response_o
-          .blob()           //;console.log( blob_o )
-
       const bitmap_o =
-        await createImageBitmap
-        (
-          blob_o,
-          x_n - ( width_n / scale_n * .5 ),    //: center point
-          y_n - ( height_n / scale_n * .5 ),   //: idem
-          width_n / scale_n,
-          height_n / scale_n,
-          {
-            resizeWidth:  width_n,
-            resizeHeight: height_n,
-            resizeQuality: 'high'
-          }
-        )
+        await STAT_W_o
+          .bitmap__o( payload_o )
 
-      canvas_e
-        .getContext( '2d' )
-          .drawImage
-          (
-            bitmap_o,
-            0,
-            0,
-          )
+      await payload_o
+        .canvas_e
+          .getContext( '2d' )
+            .drawImage
+            (
+              bitmap_o,
+              0,
+              0,
+            )
     }
     catch
     (
@@ -821,179 +879,200 @@ const STAT_W_o =
   )
   {
     const { stat_s, part_s } =
-      payload_o
+      payload_o                          ;console.log( stat_s + ':' + part_s )
 
-    if
-    (
-      STAT_W_o
-        .scan_a
-          [STAT_W_o.SCAN_HUE_FREQ_n]
-            [ payload_o.hue_n ]
-      ===
-      0
-    )
-    {
-      STAT_W_o
-        .stat_o
-          [ `${stat_s}_o` ]
-            .sat_o
-              .burst_c
-                .clear__v()
-
-      STAT_W_o
-        .stat_o
-          [ `${stat_s}_o` ]
-            .lum_o
-              .burst_c
-                .clear__v()
-
-      return
-    }
-    //-->
-    let range_n
-        
     switch
     (
-      part_s
+      stat_s
     )
     {
-      case 'hue':
-        range_n =
-          360
-  
-        break
+      case '{{C_o.STAT_a[0]}}':
+        if
+        (
+          STAT_W_o
+            .scan_a
+              [STAT_W_o.SCAN_HUE_FREQ_n]
+                [ payload_o.hue_n ]
+          ===
+          0
+        )
+        {
+          STAT_W_o
+            .stat_o
+              [ `${stat_s}_o` ]
+                .sat_o
+                  .burst_c
+                    .clear__v()
     
-      case 'sat':
-      case 'lum':
-        range_n =
-          101
+          STAT_W_o
+            .stat_o
+              [ `${stat_s}_o` ]
+                .lum_o
+                  .burst_c
+                    .clear__v()
+    
+          return
+        }
+        //-->
+        let range_n
+            
+        switch
+        (
+          part_s
+        )
+        {
+          case 'hue':
+            range_n =
+              360
+      
+            break
         
-        break
-    
-      default:
-        break
-    }
-  
-    const upart_s =
-      part_s
-        .toUpperCase()
-  
-    const freq_s =
-      `SCAN_${upart_s}_FREQ_n`
-  
-    const rank_s =
-      `SCAN_${upart_s}_RANK_n`
-  
-    const part_a = []
-  
-    let at_n = 0
-  
-    for
-    (
-      let freq_n
-      of
-      STAT_W_o
-        .scan_a
-          [
+          case 'sat':
+          case 'lum':
+            range_n =
+              101
+            
+            break
+        
+          default:
+            break
+        }
+      
+        const upart_s =
+          part_s
+            .toUpperCase()
+      
+        const freq_s =
+          `SCAN_${upart_s}_FREQ_n`
+      
+        const rank_s =
+          `SCAN_${upart_s}_RANK_n`
+      
+        const part_a = []
+      
+        let at_n = 0
+      
+        for
+        (
+          let freq_n
+          of
+          STAT_W_o
+            .scan_a
+              [
+                STAT_W_o
+                  [freq_s]
+              ]
+        )
+        {
+          let hue_n,
+              sat_n,
+              lum_n
+      
+          switch
+          (
+            part_s
+          )
+          {
+            case 'hue':
+              hue_n = at_n
+      
+              sat_n = 100
+      
+              lum_n = 50    //: neutral
+      
+              break
+          
+            case 'sat':
+              hue_n = payload_o.hue_n
+      
+              sat_n = at_n
+      
+              lum_n = 50
+              
+              break
+          
+            case 'lum':
+              hue_n = payload_o.hue_n
+      
+              sat_n = 0    //: neutral
+      
+              lum_n = at_n
+              
+              break
+          
+            default:
+              break
+          }
+      
+          part_a
+            [ at_n ] =
+              freq_n
+              ?
+                {
+                  frequency_n: freq_n,
+                  hsl_a: [ hue_n, sat_n, lum_n ]
+                }
+              :
+                null
+      
+          ++at_n
+        }
+      
+        const burst_o =
+        {
+          color_a: part_a,
+          range_n: range_n,
+          canvas_o:
             STAT_W_o
-              [freq_s]
-          ]
-    )
-    {
-      let hue_n,
-          sat_n,
-          lum_n
-  
-      switch
-      (
-        part_s
-      )
-      {
-        case 'hue':
-          hue_n = at_n
-  
-          sat_n = 100
-  
-          lum_n = 50    //: neutral
-  
-          break
+              .stat_o
+                [ `${stat_s}_o` ]
+                  [ `${part_s}_o` ]
+                    .canvas_o,
+          median_n:
+            (
+              STAT_W_o
+                .stat_o
+                  [ `${stat_s}_o` ]
+                    [ `${part_s}_o` ]
+                      .canvas_o
+                        .width
+            )
+            *
+            .5,
       
-        case 'sat':
-          hue_n = payload_o.hue_n
-  
-          sat_n = at_n
-  
-          lum_n = 50
-          
-          break
+          maxfreq_n:
+            STAT_W_o
+              .scan_a[ STAT_W_o[rank_s] ]
+                [0]
+                  [0]
+          ,
+          //... onHueChange:
+          //... ,
+          //... onHueTrace:
+          //... ,
+        }
       
-        case 'lum':
-          hue_n = payload_o.hue_n
-  
-          sat_n = 0    //: neutral
-  
-          lum_n = at_n
-          
-          break
-      
-        default:
-          break
-      }
-  
-      part_a
-        [ at_n ] =
-          freq_n
-          ?
-            {
-              frequency_n: freq_n,
-              hsl_a: [ hue_n, sat_n, lum_n ]
-            }
-          :
-            null
-  
-      ++at_n
-    }
-  
-    const burst_o =
-    {
-      color_a: part_a,
-      range_n: range_n,
-      canvas_o:
         STAT_W_o
           .stat_o
             [ `${stat_s}_o` ]
               [ `${part_s}_o` ]
-                .canvas_o,
-      median_n:
-        (
-          STAT_W_o
-            .stat_o
-              [ `${stat_s}_o` ]
-                [ `${part_s}_o` ]
-                  .canvas_o
-                    .width
-        )
-        *
-        .5,
-  
-      maxfreq_n:
-        STAT_W_o
-          .scan_a[ STAT_W_o[rank_s] ]
-            [0]
-              [0]
-      ,
-      //... onHueChange:
-      //... ,
-      //... onHueTrace:
-      //... ,
+                .burst_c =
+                  new ColorBurst( burst_o )
+        break;
+
+
+    
+      case '{{C_o.STAT_a[1]}}':
+        break
+
+
+
+      case '{{C_o.STAT_a[2]}}':
+        break
+
+      default:    //: '{{C_o.STAT_a[3]}}'
+        break;
     }
-  
-    STAT_W_o
-      .stat_o
-        [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
-            .burst_c =
-              new ColorBurst( burst_o )
   }
   ,
 

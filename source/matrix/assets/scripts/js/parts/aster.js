@@ -400,6 +400,10 @@ void function
         (
           '{{C_o.STAT_a[1]}}',
           'LogScale Painter',
+          [
+            'initial',
+            'processed'
+          ],
           AST_o.message__v,
         )
 

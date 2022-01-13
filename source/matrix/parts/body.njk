@@ -1,7 +1,9 @@
 {% set _work_s = '' %}
+{% set _wh_s = '' %}
 {% set _stat_s = '' %}
 {% if workID_s %}
 {% set _work_s = ' data-work_s=' + workID_s %}
+{% set _wh_s = ' data-wh_s=' +  widthHeight_s %}
 {% endif %}
 {% if stat_s %}
 {% set _stat_s = ' data-stat_s=' + stat_s %}
@@ -10,7 +12,7 @@
 {% set _layer_s = ' data-layer_s="' + layer_a.join( ' ' ) + '"' %}
 {% endif %}
 
-<body{{_work_s}}{{_stat_s}}{{_layer_s}}>
+<body{{_work_s}}{{_wh_s}}{{_stat_s}}{{_layer_s}}>
 {% include "parts/body/nav_input.njk" %}
 <a id="{{C_o.PAGE_TOP}}"></a>
 {% include "parts/body/main.njk" %}

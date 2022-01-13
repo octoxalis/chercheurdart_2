@@ -20,23 +20,19 @@ const STAT_o =
     part_s
   )
   {
-    const dim_n =
-      2048            //: default canvas dimension (square)
-      *
-      window
-        .devicePixelRatio
-  
     const canvas_e =
       document
         .querySelector( `#canvas_${stat_s}_${part_s}` )
 
     canvas_e
-      .width =
-        dim_n
+      .width *=
+        window
+          .devicePixelRatio
   
     canvas_e
-      .height =
-        dim_n
+      .height *=
+        window
+          .devicePixelRatio
   
     return canvas_e
   }   
@@ -71,9 +67,10 @@ const STAT_o =
   putCanvas__v
   (
     stat_s,
+    canvas_a,
     script_s,
     worker_o,
-    canvas_a
+    storeBitmap_b
   )
   {
     for
@@ -83,6 +80,7 @@ const STAT_o =
       canvas_a
     )
     {
+                            //;console.log( part_s )
       const canvas_e =
         STAT_o
           .canvas__e
@@ -103,9 +101,10 @@ const STAT_o =
               task_s:     'PUT_canvas',
               stat_s:     stat_s,
               part_s:     part_s,
+              canvas_e:   offCanvas_e,
               script_s:   script_s,
-              pixel_n:    window.devicePixelRatio,
-              canvas_e:   offCanvas_e
+              pixel_n:    window
+                            .devicePixelRatio,
             },
             [ offCanvas_e ]
           )
@@ -119,6 +118,7 @@ const STAT_o =
   worker__o    //!!! 4. from section
   (
     stat_s,
+    canvas_a,
     script_s,
     message__v
   )
@@ -143,13 +143,9 @@ const STAT_o =
           .putCanvas__v
           (
             stat_s,
+            canvas_a,
             script_s,
             worker_o,
-            [
-              'hue',
-              'sat',
-              'lum'
-            ]
           )
             
         break;
@@ -159,12 +155,9 @@ const STAT_o =
           .putCanvas__v
           (
             stat_s,
+            canvas_a,
             script_s,
             worker_o,
-            [
-              'initial',
-              'processed'
-            ]
           )
         break
 
@@ -173,16 +166,13 @@ const STAT_o =
           .putCanvas__v
           (
             stat_s,
+            canvas_a,
             script_s,
             worker_o,
-            [
-              'initial',
-              'processed'
-            ]
           )
         break
 
-      default:
+      default:    //: '{{C_o.STAT_a[3]}}'
         break;
     }
 

@@ -90,6 +90,7 @@ const MATCH_o =
                           scale_n:  canvas_e.dataset.scale_n,
                           url_s:    canvas_e.dataset.src,
                           canvas_e: offCanvas_e,
+                                                   //: no storeBitmap_b
                         },
                         [ offCanvas_e ]
                       )
@@ -117,7 +118,8 @@ const MATCH_o =
           .worker__o
           (
             '{{C_o.STAT_a[3]}}',
-            '',
+            null,    //: no canvas_a
+            '',      //: no script
             MATCH_o.message__v,
           )
     

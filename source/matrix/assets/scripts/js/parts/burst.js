@@ -421,6 +421,11 @@ void function
         .worker__o
         (
           '{{C_o.STAT_a[0]}}',
+          [
+            'hue',
+            'sat',
+            'lum'
+          ],
           'LogScale Painter ColorBurst',
           BUR_o.message__v,
         )

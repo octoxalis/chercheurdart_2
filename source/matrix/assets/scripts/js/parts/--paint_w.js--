@@ -61,13 +61,13 @@ const PAI_W_o =
           .putCanvas__v
           (
             stat_s,
-            script_s,
-            worker_o,
             [
               'hue',
               'sat',
               'lum'
             ]
+            script_s,
+            worker_o,
           )
             
         break;
@@ -77,12 +77,12 @@ const PAI_W_o =
           .putCanvas__v
           (
             stat_s,
-            script_s,
-            worker_o,
             [
               'initial',
               'processed'
             ]
+            script_s,
+            worker_o,
           )
         break
 
