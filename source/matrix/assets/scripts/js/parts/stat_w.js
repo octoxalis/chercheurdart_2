@@ -318,7 +318,7 @@ async bitmap__o
       scale_n,
       url_s,
       storeBitmap_b
-    } = payload_o           //;console.log( payload_o )
+    } = payload_o
 
     if
     (
@@ -349,7 +349,7 @@ async bitmap__o
 
     const blob_o =
       await response_o
-        .blob()           //;console.log( blob_o )
+        .blob()
 
     const bitmap_o =
       await createImageBitmap
@@ -377,7 +377,7 @@ async bitmap__o
           (
             url_s,
             bitmap_o
-          )    ;console.log( STAT_W_o.imgBitmap_a )
+          )
     }
 
     return bitmap_o
@@ -388,7 +388,7 @@ async bitmap__o
   )
   {
     console
-      .log(`ERROR DETECTED @imgsLoad_w.js: ${ error_o }`)
+      .log( `ERROR DETECTED @bitmap__o(): ${ error_o }` )
 
     return null
   }
@@ -789,15 +789,22 @@ async bitmap__o
         await STAT_W_o
           .bitmap__o( payload_o )
 
-      await payload_o
-        .canvas_e
-          .getContext( '2d' )
-            .drawImage
-            (
-              bitmap_o,
-              0,
-              0,
-            )
+      if
+      (
+        bitmap_o
+      )
+      {
+        await payload_o
+          .canvas_e
+            .getContext( '2d' )
+              .drawImage
+              (
+                bitmap_o,
+                0,
+                0,
+              )
+      }
+
     }
     catch
     (
@@ -805,7 +812,7 @@ async bitmap__o
     )
     {
       console
-        .log(`ERROR DETECTED @imgsLoad_w.js: ${ error_o }`)
+        .log( `ERROR DETECTED @get_img__v(): ${ error_o }` )
     }
   }
   ,
@@ -879,7 +886,7 @@ async bitmap__o
   )
   {
     const { stat_s, part_s } =
-      payload_o                          ;console.log( stat_s + ':' + part_s )
+      payload_o
 
     switch
     (

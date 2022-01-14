@@ -1,14 +1,20 @@
 <:root>
-        --{{C_o.STAT_a[2]}}_canvas_width: 100;
+        /*--{{C_o.STAT_a[2]}}_canvas_width: 100;*/
         --{{C_o.STAT_a[2]}}_distance_x:  0;        /* factor */
-        --{{C_o.STAT_a[2]}}_perspective: 500;
+        --{{C_o.STAT_a[2]}}_perspective: 1000;
         --{{C_o.STAT_a[2]}}_distance:    -100;
         --{{C_o.STAT_a[2]}}_rotate:      0;
         --{{C_o.STAT_a[2]}}_scale:       .5;
 
         --{{C_o.STAT_a[2]}}_setop_display: none;
 </:root>
+<body>
+        overflow: auto;
+</body>
+
 <section#{{C_o.STAT_a[2]}}>
+        min-height: 300vmin;
+        min-width:  300vmin;
   <div>
         /* height: 200vh;   TEMPORARY */
     <canvas>
@@ -17,54 +23,33 @@
             --{{C_o.STAT_a[2]}}_rotateY:       calc( var(--{{C_o.STAT_a[2]}}_rotate) * 1deg );
             display: block;
             position: absolute;
+            border: 4px solid {{S_o.shadow_hi}};
             perspective-origin: center center;
             transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) ) scale( var(--{{C_o.STAT_a[2]}}_scale) );
-            /*transform: perspective( 300px ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) );*/
     </canvas>
     <canvas[data-layer_n="0"]>
         --{{C_o.STAT_a[2]}}_distance_x: -3;
-        background: hsla(0 100% 50%/1);
-        /*width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_0) * 1% );*/
-        opacity: 1;             /* TEMPORARY for stack_clip dev*/
     </canvas>
     <canvas[data-layer_n="1"]>
           --{{C_o.STAT_a[2]}}_distance_x: -2;
-          background: hsla(60 100% 50%/1);
-          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_1) * 1% ); */
     </canvas>
     <canvas[data-layer_n="2"]>
           --{{C_o.STAT_a[2]}}_distance_x: -1;
-          background: hsla(120 100% 50%/1);
-          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
     </canvas>
     <canvas[data-layer_n="3"]>
           --{{C_o.STAT_a[2]}}_distance_x: 0;
-          background: hsla(180 100% 50%/1);
-          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
     </canvas>
     <canvas[data-layer_n="4"]>
           --{{C_o.STAT_a[2]}}_distance_x: 1;
-          background: hsla(240 100% 50%/1);
-          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
     </canvas>
     <canvas[data-layer_n="5"]>
           --{{C_o.STAT_a[2]}}_distance_x: 2;
-          background: hsla(300 100% 50%/1);
-          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
     </canvas>
     <canvas[data-layer_n="6"]>
           --{{C_o.STAT_a[2]}}_distance_x: 3;
-          background: hsla(0 100% 50%/1);
-          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
     </canvas>
     <canvas[data-layer_n="7"]>
           --{{C_o.STAT_a[2]}}_distance_x: 4;
-          background: hsla(60 100% 50%/1);
-          /* width: calc( var(--{{C_o.STAT_a[2]}}_canvas_width) * var(--{{C_o.STAT_a[2]}}_canvas_ratio_2) * 1% ); */
-    </canvas>
-
-    <canvas:not([data-layer_n="0"])>  /* TEMPORARY for dev purpose */
-            /* display: none; */
     </canvas>
 
     <canvas[data-layer_b="0"]>
@@ -173,9 +158,6 @@
         </div>
 
 
-
-
-          
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup>  /* setup */
                 display: flex;
                 flex-direction: column;
@@ -196,11 +178,7 @@
         </div>
 
 
-
-
-
-
-        <div>
+        <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide]>
                   display: flex;
                   flex-direction: column;
                   position: relative;
@@ -222,10 +200,15 @@
           <input[type=range]::-webkit-slider-runnable-track />
                   width: 100px;
                   height: 16px;
-          <canvas>
-                width: 100px;
-                cursor: crosshair;
-          </canvas>
+          <div>
+                    display:grid;
+            <canvas>
+                    grid-area: 1/-1;
+                    width: 100px;
+                    background: blue;
+                    cursor: crosshair;
+            </canvas>
+          </div>
           <label[id$="_trace"]>
                   position: relative;
                   top: -100px;
@@ -265,26 +248,26 @@
         </div>
 
 
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_hue>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue>
           <input[type=range]:nth-of-type( 2n ) />
-                  width: calc( 360px * 2 );
-          <canvas#canvas_{{C_o.STAT_a[2]}}_hue>
-                  height: calc( 360px * 2 );
-                  background: hsla(0 50% 50%/1);
-          </canvas>
+                  width: 720px;  /* 360 * 2px */
+          <div>
+            <canvas>
+                    height: 720px;  /* 360 * 2px */
+                    background: hsla(0 50% 50%/1);
+            </canvas>
+          </div>
         </div>
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_sat>
-          <canvas#canvas_{{C_o.STAT_a[2]}}_sat>
-                height: calc( 100px * 2 );
-                background: hsla(100 50% 50%/1);
-          </canvas>
+
+        <div:not(#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue)>
+          <div>
+            <canvas>
+                  height: 200px;    /* 100 * 2px */
+                  background: hsla(100 50% 50%/1);
+            </canvas>
+          </div>
         </div>
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_lum>
-          <canvas#canvas_{{C_o.STAT_a[2]}}_lum>
-                height: calc( 100px * 2 );
-                background: hsla(200 50% 50%/1);
-          </canvas>
-        </div>
+
       </aside>
       <canvas>
       </canvas>

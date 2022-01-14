@@ -7,28 +7,28 @@ const PAI_o =
   SCALE_H_n: 1,
   SCALE_V_n: 2,
 
-  //??hue_o:
-  //??{
-  //??  grade_n: 0,
-  //??  gap_n: 0,
-  //??}
-  //??,
-  //??sat_o:
-  //??{
-  //??  grade_n: 0,
-  //??  gap_n: 0,
-  //??}
-  //??,
-  //??lum_o:
-  //??{
-  //??  grade_n: 0,
-  //??  gap_n: 0,
-  //??}
-  //??,
+  hue_o:
+  {
+    grade_n: 0,
+    gap_n: 0,
+  }
+  ,
+  sat_o:
+  {
+    grade_n: 0,
+    gap_n: 0,
+  }
+  ,
+  lum_o:
+  {
+    grade_n: 0,
+    gap_n: 0,
+  }
+  ,
 
   layer_o:
   {
-    perspective_n: 100,
+    perspective_n: 1000,
     distance_n:    -100,
     rotation_n:    0,
     scale_n:      .5
@@ -219,24 +219,18 @@ const PAI_o =
         .displayOp__v( true )
     }
 
-    let work_s
+    let work_s =
+      document
+        .querySelector( 'body' )
+          .dataset
+            .work_s
 
-    if
-    (
+    let imgId_s =
       operation_s
-    )
-    {
-      work_s =
+      ?
         operation_s
-    }
-    else
-    {
-      work_s =
-        document
-          .querySelector( 'body' )
-            .dataset
-              .work_s
-    }
+      :
+        work_s
 
     let fullLabel_s =
       '{{C_o.NAV_LEGEND_o.layer_s.legend_s}} '
@@ -267,7 +261,7 @@ const PAI_o =
       layer_n
     )
     {
-      id_s = `input_${work_s}_${layer_n}`
+      id_s = `input_${imgId_s}_${layer_n}`
   
       input_s =
         `<input id="${id_s}" data-layer_n=${layer_n} type="checkbox">`
@@ -335,14 +329,14 @@ const PAI_o =
               .title =
                   '{{C_o.NAV_LEGEND_o.layer_s.legend_s}}' + ` ${layer_n + 1}`
 
-            document
-              .documentElement
-                .style
-                  .setProperty
-                  (
-                    `--{{C_o.STAT_a[2]}}_canvas_ratio_${layer_n}`,
-                    1
-                  )
+            //?? document
+            //??   .documentElement
+            //??     .style
+            //??       .setProperty
+            //??       (
+            //??         `--{{C_o.STAT_a[2]}}_canvas_ratio_${layer_n}`,
+            //??         1
+            //??       )
           }
         )
 
@@ -457,7 +451,6 @@ const PAI_o =
           .masked__n()
       )
       {
-        //;console.log( PAI_o.masked__n() )
         window
           .alert( `Aucun plan n'est sélectionné.` )
         return
@@ -801,7 +794,7 @@ const PAI_o =
 
       const canvas_e =
         document
-          .getElementById( `canvas_{{C_o.STAT_a[2]}}_${sub_s}` )
+          .getElementById( `canvas_{{C_o.STAT_a[2]}}_${sub_s}_front` )
           
       canvas_e
       &&
@@ -946,7 +939,7 @@ const PAI_o =
             click_o
               .target
                 .closest( `input` )
-                  ?.id      //;console.log( click_o.target )
+                  ?.id
 
           if
           (
@@ -974,7 +967,7 @@ const PAI_o =
             {
               const operateOn_a =
                 PAI_o
-                  .operateOn__a()    //;console.log( operateOn_a )
+                  .operateOn__a()
 
               if
               (
@@ -1069,9 +1062,12 @@ const PAI_o =
   {
     const canvas_a =
       [
-        'hue',
-        'sat',
-        'lum'
+        'hue_back',
+        'hue_front',
+        'sat_back',
+        'sat_front',
+        'lum_back',
+        'lum_front'
       ]
 
     PAI_o
