@@ -5,7 +5,7 @@ const DOM_o =
   (
     varName_s,
     value_s
-    ) =>
+  ) =>
       document
         .documentElement
           .style
@@ -47,7 +47,7 @@ const DOM_o =
 
 
 
-  beforeNode__v:
+  beforeNode__e:
   (
     fragment_e,
     anchor_s      //: node ID, sibling of fragment
@@ -66,6 +66,8 @@ const DOM_o =
             fragment_e,
             anchor_e
           )
+
+    return fragment_e
   }
   ,
 
@@ -86,7 +88,7 @@ const DOM_o =
       anchor_s
       ?
         DOM_o
-          .beforeNode__v
+          .beforeNode__e
           (
             fragment_e,
             anchor_s
@@ -98,5 +100,24 @@ const DOM_o =
   ,
 
 
-
+  listener__v:
+  (
+    id_s,
+    handle_f,
+    event_s='click'
+  ) =>
+  {
+    const listen_e =
+      document
+        .getElementById( id_s )
+        
+    listen_e
+    &&
+    listen_e
+      .addEventListener
+      (
+        event_s,
+        handle_f
+      )
+  }
 }

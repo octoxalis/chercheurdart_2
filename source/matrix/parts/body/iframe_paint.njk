@@ -20,14 +20,13 @@
                 </label>
             </nav>
 
-            <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items"></ul>
+            <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items">
+            </ul>
 
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup">
                 <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_add">{{C_o.NAV_LEGEND_o.layers_add.legend_s}}</label>
                 <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_hide">{{C_o.NAV_LEGEND_o.layers_hide.legend_s}}</label>
             </div>
-
-
 
             <ul id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop">
               <li>
@@ -46,8 +45,6 @@
                 <input  id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_complement" type="radio" name=layer_set />
                 <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_complement">{{C_o.NAV_LEGEND_o.layers_complement.legend_s}}</label>
             </ul>
-
-
 
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue">
                 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
@@ -93,15 +90,15 @@
         </aside>
     </div>
 
-    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position">
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective" type="range" min="100" max="5000" step="100" value="1000" data-tip="1000"/>
-        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_perspective">{{C_o.NAV_LEGEND_o.layers_perspective.legend_s}}</label>
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance" type="range" min="-500" max="500" step="10" value="-100" data-tip="-100"/>
-        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_distance">{{C_o.NAV_LEGEND_o.layers_distance.legend_s}}</label>
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate" type="range" min="-200" max="200" step="10" value="0" data-tip="0"/>
-        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_rotate">{{C_o.NAV_LEGEND_o.layers_rotate.legend_s}}</label>
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale" type="range" min=".1" max="1" step=".05" value=".5" data-tip=".5"/>
-        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
+    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view">
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_view_perspective" type="range" min="100" max="5000" step="100" value="1000" data-tip="1000"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_view_perspective">{{C_o.NAV_LEGEND_o.layers_perspective.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_view_distance" type="range" min="-500" max="500" step="10" value="-100" data-tip="-100"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_view_distance">{{C_o.NAV_LEGEND_o.layers_distance.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_view_rotate" type="range" min="-200" max="200" step="10" value="0" data-tip="0"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_view_rotate">{{C_o.NAV_LEGEND_o.layers_rotate.legend_s}}</label>
+        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_view_scale" type="range" min=".1" max="1" step=".05" value=".5" data-tip=".5"/>
+        <label for="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_view_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
     </div>
 
     <script id="script_{{C_o.STAT_a[2]}}" data-src="/assets/scripts/js/{{C_o.STAT_a[2]}}.min.js"></script>

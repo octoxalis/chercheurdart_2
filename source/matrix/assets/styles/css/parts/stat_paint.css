@@ -171,6 +171,9 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg ) scaleY( .3 );
   transform-origin: top left;
 }
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap {
+  width: 720px;
+}
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > input[type=range]:focus {
   outline: none;
 }
@@ -184,7 +187,8 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > div > canvas {
   grid-area: 1/-1;
   width: 100px;
-  background: blue;
+  background: transparent;
+  border: 1px solid blue;
   cursor: crosshair;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] {
@@ -219,22 +223,11 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] > span:hover ~ output {
   opacity: 1;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue > input[type=range]:nth-of-type( 2n ) {
-  width: 720px;
-}
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue > div > canvas {
-  height: 720px;
-  background: hsla(0 50% 50%/1);
-}
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > div:not(#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue) > div > canvas {
-  height: 200px;
-  background: hsla(100 50% 50%/1);
-}
-div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position:hover {
+div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view:hover {
   opacity: 1;
   transition: opacity 2s ease;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view {
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -245,7 +238,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position {
   opacity: .1;
   transition: opacity .3s ease;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range] {
   position: relative;
   top: {{S_o.PAD_5}};
   width: 200px;
@@ -253,7 +246,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range] {
   cursor: pointer;
   transform: scaleY( .3 );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label {
   position: relative;
   top: -{{S_o.PAD_6}};
   padding: {{S_o.PAD_1}};
@@ -263,10 +256,10 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > label {
   border: none;
   opacity: .5;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range]:focus {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range]:focus {
   outline: none;
   filter: hue-rotate( -220deg );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position > input[type=range]:focus + label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range]:focus + label {
   background: {{S_o.lighter}};
 }

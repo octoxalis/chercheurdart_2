@@ -826,6 +826,11 @@ async bitmap__o
     payload_o
   )
   {
+    STAT_W_o
+      .pixel_n =
+        payload_o
+          .pixel_n
+
     const { stat_s, part_s } =
       payload_o
 
@@ -875,6 +880,13 @@ async bitmap__o
           [ `${part_s}_o` ]
             .context_o =
                 context_o
+
+    STAT_W_o
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
+            .painter_c =
+                new Painter( context_o )
   }
   ,
 
@@ -885,7 +897,11 @@ async bitmap__o
     payload_o
   )
   {
-    const { stat_s, part_s } =
+    const
+    {
+      stat_s,
+      part_s
+    } =
       payload_o
 
     switch
@@ -1075,7 +1091,129 @@ async bitmap__o
 
 
       case '{{C_o.STAT_a[2]}}':
+        //...............................
+        ;console.log( STAT_W_o.stat_o )
+
+          const paint_o =
+            STAT_W_o
+              .stat_o
+                [ `${stat_s}_o` ]   //: paint
+                  [ `${part_s}_o` ] //: hue_back, hue_front...
+
+        const
+        [
+          hsl_s,
+          face_s
+        ] =
+          part_s
+            .split( '_' )
+
+        switch
+        (
+          hsl_s
+        )
+        {
+          case 'hue':
+            for
+            (
+              let at_n = 0;
+              at_n < 360;
+              ++at_n
+            )
+            {
+              paint_o
+                .painter_c
+                  .fill__c
+                  (
+                    [
+                      at_n,
+                      100,
+                      50,
+                      //--1
+                    ]
+                  )
+                  .rect__c
+                  (
+                    0,
+                    at_n * 2 * STAT_W_o.pixel_n
+          ,
+                    100 * STAT_W_o.pixel_n,
+                    2 * STAT_W_o.pixel_n,
+                    'fill'
+                  )
+            }
+            
+            break
+        
+          case 'sat':
+            for
+            (
+              let at_n = 0;
+              at_n < 101;
+              ++at_n
+            )
+            {
+              paint_o
+                .painter_c
+                  .fill__c
+                  (
+                    [
+                      0,
+                      at_n,
+                      50,
+                      //--1
+                    ]
+                  )
+                  .rect__c
+                  (
+                    0,
+                    at_n * 2 * STAT_W_o.pixel_n,
+                    100 * STAT_W_o.pixel_n,
+                    2 * STAT_W_o.pixel_n,
+                    'fill'
+                  )
+            }
+
+            break
+
+          case 'lum':
+            for
+            (
+              let at_n = 0;
+              at_n < 101;
+              ++at_n
+            )
+            {
+              paint_o
+                .painter_c
+                  .fill__c
+                  (
+                    [
+                      0,
+                      0,
+                      at_n,
+                      //--1
+                    ]
+                  )
+                  .rect__c
+                  (
+                    0,
+                    at_n * 2 * STAT_W_o.pixel_n,
+                    100 * STAT_W_o.pixel_n,
+                    2 * STAT_W_o.pixel_n,
+                    'fill'
+                  )
+            }
+
+            break
+        
+          default:
+            break
+        }
+
+        //...............................
         break
+
 
       default:    //: '{{C_o.STAT_a[3]}}'
         break;

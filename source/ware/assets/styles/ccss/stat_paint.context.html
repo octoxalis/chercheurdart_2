@@ -16,7 +16,6 @@
         min-height: 300vmin;
         min-width:  300vmin;
   <div>
-        /* height: 200vh;   TEMPORARY */
     <canvas>
             --{{C_o.STAT_a[2]}}_perspectiveX:  calc(var(--{{C_o.STAT_a[2]}}_perspective) * 1px);
             --{{C_o.STAT_a[2]}}_translateX:    calc( var(--{{C_o.STAT_a[2]}}_distance) * var(--{{C_o.STAT_a[2]}}_distance_x) * 1px);
@@ -103,7 +102,6 @@
           </label>
         </nav>
 
-
         <ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"]>
                   width: 100%;
                   border: none;
@@ -150,15 +148,13 @@
         </ul>
 
         <ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop>
-                  display: var(--{{C_o.STAT_a[2]}}_setop_display);
+                display: var(--{{C_o.STAT_a[2]}}_setop_display);
           <label>
-                    /*font-size: 90%;*/
-                    text-transform: none;
-                </label>
-        </div>
+                  text-transform: none;
+          </label>
+        </ul>
 
-
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup>  /* setup */
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup>
                 display: flex;
                 flex-direction: column;
                 gap: {{S_o.PAD_1}};
@@ -177,7 +173,6 @@
           </label>
         </div>
 
-
         <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide]>
                   display: flex;
                   flex-direction: column;
@@ -195,6 +190,8 @@
                   width: 200px;
                   transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg ) scaleY( .3 );
                   transform-origin: top left;
+          <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap />
+                  width: 720px;  /* 360 * 2px */
           <input[type=range]:focus />
                   outline: none;
           <input[type=range]::-webkit-slider-runnable-track />
@@ -205,7 +202,8 @@
             <canvas>
                     grid-area: 1/-1;
                     width: 100px;
-                    background: blue;
+                    background: transparent;
+                    border: 1px solid blue;
                     cursor: crosshair;
             </canvas>
           </div>
@@ -247,42 +245,19 @@
           </label>
         </div>
 
-
-        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue>
-          <input[type=range]:nth-of-type( 2n ) />
-                  width: 720px;  /* 360 * 2px */
-          <div>
-            <canvas>
-                    height: 720px;  /* 360 * 2px */
-                    background: hsla(0 50% 50%/1);
-            </canvas>
-          </div>
-        </div>
-
-        <div:not(#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue)>
-          <div>
-            <canvas>
-                  height: 200px;    /* 100 * 2px */
-                  background: hsla(100 50% 50%/1);
-            </canvas>
-          </div>
-        </div>
-
       </aside>
-      <canvas>
-      </canvas>
     </div>
   </div>
 
 
 
   <div>
-    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position:hover>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view:hover>
             opacity: 1;
             transition: opacity 2s ease;
     </div>
 
-    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view>
             display: flex;
             flex-direction: column;
             position: sticky;

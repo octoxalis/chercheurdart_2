@@ -26,7 +26,7 @@ const PAI_o =
   }
   ,
 
-  layer_o:
+  view_o:
   {
     perspective_n: 1000,
     distance_n:    -100,
@@ -71,7 +71,7 @@ const PAI_o =
 
 
 
-  canvas__v:
+  canvasPoint__v:
   (
     id_s,
     offsetX,
@@ -93,27 +93,7 @@ const PAI_o =
       )
 
     ;console.log( id_s + ': ' + atY_n + ' / ' + atX_n )
-
-  }
-  ,
-
-
-
-  canvas__e:
-  (
-    work_s,
-    callback_f    //: optional
-  ) =>
-  {
-    const canvas_e =
-      document
-        .createElement( 'canvas' )
-
-    callback_f
-    &&
-    callback_f( canvas_e )
-
-    return canvas_e
+    //............
   }
   ,
 
@@ -296,57 +276,26 @@ const PAI_o =
             .wh_s
               .split( '_' )
 
-    const addCanvas_e =
-      PAI_o
-        .canvas__e
-        (
-          work_s,
-          canvas_e =>      //: callback_f
-          {
-            canvas_e
-              .id =
-                `canvas_{{C_o.STAT_a[2]}}_layer_${layer_n}`
-  
-            canvas_e
-              .dataset
-                .layer_n =
-                  layer_n
-  
-            canvas_e
-              .width =
-                width_s
-
-            canvas_e
-              .height =
-                height_s
-                
-            canvas_e
-              .dataset
-                .size_n =
-                  1              //: to increase/decrease
-  
-            canvas_e
-              .title =
-                  '{{C_o.NAV_LEGEND_o.layer_s.legend_s}}' + ` ${layer_n + 1}`
-
-            //?? document
-            //??   .documentElement
-            //??     .style
-            //??       .setProperty
-            //??       (
-            //??         `--{{C_o.STAT_a[2]}}_canvas_ratio_${layer_n}`,
-            //??         1
-            //??       )
-          }
-        )
-
     DOM_o
-      .beforeNode__v
+      .fragment__e
       (
-        addCanvas_e,
-        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_position'
+        `<canvas`
+        + ` id=canvas_{{C_o.STAT_a[2]}}_layer_${layer_n}`
+        + ` width=${width_s} height=${height_s}`
+        + ` data-layer_n=${layer_n}`
+        + ` data-size_n=1`
+        + ` title={{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n + 1}`
+        + `><canvas>`
+        ,
+        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view'
       )
 
+    const offCanvas_e =
+      document
+        .getElementById( `canvas_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
+          .transferControlToOffscreen()
+      
+  
     PAI_o
       .layer_a
         .push
@@ -372,22 +321,6 @@ const PAI_o =
           }
         )
 
-
-
-
-
-    //: worker PUT offscreencanvas
-    //--STAT_o
-    //--  .putCanvas__v
-    //--  (
-    //--    '{{C_o.STAT_a[2]}}',
-    //--    [ `layer_${layer_n}` ],    //: from addCanvas_e.id
-    //--    '',
-    //--    PAI_o
-    //--      .worker_o
-    //--  )
-    //.... worker draw initial image (clone original)
-
     const centerX =
       +width_s      //: number cast
       *
@@ -398,10 +331,6 @@ const PAI_o =
       *
       .5
 
-    const offCanvas_e =
-      addCanvas_e
-        .transferControlToOffscreen()
-    
     PAI_o
       .worker_o           //! using port postMessage directly
         .port_o           //! to avoid error:
@@ -419,20 +348,13 @@ const PAI_o =
             [ offCanvas_e ]
           )
 
-
-
-
-
-
-
-
     return layer_n
   }
   ,
   
   
 
-  hideLayer__v:
+  hideLayer__n:
   () =>
   {
     const selected_a =
@@ -508,7 +430,7 @@ const PAI_o =
         }
       }
 
-      return
+      return layer_n
     }
     //-->
     if
@@ -558,8 +480,191 @@ const PAI_o =
   }
   ,
   
+
   
-  
+  setop__v:
+  (
+    click_o
+  ) =>
+  {
+    const id_s =
+      click_o
+        .target
+          .closest( `input` )
+            ?.id
+
+    if
+    (
+      id_s
+    )
+    {
+      const op_s =
+        id_s
+          .slice
+          (
+            id_s
+              .lastIndexOf( '_' )
+            +
+            1      //: skip '_'
+          )
+
+      if
+      (
+        op_s
+        &&
+        op_s
+        !==
+        'none'    //: do nothing for non operation (only deselect selected operation)
+      )
+      {
+        const operateOn_a =
+          PAI_o
+            .operateOn__a()
+
+        if
+        (
+          operateOn_a
+            .length      //: empty if no selection
+          <
+          2
+        )
+        {
+          return(
+            window
+              .alert( `Deux plans doivent être sélectionnés pour effectuer cette opération.` )
+          )
+        }
+        //-->
+
+        let layerOne_s =
+          PAI_o
+            .layerIndex__s
+            (
+              operateOn_a
+                [ 0 ]
+                  .dataset
+                    .layer_n
+            )
+
+
+        let layerTwo_s =
+          PAI_o
+            .layerIndex__s
+            (
+              operateOn_a
+                [ 1 ]
+                  .dataset
+                    .layer_n
+            )
+
+        let label_s =
+          op_s
+          ===
+          'union'
+          ?
+            '{{C_o.NAV_LEGEND_o.layers_union.legend_s}}'
+          :
+            op_s
+            ===
+            'difference'
+            ?
+              '{{C_o.NAV_LEGEND_o.layers_difference.legend_s}}'
+            :
+              op_s
+              ===
+               'intersection'
+              ?
+                '{{C_o.NAV_LEGEND_o.layers_intersection.legend_s}}'
+              :
+                '{{C_o.NAV_LEGEND_o.layers_complement.legend_s}}'
+
+        const layer_n =
+          PAI_o
+            .addLayer__n
+            (
+              op_s,
+              `${label_s} [ ${layerOne_s} &#8728; ${layerTwo_s} ]`
+            )
+
+        if
+        (
+          layer_n
+        )
+        {
+          PAI_o
+            [ `${op_s}__v` ]
+            (
+              layer_n,
+              operateOn_a
+            )
+        }
+
+      }
+    }
+  }
+,
+
+
+
+  rangeEvent__v:
+  (
+    event_o
+  ) =>
+  {
+    PAI_o
+      .range__v
+      (
+        event_o
+          .target,
+        (
+          sub_s,
+          range_s,
+          value_s
+        ) =>
+          {
+            PAI_o
+              [ `${sub_s}_o` ]
+                [ `${range_s}_n` ] =
+                  +value_s      //: number cast
+
+            DOM_o
+              .rootVar__v
+              (
+                `--{{C_o.STAT_a[2]}}_${range_s}`,
+                +value_s
+              )
+          }
+      )
+  }
+  ,
+
+
+  pointEvent__v:
+  (
+    click_o
+  ) =>
+  {
+    const
+    {
+      offsetX,
+      offsetY
+    } =
+      click_o
+
+    PAI_o
+      .canvasPoint__v
+      (
+        click_o
+          .target
+            .id,
+        offsetX,
+        offsetY
+      )
+  }
+,
+
+
+
   selected__a:
   () =>
     Array
@@ -728,7 +833,7 @@ const PAI_o =
   listener__v
   ()
   {
-    //=== SLIDERS ===
+    //=== CANVAS + SLIDERS ===
     for
     (
       let sub_s
@@ -750,10 +855,6 @@ const PAI_o =
         ]
       )
       {
-        const range_e =
-          document
-            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_${range_s}` )
-            
         for
         (
           let event_s
@@ -764,69 +865,27 @@ const PAI_o =
           ]
         )
         {
-          range_e
-          &&
-          range_e
-            .addEventListener
+          DOM_o
+            .listener__v
             (
-              event_s,
-              event_o =>
-              {
-                PAI_o
-                  .range__v
-                  (
-                    event_o
-                      .target,
-                    (
-                      sub_s,
-                      range_s,
-                      value_s
-                    ) =>
-                      PAI_o
-                        [ `${sub_s}_o` ]
-                          [ `${range_s}_n` ] =
-                            +value_s      //: number cast
-                  )
-              }
+              `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_${range_s}`,
+              PAI_o
+                .rangeEvent__v,
+              event_s
             )
         }
       }
 
-      const canvas_e =
-        document
-          .getElementById( `canvas_{{C_o.STAT_a[2]}}_${sub_s}_front` )
-          
-      canvas_e
-      &&
-      canvas_e
-        .addEventListener
+      DOM_o
+        .listener__v
         (
-          'click',
-          click_o =>
-          {
-            const
-            {
-              offsetX,
-              offsetY
-            } =
-              click_o
-
-            PAI_o
-              .canvas__v
-              (
-                click_o
-                  .target
-                    .id,
-                offsetX,
-                offsetY
-              )
-          }
+          `canvas_{{C_o.STAT_a[2]}}_${sub_s}_front`,
+          PAI_o
+            .pointEvent__v
         )
     }
 
     //=== GEOMETRY ===
-    let sub_s = 'layer'
-
     for
     (
       let range_s
@@ -839,10 +898,6 @@ const PAI_o =
       ]
     )
     {
-      const range_e =
-        document
-          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_${range_s}` )
-          
       for
       (
         let event_s
@@ -853,203 +908,44 @@ const PAI_o =
         ]
       )
       {
-        range_e
-        &&
-        range_e
-          .addEventListener
+        DOM_o
+          .listener__v
           (
-            event_s,
-            event_o =>
-            {
-              PAI_o
-                .range__v
-                (
-                  event_o
-                    .target,
-                  (
-                    sub_s,
-                    range_s,
-                    value_s
-                  ) =>
-                    {
-                      PAI_o
-                        [ `${sub_s}_o` ]
-                          [ `${range_s}_n` ] =
-                            +value_s      //: number cast
-
-                      DOM_o
-                        .rootVar__v
-                        (
-                          `--{{C_o.STAT_a[2]}}_${range_s}`,
-                          +value_s
-                        )
-                    }
-                )
-            }
+            `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_view_${range_s}`,
+            PAI_o
+              .rangeEvent__v,
+            event_s
           )
       }
     }
 
-    //=== ADD & HIDE ===
-    const add_e =
-      document
-        .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_add' )
-        
-    add_e
-    &&
-    add_e
-      .addEventListener
-      (
-        'click',
-        PAI_o
-          .addLayer__n
-      )
-
-    const hide_e =
-      document
-        .getElementById( `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_hide` )
-        
-    hide_e
-    &&
-    hide_e
-      .addEventListener
-      (
-        'click',
-        click_o =>
-        {
+    //=== ADD + HIDE ===
+    for
+    (
+      let action_s
+      of
+      [
+        'add',
+        'hide'
+      ]
+    )
+    {
+      DOM_o
+        .listener__v
+        (
+          `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_${action_s}`,
           PAI_o
-            .hideLayer__v()
-        }
-      )
-
-    //=== SET OPERATIONS ===
-    const operations_e =
-      document
-        .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop` )
-        
-    operations_e
-    &&
-    operations_e
-      .addEventListener
-      (
-        'click',
-        click_o =>
-        {
-          const id_s =
-            click_o
-              .target
-                .closest( `input` )
-                  ?.id
-
-          if
-          (
-            id_s
-          )
-          {
-            const op_s =
-              id_s
-                .slice
-                (
-                  id_s
-                    .lastIndexOf( '_' )
-                  +
-                  1      //: skip '_'
-                )
-  
-            if
-            (
-              op_s
-              &&
-              op_s
-              !==
-              'none'    //: do nothing for non operation (only deselect selected operation)
-            )
-            {
-              const operateOn_a =
-                PAI_o
-                  .operateOn__a()
-
-              if
-              (
-                operateOn_a
-                  .length      //: empty if no selection
-                <
-                2
-              )
-              {
-                return(
-                  window
-                    .alert( `Deux plans doivent être sélectionnés pour effectuer cette opération.` )
-                )
-              }
-              //-->
-
-              let layerOne_s =
-                PAI_o
-                  .layerIndex__s
-                  (
-                    operateOn_a
-                      [ 0 ]
-                        .dataset
-                          .layer_n
-                  )
-
-
-              let layerTwo_s =
-                PAI_o
-                  .layerIndex__s
-                  (
-                    operateOn_a
-                      [ 1 ]
-                        .dataset
-                          .layer_n
-                  )
-
-              let label_s =
-                op_s
-                ===
-                'union'
-                ?
-                  '{{C_o.NAV_LEGEND_o.layers_union.legend_s}}'
-                :
-                  op_s
-                  ===
-                  'difference'
-                  ?
-                    '{{C_o.NAV_LEGEND_o.layers_difference.legend_s}}'
-                  :
-                    op_s
-                    ===
-                     'intersection'
-                    ?
-                      '{{C_o.NAV_LEGEND_o.layers_intersection.legend_s}}'
-                    :
-                      '{{C_o.NAV_LEGEND_o.layers_complement.legend_s}}'
-
-              const layer_n =
-                PAI_o
-                  .addLayer__n
-                  (
-                    op_s,
-                    `${label_s} [ ${layerOne_s} &#8728; ${layerTwo_s} ]`
-                  )
+            [ `${action_s}Layer__n` ]
+        )
+    }
     
-              if
-              (
-                layer_n
-              )
-              {
-                PAI_o
-                  [ `${op_s}__v` ]
-                  (
-                    layer_n,
-                    operateOn_a
-                  )
-              }
-
-            }
-          }
-        }
+    //=== SET OPERATIONS ===
+    DOM_o
+      .listener__v
+      (
+        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop',
+        PAI_o
+          .setop__v
       )
 
   }

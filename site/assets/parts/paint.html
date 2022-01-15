@@ -20,14 +20,13 @@
                 </label>
             </nav>
 
-            <ul id="DI_paint_layer_items"></ul>
+            <ul id="DI_paint_layer_items">
+            </ul>
 
             <div id="DI_paint_layer_setup">
                 <label id="LA_paint_layer_add">ajouter</label>
                 <label id="LA_paint_layer_hide">masquer</label>
             </div>
-
-
 
             <ul id="DI_paint_layer_setop">
               <li>
@@ -46,8 +45,6 @@
                 <input  id="LA_paint_layer_set_complement" type="radio" name=layer_set />
                 <label for="LA_paint_layer_set_complement">Complément</label>
             </ul>
-
-
 
             <div id="DI_paint_slide_hue">
                 <input id="IN_paint_hue_grade" type="range" min="0" max="100" value="50" data-tip="50"/>
@@ -93,15 +90,15 @@
         </aside>
     </div>
 
-    <div id="DI_paint_layer_position">
-        <input id="IN_paint_layer_perspective" type="range" min="100" max="5000" step="100" value="1000" data-tip="1000"/>
-        <label for="LA_paint_layer_perspective">Perspective</label>
-        <input id="IN_paint_layer_distance" type="range" min="-500" max="500" step="10" value="-100" data-tip="-100"/>
-        <label for="LA_paint_layer_distance">Distance</label>
-        <input id="IN_paint_layer_rotate" type="range" min="-200" max="200" step="10" value="0" data-tip="0"/>
-        <label for="LA_paint_layer_rotate">Rotation</label>
-        <input id="IN_paint_layer_scale" type="range" min=".1" max="1" step=".05" value=".5" data-tip=".5"/>
-        <label for="LA_paint_layer_scale">Échelle</label>
+    <div id="DI_paint_layer_view">
+        <input id="IN_paint_view_perspective" type="range" min="100" max="5000" step="100" value="1000" data-tip="1000"/>
+        <label for="LA_paint_view_perspective">Perspective</label>
+        <input id="IN_paint_view_distance" type="range" min="-500" max="500" step="10" value="-100" data-tip="-100"/>
+        <label for="LA_paint_view_distance">Distance</label>
+        <input id="IN_paint_view_rotate" type="range" min="-200" max="200" step="10" value="0" data-tip="0"/>
+        <label for="LA_paint_view_rotate">Rotation</label>
+        <input id="IN_paint_view_scale" type="range" min=".1" max="1" step=".05" value=".5" data-tip=".5"/>
+        <label for="LA_paint_view_scale">Échelle</label>
     </div>
 
     <script id="script_paint" data-src="/assets/scripts/js/paint.min.js"></script>
