@@ -42,29 +42,29 @@ const BUR_o =
   {
     const center_n =
       document
-        .getElementById( `canvas_{{C_o.STAT_a[0]}}_hue` )    //: all canvases (hue, sat, lum) have same size
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue` )    //: all canvases (hue, sat, lum) have same size
           .width
       *
       .5      //: width / 2
-      *
-      window
-        .devicePixelRatio
+      //??*
+      //??window
+      //??  .devicePixelRatio
 
     const x_n =
       event_o
         .offsetX
-      *
-      window
-        .devicePixelRatio
+      //??*
+      //??window
+      //??  .devicePixelRatio
       -
       center_n
   
      const y_n =
       event_o
         .offsetY
-      *
-      window
-        .devicePixelRatio
+      //??*
+      //??window
+      //??  .devicePixelRatio
       -
       center_n
   
@@ -299,7 +299,7 @@ const BUR_o =
       )
       {
         document
-          .getElementById( `canvas_{{C_o.STAT_a[0]}}_${part_s}` )
+          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${part_s}` )
             ?.addEventListener
             (
               event_s,

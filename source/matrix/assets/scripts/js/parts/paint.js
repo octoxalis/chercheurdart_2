@@ -9,20 +9,20 @@ const PAI_o =
 
   hue_o:
   {
-    grade_n: 0,
-    gap_n: 0,
+    grade_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_grade
+    gap_n:   60,    //: _hue_gap
   }
   ,
   sat_o:
   {
-    grade_n: 0,
-    gap_n: 0,
+    grade_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_grade
+    gap_n:   10,    //: _sat_gap
   }
   ,
   lum_o:
   {
-    grade_n: 0,
-    gap_n: 0,
+    grade_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_grade
+    gap_n:   10,    //: _lum_gap
   }
   ,
 
@@ -71,81 +71,13 @@ const PAI_o =
 
 
 
-  canvasPoint__v:
-  (
-    id_s,
-    offsetX,
-    offsetY
-  ) =>
-  {
-    const atX_n =
-      ~~( +offsetX      //: number cast
-      /
-      PAI_o
-        .SCALE_H_n
-      )
-
-    const atY_n =
-      ~~( +offsetY      //: number cast
-      /
-      PAI_o
-        .SCALE_V_n
-      )
-
-    //----------------------------------
-    ;console.log( id_s + ': ' + atY_n + ' / ' + atX_n )
-    //............
-  }
-  ,
-
-
-
-  range__v:
-  (
-    range_e,
-    callback_f
-  ) =>
-  {
-    const value_s =
-      range_e
-        .value
-
-    range_e
-      .dataset
-        .tip =
-          value_s
-
-    const
-    [
-      ,
-      ,
-      sub_s,
-      range_s
-    ] =
-      range_e
-        .id
-          .split( '_' )
-
-    callback_f
-    &&
-    callback_f
-    (
-      sub_s,
-      range_s,
-      value_s
-    )
-  }
-  ,
-
-
-
   layer__n:
   () =>
     Array
       .from
       (
         document
-          .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
+          .getElementById( '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
             .querySelectorAll( 'li' )
       )
       .length
@@ -262,7 +194,7 @@ const PAI_o =
             + `<label ${for_s}>${fullLabel_s}</label>`
             + `</li>`
           ),
-        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items'
+        '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items'
       )
   
   
@@ -281,7 +213,7 @@ const PAI_o =
       .fragment__e
       (
         `<canvas`
-        + ` id=canvas_{{C_o.STAT_a[2]}}_layer_${layer_n}`
+        + ` id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}`
         + ` width=${width_s} height=${height_s}`
         + ` data-layer_n=${layer_n}`
         + ` data-size_n=1`
@@ -293,7 +225,7 @@ const PAI_o =
 
     const offCanvas_e =
       document
-        .getElementById( `canvas_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
           .transferControlToOffscreen()
       
   
@@ -390,7 +322,7 @@ const PAI_o =
       //->
       let unmasked_e =
         document
-          .querySelector( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"]` )
+          .querySelector( `#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"]` )
 
       if
       (
@@ -603,66 +535,7 @@ const PAI_o =
       }
     }
   }
-,
-
-
-
-  rangeEvent__v:
-  (
-    event_o
-  ) =>
-  {
-    PAI_o
-      .range__v
-      (
-        event_o
-          .target,
-        (
-          sub_s,
-          range_s,
-          value_s
-        ) =>
-          {
-            PAI_o
-              [ `${sub_s}_o` ]
-                [ `${range_s}_n` ] =
-                  +value_s      //: number cast
-
-            DOM_o
-              .rootVar__v
-              (
-                `--{{C_o.STAT_a[2]}}_${range_s}`,
-                +value_s
-              )
-          }
-      )
-  }
   ,
-
-
-  pointEvent__v:
-  (
-    click_o
-  ) =>
-  {
-    const
-    {
-      offsetX,
-      offsetY
-    } =
-      click_o
-
-    PAI_o
-      .canvasPoint__v
-      (
-        click_o
-          .target
-            .id,
-        offsetX,
-        offsetY
-      )
-  }
-,
 
 
 
@@ -672,7 +545,7 @@ const PAI_o =
       .from
       (
         document
-          .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"]) > input:checked` )
+          .querySelectorAll( `#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"]) > input:checked` )
       )
   ,
   
@@ -684,7 +557,7 @@ const PAI_o =
       .from
       (
         document
-          .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"])` )
+          .querySelectorAll( `#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"])` )
       )
   ,
   
@@ -705,7 +578,7 @@ const PAI_o =
       .from
       (
         document
-          .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
+          .getElementById( '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
             .querySelectorAll( 'li[data-layer_b="0"]' )
       )
       ?.length
@@ -831,6 +704,181 @@ const PAI_o =
 
 
 
+  range__v:
+  (
+    range_e,
+    callback_f
+  ) =>
+  {
+    const value_s =
+      range_e
+        .value
+  
+    range_e
+      .dataset
+        .tip =
+          value_s
+  
+    const
+    [
+      ,
+      ,
+      sub_s,
+      range_s
+    ] =
+      range_e
+        .id
+          .split( '_' )
+  
+    callback_f
+    &&
+    callback_f
+    (
+      sub_s,
+      range_s,
+      value_s
+    )
+  }
+  ,
+
+
+
+  rangeEvent__v:
+  (
+    event_o
+  ) =>
+  {
+    PAI_o
+      .range__v
+      (
+        event_o
+          .target,
+        (
+          sub_s,
+          range_s,
+          value_s
+        ) =>
+          {
+            PAI_o
+              [ `${sub_s}_o` ]
+                [ `${range_s}_n` ] =
+                  +value_s      //: number cast
+
+            DOM_o
+              .rootVar__v
+              (
+                `--{{C_o.STAT_a[2]}}_${range_s}`,
+                +value_s
+              )
+          }
+      )
+  }
+  ,
+
+
+  huePoint__v:
+  (
+    atX_n,
+    atY_n
+  ) =>
+  {
+                            ;console.log( 'hue: ' + atY_n + ' / ' + atX_n )
+    PAI_o
+      .worker_o
+        .post__v
+        (
+          { 
+            task_s: 'PUT_point',
+            stat_s: '{{C_o.STAT_a[2]}}',
+            hsl_s:  'hue',
+            grade_n: PAI_o
+                       .hue_o
+                         .grade_n,
+            atX_n:  atX_n,
+            gap_n:  PAI_o
+                      .hue_o
+                        .gap_n,
+      
+            atY_n:  atY_n,
+          }
+        )
+
+  }
+  ,
+
+
+
+  satPoint__v:
+  (
+    atX_n,
+    atY_n
+  ) =>
+  {
+    ;console.log( 'sat: ' + atY_n + ' / ' + atX_n )
+
+
+  }
+  ,
+  
+
+
+  lumPoint__v:
+  (
+    atX_n,
+    atY_n
+  ) =>
+  {
+    ;console.log( 'lum: ' + atY_n + ' / ' + atX_n )
+
+
+  }
+  ,
+  
+
+
+  pointEvent__v:
+  (
+    click_o
+  ) =>
+  {
+    const
+    {
+      offsetX,
+      offsetY
+    } =
+      click_o
+
+    const
+    [
+      ,
+      ,
+      hsl_s
+    ] =
+      click_o
+        .target
+          .id
+            .split( '_' )
+      
+    PAI_o
+      [ `${hsl_s}Point__v` ]
+      (
+        ~~( +offsetX      //: number cast
+        /
+        PAI_o
+          .SCALE_H_n
+        )
+        ,
+        ~~( +offsetY      //: number cast
+        /
+        PAI_o
+          .SCALE_V_n
+        )
+      )
+  }
+  ,
+
+
+
   listener__v
   ()
   {
@@ -880,7 +928,7 @@ const PAI_o =
       DOM_o
         .listener__v
         (
-          `canvas_{{C_o.STAT_a[2]}}_${sub_s}_front`,
+          `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_front`,
           PAI_o
             .pointEvent__v
         )
@@ -944,7 +992,7 @@ const PAI_o =
     DOM_o
       .listener__v
       (
-        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop',
+        '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop',
         PAI_o
           .setop__v
       )
@@ -999,10 +1047,13 @@ const PAI_o =
             { 
               task_s: 'PUT_draw',
               stat_s: '{{C_o.STAT_a[2]}}',
-              part_s: canvas_s
+              part_s: canvas_s,
+              hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_sat_hue' )
             }
           )
     }
+
+    ;console.log( DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_sat_hue' ) )
 
     PAI_o
       .listener__v()

@@ -5,6 +5,10 @@
   --{{C_o.STAT_a[2]}}_rotate: 0;
   --{{C_o.STAT_a[2]}}_scale: .5;
   --{{C_o.STAT_a[2]}}_setop_display: none;
+  --{{C_o.STAT_a[2]}}_hue_trace: -50;
+  --{{C_o.STAT_a[2]}}_sat_trace: -100;
+  --{{C_o.STAT_a[2]}}_lum_trace: -150;
+  --{{C_o.STAT_a[2]}}_sat_hue: {{S_o.hue_p}};
 }
 body {
   overflow: auto;
@@ -88,18 +92,18 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav > label:hover > span {
   background: transparent;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] {
   width: 100%;
   border: none;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li {
   padding: 0;
   list-style: none;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input {
   display: none;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
   display: grid;
   justify-items: center;
   margin: 2px 0;
@@ -107,30 +111,30 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   border: 1px solid {{S_o.shadow_ne}};
   font-size: 85%;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label:not(:first-of-type):hover {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label:not(:first-of-type):hover {
   filter: brightness( {{S_o.brigtness_lo}} );
   background: {{S_o.ins_shadow_ne}};
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input:checked + label {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input:checked + label {
   background: {{S_o.table}};
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label {
   cursor: pointer;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label:hover {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label:hover {
   filter: brightness( {{S_o.brigtness_lo}} );
   background: {{S_o.ins_shadow_ne}};
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:before {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:before {
   content: '';
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li[data-layer_b="0"] {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li[data-layer_b="0"] {
   opacity: .25;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop {
   display: var(--{{C_o.STAT_a[2]}}_setop_display);
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop > label {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop > label {
   text-transform: none;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup {
@@ -186,14 +190,20 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > div > canvas {
   grid-area: 1/-1;
-  width: 100px;
   background: transparent;
-  border: 1px solid blue;
   cursor: crosshair;
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label#{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_hue_trace {
+  top: calc( var(--{{C_o.STAT_a[2]}}_hue_trace) * 1px );
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label#{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_sat_trace {
+  top: calc( var(--{{C_o.STAT_a[2]}}_sat_trace) * 1px );
+}
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label#{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_lum_trace {
+  top: calc( var(--{{C_o.STAT_a[2]}}_lum_trace) * 1px );
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] {
   position: relative;
-  top: -100px;
   left: {{S_o.PAD_3}};
   display: flex;
   flex-direction: row-reverse;

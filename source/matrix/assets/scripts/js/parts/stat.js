@@ -22,17 +22,17 @@ const STAT_o =
   {
     const canvas_e =
       document
-        .querySelector( `#canvas_${stat_s}_${part_s}` )
+        .querySelector( `#{{C_o.CANVAS_ID_s}}_${stat_s}_${part_s}` )
 
-    canvas_e
-      .width *=
-        window
-          .devicePixelRatio
+    //??canvas_e
+    //??  .width *=
+    //??    window
+    //??      .devicePixelRatio
   
-    canvas_e
-      .height *=
-        window
-          .devicePixelRatio
+    //??canvas_e
+    //??  .height *=
+    //??    window
+    //??      .devicePixelRatio
   
     return canvas_e
   }   

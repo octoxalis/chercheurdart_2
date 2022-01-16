@@ -1,4 +1,4 @@
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] {
   display: none;
   width: 360px;
   height: 360px;
@@ -7,48 +7,48 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.S
   font-size: 90%;
   transition: opacity ease 2s;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] > label {
   display: flex;
   position: relative;
   padding: {{S_o.PAD_2}} 0;
   width: 100%;
   opacity: 1;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label > span:not( [data-icon] ) {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] > label > span:not( [data-icon] ) {
   flex-grow: 2;
   font-size: 100%;
   font-weight: 500;
   line-height: 1.5;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:first-of-type {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] > label:first-of-type {
   flex-grow: 0;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}] > label:first-of-type > span:not( [data-icon] ) {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] > label:first-of-type > span:not( [data-icon] ) {
   flex-grow: 0;
   margin: 0;
   width: 100%;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^=nav_{{C_o.STAT_a[0]}}]:hover {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}]:hover {
   opacity: 1;
   transition: opacity ease .2s;
   background: {{S_o.shadow_ne}};
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_hue {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue {
   display: block;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_sat {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ~ canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_sat {
   display: block;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ canvas#canvas_{{C_o.STAT_a[0]}}_lum {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_lum {
   display: block;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ nav#nav_{{C_o.STAT_a[0]}}_hue {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked ~ nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_hue {
   display: flex;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ~ nav#nav_{{C_o.STAT_a[0]}}_sat {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ~ nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_sat {
   display: flex;
 }
-section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ nav#nav_{{C_o.STAT_a[0]}}_lum {
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_lum {
   display: flex;
 }

@@ -118,6 +118,7 @@ const STAT_W_o =
 
     'PUT_canvas',
     'PUT_draw',
+    'PUT_point',
     'PUT_scale',
   ]
   ,
@@ -1091,8 +1092,7 @@ async bitmap__o
 
 
       case '{{C_o.STAT_a[2]}}':
-        //...............................
-        ;console.log( STAT_W_o.stat_o )
+        //;console.log( STAT_W_o.stat_o )
 
           const paint_o =
             STAT_W_o
@@ -1135,10 +1135,9 @@ async bitmap__o
                   .rect__c
                   (
                     0,
-                    at_n * 2 * STAT_W_o.pixel_n
-          ,
-                    100 * STAT_W_o.pixel_n,
-                    2 * STAT_W_o.pixel_n,
+                    at_n * 2, //??* STAT_W_o.pixel_n
+                    100, //??* STAT_W_o.pixel_n,
+                    2, //??* STAT_W_o.pixel_n,
                     'fill'
                   )
             }
@@ -1146,6 +1145,7 @@ async bitmap__o
             break
         
           case 'sat':
+                              //;console.log( payload_o.hue_n )
             for
             (
               let at_n = 0;
@@ -1158,7 +1158,8 @@ async bitmap__o
                   .fill__c
                   (
                     [
-                      0,
+                      payload_o
+                        .hue_n,
                       at_n,
                       50,
                       //--1
@@ -1167,9 +1168,9 @@ async bitmap__o
                   .rect__c
                   (
                     0,
-                    at_n * 2 * STAT_W_o.pixel_n,
-                    100 * STAT_W_o.pixel_n,
-                    2 * STAT_W_o.pixel_n,
+                    at_n * 2, //??* STAT_W_o.pixel_n,
+                    100, //?? * STAT_W_o.pixel_n,
+                    2, //?? * STAT_W_o.pixel_n,
                     'fill'
                   )
             }
@@ -1198,9 +1199,9 @@ async bitmap__o
                   .rect__c
                   (
                     0,
-                    at_n * 2 * STAT_W_o.pixel_n,
-                    100 * STAT_W_o.pixel_n,
-                    2 * STAT_W_o.pixel_n,
+                    at_n * 2, //?? * STAT_W_o.pixel_n,
+                    100, //?? * STAT_W_o.pixel_n,
+                    2, //?? * STAT_W_o.pixel_n,
                     'fill'
                   )
             }
@@ -1211,11 +1212,59 @@ async bitmap__o
             break
         }
 
-        //...............................
         break
 
 
       default:    //: '{{C_o.STAT_a[3]}}'
+        break;
+    }
+  }
+  ,
+
+
+
+  put_point__v
+  (
+    payload_o
+  )
+  {
+    const
+    {
+      hsl_s,
+      grade_n,
+      atX_n,
+      gap_n,
+      atY_n
+    } =
+      payload_o
+
+    let stepX_n =
+      ~~(
+        atX_n
+        /
+        grade_n
+      )                 //;console.log( 'stepX_n: ' + stepX_n )
+
+    let stepY_n =
+      ~~(
+        atY_n
+        /
+        gap_n
+      )                 //;console.log( 'stepY_n: ' + stepY_n )
+
+    switch
+    (
+      hsl_s
+    )
+    {
+      case 'hue':
+        ;console.log( 'stepX_n: ' + stepX_n )
+        ;console.log( 'stepY_n: ' + stepY_n )
+
+        
+        break;
+    
+      default:
         break;
     }
   }

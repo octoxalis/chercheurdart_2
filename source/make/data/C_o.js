@@ -158,10 +158,13 @@ const C_o =
   
 
   //=== HTML-BODY: TAGS ===
+  CANVAS_ID_s:      'CA',
   INPUT_ID_s:       'IN',
   LABEL_ID_s:       'LA',
   IFRAME_ID_s:      'IF',
   DIV_ID_s:         'DI',
+  UL_ID_s:          'UL',
+  NAV_ID_s:         'NA',
   LIST_ID_s:        'LI',
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
