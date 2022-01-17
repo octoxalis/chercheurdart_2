@@ -217,7 +217,7 @@ const PAI_o =
         + ` width=${width_s} height=${height_s}`
         + ` data-layer_n=${layer_n}`
         + ` data-size_n=1`
-        + ` title={{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n + 1}`
+        + ` title="{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n}"`
         + `><canvas>`
         ,
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view'
@@ -776,67 +776,8 @@ const PAI_o =
   ,
 
 
-  huePoint__v:
-  (
-    atX_n,
-    atY_n
-  ) =>
-  {
-                            ;console.log( 'hue: ' + atY_n + ' / ' + atX_n )
-    PAI_o
-      .worker_o
-        .post__v
-        (
-          { 
-            task_s: 'PUT_point',
-            stat_s: '{{C_o.STAT_a[2]}}',
-            hsl_s:  'hue',
-            grade_n: PAI_o
-                       .hue_o
-                         .grade_n,
-            atX_n:  atX_n,
-            gap_n:  PAI_o
-                      .hue_o
-                        .gap_n,
-      
-            atY_n:  atY_n,
-          }
-        )
 
-  }
-  ,
-
-
-
-  satPoint__v:
-  (
-    atX_n,
-    atY_n
-  ) =>
-  {
-    ;console.log( 'sat: ' + atY_n + ' / ' + atX_n )
-
-
-  }
-  ,
-  
-
-
-  lumPoint__v:
-  (
-    atX_n,
-    atY_n
-  ) =>
-  {
-    ;console.log( 'lum: ' + atY_n + ' / ' + atX_n )
-
-
-  }
-  ,
-  
-
-
-  pointEvent__v:
+  hslPoint__v:
   (
     click_o
   ) =>
@@ -859,21 +800,38 @@ const PAI_o =
           .id
             .split( '_' )
       
-    PAI_o
-      [ `${hsl_s}Point__v` ]
-      (
-        ~~( +offsetX      //: number cast
-        /
-        PAI_o
-          .SCALE_H_n
-        )
-        ,
-        ~~( +offsetY      //: number cast
-        /
-        PAI_o
-          .SCALE_V_n
-        )
+    const atX_n =
+      ~~( +offsetX      //: number cast
+      /
+      PAI_o
+        .SCALE_H_n
       )
+      
+    const atY_n =
+      ~~( +offsetY      //: number cast
+      /
+      PAI_o
+        .SCALE_V_n
+      )                  ;console.log( 'hue: ' + atY_n + ' / ' + atX_n )
+
+    PAI_o
+      .worker_o
+        .post__v
+        (
+          { 
+            task_s: 'PUT_hsl',
+            stat_s: '{{C_o.STAT_a[2]}}',
+            hsl_s:   hsl_s,
+            grade_n: PAI_o
+                       [ `${hsl_s}_o` ]
+                         .grade_n,
+            atX_n:  atX_n,
+            gap_n:  PAI_o
+                      [ `${hsl_s}_o` ]
+                      .gap_n,
+            atY_n:  atY_n,
+          }
+        )
   }
   ,
 
@@ -930,7 +888,7 @@ const PAI_o =
         (
           `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_front`,
           PAI_o
-            .pointEvent__v
+            .hslPoint__v
         )
     }
 
