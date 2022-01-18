@@ -47,8 +47,8 @@
             </ul>
 
             <div id="DI_paint_slide_hue">
-                <input id="IN_paint_hue_grade" type="range" min="1" max="100" value="50" data-tip="50"/>
-                <input id="IN_paint_hue_gap" type="range" min="1" max="360" value="60" data-tip="60"/>
+                <input id="IN_paint_hue_rangeX_n" type="range" min="1" max="100" value="50" data-tip="50"/>
+                <input id="IN_paint_hue_rangeY_n" type="range" min="1" max="360" value="60" data-tip="60"/>
                 <div>
                   <canvas id="CA_paint_hue_back" width=100 height=720></canvas>
                   <canvas id="CA_paint_hue_front" width=100 height=720></canvas>
@@ -56,13 +56,13 @@
                 <label id="LA_paint_hue_trace">
                     <span data-icon="&nbsp;">&nbsp;</span>
                     <output id="output_paint_hue" type="text">123</output>
-                    <output id="output_paint_hue_freq" type="text">0,001</output>
+                    <!--<output id="output_paint_hue_freq" type="text">0,001</output>-->
                 </label>
             </div>
 
             <div id="DI_paint_slide_sat">
-                <input id="IN_paint_sat_grade" type="range" min="1" max="100" value="50" data-tip="50"/>
-                <input id="IN_paint_sat_gap" type="range" min="1" max="100" value="10" data-tip="10"/>
+                <input id="IN_paint_sat_rangeX_n" type="range" min="1" max="100" value="50" data-tip="50"/>
+                <input id="IN_paint_sat_rangeY_n" type="range" min="1" max="100" value="10" data-tip="10"/>
                 <div>
                   <canvas id="CA_paint_sat_back" width=100 height=200></canvas>
                   <canvas id="CA_paint_sat_front" width=100 height=200></canvas>
@@ -70,13 +70,13 @@
                 <label id="LA_paint_sat_trace">
                     <span data-icon="&nbsp;">&nbsp;</span>
                     <output id="output_paint_sat" type="text">123</output>
-                    <output id="output_paint_sat_freq" type="text">0,001</output>
+                    <!--<output id="output_paint_sat_freq" type="text">0,001</output>-->
                 </label>
             </div>
 
             <div id="DI_paint_slide_lum">
-                <input id="IN_paint_lum_grade" type="range" min="1" max="100" value="50" data-tip="50"/>
-                <input id="IN_paint_lum_gap" type="range" min="1" max="100" value="10" data-tip="10"/>
+                <input id="IN_paint_lum_rangeX_n" type="range" min="1" max="100" value="50" data-tip="50"/>
+                <input id="IN_paint_lum_rangeY_n" type="range" min="1" max="100" value="10" data-tip="10"/>
                 <div>
                   <canvas id="CA_paint_lum_back" width=100 height=200></canvas>
                   <canvas id="CA_paint_lum_front" width=100 height=200></canvas>
@@ -84,7 +84,7 @@
                 <label id="LA_paint_lum_trace">
                     <span data-icon="&nbsp;">&nbsp;</span>
                     <output id="output_paint_lum" type="text">123</output>
-                    <output id="output_paint_lum_freq" type="text">0,001</output>
+                    <!--<output id="output_paint_lum_freq" type="text">0,001</output>-->
                 </label>
             </div>
         </aside>

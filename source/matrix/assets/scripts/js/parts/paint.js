@@ -9,20 +9,20 @@ const PAI_o =
 
   hue_o:
   {
-    grade_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_grade
-    gap_n:   60,    //: _hue_gap
+    rangeX_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_rangeX_n
+    rangeY_n: 60,    //: _hue_rangeY_n
   }
   ,
   sat_o:
   {
-    grade_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_grade
-    gap_n:   10,    //: _sat_gap
+    rangeX_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_rangeX_n
+    rangeY_n: 10,    //: _sat_rangeY_n
   }
   ,
   lum_o:
   {
-    grade_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_grade
-    gap_n:   10,    //: _lum_gap
+    rangeX_n: 50,    //: {{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_rangeX_n
+    rangeY_n: 10,    //: _lum_rangeY_n
   }
   ,
 
@@ -223,11 +223,26 @@ const PAI_o =
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view'
       )
 
-    const offCanvas_e =
+    const canvas_e =
       document
         .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
-          .transferControlToOffscreen()
+
+    canvas_e
+      .addEventListener
+      (
+        'click',
+        event_o =>
+        {
+          event_o
+            .target
+              .classList
+                .toggle( 'raised' )
+        }
+      )
       
+    const offCanvas_e =
+      canvas_e
+        .transferControlToOffscreen()
   
     PAI_o
       .layer_a
@@ -236,20 +251,20 @@ const PAI_o =
           {          //: sliders state
             hue_o:
             {
-              grade_n: 0,
-              gap_n: 0,
+              rangeX_n: 0,
+              rangeY_n: 0,
             }
             ,
             sat_o:
             {
-              grade_n: 0,
-              gap_n: 0,
+              rangeX_n: 0,
+              rangeY_n: 0,
             }
             ,
             lum_o:
             {
-              grade_n: 0,
-              gap_n: 0,
+              rangeX_n: 0,
+              rangeY_n: 0,
             }
           }
         )
@@ -782,6 +797,32 @@ const PAI_o =
     click_o
   ) =>
   {
+    const selected_a =
+      PAI_o
+        .selected__a()
+
+    if
+    (
+      ! selected_a
+        .length    //: no selection
+    )
+    {
+      window
+        .alert( `Aucun plan n'est sélectionné.` )
+      return
+    }
+    //-->
+
+    const layer_n =
+      selected_a
+        [ selected_a.length -1 ]
+          .dataset
+            .layer_n         //;console.log( layer_n )
+
+    //?? const canvas_e =
+    //??   document
+    //??     .querySelector( `canvas[data-layer_n="${layer_n}"]` )        // ;console.log( canvas_e )
+
     const
     {
       offsetX,
@@ -812,26 +853,53 @@ const PAI_o =
       /
       PAI_o
         .SCALE_V_n
-      )                  ;console.log( 'hue: ' + atY_n + ' / ' + atX_n )
+      )
 
     PAI_o
       .worker_o
         .post__v
         (
           { 
-            task_s: 'PUT_hsl',
-            stat_s: '{{C_o.STAT_a[2]}}',
-            hsl_s:   hsl_s,
-            grade_n: PAI_o
+            task_s:   'PUT_hsl',
+            stat_s:   '{{C_o.STAT_a[2]}}',
+            layer_n:  layer_n,
+            hsl_s:    hsl_s,
+            rangeX_n: PAI_o
                        [ `${hsl_s}_o` ]
-                         .grade_n,
-            atX_n:  atX_n,
-            gap_n:  PAI_o
-                      [ `${hsl_s}_o` ]
-                      .gap_n,
-            atY_n:  atY_n,
+                         .rangeX_n,
+            atX_n:    atX_n,
+            rangeY_n: PAI_o
+                        [ `${hsl_s}_o` ]
+                          .rangeY_n,
+            atY_n:    atY_n,
           }
         )
+
+    const maxRange_n =
+      hsl_s
+      ===
+      'hue'
+      ?
+        360
+      :
+        100
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[2]}}_${hsl_s}_trace`,
+        ( maxRange_n
+          -
+          atY_n
+        )
+        *
+        -2      //: 2px line
+      )
+
+      document
+        .getElementById( `output_{{C_o.STAT_a[2]}}_${hsl_s}` )
+          .value =
+            atY_n
   }
   ,
 
@@ -857,8 +925,8 @@ const PAI_o =
         let range_s
         of
         [
-          'grade',
-          'gap'
+          'rangeX_n',
+          'rangeY_n'
         ]
       )
       {
@@ -1011,7 +1079,7 @@ const PAI_o =
           )
     }
 
-    ;console.log( DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_sat_hue' ) )
+    //;console.log( DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_sat_hue' ) )
 
     PAI_o
       .listener__v()

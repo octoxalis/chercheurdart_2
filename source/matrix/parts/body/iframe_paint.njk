@@ -47,8 +47,8 @@
             </ul>
 
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_hue">
-                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_grade" type="range" min="1" max="100" value="50" data-tip="50"/>
-                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap" type="range" min="1" max="360" value="60" data-tip="60"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_rangeX_n" type="range" min="1" max="100" value="50" data-tip="50"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_rangeY_n" type="range" min="1" max="360" value="60" data-tip="60"/>
                 <div>
                   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_hue_back" width=100 height=720></canvas>
                   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_hue_front" width=100 height=720></canvas>
@@ -56,13 +56,13 @@
                 <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_hue_trace">
                     <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
                     <output id="output_{{C_o.STAT_a[2]}}_hue" type="text">123</output>
-                    <output id="output_{{C_o.STAT_a[2]}}_hue_freq" type="text">0,001</output>
+                    <!--<output id="output_{{C_o.STAT_a[2]}}_hue_freq" type="text">0,001</output>-->
                 </label>
             </div>
 
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_sat">
-                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_grade" type="range" min="1" max="100" value="50" data-tip="50"/>
-                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_gap" type="range" min="1" max="100" value="10" data-tip="10"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_rangeX_n" type="range" min="1" max="100" value="50" data-tip="50"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_sat_rangeY_n" type="range" min="1" max="100" value="10" data-tip="10"/>
                 <div>
                   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_sat_back" width=100 height=200></canvas>
                   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_sat_front" width=100 height=200></canvas>
@@ -70,13 +70,13 @@
                 <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_sat_trace">
                     <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
                     <output id="output_{{C_o.STAT_a[2]}}_sat" type="text">123</output>
-                    <output id="output_{{C_o.STAT_a[2]}}_sat_freq" type="text">0,001</output>
+                    <!--<output id="output_{{C_o.STAT_a[2]}}_sat_freq" type="text">0,001</output>-->
                 </label>
             </div>
 
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide_lum">
-                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_grade" type="range" min="1" max="100" value="50" data-tip="50"/>
-                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_gap" type="range" min="1" max="100" value="10" data-tip="10"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_rangeX_n" type="range" min="1" max="100" value="50" data-tip="50"/>
+                <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_lum_rangeY_n" type="range" min="1" max="100" value="10" data-tip="10"/>
                 <div>
                   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_lum_back" width=100 height=200></canvas>
                   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_lum_front" width=100 height=200></canvas>
@@ -84,7 +84,7 @@
                 <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_lum_trace">
                     <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
                     <output id="output_{{C_o.STAT_a[2]}}_lum" type="text">123</output>
-                    <output id="output_{{C_o.STAT_a[2]}}_lum_freq" type="text">0,001</output>
+                    <!--<output id="output_{{C_o.STAT_a[2]}}_lum_freq" type="text">0,001</output>-->
                 </label>
             </div>
         </aside>

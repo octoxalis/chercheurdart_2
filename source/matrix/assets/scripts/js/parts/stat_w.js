@@ -153,7 +153,7 @@ const STAT_W_o =
 
   imgBitmap_a: new Map(),     //: store for multiple use (ex. {{C_o.STAT_a[2]}})
 
-
+  imgLayer_a: [],                //: store image canvas
 
   //=== SCRIPTS ===
   script__v
@@ -435,7 +435,7 @@ async bitmap__o
     )
     {
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      ;console.time( 'scan' )
+      //...;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
   
       const url_s =
@@ -737,7 +737,7 @@ async bitmap__o
           )      //: lum rankMax_n is at [0][0]
 
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      ;console.timeEnd( 'scan' )
+      //...;console.timeEnd( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //;console.log( STAT_W_o.scan_a )
     }
@@ -798,15 +798,29 @@ async bitmap__o
         bitmap_o
       )
       {
-        await payload_o
-          .canvas_e
-            .getContext( '2d' )
-              .drawImage
-              (
-                bitmap_o,
-                0,
-                0,
-              )
+        const context_o =
+          await payload_o
+            .canvas_e
+              .getContext( '2d' )
+
+        context_o
+          .drawImage
+          (
+            bitmap_o,
+            0,
+            0,
+          )
+
+        STAT_W_o
+          .imgLayer_a
+            .push
+            (
+              {
+                canvas_e: payload_o
+                            .canvas_e,
+                context_o: context_o
+              }
+            )
       }
 
     }
@@ -1228,68 +1242,155 @@ async bitmap__o
     payload_o
   )
   {
-    const
+    let
     {
       stat_s,
+      layer_n,
       hsl_s,
-      grade_n,
+      rangeX_n,
       atX_n,
-      gap_n,
+      rangeY_n,
       atY_n
     } =
       payload_o
 
-    let stepX_n =
-      ~~(
-        atX_n
-        /
-        grade_n
-      )                 //;console.log( 'stepX_n: ' + stepX_n )
+    const ratioX_n =
+      atX_n
+      /
+      rangeX_n
 
-    let stepY_n =
-      ~~(
-        atY_n
-        /
-        gap_n
-      )                                       //;console.log( 'stepY_n: ' + stepY_n )
-                                              //;console.log( 'stepX_n: ' + stepX_n )
-                                              //;console.log( 'stepY_n: ' + stepY_n )
+    let levelX_n =
+      ~~ratioX_n       //: floor level
 
-        STAT_W_o
-          .stat_o
-            [ `${stat_s}_o` ]                //: paint
-              [ `${hsl_s}_front_o` ]         //: hue_front...
-                .painter_c                   //;console.log( painter_c )
-                  .rect__c
-                  (
-                    0,
-                    stepY_n * gap_n * 2,           //??* STAT_W_o.pixel_n
-                    100,                           //??* STAT_W_o.pixel_n,
-                    gap_n * 2,                     //??* STAT_W_o.pixel_n,
-                    'clear'
-                  )
-                  .fill__c
-                  (
-                    [
-                      0,
-                      0,
-                      100,
-                      1 - ( stepX_n * grade_n ) / 100
-                    ]
-                  )
-                  .rect__c
-                  (
-                    stepX_n * grade_n,
-                    stepY_n * gap_n * 2,             //??* STAT_W_o.pixel_n
-                    100 - ( stepX_n * grade_n ),     //??* STAT_W_o.pixel_n,
-                    gap_n * 2,                       //??* STAT_W_o.pixel_n,
-                    'fill'
-                  )
+    if
+    (
+      ratioX_n
+      >
+      1               //: inside lower level --> 0
+    )
+    {
+      ++levelX_n      //: outside lower level --> level above
+    }
+
+    levelX_n *=
+      rangeX_n        //: [ 0...100 ]
+
+    let opac_n =
+      levelX_n
+      *
+      .01             //: 100 --> 1,  0 --> 0, 60 --> 0.6
+      +
+      .001             //: avoid  opac_n === 1
+
+    atY_n *=
+      2            //: 2px wide
+
+    rangeY_n *=
+      2            //: idem
+
+    STAT_W_o
+      .stat_o
+        [ `${stat_s}_o` ]             //: paint
+          [ `${hsl_s}_front_o` ]      //: hue_front...
+            .painter_c
+
+            .fill__c            //::: wipe with white  //:  upper area
+            (
+              [
+                +'{{S_o.hue_p}}',
+                28,
+                17,
+                1
+              ]
+            )
+            .rect__c
+            (
+              levelX_n,
+              atY_n,                //??* STAT_W_o.pixel_n
+              100 - levelX_n,       //??* STAT_W_o.pixel_n,
+              rangeY_n,             //??* STAT_W_o.pixel_n,
+              'fill'
+            )
+
+            .rect__c            //::: clear       //:  lower area
+            (
+              0,
+              atY_n,                 //??* STAT_W_o.pixel_n
+              levelX_n,              //??* STAT_W_o.pixel_n,
+              rangeY_n,              //??* STAT_W_o.pixel_n,
+              'clear'
+            )
+
+            .fill__c            //::: mask with opacity
+            (
+              [
+                0,
+                0,
+                100,
+                1 - opac_n    //: lower levels more transparent, upper levels more colored
+              ]
+            )
+            .rect__c      
+            (
+              0,
+              atY_n,                 //??* STAT_W_o.pixel_n
+              levelX_n,              //??* STAT_W_o.pixel_n,
+              rangeY_n,              //??* STAT_W_o.pixel_n,
+              'fill'
+            )
 
 
 
 
 
+
+  //==============================
+
+    //;console.log( STAT_W_o.imgLayer_a )
+
+    const data_a =
+      STAT_W_o
+        .canvasData__a( layer_n )          //;console.log( data_a )
+
+
+
+
+
+  //==============================
+
+  }
+  ,
+
+
+
+  canvasData__a:
+  (
+    layer_n
+  ) =>
+  {
+    const imgLayer_o =
+      STAT_W_o
+        .imgLayer_a
+          [ layer_n ]
+
+    const canvas_e =
+      imgLayer_o
+        .canvas_e          //;console.log( canvas_e )
+
+    return (
+      imgLayer_o
+        .context_o
+          .getImageData
+          (
+            0,
+            0,
+            canvas_e
+              .width,
+            canvas_e
+              .height,
+          )
+            .data
+    )
   }
   ,
 

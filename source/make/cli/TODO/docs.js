@@ -399,21 +399,21 @@ svg__v
           Math
             .sqrt( capacity_n )
         )
-    const gap_n =
+    const rangeY_n =
         GAP_n
         *
         ( column_n - 1 )    //: accumulated gap
     const minWidth_n =
       ( DIM_n * column_n )
       +
-      gap_n
+      rangeY_n
     let dim_n =
       ( minWidth_n > width_n ) ?
         MINDIM_n :
           Math
             .ceil
             (
-              ( width_n - gap_n )
+              ( width_n - rangeY_n )
               /
               column_n
             )
@@ -421,7 +421,7 @@ svg__v
     const wide_n =
       ( dim_n * column_n )
       +
-      gap_n
+      rangeY_n
     let row_n =
       Math
         .floor

@@ -116,9 +116,8 @@ const S_o =
   S_o.NAV_LABEL_s  = S_o.PAD_4,
   S_o.NAV_SETTINGS_s = '288px',  //: 18em
 
-  
 
-  
+
 void function
 ()
 {

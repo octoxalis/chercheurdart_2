@@ -5,9 +5,9 @@
   --{{C_o.STAT_a[2]}}_rotate: 0;
   --{{C_o.STAT_a[2]}}_scale: .5;
   --{{C_o.STAT_a[2]}}_setop_display: none;
-  --{{C_o.STAT_a[2]}}_hue_trace: -50;
-  --{{C_o.STAT_a[2]}}_sat_trace: -100;
-  --{{C_o.STAT_a[2]}}_lum_trace: -150;
+  --{{C_o.STAT_a[2]}}_hue_trace: 0;
+  --{{C_o.STAT_a[2]}}_sat_trace: 0;
+  --{{C_o.STAT_a[2]}}_lum_trace: 0;
   --{{C_o.STAT_a[2]}}_sat_hue: {{S_o.hue_p}};
 }
 body {
@@ -175,7 +175,7 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
   transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg ) scaleY( .3 );
   transform-origin: top left;
 }
-div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap {
+div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_rangeY_n {
   width: 720px;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > input[type=range]:focus {
@@ -204,18 +204,17 @@ div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DI
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] {
   position: relative;
-  left: {{S_o.PAD_3}};
+  left: 100px;
   display: flex;
-  flex-direction: row-reverse;
   justify-content: space-between;
-  width: 100px;
+  width: 6ch;
 }
 div > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] > output {
   width: 6ch;
   height: {{S_o.PAD_4}};
   color: currentColor;
   background: transparent;
-  font-size: 65%;
+  font-size: 90%;
   font-weight: 500;
   border: none;
   opacity: 0;
@@ -272,4 +271,8 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range]:focus {
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range]:focus + label {
   background: {{S_o.lighter}};
+}
+.raised {
+  z-index: 100;
+  border: 4px solid {{S_o.highlight}} !important;
 }

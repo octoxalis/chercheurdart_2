@@ -6,9 +6,9 @@
         --{{C_o.STAT_a[2]}}_scale:       .5;
 
         --{{C_o.STAT_a[2]}}_setop_display: none;
-        --{{C_o.STAT_a[2]}}_hue_trace: -50;
-        --{{C_o.STAT_a[2]}}_sat_trace: -100;
-        --{{C_o.STAT_a[2]}}_lum_trace: -150;
+        --{{C_o.STAT_a[2]}}_hue_trace: 0;
+        --{{C_o.STAT_a[2]}}_sat_trace: 0;
+        --{{C_o.STAT_a[2]}}_lum_trace: 0;
         --{{C_o.STAT_a[2]}}_sat_hue:   {{S_o.hue_p}};
 </:root>
 <body>
@@ -193,7 +193,7 @@
                   width: 200px;
                   transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg ) scaleY( .3 );
                   transform-origin: top left;
-          <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_gap />
+          <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_hue_rangeY_n />
                   width: 720px;  /* 360 * 2px */
           <input[type=range]:focus />
                   outline: none;
@@ -220,17 +220,17 @@
           </label>
           <label[id$="_trace"]>
                   position: relative;
-                  left: {{S_o.PAD_3}};
+                  left: 100px;          /* canvas width */
                   display: flex;
-                  flex-direction: row-reverse;
+                  /*flex-direction: row-reverse;*/
                   justify-content: space-between;
-                  width: 100px;
+                  width: 6ch;
             <output>
                     width: 6ch;
                     height: {{S_o.PAD_4}};
                     color: currentColor;
                     background: transparent;
-                    font-size: 65%;
+                    font-size: 90%;
                     font-weight: 500;
                     border: none;
                     opacity: 0;
@@ -305,6 +305,10 @@
     </div>
   </div>
 
-
-
 </section>
+
+context( stack, new )
+<canvas class="raised">
+        z-index: 100;
+        border: 4px solid {{S_o.highlight}} !important;
+<canvas>
