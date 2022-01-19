@@ -31,7 +31,7 @@ const PAI_o =
     perspective_n: 1000,
     distance_n:    -100,
     rotation_n:    0,
-    scale_n:      .5
+    scale_n:      .25
   }
   ,
 
@@ -307,7 +307,7 @@ const PAI_o =
   {
     const selected_a =
       PAI_o
-        .selected__a()
+        .selectedItem__a()
 
     if
     (
@@ -376,9 +376,9 @@ const PAI_o =
           PAI_o
             .displayOp__v( true )
         }
-      }
 
       return layer_n
+      }
     }
     //-->
     if
@@ -554,7 +554,19 @@ const PAI_o =
 
 
 
-  selected__a:
+  selectedCanvas__a:  //: excluded: layer_0 + masked layers
+  () =>
+    Array
+      .from
+      (
+        document
+          .querySelectorAll( `canvas:not([data-layer_n="0"]):not([data-layer_b="0"]).raised` )
+      )
+  ,
+  
+  
+  
+  selectedItem__a:
   () =>
     Array
       .from
@@ -581,7 +593,7 @@ const PAI_o =
   operateOn__a:
   () =>
     PAI_o
-      .selected__a()
+      .selectedItem__a()
         .slice( -2 )
   ,
 
@@ -799,7 +811,7 @@ const PAI_o =
   {
     const selected_a =
       PAI_o
-        .selected__a()
+        .selectedCanvas__a()      ;console.log( selected_a )
 
     if
     (
@@ -808,7 +820,7 @@ const PAI_o =
     )
     {
       window
-        .alert( `Aucun plan n'est sélectionné.` )
+        .alert( `Aucune image n'est sélectionnée.` )
       return
     }
     //-->
@@ -818,10 +830,6 @@ const PAI_o =
         [ selected_a.length -1 ]
           .dataset
             .layer_n         //;console.log( layer_n )
-
-    //?? const canvas_e =
-    //??   document
-    //??     .querySelector( `canvas[data-layer_n="${layer_n}"]` )        // ;console.log( canvas_e )
 
     const
     {
@@ -874,6 +882,15 @@ const PAI_o =
             atY_n:    atY_n,
           }
         )
+
+      //---- ;console.log(
+      //----   selected_a
+      //----   [ selected_a.length -1 ]
+      //---- )
+      //---- 
+      //---- selected_a
+      //----   [ selected_a.length -1 ]
+      //----     .style.display = 'inline'
 
     const maxRange_n =
       hsl_s

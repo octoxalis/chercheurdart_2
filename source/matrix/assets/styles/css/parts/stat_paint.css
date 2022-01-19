@@ -1,9 +1,9 @@
 :root {
-  --{{C_o.STAT_a[2]}}_distance_x: 0;
-  --{{C_o.STAT_a[2]}}_perspective: 1000;
-  --{{C_o.STAT_a[2]}}_distance: -100;
-  --{{C_o.STAT_a[2]}}_rotate: 0;
-  --{{C_o.STAT_a[2]}}_scale: .5;
+  --{{C_o.STAT_a[2]}}_perspective: {{C_o.PAINT_PERSPECTIVE_n}};
+  --{{C_o.STAT_a[2]}}_distance: {{C_o.PAINT_DISTANCE_n}};
+  --{{C_o.STAT_a[2]}}_rotate: {{C_o.PAINT_ROTATE_n}};
+  --{{C_o.STAT_a[2]}}_scale: {{C_o.PAINT_SCALE_n}};
+  --{{C_o.STAT_a[2]}}_distance_x: {{C_o.PAINT_DISTANCE_X_n}};
   --{{C_o.STAT_a[2]}}_setop_display: none;
   --{{C_o.STAT_a[2]}}_hue_trace: 0;
   --{{C_o.STAT_a[2]}}_sat_trace: 0;
@@ -24,6 +24,7 @@ section#{{C_o.STAT_a[2]}} > div > canvas {
   display: block;
   position: absolute;
   border: 4px solid {{S_o.shadow_hi}};
+  background: hsla( 150 100% 50% / 1 );
   perspective-origin: center center;
   transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) ) scale( var(--{{C_o.STAT_a[2]}}_scale) );
 }

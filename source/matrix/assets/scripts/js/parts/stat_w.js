@@ -124,36 +124,28 @@ const STAT_W_o =
   ,
 
   scan_a: null,
-  //:[
-  //:   [0]: hue_a[]
-  //:   [1]: hueFrequency_a
-  //:   [2]: hueRank_a
-  //:   [3]: sat_a[]
-  //:   [4]: satFrequency_a[],
-  //:   [5]: satRank_a[],
-  //:   [6]: lum_a[]
-  //:   [7]: lumFrequency_a[],
-  //:   [8]: lumRank_a[],
-  //:],
-  SCAN_HUE_n:      0,    //: scan_a hue indices
-  SCAN_HUE_FREQ_n: 1,    //: scan_a hue frequencies
-  SCAN_HUE_RANK_n: 2,    //: scan_a hue frequency ranks (higher frequency first)
-  SCAN_SAT_n:      3,
-  SCAN_SAT_FREQ_n: 4,
-  SCAN_SAT_RANK_n: 5,
-  SCAN_LUM_n:      6,
-  SCAN_LUM_FREQ_n: 7,
-  SCAN_LUM_RANK_n: 8,
+
+  SCAN_hue_n:      0,    //: scan_a hue indices
+  SCAN_hue_freq_n: 1,    //: scan_a hue frequencies
+  SCAN_hue_rank_n: 2,    //: scan_a hue frequency ranks (higher frequency first)
+
+  SCAN_sat_n:      3,
+  SCAN_sat_freq_n: 4,
+  SCAN_sat_rank_n: 5,
+
+  SCAN_lum_n:      6,
+  SCAN_lum_freq_n: 7,
+  SCAN_lum_rank_n: 8,
 
   stat_o: {},     //: {{C_o.STAT_a[0]}}: stat_o{ hue_o{ canvas_e, context_o}, ... }
                   //: {{C_o.STAT_a[1]}}
                   //: {{C_o.STAT_a[2]}}
 
-  script_o: new Set,   //: importScript loaded
+  script_o: new Set,          //: importScript loaded
 
   imgBitmap_a: new Map(),     //: store for multiple use (ex. {{C_o.STAT_a[2]}})
 
-  imgLayer_a: [],                //: store image canvas
+  imgLayer_a: [],             //: store image canvas
 
   //=== SCRIPTS ===
   script__v
@@ -438,6 +430,7 @@ async bitmap__o
       //...;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
   
+      //=== fetch image and get image data Array
       const url_s =
         `/{{C_o.IMG_DIR_s}}${payload_o.work_s}{{C_o.IMG_MAX_PATH_s}}color.jpeg`
       
@@ -487,22 +480,24 @@ async bitmap__o
             .width
           *
           bitmap_o
-            .height      //;console.log( STAT_W_o.capacity_n )
+            .height
+//;;;;;;;;    console.log( STAT_W_o.capacity_n )
           
+      //: initialize scan Arrays
       STAT_W_o
-        .scan_a = new Array( 1 + STAT_W_o.SCAN_LUM_RANK_n )
+        .scan_a = new Array( 1 + STAT_W_o.SCAN_lum_rank_n )
   
       //=== HUE
       let capacity_n = 360
       
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_HUE_n] =
+          [STAT_W_o.SCAN_hue_n] =
             new Array( capacity_n )
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_HUE_FREQ_n] =
+          [STAT_W_o.SCAN_hue_freq_n] =
             new Array( capacity_n )
         
       while
@@ -512,12 +507,12 @@ async bitmap__o
       {
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_HUE_n]
+            [STAT_W_o.SCAN_hue_n]
               [capacity_n] = []
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_HUE_FREQ_n]
+            [STAT_W_o.SCAN_hue_freq_n]
               [capacity_n] = 0
       }
       
@@ -526,12 +521,12 @@ async bitmap__o
       
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_SAT_n] =
+          [STAT_W_o.SCAN_sat_n] =
             new Array( capacity_n )
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_SAT_FREQ_n] =
+          [STAT_W_o.SCAN_sat_freq_n] =
             new Array( capacity_n )
       
       while
@@ -541,12 +536,12 @@ async bitmap__o
       {
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_SAT_n]
+            [STAT_W_o.SCAN_sat_n]
               [capacity_n] = []
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_SAT_FREQ_n]
+            [STAT_W_o.SCAN_sat_freq_n]
               [capacity_n] = 0
       }
       
@@ -555,12 +550,12 @@ async bitmap__o
       
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_LUM_n] =
+          [STAT_W_o.SCAN_lum_n] =
             new Array( capacity_n )
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_LUM_FREQ_n] =
+          [STAT_W_o.SCAN_lum_freq_n] =
             new Array( capacity_n )
       
       while
@@ -570,16 +565,16 @@ async bitmap__o
       {
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_LUM_n]
+            [STAT_W_o.SCAN_lum_n]
               [capacity_n] = []
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_LUM_FREQ_n]
+            [STAT_W_o.SCAN_lum_freq_n]
               [capacity_n] = 0
       }
       
-      //: scanning
+      //=== SCAN IMAGE DATA ===
       let r_n,
           g_n,
           b_n
@@ -599,17 +594,18 @@ async bitmap__o
           imgData_o
             .data
               [at_n]
-      
+        
         g_n =
           imgData_o
             .data
               [at_n + 1]
-      
+        
         b_n =
           imgData_o
             .data
               [at_n + 2]
-      
+              
+        //:=== HUE
         let hue_n =
           RGB_H__n
           (
@@ -618,58 +614,63 @@ async bitmap__o
             b_n
           )
       
-        //: HUE
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_HUE_n]
+          .scan_a[STAT_W_o.SCAN_hue_n]
             [hue_n]
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_HUE_FREQ_n]
-            [hue_n] += 1
+          .scan_a[STAT_W_o.SCAN_hue_freq_n]
+            [hue_n] +=
+              1
       
-        //: SAT
+        //:=== SAT
         let sat_n =
           ~~( RGB_S__n
-          (
-            r_n,
-            g_n,
-            b_n
+            (
+              r_n,
+              g_n,
+              b_n
+            )
+            *
+            100
           )
-          *
-          100 )
       
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_SAT_n]
+          .scan_a[STAT_W_o.SCAN_sat_n]
             [sat_n]
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_SAT_FREQ_n]
-            [sat_n] += 1
+          .scan_a[STAT_W_o.SCAN_sat_freq_n]
+            [sat_n] +=
+              1
     
-        //: LUM
+        //:=== LUM
         let lum_n =
           ~~( RGB_L__n
-          (
-            r_n,
-            g_n,
-            b_n
+            (
+              r_n,
+              g_n,
+              b_n
+            )
+            *
+            100
           )
-          *
-          100 )
       
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_LUM_n]
+          .scan_a[STAT_W_o.SCAN_lum_n]
             [lum_n]
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_LUM_FREQ_n]
-            [lum_n] += 1
+          .scan_a[STAT_W_o.SCAN_lum_freq_n]
+            [lum_n] +=
+              1
       }
-    
-      const rank__a =    //: utility function
+
+      //=== utility function
+      const rank__a =
       (
         capacity_a
       ) =>
@@ -697,49 +698,53 @@ async bitmap__o
               ]
         }
 
+
+
         rank_a
-          .sort
+          .sort  //: descending order
           (
             (
-              a,
-              b
-            ) =>  //: descending order
-              b[0]
+              first,
+              second
+            ) =>
+              second
+                [0]
               -
-              a[0]
+              first
+                [0]
           )
 
         return rank_a
       }
 
       STAT_W_o
-        .scan_a[STAT_W_o.SCAN_HUE_RANK_n] =
+        .scan_a[STAT_W_o.SCAN_hue_rank_n] =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_HUE_FREQ_n]
-          )      //: hue rankMax_n is at [0][0]
+              .scan_a[STAT_W_o.SCAN_hue_freq_n]
+          )      //: hue rank max_n is at [0][0]
   
       STAT_W_o
-        .scan_a[STAT_W_o.SCAN_SAT_RANK_n] =
+        .scan_a[STAT_W_o.SCAN_sat_rank_n] =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_SAT_FREQ_n]
-          )      //: sat rankMax_n is at [0][0]
+              .scan_a[STAT_W_o.SCAN_sat_freq_n]
+          )      //: sat rank max_n is at [0][0]
   
       STAT_W_o
-        .scan_a[STAT_W_o.SCAN_LUM_RANK_n] =
+        .scan_a[STAT_W_o.SCAN_lum_rank_n] =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_LUM_FREQ_n]
-          )      //: lum rankMax_n is at [0][0]
+              .scan_a[STAT_W_o.SCAN_lum_freq_n]
+          )      //: lum rank max_n is at [0][0]
 
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //...;console.timeEnd( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //;console.log( STAT_W_o.scan_a )
+//;;;;;;;;    console.log( STAT_W_o.scan_a )
     }
   }
   ,
@@ -751,16 +756,16 @@ async bitmap__o
     payload_o
   )
   {
-    const { part_s, frequency_n } =
+    const
+    {
+      part_s,
+      frequency_n
+    } =
       payload_o
-
-    const atpart_s =
-      part_s
-        .toUpperCase()
 
     let index_n =
       STAT_W_o
-        [ `SCAN_${atpart_s}_FREQ_n` ]
+        [ `SCAN_${part_s}_freq_n` ]
 
     STAT_W_o
       .post__v
@@ -931,7 +936,7 @@ async bitmap__o
         (
           STAT_W_o
             .scan_a
-              [STAT_W_o.SCAN_HUE_FREQ_n]
+              [STAT_W_o.SCAN_hue_freq_n]
                 [ payload_o.hue_n ]
           ===
           0
@@ -978,16 +983,6 @@ async bitmap__o
             break
         }
       
-        const upart_s =
-          part_s
-            .toUpperCase()
-      
-        const freq_s =
-          `SCAN_${upart_s}_FREQ_n`
-      
-        const rank_s =
-          `SCAN_${upart_s}_RANK_n`
-      
         const part_a = []
       
         let at_n = 0
@@ -1000,7 +995,7 @@ async bitmap__o
             .scan_a
               [
                 STAT_W_o
-                  [freq_s]
+                  [`SCAN_${part_s}_freq_n`]
               ]
         )
         {
@@ -1082,7 +1077,7 @@ async bitmap__o
       
           maxfreq_n:
             STAT_W_o
-              .scan_a[ STAT_W_o[rank_s] ]
+              .scan_a[ STAT_W_o[`SCAN_${part_s}_rank_n`] ]
                 [0]
                   [0]
           ,
@@ -1117,7 +1112,7 @@ async bitmap__o
                 [ `${part_s}_o` ] //: hue_back, hue_front...
                   .painter_c
 
-        const
+        let
         [
           hsl_s,
           face_s
@@ -1254,6 +1249,8 @@ async bitmap__o
     } =
       payload_o
 
+;;;;;;;;   console.log( 'layer_n: ' + layer_n )
+
     const ratioX_n =
       atX_n
       /
@@ -1275,35 +1272,65 @@ async bitmap__o
     levelX_n *=
       rangeX_n        //: [ 0...100 ]
 
+    if
+    (
+      levelX_n
+      >
+      100
+    )
+    {
+      levelX_n =
+        100          //: clamp
+    }
+
+    let opacity_n =   //: in image data, opacity range is [0...255]
+    ~~(
+        levelX_n
+        *
+        2.559          //: force to 255 when levelX_n is 100
+      )
+
     let opac_n =
       levelX_n
       *
       .01             //: 100 --> 1,  0 --> 0, 60 --> 0.6
       +
-      .001             //: avoid  opac_n === 1
+      .001             //: avoid opac_n === 1
 
     atY_n *=
-      2            //: 2px wide
+      2            //: 2px line
 
     rangeY_n *=
-      2            //: idem
+      2            //: 2px line
+
+
+
+
+      //:   TEMPORARY 
+      //--levelX_n = 45
+      //--atY_n =    0
+      //--rangeY_n = 1
+      //:   TEMPORARY 
+
+
+
 
     STAT_W_o
       .stat_o
-        [ `${stat_s}_o` ]             //: paint
-          [ `${hsl_s}_front_o` ]      //: hue_front...
+        [ `${stat_s}_o` ]             //: paint_o
+          [ `${hsl_s}_front_o` ]      //: hue_front_o ...
             .painter_c
 
-            .fill__c            //::: wipe with white  //:  upper area
+            .fill__c
             (
               [
-                +'{{S_o.hue_p}}',
+                +'{{S_o.hue_p}}',    //: hsla( hue_p 28% 17% / 1 )
                 28,
                 17,
                 1
               ]
             )
-            .rect__c
+            .rect__c                 //::: wipe upper area with white
             (
               levelX_n,
               atY_n,                //??* STAT_W_o.pixel_n
@@ -1312,7 +1339,7 @@ async bitmap__o
               'fill'
             )
 
-            .rect__c            //::: clear       //:  lower area
+            .rect__c                //::: clear lower area
             (
               0,
               atY_n,                 //??* STAT_W_o.pixel_n
@@ -1321,13 +1348,13 @@ async bitmap__o
               'clear'
             )
 
-            .fill__c            //::: mask with opacity
+            .fill__c                 //::: mask lower area with opacity
             (
               [
                 0,
                 0,
                 100,
-                1 - opac_n    //: lower levels more transparent, upper levels more colored
+                1 - opac_n           //: lower levels more transparent, upper levels more colored
               ]
             )
             .rect__c      
@@ -1339,30 +1366,144 @@ async bitmap__o
               'fill'
             )
 
-
-
-
-
-
   //==============================
+    const fromRange_n =
+      payload_o
+        .atY_n                          //: back to 1px line
+//;;;;;;;;    console.log( fromRange_n )
+    
+    let toRange_n =
+      fromRange_n
+      +
+      payload_o
+        .rangeY_n                       //: back to 1px line
+      //??-
+      //??1
 
-    //;console.log( STAT_W_o.imgLayer_a )
+//;;;;;;;;    console.log( toRange_n )
+      
+    const max_n =
+      hsl_s
+      ===
+      'hue'
+      ?
+        359
+      :
+        100
 
-    const data_a =
+    if
+    (
+      toRange_n
+      >
+      max_n
+    )
+    {
+      toRange_n =
+        max_n
+    }
+
+    const scan_a =
       STAT_W_o
-        .canvasData__a( layer_n )          //;console.log( data_a )
+        .scan_a
+          [
+            STAT_W_o
+              [ `SCAN_${hsl_s}_n` ]
+          ]
 
+;;;;;;;;    console.log( scan_a )
 
+    const context_o =
+      STAT_W_o
+        .imgLayer_a
+          [ layer_n ]
+            .context_o
 
+    const imgData_o =
+      context_o
+        .getImageData
+        (
+          0,
+          0,
+          STAT_W_o
+            .imgLayer_a
+              [ layer_n ]
+                .canvas_e
+                  .width,
+          STAT_W_o
+            .imgLayer_a
+              [ layer_n ]
+                .canvas_e
+                  .height,
+        )
 
+;;;;;;;;    console.log( imgData_o.data )
+    
+    for
+    (
+       let atRange_n = fromRange_n;
+       atRange_n < toRange_n;
+       ++atRange_n
+    )
+    {
+      const pointer_a =
+        scan_a
+          [ atRange_n ]
+        
+      for
+      (
+         at_n = 0;
+         at_n < pointer_a.length;
+         ++at_n
+      )
+      {
+        imgData_o
+          .data
+            [
+              pointer_a
+                [ at_n ]
+              +
+              3      //: opacity byte
+            ] =
+              opacity_n
+      }
+    }
+    
+;;;;;;;;    console.log( imgData_o.data )
 
+    context_o
+      .putImageData
+      (
+        imgData_o,
+        0,
+        0
+      )
+
+    //const imgData_1_o =
+    //  context_o
+    //    .getImageData
+    //    (
+    //      0,
+    //      0,
+    //      STAT_W_o
+    //        .imgLayer_a
+    //          [ layer_n ]
+    //            .canvas_e
+    //              .width,
+    //      STAT_W_o
+    //        .imgLayer_a
+    //          [ layer_n ]
+    //            .canvas_e
+    //              .height,
+    //    )
+
+//;;;;;;;;    console.log( imgData_1_o.data )
   //==============================
 
   }
   ,
 
 
-
+/*
   canvasData__a:
   (
     layer_n
@@ -1389,11 +1530,23 @@ async bitmap__o
             canvas_e
               .height,
           )
-            .data
+          //  .data
     )
   }
   ,
 
+
+
+  canvasContext__o:
+  (
+    layer_n
+  ) =>
+    STAT_W_o
+      .imgLayer_a
+        [ layer_n ]
+          .context_o
+  ,
+*/
 
 
   put_scale__v

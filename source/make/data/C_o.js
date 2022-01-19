@@ -148,8 +148,15 @@ const C_o =
 
 
   //=== PAINT TOOLS ===
-  CANVAS_RESIZE_n: .025,
-  PAINT_LAYER_n:   8,
+  PAINT_LAYER_n:       8,
+  PAINT_DISTANCE_X_n:  0,        /* factor */
+  PAINT_PERSPECTIVE_n:  1000,
+  PAINT_DISTANCE_n:    -100,
+  PAINT_ROTATE_n:      0,
+  PAINT_SCALE_n:       .25,
+  CANVAS_RESIZE_n:     .025,
+
+  PAINT_SLIDER_n:      2,    //: 2px line
 
 
   //=== HTML-BODY ANCHORS
@@ -187,9 +194,6 @@ const C_o =
   IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
   LAYER_INDEX_s:        '&#8942;',
   
-  //=== DB ID
-  //-- 1586-de_coster--new_york-sothebys--1625-young_woman
-
   ID_PART_DELIM_s:     '~',   //: between parts
 
   WORDS_DELIM_s:       ' ',
@@ -200,9 +204,6 @@ const C_o =
 
   COMMENT_INTRO_s:     '₀',
   COMMENT_DELIM_s:     '₊₊',   //: subscript ++ between stamp_s, name_s, intro_s
-
-  //=== TABLE
-  CELL_DELIM_s:        '₊',    //: subscript ++
 
   //=== INSERT
   INS_TXT_s:  '₀',        //: text insert
@@ -244,11 +245,15 @@ const C_o =
   CELL_RATIO_n: .1,
   CELL_EMPTY_s: '__',                //: double underline
   CELL_EMPTY_ENTITY_s: '&#8280;',    //: ⁘
+  CELL_DELIM_s:        '₊',          //: subscript ++
+
   
   TABLE_INSERT_s:    'td',
 
 
   //=== DB ===
+  //-- 1586-de_coster--new_york-sothebys--1625-young_woman
+
   DB_a:    //: db tables names
   [
     'artist',
