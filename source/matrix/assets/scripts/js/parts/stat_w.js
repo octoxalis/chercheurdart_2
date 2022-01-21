@@ -147,6 +147,8 @@ const STAT_W_o =
 
   imgLayer_a: [],             //: store image canvas
 
+
+
   //=== SCRIPTS ===
   script__v
   (
@@ -390,7 +392,6 @@ async bitmap__o
   }
 }
 ,
-
 
 
 
@@ -803,10 +804,13 @@ async bitmap__o
         bitmap_o
       )
       {
-        const context_o =
-          await payload_o
+        const canvas_e =
+          payload_o
             .canvas_e
-              .getContext( '2d' )
+
+        const context_o =
+          await canvas_e
+            .getContext( '2d' )
 
         context_o
           .drawImage
@@ -816,22 +820,58 @@ async bitmap__o
             0,
           )
 
+        const data_a =
+          context_o
+            .getImageData
+            (
+              0,
+              0,
+              canvas_e
+                .width,
+              canvas_e
+                .height
+            )
+              .data
+
+        const imgData_o =
+          new ImageData
+          (
+            data_a,
+            canvas_e
+              .width,
+            canvas_e
+              .height
+          )
+
+        const img_o =
+          {
+            canvas_e: payload_o
+                        .canvas_e,
+            context_o: context_o,
+            imgData_o: imgData_o
+          }
+
+        if
+        (
+          payload_o
+            .layer_n
+        )
+        {
+          img_o
+            .layer_n =
+              payload_o
+                .layer_n
+        }
+
         STAT_W_o
           .imgLayer_a
-            .push
-            (
-              {
-                canvas_e: payload_o
-                            .canvas_e,
-                context_o: context_o
-              }
-            )
+            .push( img_o )
       }
 
     }
     catch
     (
-      error_o    //: not used
+      error_o
     )
     {
       console
@@ -853,7 +893,11 @@ async bitmap__o
         payload_o
           .pixel_n
 
-    const { stat_s, part_s } =
+    const
+    {
+      stat_s,
+      part_s
+    } =
       payload_o
 
     if
@@ -1249,8 +1293,6 @@ async bitmap__o
     } =
       payload_o
 
-;;;;;;;;   console.log( 'layer_n: ' + layer_n )
-
     const ratioX_n =
       atX_n
       /
@@ -1303,18 +1345,6 @@ async bitmap__o
     rangeY_n *=
       2            //: 2px line
 
-
-
-
-      //:   TEMPORARY 
-      //--levelX_n = 45
-      //--atY_n =    0
-      //--rangeY_n = 1
-      //:   TEMPORARY 
-
-
-
-
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]             //: paint_o
@@ -1366,21 +1396,15 @@ async bitmap__o
               'fill'
             )
 
-  //==============================
-    const fromRange_n =
+    const fromHsl_n =
       payload_o
         .atY_n                          //: back to 1px line
-//;;;;;;;;    console.log( fromRange_n )
     
-    let toRange_n =
-      fromRange_n
+    let toHsl_n =
+      fromHsl_n
       +
       payload_o
         .rangeY_n                       //: back to 1px line
-      //??-
-      //??1
-
-//;;;;;;;;    console.log( toRange_n )
       
     const max_n =
       hsl_s
@@ -1393,12 +1417,12 @@ async bitmap__o
 
     if
     (
-      toRange_n
+      toHsl_n
       >
       max_n
     )
     {
-      toRange_n =
+      toHsl_n =
         max_n
     }
 
@@ -1410,66 +1434,68 @@ async bitmap__o
               [ `SCAN_${hsl_s}_n` ]
           ]
 
-;;;;;;;;    console.log( scan_a )
-
-    const context_o =
+    const layer_o =
       STAT_W_o
         .imgLayer_a
-          [ layer_n ]
-            .context_o
+          .find
+          (
+            item_o =>
+              item_o
+                .layer_n
+              ===
+              +layer_n          //: number cast
+          )
+
+    const context_o =
+      layer_o
+        .context_o
 
     const imgData_o =
-      context_o
-        .getImageData
-        (
-          0,
-          0,
-          STAT_W_o
-            .imgLayer_a
-              [ layer_n ]
-                .canvas_e
-                  .width,
-          STAT_W_o
-            .imgLayer_a
-              [ layer_n ]
-                .canvas_e
-                  .height,
-        )
+      layer_o
+        .imgData_o
+    
+    const iData_a =
+      imgData_o
+        .data
 
-;;;;;;;;    console.log( imgData_o.data )
+    let atHsl_n
+    let atScan_a
+    let length_n
+    let scanPointer_n
     
     for
     (
-       let atRange_n = fromRange_n;
-       atRange_n < toRange_n;
-       ++atRange_n
+       atHsl_n = fromHsl_n;
+       atHsl_n < toHsl_n;
+       ++atHsl_n
     )
     {
-      const pointer_a =
+      atScan_a =
         scan_a
-          [ atRange_n ]
+          [ atHsl_n ]
+        
+      length_n =
+        atScan_a
+          .length
         
       for
       (
-         at_n = 0;
-         at_n < pointer_a.length;
-         ++at_n
+         atScan_n = 0;
+         atScan_n < length_n;
+         ++atScan_n
       )
       {
-        imgData_o
-          .data
-            [
-              pointer_a
-                [ at_n ]
+        iData_a
+          [
+            atScan_a
+              [ atScan_n ]
               +
-              3      //: opacity byte
-            ] =
-              opacity_n
+              3
+          ] =
+            opacity_n
       }
     }
     
-;;;;;;;;    console.log( imgData_o.data )
-
     context_o
       .putImageData
       (
@@ -1477,33 +1503,15 @@ async bitmap__o
         0,
         0
       )
-
-    //const imgData_1_o =
-    //  context_o
-    //    .getImageData
-    //    (
-    //      0,
-    //      0,
-    //      STAT_W_o
-    //        .imgLayer_a
-    //          [ layer_n ]
-    //            .canvas_e
-    //              .width,
-    //      STAT_W_o
-    //        .imgLayer_a
-    //          [ layer_n ]
-    //            .canvas_e
-    //              .height,
-    //    )
-
-//;;;;;;;;    console.log( imgData_1_o.data )
-  //==============================
-
   }
   ,
 
 
-/*
+
+
+
+
+  /*
   canvasData__a:
   (
     layer_n

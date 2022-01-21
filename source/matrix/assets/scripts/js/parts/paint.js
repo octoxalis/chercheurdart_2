@@ -286,12 +286,13 @@ const PAI_o =
           (
             {
               task_s:   'GET_img',
-              pixel_n:  window.devicePixelRatio,
               rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
               scale_n:  1,
               url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
               canvas_e: offCanvas_e,
-              storeBitmap_b: true
+              storeBitmap_b: true,
+              layer_n: layer_n,
+              pixel_n:  window.devicePixelRatio,    //????
             },
             [ offCanvas_e ]
           )
@@ -829,7 +830,9 @@ const PAI_o =
       selected_a
         [ selected_a.length -1 ]
           .dataset
-            .layer_n         //;console.log( layer_n )
+            .layer_n
+
+;;;;;;;;    console.log( 'layer_n: ' + layer_n )
 
     const
     {
@@ -882,15 +885,6 @@ const PAI_o =
             atY_n:    atY_n,
           }
         )
-
-      //---- ;console.log(
-      //----   selected_a
-      //----   [ selected_a.length -1 ]
-      //---- )
-      //---- 
-      //---- selected_a
-      //----   [ selected_a.length -1 ]
-      //----     .style.display = 'inline'
 
     const maxRange_n =
       hsl_s
@@ -1048,7 +1042,7 @@ const PAI_o =
   init__v
   ()
   {
-    const canvas_a =
+    const hsl_a =
       [
         'hue_back',
         'hue_front',
@@ -1064,7 +1058,7 @@ const PAI_o =
           .worker__o
             (
               '{{C_o.STAT_a[2]}}',
-              canvas_a,
+              hsl_a,
               'Painter',
               PAI_o
                 .message__v,
@@ -1078,9 +1072,9 @@ const PAI_o =
     
     for    //: worker draw sliders initial state
     (
-      let canvas_s
+      let hsl_s
       of
-      canvas_a
+      hsl_a
     )
     {
       PAI_o
@@ -1090,7 +1084,7 @@ const PAI_o =
             { 
               task_s: 'PUT_draw',
               stat_s: '{{C_o.STAT_a[2]}}',
-              part_s: canvas_s,
+              part_s: hsl_s,
               hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_sat_hue' )
             }
           )
