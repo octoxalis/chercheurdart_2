@@ -65,56 +65,64 @@ const S_o =
 
   frame_gradient_from: `hsla( 60 61% 28% /1)`,           /* 11 point scale */
   frame_gradient_to:   `hsla( 20 39% 17% /1)`,
+
   }
 
-  S_o.lum_hi_4 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`,     // = 40/40 =90%
-  S_o.lum_hi_3 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .75 )}%`,     // = 30/40 =80%
-  S_o.lum_hi_2 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .50 )}%`,     // = 20/40 =70%
-  S_o.lum_hi_1 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .25 )}%`,     // = 10/40 =60%
-  S_o.lum_ne   = `${S_o.LUM_BASE_n +  0 }%`,                                             // = 50%
-  S_o.lum_lo_1 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .25 )}%`,     // = 10/40 =40%
-  S_o.lum_lo_2 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .50 )}%`,     // = 20/40 =30%
-  S_o.lum_lo_3 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .75 )}%`,     // = 30/40 =20%
-  S_o.lum_lo_4 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`,     // = 40/40 =10%
+  S_o.lum_hi_4 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =90%
+  S_o.lum_hi_3 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =80%
+  S_o.lum_hi_2 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =70%
+  S_o.lum_hi_1 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =60%
+  S_o.lum_ne   = `${S_o.LUM_BASE_n +  0 }%`                                             // = 50%
+  S_o.lum_lo_1 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =40%
+  S_o.lum_lo_2 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =30%
+  S_o.lum_lo_3 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =20%
+  S_o.lum_lo_4 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =10%
   
-  S_o.inscolor =  `hsla( ${S_o.hue_p - 60} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /1)`,
-  S_o.textcolor = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`,
-  S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`,
-  S_o.bg_higher = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`,
-  S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /1)`,
-  S_o.highlight = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_2} /1)`,
-  S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`,
-  S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`,
-  S_o.lighter =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /1)`,
+  S_o.inscolor =  `hsla( ${S_o.hue_p - 60} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /1)`
+  S_o.textcolor = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
+  S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`
+  S_o.bg_higher = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`
+  S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /1)`
+  S_o.highlight = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_2} /1)`
+  S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`
+  S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`
+  S_o.lighter =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /1)`
   
-  S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`,
-  S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`,
-  S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.25)`,
+  S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`
+  S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`
+  S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.25)`
   
-  S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`,
-  S_o.accept_hi =     `hsla(${S_o.hue_accept} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`,
-  S_o.cancel_hi =     `hsla(${S_o.hue_cancel} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`,
+  S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`
+  S_o.accept_hi =     `hsla(${S_o.hue_accept} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`
+  S_o.cancel_hi =     `hsla(${S_o.hue_cancel} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`
 
-  S_o.nav_main =       `hsla(${S_o.hue_p + 0}   ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`,
-  S_o.nav_stat =       `hsla(${S_o.hue_p + 40}  ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`,
-  S_o.nav_substat =    `hsla(${S_o.hue_p + 80}  ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`,
-  S_o.nav_substat_op = `hsla(${S_o.hue_p + 100} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /1)`,
+  S_o.nav_main =       `hsla(${S_o.hue_p + 0}   ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`
+  S_o.nav_stat =       `hsla(${S_o.hue_p + 40}  ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`
+  S_o.nav_substat =    `hsla(${S_o.hue_p + 80}  ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`
+  S_o.nav_substat_op = `hsla(${S_o.hue_p + 100} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /1)`
 
 
-  S_o.nav_spot_home =    `hsla( ${S_o.hue_p}    ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`,
-  S_o.nav_spot_article = `hsla( ${S_o.hue_p}    ${S_o.sat_lo_4} ${S_o.lum_hi_1} /1)`,
-  S_o.nav_spot_gallery = `hsla( 60              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`,
-  S_o.nav_spot_stat =    `hsla( ${S_o.hue_spot} ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`,
+  S_o.nav_spot_home =    `hsla( ${S_o.hue_p}    ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
+  S_o.nav_spot_article = `hsla( ${S_o.hue_p}    ${S_o.sat_lo_4} ${S_o.lum_hi_1} /1)`
+  S_o.nav_spot_gallery = `hsla( 60              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
+  S_o.nav_spot_stat =    `hsla( ${S_o.hue_spot} ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
 
-  S_o.nav_spot_set_1 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`,
-  S_o.nav_spot_set_2 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_hi_2} /1)`,
-  S_o.nav_spot_set_3 =   `hsla( ${S_o.hue_spot - 90} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`,
+  S_o.nav_spot_set_1 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
+  S_o.nav_spot_set_2 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_hi_2} /1)`
+  S_o.nav_spot_set_3 =   `hsla( ${S_o.hue_spot - 90} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
 
-  S_o.match_spot =       `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`,
+  S_o.match_spot =       `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`
   
-  S_o.NAV_HEIGHT_s = S_o.PAD_8,
-  S_o.NAV_LABEL_s  = S_o.PAD_4,
-  S_o.NAV_SETTINGS_s = '288px',  //: 18em
+  S_o.NAV_HEIGHT_s = S_o.PAD_8
+  S_o.NAV_LABEL_s  = S_o.PAD_4
+  S_o.NAV_SETTINGS_s = '288px'  //: 18em
+
+  S_o.back_hue = S_o.hue_p
+  S_o.back_sat = '100'
+  S_o.back_lum = '50'
+
+  S_o.paint_brush_s = `${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_lo_2}`
+
 
 
 

@@ -751,7 +751,7 @@ const PAI_o =
     [
       ,
       ,
-      sub_s,
+      hsl_s,
       range_s
     ] =
       range_e
@@ -762,7 +762,7 @@ const PAI_o =
     &&
     callback_f
     (
-      sub_s,
+      hsl_s,
       range_s,
       value_s
     )
@@ -782,13 +782,13 @@ const PAI_o =
         event_o
           .target,
         (
-          sub_s,
+          hsl_s,
           range_s,
           value_s
         ) =>
           {
             PAI_o
-              [ `${sub_s}_o` ]
+              [ `${hsl_s}_o` ]
                 [ `${range_s}_n` ] =
                   +value_s      //: number cast
 
@@ -812,7 +812,7 @@ const PAI_o =
   {
     const selected_a =
       PAI_o
-        .selectedCanvas__a()      ;console.log( selected_a )
+        .selectedCanvas__a()
 
     if
     (
@@ -831,8 +831,6 @@ const PAI_o =
         [ selected_a.length -1 ]
           .dataset
             .layer_n
-
-;;;;;;;;    console.log( 'layer_n: ' + layer_n )
 
     const
     {
@@ -916,13 +914,63 @@ const PAI_o =
 
 
 
+
+  setHslBackColor__v:
+  (
+    label_e
+  ) =>
+  {
+    const hsl_s =
+      label_e
+        .id
+          .split( '_' )
+            [2]
+  
+    const value_s =
+      document
+        .querySelector( `label[id$="${hsl_s}_trace"] > output` )
+          ?.value
+  
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[2]}}_back_${hsl_s}`,
+        +value_s
+      )
+  }
+  ,
+
+
+
+  hslBackColor__v:
+  (
+    click_o
+  ) =>
+  {
+    click_o
+      .preventDefault()
+
+    const label_e =
+      click_o
+        .target
+          .closest( `label` )
+
+    label_e
+    &&
+    PAI_o
+      .setHslBackColor__v( label_e )
+  }
+  ,
+
+
+
   listener__v
   ()
   {
     //=== CANVAS + SLIDERS ===
     for
     (
-      let sub_s
+      let hsl_s
       of
       [
         'hue',
@@ -954,7 +1002,7 @@ const PAI_o =
           DOM_o
             .listener__v
             (
-              `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_${range_s}`,
+              `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_${hsl_s}_${range_s}`,
               PAI_o
                 .rangeEvent__v,
               event_s
@@ -965,10 +1013,26 @@ const PAI_o =
       DOM_o
         .listener__v
         (
-          `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_${sub_s}_front`,
+          `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_${hsl_s}_front`,
           PAI_o
             .hslPoint__v
         )
+
+
+
+
+
+        DOM_o
+          .listener__v
+          (
+            `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_${hsl_s}_trace`,
+            PAI_o
+              .hslBackColor__v
+          )
+  
+
+
+
     }
 
     //=== GEOMETRY ===
@@ -1085,12 +1149,50 @@ const PAI_o =
               task_s: 'PUT_draw',
               stat_s: '{{C_o.STAT_a[2]}}',
               part_s: hsl_s,
-              hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_sat_hue' )
+              hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_back_hue' )
             }
           )
-    }
 
-    //;console.log( DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_sat_hue' ) )
+      if
+      (
+        hsl_s
+          .endsWith( '_back' )
+      )
+      {
+        const atHsl_s =
+          hsl_s
+            .slice
+            (
+              0,
+              -'_back'
+                .length
+            )
+        
+        const maxRange_n =
+          atHsl_s
+          ===
+          'hue'
+          ?
+            360
+          :
+            100
+    
+        DOM_o
+          .rootVar__v
+          (
+            `--{{C_o.STAT_a[2]}}_${atHsl_s}_trace`,
+            ( 
+              maxRange_n
+              -
+              document
+                .getElementById( `output_{{C_o.STAT_a[2]}}_${atHsl_s}` )
+                  .value
+            )
+            *
+            -2      //: 2px line
+          )
+      }
+    }
 
     PAI_o
       .listener__v()

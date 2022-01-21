@@ -820,23 +820,21 @@ async bitmap__o
             0,
           )
 
-        const data_a =
-          context_o
-            .getImageData
-            (
-              0,
-              0,
-              canvas_e
-                .width,
-              canvas_e
-                .height
-            )
-              .data
-
+        //: store an original ImageData to avoid putImageData bug in put_hsl__v()
         const imgData_o =
           new ImageData
           (
-            data_a,
+            context_o
+              .getImageData
+              (
+                0,
+                0,
+                canvas_e
+                  .width,
+                canvas_e
+                  .height
+              )
+                .data,
             canvas_e
               .width,
             canvas_e
