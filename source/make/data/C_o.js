@@ -130,6 +130,7 @@ const C_o =
     layers_difference:  { icon_s: `&nbsp;`,  legend_s: `Différence`},
     layers_intersection:{ icon_s: `&nbsp;`,  legend_s: `Intersection`},
     layers_complement:  { icon_s: `&nbsp;`,  legend_s: `Complément`},
+    layers_deviation:   { icon_s: `&nbsp;`,  legend_s: `Déviation`},
 
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
     close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
@@ -149,6 +150,7 @@ const C_o =
 
   //=== PAINT TOOLS ===
   PAINT_LAYER_n:       8,
+  PAINT_DEVIATION_n:   10,
   PAINT_DISTANCE_X_n:  0,        /* factor */
   PAINT_PERSPECTIVE_n:  1000,
   PAINT_DISTANCE_n:    -100,

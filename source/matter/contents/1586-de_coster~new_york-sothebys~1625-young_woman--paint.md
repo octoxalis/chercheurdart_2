@@ -26,6 +26,7 @@
   [
     'stat.min.js',
     'dom.min.js',
+    'Drag.min.js',
   ],
   css_a:
   [

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <div id="DI_stat_paint">
     <input id="IN_paint_canvas" name="paint_nav" type="radio" checked>
-    <input
-    id="IN_paint_settings" name="paint_nav" type="radio">
-
-    <!--<canvas data-layer_n=0></canvas>-->
+    <input id="IN_paint_settings" name="paint_nav" type="radio">
 
     <nav id="NA_paint_settings">
         <label for="IN_paint_settings" data-legend="palette">
@@ -44,6 +41,9 @@
               <li>
                 <input  id="IN_paint_layer_set_complement" type="radio" name=layer_set />
                 <label for="IN_paint_layer_set_complement">Complément</label>
+              <li id="LI_paint_layer_set_deviation">
+                <label>Déviation</label>
+                <input  id="IN_paint_layer_set_deviation" type="range" min="0" max="100" step="1" value="10" data-tip="10"/>
             </ul>
 
             <div id="DI_paint_slide_hue">
@@ -89,6 +89,8 @@
             </div>
         </aside>
     </div>
+
+    <!--<div data-layer_n=0></div>-->
 
     <div id="DI_paint_layer_view">
         <input id="IN_paint_view_perspective" type="range" min="100" max="5000" step="100" value="1000" data-tip="1000"/>

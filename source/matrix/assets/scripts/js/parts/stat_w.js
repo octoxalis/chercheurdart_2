@@ -1,5 +1,5 @@
-
 //=== stat_w.js ===
+
 const RGB_H__n =
 (
   r_n,
@@ -96,7 +96,7 @@ const RGB_L__n =
 
 
 
-  //=== STAT_W_o ===
+//=== STAT_W_o ===
 const STAT_W_o =
 {
   port_o: null,
@@ -395,7 +395,7 @@ async bitmap__o
 
 
 
-//=== GET    
+  //=== GET    
   get_status__v
   ()
   {
@@ -431,7 +431,7 @@ async bitmap__o
       //...;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-      //=== fetch image and get image data Array
+      //=== fetch image data Array
       const url_s =
         `/{{C_o.IMG_DIR_s}}${payload_o.work_s}{{C_o.IMG_MAX_PATH_s}}color.jpeg`
       
@@ -482,7 +482,6 @@ async bitmap__o
           *
           bitmap_o
             .height
-//;;;;;;;;    console.log( STAT_W_o.capacity_n )
           
       //: initialize scan Arrays
       STAT_W_o
@@ -745,7 +744,6 @@ async bitmap__o
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //...;console.timeEnd( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-//;;;;;;;;    console.log( STAT_W_o.scan_a )
     }
   }
   ,
@@ -795,6 +793,51 @@ async bitmap__o
   {
     try
     {
+      /*
+      if
+      (
+        payload_o
+          .canvasFront_e
+      )
+      {
+        ;;;;;;;;    console.time( 'get_img__v' )
+
+        const canvasFront_e =
+          payload_o
+            .canvasFront_e
+
+        const contextFront_o =
+          canvasFront_e
+            .getContext( '2d' )
+
+        contextFront_o
+          .fillStyle =
+            'hsla( 190 80% 50% / .5 )'
+
+        contextFront_o
+          .fillRect
+          (
+            0,
+            0,
+            canvasFront_e
+              .width,
+            canvasFront_e
+              .height
+          )
+
+        contextFront_o
+          .clearRect
+          (
+            420,
+            300,
+            500,
+            800
+          )
+          
+        ;;;;;;;;    console.timeEnd( 'get_img__v' )
+      }
+      */
+
       const bitmap_o =
         await STAT_W_o
           .bitmap__o( payload_o )
@@ -809,7 +852,7 @@ async bitmap__o
             .canvas_e
 
         const context_o =
-          await canvas_e
+          canvas_e
             .getContext( '2d' )
 
         context_o
@@ -820,33 +863,21 @@ async bitmap__o
             0,
           )
 
-        //: store an original ImageData to avoid putImageData bug in put_hsl__v()
-        const imgData_o =
-          new ImageData
-          (
-            context_o
-              .getImageData
-              (
-                0,
-                0,
-                canvas_e
-                  .width,
-                canvas_e
-                  .height
-              )
-                .data,
-            canvas_e
-              .width,
-            canvas_e
-              .height
-          )
-
         const img_o =
           {
-            canvas_e: payload_o
-                        .canvas_e,
-            context_o: context_o,
-            imgData_o: imgData_o
+            canvas_e:   payload_o
+                          .canvas_e,
+            context_o:  context_o,
+            imgData_o:  context_o        //: store an original ImageData to avoid putImageData bug in put_hsl__v()
+                          .getImageData
+                          (
+                            0,
+                            0,
+                            canvas_e
+                              .width,
+                            canvas_e
+                              .height
+                          )
           }
 
         if
@@ -865,7 +896,6 @@ async bitmap__o
           .imgLayer_a
             .push( img_o )
       }
-
     }
     catch
     (
@@ -973,6 +1003,7 @@ async bitmap__o
       stat_s
     )
     {
+      //=== burst ===
       case '{{C_o.STAT_a[0]}}':
         if
         (
@@ -1139,11 +1170,7 @@ async bitmap__o
 
 
     
-      case '{{C_o.STAT_a[1]}}':
-        break
-
-
-
+      //=== paint ===
       case '{{C_o.STAT_a[2]}}':
         //;console.log( STAT_W_o.stat_o )
 
@@ -1189,8 +1216,8 @@ async bitmap__o
                 (
                   0,
                   at_n * 2, //??* STAT_W_o.pixel_n
-                  100, //??* STAT_W_o.pixel_n,
-                  2, //??* STAT_W_o.pixel_n,
+                  100,      //??* STAT_W_o.pixel_n,
+                  2,        //??* STAT_W_o.pixel_n,
                   'fill'
                 )
             }
@@ -1198,7 +1225,6 @@ async bitmap__o
             break
         
           case 'sat':
-                              //;console.log( payload_o.hue_n )
             for
             (
               let at_n = 0;
@@ -1221,8 +1247,8 @@ async bitmap__o
                 (
                   0,
                   at_n * 2, //??* STAT_W_o.pixel_n,
-                  100, //?? * STAT_W_o.pixel_n,
-                  2, //?? * STAT_W_o.pixel_n,
+                  100,      //?? * STAT_W_o.pixel_n,
+                  2,        //?? * STAT_W_o.pixel_n,
                   'fill'
                 )
             }
@@ -1251,8 +1277,8 @@ async bitmap__o
                 (
                   0,
                   at_n * 2, //?? * STAT_W_o.pixel_n,
-                  100, //?? * STAT_W_o.pixel_n,
-                  2, //?? * STAT_W_o.pixel_n,
+                  100,      //?? * STAT_W_o.pixel_n,
+                  2,        //?? * STAT_W_o.pixel_n,
                   'fill'
                 )
             }
@@ -1267,7 +1293,7 @@ async bitmap__o
 
 
       default:    //: '{{C_o.STAT_a[3]}}'
-        break;
+        break
     }
   }
   ,
@@ -1291,6 +1317,7 @@ async bitmap__o
     } =
       payload_o
 
+    //=== Sliders ===
     const ratioX_n =
       atX_n
       /
@@ -1424,6 +1451,7 @@ async bitmap__o
         max_n
     }
 
+    //=== Layer canvas ===
     const scan_a =
       STAT_W_o
         .scan_a
@@ -1459,8 +1487,54 @@ async bitmap__o
     let atHsl_n
     let atScan_a
     let length_n
-    let scanPointer_n
-    
+
+    //=== none ===
+    const none__v =
+    () =>
+    {
+      iData_a
+        [
+          atScan_a
+            [ atScan_n ]
+            +
+            3
+        ] =
+          opacity_n
+    }
+
+    //=== union ===
+    const union__v =
+    () =>
+    {
+    }
+
+    //=== difference ===
+    const difference__v =
+    () =>
+    {
+    }
+
+    //=== intersection ===
+    const intersection__v =
+    () =>
+    {
+    }
+
+    //=== complement ===
+    const complement__v =
+    () =>
+    {
+    }
+
+
+    //=== complement ===
+    const deviation__v =
+    () =>
+    {
+    }
+
+
+    //=== data loop ===
     for
     (
        atHsl_n = fromHsl_n;
@@ -1483,14 +1557,15 @@ async bitmap__o
          ++atScan_n
       )
       {
-        iData_a
-          [
-            atScan_a
-              [ atScan_n ]
-              +
-              3
-          ] =
-            opacity_n
+        //--iData_a
+        //--  [
+        //--    atScan_a
+        //--      [ atScan_n ]
+        //--      +
+        //--      3
+        //--  ] =
+        //--    opacity_n
+        none__v()
       }
     }
     
@@ -1504,55 +1579,6 @@ async bitmap__o
   }
   ,
 
-
-
-
-
-
-  /*
-  canvasData__a:
-  (
-    layer_n
-  ) =>
-  {
-    const imgLayer_o =
-      STAT_W_o
-        .imgLayer_a
-          [ layer_n ]
-
-    const canvas_e =
-      imgLayer_o
-        .canvas_e          //;console.log( canvas_e )
-
-    return (
-      imgLayer_o
-        .context_o
-          .getImageData
-          (
-            0,
-            0,
-            canvas_e
-              .width,
-            canvas_e
-              .height,
-          )
-          //  .data
-    )
-  }
-  ,
-
-
-
-  canvasContext__o:
-  (
-    layer_n
-  ) =>
-    STAT_W_o
-      .imgLayer_a
-        [ layer_n ]
-          .context_o
-  ,
-*/
 
 
   put_scale__v

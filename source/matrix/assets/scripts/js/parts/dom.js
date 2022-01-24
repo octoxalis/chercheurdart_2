@@ -120,4 +120,89 @@ const DOM_o =
         handle_f
       )
   }
+  ,
+
+
+  throttle__f:
+  (
+    callback_f,
+    limit_n
+  ) =>
+  {
+    let timeout_n
+    let stamp_n
+    
+    return (
+      function
+      ()
+      {
+        const this_o =
+          this
+  
+        const arg_a =
+          arguments
+  
+        if
+        (
+          ! stamp_n
+        )
+        {
+          callback_f
+            .apply
+            (
+              this_o,
+              arg_a
+            )
+  
+          stamp_n =
+            Date
+              .now()
+
+          return
+        }
+
+        clearTimeout( timeout_n )
+  
+        timeout_n =
+          setTimeout
+          (
+            function()
+            {
+              if
+              (
+                (
+                  Date
+                    .now()
+                  -
+                  stamp_n
+                )
+                >=
+                limit_n
+              )
+              {
+                callback_f
+                  .apply
+                  (
+                    this_o,
+                    arg_a
+                  )
+  
+                stamp_n =
+                  Date
+                    .now()
+              }
+            },
+            limit_n
+            -
+            (
+              Date
+                .now()
+              -
+              stamp_n
+            )
+          )
+      }
+    )
+  }
+  ,
 }

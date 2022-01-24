@@ -197,7 +197,6 @@ const PAI_o =
         '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items'
       )
   
-  
     const
     [
       width_s,
@@ -209,17 +208,41 @@ const PAI_o =
             .wh_s
               .split( '_' )
 
-    DOM_o
-      .fragment__e
-      (
+    let fragment_s =
+      `<div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}`
+      + ` data-layer_n=${layer_n}>`
+      + `<canvas`
+      + ` id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}`
+      + ` width=${width_s} height=${height_s}`
+      + ` data-layer_n=${layer_n}`
+      + ` data-size_n=1`
+      + ` title="{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n}">`
+      + `</canvas>`
+
+    if
+    (
+      layer_n
+      >
+      0
+    )
+    {
+      fragment_s +=
         `<canvas`
-        + ` id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}`
+        + ` id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_front_${layer_n}`
         + ` width=${width_s} height=${height_s}`
         + ` data-layer_n=${layer_n}`
         + ` data-size_n=1`
-        + ` title="{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n}"`
-        + `><canvas>`
-        ,
+        + ` title="{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n}">`
+        + `</canvas>`
+    }
+
+    fragment_s +=
+      `</div>`
+
+    DOM_o
+      .fragment__e
+      (
+        fragment_s,
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view'
       )
 
@@ -227,29 +250,73 @@ const PAI_o =
       document
         .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
 
-    canvas_e
-      .addEventListener
-      (
-        'click',
-        event_o =>
-        {
-          event_o
-            .target
-              .classList
-                .toggle( 'raised' )
-        }
-      )
-      
     const offCanvas_e =
       canvas_e
         .transferControlToOffscreen()
   
+    const centerX =
+      +width_s      //: number cast
+      *
+      .5
+
+    const centerY =
+      +height_s      //: number cast
+      *
+      .5
+
+    const workerMsg_o =
+      {
+        task_s:   'GET_img',
+        rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
+        scale_n:  1,
+        url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
+        canvas_e: offCanvas_e,
+        storeBitmap_b: true,
+        layer_n: layer_n,
+        pixel_n:  window.devicePixelRatio,    //????
+      }
+
+    const workerMsg_a =
+      [ offCanvas_e ]
+
+    if
+    (
+      layer_n
+      >
+      0
+    )
+    {
+      const canvasFront_e =
+          document
+            .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_front_${layer_n}` )
+    
+      const offCanvasFront_e =
+          canvasFront_e
+            .transferControlToOffscreen()
+
+      workerMsg_o
+        .canvasFront_e =
+          offCanvasFront_e
+
+      workerMsg_a
+        .push( offCanvasFront_e )
+    }
+
+    PAI_o
+      .worker_o           //! using port postMessage directly
+        .port_o           //! to avoid error:
+          .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+          (
+            workerMsg_o,
+            workerMsg_a
+          )
+
     PAI_o
       .layer_a
         .push
         (
-          {          //: sliders state
-            hue_o:
+          {
+            hue_o:          //: sliders state
             {
               rangeX_n: 0,
               rangeY_n: 0,
@@ -266,42 +333,189 @@ const PAI_o =
               rangeX_n: 0,
               rangeY_n: 0,
             }
+            ,
+            clipRect_a: []  //: clipping areas
           }
         )
 
-    const centerX =
-      +width_s      //: number cast
-      *
-      .5
+    //const canvasFront_e =
+    //  document
+    //    .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
 
-    const centerY =
-      +height_s      //: number cast
-      *
-      .5
+    canvasFront_e
+      .addEventListener
+      (
+        'click',
+        event_o =>
+        {
+          event_o
+            .target
+              .closest( 'div' )
+                .classList
+                  .toggle( 'raised' )
 
-    PAI_o
-      .worker_o           //! using port postMessage directly
-        .port_o           //! to avoid error:
-          .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+          if
           (
-            {
-              task_s:   'GET_img',
-              rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
-              scale_n:  1,
-              url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
-              canvas_e: offCanvas_e,
-              storeBitmap_b: true,
-              layer_n: layer_n,
-              pixel_n:  window.devicePixelRatio,    //????
-            },
-            [ offCanvas_e ]
+            event_o
+              .ctrlKey
           )
+          {
+            PAI_o
+              .addClip__v
+              (
+                canvasFront_e,
+                event_o
+              )
+          }
+        }
+      )
 
     return layer_n
   }
   ,
   
   
+
+  addClip__v:
+  (
+    canvas_e
+  ) =>
+  {
+  ;;;;;;;;    console.log( canvas_e )
+
+    const layer_n =
+       canvas_e
+         .dataset
+           .layer_n
+
+  ;;;;;;;;    console.log( layer_n )
+  
+    const width_n =
+      canvas_e
+        .width
+  
+    const height_n =
+      canvas_e
+        .height
+  
+    
+    let clipCanvas_e =
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_clip_${layer_n}` )
+  
+    if
+    (
+      ! clipCanvas_e
+    )
+    {
+      let fragment_s =
+        `<canvas`
+        + ` id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_clip_${layer_n}`
+        + ` width=${width_n} height=${height_n}`
+        + ` data-layer_n=${layer_n}>`
+        + `</canvas>`
+        
+      DOM_o
+        .fragment__e
+        (
+          fragment_s,
+          canvas_e
+            .id
+        )
+  
+      clipCanvas_e =
+        document
+          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_clip_${layer_n}` )
+    }
+  
+    let context_o =
+      clipCanvas_e
+        .getContext( '2d' )
+  
+    contextFront_o
+      .strokeStyle =
+        'hsla( 190 80% 50% / .5 )'
+  
+    contextFront_o
+      .lineWidth =
+        4
+  
+    const clipRect_a = []
+  
+    const pointer_o =
+      new PointerDrag
+      (
+        canvas_e,
+        (
+          atX_n,
+          atY_n
+        ) =>
+        {
+          if
+          (
+            ! clipRect_a[0]
+          )
+          {
+            clipRect_a[0] =
+              ~~atX_n
+  
+            clipRect_a[1] =
+              ~~atY_n
+  
+            clipRect_a[2] =
+              0
+  
+            clipRect_a[3] =
+              0
+          }
+  
+          context_o
+            .clearRect( ...clipRect_a )
+  
+          clipRect_a[2] =
+            ~~atX_n
+            -
+            clipRect_a[0]
+            
+          clipRect_a[3] =
+            ~~atY_n
+            -
+            clipRect_a[1]
+  
+  
+          context_o
+            .strokeRect( ...clipRect_a )
+        },
+        () =>
+        {
+          ;;;;;;;;    console.log( 'STOP' )
+        },
+  
+                
+      )
+  
+  }
+  ,
+
+
+
+  clipMove__v:
+  (
+    move_o
+  ) =>
+  {
+    console.log(
+      move_o
+        .offsetX
+      + ' / '
+      +
+      move_o
+        .offsetY
+    )
+  }
+  ,
+
+
 
   hideLayer__n:
   () =>
@@ -466,6 +680,24 @@ const PAI_o =
         'none'    //: do nothing for non operation (only deselect selected operation)
       )
       {
+        if
+        (
+          op_s
+          ===
+          'deviation'
+        )
+        {
+          click_o
+            .target
+              .dataset
+                .tip =
+                  click_o
+                    .target
+                      .value
+
+            return
+        }
+        //-->
         const operateOn_a =
           PAI_o
             .operateOn__a()
@@ -478,7 +710,7 @@ const PAI_o =
           2
         )
         {
-          return(
+          return (
             window
               .alert( `Deux plans doivent être sélectionnés pour effectuer cette opération.` )
           )
@@ -555,13 +787,13 @@ const PAI_o =
 
 
 
-  selectedCanvas__a:  //: excluded: layer_0 + masked layers
+  selectedLayer__a:  //: excluded: layer_0 + masked layers
   () =>
     Array
       .from
       (
         document
-          .querySelectorAll( `canvas:not([data-layer_n="0"]):not([data-layer_b="0"]).raised` )
+          .querySelectorAll( `div:not([data-layer_n="0"]):not([data-layer_b="0"]).raised` )
       )
   ,
   
@@ -812,7 +1044,7 @@ const PAI_o =
   {
     const selected_a =
       PAI_o
-        .selectedCanvas__a()
+        .selectedLayer__a()
 
     if
     (
@@ -915,34 +1147,7 @@ const PAI_o =
 
 
 
-  setHslBackColor__v:
-  (
-    label_e
-  ) =>
-  {
-    const hsl_s =
-      label_e
-        .id
-          .split( '_' )
-            [2]
-  
-    const value_s =
-      document
-        .querySelector( `label[id$="${hsl_s}_trace"] > output` )
-          ?.value
-  
-    DOM_o
-      .rootVar__v
-      (
-        `--{{C_o.STAT_a[2]}}_back_${hsl_s}`,
-        +value_s
-      )
-  }
-  ,
-
-
-
-  hslBackColor__v:
+  backColor__v:
   (
     click_o
   ) =>
@@ -955,10 +1160,49 @@ const PAI_o =
         .target
           .closest( `label` )
 
-    label_e
-    &&
-    PAI_o
-      .setHslBackColor__v( label_e )
+    if
+    (
+      label_e
+    )
+    {
+      const hsl_s =
+        label_e
+          .id
+            .split( '_' )
+              [2]
+    
+      const value_s =
+        document
+          .querySelector( `label[id$="${hsl_s}_trace"] > output` )
+            .value
+    
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[2]}}_back_${hsl_s}`,
+          +value_s
+        )
+
+      if
+      (
+        hsl_s
+        ===
+        'hue'
+      )
+      {
+        PAI_o
+          .worker_o
+            .post__v
+            (
+              { 
+                task_s: 'PUT_draw',
+                stat_s: '{{C_o.STAT_a[2]}}',
+                part_s: 'sat_front',
+                hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_back_hue' )
+              }
+            )
+      }
+    }
   }
   ,
 
@@ -1018,21 +1262,14 @@ const PAI_o =
             .hslPoint__v
         )
 
-
-
-
-
-        DOM_o
-          .listener__v
-          (
-            `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_${hsl_s}_trace`,
-            PAI_o
-              .hslBackColor__v
-          )
+      DOM_o
+        .listener__v
+        (
+          `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_${hsl_s}_trace`,
+          PAI_o
+            .backColor__v
+        )
   
-
-
-
     }
 
     //=== GEOMETRY ===
@@ -1153,13 +1390,14 @@ const PAI_o =
             }
           )
 
+      //=== paint brush
       if
       (
         hsl_s
           .endsWith( '_back' )
       )
       {
-        const atHsl_s =
+        const atHsl_s =    //--> hue, sat, lum
           hsl_s
             .slice
             (
