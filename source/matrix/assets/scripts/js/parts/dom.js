@@ -122,7 +122,7 @@ const DOM_o =
   }
   ,
 
-
+  /*//!!! STANDBY !!!
   throttle__f:
   (
     callback_f,
@@ -205,4 +205,5 @@ const DOM_o =
     )
   }
   ,
+  */
 }

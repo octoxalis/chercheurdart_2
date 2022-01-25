@@ -26,7 +26,7 @@
   [
     'stat.min.js',
     'dom.min.js',
-    'Drag.min.js',
+    'Pointer.min.js',
   ],
   css_a:
   [

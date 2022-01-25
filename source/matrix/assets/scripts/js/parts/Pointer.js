@@ -1,26 +1,25 @@
 
 //=== Pointer.js ===
 
-//=== drag.js ===
 
-class PointerDrag
+class Pointer
 {
-  drag_b    = true    //: is drag enabled
+  drag_b = true       //: is drag enabled
 
-  add_b     = false    //: are listeners already registered
+  listen_b = false    //: are listeners already registered
 
 
 
   constructor
   (
-    drag_e,
+    pointer_e,
     move_f,
     stop_f
   )
   {
     this
-      .drag_e =
-        drag_e
+      .pointer_e =
+        pointer_e
 
     this
       .move_f =
@@ -40,7 +39,7 @@ class PointerDrag
   ()
   {
     this
-      .drag_e
+      .pointer_e
         .addEventListener
         (
           'pointerdown',
@@ -58,11 +57,11 @@ class PointerDrag
               if
               (
                 ! this
-                  .add_b
+                  .listen_b
               )
               {
                 this
-                  .add_b =
+                  .listen_b =
                     true
 
                 this
@@ -113,7 +112,7 @@ class PointerDrag
               .offsetY
           )
   
-        return
+        //??return
       }
       //-->
       if
@@ -149,7 +148,7 @@ class PointerDrag
     )
     {
       this
-        .drag_e
+        .pointer_e
           [`${method_s}EventListener`]
           (
             listen_s,

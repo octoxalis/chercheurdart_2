@@ -289,17 +289,17 @@ const PAI_o =
       const canvasFront_e =
           document
             .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_front_${layer_n}` )
-    
-      const offCanvasFront_e =
-          canvasFront_e
-            .transferControlToOffscreen()
 
-      workerMsg_o
-        .canvasFront_e =
-          offCanvasFront_e
+      //--const offCanvasFront_e =
+      //--    canvasFront_e
+      //--      .transferControlToOffscreen()
 
-      workerMsg_a
-        .push( offCanvasFront_e )
+      //--workerMsg_o
+      //--  .canvasFront_e =
+      //--    offCanvasFront_e
+
+      //--workerMsg_a
+      //--  .push( offCanvasFront_e )
     }
 
     PAI_o
@@ -309,6 +309,40 @@ const PAI_o =
           (
             workerMsg_o,
             workerMsg_a
+          )
+
+    document
+      .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
+        .lastChild        //: frontCanvas_e
+          .addEventListener
+          (
+            'click',
+            event_o =>
+            {
+              if
+              (
+                layer_n        //: no clip for layer 0
+                &&
+                event_o
+                  .ctrlKey
+              )
+              {
+                PAI_o
+                  .drawClip__v
+                  (
+                    event_o
+                      .target
+                  )
+  
+                return    //: do not toggle raised
+              }
+              //-->
+              event_o
+                .target
+                  .closest( 'div' )
+                    .classList
+                      .toggle( 'raised' )
+            }
           )
 
     PAI_o
@@ -338,57 +372,21 @@ const PAI_o =
           }
         )
 
-    //const canvasFront_e =
-    //  document
-    //    .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
-
-    canvasFront_e
-      .addEventListener
-      (
-        'click',
-        event_o =>
-        {
-          event_o
-            .target
-              .closest( 'div' )
-                .classList
-                  .toggle( 'raised' )
-
-          if
-          (
-            event_o
-              .ctrlKey
-          )
-          {
-            PAI_o
-              .addClip__v
-              (
-                canvasFront_e,
-                event_o
-              )
-          }
-        }
-      )
-
     return layer_n
   }
   ,
   
   
 
-  addClip__v:
+  drawClip__v:
   (
-    canvas_e
+    canvas_e    //: frontCanvas_e
   ) =>
   {
-  ;;;;;;;;    console.log( canvas_e )
-
     const layer_n =
        canvas_e
          .dataset
            .layer_n
-
-  ;;;;;;;;    console.log( layer_n )
   
     const width_n =
       canvas_e
@@ -398,7 +396,6 @@ const PAI_o =
       canvas_e
         .height
   
-    
     let clipCanvas_e =
       document
         .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_clip_${layer_n}` )
@@ -427,78 +424,195 @@ const PAI_o =
         document
           .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_clip_${layer_n}` )
     }
-  
-    let context_o =
+
+    let clipContext_o =
       clipCanvas_e
         .getContext( '2d' )
   
-    contextFront_o
+    clipContext_o
       .strokeStyle =
         'hsla( 190 80% 50% / .5 )'
   
-    contextFront_o
+    clipContext_o
       .lineWidth =
         4
   
-    const clipRect_a = []
-  
-    const pointer_o =
-      new PointerDrag
+    const clipRect_a =
+    [
+      null,       //: to test not yet initialized
+      0,
+      0,
+      0
+    ]
+
+    const clearRect_a =
+    [
+      0,
+      0,
+      clipCanvas_e
+        .width,
+      clipCanvas_e
+        .height,
+    ]
+
+    //?? const pointer_o =
+    new Pointer
+    (
+      canvas_e,
       (
-        canvas_e,
+        atX_n,
+        atY_n
+      ) =>
+      {
+        if
         (
-          atX_n,
-          atY_n
-        ) =>
+          clipRect_a[0]
+          ===
+          null
+        )
         {
-          if
-          (
-            ! clipRect_a[0]
-          )
-          {
-            clipRect_a[0] =
-              ~~atX_n
-  
-            clipRect_a[1] =
-              ~~atY_n
-  
-            clipRect_a[2] =
-              0
-  
-            clipRect_a[3] =
-              0
-          }
-  
-          context_o
-            .clearRect( ...clipRect_a )
-  
-          clipRect_a[2] =
+          clipRect_a[0] =
             ~~atX_n
-            -
-            clipRect_a[0]
-            
-          clipRect_a[3] =
+  
+          clipRect_a[1] =
             ~~atY_n
-            -
-            clipRect_a[1]
+        }
   
-  
-          context_o
-            .strokeRect( ...clipRect_a )
-        },
-        () =>
+        if
+        (
+          clipRect_a[2]      //:?? no width (=> no height): no need to clear?
+        )
         {
-          ;;;;;;;;    console.log( 'STOP' )
-        },
+          clipContext_o
+            .clearRect( ...clearRect_a )
+        }
   
-                
-      )
+        clipRect_a[2] =
+          ~~atX_n
+          -
+          clipRect_a[0]
+          
+        clipRect_a[3] =
+          ~~atY_n
+          -
+          clipRect_a[1]
   
+        clipContext_o
+          .strokeRect( ...clipRect_a )
+      },
+      () =>
+      {
+        let
+        [
+          left_n,
+          top_n,
+          width_n,
+          height_n
+        ] =
+          clipRect_a
+
+        if      //: drawn right-left way
+        (
+          width_n
+          <
+          0
+        )
+        {
+          left_n +=
+            width_n
+
+          width_n =
+            -width_n
+        }
+
+        if      //: drawn bottom_up way
+        (
+          height_n
+          <
+          0
+        )
+        {
+          top_n +=
+            height_n
+
+          height_n =
+            -height_n
+        }
+
+        PAI_o
+          .addClip__v
+          (
+            canvas_e,
+            [
+              left_n,
+              top_n,
+              width_n,
+              height_n
+            ]
+          )
+      },
+    )
   }
   ,
 
 
 
+  addClip__v:
+  (
+    canvas_e,        //: frontCanvas_e
+    clipRect_a
+  ) =>
+  {
+    const layer_n =
+       canvas_e
+         .dataset
+           .layer_n
+
+    PAI_o
+      .layer_a
+        [layer_n]
+          .clipRect_a
+            .push( clipRect_a )
+
+    let context_o =
+      canvas_e
+        .getContext( '2d' )
+  
+    context_o
+      .fillStyle =
+        'hsla( 190 80% 50% / .25 )'
+
+    context_o
+      .fillRect    //: wipe whole canvas
+      (
+        0,
+        0,
+        canvas_e
+          .width,
+        canvas_e
+          .height,
+      )
+
+    for
+    (
+      rect_a
+      of
+      PAI_o
+        .layer_a
+          [layer_n]
+            .clipRect_a
+    )
+    {
+      context_o
+        .clearRect( ...rect_a )
+    }
+
+  }
+  ,
+
+
+
+  /*//!!! STANDBY !!!
   clipMove__v:
   (
     move_o
@@ -514,6 +628,7 @@ const PAI_o =
     )
   }
   ,
+  */
 
 
 
@@ -1104,6 +1219,10 @@ const PAI_o =
             task_s:   'PUT_hsl',
             stat_s:   '{{C_o.STAT_a[2]}}',
             layer_n:  layer_n,
+            clip_a:   PAI_o
+                        .layer_a
+                          [layer_n]
+                            .clipRect_a,
             hsl_s:    hsl_s,
             rangeX_n: PAI_o
                        [ `${hsl_s}_o` ]

@@ -1305,10 +1305,13 @@ async bitmap__o
     payload_o
   )
   {
+    ;;;;;;;;    console.time( 'put_hsl__v' )
+
     let
     {
       stat_s,
       layer_n,
+      clip_a,
       hsl_s,
       rangeX_n,
       atX_n,
@@ -1557,25 +1560,47 @@ async bitmap__o
          ++atScan_n
       )
       {
-        //--iData_a
-        //--  [
-        //--    atScan_a
-        //--      [ atScan_n ]
-        //--      +
-        //--      3
-        //--  ] =
-        //--    opacity_n
-        none__v()
+        none__v()    //.............
       }
     }
+
+    const clipRect_a =
+      clip_a
+        .length
+      ?
+        clip_a
+      :
+        [
+          [
+            0,
+            0,
+            layer_o
+              .canvas_e
+                .width,
+            layer_o
+              .canvas_e
+                .height
+          ]
+        ]
     
-    context_o
-      .putImageData
-      (
-        imgData_o,
-        0,
-        0
-      )
+    for
+    (
+      let rect_a
+      of
+      clipRect_a
+    )
+    {
+      context_o
+        .putImageData
+        (
+          imgData_o,
+          0,
+          0,
+          ...rect_a
+        )
+    }
+    
+    ;;;;;;;;    console.timeEnd( 'put_hsl__v' )
   }
   ,
 
