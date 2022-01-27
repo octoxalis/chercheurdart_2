@@ -208,6 +208,13 @@ const PAI_o =
             .wh_s
               .split( '_' )
 
+    const legend_s =
+      layer_n
+      ?
+        layer_n
+      :
+        '{{C_o.NAV_LEGEND_o.layer_initial.legend_s}}'
+
     let fragment_s =
       `<div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}`
       + ` data-layer_n=${layer_n}>`
@@ -216,7 +223,7 @@ const PAI_o =
       + ` width=${width_s} height=${height_s}`
       + ` data-layer_n=${layer_n}`
       + ` data-size_n=1`
-      + ` title="{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${layer_n}">`
+      + ` title="{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${legend_s}">`
       + `</canvas>`
 
     if
@@ -264,51 +271,62 @@ const PAI_o =
       *
       .5
 
-    const workerMsg_o =
-      {
-        task_s:   'GET_img',
-        rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
-        scale_n:  1,
-        url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
-        canvas_e: offCanvas_e,
-        storeBitmap_b: true,
-        layer_n: layer_n,
-        pixel_n:  window.devicePixelRatio,    //????
-      }
+    //--const workerMsg_o =
+    //--  {
+    //--    task_s:   'GET_img',
+    //--    rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
+    //--    scale_n:  1,
+    //--    url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
+    //--    canvas_e: offCanvas_e,
+    //--    storeBitmap_b: true,
+    //--    layer_n: layer_n,
+    //--    pixel_n:  window.devicePixelRatio,    //????
+    //--  }
 
-    const workerMsg_a =
-      [ offCanvas_e ]
+    //--const workerMsg_a =
+    //--  [ offCanvas_e ]
 
-    if
-    (
-      layer_n
-      >
-      0
-    )
-    {
-      const canvasFront_e =
-          document
-            .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_front_${layer_n}` )
-
-      //--const offCanvasFront_e =
-      //--    canvasFront_e
-      //--      .transferControlToOffscreen()
-
-      //--workerMsg_o
-      //--  .canvasFront_e =
-      //--    offCanvasFront_e
-
-      //--workerMsg_a
-      //--  .push( offCanvasFront_e )
-    }
+    //--if
+    //--(
+    //--  layer_n
+    //--  >
+    //--  0
+    //--)
+    //--{
+    //--  const canvasFront_e =
+    //--      document
+    //--        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_front_${layer_n}` )
+    //--
+    //--  //--const offCanvasFront_e =
+    //--  //--    canvasFront_e
+    //--  //--      .transferControlToOffscreen()
+    //--
+    //--  //--workerMsg_o
+    //--  //--  .canvasFront_e =
+    //--  //--    offCanvasFront_e
+    //--
+    //--  //--workerMsg_a
+    //--  //--  .push( offCanvasFront_e )
+    //--}
 
     PAI_o
       .worker_o           //! using port postMessage directly
         .port_o           //! to avoid error:
           .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
           (
-            workerMsg_o,
-            workerMsg_a
+            //--workerMsg_o,
+            //--workerMsg_a
+            {
+              task_s:   'GET_img',
+              rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
+              scale_n:  1,
+              url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
+              canvas_e: offCanvas_e,
+              storeBitmap_b: true,
+              layer_n: layer_n,
+              pixel_n:  window.devicePixelRatio,    //????
+            },
+            [ offCanvas_e ]
           )
 
     document
@@ -317,32 +335,13 @@ const PAI_o =
           .addEventListener
           (
             'click',
-            event_o =>
-            {
-              if
-              (
-                layer_n        //: no clip for layer 0
-                &&
-                event_o
-                  .ctrlKey
-              )
-              {
-                PAI_o
-                  .drawClip__v
-                  (
-                    event_o
-                      .target
-                  )
-  
-                return    //: do not toggle raised
-              }
-              //-->
-              event_o
-                .target
-                  .closest( 'div' )
-                    .classList
-                      .toggle( 'raised' )
-            }
+            click_o =>
+              PAI_o
+                .canvasPointer__v
+                (
+                  click_o,
+                  layer_n
+                )
           )
 
     PAI_o
@@ -371,22 +370,30 @@ const PAI_o =
             clipRect_a: []  //: clipping areas
           }
         )
+        //;;;;;;;;;    console.log(
+        //;  PAI_o
+        //;    .layer_a
+        //;      [ layer_n ]
+        //;        .clipRect_a
+        //;  )
 
     return layer_n
   }
   ,
   
   
+  
 
   drawClip__v:
   (
+    layer_n,
     canvas_e    //: frontCanvas_e
   ) =>
   {
-    const layer_n =
-       canvas_e
-         .dataset
-           .layer_n
+    //--const layer_n =
+    //--   canvas_e
+    //--     .dataset
+    //--       .layer_n
   
     const width_n =
       canvas_e
@@ -431,13 +438,13 @@ const PAI_o =
   
     clipContext_o
       .strokeStyle =
-        'hsla( 190 80% 50% / .5 )'
+        'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .212 )'
   
     clipContext_o
       .lineWidth =
         4
   
-    const clipRect_a =
+    const clip_a =
     [
       null,       //: to test not yet initialized
       0,
@@ -466,39 +473,39 @@ const PAI_o =
       {
         if
         (
-          clipRect_a[0]
+          clip_a[0]
           ===
           null
         )
         {
-          clipRect_a[0] =
+          clip_a[0] =
             ~~atX_n
   
-          clipRect_a[1] =
+          clip_a[1] =
             ~~atY_n
         }
   
         if
         (
-          clipRect_a[2]      //:?? no width (=> no height): no need to clear?
+          clip_a[2]      //:?? no width (=> no height): no need to clear?
         )
         {
           clipContext_o
             .clearRect( ...clearRect_a )
         }
   
-        clipRect_a[2] =
+        clip_a[2] =
           ~~atX_n
           -
-          clipRect_a[0]
+          clip_a[0]
           
-        clipRect_a[3] =
+        clip_a[3] =
           ~~atY_n
           -
-          clipRect_a[1]
+          clip_a[1]
   
         clipContext_o
-          .strokeRect( ...clipRect_a )
+          .strokeRect( ...clip_a )
       },
       () =>
       {
@@ -509,7 +516,7 @@ const PAI_o =
           width_n,
           height_n
         ] =
-          clipRect_a
+          clip_a
 
         if      //: drawn right-left way
         (
@@ -560,7 +567,7 @@ const PAI_o =
   addClip__v:
   (
     canvas_e,        //: frontCanvas_e
-    clipRect_a
+    clip_a
   ) =>
   {
     const layer_n =
@@ -572,18 +579,30 @@ const PAI_o =
       .layer_a
         [layer_n]
           .clipRect_a
-            .push( clipRect_a )
+            .push( clip_a )
 
+    /*
     let context_o =
       canvas_e
         .getContext( '2d' )
   
     context_o
-      .fillStyle =
-        'hsla( 190 80% 50% / .25 )'
+      .clearRect    //: wipe whole canvas
+      (
+        0,
+        0,
+        canvas_e
+          .width,
+        canvas_e
+          .height,
+      )
 
     context_o
-      .fillRect    //: wipe whole canvas
+      .fillStyle =
+        'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .212 )'
+
+    context_o
+      .fillRect
       (
         0,
         0,
@@ -595,7 +614,7 @@ const PAI_o =
 
     for
     (
-      rect_a
+      clip_a
       of
       PAI_o
         .layer_a
@@ -604,9 +623,84 @@ const PAI_o =
     )
     {
       context_o
-        .clearRect( ...rect_a )
+        .clearRect( ...clip_a )
     }
+    */
+    PAI_o
+      .drawClipRect__v
+      (
+        canvas_e,
+        layer_n
+      )
 
+  }
+  ,
+
+
+
+  drawClipRect__v:
+  (
+    canvas_e,
+    layer_n
+  ) =>
+  {
+    let context_o =
+      canvas_e
+        .getContext( '2d' )
+  
+    context_o
+      .clearRect    //: wipe whole canvas
+      (
+        0,
+        0,
+        canvas_e
+          .width,
+        canvas_e
+          .height,
+      )
+
+    const clipRect_a =
+      PAI_o
+        .layer_a
+          [layer_n]
+            .clipRect_a
+
+    if
+    (
+      clipRect_a
+        .length
+    )
+    {
+      context_o
+        .fillStyle =
+          'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .212 )'
+  
+      context_o
+        .fillRect
+        (
+          0,
+          0,
+          canvas_e
+            .width,
+          canvas_e
+            .height,
+        )
+  
+      for
+      (
+        clip_a
+        of
+        PAI_o
+          .layer_a
+            [layer_n]
+              .clipRect_a
+      )
+      {
+        context_o
+          .clearRect( ...clip_a )
+      }
+    }
+      
   }
   ,
 
@@ -827,7 +921,7 @@ const PAI_o =
         {
           return (
             window
-              .alert( `Deux plans doivent être sélectionnés pour effectuer cette opération.` )
+              .alert( `Pour effectuer cette opération, deux plans doivent être sélectionnés.` )
           )
         }
         //-->
@@ -912,6 +1006,37 @@ const PAI_o =
       )
   ,
   
+  
+  
+  /*//!!! STANDBY !!!
+  selectedLayerIndex__a:
+  () =>
+  {
+    const layer_a = []
+
+    for
+    (
+      let selected_o
+      of
+      PAI_o
+        .selectedLayer__a()
+    )
+    {
+      layer_a
+        .push
+        (
+          selected_o
+            .dataset
+              .layer_n
+        )
+    }
+
+    ;;;;;;;;    console.log( layer_a )
+
+    return layer_a
+  }
+  ,
+  */
   
   
   selectedItem__a:
@@ -1167,17 +1292,87 @@ const PAI_o =
         .length    //: no selection
     )
     {
-      window
-        .alert( `Aucune image n'est sélectionnée.` )
-      return
+      return void (
+        window
+          .alert( `Aucun plan n'est sélectionné.` )
+      )
     }
     //-->
-
     const layer_n =
       selected_a
         [ selected_a.length -1 ]
           .dataset
             .layer_n
+
+    const operation_s =
+      document
+        .querySelector( 'input[name="layer_set"]:checked' )
+          .id
+            .split( '_' )
+              [4]
+  
+    //;;;;;;;;    console.log( operation_s )
+
+    let operand_a = []
+
+    for
+    (
+      let selected_o
+      of
+      selected_a
+    )
+    {
+      const atLay_n =
+        selected_o
+          .dataset
+            .layer_n
+
+      operand_a
+        .push
+        (
+          {
+            layer_n: atLay_n,
+            clipRect_a: PAI_o
+                          .layer_a
+                            [atLay_n]
+                              .clipRect_a
+          }
+        )
+    }
+
+    let deviation_n = 0
+
+    if
+    (
+      operation_s
+      !==
+      'none'
+    )
+    {
+      deviation_n =
+        document
+          .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation' )
+            .value
+    
+      if
+      (
+        operand_a
+          .length
+        >
+        2
+      )
+      {
+        operand_a =
+          operand_a
+            .slice( -2 )    //:!!! keep only 2 upper layers for operations
+  
+        window
+          .alert( `Plus de deux plans ont été sélectionés.\nSeuls les deux plans supérieurs sont pris en compte.` )
+      }
+
+    }
+    
+    //;;;;;;;;    console.log( operand_a )
 
     const
     {
@@ -1216,22 +1411,20 @@ const PAI_o =
         .post__v
         (
           { 
-            task_s:   'PUT_hsl',
-            stat_s:   '{{C_o.STAT_a[2]}}',
-            layer_n:  layer_n,
-            clip_a:   PAI_o
-                        .layer_a
-                          [layer_n]
-                            .clipRect_a,
-            hsl_s:    hsl_s,
-            rangeX_n: PAI_o
-                       [ `${hsl_s}_o` ]
-                         .rangeX_n,
-            atX_n:    atX_n,
-            rangeY_n: PAI_o
-                        [ `${hsl_s}_o` ]
-                          .rangeY_n,
-            atY_n:    atY_n,
+            task_s:      'PUT_hsl',
+            stat_s:      '{{C_o.STAT_a[2]}}',
+            operand_a:   operand_a,
+            operation_s: operation_s,
+            deviation_n: deviation_n,
+            hsl_s:        hsl_s,
+            rangeX_n:     PAI_o
+                           [ `${hsl_s}_o` ]
+                             .rangeX_n,
+            atX_n:        atX_n,
+            rangeY_n:     PAI_o
+                            [ `${hsl_s}_o` ]
+                              .rangeY_n,
+            atY_n:        atY_n,
           }
         )
 
@@ -1322,6 +1515,156 @@ const PAI_o =
             )
       }
     }
+  }
+  ,
+
+
+
+  findClip__n:      //: click inside clipRect_a rectangle
+  (
+    click_o,
+    clipRect_a
+  ) =>
+  {
+    const
+    {
+      offsetX,
+      offsetY
+    } =
+      click_o
+
+    if
+    (
+      ! clipRect_a
+        .length
+    )
+    {
+      return -1
+    }
+    //-->
+    let clip_n = -1
+
+    for    //: as Array.find + Array.findIndex
+    (
+      let clip_a
+      of
+      clipRect_a
+    )
+    {
+      ++clip_n
+
+      if
+      (
+        (             //: horizontal
+          offsetX
+          >
+          clip_a[0]
+          &&
+          offsetX
+          <
+          (
+            clip_a[0]
+            +
+            clip_a[2]
+          )
+        )
+        &&
+        (             //: vertical
+          offsetY
+          >
+          clip_a[1]
+          &&
+          offsetY
+          <
+          (
+            clip_a[1]
+            +
+            clip_a[3]
+          )
+        )
+      )
+      {
+        return clip_n
+      }
+    }
+    
+    return -1
+  }
+  ,
+
+
+
+
+  canvasPointer__v:
+  (
+    click_o,
+    layer_n
+  ) =>
+  {
+    const canvas_e =
+      click_o
+        .target
+        
+    if
+    (
+      layer_n        //: no clip for layer 0
+      &&
+      click_o
+        .ctrlKey
+    )
+    {
+      const clip_n =
+        PAI_o
+          .findClip__n
+          (
+            click_o,
+            PAI_o
+              .layer_a
+                [ layer_n ]
+                  .clipRect_a
+          )
+
+      if      //: inside a clipping rectangle
+      (
+        clip_n
+        >
+        -1
+      )
+      {
+        PAI_o
+          .layer_a
+            [ layer_n ]
+              .clipRect_a
+                .splice
+                (
+                  clip_n,
+                  1
+                )
+
+        PAI_o
+          .drawClipRect__v
+          (
+            canvas_e,
+            layer_n
+          )
+
+        return
+      }
+      //-->      outside a clipping rectangle
+      PAI_o
+        .drawClip__v
+        (
+          layer_n,
+          canvas_e
+        )
+
+      return
+    }
+    //-->
+    canvas_e
+      .closest( 'div' )
+        .classList
+          .toggle( 'raised' )
   }
   ,
 

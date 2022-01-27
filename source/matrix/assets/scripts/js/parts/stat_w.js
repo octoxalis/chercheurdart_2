@@ -203,7 +203,7 @@ const STAT_W_o =
   ,
 
 
-
+  /*//!!! STANDBY !!!
   sleep__v
   (
     delay_n    //: milliseconds
@@ -220,9 +220,9 @@ const STAT_W_o =
       )
   }
   ,
+  */
 
-
-
+  /*//!!! STANDBY !!!
   async waitScan__v
   (
     stat_s
@@ -266,7 +266,7 @@ const STAT_W_o =
     return true
   }
   ,
-
+  */
 
 
   scale__n
@@ -1310,8 +1310,8 @@ async bitmap__o
     let
     {
       stat_s,
-      layer_n,
-      clip_a,
+      operand_a,
+      operation_s,
       hsl_s,
       rangeX_n,
       atX_n,
@@ -1463,143 +1463,188 @@ async bitmap__o
               [ `SCAN_${hsl_s}_n` ]
           ]
 
-    const layer_o =
-      STAT_W_o
-        .imgLayer_a
-          .find
-          (
-            item_o =>
-              item_o
-                .layer_n
-              ===
-              +layer_n          //: number cast
-          )
+    const oper_a = []
 
-    const context_o =
-      layer_o
-        .context_o
-
-    const imgData_o =
-      layer_o
-        .imgData_o
-    
-    const iData_a =
-      imgData_o
-        .data
-
-    let atHsl_n
-    let atScan_a
-    let length_n
-
-    //=== none ===
-    const none__v =
-    () =>
+    for
+    (
+      let atOp_o
+      of
+      operand_a
+    )
     {
-      iData_a
-        [
-          atScan_a
-            [ atScan_n ]
-            +
-            3
-        ] =
-          opacity_n
+      oper_a
+        .push
+        (
+          {
+            layer_o:  STAT_W_o
+                        .imgLayer_a
+                          .find
+                          (
+                            item_o =>
+                              item_o
+                                .layer_n
+                              ===
+                              +atOp_o          //: number cast
+                                .layer_n
+                          ),
+            clipRect_a: atOp_o
+                          .clipRect_a
+  
+          }
+        )
     }
-
-    //=== union ===
-    const union__v =
-    () =>
-    {
-    }
-
-    //=== difference ===
-    const difference__v =
-    () =>
-    {
-    }
-
-    //=== intersection ===
-    const intersection__v =
-    () =>
-    {
-    }
-
-    //=== complement ===
-    const complement__v =
-    () =>
-    {
-    }
-
-
-    //=== complement ===
-    const deviation__v =
-    () =>
-    {
-    }
-
 
     //=== data loop ===
     for
     (
-       atHsl_n = fromHsl_n;
-       atHsl_n < toHsl_n;
-       ++atHsl_n
+      let atOp_o
+      of
+      oper_a
     )
     {
-      atScan_a =
-        scan_a
-          [ atHsl_n ]
-        
-      length_n =
-        atScan_a
-          .length
-        
+      const context_o =
+        atOp_o
+          .layer_o
+            .context_o
+  
+      const imgData_o =
+        atOp_o
+          .layer_o
+            .imgData_o
+      
+      const iData_a =
+        imgData_o
+          .data
+  
+      let atHsl_n
+      let atScan_a
+      let length_n
+  
       for
       (
-         atScan_n = 0;
-         atScan_n < length_n;
-         ++atScan_n
+         atHsl_n = fromHsl_n;
+         atHsl_n < toHsl_n;
+         ++atHsl_n
       )
       {
-        none__v()    //.............
+        atScan_a =
+          scan_a
+            [ atHsl_n ]
+          
+        length_n =
+          atScan_a
+            .length
+          
+        for
+        (
+           atScan_n = 0;
+           atScan_n < length_n;
+           ++atScan_n
+        )
+        {
+          let operation_b
+      
+          switch
+          (
+            operation_s
+          )
+          {
+            case 'none':
+              operation_b =
+                true
+  
+              break
+          
+            case 'union':
+              operation_b =
+                true
+  
+              break
+          
+            case 'difference':
+              operation_b =
+                true
+  
+              break
+          
+            case 'intersection':
+              operation_b =
+                true
+  
+              break
+          
+            case 'complement':
+              operation_b =
+                true
+  
+              break
+          
+            default:
+              operation_b =
+                false
+  
+              break
+          }
+      
+          if
+          (
+            operation_b
+          )
+          {
+  
+            iData_a
+              [
+                atScan_a
+                  [ atScan_n ]
+                  +
+                  3
+              ] =
+                opacity_n
+          }
+        }
+      }
+  
+      const clipRect_a =
+        atOp_o
+          .clipRect_a
+            .length
+        ?
+        atOp_o
+          .clipRect_a
+        :
+          [
+            [
+              0,
+              0,
+              atOp_o
+                .layer_o
+                  .canvas_e
+                    .width,
+              atOp_o
+                .layer_o
+                  .canvas_e
+                    .height
+            ]
+          ]
+      
+      for
+      (
+        let rect_a
+        of
+        clipRect_a
+      )
+      {
+        context_o
+          .putImageData
+          (
+            imgData_o,
+            0,
+            0,
+            ...rect_a
+          )
       }
     }
 
-    const clipRect_a =
-      clip_a
-        .length
-      ?
-        clip_a
-      :
-        [
-          [
-            0,
-            0,
-            layer_o
-              .canvas_e
-                .width,
-            layer_o
-              .canvas_e
-                .height
-          ]
-        ]
-    
-    for
-    (
-      let rect_a
-      of
-      clipRect_a
-    )
-    {
-      context_o
-        .putImageData
-        (
-          imgData_o,
-          0,
-          0,
-          ...rect_a
-        )
-    }
-    
     ;;;;;;;;    console.timeEnd( 'put_hsl__v' )
   }
   ,
