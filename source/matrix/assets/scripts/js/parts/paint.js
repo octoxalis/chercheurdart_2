@@ -103,8 +103,9 @@ const PAI_o =
 
   addLayer__n:
   (
-    operation_s='',
-    label_s=''
+    operation_='',    //: undefined (from init__v) || event_o (from LA_paint_layer_add listener) || operation_s
+    label_s='',       //: for operation only
+    layer_a           //: idem
   ) =>
   {
     const layer_n =
@@ -132,6 +133,15 @@ const PAI_o =
         .displayOp__v( true )
     }
 
+    const operation_s =
+      typeof operation_
+      ===
+      String
+      ?
+        operation_
+      :
+        ''
+    
     let work_s =
       document
         .querySelector( 'body' )
@@ -176,8 +186,24 @@ const PAI_o =
     {
       id_s = `input_${imgId_s}_${layer_n}`
   
-      input_s =
-        `<input id="${id_s}" data-layer_n=${layer_n} type="checkbox">`
+      let checked_s = ''
+
+      let layer_s = ''  //: operand layer_n
+
+      if
+      (
+        label_s          //: operation label
+      )
+      {        
+        checked_s =
+        ` checked`
+
+        layer_s =
+          ` data_layer_s="${layer_a.join( ' ' )}"`
+      }
+        
+        input_s =
+        `<input id="${id_s}" data-layer_n="${layer_n}"${layer_s} type="checkbox"${checked_s}>`
   
       for_s =
         `for="${id_s}"`
@@ -271,51 +297,11 @@ const PAI_o =
       *
       .5
 
-    //--const workerMsg_o =
-    //--  {
-    //--    task_s:   'GET_img',
-    //--    rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
-    //--    scale_n:  1,
-    //--    url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`,  //: begining slash for site relative url
-    //--    canvas_e: offCanvas_e,
-    //--    storeBitmap_b: true,
-    //--    layer_n: layer_n,
-    //--    pixel_n:  window.devicePixelRatio,    //????
-    //--  }
-
-    //--const workerMsg_a =
-    //--  [ offCanvas_e ]
-
-    //--if
-    //--(
-    //--  layer_n
-    //--  >
-    //--  0
-    //--)
-    //--{
-    //--  const canvasFront_e =
-    //--      document
-    //--        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_front_${layer_n}` )
-    //--
-    //--  //--const offCanvasFront_e =
-    //--  //--    canvasFront_e
-    //--  //--      .transferControlToOffscreen()
-    //--
-    //--  //--workerMsg_o
-    //--  //--  .canvasFront_e =
-    //--  //--    offCanvasFront_e
-    //--
-    //--  //--workerMsg_a
-    //--  //--  .push( offCanvasFront_e )
-    //--}
-
     PAI_o
       .worker_o           //! using port postMessage directly
         .port_o           //! to avoid error:
           .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
           (
-            //--workerMsg_o,
-            //--workerMsg_a
             {
               task_s:   'GET_img',
               rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`,
@@ -370,12 +356,6 @@ const PAI_o =
             clipRect_a: []  //: clipping areas
           }
         )
-        //;;;;;;;;;    console.log(
-        //;  PAI_o
-        //;    .layer_a
-        //;      [ layer_n ]
-        //;        .clipRect_a
-        //;  )
 
     return layer_n
   }
@@ -383,18 +363,12 @@ const PAI_o =
   
   
   
-
   drawClip__v:
   (
     layer_n,
     canvas_e    //: frontCanvas_e
   ) =>
   {
-    //--const layer_n =
-    //--   canvas_e
-    //--     .dataset
-    //--       .layer_n
-  
     const width_n =
       canvas_e
         .width
@@ -581,51 +555,6 @@ const PAI_o =
           .clipRect_a
             .push( clip_a )
 
-    /*
-    let context_o =
-      canvas_e
-        .getContext( '2d' )
-  
-    context_o
-      .clearRect    //: wipe whole canvas
-      (
-        0,
-        0,
-        canvas_e
-          .width,
-        canvas_e
-          .height,
-      )
-
-    context_o
-      .fillStyle =
-        'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .212 )'
-
-    context_o
-      .fillRect
-      (
-        0,
-        0,
-        canvas_e
-          .width,
-        canvas_e
-          .height,
-      )
-
-    for
-    (
-      clip_a
-      of
-      PAI_o
-        .layer_a
-          [layer_n]
-            .clipRect_a
-    )
-    {
-      context_o
-        .clearRect( ...clip_a )
-    }
-    */
     PAI_o
       .drawClipRect__v
       (
@@ -904,16 +833,16 @@ const PAI_o =
                     .target
                       .value
 
-            return
+          return
         }
         //-->
-        const operateOn_a =
+        const operand_a =
           PAI_o
-            .operateOn__a()
+            .selectedOperand__a()
 
         if
         (
-          operateOn_a
+          operand_a
             .length      //: empty if no selection
           <
           2
@@ -926,26 +855,26 @@ const PAI_o =
         }
         //-->
 
+        let layerOne_n =
+          operand_a
+            [ 0 ]
+              .dataset
+                .layer_n
+
         let layerOne_s =
           PAI_o
-            .layerIndex__s
-            (
-              operateOn_a
-                [ 0 ]
-                  .dataset
-                    .layer_n
-            )
+            .layerIndex__s( layerOne_n )
 
+        let layerTwo_n =
+          operand_a
+            [ 1 ]
+              .dataset
+                .layer_n
 
         let layerTwo_s =
           PAI_o
-            .layerIndex__s
-            (
-              operateOn_a
-                [ 1 ]
-                  .dataset
-                    .layer_n
-            )
+            .layerIndex__s( layerTwo_n )
+
 
         let label_s =
           op_s
@@ -968,27 +897,17 @@ const PAI_o =
               :
                 '{{C_o.NAV_LEGEND_o.layers_complement.legend_s}}'
 
-        const layer_n =
+        //--const layer_n =
           PAI_o
             .addLayer__n
             (
               op_s,
-              `${label_s} [ ${layerOne_s} &#8728; ${layerTwo_s} ]`
+              `${label_s} [ ${layerOne_s} &#8728; ${layerTwo_s} ]`,
+              [
+                layerOne_n,
+                layerTwo_n
+              ]
             )
-
-        if
-        (
-          layer_n
-        )
-        {
-          PAI_o
-            [ `${op_s}__v` ]
-            (
-              layer_n,
-              operateOn_a
-            )
-        }
-
       }
     }
   }
@@ -996,7 +915,7 @@ const PAI_o =
 
 
 
-  selectedLayer__a:  //: excluded: layer_0 + masked layers
+  selectedCanvas__a:  //: excluded: layer_0 + masked layers
   () =>
     Array
       .from
@@ -1019,7 +938,7 @@ const PAI_o =
       let selected_o
       of
       PAI_o
-        .selectedLayer__a()
+        .selectedCanvas__a()
     )
     {
       layer_a
@@ -1063,11 +982,13 @@ const PAI_o =
   
 
 
-  operateOn__a:
-  () =>
+  selectedOperand__a:    //: select only the last layers to operate on: 2 operands ( + 1 result )
+  (
+    level_n=2
+  ) =>
     PAI_o
       .selectedItem__a()
-        .slice( -2 )
+        .slice( -level_n )
   ,
 
   
@@ -1138,70 +1059,6 @@ const PAI_o =
           'none'
       )
   ,
-
-
-
-  none__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-      ;console.log( 'none__v' )
-  }
-  ,
-
-
-
-  union__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-      ;console.log( 'union__v' )
-  }
-  ,
-
-
-
-  difference__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-    ;console.log( 'difference__v' )
-
-  }
-  ,
-
-
-
-  intersection__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-    ;console.log( 'intersection__v' )
-
-  }
-  ,
-
-
-
-  complement__v:
-  (
-    layer_n,
-    operated_a
-  ) =>
-  {
-    ;console.log( 'complement__v' )
-
-  }
-  ,
-
 
 
   range__v:
@@ -1282,9 +1139,9 @@ const PAI_o =
     click_o
   ) =>
   {
-    const selected_a =
+    let selected_a =
       PAI_o
-        .selectedLayer__a()
+        .selectedCanvas__a()
 
     if
     (
@@ -1292,12 +1149,24 @@ const PAI_o =
         .length    //: no selection
     )
     {
-      return void (
-        window
-          .alert( `Aucun plan n'est sélectionné.` )
+      selected_a =
+        PAI_o
+          .selectedOperand__a( 3 )    //: 2 operands + result
+      if
+      (
+        ! selected_a
+          .length    //: no selection
       )
+      {
+        return void (
+          window
+            .alert( `Aucun plan n'est sélectionné.` )
+        )
+      }
     }
     //-->
+    ;;;;;;;;    console.log( selected_a )
+
     const layer_n =
       selected_a
         [ selected_a.length -1 ]
@@ -1307,11 +1176,11 @@ const PAI_o =
     const operation_s =
       document
         .querySelector( 'input[name="layer_set"]:checked' )
-          .id
-            .split( '_' )
-              [4]
+          ?.id
+            ?.split( '_' )
+              ?.[4]
   
-    //;;;;;;;;    console.log( operation_s )
+    ;;;;;;;;    console.log( operation_s )
 
     let operand_a = []
 
@@ -1359,20 +1228,20 @@ const PAI_o =
         operand_a
           .length
         >
-        2
+        3
       )
       {
         operand_a =
           operand_a
-            .slice( -2 )    //:!!! keep only 2 upper layers for operations
+            .slice( -3 )    //:!!! keep only 3 upper layers for operations: 2 compared + 1 result
   
         window
-          .alert( `Plus de deux plans ont été sélectionés.\nSeuls les deux plans supérieurs sont pris en compte.` )
+          .alert( `Plus de trois plans ont été sélectionés.\nSeuls les deux plans supérieurs sont pris en compte.` )
       }
 
     }
     
-    //;;;;;;;;    console.log( operand_a )
+    ;;;;;;;;    console.log( operand_a )
 
     const
     {

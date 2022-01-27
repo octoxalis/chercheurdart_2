@@ -894,7 +894,7 @@ async bitmap__o
 
         STAT_W_o
           .imgLayer_a
-            .push( img_o )
+            .push( img_o )    //: { canvas_e, context_o, imgData_o, layer_n }
       }
     }
     catch
@@ -1312,6 +1312,7 @@ async bitmap__o
       stat_s,
       operand_a,
       operation_s,
+      deviation_n,
       hsl_s,
       rangeX_n,
       atX_n,
@@ -1464,7 +1465,7 @@ async bitmap__o
           ]
 
     const oper_a = []
-
+  
     for
     (
       let atOp_o
@@ -1493,6 +1494,39 @@ async bitmap__o
           }
         )
     }
+
+    let op0imgData_o
+    let op1imgData_o
+
+    if
+    (
+      operation_s
+      &&
+      operation_s
+      !==
+      'none'
+    )
+    {
+      op0imgData_o =
+        oper_a
+          [0]
+            .layer_o
+              .imgData_o
+
+      op1imgData_o =
+        oper_a
+          ?.[1]
+            ?.layer_o
+              ?.imgData_o
+
+      oper_a
+        .splice
+        (
+          0,
+          2
+        )      //: keep only operation result (oper_a[2])
+    }
+
 
     //=== data loop ===
     for
@@ -1535,6 +1569,11 @@ async bitmap__o
           atScan_a
             .length
           
+        let op0opac_n
+        let op1opac_n
+        let diff_n
+        let apply_b = true
+
         for
         (
            atScan_n = 0;
@@ -1542,56 +1581,94 @@ async bitmap__o
            ++atScan_n
         )
         {
-          let operation_b
-      
-          switch
+          if
           (
-            operation_s
+            oper_a
+              .length
+            >
+            1
           )
           {
-            case 'none':
-              operation_b =
-                true
+            if
+            (
+              op0imgData_o    //: operation
+              &&
+              op1imgData_o
+            )
+            {
+              op0opac_n =
+                op0imgData_o
+                  [
+                    atScan_a
+                      [ atScan_n ]
+                      +
+                      3
+                  ]
   
-              break
-          
-            case 'union':
-              operation_b =
-                true
-  
-              break
-          
-            case 'difference':
-              operation_b =
-                true
-  
-              break
-          
-            case 'intersection':
-              operation_b =
-                true
-  
-              break
-          
-            case 'complement':
-              operation_b =
-                true
-  
-              break
-          
-            default:
-              operation_b =
-                false
-  
-              break
+              op1opac_n =
+                op1imgData_o
+                  [
+                    atScan_a
+                      [ atScan_n ]
+                      +
+                      3
+                  ]
+
+              diff_n =
+                ~~(
+                  op0opac_n
+                  -
+                  op1opac_n
+                )
+            }
+
+            switch
+            (
+              operation_s
+            )
+            {
+              case 'union':
+                apply_b =
+                  op0opac_n
+                  &&
+                  op1opac_n
+    
+                break
+            
+              case 'difference':
+                apply_b =
+                  diff_n
+                  >
+                  deviation_n
+    
+                break
+            
+              case 'intersection':
+                apply_b =
+                  diff_n
+                  <=
+                  deviation_n
+    
+                break
+            
+              case 'complement':
+                apply_b =
+                  op0opac_n
+                  &&
+                  ! op1opac_n
+    
+                break
+            
+              default:      //: 'none'
+                break
+            }
           }
       
           if
           (
-            operation_b
+            apply_b
           )
           {
-  
             iData_a
               [
                 atScan_a
