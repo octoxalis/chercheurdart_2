@@ -3,90 +3,42 @@ context( stack, new )
         display: flex;
         justify-content: center;
         padding: {{S_o.PAD_2}};
-    <a:before>
-            context( copy, next )
-    </a>
-    <label:before>
-            content: attr( data-legend );
-            position: absolute;
-            font-size: 85%;    /* block round_label: line-height: .85; */
-            transform: scale( 0 );
-            transform-origin: center;
-            transition: transform ease .3s;
-    </label>
-    <a>
-      context( block, link_raw )
-    </a>
-    <a>
+  <a>
+    context( block, link_raw )
+  </a>
+  <!--variant-->
+  <a>
+    <span[data-role=home]>
+            background: {{S_o.nav_spot_home}};
+    </span>
+  </a>
+  <label>
+    <span[data-role={{C_o.SECTION_a[0]}}]>
+            background: {{S_o.nav_spot_article}};
+    </span>
+    <span[data-role={{C_o.SECTION_a[1]}}]>
+            background: {{S_o.nav_spot_gallery}};
+    </span>
+    <span[data-role={{C_o.SECTION_a[2]}}]>
+            background: {{S_o.nav_spot_stat}};
+    </span>
+    <span[data-role={{C_o.STAT_s}}]>
+            background: {{S_o.nav_spot_stat}};
+    </span>
+  </label>
+  <!--variant-->
+  <a:hover>
+    context( copy, next )
+  </a>
+  <label:hover>
+          transition: all ease .3s;
+  </label>
+  <a:hover>
+    context( block, link_raw )
+    <span[data-role]>
       context( copy, next )
-    </a>
-    <label>
-            display: grid;
-            position: relative;
-            overflow: hidden;
-            width: var(--nav_width);
-            font-weight: 300;
-            color: currentColor;
-            text-transform: uppercase;
-            opacity: .25;
-            transition: all ease .2s;
-    </label>
-    <a>
-      <span>
-        context( copy, next )
-      </span>
-    </a>
-    <label>
-      <span>
-        grid-area: 1/-1;
-        context( block, round_label )
-      </span>
-    </label>
-    <!--variant-->
-    <a>
-      <span[data-role=home]>
-              background: {{S_o.nav_spot_home}};
-      </span>
-    </a>
-    <label>
-      <span[data-role={{C_o.SECTION_a[0]}}]>
-              background: {{S_o.nav_spot_article}};
-      </span>
-      <span[data-role={{C_o.SECTION_a[1]}}]>
-              background: {{S_o.nav_spot_gallery}};
-      </span>
-      <span[data-role={{C_o.SECTION_a[2]}}]>
-              background: {{S_o.nav_spot_stat}};
-      </span>
-      <span[data-role={{C_o.STAT_s}}]>
-              background: {{S_o.nav_spot_stat}};
-      </span>
-    </label>
-    <!--variant-->
-    <a:hover>
-      context( copy, next )
-    </a>
-    <label:hover>
-            transition: all ease .3s;
-    </label>
-    <a:hover>
-      context( block, link_raw )
-      <span[data-role]>
-        context( copy, next )
-      </span>
-    </a>
-    <label:hover>
-      <span[data-role]>
-              background: transparent;
-      </span>
-    </label>
-    <!--variant-->
-    <a:hover:before>
-      context( copy, next )
-    </a>
-    <label:hover:before>
-            transform: scale( 1 );
-    </label>
+    </span>
+  </a>
 </nav>
 <!--variant-->
 <nav:hover>
@@ -99,3 +51,55 @@ context( stack, new )
         transition: opacity .2s;
   </label>
 </nav>
+
+
+
+<a[data-legend]:before>
+  context( copy, next )
+</a>
+<label[data-legend]:before>
+  content: attr( data-legend );
+  position: absolute;
+  font-size: 85%;    /* block round_label: line-height: .85; */
+  transform: scale( 0 );
+  transform-origin: center;
+  transition: transform ease .3s;
+</label>
+<!--variant-->
+<a[data-legend]:hover:before>
+  context( copy, next )
+</a>
+<label[data-legend]:hover:before>
+        transform: scale( 1 );
+</label>
+
+<a[data-legend]>
+  context( copy, next )
+</a>
+<label[data-legend]>
+        display: grid;
+        position: relative;
+        overflow: hidden;
+        width: var(--nav_width);
+        font-weight: 300;
+        color: currentColor;
+        text-transform: uppercase;
+        opacity: .25;
+        transition: all ease .2s;
+</label>
+<a[data-legend]>
+  <span>
+    context( copy, next )
+  </span>
+</a>
+<label[data-legend]>
+  <span>
+    grid-area: 1/-1;
+    context( block, round_label )
+  </span>
+</label>
+<label[data-legend]:hover>
+  <span[data-role]>
+          background: transparent;
+  </span>
+</label>

@@ -50,13 +50,10 @@
     </label>
   </nav>
   
-  <nav id="burst_settings">
-    <label id="burst_settings_inc" data-legend="agrandir">
-      <span data-role=increment>&nbsp;</span>
-    </label>
-    <label id="burst_settings_dec" data-legend="réduire">
-      <span data-role=decrement>&nbsp;</span>
-    </label>
-  </nav>
+  <div id="DI_burst_layer_view">
+      <input id="IN_burst_view_scale" type="range" min="1" max="8" step=".25" value="1" data-tip="1"/>
+      <label for="IN_burst_view_scale">Échelle</label>
+  </div>
+
   <script id=script_burst data-src="/assets/scripts/js/burst.min.js"></script>
 </div>

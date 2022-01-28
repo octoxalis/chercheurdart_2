@@ -276,7 +276,7 @@ const PAI_o =
       .fragment__e
       (
         fragment_s,
-        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view'
+        'script_{{C_o.STAT_a[2]}}'
       )
 
     const canvas_e =
@@ -315,8 +315,11 @@ const PAI_o =
             [ offCanvas_e ]
           )
 
-    document
-      .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
+    const div_e =
+      document
+        .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_${layer_n}` )
+
+      div_e
         .lastChild        //: frontCanvas_e
           .addEventListener
           (
@@ -326,6 +329,20 @@ const PAI_o =
                 .canvasPointer__v
                 (
                   click_o,
+                  layer_n
+                )
+          )
+
+      div_e
+        .lastChild        //: frontCanvas_e
+          .addEventListener
+          (
+            'wheel',
+            wheel_o =>
+              PAI_o
+                .zoomEvent__v
+                (
+                  wheel_o,
                   layer_n
                 )
           )
@@ -1134,6 +1151,62 @@ const PAI_o =
 
 
 
+  zoomEvent__v:
+  (
+    wheel_o,
+    layer_n
+  ) =>
+  {
+    wheel_o
+      .preventDefault()
+     
+    let scale_n =
+      PAI_o
+        .view_o
+          .scale_n
+          
+    scale_n +=
+      wheel_o
+        .deltaY * -0.001
+    
+
+    scale_n =
+      Math.min(Math.max(.125, scale_n), 1)    //: restrict scale
+
+    PAI_o
+      .view_o
+        .scale_n =
+          scale_n
+    
+    if
+    (
+      wheel_o
+        .altKey      //: apply to all layers
+    )
+    {
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[2]}}_scale`,
+          scale_n
+        )
+
+      return
+    }
+    //-->
+    wheel_o    //: apply to one layer only
+      .target
+        .closest( 'div' )
+          .style
+            .transform = //`scale(${scale_n})`
+              `perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )`
+              +
+              ` scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * ${scale_n} ) )`
+  }
+  ,
+
+
+
   hslPoint__v:
   (
     click_o
@@ -1165,8 +1238,6 @@ const PAI_o =
       }
     }
     //-->
-    ;;;;;;;;    console.log( selected_a )
-
     const layer_n =
       selected_a
         [ selected_a.length -1 ]
@@ -1180,8 +1251,6 @@ const PAI_o =
             ?.split( '_' )
               ?.[4]
   
-    ;;;;;;;;    console.log( operation_s )
-
     let operand_a = []
 
     for
@@ -1241,8 +1310,6 @@ const PAI_o =
 
     }
     
-    ;;;;;;;;    console.log( operand_a )
-
     const
     {
       offsetX,
@@ -1603,7 +1670,27 @@ const PAI_o =
   
     }
 
-    //=== GEOMETRY ===
+    //=== VIEW ===
+    for      //: move nodes in fixed position
+    (
+      let id_s
+      of
+      [
+        '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings',
+        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings',
+        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view',
+      ]
+    )
+    {
+      DOM_o
+        .beforeNode__e
+        (
+          document
+            .getElementById( id_s ),
+          'goto_page_top'
+        )
+    }
+
     for
     (
       let range_s
@@ -1622,7 +1709,7 @@ const PAI_o =
         of
         [
           'click',
-          'keydown'
+          'keydown',
         ]
       )
       {

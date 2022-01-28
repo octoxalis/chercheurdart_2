@@ -20,7 +20,7 @@ const BUR_o =
   
 
 
-  part__s
+  hsl__s
   ()
   {
     return (
@@ -152,6 +152,88 @@ const BUR_o =
 
 
 
+  range__v:
+  (
+    range_e,
+    callback_f
+  ) =>
+  {
+    const value_s =
+      range_e
+        .value
+  
+    range_e
+      .dataset
+        .tip =
+          value_s
+  
+    const
+    [
+      ,
+      ,
+      ,
+      range_s
+    ] =
+      range_e
+        .id
+          .split( '_' )
+  
+    callback_f
+    &&
+    callback_f
+    (
+      range_s,
+      value_s
+    )
+  }
+  ,
+
+
+
+  rangeEvent__v:
+  (
+    event_o
+  ) =>
+  {
+    BUR_o
+      .range__v
+      (
+        event_o
+          .target,
+        (
+          range_s,
+          value_s
+        ) =>
+          {
+            const hsl_s =
+              BUR_o
+                .hsl__s()
+      
+            BUR_o
+              [ `${range_s}_o` ]
+                [ `${hsl_s}_n` ] =
+                  +value_s      //: number cast
+
+            BUR_o
+              .worker_o
+                .post__v
+                (
+                  { 
+                    task_s:  'PUT_scale',
+                    stat_s:  '{{C_o.STAT_a[0]}}',
+                    part_s:  hsl_s,
+                    scale_n: BUR_o
+                               .scale_o
+                                 [`${hsl_s}_n`]
+                  }
+                )
+          }
+      )
+  }
+  ,
+
+
+
   listener__v
   ()
   {
@@ -184,7 +266,7 @@ const BUR_o =
       {
         const atpart_s =
           BUR_o
-            .part__s()
+            .hsl__s()
 
         if
         (
@@ -279,7 +361,7 @@ const BUR_o =
     //=== HUE TRACE ===
     for
     (
-      let part_s
+      let hsl_s
       of
       [
         'hue',
@@ -299,7 +381,7 @@ const BUR_o =
       )
       {
         document
-          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${part_s}` )
+          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )
             ?.addEventListener
             (
               event_s,
@@ -308,103 +390,43 @@ const BUR_o =
       }
     }
 
-    //=== CANVAS SCALING ===
-    const RANGE_MIN_n = .25
-    const RANGE_MAX_n = 16.0
-    const STEP_n      = .2
-      
+    //=== VIEW ===
+    DOM_o
+      .beforeNode__e
+      (
+        document
+          .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view` ),
+        'goto_page_top'
+      )
+
     for
     (
-      let settings_s
+      let range_s
       of
       [
-        'inc',    //: + STEP_n
-        'dec',    //: - STEP_n
+        'scale',
       ]
     )
     {
-      document
-        .getElementById( `{{C_o.STAT_a[0]}}_settings_${settings_s}` )
-          ?.addEventListener
+      for
+      (
+        let event_s
+        of
+        [
+          'click',
+          'keydown'
+        ]
+      )
+      {
+        DOM_o
+          .listener__v
           (
-            'click',
-            (
-              event_o
-            ) =>
-            {
-              const atpart_s =
-                BUR_o
-                  .part__s()
-
-              let step_n = 0
-                STEP_n
-
-              if
-              (
-                event_o
-                  .target
-                    ?.id
-                      ?.includes( '_inc' )
-                &&
-                BUR_o
-                  .scale_o
-                    [`${atpart_s}_n`]
-                <=
-                RANGE_MAX_n
-                -
-                STEP_n
-              )
-              {
-                step_n =
-                  STEP_n
-              }
-              
-              if
-              (
-                event_o
-                  .target
-                    ?.id
-                      ?.includes( '_dec' )
-                &&
-                BUR_o
-                  .scale_o
-                    [`${atpart_s}_n`]
-                >=
-                RANGE_MIN_n
-                +
-                STEP_n
-              )
-              {
-                step_n =
-                  -STEP_n
-              }
-
-              if
-              (
-                step_n
-              )
-              {
-                BUR_o
-                  .scale_o
-                    [`${atpart_s}_n`] +=
-                    step_n
-  
-                BUR_o
-                  .worker_o
-                    .post__v
-                    (
-                      { 
-                        task_s:  'PUT_scale',
-                        stat_s:  '{{C_o.STAT_a[0]}}',
-                        part_s:  atpart_s,
-                        scale_n: BUR_o
-                                   .scale_o
-                                     [`${atpart_s}_n`]
-                      }
-                    )
-              }
-            }
+            `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_${range_s}`,
+            BUR_o
+              .rangeEvent__v,
+            event_s
           )
+      }
     }
   }
   ,

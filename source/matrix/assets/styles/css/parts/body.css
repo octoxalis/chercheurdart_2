@@ -13,15 +13,17 @@ body > input {
   position: absolute;
 }
 body > nav {
-  position: sticky;
+  z-index: 10;
+  position: fixed;
   top: 0;
-  z-index: 5;
+  left: 0;
+  width: 100%;
 }
 body > iframe {
   display: none;
 }
 body > a#goto_{{C_o.PAGE_TOP}} {
-  z-index: 10;
+  z-index: 20;
   position: fixed;
   top: calc( 100vh - 6vmin );
   left: calc( 100vw - 6vmin );

@@ -148,6 +148,10 @@ const C_o =
   ],
 
 
+  //=== BURST TOOLS ===
+  BURST_SCALE_n:       1,
+
+
   //=== PAINT TOOLS ===
   PAINT_LAYER_n:       8,
   PAINT_DEVIATION_n:   10,

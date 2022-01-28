@@ -12,14 +12,17 @@ context( stack, new )
           display: none;
           position: absolute;
   <nav>
-          position: sticky; top: 0;
-          z-index: 5;
+          z-index: 10;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
   </nav>
   <iframe>
           display: none;
   </iframe>
   <a#goto_{{C_o.PAGE_TOP}}>
-          z-index: 10;
+          z-index: 20;
           position: fixed;
           top:  calc( 100vh - 6vmin );
           left: calc( 100vw - 6vmin );

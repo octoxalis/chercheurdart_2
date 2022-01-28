@@ -3,37 +3,9 @@ nav {
   justify-content: center;
   padding: {{S_o.PAD_2}};
 }
-nav > a:before, nav > label:before {
-  content: attr( data-legend );
-  position: absolute;
-  font-size: 85%;
-  transform: scale( 0 );
-  transform-origin: center;
-  transition: transform ease .3s;
-}
 nav > a {
   text-decoration: none;
   border: 0;
-}
-nav > a, nav > label {
-  display: grid;
-  position: relative;
-  overflow: hidden;
-  width: var(--nav_width);
-  font-weight: 300;
-  color: currentColor;
-  text-transform: uppercase;
-  opacity: .25;
-  transition: all ease .2s;
-}
-nav > a > span, nav > label > span {
-  grid-area: 1/-1;
-  display: inline-block;
-  width: {{S_o.NAV_LABEL_s}};
-  height: {{S_o.NAV_LABEL_s}};
-  border-radius: 50%;
-  line-height: .85;
-  text-align: center;
 }
 nav > a > span[data-role=home] {
   background: {{S_o.nav_spot_home}};
@@ -57,14 +29,42 @@ nav > a:hover {
   text-decoration: none;
   border: 0;
 }
-nav > a:hover > span[data-role], nav > label:hover > span[data-role] {
-  background: transparent;
-}
-nav > a:hover:before, nav > label:hover:before {
-  transform: scale( 1 );
-}
-nav:hover > a, nav:hover > label {
+nav > a:hover > span[data-role], nav:hover > a, nav:hover > label {
   opacity: 1;
   filter: brightness( {{S_o.brigtness_hi}} );
   transition: opacity .2s;
+}
+a[data-legend]:before, label[data-legend]:before {
+  content: attr( data-legend );
+  position: absolute;
+  font-size: 85%;
+  transform: scale( 0 );
+  transform-origin: center;
+  transition: transform ease .3s;
+}
+a[data-legend]:hover:before, label[data-legend]:hover:before {
+  transform: scale( 1 );
+}
+a[data-legend], label[data-legend] {
+  display: grid;
+  position: relative;
+  overflow: hidden;
+  width: var(--nav_width);
+  font-weight: 300;
+  color: currentColor;
+  text-transform: uppercase;
+  opacity: .25;
+  transition: all ease .2s;
+}
+a[data-legend] > span, label[data-legend] > span {
+  grid-area: 1/-1;
+  display: inline-block;
+  width: {{S_o.NAV_LABEL_s}};
+  height: {{S_o.NAV_LABEL_s}};
+  border-radius: 50%;
+  line-height: .85;
+  text-align: center;
+}
+label[data-legend]:hover > span[data-role] {
+  background: transparent;
 }

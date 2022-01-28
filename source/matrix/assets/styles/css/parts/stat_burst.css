@@ -52,3 +52,44 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_I
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ~ nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_lum {
   display: flex;
 }
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view:hover {
+  opacity: 1;
+  transition: opacity 2s ease;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: calc( 100vh - 8em );
+  left: calc( 50vw - 100px - {{S_o.PAD_1}} );
+  padding: {{S_o.PAD_2}};
+  background: {{S_o.table}};
+  border-radius: 4px;
+  opacity: .1;
+  transition: opacity .3s ease;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range] {
+  position: relative;
+  top: {{S_o.PAD_5}};
+  width: 200px;
+  background: transparent;
+  cursor: pointer;
+  transform: scaleY( .3 );
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label {
+  position: relative;
+  top: -{{S_o.PAD_6}};
+  padding: {{S_o.PAD_1}};
+  text-align: left;
+  text-transform: none;
+  font-size: 80%;
+  border: none;
+  opacity: .5;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range]:focus {
+  outline: none;
+  filter: hue-rotate( -220deg );
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range]:focus + label {
+  background: {{S_o.lighter}};
+}

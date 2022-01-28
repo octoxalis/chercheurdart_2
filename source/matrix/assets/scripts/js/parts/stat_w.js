@@ -793,51 +793,6 @@ async bitmap__o
   {
     try
     {
-      /*
-      if
-      (
-        payload_o
-          .canvasFront_e
-      )
-      {
-        ;;;;;;;;    console.time( 'get_img__v' )
-
-        const canvasFront_e =
-          payload_o
-            .canvasFront_e
-
-        const contextFront_o =
-          canvasFront_e
-            .getContext( '2d' )
-
-        contextFront_o
-          .fillStyle =
-            'hsla( 190 80% 50% / .5 )'
-
-        contextFront_o
-          .fillRect
-          (
-            0,
-            0,
-            canvasFront_e
-              .width,
-            canvasFront_e
-              .height
-          )
-
-        contextFront_o
-          .clearRect
-          (
-            420,
-            300,
-            500,
-            800
-          )
-          
-        ;;;;;;;;    console.timeEnd( 'get_img__v' )
-      }
-      */
-
       const bitmap_o =
         await STAT_W_o
           .bitmap__o( payload_o )
@@ -1581,14 +1536,14 @@ async bitmap__o
            ++atScan_n
         )
         {
-          if
-          (
-            oper_a
-              .length
-            >
-            1
-          )
-          {
+          //--if
+          //--(
+          //--  oper_a
+          //--    .length
+          //--  >
+          //--  1
+          //--)
+          //--{
             if
             (
               op0imgData_o    //: operation
@@ -1620,49 +1575,50 @@ async bitmap__o
                   -
                   op1opac_n
                 )
-            }
+            //--}
 
-            switch
-            (
-              operation_s
-            )
-            {
-              case 'union':
-                apply_b =
-                  op0opac_n
-                  &&
-                  op1opac_n
-    
-                break
-            
-              case 'difference':
-                apply_b =
-                  diff_n
-                  >
-                  deviation_n
-    
-                break
-            
-              case 'intersection':
-                apply_b =
-                  diff_n
-                  <=
-                  deviation_n
-    
-                break
-            
-              case 'complement':
-                apply_b =
-                  op0opac_n
-                  &&
-                  ! op1opac_n
-    
-                break
-            
-              default:      //: 'none'
-                break
+              switch
+              (
+                operation_s
+              )
+              {
+                case 'union':
+                  apply_b =
+                    op0opac_n
+                    &&
+                    op1opac_n
+      
+                  break
+              
+                case 'difference':
+                  apply_b =
+                    diff_n
+                    >
+                    deviation_n
+      
+                  break
+              
+                case 'intersection':
+                  apply_b =
+                    diff_n
+                    <=
+                    deviation_n
+      
+                  break
+              
+                case 'complement':
+                  apply_b =
+                    op0opac_n
+                    &&
+                    ! op1opac_n
+      
+                  break
+              
+                default:      //: 'none'
+                  break
+              }
             }
-          }
+          //--}
       
           if
           (
