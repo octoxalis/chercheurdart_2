@@ -2,8 +2,18 @@
         --{{C_o.STAT_a[2]}}_perspective: {{C_o.PAINT_PERSPECTIVE_n}};
         --{{C_o.STAT_a[2]}}_distance:    {{C_o.PAINT_DISTANCE_n}};
         --{{C_o.STAT_a[2]}}_rotate:      {{C_o.PAINT_ROTATE_n}};
-        --{{C_o.STAT_a[2]}}_scale:       {{C_o.PAINT_SCALE_n}};
         --{{C_o.STAT_a[2]}}_distance_x:  {{C_o.PAINT_DISTANCE_X_n}};        /* factor */
+        --{{C_o.STAT_a[2]}}_scale:       {{C_o.PAINT_SCALE_n}};
+
+        --{{C_o.STAT_a[2]}}_layer_scale_0: 1;
+        --{{C_o.STAT_a[2]}}_layer_scale_1: 1;
+        --{{C_o.STAT_a[2]}}_layer_scale_2: 1;
+        --{{C_o.STAT_a[2]}}_layer_scale_3: 1;
+        --{{C_o.STAT_a[2]}}_layer_scale_4: 1;
+        --{{C_o.STAT_a[2]}}_layer_scale_5: 1;
+        --{{C_o.STAT_a[2]}}_layer_scale_6: 1;
+        --{{C_o.STAT_a[2]}}_layer_scale_7: 1;
+
         
         --{{C_o.STAT_a[2]}}_setop_display: none;
         --{{C_o.STAT_a[2]}}_hue_trace: 0;
@@ -36,7 +46,6 @@
             border: 4px solid {{S_o.shadow_hi}};
             background: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
             perspective-origin: center center;
-            transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) ) scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * 1 ) );
       <canvas>
                 grid-area: 1/-1;
                 background: transparent;
@@ -46,27 +55,59 @@
     </div>
     <div[data-layer_n="0"]>
         --{{C_o.STAT_a[2]}}_distance_x: -3;
+        transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                   translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                   rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                   scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_0) ) );
     </div>
     <div[data-layer_n="1"]>
           --{{C_o.STAT_a[2]}}_distance_x: -2;
-    </div>
+          transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                     translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                     rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                     scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_1) ) );
+   </div>
     <div[data-layer_n="2"]>
           --{{C_o.STAT_a[2]}}_distance_x: -1;
+          transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                     translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                     rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                     scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_2) ) );
     </div>
     <div[data-layer_n="3"]>
           --{{C_o.STAT_a[2]}}_distance_x: 0;
+          transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                     translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                     rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                     scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_3) ) );
     </div>
     <div[data-layer_n="4"]>
           --{{C_o.STAT_a[2]}}_distance_x: 1;
+          transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                     translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                     rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                     scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_4) ) );
     </div>
     <div[data-layer_n="5"]>
           --{{C_o.STAT_a[2]}}_distance_x: 2;
+          transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                     translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                     rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                     scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_5) ) );
     </div>
     <div[data-layer_n="6"]>
           --{{C_o.STAT_a[2]}}_distance_x: 3;
+          transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                     translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                     rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                     scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_6) ) );
     </div>
     <div[data-layer_n="7"]>
           --{{C_o.STAT_a[2]}}_distance_x: 4;
+          transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
+                     translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
+                     rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )
+                     scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * var(--{{C_o.STAT_a[2]}}_layer_scale_7) ) );
     </div>
 
     <div[data-layer_b="0"]>

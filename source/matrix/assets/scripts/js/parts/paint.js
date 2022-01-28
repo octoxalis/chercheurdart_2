@@ -1194,14 +1194,27 @@ const PAI_o =
       return
     }
     //-->
-    wheel_o    //: apply to one layer only
-      .target
-        .closest( 'div' )
-          .style
-            .transform = //`scale(${scale_n})`
-              `perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )`
-              +
-              ` scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * ${scale_n} ) )`
+    //--wheel_o    //: apply to one layer only
+    //--  .target
+    //--    .closest( 'div' )
+    //--      .style
+    //--        .transform = //`scale(${scale_n})`
+    //--          `perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )`
+    //--          +
+    //--          ` scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * ${scale_n} ) )`
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[2]}}_scale`,
+          1
+        )
+
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[2]}}_layer_scale_${layer_n}`,
+          scale_n
+        )
   }
   ,
 
