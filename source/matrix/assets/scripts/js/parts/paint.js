@@ -326,7 +326,7 @@ const PAI_o =
             'click',
             click_o =>
               PAI_o
-                .canvasPointer__v
+                .canvasEvent__v
                 (
                   click_o,
                   layer_n
@@ -382,8 +382,8 @@ const PAI_o =
   
   drawClip__v:
   (
-    layer_n,
-    canvas_e    //: frontCanvas_e
+    canvas_e,    //: frontCanvas_e
+    layer_n
   ) =>
   {
     const width_n =
@@ -538,15 +538,16 @@ const PAI_o =
         }
 
         PAI_o
-          .addClip__v
+          .layer_a
+            [layer_n]
+              .clipRect_a
+                .push( clip_a )
+    
+        PAI_o
+          .drawClipRect__v
           (
             canvas_e,
-            [
-              left_n,
-              top_n,
-              width_n,
-              height_n
-            ]
+            layer_n
           )
       },
     )
@@ -555,32 +556,7 @@ const PAI_o =
 
 
 
-  addClip__v:
-  (
-    canvas_e,        //: frontCanvas_e
-    clip_a
-  ) =>
-  {
-    const layer_n =
-       canvas_e
-         .dataset
-           .layer_n
 
-    PAI_o
-      .layer_a
-        [layer_n]
-          .clipRect_a
-            .push( clip_a )
-
-    PAI_o
-      .drawClipRect__v
-      (
-        canvas_e,
-        layer_n
-      )
-
-  }
-  ,
 
 
 
@@ -619,7 +595,7 @@ const PAI_o =
     {
       context_o
         .fillStyle =
-          'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .212 )'
+          'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .222 )'
   
       context_o
         .fillRect
@@ -652,8 +628,89 @@ const PAI_o =
 
 
 
+  findClip__n:      //: click inside clipRect_a rectangle
+  (
+    click_o,
+    layer_n
+  ) =>
+  {
+    const
+    {
+      offsetX,
+      offsetY
+    } =
+      click_o
+
+    const clipRect_a =
+      PAI_o
+        .layer_a
+          [ layer_n ]
+            .clipRect_a
+    
+    if
+    (
+      ! clipRect_a
+        .length
+    )
+    {
+      return -1
+    }
+    //-->
+    let clip_n = -1
+
+    for    //: as Array.find + Array.findIndex
+    (
+      let clip_a
+      of
+      clipRect_a
+    )
+    {
+      ++clip_n
+
+      if
+      (
+        (             //: horizontal
+          offsetX
+          >
+          clip_a[0]
+          &&
+          offsetX
+          <
+          (
+            clip_a[0]
+            +
+            clip_a[2]
+          )
+        )
+        &&
+        (             //: vertical
+          offsetY
+          >
+          clip_a[1]
+          &&
+          offsetY
+          <
+          (
+            clip_a[1]
+            +
+            clip_a[3]
+          )
+        )
+      )
+      {
+        return clip_n
+      }
+    }
+    
+    return -1
+  }
+  ,
+
+
+
+
   /*//!!! STANDBY !!!
-  clipMove__v:
+  moveClip__v:
   (
     move_o
   ) =>
@@ -672,7 +729,7 @@ const PAI_o =
 
 
 
-  hideLayer__n:
+  hideLayer__n:    //: returns unmasked layer index or -1
   () =>
   {
     const selected_a =
@@ -693,7 +750,8 @@ const PAI_o =
       {
         window
           .alert( `Aucun plan n'est sélectionné.` )
-        return
+
+        return -1
       }
       //-->
       if
@@ -702,7 +760,7 @@ const PAI_o =
           .confirm( `Aucun plan n'est sélectionné.\nVoulez-vous démasquer le premier plan masqué?` )
       )
       {
-        return
+        return -1
       }
       //->
       let unmasked_e =
@@ -795,6 +853,8 @@ const PAI_o =
           .mask__v( node_e )
       }
     }
+
+    return -1
   }
   ,
   
@@ -1078,149 +1138,69 @@ const PAI_o =
   ,
 
 
-  range__v:
+
+  backColor__v:
   (
-    range_e,
-    callback_f
+    click_o
   ) =>
   {
-    const value_s =
-      range_e
-        .value
-  
-    range_e
-      .dataset
-        .tip =
-          value_s
-  
-    const
-    [
-      ,
-      ,
-      hsl_s,
-      range_s
-    ] =
-      range_e
-        .id
-          .split( '_' )
-  
-    callback_f
-    &&
-    callback_f
-    (
-      hsl_s,
-      range_s,
-      value_s
-    )
-  }
-  ,
-
-
-
-  rangeEvent__v:
-  (
-    event_o
-  ) =>
-  {
-    PAI_o
-      .range__v
-      (
-        event_o
-          .target,
-        (
-          hsl_s,
-          range_s,
-          value_s
-        ) =>
-          {
-            PAI_o
-              [ `${hsl_s}_o` ]
-                [ `${range_s}_n` ] =
-                  +value_s      //: number cast
-
-            DOM_o
-              .rootVar__v
-              (
-                `--{{C_o.STAT_a[2]}}_${range_s}`,
-                +value_s
-              )
-          }
-      )
-  }
-  ,
-
-
-
-  zoomEvent__v:
-  (
-    wheel_o,
-    layer_n
-  ) =>
-  {
-    wheel_o
+    click_o
       .preventDefault()
-     
-    let scale_n =
-      PAI_o
-        .view_o
-          .scale_n
-          
-    scale_n +=
-      wheel_o
-        .deltaY * -0.001
-    
 
-    scale_n =
-      Math.min(Math.max(.125, scale_n), 1)    //: restrict scale
+    const label_e =
+      click_o
+        .target
+          .closest( `label` )
 
-    PAI_o
-      .view_o
-        .scale_n =
-          scale_n
-    
     if
     (
-      wheel_o
-        .altKey      //: apply to all layers
+      label_e
     )
     {
+      const hsl_s =
+        label_e
+          .id
+            .split( '_' )
+              [2]
+    
+      const value_s =
+        document
+          .querySelector( `label[id$="${hsl_s}_trace"] > output` )
+            .value
+    
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[2]}}_scale`,
-          scale_n
+          `--{{C_o.STAT_a[2]}}_back_${hsl_s}`,
+          +value_s
         )
 
-      return
+      if
+      (
+        hsl_s
+        ===
+        'hue'
+      )
+      {
+        PAI_o
+          .worker_o
+            .post__v
+            (
+              { 
+                task_s: 'PUT_draw',
+                stat_s: '{{C_o.STAT_a[2]}}',
+                part_s: 'sat_front',
+                hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_back_hue' )
+              }
+            )
+      }
     }
-    //-->
-    //--wheel_o    //: apply to one layer only
-    //--  .target
-    //--    .closest( 'div' )
-    //--      .style
-    //--        .transform = //`scale(${scale_n})`
-    //--          `perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) ) translateX( var(--{{C_o.STAT_a[2]}}_translateX) ) rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )`
-    //--          +
-    //--          ` scale( calc( var(--{{C_o.STAT_a[2]}}_scale) * ${scale_n} ) )`
-      DOM_o
-        .rootVar__v
-        (
-          `--{{C_o.STAT_a[2]}}_scale`,
-          1
-        )
-
-      DOM_o
-        .rootVar__v
-        (
-          `--{{C_o.STAT_a[2]}}_layer_scale_${layer_n}`,
-          scale_n
-        )
   }
   ,
 
 
 
-  hslPoint__v:
+  hslEvent__v:
   (
     click_o
   ) =>
@@ -1251,11 +1231,11 @@ const PAI_o =
       }
     }
     //-->
-    const layer_n =
-      selected_a
-        [ selected_a.length -1 ]
-          .dataset
-            .layer_n
+    //??const layer_n =
+    //??  selected_a
+    //??    [ selected_a.length -1 ]
+    //??      .dataset
+    //??        .layer_n
 
     const operation_s =
       document
@@ -1408,143 +1388,7 @@ const PAI_o =
 
 
 
-  backColor__v:
-  (
-    click_o
-  ) =>
-  {
-    click_o
-      .preventDefault()
-
-    const label_e =
-      click_o
-        .target
-          .closest( `label` )
-
-    if
-    (
-      label_e
-    )
-    {
-      const hsl_s =
-        label_e
-          .id
-            .split( '_' )
-              [2]
-    
-      const value_s =
-        document
-          .querySelector( `label[id$="${hsl_s}_trace"] > output` )
-            .value
-    
-      DOM_o
-        .rootVar__v
-        (
-          `--{{C_o.STAT_a[2]}}_back_${hsl_s}`,
-          +value_s
-        )
-
-      if
-      (
-        hsl_s
-        ===
-        'hue'
-      )
-      {
-        PAI_o
-          .worker_o
-            .post__v
-            (
-              { 
-                task_s: 'PUT_draw',
-                stat_s: '{{C_o.STAT_a[2]}}',
-                part_s: 'sat_front',
-                hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_back_hue' )
-              }
-            )
-      }
-    }
-  }
-  ,
-
-
-
-  findClip__n:      //: click inside clipRect_a rectangle
-  (
-    click_o,
-    clipRect_a
-  ) =>
-  {
-    const
-    {
-      offsetX,
-      offsetY
-    } =
-      click_o
-
-    if
-    (
-      ! clipRect_a
-        .length
-    )
-    {
-      return -1
-    }
-    //-->
-    let clip_n = -1
-
-    for    //: as Array.find + Array.findIndex
-    (
-      let clip_a
-      of
-      clipRect_a
-    )
-    {
-      ++clip_n
-
-      if
-      (
-        (             //: horizontal
-          offsetX
-          >
-          clip_a[0]
-          &&
-          offsetX
-          <
-          (
-            clip_a[0]
-            +
-            clip_a[2]
-          )
-        )
-        &&
-        (             //: vertical
-          offsetY
-          >
-          clip_a[1]
-          &&
-          offsetY
-          <
-          (
-            clip_a[1]
-            +
-            clip_a[3]
-          )
-        )
-      )
-      {
-        return clip_n
-      }
-    }
-    
-    return -1
-  }
-  ,
-
-
-
-
-  canvasPointer__v:
+  canvasEvent__v:
   (
     click_o,
     layer_n
@@ -1554,66 +1398,207 @@ const PAI_o =
       click_o
         .target
         
+    const clip_n =
+      PAI_o
+        .findClip__n
+        (
+          click_o,
+          layer_n
+        )
+
     if
     (
       layer_n        //: no clip for layer 0
-      &&
-      click_o
-        .ctrlKey
     )
     {
-      const clip_n =
-        PAI_o
-          .findClip__n
-          (
-            click_o,
-            PAI_o
-              .layer_a
-                [ layer_n ]
-                  .clipRect_a
-          )
-
-      if      //: inside a clipping rectangle
+      if
       (
-        clip_n
-        >
-        -1
+        click_o
+          .ctrlKey
       )
       {
-        PAI_o
-          .layer_a
-            [ layer_n ]
-              .clipRect_a
-                .splice
-                (
-                  clip_n,
-                  1
-                )
-
-        PAI_o
-          .drawClipRect__v
+        if
+        (
+          clip_n
+          >
+          -1
+        )
+        {      //: inside a clipping rectangle: remove it
+          PAI_o
+            .layer_a
+              [ layer_n ]
+                .clipRect_a
+                  .splice
+                  (
+                    clip_n,
+                    1
+                  )
+    
+          PAI_o
+            .drawClipRect__v
+            (
+              canvas_e,
+              layer_n
+            )
+    
+          return
+        }
+        //-->
+        PAI_o      //: outside a clipping rectangle: add new clip
+          .drawClip__v
           (
             canvas_e,
             layer_n
           )
-
+    
         return
       }
-      //-->      outside a clipping rectangle
-      PAI_o
-        .drawClip__v
-        (
-          layer_n,
-          canvas_e
+      //-->
+      if
+      (
+        clip_n
+        >
+        -1
         )
-
-      return
+      {      //: inside a clipping rectangle: move it
+        console.log( 'move clip' )
+    
+        return
+      }
     }
-    //-->
+    //-->    select canvas
     canvas_e
       .closest( 'div' )
         .classList
           .toggle( 'raised' )
+  }
+  ,
+
+
+
+  zoomEvent__v:
+  (
+    wheel_o,
+    layer_n
+  ) =>
+  {
+    wheel_o
+      .preventDefault()
+     
+    let scale_n =
+      PAI_o
+        .view_o
+          .scale_n
+          
+    scale_n +=
+      wheel_o
+        .deltaY
+      *
+      -0.001
+    
+
+    scale_n =
+      Math
+        .min
+        (
+          Math
+            .max
+            (
+              .125,
+              scale_n
+            ),
+          2            //: restrict scale
+        )
+
+    PAI_o
+      .view_o
+        .scale_n =
+          scale_n
+    
+    DOM_o
+      .rootVar__v
+      (
+        wheel_o
+          .altKey
+        ?
+          `--{{C_o.STAT_a[2]}}_scale`                       //: apply to all layers
+        :
+          `--{{C_o.STAT_a[2]}}_scale_layer_${layer_n}`,     //: apply to one layer
+        scale_n
+      )
+  }
+  ,
+
+
+
+  range__v:
+  (
+    range_e,
+    callback_f
+  ) =>
+  {
+    const value_s =
+      range_e
+        .value
+  
+    range_e
+      .dataset
+        .tip =
+          value_s
+  
+    const
+    [
+      ,
+      ,
+      hsl_s,
+      range_s
+    ] =
+      range_e
+        .id
+          .split( '_' )
+  
+    callback_f
+    &&
+    callback_f
+    (
+      hsl_s,
+      range_s,
+      value_s
+    )
+  }
+  ,
+
+
+
+  rangeEvent__v:
+  (
+    event_o
+  ) =>
+  {
+    PAI_o
+      .range__v
+      (
+        event_o
+          .target,
+        (
+          hsl_s,
+          range_s,
+          value_s
+        ) =>
+          {
+            PAI_o
+              [ `${hsl_s}_o` ]
+                [ `${range_s}_n` ] =
+                  +value_s      //: number cast
+
+            DOM_o
+              .rootVar__v
+              (
+                `--{{C_o.STAT_a[2]}}_${range_s}`,
+                +value_s
+              )
+          }
+      )
   }
   ,
 
@@ -1670,7 +1655,7 @@ const PAI_o =
         (
           `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_${hsl_s}_front`,
           PAI_o
-            .hslPoint__v
+            .hslEvent__v
         )
 
       DOM_o
@@ -1765,7 +1750,6 @@ const PAI_o =
         PAI_o
           .setop__v
       )
-
   }
   ,
 

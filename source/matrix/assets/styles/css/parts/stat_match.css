@@ -1,12 +1,12 @@
 body {
   overflow: auto;
 }
-section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} {
+div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} {
   --reference_padding: {{S_o.PAD_16}};
   align-items: flex-start;
   padding: var(--reference_padding);
 }
-section#{{C_o.STAT_a[3]}} > div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img {
+div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}} > img {
   display: block;
   position: relative;
   object-position: 0% 0%;

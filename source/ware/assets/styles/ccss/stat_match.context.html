@@ -2,19 +2,17 @@
         overflow: auto;
 </body>
 
-<section#{{C_o.STAT_a[3]}}>
-  <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
-          --reference_padding: {{S_o.PAD_16}};
+<div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}>
+        --reference_padding: {{S_o.PAD_16}};
 
-          align-items: flex-start;
-          padding: var(--reference_padding);
-    <img />
-            display: block;
-            position: relative;
-            object-position: 0% 0%;
-            object-fit: none;
-  </div>
-</section>
+        align-items: flex-start;
+        padding: var(--reference_padding);
+  <img />
+          display: block;
+          position: relative;
+          object-position: 0% 0%;
+          object-fit: none;
+</div>
 
 <details[data--="{{C_o.STAT_a[3]}}_details"]>
         --offsetX: calc( var(--width_n) * .5 );
@@ -195,6 +193,8 @@
 ~
 <img />
         z-index: 15;
+
+
 
 <svg class="svg_icon">
         --svg_icon_dim: 24px;

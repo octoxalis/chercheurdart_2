@@ -53,8 +53,9 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_I
   display: flex;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view:hover {
+  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
   opacity: 1;
-  transition: opacity 2s ease;
+  transition: opacity 1s ease;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
   display: flex;
