@@ -429,11 +429,11 @@ const PAI_o =
   
     clipContext_o
       .strokeStyle =
-        'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .212 )'
+        '{{S_o.raised_hi}}'
   
     clipContext_o
       .lineWidth =
-        4
+        8
   
     const clip_a =
     [
@@ -452,6 +452,10 @@ const PAI_o =
       clipCanvas_e
         .height,
     ]
+
+    canvas_e
+      .classList
+        .add( 'cursor_resize' )
 
     //?? const pointer_o =
     new Pointer
@@ -549,14 +553,17 @@ const PAI_o =
             canvas_e,
             layer_n
           )
+
+        clipContext_o
+          .clearRect( ...clearRect_a )  //: rease final rectangle stroke
+
+        canvas_e
+          .classList
+            .remove( 'cursor_resize' )
       },
     )
   }
   ,
-
-
-
-
 
 
 
@@ -595,7 +602,7 @@ const PAI_o =
     {
       context_o
         .fillStyle =
-          'hsla( {{S_o.hue_p}} {{S_o.sat_hi_2}} {{S_o.lum_ne}} / .222 )'
+          '{{S_o.raised_lo}}'
   
       context_o
         .fillRect
@@ -708,24 +715,86 @@ const PAI_o =
 
 
 
-
-  /*//!!! STANDBY !!!
   moveClip__v:
   (
-    move_o
+    canvas_e,
+    layer_n,
+    clip_n
   ) =>
   {
-    console.log(
-      move_o
-        .offsetX
-      + ' / '
-      +
-      move_o
-        .offsetY
+    const clipCanvas_e =
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_layer_clip_${layer_n}` )
+  
+    const clearRect_a =
+    [
+      0,
+      0,
+      clipCanvas_e
+        .width,
+      clipCanvas_e
+        .height,
+    ]
+
+    const clipContext_o =
+      clipCanvas_e
+        .getContext( '2d' )
+  
+    const clip_a =
+      PAI_o
+        .layer_a
+          [layer_n]
+            .clipRect_a
+              [ clip_n ]
+
+      clipContext_o                   //: redraw initial clip rectangle
+        .strokeRect( ...clip_a )
+
+    canvas_e
+      .classList
+        .add( 'cursor_move' )
+
+    //?? const pointer_o =
+    new Pointer
+    (
+      canvas_e,
+      (            //: move_f
+        atX_n,
+        atY_n
+      ) =>
+      {
+        clipContext_o
+          .clearRect( ...clearRect_a )
+  
+        clip_a[0] =
+          ~~atX_n
+  
+        clip_a[1] =
+          ~~atY_n
+          
+        clipContext_o
+          .strokeRect( ...clip_a )
+      },
+      () =>        //: stop_f
+      {
+        PAI_o
+          .drawClipRect__v
+          (
+            canvas_e,
+            layer_n
+          )
+
+        clipContext_o
+          .clearRect( ...clearRect_a )  //: rease final rectangle stroke
+
+        canvas_e
+          .classList
+            .remove( 'cursor_move' )
+      },
     )
   }
   ,
-  */
+  
 
 
 
@@ -1461,7 +1530,13 @@ const PAI_o =
         -1
         )
       {      //: inside a clipping rectangle: move it
-        console.log( 'move clip' )
+        PAI_o
+          .moveClip__v
+          (
+            canvas_e,
+            layer_n,
+            clip_n
+          )
     
         return
       }
