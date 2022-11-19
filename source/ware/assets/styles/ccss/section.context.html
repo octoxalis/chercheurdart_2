@@ -55,6 +55,9 @@ context( stack, new )
   </code>
 </pre>
 
+<label[data-legend]>
+        context( copy, next )
+</label>
 <label[for]>
         cursor: pointer;
 </label>
@@ -115,6 +118,12 @@ context( stack, new )
 <input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked />
 ~
 <section#{{C_o.SECTION_a[1]}}>
+        context( copy, next )
+</section>
+
+<input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked />
+~
+<section#{{C_o.SECTION_a[2]}}>
         display: block;
 </section>
 
@@ -123,3 +132,4 @@ context( stack, new )
 context( url, section_0.context.html )
 context( url, section_1.context.html )
 context( url, section_2.context.html )
+context( url, section_3.context.html )

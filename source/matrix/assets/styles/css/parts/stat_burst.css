@@ -16,6 +16,7 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_I
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] > label > span:not( [data-icon] ) {
   flex-grow: 2;
+  margin-left: {{S_o.PAD_4}};
   font-size: 100%;
   font-weight: 500;
   line-height: 1.5;
@@ -25,7 +26,7 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_I
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] > label:first-of-type > span:not( [data-icon] ) {
   flex-grow: 0;
-  margin: 0;
+  margin-left: {{S_o.PAD_4}};
   width: 100%;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}]:hover {

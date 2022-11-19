@@ -105,14 +105,15 @@ const S_o =
   S_o.nav_spot_home =    `hsla( ${S_o.hue_p}    ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
   S_o.nav_spot_article = `hsla( ${S_o.hue_p}    ${S_o.sat_lo_4} ${S_o.lum_hi_1} /1)`
   S_o.nav_spot_gallery = `hsla( 60              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
+  S_o.nav_spot_panorama = `hsla( ${S_o.hue_p + 90}              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
   S_o.nav_spot_stat =    `hsla( ${S_o.hue_spot} ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
 
   S_o.nav_spot_set_1 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
   S_o.nav_spot_set_2 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_hi_2} /1)`
   S_o.nav_spot_set_3 =   `hsla( ${S_o.hue_spot - 90} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
 
-  S_o.raised_hi =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .9 )`
-  S_o.raised_lo =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .2 )`
+  S_o.selected_hi =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .9 )`
+  S_o.selected_lo =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .2 )`
 
   S_o.match_spot =       `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`
   

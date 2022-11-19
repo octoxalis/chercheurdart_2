@@ -1,93 +1,147 @@
-<section>
-  <div[id^={{C_o.DIV_ID_s}}_stat]>
+context( stack, new )
+<section#{{C_o.SECTION_a[2]}}>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry>
+        /*--{{C_o.SECTION_a[2]}}_col_n: 2;*/
+        --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_col_n, 2) - 2 ) * 1% );  /* default var: 2 */
+        display: flex;
+        flex-wrap: wrap;
+        gap: {{S_o.PAD_2}};
+        padding: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_4}} ) 1vmin 1vmin;
+        max-width: 100vw;
+    <figure>
+           /* width: calc( var(--col_width) * 1%);*/
+            width: var(--col_width);
+            display: grid;
+            position: relative;
+      <img/>
+              object-fit: contain;
+              width: 100%;
+              height: auto;
+      <a>
+      position: absolute;
+      top: 0;
+              context( block, link_regular )
+              border: none;
+        <figcaption>
+                position: relative;
+                padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+                background: {{S_o.shadow_hi}};
+                opacity: 0;
+                transition: opacity .6s ease;
+          <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
+                opacity: 0;
+                transition: opacity 1s ease;
+            <{{C_o.ROW_TAG_s}}>
+                      context( block, cartel )
+              <i>
+                      font-style: normal;
+              </i>
+              <i:first-of-type::after>
+                      content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+              </i>
+              <a>
+                      context( block, link_regular )
+              </a>
+              <a:hover>
+                      context( block, link_hover )
+              </a>
+            </{{C_o.ROW_TAG_s}}>
+            <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
+            context( block, reference_1 )
+            </{{C_o.ROW_TAG_s}}>
+            <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
+            context( block, reference_2 )
+            </{{C_o.ROW_TAG_s}}>
+          </{{C_o.TABLE_TAG_s}}>
+        </figcaption>
+        
+        <figcaption:hover>
+                clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
+                opacity: 1;
+                transition: opacity 1s ease;
+        </figcaption>
+      </a>
+    </figure>
+    <figure[data-display_b=false]>
+            border: 1px solid {{S_o.selected_hi}};
+            border-radius: 4px;
+      <img />
+            opacity: .01;
+    </figure>
+    <figure[class="selected"]:before>
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: {{S_o.PAD_4}};
+            height: {{S_o.PAD_4}};
+            border: 2px solid {{S_o.selected_hi}};
+            border-radius: 4px;
+            background: {{S_o.selected_hi}};
+    </figure>
+  </div>
+
+
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control>
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-    <input />
-    context( copy, next )
-    <canvas>
-            display: none;
+          position: fixed;
+          top: calc( 100vh - 16em );
+          left: calc( 50vw - 100px - {{S_o.PAD_1}} );
+          padding: {{S_o.PAD_2}};
+          background: {{S_o.table}};
+          border-radius: 4px;
+          opacity: .1;
+          transition: opacity .2s ease;
+    <label>
+            margin: {{S_o.PAD_2}};
+            width: 200px;
+            text-align: center;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: 2px solid {{S_o.shadow_hi}};
+            font-size: 85%;
+    </label>
+    <label:hover>
+            filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );
+    </label>
+
+    <input[type=range]>
+            position: relative;
+            top: {{S_o.PAD_5}};    /* under following label */
+            width: 200px;
             background: transparent;
-            cursor: crosshair;
-    </canvas>
-    <nav>
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: {{S_o.PAD_6}};
-            z-index: 1;
-            position: absolute;
-            padding: {{S_o.PAD_2}};
-            width: {{ S_o.NAV_SETTINGS_s}};
-      <label>
-        <span[data-icon=substat]>
-                background: {{S_o.nav_spot_stat}};
-        </span>
-      </label>
-      <label:hover>
-        <span[data-icon]>
-                background: transparent;
-        </span>
-      </label>
-    </nav>
-    
-    <!--variant-->
-    <nav[id$="_settings"]>
-            top:  {{S_o.PAD_8}};
-            left: {{S_o.PAD_2}};
-            height: fit-content;
-      <label>
-        <span[data-role=increment]>
-                background: {{S_o.nav_spot_set_1}};
-        </span>
-        <span[data-role=decrement]>
-                background: {{S_o.nav_spot_set_2}};
-        </span>
-        <span[data-role=open]>
-                background: {{S_o.nav_spot_set_3}};
-        </span>
-      </label>
-      <label:hover>
-        <span>
-                background: transparent;
-        </span> 
-      </label>
-    </nav>
+            cursor: pointer;
+            transform: scaleY( .3 );
+    </input>
+    <label[for]>
+            position: relative;
+            top: -{{S_o.PAD_6}};    /* above preceding input */
+            padding: {{S_o.PAD_1}};
+            text-align: left;
+            text-transform: none;
+            font-size: 80%;
+            border: none;
+            opacity: .5;
+    </label>
+    <input[type=range]:focus>
+            outline: none;
+            filter: hue-rotate( -220deg );
+    </input>
   </div>
-  <!--variant-->
-  <div:not([id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}"])>
-          width: {{S_o.FULL_WIDTH_s}};
-          height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
+
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control:hover>
+          background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
+          opacity: 1;
+          transition: opacity 1s ease;
   </div>
+
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry>
+    <figure>
+      <*>
+              grid-area: 1/-1;    /* matching */
+      </*>
+    </figure>
+  </div>
+
 </section>
-
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked />
-~
-<section#{{C_o.STAT_a[0]}}>
-        context( copy, next )
-</section>
-
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked />
-~
-<section#{{C_o.STAT_a[1]}}>
-        context( copy, next )
-</section>
-
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked />
-~
-<section#{{C_o.STAT_a[2]}}>
-        context( copy, next )
-</section>
-
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}:checked />
-~
-<section#{{C_o.STAT_a[3]}}>
-        display: block;
-</section>
-
-
-
-context( url, stat_burst.context.html )
-context( url, stat_paint.context.html )
-context( url, stat_match.context.html )

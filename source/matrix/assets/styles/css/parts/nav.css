@@ -17,6 +17,9 @@ nav > label > span[data-role={{C_o.SECTION_a[1]}}] {
   background: {{S_o.nav_spot_gallery}};
 }
 nav > label > span[data-role={{C_o.SECTION_a[2]}}] {
+  background: {{S_o.nav_spot_panorama}};
+}
+nav > label > span[data-role={{C_o.SECTION_a[3]}}] {
   background: {{S_o.nav_spot_stat}};
 }
 nav > label > span[data-role={{C_o.STAT_s}}] {
@@ -47,13 +50,13 @@ a[data-legend]:hover:before, label[data-legend]:hover:before {
 }
 a[data-legend], label[data-legend] {
   display: grid;
-  position: relative;
+  left: {{S_o.PAD_4}};
   overflow: hidden;
   width: var(--nav_width);
   font-weight: 300;
   color: currentColor;
   text-transform: uppercase;
-  opacity: .25;
+  opacity: .5;
   transition: all ease .2s;
 }
 a[data-legend] > span, label[data-legend] > span {

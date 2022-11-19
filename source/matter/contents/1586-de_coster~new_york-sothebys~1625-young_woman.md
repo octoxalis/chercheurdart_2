@@ -17,10 +17,12 @@
   [
     `article`,
     `galerie`,
+    `panorama`,
   ],
 
   script_a:
   [
+    'dom.min.js',
   ],
   css_a:
   [
@@ -34,11 +36,7 @@
 }
 ---
 {% _section section_a[0] %}
-[[=  YOUNG_WOMAN  ::
-     [[₉  {{C_o.INS_DISPLAY_s}}  ::
-          1586-de_coster~new_york-sothebys~1625-young_woman ]]
-
-//=== END DECLARATIONS ===//
+// END DECLARATIONS //
 //  TOPICS
 ‹Adam de Coster›
 //
@@ -47,10 +45,8 @@
 
 ##1  {{title_s}}
 
-||  YOUNG_WOMAN  ||
-
-
-
+[[₉  {{C_o.INS_DISPLAY_s}} ::
+     1586-de_coster~new_york-sothebys~1625-young_woman ]]
 
 ##2  Presentation
 
@@ -68,8 +64,11 @@ Passé en vente chez Sotheby's à New York, cette toile constitue un jalon essen
 ==
 //  <<  {{C_o.NAV_LEGEND_o.aster.legend_s}}  ::  {{U_o.url_s}}{{workID_s}}--aster.html  >>  //
 
-
-
 ##2  Analyse
+
+[[₉  {{C_o.INS_DISPLAY_s}} ::
+     1703-boucher~princeton-university~1748-arion ]]
+[[₉  {{C_o.INS_DISPLAY_s}} ::
+     1586-de_coster~new_york-sothebys~1625-young_woman ]]
 
 {% end_section %}

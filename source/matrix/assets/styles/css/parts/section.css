@@ -53,7 +53,7 @@ pre > code {
   border-left: 1px solid currentColor;
   white-space: normal;
 }
-label[for] {
+label[data-legend], label[for] {
   cursor: pointer;
 }
 input[type="range"]:hover:after {
@@ -89,6 +89,6 @@ section {
 section > iframe {
   display: none;
 }
-input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}} {
+input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {
   display: block;
 }

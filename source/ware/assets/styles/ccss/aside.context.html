@@ -4,22 +4,35 @@ context( stack, new )
   <figure>
           display:none;
     <a>
-      <img/>
-              width: 100%; max-width: {{S_o.FULL_WIDTH_s}};
+      <img>
+              width: 100%;
+              max-width: {{S_o.FULL_WIDTH_s}};
               max-height: calc( {{S_o.FULL_HEIGHT_s}} - {{S_o.NAV_HEIGHT_s}} );
               object-fit: scale-down;
+      </img>
     </a>
   </figure>
   <!--variant-->
   <figure:target>
-          display: block;
-          z-index: 1;
-          position:fixed;
+          display: flex;
+          flex-direction: column;
+          /*z-index: 1;*/
+          position: fixed;
+          padding-top: {{S_o.NAV_HEIGHT_s}};
           top: 0;
           right:0;
           bottom:0;
           left:0;
           background: {{S_o.bgcolor}};
+    <label>
+      position: absolute;
+      <span>
+            background: {{S_o.nav_spot_panorama}};
+      </span>
+    </label>
+    <label:hover>
+            opacity: 1;
+    </label>
   </figure>
 </aside>
 <!--variant-->

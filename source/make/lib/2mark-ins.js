@@ -27,27 +27,31 @@ match_a =>    //: block_ins__a
       value_s
     ] =
       match_a
+  //;console.log( replaced_s )
 
   const val_s =
     PRE_o
       .process__s
-        (
-          value_s
-            .replaceAll
-            (
-              '\n',
-              C_o
-                .INS_VAL_DELIM_s
-            )
-        )
+      (
+        value_s
+          .replaceAll
+          (
+            '\n',
+            C_o
+              .INS_VAL_DELIM_s
+          )
+      )
+
 
   return (
     [
       replaced_s,
-      `${C_o.INS_OPEN_s}${type_s}${C_o.INS_DELIM_s}${key_s}${C_o.INS_DELIM_s}${val_s}${C_o.INS_CLOSE_s}`
+      `${C_o.INS_OPEN_s}${type_s}${C_o.INS_DELIM_s}${key_s}${C_o.INS_DELIM_s}${val_s}${C_o.INS_CLOSE_s}\n`
+      //-- INS_OPEN:::=⁝YOUNG_WOMAN⁝ [[₉ HIDDEN ::⁞ 1586-de_coster~new_york-sothebys~1625-young_woman :::INS_CLOSE
     ]
   )
-}          
+}
+
 
 
 

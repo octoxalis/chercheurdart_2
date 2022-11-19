@@ -429,7 +429,7 @@ const PAI_o =
   
     clipContext_o
       .strokeStyle =
-        '{{S_o.raised_hi}}'
+        '{{S_o.selected_hi}}'
   
     clipContext_o
       .lineWidth =
@@ -602,7 +602,7 @@ const PAI_o =
     {
       context_o
         .fillStyle =
-          '{{S_o.raised_lo}}'
+          '{{S_o.selected_lo}}'
   
       context_o
         .fillRect

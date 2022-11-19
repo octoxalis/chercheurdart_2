@@ -2,6 +2,7 @@
 
 const CONF_o = require( '../../configure.js' )
 const A_o = require( './A_o.js' )
+const U_o = require( './U_o.js' )
 
 const C_o =
 {
@@ -35,6 +36,7 @@ const C_o =
   //=== FILE NAMES
   STAT_W_FILE_s:    '/assets/scripts/js/stat_w.min.js',
   PAINT_W_FILE_s:   '/assets/scripts/js/paint_w.min.js',
+  MEDIA_DIR_s:      `${U_o.url_s}assets/media/img/`,
 
 
   //=== CONFIGURE FLAG
@@ -67,8 +69,10 @@ const C_o =
   [
     'article',    //: section[0]
     'galerie',    //: section[1]
+    'panorama',   //: section[2]
+    'stat',       //: section[3]
   ],
-  STAT_a:         //: section[2]
+  STAT_a:         //: section[3]
   [
     'burst',
     'aster',
@@ -96,6 +100,13 @@ const C_o =
     home:    { icon_s: `&#8226;`, legend_s: `accueil` },
     article: { icon_s: `&#8226;`, legend_s: `article` },
     galerie: { icon_s: `&#8226;`, legend_s: `galerie` },
+    panorama: { icon_s: `&#8226;`, legend_s: `panorama` },
+
+    panorama_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
+    panorama_remove: { icon_s: `&nbsp;`, legend_s: `supprimer`},
+    panorama_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
+    panorama_col: { icon_s: `&nbsp;`, legend_s: `Images par rang`},
+
 
     burst: { icon_s: `&#8718;`, legend_s: `burst`},
     aster: { icon_s: `&#8718;`, legend_s: `aster`},
@@ -152,7 +163,6 @@ const C_o =
   BURST_SCALE_n:       1,
 
 
-  //=== PAINT TOOLS ===
   PAINT_LAYER_n:       8,
   PAINT_DEVIATION_n:   10,
   PAINT_DISTANCE_X_n:  0,        /* factor */
@@ -163,6 +173,9 @@ const C_o =
   CANVAS_RESIZE_n:     .025,
 
   PAINT_SLIDER_n:      2,    //: 2px line
+
+  //=== PANORAMA TOOLS ===
+  PANORAMA_COL_n:     2,
 
 
   //=== HTML-BODY ANCHORS
@@ -183,6 +196,7 @@ const C_o =
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',
   GALERY_ID_s:      'G',
+  PANORAMA_ID_s:    'P',
   TOPICS_ID_s:      'T',
 
   TABLE_TAG_s:      'span',
@@ -190,6 +204,10 @@ const C_o =
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
   CHAPTER_TAG_s:    'h2',
+
+  //=== HTML-BODY: CLASSES ===
+  SELECTED_CLASS_s: 'selected',
+
 
   //=== LIST ===
   LIST_INDENT_n:  2,

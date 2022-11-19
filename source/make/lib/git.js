@@ -1,6 +1,6 @@
 require( 'dotenv' ).config( { path: '../.env' } )    //: relative to current dir (source)
-const FETCH_o = require( 'node-fetch' )
 const { request: REQ_o } = require( '@octokit/request' )
+const FETCH_o = import( 'node-fetch' )
 
 const A_o     = require( '../data/A_o.js' )
 const U_o     = require( '../data/U_o.js' )

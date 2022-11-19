@@ -15,11 +15,14 @@
   section_a:
   [
    `article`,
-   //XX `galerie`,
+    `galerie`,
+    `panorama`,
+
   ],
 
   script_a:
   [
+    'dom.min.js',
   ],
 
   css_a:
@@ -175,8 +178,13 @@ Horizontal rule after
 ||+  CLI_TABLE  ||
 
 **Image block**
+
 [[₉  Arion  ::
      1703-boucher~princeton-university~1748-arion  ]]
+
+Image sans appel
+[[₉  {{C_o.INS_DISPLAY_s}} ::
+     1586-de_coster~new_york-sothebys~1625-young_woman ]]
 
 
 

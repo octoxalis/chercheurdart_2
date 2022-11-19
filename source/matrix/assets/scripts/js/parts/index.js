@@ -110,17 +110,10 @@ const IND_o =
           }
         )
     }
-  }
-  ,
 
-
-
-  main_input__v:
-  () =>
-  {
     for
     (
-      let input_e
+      let nav_e
       of
       Array
         .from
@@ -130,7 +123,7 @@ const IND_o =
         )
     )
     {
-      input_e
+      nav_e
         .addEventListener
         (
           'click',
@@ -149,10 +142,12 @@ const IND_o =
           }
         )
     }
+
+    PAN_o
+      .listen__v()
   }
   ,
-  
-  
+
 
 
   comment_label__v:
@@ -198,8 +193,8 @@ void function
     IND_o
       .listener__v()
 
-    IND_o
-      .main_input__v()
+    PAN_o
+      .show__v()
 
     const
       {

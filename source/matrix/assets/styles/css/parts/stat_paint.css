@@ -33,7 +33,6 @@ div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[2]}} > div[data-layer_n] {
   --{{C_o.STAT_a[2]}}_rotateY: calc( var(--{{C_o.STAT_a[2]}}_rotate) * 1deg );
   display: grid;
   position: absolute;
-  border: 4px solid {{S_o.shadow_hi}};
   background: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
   perspective-origin: center center;
   transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )translateX( var(--{{C_o.STAT_a[2]}}_translateX) )rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )scale( var(--{{C_o.STAT_a[2]}}_scale_layer) );
@@ -332,7 +331,17 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range]:focus + la
 }
 .raised {
   z-index: 5;
-  border-top: 16px solid {{S_o.raised_hi}} !important;
+}
+div.raised:before {
+  content: '';
+  position: absolute;
+  top: -{{S_o.PAD_16}};
+  left: 0;
+  width: {{S_o.PAD_16}};
+  height: {{S_o.PAD_16}};
+  border: 4px solid  {{S_o.selected_hi}};
+  border-radius: 8px;
+  background: transparent;
 }
 .cursor_move {
   cursor: move;

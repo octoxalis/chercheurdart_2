@@ -7,42 +7,47 @@ const RGB_H__n =
   b_n
 ) =>
 {
-  const min_n =
-    Math
-      .min( r_n, g_n, b_n )
-
   const max_n =
     Math
       .max( r_n, g_n, b_n )
 
+  const min_n =
+    Math
+      .min( r_n, g_n, b_n )
+
   if
   (
-    max_n === min_n
+    max_n
+    ===
+    min_n
   )
   {
     return 0 // achromatic
   }
 
-  const max_min_n =
-    max_n - min_n
+  const deltaSub_n =
+    max_n
+    -
+    min_n
 
   const h_n =
     max_n === r_n
     ?
-      ( (g_n - b_n) / max_min_n )
+      ( (g_n - b_n) / deltaSub_n )
       +
       ( g_n < b_n ? 6 : 0 )
     :
       max_n === g_n
       ?
-        ( (b_n - r_n) / max_min_n ) + 2
+        ( (b_n - r_n) / deltaSub_n ) + 2
       :
-        ( (r_n - g_n) / max_min_n ) + 4
+        ( (r_n - g_n) / deltaSub_n ) + 4
 
   return ~~(
     h_n * 60
   )
 }
+
 
 
 
@@ -53,35 +58,37 @@ const RGB_S__n =
   b_n
 ) =>
 {
-  const min_n =
-    Math.min( r_n, g_n, b_n )
-
   const max_n =
     Math
       .max( r_n, g_n, b_n )
 
-  const max_min_n =
-    max_n - min_n
+  const min_n =
+    Math.min( r_n, g_n, b_n )
+
+  const deltaSub_n =
+    max_n
+    -
+    min_n
 
   if
   (
-    ! max_min_n
+    ! deltaSub_n
   )
   {
     return 0 // achromatic
   }
 
-  const min_max =
+  const deltaAdd_n =
     min_n
     +
     max_n
 
   return (
-    min_max > 255
+    deltaAdd_n > 255
     ?
-      max_min_n / ( 510 - max_n - min_n )
+      deltaSub_n / ( 510 - deltaSub_n )
     :
-      max_min_n / min_max
+      deltaSub_n / deltaAdd_n
   )
 }
 
@@ -92,7 +99,15 @@ const RGB_L__n =
   g_n,
   b_n
 ) =>
-  ( Math.min( r_n, g_n, b_n ) + Math.max( r_n, g_n, b_n ) )  / 510
+//XX  ( Math.min( r_n, g_n, b_n ) + Math.max( r_n, g_n, b_n ) )  / 510
+( Math
+    .min( r_n, g_n, b_n )
+  +
+  Math
+    .max( r_n, g_n, b_n )
+)
+/
+510
 
 
 
@@ -146,6 +161,7 @@ const STAT_W_o =
   imgBitmap_a: new Map(),     //: store for multiple use (ex. {{C_o.STAT_a[2]}})
 
   imgLayer_a: [],             //: store image canvas
+
 
 
 
@@ -428,7 +444,7 @@ async bitmap__o
     )
     {
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //...;console.time( 'scan' )
+      ;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
   
       //=== fetch image data Array
@@ -608,11 +624,11 @@ async bitmap__o
         //:=== HUE
         let hue_n =
           RGB_H__n
-          (
-            r_n,
-            g_n,
-            b_n
-          )
+            (
+              r_n,
+              g_n,
+              b_n
+            )
       
         STAT_W_o
           .scan_a[STAT_W_o.SCAN_hue_n]
@@ -627,13 +643,13 @@ async bitmap__o
         //:=== SAT
         let sat_n =
           ~~( RGB_S__n
-            (
-              r_n,
-              g_n,
-              b_n
-            )
-            *
-            100
+              (
+                r_n,
+                g_n,
+                b_n
+              )
+              *
+              100
           )
       
         STAT_W_o
@@ -649,13 +665,13 @@ async bitmap__o
         //:=== LUM
         let lum_n =
           ~~( RGB_L__n
-            (
-              r_n,
-              g_n,
-              b_n
-            )
-            *
-            100
+              (
+                r_n,
+                g_n,
+                b_n
+              )
+              *
+              100
           )
       
         STAT_W_o
@@ -742,7 +758,7 @@ async bitmap__o
           )      //: lum rank max_n is at [0][0]
 
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //...;console.timeEnd( 'scan' )
+      ;console.timeEnd( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
   }
@@ -958,8 +974,8 @@ async bitmap__o
       stat_s
     )
     {
-      //=== burst ===
-      case '{{C_o.STAT_a[0]}}':
+      case '{{C_o.STAT_a[0]}}' :      //=== burst ===
+
         if
         (
           STAT_W_o
@@ -1105,14 +1121,11 @@ async bitmap__o
       
           maxfreq_n:
             STAT_W_o
-              .scan_a[ STAT_W_o[`SCAN_${part_s}_rank_n`] ]
-                [0]
+              .scan_a
+                [ STAT_W_o[`SCAN_${part_s}_rank_n`] ]
                   [0]
+                    [0]
           ,
-          //... onHueChange:
-          //... ,
-          //... onHueTrace:
-          //... ,
         }
       
         STAT_W_o
@@ -1125,9 +1138,8 @@ async bitmap__o
 
 
     
-      //=== paint ===
-      case '{{C_o.STAT_a[2]}}':
-        //;console.log( STAT_W_o.stat_o )
+
+      case '{{C_o.STAT_a[2]}}' :      //=== paint ===
 
         const painter_c =
           STAT_W_o

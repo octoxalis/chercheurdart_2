@@ -1,51 +1,147 @@
-section > div[id^={{C_o.DIV_ID_s}}_stat] {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry {
+  --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_col_n, 2) - 2 ) * 1% );
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: {{S_o.PAD_2}};
+  padding: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_4}} ) 1vmin 1vmin;
+  max-width: 100vw;
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > input, section > div[id^={{C_o.DIV_ID_s}}_stat] > canvas {
-  display: none;
-  background: transparent;
-  cursor: crosshair;
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure {
+  width: var(--col_width);
+  display: grid;
+  position: relative;
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: {{S_o.PAD_6}};
-  z-index: 1;
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > img {
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a {
   position: absolute;
+  top: 0;
+  color: currentColor;
+  text-decoration: none;
+  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border: none;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption {
+  position: relative;
+  padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+  background: {{S_o.shadow_hi}};
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} {
+  display: table;
+  --font_max: 18px;
+  --font_scale: 1.9vw;
+  font-style: normal;
+  line-height: 1.3;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i {
+  font-style: normal;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
+  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a {
+  color: currentColor;
+  text-decoration: none;
+  border-bottom: 1px solid {{S_o.shadow_ne}};
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a:hover {
+  border-bottom: 1px solid;
+  filter: brightness( {{S_o.brigtness_hi}} );
+  transition: opacity .2s;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
+  --font_max: 20px;
+  --font_scale: 2.2vw;
+  font-weight: {{S_o.FONT_BOLD_s}};
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
+  --font_max: 18px;
+  --font_scale: 2vw;
+  font-weight: 400;
+  font-style: italic;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption:hover {
+  clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure[data-display_b=false] {
+  border: 1px solid {{S_o.selected_hi}};
+  border-radius: 4px;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure[data-display_b=false] > img {
+  opacity: .01;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure[class="selected"]:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: {{S_o.PAD_4}};
+  height: {{S_o.PAD_4}};
+  border: 2px solid {{S_o.selected_hi}};
+  border-radius: 4px;
+  background: {{S_o.selected_hi}};
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: calc( 100vh - 16em );
+  left: calc( 50vw - 100px - {{S_o.PAD_1}} );
   padding: {{S_o.PAD_2}};
-  width: {{ S_o.NAV_SETTINGS_s}};
+  background: {{S_o.table}};
+  border-radius: 4px;
+  opacity: .1;
+  transition: opacity .2s ease;
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label > span[data-icon=substat] {
-  background: {{S_o.nav_spot_stat}};
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label {
+  margin: {{S_o.PAD_2}};
+  width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 2px solid {{S_o.shadow_hi}};
+  font-size: 85%;
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label:hover > span[data-icon] {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label:hover {
+  filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > input[type=range] {
+  position: relative;
+  top: {{S_o.PAD_5}};
+  width: 200px;
   background: transparent;
+  cursor: pointer;
+  transform: scaleY( .3 );
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] {
-  top: {{S_o.PAD_8}};
-  left: {{S_o.PAD_2}};
-  height: fit-content;
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label[for] {
+  top: -{{S_o.PAD_6}};
+  padding: {{S_o.PAD_1}};
+  text-align: left;
+  text-transform: none;
+  font-size: 80%;
+  border: none;
+  opacity: .5;
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=increment] {
-  background: {{S_o.nav_spot_set_1}};
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > input[type=range]:focus {
+  outline: none;
+  filter: hue-rotate( -220deg );
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=decrement] {
-  background: {{S_o.nav_spot_set_2}};
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control:hover {
+  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
+  opacity: 1;
+  transition: opacity 1s ease;
 }
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=open] {
-  background: {{S_o.nav_spot_set_3}};
-}
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label:hover > span {
-  background: transparent;
-}
-section > div:not([id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}"]) {
-  width: {{S_o.FULL_WIDTH_s}};
-  height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
-}
-input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked ~ section#{{C_o.STAT_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked ~ section#{{C_o.STAT_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked ~ section#{{C_o.STAT_a[2]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}:checked ~ section#{{C_o.STAT_a[3]}} {
-  display: block;
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > * {
+  grid-area: 1/-1;
 }
