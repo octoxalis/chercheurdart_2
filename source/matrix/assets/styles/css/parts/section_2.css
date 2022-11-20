@@ -17,11 +17,11 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   height: auto;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a {
-  position: absolute;
-  top: 0;
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid {{S_o.shadow_ne}};
+  position: absolute;
+  top: 0;
   border: none;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption {
@@ -118,14 +118,15 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > input[type=range] {
   position: relative;
-  top: {{S_o.PAD_5}};
+  top: {{S_o.PAD_12}};
   width: 200px;
   background: transparent;
   cursor: pointer;
   transform: scaleY( .3 );
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label[for] {
-  top: -{{S_o.PAD_6}};
+  position: relative;
+  top: -{{S_o.PAD_2}};
   padding: {{S_o.PAD_1}};
   text-align: left;
   text-transform: none;

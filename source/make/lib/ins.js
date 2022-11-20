@@ -927,9 +927,9 @@ module.exports =
             `<section id="${C_o.SECTION_a[1]}">`
             + `${INS_o.gallery_a.join( '\n' )}`
             + `</section>`
-            + `<aside id="gray">${INS_o.gray_a.join( '\n' )}`
-            +`</aside>`
-            + `<aside id="color">${INS_o.color_a.join( '\n' )}`
+            + `<aside>`
+            + INS_o.gray_a.join( '\n' )
+            + INS_o.color_a.join( '\n' )
             + `</aside>`
           :
             ''    //: remove

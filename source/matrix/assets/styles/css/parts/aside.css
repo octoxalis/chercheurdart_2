@@ -1,8 +1,15 @@
 aside {
+  display: grid;
   background: {{S_o.bgcolor}};
 }
 aside > figure {
   display: none;
+}
+aside > figure > a {
+  position: relative;
+  top: {{S_o.PAD_8}};
+  text-decoration: none;
+  border: 0;
 }
 aside > figure > a > img {
   width: 100%;
@@ -10,7 +17,14 @@ aside > figure > a > img {
   max-height: calc( {{S_o.FULL_HEIGHT_s}} - {{S_o.NAV_HEIGHT_s}} );
   object-fit: scale-down;
 }
+aside > figure > a > img[src*="/gray"] {
+  cursor: url(cursor_gray.svg), auto;
+}
+aside > figure > a > img[src*="/color"] {
+  cursor: url(cursor_color.svg), auto;
+}
 aside > figure:target {
+  grid-area: 1/-1;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -21,6 +35,9 @@ aside > figure:target {
   left: 0;
   background: {{S_o.bgcolor}};
 }
+aside > figure:target > a:hover {
+  border: 0;
+}
 aside > figure:target > label {
   position: absolute;
 }
@@ -29,18 +46,4 @@ aside > figure:target > label > span {
 }
 aside > figure:target > label:hover {
   opacity: 1;
-}
-aside#gray > figure > a {
-  text-decoration: none;
-  border: 0;
-}
-aside#gray > figure > a > img {
-  cursor: url(cursor_color.svg), auto;
-}
-aside#color > figure > a {
-  text-decoration: none;
-  border: 0;
-}
-aside#color > figure > a > img {
-  cursor: url(cursor_gray.svg), auto;
 }

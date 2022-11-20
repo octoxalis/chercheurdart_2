@@ -11,6 +11,7 @@
   subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
   abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
   workID_s:   '1586-de_coster~new_york-sothebys~1625-young_woman',
+  widthHeight_s:  '1388_2000',
   //... issue_n: -1,
 
   section_a:
