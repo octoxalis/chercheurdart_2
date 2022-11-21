@@ -28,6 +28,16 @@ match_a =>    //: block_ins__a
     ] =
       match_a
       
+  //;console.log( 'block_ins__a' )
+  //;console.table(
+  //  [
+  //    replaced_s,
+  //    type_s,
+  //    key_s,
+  //    value_s
+  //  ]
+  // )
+
   const val_s =
     PRE_o
       .process__s

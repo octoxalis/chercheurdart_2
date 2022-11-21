@@ -9,7 +9,7 @@ const REX_o =
                         //-- format (tween char)
 //:    #        header      
 //:    -        hrule       
-//:    ,        break       
+//:    ;        break       
 //:    *        strong      
 //:    ^        emphasis    
 //:    =        list
@@ -37,7 +37,7 @@ const REX_o =
 
                                 //-- open only
 const HRULE_CHAR_s =        '\\-'     //: -
-const BREAK_CHAR_s =        ','
+const BREAK_CHAR_s =        ';'
 const HEADER_CHAR_s =       '#'
                                 //-- open === close
 const COMMENT_CHAR_s =      '/'

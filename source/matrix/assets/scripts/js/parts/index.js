@@ -142,9 +142,6 @@ const IND_o =
           }
         )
     }
-
-    PAN_o
-      .listen__v()
   }
   ,
 
@@ -192,9 +189,6 @@ void function
   {
     IND_o
       .listener__v()
-
-    PAN_o
-      .show__v()
 
     const
       {

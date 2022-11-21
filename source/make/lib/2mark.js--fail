@@ -513,10 +513,34 @@ const PRE_o =
                   }
                 )
 
+        ;console.log( 'block_inc__a: source_s' )
+        ;console.log( source_s )
+
+        /*
+        if
+        (
+          value_s
+            .indexOf( '.md' )      //: is tweenmark file?
+          >
+          -1
+        )
+        {
+          source_s =
+            PRE_o
+              .process__s
+              (
+                source_s
+              )
+        }
+        */
+
         PRE_o
           .include_a
             [ `${key_s.trim()}` ] =
               source_s
+        ;console.log( 'block_inc__a' )
+        ;console.log( 'source_s: ' + source_s + 'END'
+         )
       }
 
       return (
@@ -556,10 +580,12 @@ const PRE_o =
             .startsWith( BLOCK_OPEN_s )    //: nested block
         )
         {
+          //;console.log( 'BLOCK_OPEN_s == ' + value_s )
           value_s =
             PRE_o
               .process__s
               (
+                //--`${value_s}${BLOCK_CLOSE_s}`    //: add skiped BLOCK_CLOSE_s
                 `${value_s}${BLOCK_CLOSE_s}`    //: add skiped BLOCK_CLOSE_s
               )
 
@@ -570,6 +596,10 @@ const PRE_o =
             [ `${key_s.trim()}` ] =
               value_s
       }
+
+//;console.log( PRE_o.declare_a)
+//      ;console.log( 'REMOVE DECLARE:' )
+//      ;console.log( replaced_s )
 
       return (
         [
@@ -718,10 +748,36 @@ const PRE_o =
         ] =
           match_a
 
+      //;console.log( 'key_s = ' + key_s)
+      //;console.log( 'value_s = ' + value_s)
+
       let declare_s =
         PRE_o
           .declare_a
             [ `${key_s}` ]
+
+
+        //;console.log( declare_s )
+
+      if
+      (
+        value_s    //:  key_s :: value_s for image insert
+      )
+      {
+        declare_s =
+          declare_s
+            .replace
+            (
+             C_o.INS_DISPLAY_s,
+              value_s
+                .substring
+                (
+                  `${BLOCK_SEPAR_s}${BLOCK_SEPAR_s} `.length
+                )
+            )
+
+        //;console.log( declare_s )
+      }
 
       return (
         [
@@ -773,6 +829,7 @@ const PRE_o =
     token_a      //: optional (subset of PRE_o.token_a)
   ) =>
     {
+
       //??let match_a
   
       for
@@ -783,6 +840,27 @@ const PRE_o =
           .token_a
       )
       {
+      /*
+      ;console.log(
+          Array
+            .from
+            (
+              source_s
+                .matchAll
+                (
+                  token_a
+                  ||
+                  M_o
+                    [ `${token_s}_re` ]
+                )
+            )
+      )
+      */
+
+
+
+
+
         for
         (
           match_a
@@ -801,6 +879,11 @@ const PRE_o =
             )
         )
         {
+          //;console.log( token_s )
+          //;console.log( 
+          //       ...PRE_o
+          //           [ `${token_s}__a` ]( match_a )
+          // )
           source_s =
             source_s
               .replace

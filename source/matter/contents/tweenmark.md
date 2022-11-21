@@ -99,7 +99,7 @@ Previous line was a comment.
 
 ##2 3. Formating
 
-Break after  ,,
+Break after  ;;
 Break before
 
 
@@ -197,7 +197,7 @@ Image sans appel
 **Include selected lines** ||+  MARK_TEST  ::  6, 9-40 ||
 
 
-**Reference**    ,,
+**Reference**    ;;
 ||  DECLARE_VAL  ||
 
 ||  VERSION_ID  ||

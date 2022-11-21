@@ -881,6 +881,7 @@ module.exports =
       if
       (
         key_s
+          //??.trim()
           .includes( C_o.INS_DISPLAY_s )
       )
       {

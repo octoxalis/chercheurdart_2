@@ -664,3 +664,15 @@ const PAN_o =
   ,
 
 }
+
+void function
+()
+{
+  PAN_o
+    .listen__v()
+
+  PAN_o
+    .show__v()
+
+} ()
+

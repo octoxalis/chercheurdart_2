@@ -30,7 +30,7 @@ const CODES_o =
       `<section id="${section_s}">`
       + MARK_o
           .process__s( source_s )
-      + `</div>\n`                 //: first close last chapter div
+      + `</div>\n`                 //!!!! CHECK      //: first close last chapter div
         //... + C_o.TOPICS_REPLACE_s      //: to be replaced by topics to documents list
         //... + C_o.COMMENTS_REPLACE_s     //: to be replaced by comment part, if issue_n is defined
       + `</section>\n`         //: \n is mandatory

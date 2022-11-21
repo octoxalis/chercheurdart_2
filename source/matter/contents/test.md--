@@ -1,0 +1,48 @@
+---js
+{
+  layout:    'frame.njk',
+  permalink: 'test.html',
+  tags:      [ 'collection' ],
+  eleventyExcludeFromCollections: false,
+  //-- expires_n: 10,
+
+  doc_n:      5120,
+  title_s:    `Adam de Coster`,
+  subtitle_s: `Adam de Coster: Jeune femme tenant une quenouille`,
+  abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
+  workID_s:   '1586-de_coster~new_york-sothebys~1625-young_woman',
+  widthHeight_s:  '1388_2000',
+  //... issue_n: -1,
+
+  section_a:
+  [
+    `article`,
+    `galerie`,
+    `panorama`,
+  ],
+
+  script_a:
+  [
+    'dom.min.js',
+  ],
+  css_a:
+  [
+  ],
+
+  version_a:
+  [
+    '2021-10-14T12:00:00Z'
+  ],
+
+}
+---
+{% _section section_a[0] %}
+##1 TITLE
+
+##2 SUB
+
+[[₉  A. de Coster  ::  1586-de_coster~new_york-sothebys~1625-young_woman ]]
+
+[[₉  HIDDEN  ::  1703-boucher~princeton-university~1748-arion ]]
+
+{% end_section %}
