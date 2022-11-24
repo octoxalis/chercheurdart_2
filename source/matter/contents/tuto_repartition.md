@@ -1,0 +1,40 @@
+---js
+{
+  layout:    'frame.njk',
+  permalink: 'tuto_repartition.html',
+  tags:      [ 'collection' ],
+  eleventyExcludeFromCollections: false,
+  //-- expires_n: 10,
+
+  doc_n:      3073,
+  title_s:    `Répartition chromatique`,
+  subtitle_s: `Mode d'emploi`,
+  abstract_s: `Uutiliser les outils de répartition`,
+  //... issue_n: -1,
+
+  section_a:
+  [
+    `article`,
+  ],
+
+  script_a:
+  [
+  ],
+  css_a:
+  [
+  ],
+
+  version_a:
+  [
+    '2022-11-21T12:00:00Z'
+  ],
+
+}
+---
+{% _section section_a[0] %}
+##1 Répartition chromatique
+
+##2 Comment
+
+
+{% end_section %}

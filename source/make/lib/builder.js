@@ -106,7 +106,9 @@ const BUI_o =
         (
           output_s,
           data_o
-            .permalink
+            .permalink,
+          data_o
+            .section_a,
         )
     
     if

@@ -640,26 +640,32 @@ css__v:
           + `</figure>`
         )
 
-    INS_o
-      .gallery_a
-        .push
-        (
-          `<figure id="${C_o.GALERY_ID_s}${INS_o.index_n}">`
-          
-          + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
-          + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
-          + ` width="${width_n}" height="${height_n}"`
-          + ` loading="lazy" />`
-          
-          + `<a href="#${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
-          + `<figcaption>`
-          +   INS_o
-                .legend_s
-          + `</figcaption>`
-          + `</a>`
-
-          + `</figure>`
-        )
+    if
+    (
+      true
+    )
+    {
+      INS_o
+        .gallery_a
+          .push
+          (
+            `<figure id="${C_o.GALERY_ID_s}${INS_o.index_n}">`
+            
+            + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
+            + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
+            + ` width="${width_n}" height="${height_n}"`
+            + ` loading="lazy" />`
+            
+            + `<a href="#${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
+            + `<figcaption>`
+            +   INS_o
+                  .legend_s
+            + `</figcaption>`
+            + `</a>`
+  
+            + `</figure>`
+          )
+      }
   }
   ,
 
@@ -778,9 +784,12 @@ module.exports =
   insert__s
   (
     processed_s,
-    permalink_s
+    permalink_s,
+    section_a
   )
   {
+    ;console.log( section_a )
+
     INS_o
       .gray_a = []       //: create stack
 
@@ -916,6 +925,15 @@ module.exports =
     INS_o
       .css__v( permalink_s )
 
+
+    const gallery_s =
+      section_a
+        ?.[1]          //: section_a is not always defined
+      ?
+        `${INS_o.gallery_a.join( '\n' )}`
+      :
+        ''
+
     processed_s =
       processed_s
         .replace    //: add gallery asides (gray and color)
@@ -926,7 +944,7 @@ module.exports =
             .length
           ?
             `<section id="${C_o.SECTION_a[1]}">`
-            + `${INS_o.gallery_a.join( '\n' )}`
+            + gallery_s
             + `</section>`
             + `<aside>`
             + INS_o.gray_a.join( '\n' )

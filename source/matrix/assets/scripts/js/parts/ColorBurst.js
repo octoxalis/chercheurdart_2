@@ -31,12 +31,12 @@ class ColorBurst
     this
       .unit_n =
         burst_o
-          .range_n
+          .capacity_n
         *
         2 * Math.PI    //: full circle (360°)
         /
         burst_o
-          .range_n
+          .capacity_n
 
     this
       .paint_c =
@@ -45,6 +45,9 @@ class ColorBurst
           this
             .context_o
         )
+
+    this
+      .clear__v()
 
     this
       .draw__v()
@@ -185,7 +188,9 @@ class ColorBurst
           )
           .path__c
           (
-            `M ${startX_n} ${startY_n} A 1 1 0 0 1 ${endX_n} ${endY_n} L ${this.median_n} ${this.median_n}`
+            `M ${startX_n} ${startY_n}
+             A 0 0 0 0 0 ${endX_n} ${endY_n}
+             L ${this.median_n} ${this.median_n}`
           )
       }
       else

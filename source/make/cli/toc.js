@@ -313,8 +313,8 @@ const TOC_o =
   <input id=L_${atdoc_o.doc_s} type=checkbox>
   <ins>
     <${C_o.TABLE_TAG_s} data-ins=₀>
-      <${C_o.ROW_TAG_s} data--=stamp>${F_o.stamp__s(atdoc_o.version_a[0])}</${C_o.ROW_TAG_s}>
       <${C_o.ROW_TAG_s} data--=abstract>${atdoc_o.subtitle_s}</${C_o.ROW_TAG_s}>
+      <${C_o.ROW_TAG_s} data--=stamp>${F_o.stamp__s(atdoc_o.version_a[0])}</${C_o.ROW_TAG_s}>
     </${C_o.TABLE_TAG_s}>
   </ins>\n`    //: skip </li>
       }

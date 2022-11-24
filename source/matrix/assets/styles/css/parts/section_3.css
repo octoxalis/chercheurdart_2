@@ -21,9 +21,7 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav {
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label > span[data-icon=substat] {
   background: {{S_o.nav_spot_stat}};
-}
-section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label:hover > span[data-icon] {
-  background: transparent;
+  opacity: 0;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] {
   top: {{S_o.PAD_8}};

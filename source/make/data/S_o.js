@@ -82,7 +82,7 @@ const S_o =
   S_o.textcolor = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
   S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`
   S_o.bg_higher = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`
-  S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /1)`
+  S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /.6)`
   S_o.highlight = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_2} /1)`
   S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`
@@ -121,7 +121,7 @@ const S_o =
   S_o.NAV_LABEL_s  = S_o.PAD_4
   S_o.NAV_SETTINGS_s = '288px'  //: 18em
 
-  S_o.back_hue = S_o.hue_p
+  S_o.back_hue = 0
   S_o.back_sat = '100'
   S_o.back_lum = '50'
 

@@ -62,6 +62,6 @@
 
 <<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
-Graphique de rayonnement (aster) à échelle logarithmique
+Graphique de répartition chromatique à échelle logarithmique
 
 {% end_section %}

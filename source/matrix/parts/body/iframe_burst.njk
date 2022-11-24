@@ -2,12 +2,15 @@
 <div id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue" name="{{C_o.STAT_a[0]}}_nav" type="radio" checked>
   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue" width=2048 height=2048></canvas>
+
+  
   <nav id="{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_hue">
     <label>{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}
       <span id="{{C_o.STAT_a[0]}}_hue_n">0</span>
     </label>
     <label>{{C_o.NAV_LEGEND_o.burst_freq.legend_s}}
-      <span id="{{C_o.STAT_a[0]}}_hue_ratio_n">0</span></label>
+      <span id="{{C_o.STAT_a[0]}}_hue_ratio_n">0</span>
+    </label>
     <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat" data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}">
         <span data-icon="substat">{{C_o.NAV_LEGEND_o.empty}}</span>
     </label>
@@ -50,7 +53,47 @@
     </label>
   </nav>
   
+
+
+
+
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_canvas" name="{{C_o.STAT_a[0]}}_settings" type="radio" checked>
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings" name="{{C_o.STAT_a[0]}}_settings" type="radio">
+
+
+  <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings">
+    <aside>
+      <nav>
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_canvas" data-legend="{{C_o.NAV_LEGEND_o.stat_close.legend_s}}">
+              <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
+          </label>
+      </nav>
+
+      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_rangeY_n" type="range" min="1" max="180" value="{{C_o.BURST_RANGE_n}}" data-tip="{{C_o.BURST_RANGE_n}}"/><!-- TEMPORARY -->
+          <div>
+            <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_back" width=32 height=720></canvas>
+            <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_front" width=96 height=720></canvas>
+          </div>
+          <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_hue_trace">
+              <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.empty}}</span>
+              <output id="output_{{C_o.STAT_a[0]}}_hue" type="text">{{S_o.back_hue}}</output>
+              <!--<output id="output_{{C_o.STAT_a[0]}}_hue_freq" type="text">0,001</output>-->
+          </label>
+      </div>
+
+    </aside>
+  </div>
+
+
+
+
+
   <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view">
+    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}">
+        <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
+
       <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale" type="range" min="1" max="8" step=".25" value="{{C_o.BURST_SCALE_n}}" data-tip="{{C_o.BURST_SCALE_n}}"/>
       <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
   </div>

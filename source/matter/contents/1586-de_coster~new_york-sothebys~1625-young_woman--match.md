@@ -69,7 +69,6 @@
 
 <<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
-
-Modification
+Corrélations stylistiques
 
 {% end_section %}

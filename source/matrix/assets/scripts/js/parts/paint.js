@@ -1833,7 +1833,7 @@ const PAI_o =
   init__v
   ()
   {
-    const hsl_a =
+    const canvas_a =
       [
         'hue_back',
         'hue_front',
@@ -1849,7 +1849,7 @@ const PAI_o =
           .worker__o
             (
               '{{C_o.STAT_a[2]}}',
-              hsl_a,
+              canvas_a,
               'Painter',
               PAI_o
                 .message__v,
@@ -1861,11 +1861,11 @@ const PAI_o =
     PAI_o
       .addLayer__n()    //: playground
     
-    for    //: worker draw sliders initial state
+    for    //=== worker draw sliders initial state
     (
-      let hsl_s
+      let canvas_s
       of
-      hsl_a
+      canvas_a
     )
     {
       PAI_o
@@ -1875,20 +1875,19 @@ const PAI_o =
             { 
               task_s: 'PUT_draw',
               stat_s: '{{C_o.STAT_a[2]}}',
-              part_s: hsl_s,
+              part_s: canvas_s,
               hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_back_hue' )
             }
           )
 
-      //=== paint brush
-      if
+      if      //=== paint brush
       (
-        hsl_s
+        canvas_s
           .endsWith( '_back' )
       )
       {
         const atHsl_s =    //--> hue, sat, lum
-          hsl_s
+          canvas_s
             .slice
             (
               0,

@@ -108,19 +108,19 @@ const C_o =
     panorama_col: { icon_s: `&nbsp;`, legend_s: `Images par rang`},
 
 
-    burst: { icon_s: `&#8718;`, legend_s: `burst`},
+    burst: { icon_s: `&#8718;`, legend_s: `répartition`},
     aster: { icon_s: `&#8718;`, legend_s: `aster`},
-    paint: { icon_s: `&#8718;`, legend_s: `paint`},  
-    match: { icon_s: `&#8718;`, legend_s: `corrélation`},  
+    paint: { icon_s: `&#8718;`, legend_s: `transformation`},
+    match: { icon_s: `&#8718;`, legend_s: `corrélation`},
 
-    burst_hue:  { icon_s: `&#8728;`, legend_s: `tonalité`},  
+    burst_hue:  { icon_s: `&#8728;`, legend_s: `tonalité`},
     burst_sat:  { icon_s: `&#8728;`, legend_s: `chromaticité`},
     burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},
     
-    burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},  
+    burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},
     
     stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
-    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`}, 
+    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
     stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
     stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
 
@@ -161,6 +161,7 @@ const C_o =
 
   //=== BURST TOOLS ===
   BURST_SCALE_n:       1,
+  BURST_RANGE_n:       36,
 
 
   PAINT_LAYER_n:       8,

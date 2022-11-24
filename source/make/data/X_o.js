@@ -13,14 +13,6 @@ const X_o =
   AT_DOCN_n:   0,      //: doc_n in docs_a
   AT_TOPICS_n: 4,      //: [topic_s,...]
 
-  //XX ARTICLE_n:   0,      //: 0-1023
-  //XX WORKS_n:     1,      //: 1024-
-  //XX NEWS_n:      2,      //: 2048-
-  //XX                                 //... _n: 3,      //: 3072-
-  //XX SITE_n:      4,      //: 4096-
-  //XX TECH_n:      5,      //: 5120-
-  //XX UI_n:        6,      //: 6144-
-  //XX HIDDEN_n:    7,      //: 7168-8191
   ARTICLE_n:     0,      //: 0-1023
   NEWS_n:        1,      //: 1024-
   SITE_n:        3,      //: 3072-

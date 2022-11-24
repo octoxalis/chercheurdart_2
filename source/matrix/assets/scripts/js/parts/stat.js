@@ -75,19 +75,19 @@ const STAT_o =
   {
     for
     (
-      let part_s
+      let canvas_s
       of
       canvas_a
     )
     {
-                            //;console.log( part_s )
       const canvas_e =
         STAT_o
           .canvas__e
           (
             stat_s,
-            part_s
+            canvas_s
           )
+                            //;console.log( canvas_e )
       
       const offCanvas_e =
         canvas_e
@@ -100,7 +100,7 @@ const STAT_o =
             {
               task_s:     'PUT_canvas',
               stat_s:     stat_s,
-              part_s:     part_s,
+              part_s:     canvas_s,
               canvas_e:   offCanvas_e,
               script_s:   script_s,
               pixel_n:    window
@@ -139,28 +139,7 @@ const STAT_o =
     )
     {
       case '{{C_o.STAT_a[0]}}':
-        STAT_o
-          .putCanvas__v
-          (
-            stat_s,
-            canvas_a,
-            script_s,
-            worker_o,
-          )
-            
-        break;
-    
       case '{{C_o.STAT_a[1]}}':
-        STAT_o
-          .putCanvas__v
-          (
-            stat_s,
-            canvas_a,
-            script_s,
-            worker_o,
-          )
-        break
-
       case '{{C_o.STAT_a[2]}}':
         STAT_o
           .putCanvas__v

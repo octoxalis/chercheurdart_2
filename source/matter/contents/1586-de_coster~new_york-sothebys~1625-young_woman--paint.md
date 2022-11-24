@@ -63,7 +63,6 @@
 
 <<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
-
-Modification
+Transformations chromatiques comparées
 
 {% end_section %}

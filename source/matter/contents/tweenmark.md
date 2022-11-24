@@ -23,6 +23,7 @@
   script_a:
   [
     'dom.min.js',
+    'panorama.min.js',
   ],
 
   css_a:

@@ -1,3 +1,5 @@
 {{- layoutContent | safe -}}
 {{C_o.GALERY_REPLACE_s}}{# custom tag deleted after section insertion #}
+{%  if section_a[2] %}{# panorama #}
 {% include "parts/body/panorama.njk" %}
+{% endif %}
