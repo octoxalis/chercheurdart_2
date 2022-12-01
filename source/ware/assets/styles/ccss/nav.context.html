@@ -50,7 +50,7 @@ context( stack, new )
   </a>
   <label>
         opacity: 1;
-        filter: brightness( {{S_o.brigtness_hi}} );
+        filter: brightness( {{S_o.brightness_hi}} );
         transition: opacity .2s;
   </label>
 </nav>
@@ -64,26 +64,27 @@ context( stack, new )
         content: attr( data-legend );
         position: absolute;
         font-size: 85%;    /* block round_label: line-height: .85; */
-        transform: scale( 0 );
+        transform: scaleX( 0 );
         transform-origin: center;
-        transition: transform ease .3s;
+        transition: transform ease .2s;
 </label>
 <!--variant-->
 <a[data-legend]:hover:before>
   context( copy, next )
 </a>
 <label[data-legend]:hover:before>
-        transform: scale( 1 );
+        transform: scaleX( 1 );
 </label>
 
 <a[data-legend]>
   context( copy, next )
 </a>
 <label[data-legend]>
-        display: grid;
-        left: {{S_o.PAD_4}};
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         overflow: hidden;
-        width: var(--nav_width);
+        width: 100%;
         font-weight: 300;
         color: currentColor;
         text-transform: uppercase;
@@ -97,10 +98,15 @@ context( stack, new )
 </a>
 <label[data-legend]>
   <span>
-          grid-area: 1/-1;
+          /*grid-area: 1/-1;*/
           context( block, round_label )
   </span>
 </label>
+<a[data-legend]:hover>
+  <span>
+    context( copy, next )
+  </span>
+</a>
 <label[data-legend]:hover>
   <span[data-role]>
           background: transparent;

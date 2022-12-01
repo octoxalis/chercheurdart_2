@@ -1,0 +1,6 @@
+---js
+{
+  layout:    `assets/scripts/js/fullscreen.njk`,
+  permalink: `assets/scripts/js/fullscreen.min.js`,
+}
+---

@@ -5,7 +5,7 @@
 </block>
 <block link_hover>
         border-bottom: 1px solid;
-        filter: brightness( {{S_o.brigtness_hi}} );
+        filter: brightness( {{S_o.brightness_hi}} );
         transition: opacity .2s;
 </block>
 <block link_raw>
@@ -37,12 +37,12 @@
         --font_scale: 1.9vw;
         font-style: normal;
         /*font-weight: 200;*/
-        line-height: 1.3;
+        /*line-height: 1.3;*/
 </block>
 <block list_marker>
         content: '\{{S_o.LIST_MARKER_s}}';
         position: relative;
-        left: -1rem;
+        left: -{{S_o.PAD_4}};
         color: {{S_o.shadow_ne}};
 </block>
 <block form_button>
@@ -62,8 +62,9 @@
         display: inline-block;
         width:  {{S_o.NAV_LABEL_s}};
         height: {{S_o.NAV_LABEL_s}};
+        border: calc( {{S_o.NAV_LABEL_s}} * .25 ) solid var(--bg_spot);
+        line-height: {{S_o.NAV_LABEL_s}};  /* vertical-align */
         border-radius: 50%;
-        line-height: .85;
         text-align: center;
 </block>
 

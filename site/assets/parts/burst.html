@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <div id="DI_stat_burst">
   <input id="IN_burst_hue" name="burst_nav" type="radio" checked>
-  <canvas id="CA_burst_hue" width=2048 height=2048></canvas>
+  <canvas id="CA_burst_hue" width=1024 height=1024></canvas>  <!-- 1024: default value -->
 
   
   <nav id="NA_burst_hue">
     <label>tonalité
       <span id="burst_hue_n">0</span>
     </label>
-    <label>fréquence
+    <label>proportion
       <span id="burst_hue_ratio_n">0</span>
     </label>
-    <label for="IN_burst_sat" data-legend="chromaticité">
+    <label for="IN_burst_sat" data-legend="intensité">
         <span data-icon="substat">&nbsp;</span>
     </label>
     <label for="IN_burst_lum" data-legend="luminosité">
@@ -20,12 +20,12 @@
   </nav>
 
   <input id="IN_burst_sat" name="burst_nav" type="radio">
-  <canvas id="CA_burst_sat" width=2048 height=2048></canvas>
+  <canvas id="CA_burst_sat" width=1024 height=1024></canvas>
   <nav id="NA_burst_sat">
-    <label>chromaticité
+    <label>intensité
       <span id="burst_sat_n">0</span>
     </label>
-    <label>fréquence
+    <label>proportion
       <span id="burst_sat_ratio_n">0</span>
     </label>
     <label for="IN_burst_hue" data-legend="tonalité">
@@ -37,29 +37,25 @@
   </nav>
 
   <input id="IN_burst_lum" name="burst_nav" type="radio">
-  <canvas id="CA_burst_lum" width=2048 height=2048></canvas>
+  <canvas id="CA_burst_lum" width=1024 height=1024></canvas>
   <nav id="NA_burst_lum">
     <label>luminosité
       <span id="burst_lum_n">0</span>
     </label>
-    <label>fréquence
+    <label>proportion
       <span id="burst_lum_ratio_n">0</span>
     </label>
     <label for="IN_burst_hue" data-legend="tonalité">
       <span data-icon="substat">&nbsp;</span>
     </label>
-    <label for="IN_burst_sat" data-legend="chromaticité">
+    <label for="IN_burst_sat" data-legend="intensité">
       <span data-icon="substat">&nbsp;</span>
     </label>
   </nav>
-  
 
-
-
-
-  <input id="IN_burst_canvas" name="burst_settings" type="radio" checked>
-  <input id="IN_burst_settings" name="burst_settings" type="radio">
-
+  <input id="IN_burst_canvas" name="burst_settings" type="radio">
+  <input id="IN_burst_settings" name="burst_settings" type="radio" checked><!--  TEMPORARY -->
+  <input id="IN_burst_settings_shadow" type="checkbox">
 
   <div id="DI_burst_settings">
     <aside>
@@ -67,36 +63,93 @@
           <label for="IN_burst_canvas" data-legend="fermer">
               <span data-role="open">&nbsp;</span>
           </label>
+          <label id="LA_burst_settings_shadow" for="IN_burst_settings_shadow" data-legend="replier">
+              <span data-role="shadow">&nbsp;</span>
+          </label>
       </nav>
 
       <div id="DI_burst_slide_hue">
-          <input id="IN_burst_hue_rangeY_n" type="range" min="1" max="180" value="36" data-tip="36"/><!-- TEMPORARY -->
-          <div>
-            <canvas id="CA_burst_hue_back" width=32 height=720></canvas>
-            <canvas id="CA_burst_hue_front" width=96 height=720></canvas>
-          </div>
-          <label id="LA_burst_hue_trace">
-              <span data-icon="&nbsp;">&nbsp;</span>
-              <output id="output_burst_hue" type="text">0</output>
-              <!--<output id="output_burst_hue_freq" type="text">0,001</output>-->
+      
+        <div id="DI_burst_hue_range">
+          <label data-range_n="1">
+            <input name="burst_hue_range" type="radio" checked>
+          </label>
+          <label data-range_n="3">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="6">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="10">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="15">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="20">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="24">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="30">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="36">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="40">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="45">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="60">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="72">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="90">
+            <input name="burst_hue_range" type="radio">
+          </label>
+          <label data-range_n="120">
+            <input name="burst_hue_range" type="radio">
+          </label>
+        </div>
+
+        <div>
+          <canvas id="CA_burst_hue_back" width=48 height=720></canvas>
+          <canvas id="CA_burst_hue_front" width=48 height=720></canvas>
+        </div>
+        <label id="LA_burst_hue_trace">
+            <output id="output_burst_hue" type="text">0</output>
+            <span data-icon="&nbsp;">⊳</span>
           </label>
       </div>
 
+     <div id="DI_burst_thresh_hi">
+      <label for="IN_burst_thresh_hi">seuil haut</label>
+      <input id="IN_burst_thresh_hi" type="range" min="0" max="100" step="1" value="0" data-tip="0">
+     </div>
+     <div id="DI_burst_thresh_lo">
+      <input id="IN_burst_thresh_lo" type="range" min="0" max="100" step="1" value="0" data-tip="0">
+      <label for="IN_burst_thresh_lo">seuil bas</label>
+     </div>
     </aside>
   </div>
-
-
-
-
 
   <div id="DI_burst_layer_view">
     <label for="IN_burst_settings" data-legend="palette">
         <span data-role="open">&nbsp;</span>
     </label>
+    <label for="IN_burst_ruler" data-legend="calibrer">
+        <span data-role="open">&nbsp;</span>
+    </label>
 
-      <input id="IN_burst_view_scale" type="range" min="1" max="8" step=".25" value="1" data-tip="1"/>
+      <input id="IN_burst_view_scale" type="range" min="0.25" max="4" step="0.25" value="1" data-tip="1">
       <label for="IN_burst_view_scale">Échelle</label>
   </div>
-
+  
   <script id=script_burst data-src="/assets/scripts/js/burst.min.js"></script>
 </div>

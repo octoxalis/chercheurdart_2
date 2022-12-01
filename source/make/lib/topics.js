@@ -151,7 +151,7 @@ const DOCS_o =
       linkList_s
       ?
 `
-<hr/>
+<hr>
 <h2>Correspondances</h2>
 <div><p></p>
 <label for=topics_link_a data-list=link_n>${count_n}</label>

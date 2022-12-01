@@ -47,8 +47,9 @@ details[data--="{{C_o.STAT_a[3]}}_details"] > summary > span > label > span {
   display: inline-block;
   width: {{S_o.NAV_LABEL_s}};
   height: {{S_o.NAV_LABEL_s}};
+  border: calc( {{S_o.NAV_LABEL_s}} * .25 ) solid var(--bg_spot);
+  line-height: {{S_o.NAV_LABEL_s}};
   border-radius: 50%;
-  line-height: .85;
   text-align: center;
   background: {{S_o.match_spot}};
 }

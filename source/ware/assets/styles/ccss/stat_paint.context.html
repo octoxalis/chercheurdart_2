@@ -19,7 +19,7 @@
         --{{C_o.STAT_a[2]}}_hue_trace: 0;
         --{{C_o.STAT_a[2]}}_sat_trace: 0;
         --{{C_o.STAT_a[2]}}_lum_trace: 0;
-        --{{C_o.STAT_a[2]}}_back_hue: {{S_o.hue_p}};
+        --{{C_o.STAT_a[2]}}_hue_back: {{S_o.hue_p}};
         --{{C_o.STAT_a[2]}}_back_sat: 100;
         --{{C_o.STAT_a[2]}}_back_lum: 50;
 </:root>
@@ -44,7 +44,7 @@
             display: grid;
             position: absolute;
             /*border: 4px solid {{S_o.shadow_hi}};*/
-            background: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
+            background: hsla( var(--{{C_o.STAT_a[2]}}_hue_back) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
             perspective-origin: center center;
             transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )
                        translateX( var(--{{C_o.STAT_a[2]}}_translateX) )
@@ -113,15 +113,13 @@
 ~
 <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings>
         display: block;
-        height: calc( 100vh - {{S_o.PAD_8}} );
         overflow-X: hidden;
         overflow-Y: auto;
         transform: translateX( 0 );
   <aside>
           display: flex;
           flex-direction: column;
-          gap: {{S_o.PAD_8}};
-          padding: 0 {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_8}};    /* left space for input data-tip */
+          gap: {{S_o.PAD_4}};
           width: 100%;
           height: fit-content;
     <nav>
@@ -139,6 +137,14 @@
       </label>
     </nav>
 
+  </aside>
+  <aside>
+    <ul>
+    context( copy, next )
+    </ul>
+    <div>
+            margin: 0 {{S_o.PAD_8}}};    /* left space for input data-tip */
+    </div>
   </aside>
 </div>
 
@@ -162,7 +168,7 @@
           font-size: 85%;
   </label>
   <label:not(:first-of-type):hover>
-          filter: brightness( {{S_o.brigtness_lo}} );
+          filter: brightness( {{S_o.brightness_lo}} );
           background: {{S_o.ins_shadow_ne}};
   </label>
   <!--variant-->
@@ -177,7 +183,7 @@
           cursor: pointer;
   </label>
   <label[for]:hover>
-            filter: brightness( {{S_o.brigtness_lo}} );
+            filter: brightness( {{S_o.brightness_lo}} );
             background: {{S_o.ins_shadow_ne}};
   </label>
 </li>
@@ -198,7 +204,7 @@
           width: 100%;
           background: transparent;
           cursor: pointer;
-          transform: scaleY( .3 );
+          transform: scaleY( .5 );
   </li>
 </ul>
 <ul#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop>
@@ -213,7 +219,6 @@
       flex-direction: column;
       gap: {{S_o.PAD_1}};
       padding: 0;
-      width: 100%;
   <label>
           width: 100%;
           text-align: center;
@@ -223,7 +228,7 @@
           font-size: 85%;
   </label>
   <label:hover>
-          filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );
+          filter: invert( .5 ) brightness( {{S_o.brightness_hi}} );
   </label>
 </div>
 
@@ -239,7 +244,7 @@
           width: 100px;
           background: transparent;
           cursor: pointer;
-          transform: scaleY( .3 );
+          transform: scaleY( .5 );
   <input[type=range]:nth-of-type( 2n ) />
           width: 200px;
           transform: translate( -{{S_o.PAD_2}}, {{S_o.PAD_4}} ) rotate( 90deg ) scaleY( .3 );
@@ -280,13 +285,13 @@
     <output>
             width: 6ch;
             height: {{S_o.PAD_4}};
-            color: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
+            line-height: {{S_o.PAD_4}};    /* vertical centering */
+            color: hsla( var(--{{C_o.STAT_a[2]}}_hue_back) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
             background: transparent;
             font-size: 90%;
             font-weight: 500;
             border: none;
             opacity: 0;
-            line-height: 1.2;    /* vertical centering */
     </output>
     <output:first-of-type>
             width: 3ch;
@@ -294,7 +299,7 @@
     <span>
             width: {{S_o.PAD_3}};
             height: {{S_o.PAD_3}};
-            background: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
+            background: hsla( var(--{{C_o.STAT_a[2]}}_hue_back) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
             border: 2px solid currentColor;
             border-radius: 50%;
     </span>
@@ -305,7 +310,7 @@
           transition: transform .5s;
     <span>
             background: transparent;
-            filter: brightness( {{S_o.brigtness_hi}} );
+            filter: brightness( {{S_o.brightness_hi}} );
     </span>
     <output>
             opacity: 1;    /* reveal */
@@ -340,7 +345,7 @@ context( stack, new )
           width: 200px;
           background: transparent;
           cursor: pointer;
-          transform: scaleY( .3 );
+          transform: scaleY( .5 );
   </input>
   <label>
           position: relative;
@@ -357,7 +362,7 @@ context( stack, new )
   <label[data-legend]>
         top: 0;                                    /* overwrite -{{S_o.PAD_6}}; */
         margin: 0 0 {{S_o.PAD_4}} {{S_o.PAD_1}};
-        font-size: 115%;                           /* overwrite 85% */
+        font-size: 95%;                           /* overwrite 85% */
         text-transform: uppercase;
     <span>
             background: {{S_o.nav_spot_set_3}};    /* same as settings close */

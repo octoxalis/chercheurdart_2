@@ -93,6 +93,7 @@ const RGB_S__n =
 }
 
 
+
 const RGB_L__n =
 (
   r_n,
@@ -123,7 +124,7 @@ const STAT_W_o =
   }
   ,
 
-  message_o:
+  message_a:
   [
     'GET_scan',
     'GET_status',
@@ -291,13 +292,38 @@ const STAT_W_o =
     ratio_n
   )
   {
-    const translate_n =
+    //; ;console.log(
+    //;   STAT_W_o
+    //;     .stat_o
+    //;       [ `${stat_s}_o` ]
+    //;         [ `${part_s}_o` ]
+    //; )
+    const
+    {
+      width,
+      height
+    } =
       STAT_W_o
         .stat_o
           [ `${stat_s}_o` ]
             [ `${part_s}_o` ]
               .canvas_o
-                .width
+
+    STAT_W_o    //=== CLEAR ===
+      .stat_o
+        [ `${stat_s}_o` ]
+          [ `${part_s}_o` ]
+            .context_o
+              .clearRect
+              (
+                0,
+                0,
+                width,
+                height
+              )
+
+    const translate_n =  //: keep centering
+      width
       *
       .5
       *
@@ -308,7 +334,7 @@ const STAT_W_o =
         [ `${stat_s}_o` ]
           [ `${part_s}_o` ]
             .context_o
-              .setTransform
+              .setTransform            //!!!!!!!!!!!!! CHECK
               (
                 ratio_n, 0, 0, ratio_n,
                 translate_n,
@@ -443,7 +469,7 @@ async bitmap__o
     )
     {
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      ;console.time( 'scan' )
+      //;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
   
       //=== fetch image data Array
@@ -757,7 +783,7 @@ async bitmap__o
           )      //: lum rank max_n is at [0][0]
 
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      ;console.timeEnd( 'scan' )
+      //;console.timeEnd( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
   }
@@ -773,13 +799,92 @@ async bitmap__o
     const
     {
       part_s,
-      frequency_n
+      //-- angle_n,    //:  mutable needed
+      range_n           //: 360, 120...101..6, 3, 2  (1 excluded)
     } =
       payload_o
 
-    let index_n =
+    let angle_n =  //: mutable needed
+      payload_o
+        .angle_n
+
+    //;console.log( range_n )
+    
+    let range_a    //: [ fromAngle_n, toAngle_n ]
+      
+    if
+    (
+      range_n
+      !==
+      360    //: 120...2 (hue range)
+      &&
+      range_n
+      !==
+      101    //:  sat or lum
+    )
+    {
+      let partLength_n =
+        360
+        /
+        range_n
+
+      angle_n =
+        ~~(
+          angle_n
+          /
+          partLength_n
+        )
+      
+      let from_n =
+        angle_n
+        *
+        partLength_n
+
+      range_a =
+        [
+          from_n,
+          from_n
+          +
+          partLength_n
+        ]
+    }
+    else
+    {
+      range_a =
+        [
+          angle_n
+        ]
+    }
+
+    const part_a =
       STAT_W_o
-        [ `SCAN_${part_s}_freq_n` ]
+        .stat_o
+          .burst_o
+            [ `${part_s}_o` ]
+              .part_a
+      
+    if
+    (
+      part_a
+    )
+    {
+    }
+
+    const frequency_o =
+      STAT_W_o
+        .stat_o
+          .burst_o
+            [ `${part_s}_o` ]
+              .part_a
+                [ angle_n ]
+
+    const frequency_n =
+      frequency_o        //: can be null (see put_draw__v)
+      ?
+        frequency_o
+          .frequency_n
+      :
+        0
 
     STAT_W_o
       .post__v
@@ -788,14 +893,12 @@ async bitmap__o
           task_s: 'PUT_frequency',
           //: CLIENT_ALL_s
           part_s: part_s,
-          frequency_n: STAT_W_o
-                         .scan_a
-                         [ index_n ]
-                           [ frequency_n ],
-          capacity_n: STAT_W_o
-                        .capacity_n
+          frequency_n: frequency_n,
+          range_a: range_a,
+          capacity_n: STAT_W_o      //: reserved for ratio
+                        .capacity_n,
         }
-      )           //;console.log( STAT_W_o.scan_a[ index_n ][ frequency_n ] )
+      )
   }
   ,
 
@@ -898,9 +1001,6 @@ async bitmap__o
     } =
       payload_o
 
-    //;console.log( stat_s + '--' +  part_s )
-    //;console.log( payload_o.canvas_e )
-
     if
     (
       !  STAT_W_o
@@ -968,10 +1068,14 @@ async bitmap__o
     {
       stat_s,
       part_s,
-      rangeY_n
+      back_hue_n,
+      rangeY_n,     //: {{C_o.STAT_a[0]}}
+      shift_n,      //: {{C_o.STAT_a[0]}}
+      maxpos_n,     //: {{C_o.STAT_a[0]}} ColorBurst
+      thresh_o,     //: {{C_o.STAT_a[0]}} ColorBurst
     } =
       payload_o
-
+      
     let painter_c
 
     let
@@ -988,54 +1092,7 @@ async bitmap__o
     )
     {
       case '{{C_o.STAT_a[0]}}' :      //=== burst ===
-        back_hue_n =
-          payload_o
-            .back_hue_n
-
-        if
-        (
-          STAT_W_o
-            .scan_a
-              [STAT_W_o.SCAN_hue_freq_n]
-                [ back_hue_n ]
-          ===
-          0
-        )
-        {
-          STAT_W_o
-            .stat_o
-              [ `${stat_s}_o` ]
-                .sat_o
-                  .burst_c
-                    .clear__v()
-    
-          STAT_W_o
-            .stat_o
-              [ `${stat_s}_o` ]
-                .lum_o
-                  .burst_c
-                    .clear__v()
-    
-          return
-        }
-        //-->
-        //!!!!!!!!!!!!!!!!!!!!!!!!! TEMPORARY
-    
-        let offset_n =
-            back_hue_n
-            -
-            Math
-              .floor
-              (
-                back_hue_n
-                /
-                rangeY_n
-              )
-              *
-              rangeY_n
-        //!!!!!!!!!!!!!!!!!!!!!!!!! END TEMPORARY
-
-        //=== Sliders ===
+        //=== SLIDERS ===
         let capacity_n = 0
             
         switch
@@ -1052,6 +1109,7 @@ async bitmap__o
           default:    //: 'sat': 'lum':
             capacity_n =
               101
+
             break
         }
 
@@ -1062,138 +1120,157 @@ async bitmap__o
                 [ `${part_s}_o` ] //: hue_back, hue_front...
                   .painter_c
 
-        if
+        switch
         (
-           part_s
-           ===
-          'hue_back'
+          part_s
         )
         {
-            
-          for
-          (
-            let at_n = 0;
-            at_n < 360;
-            ++at_n
-          )
-          {
-            painter_c
-              .fill__c
-              (
-                [
-                  at_n,
-                  100,
-                  50,
-                  //--1
-                ]
-              )
-              .rect__c
-              (
-                0,
-                at_n * 2, //??* STAT_W_o.pixel_n
-                painter_c
-                  .context_o
-                    .canvas
-                      .width,      //??* STAT_W_o.pixel_n,
-                2,        //??* STAT_W_o.pixel_n,
-                'fill'
-              )
-          }
-
-          return     //: no burst drawing for hue_back (only slider)
-        }
-        //>
-
-        if    //=== range slider ===
-        (
-           part_s
-           ===
-          'hue_front'
-        )
-        {
-          const median_n =
-            rangeY_n
-            >>
-            1
-  
-          for
-          (
-            let at_n = 0;
-            at_n < 360;
-            ++at_n
-          )
-          {
-            let atHue_n =
-              (
-                (
-                  Math
-                    .floor
-                    (
-                      (
-                        at_n
-                        +
-                        360
-                        -
-                        offset_n
-                      )
-                      /
-                      rangeY_n
-                    )
-                  *
-                  rangeY_n
-                )
+        //=== BACK SLIDER ===
+          case 'hue_back':
+            for
+            (
+              let at_n = 0;
+              at_n < 360;
+              ++at_n
+            )
+            {
+              let atHue_n =
+                at_n
                 +
-                median_n
-              )
-              %
-              360
-
-            painter_c
-              .fill__c
-              (
-                [
-                  atHue_n,
-                  100,
-                  50,
-                  //--1
-                ]
-              )
-              .rect__c
-              (
-                0,
-                at_n * 2, //??* STAT_W_o.pixel_n
-                painter_c
-                  .context_o
-                    .canvas
-                      .width,      //??* STAT_W_o.pixel_n,
-                2,        //??* STAT_W_o.pixel_n,
-                'fill'
-              )
-          }
+                shift_n
+                %
+                360
+  
+              painter_c
+                .fill__c
+                (
+                  [
+                    atHue_n,
+                    100,
+                    50
+                  ]
+                )
+                .rect__c
+                (
+                  0,
+                  at_n * 2, //??* STAT_W_o.pixel_n
+                  painter_c
+                    .context_o
+                      .canvas
+                        .width,      //??* STAT_W_o.pixel_n,
+                  2,        //??* STAT_W_o.pixel_n,
+                  'fill'
+                )
+            }
+            break
+        
+        //=== FRONT SLIDER ===
+          case 'hue_front':    
+            for
+            (
+              let at_n = 0;
+              at_n < 360;
+              ++at_n
+            )
+            {
+              let atHue_n =
+                (
+                  (
+                    Math
+                      .floor
+                      (
+                        (
+                          at_n
+                        )
+                        /
+                        rangeY_n
+                      )
+                    *
+                    rangeY_n
+                  )
+                  +
+                  shift_n
+                )
+                %
+                360
+  
+              painter_c
+                .fill__c
+                (
+                  [
+                    atHue_n,
+                    100,
+                    50,
+                    //--1
+                  ]
+                )
+                .rect__c
+                (
+                  0,
+                  at_n * 2, //??* STAT_W_o.pixel_n
+                  painter_c
+                    .context_o
+                      .canvas
+                        .width,      //??* STAT_W_o.pixel_n,
+                  2,        //??* STAT_W_o.pixel_n,
+                  'fill'
+                )
+            }
+      
+            break
+        
+          default:
+            break
         }
-        
-        //=== burst ===      
-        let part_a = []
-        let atRange_n = 0
+
+        //=== BURST ===      
+        let at_n =        0
+        let fromHue_n =   0
+        let atRange_n =   0
         let rangeAccu_n = 0
-        let maxfreq_n = 0
-        let at_n = 0
+        let maxfreq_n =   0
         
-        const median_n =
-          rangeY_n
-          >>
-          1
-          
-        for
-        (
-          let freq_n
-          of
+        STAT_W_o
+          .stat_o
+            [ `${stat_s}_o` ]
+              [ `${hsl_s}_o` ]
+                .part_a  = []    //: reset if already used
+
+        //: slice array from shift
+        const head_a =
           STAT_W_o
             .scan_a
               [
                 STAT_W_o
                   [`SCAN_${hsl_s}_freq_n`]
               ]
+              .slice
+              (
+                0,
+                shift_n
+              )
+
+        const tail_a =
+          STAT_W_o
+            .scan_a
+              [
+                STAT_W_o
+                  [`SCAN_${hsl_s}_freq_n`]
+              ]
+              .slice
+              (
+                shift_n
+              )
+
+        const freq_a =
+          tail_a
+            .concat( head_a )
+          
+        for
+        (
+          let freq_n
+          of
+          freq_a
         )
         {
           let hue_n,
@@ -1206,8 +1283,17 @@ async bitmap__o
           )
           {
             case 'hue':
+              //?? painter_c
+              //??   .clear__c()
+            
               hue_n =
-                at_n
+                (
+                  at_n
+                  +
+                  shift_n
+                )
+                %
+                360
         
               sat_n = 100
         
@@ -1265,7 +1351,7 @@ async bitmap__o
                 }
               }
 
-              //: else
+              //: else, end of rangeY
               if
               (
                 rangeAccu_n
@@ -1277,7 +1363,7 @@ async bitmap__o
                   rangeAccu_n
               }
 
-              if    //!!!!!!!!!!!!! CHECK
+              if
               (
                 rangeAccu_n
               )
@@ -1286,7 +1372,6 @@ async bitmap__o
                   rangeAccu_n
               }
 
-              atRange_n++
 
               rangeAccu_n = 0    //: reset
 
@@ -1298,13 +1383,7 @@ async bitmap__o
                     Math
                       .floor
                       (
-                        (
-                          at_n
-                          +
-                          360
-                          -
-                          offset_n
-                        )
+                        fromHue_n
                         /
                         rangeY_n
                       )
@@ -1312,16 +1391,17 @@ async bitmap__o
                     rangeY_n
                   )
                   +
-                  median_n
+                  shift_n
                 )
                 %
                 360
-                -
-                rangeY_n
             
               sat_n = 100
             
               lum_n = 50    //: neutral
+
+              fromHue_n =
+                at_n
 
               break
               
@@ -1329,64 +1409,74 @@ async bitmap__o
               break
           }
   
-          part_a
-            .push
-            (
-              freq_n
-              ?
-                {
-                  frequency_n: freq_n,
-                  hsl_a:
-                    [
-                      hue_n,
-                      sat_n,
-                      lum_n
-                    ]
-                }
-              :
-                null
-            )
+          STAT_W_o
+            .stat_o
+              [ `${stat_s}_o` ]
+                [ `${hsl_s}_o` ]
+                  .part_a
+                    .push
+                    (
+                      freq_n
+                      ?
+                        {
+                          frequency_n: freq_n,
+                          hsl_a:
+                            [
+                              hue_n,
+                              sat_n,
+                              lum_n
+                            ]
+                        }
+                      :
+                        null
+                    )
         
           ++at_n
         }
 
-//        ;console.log( part_s )
-//        ;console.log( rangeY_n )
-//        ;console.log( at_n )
-//        ;console.log( part_a )
+        const width_n =
+          STAT_W_o
+            .stat_o
+              [ `${stat_s}_o` ]
+                [ `${hsl_s}_o` ]
+                  .canvas_o
+                    .width
 
-        const burst_o =
+        const burst_o =        //=== draw arguments ===
         {
-          color_a: part_a,
+          frequency_a:
+            STAT_W_o
+              .stat_o
+                [ `${stat_s}_o` ]
+                  [ `${hsl_s}_o` ]
+                    .part_a
+          ,
           capacity_n:
             part_s
             ===
             'hue_front'
             ?
-              part_a
-                .length
+              STAT_W_o
+                .stat_o
+                  [ `${stat_s}_o` ]
+                    [ `${hsl_s}_o` ]
+                      .part_a              
+                        .length
             :
-              capacity_n,
-
+              capacity_n
+          ,
           canvas_o:
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
                   [ `${hsl_s}_o` ]
-                    .canvas_o,
-      
+                    .canvas_o
+          ,
           median_n:
-            (
-              STAT_W_o
-                .stat_o
-                  [ `${stat_s}_o` ]
-                    [ `${hsl_s}_o` ]
-                      .canvas_o
-                        .width
-            )
+            width_n
             *
-            .5,
-        
+            .5
+          ,
           maxfreq_n:
             !maxfreq_n     //: not 'hue_front'
             ?
@@ -1398,21 +1488,22 @@ async bitmap__o
             :
               maxfreq_n
           ,
+          maxpos_n:
+            width_n
+            *
+            maxpos_n
+          ,
+          thresh_o:
+            thresh_o
+          ,
         }
         
-        //; console.log(
-        //; STAT_W_o
-        //;   .stat_o
-        //;     [ `${stat_s}_o` ]
-        //;       .hue_o
-        //; )
-
         STAT_W_o
           .stat_o
             [ `${stat_s}_o` ]
               [ `${hsl_s}_o` ]
                 .burst_c =
-                  new ColorBurst( burst_o )    //=== draw burst ===
+                  new ColorBurst( burst_o )  //: drawing
 
         break
 
@@ -1529,7 +1620,6 @@ async bitmap__o
 
         break
 
-
       default:    //: '{{C_o.STAT_a[3]}}'
         break
     }
@@ -1543,7 +1633,9 @@ async bitmap__o
     payload_o
   )
   {
-    ;;;;;;;;    console.time( 'put_hsl__v' )
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //;console.time( 'put_hsl__v' )
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     let
     {
@@ -1961,7 +2053,9 @@ async bitmap__o
       }
     }
 
-    ;;;;;;;;    console.timeEnd( 'put_hsl__v' )
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //;console.timeEnd( 'put_hsl__v' )
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
   ,
 
@@ -1974,13 +2068,6 @@ async bitmap__o
   {
     const { stat_s, part_s, scale_n } =
       payload_o
-
-    STAT_W_o
-      .stat_o
-        [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
-            .burst_c
-              .clear__v()    //!!! before scaling
 
     STAT_W_o
       .scale__n      // scale canvas
@@ -2025,7 +2112,7 @@ async bitmap__o
     if
     (
       STAT_W_o
-        .message_o
+        .message_a
           .includes( task_s )
     )
     {

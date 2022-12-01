@@ -24,7 +24,7 @@ const COM_o =
         }
       )
       +
-      `</div><hr/>`    //: between list and form
+      `</div><hr>`    //: between list and form
       +
       FS_o
         .readFileSync

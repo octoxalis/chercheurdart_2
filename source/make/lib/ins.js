@@ -454,7 +454,7 @@ tableWidth__s:
   }
 
   return (
-    `.colw_${colw_s} > ${C_o.ROW_TAG_s}:nth-child(-n+${col_n}){filter:brightness(${S_o.brigtness_lo});font-weight:600}\n`
+    `.colw_${colw_s} > ${C_o.ROW_TAG_s}:nth-child(-n+${col_n}){filter:brightness(${S_o.brightness_lo});font-weight:600}\n`
     + ruleset_s
     )
 }

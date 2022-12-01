@@ -34,25 +34,26 @@ nav > a:hover {
 }
 nav > a:hover > span[data-role], nav:hover > a, nav:hover > label {
   opacity: 1;
-  filter: brightness( {{S_o.brigtness_hi}} );
+  filter: brightness( {{S_o.brightness_hi}} );
   transition: opacity .2s;
 }
 a[data-legend]:before, label[data-legend]:before {
   content: attr( data-legend );
   position: absolute;
   font-size: 85%;
-  transform: scale( 0 );
+  transform: scaleX( 0 );
   transform-origin: center;
-  transition: transform ease .3s;
+  transition: transform ease .2s;
 }
 a[data-legend]:hover:before, label[data-legend]:hover:before {
-  transform: scale( 1 );
+  transform: scaleX( 1 );
 }
 a[data-legend], label[data-legend] {
-  display: grid;
-  left: {{S_o.PAD_4}};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   overflow: hidden;
-  width: var(--nav_width);
+  width: 100%;
   font-weight: 300;
   color: currentColor;
   text-transform: uppercase;
@@ -60,14 +61,14 @@ a[data-legend], label[data-legend] {
   transition: all ease .2s;
 }
 a[data-legend] > span, label[data-legend] > span {
-  grid-area: 1/-1;
   display: inline-block;
   width: {{S_o.NAV_LABEL_s}};
   height: {{S_o.NAV_LABEL_s}};
+  border: calc( {{S_o.NAV_LABEL_s}} * .25 ) solid var(--bg_spot);
+  line-height: {{S_o.NAV_LABEL_s}};
   border-radius: 50%;
-  line-height: .85;
   text-align: center;
 }
-label[data-legend]:hover > span[data-role] {
+a[data-legend]:hover > span, label[data-legend]:hover > span[data-role] {
   background: transparent;
 }

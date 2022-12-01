@@ -344,7 +344,10 @@ const PAI_o =
                 (
                   wheel_o,
                   layer_n
-                )
+                ),
+            {
+              passive: true
+            }
           )
 
     PAI_o
@@ -1240,7 +1243,7 @@ const PAI_o =
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[2]}}_back_${hsl_s}`,
+          `--{{C_o.STAT_a[2]}}_${hsl_s}_back`,
           +value_s
         )
 
@@ -1259,7 +1262,7 @@ const PAI_o =
                 task_s: 'PUT_draw',
                 stat_s: '{{C_o.STAT_a[2]}}',
                 part_s: 'sat_front',
-                hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_back_hue' )
+                hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
               }
             )
       }
@@ -1269,7 +1272,7 @@ const PAI_o =
 
 
 
-  hslEvent__v:
+  eventHsl__v:
   (
     click_o
   ) =>
@@ -1557,8 +1560,8 @@ const PAI_o =
     layer_n
   ) =>
   {
-    wheel_o
-      .preventDefault()
+    //...??? wheel_o
+    //...???   .preventDefault()
      
     let scale_n =
       PAI_o
@@ -1730,7 +1733,7 @@ const PAI_o =
         (
           `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[2]}}_${hsl_s}_front`,
           PAI_o
-            .hslEvent__v
+            .eventHsl__v
         )
 
       DOM_o
@@ -1876,7 +1879,7 @@ const PAI_o =
               task_s: 'PUT_draw',
               stat_s: '{{C_o.STAT_a[2]}}',
               part_s: canvas_s,
-              hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_back_hue' )
+              hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
             }
           )
 

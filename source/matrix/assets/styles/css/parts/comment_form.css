@@ -40,7 +40,7 @@ form[name=comment] > textarea, form[name=comment] > input {
   font-weight: 200;
 }
 form[name=comment] > textarea:focus, form[name=comment] > label:hover, form[name=comment] > button:hover, form[name=comment] > input:focus {
-  filter: brightness( {{S_o.brigtness_hi}} );
+  filter: brightness( {{S_o.brightness_hi}} );
 }
 form[name=comment] > button {
   padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
@@ -54,7 +54,7 @@ form[name=comment] > button {
   border: 2px solid {{S_o.accept_hi}};
   text-transform: uppercase;
   cursor: pointer;
-  filter: brightness( {{S_o.brigtness_lo}} );
+  filter: brightness( {{S_o.brightness_lo}} );
 }
 form[name=comment] > button[type=reset] {
   margin: auto;

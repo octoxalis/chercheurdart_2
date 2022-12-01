@@ -15,7 +15,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: {{S_o.PAD_6}};
+            gap: {{S_o.PAD_2}};
             z-index: 1;
             position: absolute;
             padding: {{S_o.PAD_2}};
@@ -53,7 +53,7 @@
   <!--variant-->
   <div:not([id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}"])>
           width: {{S_o.FULL_WIDTH_s}};
-          height: calc( 100vh - {{S_o.NAV_HEIGHT_s}});
+          height: 100vh;     /* calc( 100vh - {{S_o.NAV_HEIGHT_s}}); */
   </div>
 </section>
 

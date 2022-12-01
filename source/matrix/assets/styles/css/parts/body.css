@@ -22,19 +22,25 @@ body > nav {
 body > iframe {
   display: none;
 }
-body > a#goto_{{C_o.PAGE_TOP}} {
+body > a#goto_{{C_o.FULL_SCREEN}}, body > a#goto_{{C_o.PAGE_TOP}} {
   z-index: 20;
   position: fixed;
-  top: calc( 100vh - 6vmin );
   left: calc( 100vw - 6vmin );
   width: 4vmin;
   height: 4vmin;
+  line-height: 4vmin;
   text-align: center;
-  vertical-align: bottom;
   border: 1px solid {{S_o.shadow_ne}};
   border-radius: 50%;
   background: transparent;
 }
+body > a#goto_{{C_o.FULL_SCREEN}} {
+  display: none;
+  top: {{S_o.PAD_2}};
+}
+body > a#goto_{{C_o.PAGE_TOP}} {
+  top: calc( 100vh - 6vmin );
+}
 body > a#goto_{{C_o.PAGE_TOP}}:hover {
-  filter: brightness( {{S_o.brigtness_lo}} );
+  filter: brightness( {{S_o.brightness_lo}} );
 }

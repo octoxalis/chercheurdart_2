@@ -62,7 +62,7 @@ class ColorBurst
     {
       if ( color_o )
       {
-        const position_n = scale_c.position__i( color_o.frequency_n )
+        const position_n = scale_c.position__n( color_o.frequency_n )
         const [ startX_n, startY_n ] = this.coord__a( cumul_n, position_n )
         cumul_n += arc_n   //: each color starts where the last color ended, so keep a cumulative bin
         const [ endX_n, endY_n ] = this.coord__a( cumul_n, position_n )

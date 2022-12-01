@@ -1,8 +1,9 @@
 //========================================================= log_scale.js
-/**
- * Logarithmic scale_n
- * @param {*} scale_o : { minpos_n, maxpos_n, minval_n, maxval_n }
- */
+
+
+//-- Logarithmic scale_n
+//-- @param {*} scale_o : { minpos_n, maxpos_n, minval_n, maxval_n }
+ 
 
 class LogScale
 {
@@ -61,7 +62,7 @@ class LogScale
       )
   }
 
-  position__i =
+  position__n =
     value_n =>
       this
         .minpos_n

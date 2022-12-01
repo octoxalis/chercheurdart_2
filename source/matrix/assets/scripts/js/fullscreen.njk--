@@ -1,6 +1,5 @@
 {% set _js %}
 {% include "./parts/fullscreen.js" %}
-{% include "./parts/burst.js" %}
 {% endset %}
 
 {% include "assets/scripts/js/minify.njk" %}

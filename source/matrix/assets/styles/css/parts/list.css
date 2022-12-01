@@ -90,7 +90,7 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + in
   display: none;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins:hover {
-  filter: brightness( {{S_o.brigtness_hi}} );
+  filter: brightness( {{S_o.brightness_hi}} );
 }
 label[data-list=link_n] + input:checked + ul[data-list=link_a] {
   display: block;

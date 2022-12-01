@@ -16,7 +16,7 @@
   --{{C_o.STAT_a[2]}}_hue_trace: 0;
   --{{C_o.STAT_a[2]}}_sat_trace: 0;
   --{{C_o.STAT_a[2]}}_lum_trace: 0;
-  --{{C_o.STAT_a[2]}}_back_hue: {{S_o.hue_p}};
+  --{{C_o.STAT_a[2]}}_hue_back: {{S_o.hue_p}};
   --{{C_o.STAT_a[2]}}_back_sat: 100;
   --{{C_o.STAT_a[2]}}_back_lum: 50;
 }
@@ -33,7 +33,7 @@ div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[2]}} > div[data-layer_n] {
   --{{C_o.STAT_a[2]}}_rotateY: calc( var(--{{C_o.STAT_a[2]}}_rotate) * 1deg );
   display: grid;
   position: absolute;
-  background: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
+  background: hsla( var(--{{C_o.STAT_a[2]}}_hue_back) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
   perspective-origin: center center;
   transform: perspective( var(--{{C_o.STAT_a[2]}}_perspectiveX) )translateX( var(--{{C_o.STAT_a[2]}}_translateX) )rotateY( var(--{{C_o.STAT_a[2]}}_rotateY) )scale( var(--{{C_o.STAT_a[2]}}_scale_layer) );
 }
@@ -90,7 +90,6 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
   display: block;
-  height: calc( 100vh - {{S_o.PAD_8}} );
   overflow-X: hidden;
   overflow-Y: auto;
   transform: translateX( 0 );
@@ -98,8 +97,7 @@ input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside {
   display: flex;
   flex-direction: column;
-  gap: {{S_o.PAD_8}};
-  padding: 0 {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_8}};
+  gap: {{S_o.PAD_4}};
   width: 100%;
   height: fit-content;
 }
@@ -112,6 +110,10 @@ input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav > label:hover > span {
   background: transparent;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > ul, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > div {
+  margin: 0 {{S_o.PAD_8}}}
+;
 }
 ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] {
   width: 100%;
@@ -133,7 +135,7 @@ ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
   font-size: 85%;
 }
 ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label:not(:first-of-type):hover {
-  filter: brightness( {{S_o.brigtness_lo}} );
+  filter: brightness( {{S_o.brightness_lo}} );
   background: {{S_o.ins_shadow_ne}};
 }
 ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input:checked + label {
@@ -143,7 +145,7 @@ ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > labe
   cursor: pointer;
 }
 ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label[for]:hover {
-  filter: brightness( {{S_o.brigtness_lo}} );
+  filter: brightness( {{S_o.brightness_lo}} );
   background: {{S_o.ins_shadow_ne}};
 }
 ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:before {
@@ -162,7 +164,7 @@ ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li#{{C_o.LIST_ID_s}}_{{C_o.
   width: 100%;
   background: transparent;
   cursor: pointer;
-  transform: scaleY( .3 );
+  transform: scaleY( .5 );
 }
 ul#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop {
   display: var(--{{C_o.STAT_a[2]}}_setop_display);
@@ -175,7 +177,6 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup {
   flex-direction: column;
   gap: {{S_o.PAD_1}};
   padding: 0;
-  width: 100%;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup > label {
   width: 100%;
@@ -186,7 +187,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup > label {
   font-size: 85%;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup > label:hover {
-  filter: invert( .5 ) brightness( {{S_o.brigtness_hi}} );
+  filter: invert( .5 ) brightness( {{S_o.brightness_hi}} );
 }
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] {
   display: flex;
@@ -201,7 +202,7 @@ div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > input[type=range] {
   width: 100px;
   background: transparent;
   cursor: pointer;
-  transform: scaleY( .3 );
+  transform: scaleY( .5 );
 }
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > input[type=range]:nth-of-type( 2n ) {
   width: 200px;
@@ -245,13 +246,13 @@ div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] {
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] > output {
   width: 6ch;
   height: {{S_o.PAD_4}};
-  color: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
+  line-height: {{S_o.PAD_4}};
+  color: hsla( var(--{{C_o.STAT_a[2]}}_hue_back) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
   background: transparent;
   font-size: 90%;
   font-weight: 500;
   border: none;
   opacity: 0;
-  line-height: 1.2;
 }
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] > output:first-of-type {
   width: 3ch;
@@ -259,7 +260,7 @@ div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] > output
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"] > span {
   width: {{S_o.PAD_3}};
   height: {{S_o.PAD_3}};
-  background: hsla( var(--{{C_o.STAT_a[2]}}_back_hue) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
+  background: hsla( var(--{{C_o.STAT_a[2]}}_hue_back) calc( var(--{{C_o.STAT_a[2]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[2]}}_back_lum) * 1% ) / 1);
   border: 2px solid currentColor;
   border-radius: 50%;
 }
@@ -270,7 +271,7 @@ div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"]:hover {
 }
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"]:hover > span {
   background: transparent;
-  filter: brightness( {{S_o.brigtness_hi}} );
+  filter: brightness( {{S_o.brightness_hi}} );
 }
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"]:hover > output {
   opacity: 1;
@@ -298,7 +299,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range] {
   width: 200px;
   background: transparent;
   cursor: pointer;
-  transform: scaleY( .3 );
+  transform: scaleY( .5 );
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label {
   position: relative;
@@ -313,7 +314,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label {
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label[data-legend] {
   top: 0;
   margin: 0 0 {{S_o.PAD_4}} {{S_o.PAD_1}};
-  font-size: 115%;
+  font-size: 95%;
   text-transform: uppercase;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label[data-legend] > span {

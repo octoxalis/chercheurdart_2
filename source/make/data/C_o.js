@@ -114,23 +114,29 @@ const C_o =
     match: { icon_s: `&#8718;`, legend_s: `corrélation`},
 
     burst_hue:  { icon_s: `&#8728;`, legend_s: `tonalité`},
-    burst_sat:  { icon_s: `&#8728;`, legend_s: `chromaticité`},
+    burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},
     burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},
     
-    burst_freq: { icon_s: `&#8728;`, legend_s: `fréquence`},
+    burst_freq: { icon_s: `&#8728;`, legend_s: `proportion`},
     
     stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
-    stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
-    stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
+    stat_shadow_fold:     { icon_s: `&nbsp;`, legend_s: `replier`},
+    stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
+    //... stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
+    //... stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
+    burst_ruler: { icon_s: `&nbsp;`, legend_s: `calibrer`},
+    thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
+    thresh_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
+    
 
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
 
     layer_s:            { icon_s: `&nbsp;`,  legend_s: `Plan`},
     layer_initial:      { icon_s: `&nbsp;`,  legend_s: `initial`},
-    layers_add:         { icon_s: `&nbsp;`,  legend_s: `ajouter`},
-    layers_hide:        { icon_s: `&nbsp;`,  legend_s: `masquer`},
+    layers_add:         { icon_s: `&nbsp;`,  legend_s: `Ajouter`},
+    layers_hide:        { icon_s: `&nbsp;`,  legend_s: `Masquer`},
     layers_perspective: { icon_s: `&nbsp;`,  legend_s: `Perspective`},
     layers_distance:    { icon_s: `&nbsp;`,  legend_s: `Distance`},
     layers_rotate:      { icon_s: `&nbsp;`,  legend_s: `Rotation`},
@@ -145,6 +151,8 @@ const C_o =
 
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
     close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
+    left_index_marker:     { icon_s: `&nbsp;`,  legend_s: `⊲`},
+
   },
 
   //=== REPLACE
@@ -160,8 +168,13 @@ const C_o =
 
 
   //=== BURST TOOLS ===
+  SCREEN_DIM_n:        1024,    //: default, set by burst.init()
+  SCREEN_RATIO_n:      1,
   BURST_SCALE_n:       1,
-  BURST_RANGE_n:       36,
+  BURST_RANGE_n:       1,    //: 360 ranges
+  BURST_THRESH_HI_n:   0,
+  BURST_THRESH_LO_n:   0,
+  BURST_NAV_DIM:       360,
 
 
   PAINT_LAYER_n:       8,
@@ -182,6 +195,8 @@ const C_o =
   //=== HTML-BODY ANCHORS
   //-- ANCHOR_DELIM_s : '__',
   PAGE_TOP: 'page_top',
+  FULL_SCREEN: 'full_screen',
+  BURST_RULER: 'burst_ruler',
   
 
   //=== HTML-BODY: TAGS ===
@@ -214,10 +229,11 @@ const C_o =
   LIST_INDENT_n:  2,
 
   //=== HTML-BODY: EXTEND MARKUP ===
-  INFO_s    :           '&#x2139;',
-  UP_ARROW_s:           '&#8593;',
-  IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet
-  LAYER_INDEX_s:        '&#8942;',
+  INFO_s    :           '&#8505;',   //: Information Source Emoji:  ℹ
+  GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow:             ↑
+  FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
+  LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
+  IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
   
   ID_PART_DELIM_s:     '~',   //: between parts
 

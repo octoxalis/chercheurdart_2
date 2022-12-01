@@ -59,9 +59,13 @@ const S_o =
   lum_mode:     CONF_o.LUM_MODE_n,
   lum_contrast: 45,
 
-  brigtness_hi: 1.3,
-  brigtness_ne: 1,
-  brigtness_lo: .7,
+  brightness_hi4: 4,
+  brightness_hi2: 2,
+  brightness_hi: 1.3,  
+  brightness_ne: 1,
+  brightness_lo: .7,
+  brightness_lo2: .5,
+  brightness_lo3: .25,
 
   frame_gradient_from: `hsla( 60 61% 28% /1)`,           /* 11 point scale */
   frame_gradient_to:   `hsla( 20 39% 17% /1)`,
@@ -87,10 +91,12 @@ const S_o =
   S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`
   S_o.lighter =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /1)`
+  S_o.lighter_ne =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.5)`
+  S_o.darker =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
   
   S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`
   S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`
-  S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.25)`
+  S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.1)`
   
   S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`
   S_o.accept_hi =     `hsla(${S_o.hue_accept} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`
@@ -121,12 +127,13 @@ const S_o =
   S_o.NAV_LABEL_s  = S_o.PAD_4
   S_o.NAV_SETTINGS_s = '288px'  //: 18em
 
-  S_o.back_hue = 0
+  S_o.hue_back = 0
   S_o.back_sat = '100'
   S_o.back_lum = '50'
 
   S_o.paint_brush_s = `${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_lo_2}`
 
+  S_o.bg_spot = S_o.bgcolor
 
 
 
@@ -179,9 +186,9 @@ module.exports = S_o
   sat_lo_2: '28%',
   lum_mode: -1,
   lum_contrast: 45,
-  brigtness_hi: 1.3,
-  brigtness_ne: 1,
-  brigtness_lo: 0.7,
+  brightness_hi: 1.3,
+  brightness_ne: 1,
+  brightness_lo: 0.7,
   frame_gradient_from: 'hsla( 60 61% 28% /1)',
   frame_gradient_to: 'hsla( 20 39% 17% /1)',
   lum_hi_4: '1%',

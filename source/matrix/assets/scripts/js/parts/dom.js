@@ -104,7 +104,8 @@ const DOM_o =
   (
     id_s,
     handle_f,
-    event_s='click'
+    event_s='click',
+    option_o
   ) =>
   {
     const listen_e =
@@ -117,7 +118,8 @@ const DOM_o =
       .addEventListener
       (
         event_s,
-        handle_f
+        handle_f,
+        option_o
       )
   }
   ,
