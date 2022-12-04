@@ -77,7 +77,7 @@ const PAI_o =
       .from
       (
         document
-          .getElementById( '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
+          .getElementById( '{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
             .querySelectorAll( 'li' )
       )
       .length
@@ -220,7 +220,7 @@ const PAI_o =
             + `<label ${for_s}>${fullLabel_s}</label>`
             + `</li>`
           ),
-        '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items'
+        '{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_items'
       )
   
     const
@@ -837,7 +837,7 @@ const PAI_o =
       //->
       let unmasked_e =
         document
-          .querySelector( `#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"]` )
+          .querySelector( `#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_b="0"]` )
 
       if
       (
@@ -1113,7 +1113,7 @@ const PAI_o =
       .from
       (
         document
-          .querySelectorAll( `#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"]) > input:checked` )
+          .querySelectorAll( `#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"]) > input:checked` )
       )
   ,
   
@@ -1125,7 +1125,7 @@ const PAI_o =
       .from
       (
         document
-          .querySelectorAll( `#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"])` )
+          .querySelectorAll( `#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_items > li[data-layer_n]:not([data-layer_b="0"])` )
       )
   ,
   
@@ -1148,7 +1148,7 @@ const PAI_o =
       .from
       (
         document
-          .getElementById( '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
+          .getElementById( '{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_items' )
             .querySelectorAll( 'li[data-layer_b="0"]' )
       )
       ?.length
@@ -1824,7 +1824,7 @@ const PAI_o =
     DOM_o
       .listener__v
       (
-        '{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop',
+        '{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop',
         PAI_o
           .setop__v
       )

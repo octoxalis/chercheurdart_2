@@ -33,7 +33,11 @@ class ColorBurst
         burst_o
           .capacity_n
         *
-        2 * Math.PI    //: full circle (360°)
+        (
+           Math.PI
+          *
+          2    //: full circle (360°)
+        )
         /
         burst_o
           .capacity_n
@@ -47,16 +51,19 @@ class ColorBurst
         )
 
     this
+      .plots_a = []          //: store all coordinates
+
+    this
       .clearWidth_n =        //: to avoid canvas.width after transform
         this
           .canvas_o
-            .width,
+            .width
 
     this
       .clearHeight_n =        //: to avoid canvas.height after transform
         this
           .canvas_o
-            .height,
+            .height
 
     this
       .draw__v()
@@ -71,15 +78,17 @@ class ColorBurst
    */
   coord__a
   (
-    at_n,
+    cumul_n,
     freq_n
   )
   {
     const angle_n =
-      at_n
-      *
-      this
-        .unit_n
+      (
+        cumul_n
+        *
+        this
+          .unit_n
+      )
       -             //: substract PI/2 to start at 12:00 not 3:00
       (
         Math
@@ -97,7 +106,7 @@ class ColorBurst
       )
       +
       this
-        .median_n
+        .center_n
 
     const y_n =
       (
@@ -108,9 +117,15 @@ class ColorBurst
       )
       +
       this
-        .median_n
+        .center_n
 
-    return [ ~~x_n, ~~y_n ]
+    return (
+      [
+        ~~x_n
+        ,
+        ~~y_n
+      ]
+    )
   }
 
 
@@ -127,6 +142,33 @@ class ColorBurst
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
     //;console.time( 'draw__v' )
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    this
+      .filter__n()
+
+    const scale_c =        //>>>>>>>  TODO: put in constructor and change maxval_n only 
+      new LogScale
+      (
+        {
+          minpos_n: 0
+          ,
+          maxpos_n:
+            //--this
+            //--  .maxpos_n
+            1000
+          ,
+          minval_n:
+            //-- this.
+            //--   maxfreqFilterd_n
+            //-- *
+            //-- .001      //:BURST_SCALE_MIN_n
+            0
+          ,
+          maxval_n:
+            this
+              .maxfreqFilterd_n
+        }
+      )
+    
     const arc_n =
       pie_n
       /
@@ -134,169 +176,19 @@ class ColorBurst
         .frequency_a
           .length
 
-    let freq_a = []
-
-    let maxfreq_n =
-      this
-        .maxfreq_n
-
-    for
-    (
-      let freq_o
-      of
-      this
-        .frequency_a
-    )
-    {
-      if
-      (
-        freq_o    //: can be null
-      )
-      {
-        const freq_n =
-          freq_o
-            .frequency_n
-
-        if
-        (
-          freq_n
-          >
-          this
-            .maxfreq_n
-        )
-        {
-          maxfreq_n =
-            freq_n
-        }
-      }
-    }
-      
-    let hi_n
-    let lo_n
-
-    if
-    (
-      this
-        .thresh_o
-          .hi_n
-      ===
-      100               //!!!!! TEMPORARY 100
-      &&
-      this
-        .thresh_o
-          .lo_n
-      ===
-      0
-    )
-    {
-      hi_n =
-        maxfreq_n
-
-      lo_n =
-        0
-    }
-    else
-    {
-      hi_n =
-        maxfreq_n
-        -
-        (
-          maxfreq_n
-          *
-          (
-            (
-              100
-              -
-              this
-                .thresh_o
-                  .hi_n
-            )
-            *
-            .01    //: %
-          )
-        )
-  
-      lo_n =
-        maxfreq_n
-        *
-        this
-          .thresh_o
-            .lo_n
-        *
-        .01    //: %
-    }
-
-    for
-    (
-      let freq_o
-      of
-      this
-        .frequency_a
-    )
-    {
-      const freq_n =
-        freq_o
-          ?.frequency_n
-      
-      if
-      (
-        freq_n
-        >
-        0
-      )
-      {
-        freq_a
-          .push
-          (
-            (
-              (
-                freq_n
-                <=                //: inclusive hi range
-                hi_n
-              )
-              &&
-              (
-                freq_n
-                >=              //: inclusive lo range
-                lo_n
-              )
-            )
-            ?
-              freq_o
-            :
-              null
-          )
-      }
-      else
-      {
-        freq_a
-          .push( null )
-      }
-    }
-
-    const scale_c =
-      new LogScale
-      (
-        {
-          minpos_n: 0,
-          maxpos_n: this.maxpos_n,
-          minval_n: 0,
-          maxval_n: maxfreq_n
-        }
-      )
-    
     let cumul_n = 0
     
     let at_n = 0
 
     this
       .clear__v()
-      
+
     for
     (
       let freq_o
       of
-      freq_a
+      this
+        .filtered_a
     )
     {
       if
@@ -340,6 +232,18 @@ class ColorBurst
               )
 
         this
+          .plots_a
+            .push
+            (
+              {
+                startX_n: startX_n,
+                startY_n: startY_n,
+                endX_n: endX_n,
+                endY_n: endY_n
+              }
+            )
+
+        this
           .paint_c
             .fill__c
             (
@@ -350,20 +254,202 @@ class ColorBurst
               (
                 `M ${startX_n} ${startY_n}
                  A 0 0 0 0 0 ${endX_n} ${endY_n}
-                 L ${this.median_n} ${this.median_n}`
+                 L ${this.center_n} ${this.center_n}`
               )
       }
       else
       {
+        this
+          .plots_a
+            .push( null )
+
         cumul_n +=
-          arc_n    // have to increment however
+          arc_n    // have to increment anyway
       }
       
       ++at_n
     }
+
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
     //;console.timeEnd( 'draw__v' )
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
+  }
+
+
+  
+  filter__n
+  ()
+  {
+    this
+      .filtered_a = []
+
+    this
+      .maxfreqFilterd_n =
+        this
+          .maxfreq_n
+
+    for
+    (
+      let freq_o
+      of
+      this
+        .frequency_a
+    )
+    {
+      if
+      (
+        freq_o    //: can be null
+      )
+      {
+        const freq_n =
+          freq_o
+            .frequency_n
+
+        if
+        (
+          freq_n
+          >
+          this
+            .maxfreq_n
+        )
+        {
+          this
+            .maxfreqFilterd_n =
+              freq_n
+        }
+      }
+    }
+      
+    let hi_n
+    let lo_n
+
+    if
+    (
+      this
+        .thresh_o
+          .hi_n
+      ===
+      100
+      &&
+      this
+        .thresh_o
+          .lo_n
+      ===
+      0
+    )
+    {
+      hi_n =
+        this
+          .maxfreqFilterd_n
+
+      lo_n =
+        0
+    }
+    else
+    {
+      hi_n =
+        this
+          .maxfreqFilterd_n
+        -
+        (
+          this
+            .maxfreqFilterd_n
+          *
+          (
+            (
+              100
+              -
+              this
+                .thresh_o
+                  .hi_n
+            )
+            *
+            .01    //: %
+          )
+        )
+  
+      lo_n =
+        this
+          .maxfreqFilterd_n
+        *
+        this
+          .thresh_o
+            .lo_n
+        *
+        .01    //: %
+    }
+
+    for
+    (
+      let freq_o
+      of
+      this
+        .frequency_a
+    )
+    {
+      const freq_n =
+        freq_o
+          ?.frequency_n
+      
+      if
+      (
+        freq_n
+        >
+        0
+      )
+      {
+        this
+          .filtered_a
+            .push
+            (
+              (
+                (
+                  freq_n
+                  <=                //: inclusive hi range
+                  hi_n
+                )
+                &&
+                (
+                  freq_n
+                  >=              //: inclusive lo range
+                  lo_n
+                )
+              )
+              ?
+                freq_o
+              :
+                null
+            )
+      }
+      else
+      {
+        this
+          .filtered_a
+            .push( null )
+      }
+    }
+  }
+  
+
+
+  
+  plots__a
+  (
+    at_n    //: optional
+  )
+  {
+    return (
+      at_n
+      !=
+      undefined
+      ?
+        this
+          .plots_a
+            [ at_n ]
+      :
+        this
+          .plots_a
+    )
   }
 
 

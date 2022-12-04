@@ -3,21 +3,23 @@
         --{{C_o.STAT_a[0]}}_hue_trace: -720;
         --{{C_o.STAT_a[0]}}_hue_back:  0;
 
-        --{{C_o.STAT_a[0]}}_nav_dim: {{C_o.BURST_NAV_DIM}}px;
+        --{{C_o.STAT_a[0]}}_nav_dim: {{C_o.BURST_NAV_DIM_n}}px;
         --{{C_o.STAT_a[0]}}_trace_color: {{S_o.bg_lower}};
         --{{C_o.STAT_a[0]}}_trace_pointer: crosshair;
 
         --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
-        --{{C_o.STAT_a[0]}}_ruler: none;
-        --{{C_o.STAT_a[0]}}_ruler_dim: 0px;
+        --{{C_o.STAT_a[0]}}_plots: none;
+        --{{C_o.STAT_a[0]}}_plot_scale: .25;
+
+        --{{C_o.STAT_a[0]}}_canvas_dim: calc( (var(--{{C_o.STAT_a[0]}}_screen_dim) * {{C_o.SCREEN_RATIO_n}}) - ({{S_o.NAV_HEIGHT_s}} * 2));
+        --{{C_o.STAT_a[0]}}_img_dim: 1024px;
 </:root>
 
 <section#{{C_o.STAT_a[0]}}>
   <div[id^={{C_o.DIV_ID_s}}_stat]>
     <canvas>
-        --canvas_dim: calc( (var(--{{C_o.STAT_a[0]}}_screen_dim) * {{C_o.SCREEN_RATIO_n}}) - ({{S_o.NAV_HEIGHT_s}} * 2));
-        width: var(--canvas_dim);
-        height: var(--canvas_dim);
+        width: var(--{{C_o.STAT_a[0]}}_canvas_dim);
+        height: var(--{{C_o.STAT_a[0]}}_canvas_dim);
         border: 1px solid {{ S_o.shadow_ne}};
         border-radius: 50%;
     </canvas>
@@ -38,13 +40,18 @@
               font-size: 80%;
               text-transform: uppercase;
         <span:not( [data-icon] )>
+                display: flex;
+                justify-content: space-evenly;
                 width: 10ch;
                 height: {{S_o.PAD_8}};
                 line-height: {{S_o.PAD_8}};    /* vertical-align */
                 background: var(--{{C_o.STAT_a[0]}}_trace_color);
                 font-weight: 500;
                 text-align: center;
-                border-radius: 4px;
+                border-radius: 4px;                
+        </span>
+        <span[id$=_ratio_n]:after>
+                content: '{{C_o.PERCENT_s}}';
         </span>
       </label>
     </nav>
@@ -108,7 +115,6 @@
 <nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_lum>
         display: flex;
 </nav>
-
 
 
 context( stack, new )
@@ -189,70 +195,92 @@ context( stack, new )
         padding: {{S_o.PAD_6}};
         height: fit-content;
   <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range>
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 4px;
-          width: 720px;
-          height: fit-content;
-          transform: translate( 150px, {{S_o.PAD_2}} ) rotate( 90deg ) scaleY( 1 );
-          transform-origin: top left;
-    <label[data-range_n]>
-            display: grid;
+          display: grid;
+    <hr[role=vrange]>
+            grid-area: 1/-1;
+            position: relative;
+            top: 3rem;              /* see ul:translate */
+            left: 6.2rem;
+            width: 96%;
+            height: 0;
+            border-color: {{S_o.bg_lower}};
+            pointer-events: none;        /* above input */
+            transform-origin: top left;
+            transform: rotate( 90deg );
+    </hr>
+    <ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range>
+            grid-area: 1/-1;
+            display: flex;
+            flex-direction: row;
             justify-content: space-between;
-            width: fit-content;
-            opacity: 1;
-            filter: brightness( {{S_o.brightness_hi}} );
-            transform: rotate( -90deg );
-      <input[name$="_range"]>
-              grid-area: 1/-1;
-              width:  cal( {{S_o.NAV_LABEL_s}} * .5 );
-              height: cal( {{S_o.NAV_LABEL_s}} * .5 );
-              filter: brightness( {{S_o.brightness_lo3}} );
-      </input>
-    </label>
-    <label[data-range_n]:before>
-            content: attr( data-range_n );
-            position: absolute;
-            left: -22px;
-            width: 4ch;
-            text-align: center;
-            padding: {{S_o.PAD_1}};
-            color: currentColor;   /*hsla( var(--{{C_o.STAT_a[0]}}_hue_back) calc( var(--{{C_o.STAT_a[0]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[0]}}_back_lum) * 1% ) / 1);*/
-            background: {{S_o.bg_lower}};
-            font-size: 80%;
-            font-weight: 200;
-            border-radius: 4px;
-            transform: scale( 0 );
-            transform-origin: center;
-    </label>
-
-    <label[data-range_n]:hover>
-        <span>
+            flex-wrap: wrap;
+            margin: {{S_o.PAD_2}} 0;
+            gap: 4px;
+            width: 720px;
+            height: fit-content;
+            transform: translate( 6.8rem, 2rem ) rotate( 90deg ) scaleY( 1 );
+            transform-origin: top left;
+      <li[data-range_n]>
+              display: grid;
+              justify-content: space-between;
+              width: fit-content;
+              list-style: none;
               opacity: 1;
-        </span>
-      <input>
-              opacity: 0;
-      </input> 
-    </label>
-    <label[data-range_n]:has(input:checked)>
-        <span>
-              opacity: 1;
-        </span>
-      <input:checked>
-              opacity: 0;
-      </input> 
-    </label>
-    <label[data-range_n]:has(input:checked):before>
-            filter: brightness( {{S_o.brightness_hi2}} );
-            transform: scale( 1 );
-    </label>
-    <label[data-range_n]:hover:before>
-            filter: brightness( {{S_o.brightness_lo2}} );
-            transform: scale( 1 );
-    </label>
+              filter: brightness( {{S_o.brightness_hi}} );
+              transform: rotate( -90deg );
+        <input[name$="_range"]>
+                appearance: none;
+                grid-area: 1/-1;
+                width: 32px;
+                height: 32px;
+                border: 12px solid {{S_o.bgcolor}};
+                border-radius: 50%;
+                background: {{S_o.bg_lower}};
+                filter: brightness( .8 );
+        </input>
+      </li>
+      <li[data-range_n]:before>
+              content: attr( data-range_n );
+              position: absolute;
+              left: -4px;
+              width: 4ch;
+              text-align: center;
+              padding: {{S_o.PAD_1}};
+              color: currentColor;   /*hsla( var(--{{C_o.STAT_a[0]}}_hue_back) calc( var(--{{C_o.STAT_a[0]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[0]}}_back_lum) * 1% ) / 1);*/
+              background: {{S_o.bg_lower}};
+              font-size: 80%;
+              font-weight: 200;
+              border-radius: 4px;
+              transform: scale( 0 );
+              transform-origin: center;
+      </li>
+      <li[data-range_n]:hover>
+          <span>
+                opacity: 1;
+          </span>
+        <input>
+                opacity: 0;
+        </input> 
+      </li>
+      <li[data-range_n]:has(input:checked)>
+          <span>
+                opacity: 1;
+          </span>
+        <input:checked>
+                opacity: 0;
+        </input> 
+      </li>
+      <li[data-range_n]:has(input:checked):before>
+              filter: brightness( {{S_o.brightness_hi2}} );
+              transform: scale( 1 );
+      </li>
+      <li[data-range_n]:hover:before>
+              filter: brightness( {{S_o.brightness_lo2}} );
+              transform: scale( 1 );
+      </li>
+    </ul>
   </div>
+
   <input[type=range] />
           display: none;
           position: absolute;
@@ -297,7 +325,7 @@ context( stack, new )
           display: flex;
           justify-content: space-between;
           position: relative;
-          left: -48px;
+          left: -50px;
           width: fit-content;
     <output>
             position: relative;
@@ -325,41 +353,44 @@ context( stack, new )
             filter: brightness( {{S_o.brightness_lo2}} );
     </span>
   </label>
-</div>
 
-
-<div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_]>
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: {{S_o.PAD_1}} 0;
-  <input[type=range]>
-          width: 200px;
-          background: transparent;
-          cursor: pointer;
-  </input>
-  <label>
+  <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_]>
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           position: relative;
-          padding: {{S_o.PAD_1}};
-          width: 100%;
-          text-align: center;
-          font-size: 80%;
-          opacity: .5;
-  </label>
+          left: -1.5rem;
+          margin: {{S_o.PAD_1}} 0;
+    <input[type=range]>
+            width: 200px;
+            background: transparent;
+            cursor: pointer;
+    </input>
+    <label>
+            position: relative;
+            padding: {{S_o.PAD_1}};
+            width: 100%;
+            text-align: center;
+            font-size: 80%;
+            opacity: .5;
+    </label>
+  </div>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi>
+    <input[type=range]>
+              transform: rotate( 180deg ) scaleY( .5 );  /* from right to left slider */
+   </input>
+  <input[type=range]:hover:after>
+              transform: rotate( 180deg ) scaleY( 2 );  /* !!! overide section.context.html where scale is 2 */
+  </input>
+  </div>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo>
+    <input[type=range]>
+              transform: scaleY( .5 );
+   </input>
+  </div>
 </div>
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi>
-  <input[type=range]>
-            transform: rotate( 180deg ) scaleY( .5 );  /* from right to left slider */
- </input>
-<input[type=range]:hover:after>
-            transform: rotate( 180deg ) scaleY( 2 );  /* !!! overide section.context.html where scale is 2 */
-</input>
-</div>
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo>
-  <input[type=range]>
-            transform: scaleY( .5 );
- </input>
-</div>
+
+
 
 
 context( stack, new )
@@ -372,7 +403,7 @@ context( stack, new )
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: calc( 100vh - 8em );
+        top: calc( 100vh - 10em );
         left: calc( 50vw - 100px - {{S_o.PAD_1}} );
         background: {{S_o.table}};
         border-radius: 4px;
@@ -426,7 +457,7 @@ context( stack, new )
 
 context( stack, new )
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  )>
-  <div#goto_{{C_o.STAT_a[0]}}_ruler>
+  <div#goto_{{C_o.STAT_a[0]}}_plots>
   context( copy, next )
   </div>
   <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view>
@@ -440,29 +471,94 @@ context( stack, new )
   <a#goto_{{C_o.FULL_SCREEN}}>
           display: block;
   </a>
-  <div#goto_{{C_o.STAT_a[0]}}_ruler>
-          display: var(--{{C_o.STAT_a[0]}}_ruler);
-          position: fixed;
+  <div#goto_{{C_o.STAT_a[0]}}_plots>
+          display: var(--{{C_o.STAT_a[0]}}_plots);
           z-index: 20;
-          top: calc( 50vh - ( var(--{{C_o.STAT_a[0]}}_ruler_dim) * .5 ) );             /* to coordinate with... */
-          left: calc( 50vw - ( var(--{{C_o.STAT_a[0]}}_ruler_dim) * .5 ) );    
-          width: var(--{{C_o.STAT_a[0]}}_ruler_dim);
-          height: var(--{{C_o.STAT_a[0]}}_ruler_dim);
+          position: fixed;
+
+
+          top: calc(  50vh -   var(--{{C_o.STAT_a[0]}}_screen_dim) * .5px  );
+          left: calc(  50vw -   var(--{{C_o.STAT_a[0]}}_screen_dim) * .5px  );
+
+          width:  calc( var(--{{C_o.STAT_a[0]}}_screen_dim) * 1px );
+          height: calc( var(--{{C_o.STAT_a[0]}}_screen_dim) * 1px );
+
           border-radius: 50%;
           background: {{S_o.shadow_ne}};
-          filter: brightness( .01 );
+          filter: brightness( .01 ); 
           pointer-events: none;
+          transform-origin: center;
+          transform: scale( var(--{{C_o.STAT_a[0]}}_plot_scale) );
+          transition: .3s;
   </div>
-  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_ruler />
+  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_plots />
   ~
-  <div#goto_{{C_o.STAT_a[0]}}_ruler>
+  <div#goto_{{C_o.STAT_a[0]}}_plots>
           display: none;
   </div>
-  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_ruler:checked />
+  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_plots:checked />
   ~
-  <div#goto_{{C_o.STAT_a[0]}}_ruler>
+  <div#goto_{{C_o.STAT_a[0]}}_plots>
           display: block;
   </div>
+</body>
+
+context( stack, new )
+<aside#aside_{{C_o.STAT_a[0]}}_img_view>
+        display: none;
+</aside>
+<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_view:checked )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <inpu#t{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position:checked>
+              display: none;
+      </input>
+      <aside#aside_{{C_o.STAT_a[0]}}_img_view>
+              display: grid;
+              position: fixed;
+              width:  var(--{{C_o.STAT_a[0]}}_img_dim);
+              height: var(--{{C_o.STAT_a[0]}}_img_dim);
+        <img>
+              grid-area: 1/-1;
+              min-width:  var(--{{C_o.STAT_a[0]}}_img_dim);
+              min-height: var(--{{C_o.STAT_a[0]}}_img_dim);
+              border: 2px solid red;
+              background: red;
+        </img>
+        <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position"]>
+                grid-area: 1/-1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                top: -1rem;
+                left: calc( var(--{{C_o.STAT_a[0]}}_img_dim) - 1rem );
+                padding: {{S_o.PAD_1}};
+                width:  2rem;
+                height: 2rem;
+                font-size: 150%;
+                border-radius: 50%;
+        </label>
+        <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position"]:hover>
+                background: {{S_o.shadow_ne}};
+                border: 2px solid {{S_o.shadow_ne}};
+        </label>
+      </aside>
+      <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position:not(:checked)>
+      </input>
+      ~
+      <aside#aside_{{C_o.STAT_a[0]}}_img_view>
+              position: fixed;
+              left: 0;
+              top: calc( 100vh - ( var(--{{C_o.STAT_a[0]}}_img_dim)  ) );
+              transform-origin: bottom left;
+              transform: scale( .25 );
+        <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position"]>
+              transform: scale( 4 );
+        </label>
+      </aside>
+    </div>
+  </section>
 </body>
 
 

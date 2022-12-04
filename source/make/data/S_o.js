@@ -72,6 +72,11 @@ const S_o =
 
   }
 
+  S_o.NAV_HEIGHT_s = S_o.PAD_8
+  S_o.NAV_LABEL_s  = S_o.PAD_4
+  S_o.NAV_SETTINGS_s = '288px'  //: 18em
+
+
   S_o.lum_hi_4 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =90%
   S_o.lum_hi_3 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =80%
   S_o.lum_hi_2 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =70%
@@ -121,19 +126,15 @@ const S_o =
   S_o.selected_hi =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .9 )`
   S_o.selected_lo =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .2 )`
 
-  S_o.match_spot =       `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`
+  S_o.match_spot = `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`
+  S_o.bg_spot = S_o.bgcolor
   
-  S_o.NAV_HEIGHT_s = S_o.PAD_8
-  S_o.NAV_LABEL_s  = S_o.PAD_4
-  S_o.NAV_SETTINGS_s = '288px'  //: 18em
-
   S_o.hue_back = 0
   S_o.back_sat = '100'
   S_o.back_lum = '50'
 
   S_o.paint_brush_s = `${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_lo_2}`
 
-  S_o.bg_spot = S_o.bgcolor
 
 
 

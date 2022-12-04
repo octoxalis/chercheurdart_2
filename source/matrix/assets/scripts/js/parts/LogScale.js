@@ -39,6 +39,8 @@ class LogScale
           (
             scale_o
                .maxval_n
+            //??? *
+            //??? 1
             ||
             1000000.0    //: maximum log value
           )
@@ -64,9 +66,9 @@ class LogScale
 
   position__n =
     value_n =>
-      this
-        .minpos_n
-        +
+      //??? this
+      //???   .minpos_n
+      //???   +
         (
           (
             Math

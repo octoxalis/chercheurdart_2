@@ -11,7 +11,7 @@
                 </label>
             </nav>
 
-            <ul id="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_items">
+            <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_items">
             </ul>
 
             <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup">
@@ -19,7 +19,7 @@
                 <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[2]}}_layer_hide">{{C_o.NAV_LEGEND_o.layers_hide.legend_s}}</label>
             </div>
 
-            <ul id="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop">
+            <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop">
               <li>
                 <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_none" type="radio" name=layer_set checked/>
                 <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_none">{{C_o.NAV_LEGEND_o.layers_none.legend_s}}</label>
@@ -35,7 +35,7 @@
               <li>
                 <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_complement" type="radio" name=layer_set />
                 <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_complement">{{C_o.NAV_LEGEND_o.layers_complement.legend_s}}</label>
-              <li id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation">
+              <li id="{{C_o.LIST_ITEM_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation">
                 <label>{{C_o.NAV_LEGEND_o.layers_deviation.legend_s}}</label>
                 <input  id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation" type="range" min="0" max="100" step="1" value="{{C_o.PAINT_DEVIATION_n}}" data-tip="{{C_o.PAINT_DEVIATION_n}}"/>
             </ul>

@@ -129,10 +129,12 @@ const STAT_W_o =
     'GET_scan',
     'GET_status',
     'GET_frequency',
+    'GET_plots',
     'GET_img',
 
     'PUT_canvas',
     'PUT_draw',
+    //?? 'PUT_plots',
     'PUT_hsl',
     'PUT_scale',
   ]
@@ -285,6 +287,98 @@ const STAT_W_o =
   */
 
 
+  async bitmap__o
+  (
+    payload_o
+  )
+  {
+    try
+    {
+      let
+      {
+        rect_s,
+        scale_n,
+        url_s,
+        storeBitmap_b
+      } = payload_o
+  
+      if
+      (
+        STAT_W_o
+          .imgBitmap_a
+            .has( url_s )
+      )
+      {
+        return (
+          STAT_W_o
+            .imgBitmap_a
+              .get( url_s )
+        )
+      }
+      //-->
+      let
+      [
+        x_n,
+        y_n,
+        width_n,
+        height_n
+      ] =
+        rect_s
+          .split( ' ' )
+  
+      const response_o =
+        await fetch( url_s )
+  
+      const blob_o =
+        await response_o
+          .blob()
+  
+      const bitmap_o =
+        await createImageBitmap
+        (
+          blob_o,
+          x_n - ( width_n / scale_n * .5 ),    //: center point
+          y_n - ( height_n / scale_n * .5 ),   //: idem
+          width_n / scale_n,
+          height_n / scale_n,
+          {
+            resizeWidth:  width_n,
+            resizeHeight: height_n,
+            resizeQuality: 'high'
+          }
+        )
+  
+      if
+      (
+        storeBitmap_b
+      )
+      {
+        STAT_W_o
+          .imgBitmap_a
+            .set
+            (
+              url_s,
+              bitmap_o
+            )
+      }
+  
+      return bitmap_o
+    }
+    catch
+    (
+      error_o    //: not used
+    )
+    {
+      console
+        .log( `ERROR DETECTED @bitmap__o(): ${ error_o }` )
+  
+      return null
+    }
+  }
+  ,
+
+
+
   scale__n
   (
     stat_s,
@@ -298,6 +392,9 @@ const STAT_W_o =
     //;       [ `${stat_s}_o` ]
     //;         [ `${part_s}_o` ]
     //; )
+    //;console.log( 'scale__n' )
+
+
     const
     {
       width,
@@ -340,99 +437,7 @@ const STAT_W_o =
                 translate_n,
                 translate_n,
               )
-},
-
-
-
-async bitmap__o
-(
-  payload_o
-)
-{
-  try
-  {
-    let
-    {
-      rect_s,
-      scale_n,
-      url_s,
-      storeBitmap_b
-    } = payload_o
-
-    if
-    (
-      STAT_W_o
-        .imgBitmap_a
-          .has( url_s )
-    )
-    {
-      return (
-        STAT_W_o
-          .imgBitmap_a
-            .get( url_s )
-      )
-    }
-    //-->
-    let
-    [
-      x_n,
-      y_n,
-      width_n,
-      height_n
-    ] =
-      rect_s
-        .split( ' ' )
-
-    const response_o =
-      await fetch( url_s )
-
-    const blob_o =
-      await response_o
-        .blob()
-
-    const bitmap_o =
-      await createImageBitmap
-      (
-        blob_o,
-        x_n - ( width_n / scale_n * .5 ),    //: center point
-        y_n - ( height_n / scale_n * .5 ),   //: idem
-        width_n / scale_n,
-        height_n / scale_n,
-        {
-          resizeWidth:  width_n,
-          resizeHeight: height_n,
-          resizeQuality: 'high'
-        }
-      )
-
-    if
-    (
-      storeBitmap_b
-    )
-    {
-      STAT_W_o
-        .imgBitmap_a
-          .set
-          (
-            url_s,
-            bitmap_o
-          )
-    }
-
-    return bitmap_o
-  }
-  catch
-  (
-    error_o    //: not used
-  )
-  {
-    console
-      .log( `ERROR DETECTED @bitmap__o(): ${ error_o }` )
-
-    return null
-  }
-}
-,
+  },
 
 
 
@@ -862,13 +867,6 @@ async bitmap__o
           .burst_o
             [ `${part_s}_o` ]
               .part_a
-      
-    if
-    (
-      part_a
-    )
-    {
-    }
 
     const frequency_o =
       STAT_W_o
@@ -890,14 +888,80 @@ async bitmap__o
       .post__v
       (
         {
-          task_s: 'PUT_frequency',
+          task_s: 'PUT_frequency'
+          ,
           //: CLIENT_ALL_s
-          part_s: part_s,
-          frequency_n: frequency_n,
-          range_a: range_a,
+          part_s: part_s
+          ,
+          frequency_n: frequency_n
+          ,
+          range_a: range_a
+          ,
           capacity_n: STAT_W_o      //: reserved for ratio
-                        .capacity_n,
+                        .capacity_n
+          ,
+          plots_a:
+            STAT_W_o
+              .stat_o
+                .burst_o
+                  [ `${part_s}_o` ]
+                    .burst_c
+                      .plots__a( angle_n )
         }
+        ,
+        [
+          STAT_W_o
+            .stat_o
+              .burst_o
+                [ `${part_s}_o` ]
+                  .burst_c
+                    .plots__a( angle_n )
+        ]
+      )
+  }
+  ,
+
+
+
+  get_plots__v
+  (
+    payload_o
+  )
+  {
+    const
+    {
+      stat_s,
+      part_s
+    } =
+      payload_o
+
+    STAT_W_o
+      .post__v
+      (
+        {
+          task_s: 'PUT_plots'
+          ,
+          stat_s: '{{C_o.STAT_a[0]}}'
+          ,
+          part_s: part_s
+          ,
+          plots_a:
+            STAT_W_o
+              .stat_o
+                [ `${stat_s}_o` ]
+                  [ `${part_s}_o` ]
+                    .burst_c
+                      .plots__a()
+        }
+        ,
+        [
+          STAT_W_o
+            .stat_o
+              [ `${stat_s}_o` ]
+                [ `${part_s}_o` ]
+                  .burst_c
+                    .plots__a()
+        ]
       )
   }
   ,
@@ -1071,8 +1135,8 @@ async bitmap__o
       back_hue_n,
       rangeY_n,     //: {{C_o.STAT_a[0]}}
       shift_n,      //: {{C_o.STAT_a[0]}}
-      maxpos_n,     //: {{C_o.STAT_a[0]}} ColorBurst
       thresh_o,     //: {{C_o.STAT_a[0]}} ColorBurst
+      //??? maxpos_n,     //??????    //: {{C_o.STAT_a[0]}} ColorBurst
     } =
       payload_o
       
@@ -1162,6 +1226,7 @@ async bitmap__o
                   'fill'
                 )
             }
+
             break
         
         //=== FRONT SLIDER ===
@@ -1434,6 +1499,16 @@ async bitmap__o
           ++at_n
         }
 
+        if
+        (
+          part_s
+          ===
+          'hue_back'    //: don't draw burst twice
+        )
+        {
+          return
+        }
+
         const width_n =
           STAT_W_o
             .stat_o
@@ -1472,7 +1547,7 @@ async bitmap__o
                   [ `${hsl_s}_o` ]
                     .canvas_o
           ,
-          median_n:
+          center_n:
             width_n
             *
             .5
@@ -1489,9 +1564,7 @@ async bitmap__o
               maxfreq_n
           ,
           maxpos_n:
-            width_n
-            *
-            maxpos_n
+            width_n    //: maxpos_n as circle radius
           ,
           thresh_o:
             thresh_o
@@ -2066,8 +2139,14 @@ async bitmap__o
     payload_o
   )
   {
-    const { stat_s, part_s, scale_n } =
-      payload_o
+    const
+      { 
+        stat_s,
+        part_s,
+        scale_n,
+        burst_b
+      } =
+        payload_o
 
     STAT_W_o
       .scale__n      // scale canvas
@@ -2077,6 +2156,20 @@ async bitmap__o
         scale_n
       )
 
+    if
+    (
+      !burst_b
+    )
+    {
+      return
+    }
+
+    //............... STAT_W_o
+    //...............   .stat_o
+    //...............     [ `${stat_s}_o` ]
+    //...............       [ `${part_s}_o` ]
+    //...............         .burst_c
+    //............... &&
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]

@@ -82,11 +82,6 @@ const C_o =
 
   STAT_s: 'stat',
 
-  HTML_CHAR_o:
-  {
-    bullet_s:  '&#8857;',    //: BULLET •
-  },
-
   NAV_LEGEND_o:    //: property names === SECTION_a + STAT_a
   {
     
@@ -123,9 +118,10 @@ const C_o =
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
     stat_shadow_fold:     { icon_s: `&nbsp;`, legend_s: `replier`},
     stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
-    //... stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
-    //... stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
-    burst_ruler: { icon_s: `&nbsp;`, legend_s: `calibrer`},
+    //???. stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
+    //???. stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
+    burst_plots: { icon_s: `&nbsp;`, legend_s: `étalonnage`},
+    burst_img: { icon_s: `&nbsp;`, legend_s: `image`},
     thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
     thresh_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
     
@@ -150,10 +146,12 @@ const C_o =
     layers_deviation:   { icon_s: `&nbsp;`,  legend_s: `Déviation`},
 
     open_list_marker:     { icon_s: `&nbsp;`,  legend_s: `⊳`},
-    close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
-    left_index_marker:     { icon_s: `&nbsp;`,  legend_s: `⊲`},
+    //??? close_list_marker:     { icon_s: `&nbsp;`,  legend_s: `∇`},
+    //??? left_index_marker:     { icon_s: `&nbsp;`,  legend_s: `⊲`},
 
   },
+
+  PERCENT_s: '%',      //: Percent Sign
 
   //=== REPLACE
   GALERY_REPLACE_s:    '<del for=section_galery hidden ></del>',
@@ -170,11 +168,12 @@ const C_o =
   //=== BURST TOOLS ===
   SCREEN_DIM_n:        1024,    //: default, set by burst.init()
   SCREEN_RATIO_n:      1,
-  BURST_SCALE_n:       1,
-  BURST_RANGE_n:       1,    //: 360 ranges
+  BURST_SCALE_n:       .5,
+  BURST_RANGE_n:       1,    //!!!  TEMPORARY //: 1 range
   BURST_THRESH_HI_n:   0,
   BURST_THRESH_LO_n:   0,
-  BURST_NAV_DIM:       360,
+  BURST_NAV_DIM_n:     360,
+  BURST_SCALE_MIN_n:   .001,
 
 
   PAINT_LAYER_n:       8,
@@ -194,9 +193,9 @@ const C_o =
 
   //=== HTML-BODY ANCHORS
   //-- ANCHOR_DELIM_s : '__',
-  PAGE_TOP: 'page_top',
+  PAGE_TOP:    'page_top',
   FULL_SCREEN: 'full_screen',
-  BURST_RULER: 'burst_ruler',
+  BURST_PLOTS: 'burst_plots',
   
 
   //=== HTML-BODY: TAGS ===
@@ -205,9 +204,9 @@ const C_o =
   LABEL_ID_s:       'LA',
   IFRAME_ID_s:      'IF',
   DIV_ID_s:         'DI',
-  UL_ID_s:          'UL',
+  LIST_ID_s:        'UL',
+  LIST_ITEM_ID_s:   'LI',
   NAV_ID_s:         'NA',
-  LIST_ID_s:        'LI',
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',
@@ -234,7 +233,12 @@ const C_o =
   FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
-  
+  RETRACT_s:            '&#10530;',  //: NE and SW Arrow           ⤢
+  RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
+  BULLET_s:             '&#8857;',   //: bullet                    •
+
+
+
   ID_PART_DELIM_s:     '~',   //: between parts
 
   WORDS_DELIM_s:       ' ',

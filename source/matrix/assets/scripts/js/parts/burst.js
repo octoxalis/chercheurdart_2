@@ -8,13 +8,13 @@ const BUR_o =
 
   trace_o: null,
 
-  hueFreeze_b: false,    //: freeze || unfreeze hue selection
+  freeze_b: false,    //: freeze || unfreeze hue selection
 
   hue_n: 0,          //: selected hue
 
   hue_o:
     {
-      rangeY_n: 1,    //: C_o.BURST_RANGE_n
+      rangeY_n: 1,    //!!!! TEMPORARY//: C_o.BURST_RANGE_n
       shift_n: 0,     //: from burst_hue_back
     }
   ,
@@ -24,15 +24,23 @@ const BUR_o =
       hue_n: 1,    //: C_o.BURST_SCALE_n
       sat_n: .5,
       lum_n: .5,
-    }, 
+    }
+  ,
   
   thresh_o:
     {
       hi_n: 100,    //: C_o.BURST_THRESH_HI_n   left to right
       lo_n: 0,      //: C_o.BURST_THRESH_LO_n
-    }, 
+    }
+  ,
   
+  plots_a:
+    null
+  ,
 
+  lastPlot_o:
+    null
+  ,
 
 
   message__v
@@ -49,6 +57,14 @@ const BUR_o =
       case 'PUT_frequency':
         BUR_o
           .put_frequency__v( payload_o )
+
+        break
+    
+      case 'PUT_plots':
+        BUR_o
+          .plots_a =
+            payload_o
+              .plots_a 
 
         break
     
@@ -79,14 +95,21 @@ const BUR_o =
   {
     const
       {
-        part_s,
-        frequency_n,
-        range_a,
+        part_s
+        ,
+        frequency_n
+        ,
+        range_a
+        ,
         capacity_n
+        ,
+        plots_a
       } =
         payload_o
 
-    //;console.log( range_a )
+    BUR_o
+      .lastPlot_o =
+        plots_a
 
     let html_s =
       range_a[0]
@@ -100,7 +123,7 @@ const BUR_o =
     )
     {
       html_s +=
-        `...${range_a[1]}`
+        `<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${range_a[1]}`
     }
 
     BUR_o
@@ -141,11 +164,11 @@ const BUR_o =
   get_frequency__v
   (
     event_o,
-    part_s
+    hsl_s
   )
   {
     let range_n =
-      part_s
+      hsl_s
       ===
       'hue'
       ?
@@ -160,7 +183,7 @@ const BUR_o =
           event_o,
           range_n
         )
-
+    
     if
     (
       range_n
@@ -170,14 +193,14 @@ const BUR_o =
     {
       let label_e =
         document
-          .querySelector(  `label:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
+          .querySelector(  `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
 
       if
       (
         label_e
       )
       {
-        range_n =        //: 360, 180, 120...101..6, 3, 1
+        range_n =        //: 360, 120...101..6, 3, 1
         360
         /
         +label_e              //: number cast
@@ -185,17 +208,21 @@ const BUR_o =
             .range_n        //: 1, 3, 6...180
       }
     }
-                            //=> range_n = 360, 180, 120...101..6, 3, 2  (1 excluded)
+                            //=> range_n = 360, 120...101..6, 3, 2  (1 excluded)
 
     BUR_o
       .worker_o
         .post__v
         (
           { 
-            task_s: 'GET_frequency',
-            stat_s: '{{C_o.STAT_a[0]}}',
-            part_s:  part_s,
-            angle_n: angle_n,
+            task_s: 'GET_frequency'
+            ,
+            stat_s: '{{C_o.STAT_a[0]}}'
+            ,
+            part_s:  hsl_s
+            ,
+            angle_n: angle_n
+            ,
             range_n: range_n
           }
         )
@@ -204,29 +231,51 @@ const BUR_o =
 
 
 
-  screen__v
+  screen__v 
   ()
   {
-      let screenDim_n =
-          screen
-            .height
+    const width_n =
+      +screen      // Number cast
+        .availWidth
+      
+    const height_n =
+      +screen      // Number cast
+        .availHeight
+      
+    let screenDim_n =
+        width_n
+        >
+        height_n
+        ?               //: vmin
+          height_n
+        :
+          width_n
 
-      DOM_o
-        .rootVar__v
-        (
-          `--{{C_o.STAT_a[0]}}_screen_dim`,
-          screenDim_n
-        )
+    screenDim_n =
+      (
+        screenDim_n
+        //?? *
+        //?? 1       //: C_o.SCREEN_RATIO_n
+      )
+      -
+      64      //: S_o.NAV_HEIGHT_s * 2
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_screen_dim`,
+        screenDim_n
+      )
 
     for
     (
     canvas_s
     of
-      [
-        'hue',
-        'sat',
-        'lum',
-      ]
+    [
+      'hue',
+      'sat',
+      'lum',
+    ]
     )
     {
       let canvas_e =
@@ -247,6 +296,28 @@ const BUR_o =
             screenDim_n
       }
     }
+
+/*
+    let div_e =
+      document
+        .getElementById( `goto_{{C_o.STAT_a[0]}}_plots` )
+
+    ;console.log( div_e )
+
+    if
+    (
+      div_e
+    )
+    {
+      div_e
+        .width =
+          screenDim_n
+          
+      div_e
+        .height =
+          screenDim_n
+    }
+    */
   }
   ,
 
@@ -270,13 +341,12 @@ const BUR_o =
   coord__a
   (
     event_o,
-    part_s
+    hsl_s
   )
   {
-  ;console.log( part_s )
     const center_n =
       document
-        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${part_s}` )    //: all canvases (hue, sat, lum) have same size
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )    //: all canvases (hue, sat, lum) have same size
           .width
       *
       .5      //: width / 2
@@ -418,9 +488,6 @@ const BUR_o =
       ]
     )
     {
-      const part_s =
-        'hue'
-        
       BUR_o
         .worker_o
           .post__v
@@ -443,12 +510,13 @@ const BUR_o =
                         .hue_o
                           .shift_n
               ,
-              maxpos_n: BUR_o
-                         .scale_o
-                           [`${part_s}_n`]
-              ,
               thresh_o: BUR_o
                           .thresh_o
+              //??? ,
+              //??? maxpos_n: BUR_o
+              //???            .scale_o
+              //???              .hue_n
+              //??? ,
             }
           )
     }
@@ -459,13 +527,13 @@ const BUR_o =
 
   trace__v
   (
-    part_s
+    //??? hsl_s
   )
   {
     BUR_o
-      .hueFreeze_b =    //: toggle hueFreeze_b
+      .freeze_b =    //: toggle freeze_b
         ! BUR_o
-            .hueFreeze_b
+            .freeze_b
 
     let color_s
     let pointer_s
@@ -473,7 +541,7 @@ const BUR_o =
     if
     (
       BUR_o
-        .hueFreeze_b
+        .freeze_b
     )
     {
       color_s =
@@ -505,15 +573,15 @@ const BUR_o =
         pointer_s
       )
 
-    let label_e =
+    let item_e =
       document
-        .querySelector(  `label:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
+        .querySelector(  `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
 
     if
     (
-      label_e
+      item_e
       &&
-      +label_e              //: number cast
+      +item_e              //: number cast
         .dataset
           .range_n 
       ===
@@ -522,11 +590,12 @@ const BUR_o =
     {
       for
       (
-        let part_s
+        let hsl_s
         of
         [
-          'sat',
-          'lum',
+          'sat'
+          ,
+          'lum'
         ]
       )
       {
@@ -535,24 +604,30 @@ const BUR_o =
             .post__v
             (
               { 
-                task_s: 'PUT_draw',
-                stat_s: '{{C_o.STAT_a[0]}}',
-                part_s: part_s,
+                task_s: 'PUT_draw'
+                ,
+                stat_s: '{{C_o.STAT_a[0]}}'
+                ,
+                part_s: hsl_s
+                ,
                 back_hue_n:
                   +(BUR_o            //: number cast
                       .trace_o
                         .hue_e
                           .innerHTML
-                  ),
+                  )
+                ,
                 shift_n: BUR_o
                           .hue_o
-                            .shift_n,
-                maxpos_n: BUR_o
-                            .scale_o
-                              [`${part_s}_n`]
+                            .shift_n
                 ,
                 thresh_o: BUR_o
                             .thresh_o
+                //???,
+                //??? maxpos_n: BUR_o
+                //???             .scale_o
+                //???               [`${hsl_s}_n`]
+                //??? ,
               }
             )
       }
@@ -591,7 +666,7 @@ const BUR_o =
 
 
 
-  eventRange__v
+  eventRange__v        //: scale, threshold sliders
   (
     event_o
   )
@@ -637,13 +712,15 @@ const BUR_o =
                         scale_n: BUR_o
                                    .scale_o
                                      [`${hsl_s}_n`]
+                        ,
+                        burst_b: true    //:  redraw
                       }
                     )
 
                 DOM_o
                   .rootVar__v
                   (
-                    `--{{C_o.STAT_a[0]}}_ruler`    ,
+                    `--{{C_o.STAT_a[0]}}_plots`    ,
                     'none'
                   )
 
@@ -682,11 +759,6 @@ const BUR_o =
                     [ `${atRange_s}_n` ] =
                     range_n
 
-                ;console.log(
-                BUR_o
-                   .thresh_o
-                )
-
                 if
                 (
                   (
@@ -703,6 +775,9 @@ const BUR_o =
                   return void alert( 'Les seuils haut et bas se croisent' )
                 }
 
+                BUR_o
+                  .draw__v()
+
                 break
 
               default:    //: reserve other cases
@@ -716,26 +791,25 @@ const BUR_o =
 
 
 
-
-  eventSpot__v
+  eventItem__v        //: hue range list
   (
     event_o
   )
   {
-    const label_o =
+    const item_e =
       event_o
         .target
-          .closest( `label` )
+          .closest( `li` )
 
     if
     (
-      label_o
+      item_e
     )
     {
       BUR_o
         .hue_o
           .rangeY_n =
-            +label_o             //: number cast
+            +item_e             //: number cast
               .dataset
                 .range_n
 
@@ -748,7 +822,7 @@ const BUR_o =
 
 
 
-  eventShift__v
+  eventShift__v       //: hue start set
   (
     click_o
   )
@@ -832,7 +906,7 @@ const BUR_o =
   ,
 
 
-  eventHsl__v
+  eventHsl__v        //: hue start trace
   (
     event_o
   )
@@ -897,21 +971,21 @@ const BUR_o =
 
 
 
-  eventTrace__v
+  eventTrace__v      //: hue, sat, lum trace
   (
       event_o
   )
   {
-    const part_s =
+    const hsl_s =
       BUR_o
         .hsl__s()
 
     if
     (
       ! BUR_o
-        .hueFreeze_b
+        .freeze_b
       ||
-      part_s
+      hsl_s
       !==
       'hue'
     )
@@ -920,7 +994,7 @@ const BUR_o =
         .get_frequency__v
         (
           event_o,
-          part_s
+          hsl_s
         )
 
       if
@@ -928,17 +1002,17 @@ const BUR_o =
         event_o
           .type
         ===
-        'mousemove'
+        'click'
         &&
         event_o
           .ctrlKey
       )
       {
         BUR_o
-          .eventtRuler__v
+          .eventtPlots__v
           (
             event_o,
-            part_s
+            hsl_s
           )
       }
     }
@@ -950,84 +1024,96 @@ const BUR_o =
       ===
       'click'
       &&
-      part_s
+      hsl_s
       ===
       'hue'
     )
     {
       BUR_o
-        .trace__v( part_s )
+        .trace__v( hsl_s )
     }
   }
   ,
 
 
 
-  eventtRuler__v
+  eventtPlots__v
   (
       event_o,
-      part_s
+      hsl_s
   )
   {
-      let
-      [
-        x_n,
-        y_n
-      ] =
+    if     //: must check if lastPlot_o is null
+    (
       BUR_o
-        .coord__a
-        (
-          event_o,
-          part_s
-        )
-
-      x_n =
-        Math.abs( x_n )
-
-      y_n =
-        Math.abs( y_n )
+        .lastPlot_o
+    )
+    {
+      let
+        {
+          startX_n
+          ,
+          startY_n
+        } =
+          BUR_o
+            .lastPlot_o
+          
+      const width_n =
+        +document
+          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )    //: all canvases (hue, sat, lum) have same size
+            .width
+      
+      const center_n =          //>>>>>> TODO: put outside event handler
+        width_n
+        *
+        .5      //: width / 2
+        
+      startX_n -=
+        center_n
+  
+      startY_n -=
+        center_n
 
       const radius_n =
         Math
           .sqrt
           (
-            x_n
+            startX_n
             *
-            x_n
+            startX_n
             +
-            y_n
+            startY_n
             *
-            y_n
+            startY_n
           )
           *
           2
-
+          
       let display_s =
         radius_n
         <
-        (
-          +'{{C_o.BURST_NAV_DIM}}'    //: Number cast
-          +
-          10
-        )
+        .1
         ?
           'none'
         :
           'block'
-
+  
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[0]}}_ruler`,
+          `--{{C_o.STAT_a[0]}}_plots`,
           display_s
         )
-
-       DOM_o
-         .rootVar__v
-         (
-           `--{{C_o.STAT_a[0]}}_ruler_dim`,
-           `${radius_n}px`
-         )
+  
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[0]}}_plot_scale`,
+          radius_n
+          /
+          width_n
+        )
+    }
   }
   ,
 
@@ -1059,7 +1145,7 @@ const BUR_o =
               .getElementById( `{{C_o.STAT_a[0]}}_lum_ratio_n` ),
         }
 
-    //=== HUE TRACE ===
+    //=== HUE TRACE EVENTS ===
     for
     (
       let hsl_s
@@ -1092,7 +1178,7 @@ const BUR_o =
       }
     }
 
-    //=== CANVAS + SLIDERS ===
+    //=== CANVAS + SLIDERSEVENTS ===
     for
     (
       let hsl_s
@@ -1107,7 +1193,7 @@ const BUR_o =
         (
           `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_range`,
           BUR_o
-            .eventSpot__v
+            .eventItem__v
         )
 
       DOM_o
@@ -1136,7 +1222,7 @@ const BUR_o =
         )
     }
 
-    //=== VIEW ===
+    //=== GOTO EVENTS ===
     for
     (
       node_s
@@ -1144,7 +1230,7 @@ const BUR_o =
       [
           '{{C_o.FULL_SCREEN}}',
           '{{C_o.PAGE_TOP}}',
-          '{{C_o.BURST_RULER}}'
+          '{{C_o.BURST_PLOTS}}'
       ]
     )
     {
@@ -1170,6 +1256,7 @@ const BUR_o =
         .listener__v()
     }
 
+    //=== RANGE EVENTS ===
     for
     (
       let range_s
@@ -1236,22 +1323,33 @@ const BUR_o =
               .message__v,
           )
 
-    BUR_o
-      .draw__v()
-  
-    const hsl_s = 'hue'
-
-    BUR_o                    //!!! after draw__v()
+    BUR_o                    //XXXXXXXX after draw__v()
       .worker_o
         .post__v
         (
           { 
             task_s:  'PUT_scale',
             stat_s:  '{{C_o.STAT_a[0]}}',
-            part_s:  hsl_s,
+            part_s:  'hue',
             scale_n: BUR_o
                        .scale_o
-                         [`${hsl_s}_n`]
+                         .hue_n
+            ,
+            burst_b: false    //:  don't draw: will do just after
+          }
+        )
+
+    BUR_o
+      .draw__v()
+  
+    BUR_o                    //XXXXXXXX after draw__v()
+      .worker_o
+        .post__v
+        (
+          { 
+            task_s:  'GET_plots',
+            stat_s:  '{{C_o.STAT_a[0]}}',
+            part_s:  'hue',
           }
         )
     BUR_o

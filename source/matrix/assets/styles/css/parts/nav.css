@@ -50,8 +50,7 @@ a[data-legend]:hover:before, label[data-legend]:hover:before {
 }
 a[data-legend], label[data-legend] {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   overflow: hidden;
   width: 100%;
   font-weight: 300;

@@ -69,53 +69,56 @@
       </nav>
 
       <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue">
-      
+        
         <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range">
-          <label data-range_n="1">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio" checked>
-          </label>
-          <label data-range_n="3">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="6">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="10">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="15">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="20">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="24">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="30">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="36">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="40">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="45">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="60">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="72">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="90">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
-          <label data-range_n="120">
-            <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
-          </label>
+          <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range" data-role=range>
+            <li data-range_n="1">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio" checked>
+            </li>
+            <li data-range_n="3">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="6">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="10">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="15">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="20">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="24">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="30">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="36">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="40">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="45">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="60">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">  <!-- TEMPORARY: 1 -->
+            </li>
+            <li data-range_n="72">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="90">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+            <li data-range_n="120">
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
+            </li>
+          </ul>
+          <hr role="vrange" />
         </div>
 
         <div>
@@ -123,19 +126,19 @@
           <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_front" width=48 height=720></canvas>
         </div>
         <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_hue_trace">
-            <output id="output_{{C_o.STAT_a[0]}}_hue" type="text">{{S_o.hue_back}}</output>
-            <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.open_list_marker.legend_s}}</span>
-          </label>
-      </div>
+          <output id="output_{{C_o.STAT_a[0]}}_hue" type="text">{{S_o.hue_back}}</output>
+          <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.open_list_marker.legend_s}}</span>
+        </label>
 
-     <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi">{{C_o.NAV_LEGEND_o.thresh_hi.legend_s}}</label>
-      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi" type="range" min="0" max="100" step="1" value="{{C_o.BURST_THRESH_HI_n}}" data-tip="{{C_o.BURST_THRESH_HI_n}}">
-     </div>
-     <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo">
-      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo" type="range" min="0" max="100" step="1" value="{{C_o.BURST_THRESH_LO_n}}" data-tip="{{C_o.BURST_THRESH_LO_n}}">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo">{{C_o.NAV_LEGEND_o.thresh_lo.legend_s}}</label>
-     </div>
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi">
+         <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi">{{C_o.NAV_LEGEND_o.thresh_hi.legend_s}}</label>
+         <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi" type="range" min="0" max="100" step="1" value="{{C_o.BURST_THRESH_HI_n}}" data-tip="{{C_o.BURST_THRESH_HI_n}}">
+        </div>
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo">
+         <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo" type="range" min="0" max="100" step="1" value="{{C_o.BURST_THRESH_LO_n}}" data-tip="{{C_o.BURST_THRESH_LO_n}}">
+         <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo">{{C_o.NAV_LEGEND_o.thresh_lo.legend_s}}</label>
+        </div>
+      </div>
     </aside>
   </div>
 
@@ -143,13 +146,23 @@
     <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}">
         <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
     </label>
-    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_ruler" data-legend="{{C_o.NAV_LEGEND_o.burst_ruler.legend_s}}">
+    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_plots" data-legend="{{C_o.NAV_LEGEND_o.burst_plots.legend_s}}">
+        <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
+    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_view" data-legend="{{C_o.NAV_LEGEND_o.burst_img.legend_s}}">
         <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
     </label>
 
       <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale" type="range" min="0.25" max="4" step="0.25" value="{{C_o.BURST_SCALE_n}}" data-tip="{{C_o.BURST_SCALE_n}}">
       <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
   </div>
-  
+
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_view" type="checkbox">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position" type="checkbox" checked>
+  <aside id="aside_{{C_o.STAT_a[0]}}_img_view">
+    <img src="none" />
+    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position">{{C_o.RETRACT_s}}</label><!--NE and SW Arrow-->
+  </aside>
+
   <script id=script_{{C_o.STAT_a[0]}} data-src="/assets/scripts/js/{{C_o.STAT_a[0]}}.min.js"></script>
 </div>

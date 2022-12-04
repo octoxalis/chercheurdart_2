@@ -115,18 +115,18 @@ input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s
   margin: 0 {{S_o.PAD_8}}}
 ;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] {
   width: 100%;
   border: none;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li {
   padding: 0;
   list-style: none;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input {
   display: none;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
   display: grid;
   justify-items: center;
   margin: 2px 0;
@@ -134,42 +134,42 @@ ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
   border: 1px solid {{S_o.shadow_ne}};
   font-size: 85%;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label:not(:first-of-type):hover {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label:not(:first-of-type):hover {
   filter: brightness( {{S_o.brightness_lo}} );
   background: {{S_o.ins_shadow_ne}};
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input:checked + label {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input:checked + label {
   background: {{S_o.table}};
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label {
   cursor: pointer;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label[for]:hover {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label[for]:hover {
   filter: brightness( {{S_o.brightness_lo}} );
   background: {{S_o.ins_shadow_ne}};
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:before {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:before {
   content: '';
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li[data-layer_b="0"] {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li[data-layer_b="0"] {
   opacity: .25;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation > label {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li#{{C_o.LIST_ITEM_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation > label {
   margin-top: {{S_o.PAD_4}};
   border: none;
   cursor: auto;
 }
-ul[id^="{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation > input {
+ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li#{{C_o.LIST_ITEM_ID_s}}_{{C_o.STAT_a[2]}}_layer_set_deviation > input {
   display: block;
   width: 100%;
   background: transparent;
   cursor: pointer;
   transform: scaleY( .5 );
 }
-ul#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop {
+ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop {
   display: var(--{{C_o.STAT_a[2]}}_setop_display);
 }
-ul#{{C_o.UL_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop > label {
+ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_setop > label {
   text-transform: none;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup {
