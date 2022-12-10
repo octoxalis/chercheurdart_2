@@ -8,11 +8,19 @@
         --{{C_o.STAT_a[0]}}_trace_pointer: crosshair;
 
         --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
+        --{{C_o.STAT_a[0]}}_plots_scale: {{C_o.BURST_PLOTS_SCALE_n}};
         --{{C_o.STAT_a[0]}}_plots: none;
-        --{{C_o.STAT_a[0]}}_plot_scale: .25;
 
         --{{C_o.STAT_a[0]}}_canvas_dim: calc( (var(--{{C_o.STAT_a[0]}}_screen_dim) * {{C_o.SCREEN_RATIO_n}}) - ({{S_o.NAV_HEIGHT_s}} * 2));
-        --{{C_o.STAT_a[0]}}_img_dim: 1024px;
+        --{{C_o.STAT_a[0]}}_img_transform: 80vmin;
+
+        --{{C_o.STAT_a[0]}}_img_bg_hue: 180;
+        --{{C_o.STAT_a[0]}}_img_bg_sat: 50;
+        --{{C_o.STAT_a[0]}}_img_bg_lum: 25;
+        --{{C_o.STAT_a[0]}}_img_bgwhite: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 100% 100% /1);
+        --{{C_o.STAT_a[0]}}_img_bgblack: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 0% 0% /1);
+        --{{C_o.STAT_a[0]}}_img_backgroud: var(--{{C_o.STAT_a[0]}}_img_bgwhite);
+        
 </:root>
 
 <section#{{C_o.STAT_a[0]}}>
@@ -128,7 +136,7 @@ context( stack, new )
         height: fit-content;
         box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
         transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
-        transition: .5s ease;
+        transition: transform .5s ease;
 </div>
 <!--variant-->
 <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings:checked />
@@ -200,7 +208,7 @@ context( stack, new )
             grid-area: 1/-1;
             position: relative;
             top: 3rem;              /* see ul:translate */
-            left: 6.2rem;
+            left: 7.2rem;
             width: 96%;
             height: 0;
             border-color: {{S_o.bg_lower}};
@@ -211,14 +219,14 @@ context( stack, new )
     <ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range>
             grid-area: 1/-1;
             display: flex;
-            flex-direction: row;
+            /*flex-direction: row;*/
             justify-content: space-between;
             flex-wrap: wrap;
             margin: {{S_o.PAD_2}} 0;
             gap: 4px;
             width: 720px;
             height: fit-content;
-            transform: translate( 6.8rem, 2rem ) rotate( 90deg ) scaleY( 1 );
+            transform: translate( 8rem, 2rem ) rotate( 90deg ) scaleY( 1 );
             transform-origin: top left;
       <li[data-range_n]>
               display: grid;
@@ -246,7 +254,7 @@ context( stack, new )
               width: 4ch;
               text-align: center;
               padding: {{S_o.PAD_1}};
-              color: currentColor;   /*hsla( var(--{{C_o.STAT_a[0]}}_hue_back) calc( var(--{{C_o.STAT_a[0]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[0]}}_back_lum) * 1% ) / 1);*/
+              color: currentColor;
               background: {{S_o.bg_lower}};
               font-size: 80%;
               font-weight: 200;
@@ -285,10 +293,7 @@ context( stack, new )
           display: none;
           position: absolute;
           margin: -{{S_o.PAD_4}} 0;
-          background: transparent;
-          cursor: pointer;
-          transform: scaleY( .5 );
-          width: 200px;
+  context(block, input_range)
           transform: translate( -{{S_o.PAD_2}}, - ) rotate( 90deg ) scaleY( .3 );
           transform-origin: top left;
   <input[type=range]:focus />
@@ -331,7 +336,7 @@ context( stack, new )
             position: relative;
             padding: {{S_o.PAD_1}};
             width: 4ch;
-            color: currentColor;   /*hsla( var(--{{C_o.STAT_a[0]}}_hue_back) calc( var(--{{C_o.STAT_a[0]}}_back_sat) * 1% ) calc( var(--{{C_o.STAT_a[0]}}_back_lum) * 1% ) / 1);*/
+            color: currentColor;
             background: {{S_o.bg_lower}};        /* = span background */
             font-size: 80%;
             font-weight: 200;
@@ -362,9 +367,7 @@ context( stack, new )
           left: -1.5rem;
           margin: {{S_o.PAD_1}} 0;
     <input[type=range]>
-            width: 200px;
-            background: transparent;
-            cursor: pointer;
+    context(block, input_range)
     </input>
     <label>
             position: relative;
@@ -377,7 +380,7 @@ context( stack, new )
   </div>
   <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi>
     <input[type=range]>
-              transform: rotate( 180deg ) scaleY( .5 );  /* from right to left slider */
+              transform: rotate( 180deg ) scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );  /* from right to left slider */
    </input>
   <input[type=range]:hover:after>
               transform: rotate( 180deg ) scaleY( 2 );  /* !!! overide section.context.html where scale is 2 */
@@ -385,7 +388,7 @@ context( stack, new )
   </div>
   <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo>
     <input[type=range]>
-              transform: scaleY( .5 );
+              transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
    </input>
   </div>
 </div>
@@ -412,10 +415,7 @@ context( stack, new )
   <input[type=range]>
           position: relative;
           top: {{S_o.PAD_5}};    /* under following label */
-          width: 200px;
-          background: transparent;
-          cursor: pointer;
-          transform: scaleY( .5 );
+  context(block, input_range)
   </input>
   <label>
           position: relative;
@@ -444,6 +444,7 @@ context( stack, new )
     <span[data-role]>
             background: transparent;
     </span>
+
   </label>
 
   <input[type=range]:focus />
@@ -473,26 +474,21 @@ context( stack, new )
   </a>
   <div#goto_{{C_o.STAT_a[0]}}_plots>
           display: var(--{{C_o.STAT_a[0]}}_plots);
-          z-index: 20;
-          position: fixed;
-
-
-          top: calc(  50vh -   var(--{{C_o.STAT_a[0]}}_screen_dim) * .5px  );
-          left: calc(  50vw -   var(--{{C_o.STAT_a[0]}}_screen_dim) * .5px  );
-
-          width:  calc( var(--{{C_o.STAT_a[0]}}_screen_dim) * 1px );
-          height: calc( var(--{{C_o.STAT_a[0]}}_screen_dim) * 1px );
-
+          z-index: 19;
+          position: absolute;
+          --plots_ratio: calc( var(--{{C_o.STAT_a[0]}}_screen_dim) * var(--{{C_o.STAT_a[0]}}_scale) );
+          top:  calc( 50vh - var(--plots_ratio) * .5px  );
+          left: calc( 50vw - var(--plots_ratio) * .5px  );
+          width:  calc( var(--plots_ratio) * 1px );
+          height: calc( var(--plots_ratio) * 1px );
           border-radius: 50%;
           background: {{S_o.shadow_ne}};
           filter: brightness( .01 ); 
           pointer-events: none;
           transform-origin: center;
-          transform: scale( var(--{{C_o.STAT_a[0]}}_plot_scale) );
-          transition: .3s;
+          transform: scale( var(--{{C_o.STAT_a[0]}}_plots_scale) );
+          transition: .3s ease;  /*!!!! don't set transform */
   </div>
-  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_plots />
-  ~
   <div#goto_{{C_o.STAT_a[0]}}_plots>
           display: none;
   </div>
@@ -503,62 +499,241 @@ context( stack, new )
   </div>
 </body>
 
+
+
 context( stack, new )
-<aside#aside_{{C_o.STAT_a[0]}}_img_view>
+<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked )>
+  <div#goto_{{C_o.STAT_a[0]}}_plots>
+          opacity: 0;
+          transition: .3s ease;
+  </div>
+</body>
+<aside#aside_{{C_o.STAT_a[0]}}_hue_img>
         display: none;
 </aside>
-<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_view:checked )>
+
+<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked )>
   <section#{{C_o.STAT_a[0]}}>
     <div[id^={{C_o.DIV_ID_s}}_stat]>
-      <inpu#t{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position:checked>
+      <inpu#t{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked>
               display: none;
       </input>
-      <aside#aside_{{C_o.STAT_a[0]}}_img_view>
-              display: grid;
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
+              z-index: 21;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
               position: fixed;
-              width:  var(--{{C_o.STAT_a[0]}}_img_dim);
-              height: var(--{{C_o.STAT_a[0]}}_img_dim);
-        <img>
+              min-width: 740px;      /* for color picker */
+              box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+              filter: drop-shadow( 0 0 10vmax {{S_o.shadow_hi}} );
+              transform-origin: bottom left;
+              transform: scale( 1 );
+        <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img>
               grid-area: 1/-1;
-              min-width:  var(--{{C_o.STAT_a[0]}}_img_dim);
-              min-height: var(--{{C_o.STAT_a[0]}}_img_dim);
-              border: 2px solid red;
-              background: red;
-        </img>
-        <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position"]>
-                grid-area: 1/-1;
+              max-width:  {{C_o.BURST_TRANSFORM_DIM_s}};
+              max-height: {{C_o.BURST_TRANSFORM_DIM_s}};
+              background: var(--{{C_o.STAT_a[0]}}_img_backgroud);
+        </canvas>
+        <ul>
                 display: flex;
-                justify-content: center;
+                /*flex-direction: row;*/
+                /*flex-wrap: wrap;*/
+                justify-content: flex-end;
                 align-items: center;
-                position: relative;
-                top: -1rem;
-                left: calc( var(--{{C_o.STAT_a[0]}}_img_dim) - 1rem );
-                padding: {{S_o.PAD_1}};
-                width:  2rem;
+                margin: 0;     /* overide */
+                padding: 0 {{S_o.PAD_8}};
+                gap: {{S_o.PAD_16}};
+                width: 100%;
                 height: 2rem;
-                font-size: 150%;
-                border-radius: 50%;
-        </label>
-        <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position"]:hover>
-                background: {{S_o.shadow_ne}};
-                border: 2px solid {{S_o.shadow_ne}};
-        </label>
+                border: none;
+          <li>
+                    list-style: none;
+                    transform-origin: center;
+                    transform: scale( 1 );
+            <label>
+            context( block, top_button )
+                    padding: 0 {{S_o.PAD_2}};
+                    border: none;    /* override block*/
+                    border-radius: 4px;    /* override block */
+            </label>
+            <label:hover>
+                    background: {{S_o.shadow_ne}};
+            </label>
+          </li>
+          <li:before>
+                  content: '';    /* overide */
+          </li>
+        </ul>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg>
+                display: flex;
+                justify-content: flex-start;
+                padding: 0 {{S_o.PAD_2}};
+                width: 100%;
+                height: 2rem;
+          <label>
+                  width: 15%;
+                  text-align: center;
+                  font-size: 80%;
+                  line-height: 2rem;    /* vertical centering */
+                  opacity: .5;
+          </label>
+          <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]>
+          context(block, input_range)
+          </input>
+          <label[for]>
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  cursor: url( /assets/styles/css/paint_brush.svg ) 32 32, auto;
+            <span>
+                    width:       calc( 1.5rem - 4px );
+                    height:      calc( 1.5rem - 4px );
+                    line-height: calc( 1.5rem - 4px );
+                    border: 2px solid hsl( 0 0% 50% /1);
+            </span>
+          </label>
+          <label[for]:nth-of-type(2)>
+            <span>
+                    background: hsl( 0 0% 0% /1);  /* black */
+            </span>
+          </label>
+          <label[for]:nth-of-type(3)>
+            <span>
+                    background: hsl( 0 100% 100% /1);  /* white */
+                    
+            </span>
+          </label>
+          <label[for]:nth-of-type(4)>
+            <span>
+                    background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
+            </span>
+          </label>
+          <label[for]:nth-of-type(5)>
+                  cursor: pointer;
+            <span>
+                    line-height: calc( 1.5rem - 8px );  /* vertical centering */
+                    background: transparent;
+                    border: 2px solid transparent;
+            </span>
+          </label>
+          <label[for]:hover>
+            <span>
+                    display: none;
+            </span>
+          </label>
+        </div>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker>
+               display: none;
+               flex-direction: column;
+               align-items: center;
+               padding: {{S_o.PAD_6}} {{S_o.PAD_4}} 0 {{S_o.PAD_4}};
+               width: 100%;
+               height: fit-content;
+          <label>
+                width: 100%;
+                height: 1.6rem;
+                border-radius: 4px;
+          </label>
+          <input[type=range]>
+                  width: 720px;
+                  position: relative;
+                  top: -1.1rem;
+                  cursor: pointer;
+                  transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
+          </input>
+          <label:nth-of-type(1)>
+                  background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
+          </label>
+          <label:nth-of-type(2)>
+                  background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat) * 1% ) 50% /1);
+          </label>
+          <label:nth-of-type(3)>
+                  background: hsl( 0 0% calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum) * 1% ) /1);
+          </label>
+        </div>
       </aside>
-      <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position:not(:checked)>
+      <!--variant-->
+      <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked)>
       </input>
       ~
-      <aside#aside_{{C_o.STAT_a[0]}}_img_view>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
               position: fixed;
               left: 0;
-              top: calc( 100vh - ( var(--{{C_o.STAT_a[0]}}_img_dim)  ) );
-              transform-origin: bottom left;
-              transform: scale( .25 );
-        <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position"]>
-              transform: scale( 4 );
-        </label>
+              top: calc( 100vh - ( {{C_o.BURST_TRANSFORM_DIM_s}} + 6rem ) );  /* don't hide input range */
+              box-shadow: none;
+              filter: none;
+              transform: scale( .33 );  /* keep space under settings */
+              transition: transform .2s;
+        <ul>
+                height: 4rem;
+          <li>
+                  transform: scale( 3.33 );
+            <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position"]>
+            </label>
+          </li>
+        </ul>
       </aside>
     </div>
   </section>
 </body>
+
+context( stack, new )
+<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker:checked )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker>
+               display: flex;
+        </div>
+      </aside>
+    </div>
+  </section>
+</body>
+
+context( stack, new )
+<dialog_{{C_o.STAT_a[0]}}_hue_img_dialog>
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+
+.modal-inner {
+  background-color: white;
+  border-radius: 0.5em;
+  max-width: 600px;
+  padding: 2em;
+  margin: auto;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid black;
+}
+#modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: black;
+  opacity: 0.5;  
+}
+
+
+
+</dialog>
+
+
+<dialog_{{C_o.STAT_a[0]}}_hue_img_dialog>
+.modal[open] {
+  display: flex;
+</dialog>
+
 
 

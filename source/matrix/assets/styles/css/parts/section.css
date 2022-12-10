@@ -22,9 +22,9 @@ ul:not([data-role=range]) {
   border-left: 1px solid {{S_o.shadow_ne}};
 }
 ul:not([data-role=range]) > li {
+  list-style: none;
   padding-left: .8rem;
   color: currentColor;
-  list-style: none;
 }
 ul:not([data-role=range]) > li > a {
   color: currentColor;

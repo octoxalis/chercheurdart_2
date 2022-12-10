@@ -143,6 +143,7 @@ const PAN_o =
             (
               {
                 id_s: id_s,
+                outer_b: false,
                 created_n: PAN_o.nextIndex__n(),
                 width_s: img_e.width,
                 height_s: img_e.height,
@@ -164,7 +165,10 @@ const PAN_o =
   () =>
   {
     let figure_s = ''
+
     let storage_a = []    //: array to reorder localStorage keys according to their creation order
+
+    let outer_a = []
 
     for
     (
@@ -176,20 +180,42 @@ const PAN_o =
       const key_s =
         localStorage.key( at_n )
 
-      storage_a
-        .push
-        (
-          {
-            key_s: key_s,
-            value_o:
-              JSON
-                .parse
-                (
-                  localStorage
-                    .getItem( key_s )
-               )
-          }
-        )
+      const item_o =
+        localStorage
+          .getItem( key_s )
+
+      entry_o =
+        {
+          key_s: key_s,
+          value_o:
+            JSON
+              .parse( item_o )
+        }
+
+      if
+      (
+        item_o
+          .outer_b
+      )
+      {
+        outer_a
+          .push ( entry_o )
+      }
+      else
+      {
+        storage_a
+          .push ( entry_o )
+      }
+    }
+
+    if
+    (
+      outer_a
+        .length
+    )
+    {
+      //: filePicker
+      //: add selected files to storage
     }
 
     storage_a

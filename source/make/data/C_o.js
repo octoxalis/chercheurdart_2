@@ -124,7 +124,12 @@ const C_o =
     burst_img: { icon_s: `&nbsp;`, legend_s: `image`},
     thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
     thresh_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
-    
+    img_opacity: { icon_s: `&nbsp;`, legend_s: `opacité`},
+    img_bgblack: { icon_s: `&nbsp;`, legend_s: `noir`},
+    img_bgwhite: { icon_s: `&nbsp;`, legend_s: `blanc`},
+    img_bgcolor: { icon_s: `&nbsp;`, legend_s: `couleur`},
+    img_picker: { icon_s: `&nbsp;`, legend_s: `sélecteur`},
+
 
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
     paint_cursor:   { icon_s: `&nbsp;`,  legend_s: `&nbsp;`},
@@ -166,26 +171,34 @@ const C_o =
 
 
   //=== BURST TOOLS ===
-  SCREEN_DIM_n:        1024,    //: default, set by burst.init()
-  SCREEN_RATIO_n:      1,
-  BURST_SCALE_n:       .5,
-  BURST_RANGE_n:       1,    //!!!  TEMPORARY //: 1 range
-  BURST_THRESH_HI_n:   0,
-  BURST_THRESH_LO_n:   0,
-  BURST_NAV_DIM_n:     360,
-  BURST_SCALE_MIN_n:   .001,
+  INPUT_RANGE_SCALEY_n:  .5,
+  SCREEN_DIM_n:          1024,    //: default, set by burst.init()
+  SCREEN_RATIO_n:        1,
+  BURST_SCALE_n:         1,
+  BURST_PLOTS_SCALE_n:   .2,   //: default
+  BURST_RANGE_n:         60,   //!!!  TEMPORARY //: 1 range
+  BURST_THRESH_HI_n:     0,
+  BURST_THRESH_LO_n:     0,
+  BURST_IMG_OPACITY_n:  20,
+  BURST_IMG_RESET_n:     255,    //: contrast
+  BURST_NAV_DIM_n:       360,
+  BURST_SCALE_MIN_n:     .001,
+  BURST_TRANSFORM_DIM_s: '60rem',  //: keep space for layer_view
+  BURST_PICK_HUE_n:      0,
+  BURST_PICK_SAT_n:      100,
+  BURST_PICK_LUM_n:      50,
 
 
-  PAINT_LAYER_n:       8,
-  PAINT_DEVIATION_n:   10,
-  PAINT_DISTANCE_X_n:  0,        /* factor */
-  PAINT_PERSPECTIVE_n:  1000,
-  PAINT_DISTANCE_n:    -100,
-  PAINT_ROTATE_n:      0,
-  PAINT_SCALE_n:       .25,
-  CANVAS_RESIZE_n:     .025,
+  PAINT_LAYER_n:        8,
+  PAINT_DEVIATION_n:    10,
+  PAINT_DISTANCE_X_n:    0,        /* factor */
+  PAINT_PERSPECTIVE_n:   1000,
+  PAINT_DISTANCE_n:     -100,
+  PAINT_ROTATE_n:       0,
+  PAINT_SCALE_n:        .25,
+  CANVAS_RESIZE_n:      .025,
 
-  PAINT_SLIDER_n:      2,    //: 2px line
+  PAINT_SLIDER_n:       2,    //: 2px line
 
   //=== PANORAMA TOOLS ===
   PANORAMA_COL_n:     2,
@@ -233,9 +246,13 @@ const C_o =
   FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
-  RETRACT_s:            '&#10530;',  //: NE and SW Arrow           ⤢
+  IMG_RETRACT_s:        '&#10530;',  //: NE and SW Arrow           ⤢
+  IMG_RESET_s:          '&#8634;',   //: Anticlockwise Open Circle Arrow          
+  IMG_PANORAMA_s:       '&#8862;',   //: Squared Plus               ⊞
+  IMG_DOWNLOAD_s:       '&#11123;',  //: Downwards Triangle-Headed Arrow To Bar   ⭳
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
+  SEE_MORE_s:           '&#8943;',          //: 
 
 
 

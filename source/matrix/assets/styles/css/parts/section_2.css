@@ -121,7 +121,7 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   width: 200px;
   background: transparent;
   cursor: pointer;
-  transform: scaleY( .5 );
+  transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label[for] {
   position: relative;

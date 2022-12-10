@@ -16,9 +16,9 @@
         border-left: 1px solid {{S_o.shadow_ne}};
 </block>
 <block list_item>
+        list-style: none;
         padding-left: .8rem;
         color: currentColor;
-        list-style: none;
 </block>
 <block reference_1>
         --font_max: 20px;
@@ -66,5 +66,20 @@
         line-height: {{S_o.NAV_LABEL_s}};  /* vertical-align */
         border-radius: 50%;
         text-align: center;
+</block>
+<block top_button>
+          width:  2rem;
+          height: 2rem;
+          line-height: 2rem;                /* vertical centering */
+          text-align: center;
+          border: 1px solid {{S_o.shadow_ne}};
+          border-radius: 50%;
+          background: transparent;
+</block>
+<block input_range>
+          width: 200px;
+          background: transparent;
+          cursor: pointer;
+          transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 </block>
 

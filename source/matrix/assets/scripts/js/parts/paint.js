@@ -1261,7 +1261,7 @@ const PAI_o =
               { 
                 task_s: 'PUT_draw',
                 stat_s: '{{C_o.STAT_a[2]}}',
-                part_s: 'sat_front',
+                hsl_s: 'sat_front',
                 hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
               }
             )
@@ -1414,10 +1414,10 @@ const PAI_o =
           { 
             task_s:      'PUT_hsl',
             stat_s:      '{{C_o.STAT_a[2]}}',
+            hsl_s:        hsl_s,
             operand_a:   operand_a,
             operation_s: operation_s,
             deviation_n: deviation_n,
-            hsl_s:        hsl_s,
             rangeX_n:     PAI_o
                            [ `${hsl_s}_o` ]
                              .rangeX_n,
@@ -1878,7 +1878,7 @@ const PAI_o =
             { 
               task_s: 'PUT_draw',
               stat_s: '{{C_o.STAT_a[2]}}',
-              part_s: canvas_s,
+              hsl_s: canvas_s,
               hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
             }
           )

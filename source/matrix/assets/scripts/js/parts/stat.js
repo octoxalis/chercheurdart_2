@@ -17,12 +17,12 @@ const STAT_o =
   canvas__e    //!!! 4. from section
   (
     stat_s,
-    part_s
+    hsl_s
   )
   {
     const canvas_e =
       document
-        .querySelector( `#{{C_o.CANVAS_ID_s}}_${stat_s}_${part_s}` )
+        .querySelector( `#{{C_o.CANVAS_ID_s}}_${stat_s}_${hsl_s}` )
 
     //??canvas_e
     //??  .width *=
@@ -100,7 +100,7 @@ const STAT_o =
             {
               task_s:     'PUT_canvas',
               stat_s:     stat_s,
-              part_s:     canvas_s,
+              hsl_s:     canvas_s,
               canvas_e:   offCanvas_e,
               script_s:   script_s,
               pixel_n:    window

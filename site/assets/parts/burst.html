@@ -54,7 +54,7 @@
   </nav>
 
   <input id="IN_burst_canvas" name="burst_settings" type="radio">
-  <input id="IN_burst_settings" name="burst_settings" type="radio" checked><!--  TEMPORARY -->
+  <input id="IN_burst_settings" name="burst_settings" type="radio"><!--  TEMPORARY: checked -->
   <input id="IN_burst_settings_shadow" type="checkbox">
 
   <div id="DI_burst_settings">
@@ -73,7 +73,7 @@
         <div id="DI_burst_hue_range">
           <ul id="UL_burst_hue_range" data-role=range>
             <li data-range_n="1">
-              <input name="burst_hue_range" type="radio" checked>
+              <input name="burst_hue_range" type="radio">
             </li>
             <li data-range_n="3">
               <input name="burst_hue_range" type="radio">
@@ -106,7 +106,7 @@
               <input name="burst_hue_range" type="radio">
             </li>
             <li data-range_n="60">
-              <input name="burst_hue_range" type="radio">  <!-- TEMPORARY: 1 -->
+              <input name="burst_hue_range" type="radio" checked>  <!-- TEMPORARY: 1 -->
             </li>
             <li data-range_n="72">
               <input name="burst_hue_range" type="radio">
@@ -149,20 +149,97 @@
     <label for="IN_burst_plots" data-legend="étalonnage">
         <span data-role="open">&nbsp;</span>
     </label>
-    <label for="IN_burst_img_view" data-legend="image">
+    <label for="IN_burst_hue_img" data-legend="image">
         <span data-role="open">&nbsp;</span>
     </label>
 
-      <input id="IN_burst_view_scale" type="range" min="0.25" max="4" step="0.25" value="0.5" data-tip="0.5">
-      <label for="IN_burst_view_scale">Échelle</label>
+      <input id="IN_burst_view_scale" type="range" min="0.25" max="4" step="0.25" value="1" data-tip="1">
+      <label for="IN_burst_view_scale">
+      Échelle
+      </label>
   </div>
 
-  <input id="IN_burst_img_view" type="checkbox">
-  <input id="IN_burst_img_position" type="checkbox" checked>
-  <aside id="aside_burst_img_view">
-    <img src="none" />
-    <label for="IN_burst_img_position">&#10530;</label><!--NE and SW Arrow-->
+  <input id="IN_burst_hue_img" type="checkbox" checked>
+  <input id="IN_burst_hue_img_download" type="checkbox">
+  <input id="IN_burst_hue_img_panorama" type="checkbox">
+  <input id="IN_burst_hue_img_reset" type="checkbox">
+  <input id="IN_burst_hue_img_position" type="checkbox" checked><!--TEMPORARY-->
+  <input id="IN_burst_hue_img_picker" type="checkbox">
+  <input id="IN_burst_hue_img_bg_black" name="burst_hue_color" type="radio">
+  <input id="IN_burst_hue_img_bg_white" name="burst_hue_color" type="radio">
+  <input id="IN_burst_hue_img_bg_color" name="burst_hue_color" type="radio">
+  <aside id="aside_burst_hue_img">
+    <ul id="UL_burst_opacity" role="icon_list">
+      <li>
+        <label for="IN_burst_hue_img_panorama">
+        &#8862;
+        </label><!--NE and SW Arrow-->
+      </li>
+      <li>
+        <label for="IN_burst_hue_img_download">
+        &#11123;
+        </label><!--NE and SW Arrow-->
+      </li>
+      <li>
+        <label for="IN_burst_hue_img_reset">
+        &#8634;
+        </label><!--NE and SW Arrow-->
+      </li>
+      <li>
+        <label for="IN_burst_hue_img_position">
+        &#10530;
+        </label><!--NE and SW Arrow-->
+      </li>
+    </ul>
+    <canvas id="CA_burst_hue_img" width=60rem height=60rem></canvas>  <!-- 1024: default value -->
+    <div id="DI_burst_hue_img_bg">
+      <label>opacité</label>
+      <input id="IN_burst_hue_img_bg_opacity" type="range" min="0" max="100" step="10" value="20" data-tip="20">
+      <label for="IN_burst_hue_img_bg_black" data-legend="noir">
+          <span data-role="bgcolor">&nbsp;</span>
+      </label>
+      <label for="IN_burst_hue_img_bg_white" data-legend="blanc">
+          <span data-role="bgcolor">&nbsp;</span>
+      </label>
+      <label for="IN_burst_hue_img_bg_color" data-legend="couleur">
+          <span data-role="bgcolor">&nbsp;</span>
+      </label>
+      <label for="IN_burst_hue_img_picker" data-legend="sélecteur">
+          <span data-role="bgcolor">&#8943;</span>
+      </label>
+    </div>
+
+    <div id="DI_burst_hue_img_picker">
+      <label for="IN_burst_hue_pick_hue"></label>
+      <input id="IN_burst_hue_pick_hue" type="range" min="0" max="360" step="1" value="0" data-tip="0">
+      <label for="IN_burst_hue_pick_sat"></label>
+      <input id="IN_burst_hue_pick_sat" type="range" min="0" max="100" step="1" value="100" data-tip="100">
+      <label for="IN_burst_hue_pick_lum"></label>
+      <input id="IN_burst_hue_pick_lum" type="range" min="0" max="100" step="1" value="50" data-tip="50">
+    </div>
+    
   </aside>
+
+<!--
+  <input id="IN_burst_hue_img_dialog" type="checkbox">
+  <dialog id="dialog_burst_hue_img_dialog">
+    <form id="form_burst_hue_img_dialog" method="dialog">
+      <div id="_burst_hue_img_dialog_panorama">
+        <header>
+          
+        </header>
+        <label>
+          Inclure l'image dans la panorama
+        </label>
+      </div>
+      <div id="_burst_hue_img_dialog_download">
+        <label>
+          Sauvegarder l'image localement
+        </label>
+      </div>
+    </form>
+  </dialog>
+-->
 
   <script id=script_burst data-src="/assets/scripts/js/burst.min.js"></script>
 </div>

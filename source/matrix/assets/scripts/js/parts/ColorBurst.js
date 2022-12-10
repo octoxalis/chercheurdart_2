@@ -250,12 +250,12 @@ class ColorBurst
               freq_o
                 .hsl_a
             )
-              .path__c
-              (
-                `M ${startX_n} ${startY_n}
-                 A 0 0 0 0 0 ${endX_n} ${endY_n}
-                 L ${this.center_n} ${this.center_n}`
-              )
+            .path__c
+            (
+              `M ${startX_n} ${startY_n}
+               A 0 0 0 0 0 ${endX_n} ${endY_n}
+               L ${this.center_n} ${this.center_n}`
+            )
       }
       else
       {

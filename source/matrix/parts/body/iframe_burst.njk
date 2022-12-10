@@ -54,7 +54,7 @@
   </nav>
 
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_canvas" name="{{C_o.STAT_a[0]}}_settings" type="radio">
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings" name="{{C_o.STAT_a[0]}}_settings" type="radio" checked><!--  TEMPORARY -->
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings" name="{{C_o.STAT_a[0]}}_settings" type="radio"><!--  TEMPORARY: checked -->
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings_shadow" type="checkbox">
 
   <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings">
@@ -73,7 +73,7 @@
         <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range">
           <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range" data-role=range>
             <li data-range_n="1">
-              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio" checked>
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
             </li>
             <li data-range_n="3">
               <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
@@ -106,7 +106,7 @@
               <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
             </li>
             <li data-range_n="60">
-              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">  <!-- TEMPORARY: 1 -->
+              <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio" checked>  <!-- TEMPORARY: 1 -->
             </li>
             <li data-range_n="72">
               <input name="{{C_o.STAT_a[0]}}_hue_range" type="radio">
@@ -149,20 +149,97 @@
     <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_plots" data-legend="{{C_o.NAV_LEGEND_o.burst_plots.legend_s}}">
         <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
     </label>
-    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_view" data-legend="{{C_o.NAV_LEGEND_o.burst_img.legend_s}}">
+    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" data-legend="{{C_o.NAV_LEGEND_o.burst_img.legend_s}}">
         <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
     </label>
 
       <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale" type="range" min="0.25" max="4" step="0.25" value="{{C_o.BURST_SCALE_n}}" data-tip="{{C_o.BURST_SCALE_n}}">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale">{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}</label>
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale">
+      {{C_o.NAV_LEGEND_o.layers_scale.legend_s}}
+      </label>
   </div>
 
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_view" type="checkbox">
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position" type="checkbox" checked>
-  <aside id="aside_{{C_o.STAT_a[0]}}_img_view">
-    <img src="none" />
-    <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_img_position">{{C_o.RETRACT_s}}</label><!--NE and SW Arrow-->
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" type="checkbox" checked>
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_download" type="checkbox">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_panorama" type="checkbox">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_reset" type="checkbox">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position" type="checkbox" checked><!--TEMPORARY-->
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker" type="checkbox">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_white" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
+  <aside id="aside_{{C_o.STAT_a[0]}}_hue_img">
+    <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_opacity" role="icon_list">
+      <li>
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_panorama">
+        {{C_o.IMG_PANORAMA_s}}
+        </label><!--NE and SW Arrow-->
+      </li>
+      <li>
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_download">
+        {{C_o.IMG_DOWNLOAD_s}}
+        </label><!--NE and SW Arrow-->
+      </li>
+      <li>
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_reset">
+        {{C_o.IMG_RESET_s}}
+        </label><!--NE and SW Arrow-->
+      </li>
+      <li>
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position">
+        {{C_o.IMG_RETRACT_s}}
+        </label><!--NE and SW Arrow-->
+      </li>
+    </ul>
+    <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" width={{C_o.BURST_TRANSFORM_DIM_s}} height={{C_o.BURST_TRANSFORM_DIM_s}}></canvas>  <!-- 1024: default value -->
+    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg">
+      <label>{{C_o.NAV_LEGEND_o.img_opacity.legend_s}}</label>
+      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity" type="range" min="0" max="100" step="10" value="{{C_o.BURST_IMG_OPACITY_n}}" data-tip="{{C_o.BURST_IMG_OPACITY_n}}">
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black" data-legend="{{C_o.NAV_LEGEND_o.img_bgblack.legend_s}}">
+          <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+      </label>
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_white" data-legend="{{C_o.NAV_LEGEND_o.img_bgwhite.legend_s}}">
+          <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+      </label>
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color" data-legend="{{C_o.NAV_LEGEND_o.img_bgcolor.legend_s}}">
+          <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+      </label>
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker" data-legend="{{C_o.NAV_LEGEND_o.img_picker.legend_s}}">
+          <span data-role="bgcolor">{{C_o.SEE_MORE_s}}</span>
+      </label>
+    </div>
+
+    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker">
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue"></label>
+      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue" type="range" min="0" max="360" step="1" value="{{C_o.BURST_PICK_HUE_n}}" data-tip="{{C_o.BURST_PICK_HUE_n}}">
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat"></label>
+      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat" type="range" min="0" max="100" step="1" value="{{C_o.BURST_PICK_SAT_n}}" data-tip="{{C_o.BURST_PICK_SAT_n}}">
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum"></label>
+      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum" type="range" min="0" max="100" step="1" value="{{C_o.BURST_PICK_LUM_n}}" data-tip="{{C_o.BURST_PICK_LUM_n}}">
+    </div>
+    
   </aside>
+
+<!--
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_dialog" type="checkbox">
+  <dialog id="dialog_{{C_o.STAT_a[0]}}_hue_img_dialog">
+    <form id="form_{{C_o.STAT_a[0]}}_hue_img_dialog" method="dialog">
+      <div id="_{{C_o.STAT_a[0]}}_hue_img_dialog_panorama">
+        <header>
+          
+        </header>
+        <label>
+          Inclure l'image dans la panorama
+        </label>
+      </div>
+      <div id="_{{C_o.STAT_a[0]}}_hue_img_dialog_download">
+        <label>
+          Sauvegarder l'image localement
+        </label>
+      </div>
+    </form>
+  </dialog>
+-->
 
   <script id=script_{{C_o.STAT_a[0]}} data-src="/assets/scripts/js/{{C_o.STAT_a[0]}}.min.js"></script>
 </div>

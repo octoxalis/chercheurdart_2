@@ -26,10 +26,11 @@ body > iframe {
 body > a#goto_{{C_o.FULL_SCREEN}}, body > a#goto_{{C_o.PAGE_TOP}} {
   z-index: 20;
   position: fixed;
+  top: calc( 100vh - 6vmin );
   left: calc( 100vw - 6vmin );
-  width: 4vmin;
-  height: 4vmin;
-  line-height: 4vmin;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
   text-align: center;
   border: 1px solid {{S_o.shadow_ne}};
   border-radius: 50%;
@@ -39,11 +40,8 @@ body > a#goto_{{C_o.FULL_SCREEN}} {
   display: none;
   top: {{S_o.PAD_2}};
 }
-body > a#goto_{{C_o.PAGE_TOP}} {
-  top: calc( 100vh - 6vmin );
-}
-body > a#goto_{{C_o.PAGE_TOP}}:hover {
-  filter: brightness( {{S_o.brightness_lo}} );
+body > a#goto_{{C_o.FULL_SCREEN}}:hover, body > a#goto_{{C_o.PAGE_TOP}}:hover {
+  background: {{S_o.shadow_ne}};
 }
 .range-separator {
   display: inline-block;

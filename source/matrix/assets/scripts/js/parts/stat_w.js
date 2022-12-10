@@ -131,10 +131,11 @@ const STAT_W_o =
     'GET_frequency',
     'GET_plots',
     'GET_img',
+    'GET_canvas_img',
 
     'PUT_canvas',
     'PUT_draw',
-    //?? 'PUT_plots',
+    'PUT_pick',
     'PUT_hsl',
     'PUT_scale',
   ]
@@ -154,16 +155,18 @@ const STAT_W_o =
   SCAN_lum_freq_n: 7,
   SCAN_lum_rank_n: 8,
 
-  stat_o: {},     //: {{C_o.STAT_a[0]}}: stat_o{ hue_o{ canvas_e, context_o}, ... }
+  stat_o: {}      //: {{C_o.STAT_a[0]}}: stat_o{ hue_o{ canvas_e, context_o}, ... }
                   //: {{C_o.STAT_a[1]}}
                   //: {{C_o.STAT_a[2]}}
-
-  script_o: new Set,          //: importScript loaded
-
-  imgBitmap_a: new Map(),     //: store for multiple use (ex. {{C_o.STAT_a[2]}})
-
-  imgLayer_a: [],             //: store image canvas
-
+  ,
+  script_o: new Set          //: importScript loaded
+  ,
+  imgData_o: {}              //: {{C_o.STAT_a[0]}}
+  ,
+  imgLayer_a: []             //: {{C_o.STAT_a[2]}} store image canvas
+  ,
+  imgBitmap_a: new Map()     //: {{C_o.STAT_a[2]}} store for multiple use
+  ,
 
 
 
@@ -296,6 +299,7 @@ const STAT_W_o =
     {
       let
       {
+        stat_s,
         rect_s,
         scale_n,
         url_s,
@@ -347,7 +351,7 @@ const STAT_W_o =
             resizeQuality: 'high'
           }
         )
-  
+
       if
       (
         storeBitmap_b
@@ -382,7 +386,7 @@ const STAT_W_o =
   scale__n
   (
     stat_s,
-    part_s,
+    hsl_s,
     ratio_n
   )
   {
@@ -390,7 +394,7 @@ const STAT_W_o =
     //;   STAT_W_o
     //;     .stat_o
     //;       [ `${stat_s}_o` ]
-    //;         [ `${part_s}_o` ]
+    //;         [ `${hsl_s}_o` ]
     //; )
     //;console.log( 'scale__n' )
 
@@ -403,13 +407,13 @@ const STAT_W_o =
       STAT_W_o
         .stat_o
           [ `${stat_s}_o` ]
-            [ `${part_s}_o` ]
+            [ `${hsl_s}_o` ]
               .canvas_o
 
     STAT_W_o    //=== CLEAR ===
       .stat_o
         [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
+          [ `${hsl_s}_o` ]
             .context_o
               .clearRect
               (
@@ -429,7 +433,7 @@ const STAT_W_o =
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
+          [ `${hsl_s}_o` ]
             .context_o
               .setTransform            //!!!!!!!!!!!!! CHECK
               (
@@ -438,6 +442,64 @@ const STAT_W_o =
                 translate_n,
               )
   },
+
+
+
+  range__a
+  (
+    angle_n,
+    range_n
+  )
+  {
+    let range_a    //: [ fromAngle_n, toAngle_n ]
+      
+    if
+    (
+      range_n
+      !==
+      360    //: 120...2 (hue range)
+      &&
+      range_n
+      !==
+      101    //:  sat or lum
+    )
+    {
+      let partLength_n =
+        360
+        /
+        range_n
+
+      angle_n =
+        ~~(
+          angle_n
+          /
+          partLength_n
+        )
+      
+      let from_n =
+        angle_n
+        *
+        partLength_n
+
+      range_a =
+        [
+          from_n,
+          from_n
+          +
+          partLength_n
+        ]
+    }
+    else
+    {
+      range_a =
+        [
+          angle_n
+        ]
+    }
+
+    return range_a
+  }
+  ,
 
 
 
@@ -803,76 +865,34 @@ const STAT_W_o =
   {
     const
     {
-      part_s,
-      //-- angle_n,    //:  mutable needed
-      range_n           //: 360, 120...101..6, 3, 2  (1 excluded)
+      hsl_s,
+      angle_n,
+      range_n     //: 360, 120...101..6, 3, 2  (1 excluded)
     } =
       payload_o
 
-    let angle_n =  //: mutable needed
-      payload_o
-        .angle_n
-
-    //;console.log( range_n )
+    //;console.log( [angle_n, range_n] )
     
-    let range_a    //: [ fromAngle_n, toAngle_n ]
-      
-    if
-    (
-      range_n
-      !==
-      360    //: 120...2 (hue range)
-      &&
-      range_n
-      !==
-      101    //:  sat or lum
-    )
-    {
-      let partLength_n =
-        360
-        /
-        range_n
-
-      angle_n =
-        ~~(
-          angle_n
-          /
-          partLength_n
+    const range_a =
+      STAT_W_o
+        .range__a
+        (
+          angle_n,
+          range_n
         )
-      
-      let from_n =
-        angle_n
-        *
-        partLength_n
-
-      range_a =
-        [
-          from_n,
-          from_n
-          +
-          partLength_n
-        ]
-    }
-    else
-    {
-      range_a =
-        [
-          angle_n
-        ]
-    }
 
     const part_a =
       STAT_W_o
         .stat_o
           .burst_o
-            [ `${part_s}_o` ]
+            [ `${hsl_s}_o` ]
               .part_a
 
     const frequency_o =
       STAT_W_o
         .stat_o
           .burst_o
-            [ `${part_s}_o` ]
+            [ `${hsl_s}_o` ]
               .part_a
                 [ angle_n ]
 
@@ -891,7 +911,7 @@ const STAT_W_o =
           task_s: 'PUT_frequency'
           ,
           //: CLIENT_ALL_s
-          part_s: part_s
+          hsl_s: hsl_s
           ,
           frequency_n: frequency_n
           ,
@@ -904,7 +924,7 @@ const STAT_W_o =
             STAT_W_o
               .stat_o
                 .burst_o
-                  [ `${part_s}_o` ]
+                  [ `${hsl_s}_o` ]
                     .burst_c
                       .plots__a( angle_n )
         }
@@ -913,7 +933,7 @@ const STAT_W_o =
           STAT_W_o
             .stat_o
               .burst_o
-                [ `${part_s}_o` ]
+                [ `${hsl_s}_o` ]
                   .burst_c
                     .plots__a( angle_n )
         ]
@@ -931,7 +951,7 @@ const STAT_W_o =
     const
     {
       stat_s,
-      part_s
+      hsl_s
     } =
       payload_o
 
@@ -943,13 +963,13 @@ const STAT_W_o =
           ,
           stat_s: '{{C_o.STAT_a[0]}}'
           ,
-          part_s: part_s
+          hsl_s: hsl_s
           ,
           plots_a:
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
-                  [ `${part_s}_o` ]
+                  [ `${hsl_s}_o` ]
                     .burst_c
                       .plots__a()
         }
@@ -958,7 +978,7 @@ const STAT_W_o =
           STAT_W_o
             .stat_o
               [ `${stat_s}_o` ]
-                [ `${part_s}_o` ]
+                [ `${hsl_s}_o` ]
                   .burst_c
                     .plots__a()
         ]
@@ -1000,38 +1020,78 @@ const STAT_W_o =
             0,
           )
 
-        const img_o =
-          {
-            canvas_e:   payload_o
-                          .canvas_e,
-            context_o:  context_o,
-            imgData_o:  context_o        //: store an original ImageData to avoid putImageData bug in put_hsl__v()
-                          .getImageData
-                          (
-                            0,
-                            0,
-                            canvas_e
-                              .width,
-                            canvas_e
-                              .height
-                          )
-          }
+        const imgData_o =
+          context_o        //: store an original ImageData
+            .getImageData
+            (
+              0
+              ,
+              0
+              ,
+              canvas_e
+                .width
+              ,
+              canvas_e
+                .height
+            )
 
+        const stat_s =
+          payload_o
+            .stat_s
+          
+        if
+        (
+          stat_s
+          ===
+          '{{C_o.STAT_a[0]}}'
+        )
+        {
+          STAT_W_o
+            .imgData_o
+              [ stat_s ] =
+              {
+                canvas_e: canvas_e
+                ,
+                context_o: context_o
+                ,
+                imgData_o: imgData_o
+              }
+                
+          return
+        }
+        //>
         if
         (
           payload_o
-            .layer_n
+            .storeBitmap_b    //: {{C_o.STAT_a[2]}}
         )
         {
-          img_o
-            .layer_n =
-              payload_o
-                .layer_n
+          const img_o =
+            {
+              canvas_e:   payload_o
+                            .canvas_e
+              ,
+              context_o:  context_o
+              ,
+              imgData_o: imgData_o        //: store an original ImageData to avoid putImageData bug in put_hsl__v()
+            }
+  
+          if
+          (
+            payload_o
+              .layer_n
+          )
+          {
+            img_o
+              .layer_n =
+                payload_o
+                  .layer_n
+          }
+  
+          STAT_W_o
+            .imgLayer_a
+              .push( img_o )    //: { canvas_e, context_o, imgData_o, layer_n }
         }
-
-        STAT_W_o
-          .imgLayer_a
-            .push( img_o )    //: { canvas_e, context_o, imgData_o, layer_n }
       }
     }
     catch
@@ -1045,6 +1105,53 @@ const STAT_W_o =
   }
   ,
 
+
+
+  async get_canvas_img__v
+  (
+    payload_o
+  )
+  {
+    const
+    {
+      stat_s
+    } =
+      payload_o
+
+    const canvas_e =
+       STAT_W_o
+         .imgData_o
+           [ stat_s ]
+             .canvas_e
+
+    ;console.log( canvas_e  )
+
+    let blob_o =
+      await
+      canvas_e
+        .convertToBlob
+        (
+          {
+            type: 'image/jpeg'
+            ,
+            quality: 0.95
+          }
+        )
+
+    STAT_W_o
+      .post__v
+      (
+        {
+          task_s: 'PUT_canvas_img'
+          ,
+          //: CLIENT_ALL_s
+          blob_o: blob_o
+        }
+        ,
+        [ blob_o ]
+      )
+  }
+  ,
 
 
   //=== PUT    
@@ -1061,7 +1168,7 @@ const STAT_W_o =
     const
     {
       stat_s,
-      part_s
+      hsl_s
     } =
       payload_o
 
@@ -1080,7 +1187,7 @@ const STAT_W_o =
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]
-          [ `${part_s}_o` ] =
+          [ `${hsl_s}_o` ] =
           {
             //: canvas_o,
             //: context_o
@@ -1090,7 +1197,7 @@ const STAT_W_o =
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
+          [ `${hsl_s}_o` ]
             .canvas_o =
               payload_o
                 .canvas_e
@@ -1108,14 +1215,14 @@ const STAT_W_o =
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
+          [ `${hsl_s}_o` ]
             .context_o =
                 context_o
 
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
+          [ `${hsl_s}_o` ]
             .painter_c =
                 new Painter( context_o )
   }
@@ -1131,7 +1238,7 @@ const STAT_W_o =
     let
     {
       stat_s,
-      part_s,
+      hsl_s,
       back_hue_n,
       rangeY_n,     //: {{C_o.STAT_a[0]}}
       shift_n,      //: {{C_o.STAT_a[0]}}
@@ -1144,10 +1251,10 @@ const STAT_W_o =
 
     let
         [
-          hsl_s,
-          face_s
+          HSL_s,
+          part_s    //: not used
         ] =
-          part_s
+          hsl_s
             .split( '_' )
 
     switch
@@ -1161,7 +1268,7 @@ const STAT_W_o =
             
         switch
         (
-          hsl_s
+          HSL_s
         )
         {
           case 'hue':
@@ -1181,12 +1288,12 @@ const STAT_W_o =
           STAT_W_o
             .stat_o
               [ `${stat_s}_o` ]   //: paint
-                [ `${part_s}_o` ] //: hue_back, hue_front...
+                [ `${hsl_s}_o` ] //: hue_back, hue_front...
                   .painter_c
 
         switch
         (
-          part_s
+          hsl_s
         )
         {
         //=== BACK SLIDER ===
@@ -1298,7 +1405,7 @@ const STAT_W_o =
         STAT_W_o
           .stat_o
             [ `${stat_s}_o` ]
-              [ `${hsl_s}_o` ]
+              [ `${HSL_s}_o` ]
                 .part_a  = []    //: reset if already used
 
         //: slice array from shift
@@ -1307,7 +1414,7 @@ const STAT_W_o =
             .scan_a
               [
                 STAT_W_o
-                  [`SCAN_${hsl_s}_freq_n`]
+                  [`SCAN_${HSL_s}_freq_n`]
               ]
               .slice
               (
@@ -1320,7 +1427,7 @@ const STAT_W_o =
             .scan_a
               [
                 STAT_W_o
-                  [`SCAN_${hsl_s}_freq_n`]
+                  [`SCAN_${HSL_s}_freq_n`]
               ]
               .slice
               (
@@ -1344,7 +1451,7 @@ const STAT_W_o =
         
           switch
           (
-            part_s
+            hsl_s
           )
           {
             case 'hue':
@@ -1477,7 +1584,7 @@ const STAT_W_o =
           STAT_W_o
             .stat_o
               [ `${stat_s}_o` ]
-                [ `${hsl_s}_o` ]
+                [ `${HSL_s}_o` ]
                   .part_a
                     .push
                     (
@@ -1501,7 +1608,7 @@ const STAT_W_o =
 
         if
         (
-          part_s
+          hsl_s
           ===
           'hue_back'    //: don't draw burst twice
         )
@@ -1513,7 +1620,7 @@ const STAT_W_o =
           STAT_W_o
             .stat_o
               [ `${stat_s}_o` ]
-                [ `${hsl_s}_o` ]
+                [ `${HSL_s}_o` ]
                   .canvas_o
                     .width
 
@@ -1523,18 +1630,18 @@ const STAT_W_o =
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
-                  [ `${hsl_s}_o` ]
+                  [ `${HSL_s}_o` ]
                     .part_a
           ,
           capacity_n:
-            part_s
+            hsl_s
             ===
             'hue_front'
             ?
               STAT_W_o
                 .stat_o
                   [ `${stat_s}_o` ]
-                    [ `${hsl_s}_o` ]
+                    [ `${HSL_s}_o` ]
                       .part_a              
                         .length
             :
@@ -1544,7 +1651,7 @@ const STAT_W_o =
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
-                  [ `${hsl_s}_o` ]
+                  [ `${HSL_s}_o` ]
                     .canvas_o
           ,
           center_n:
@@ -1557,7 +1664,7 @@ const STAT_W_o =
             ?
               STAT_W_o
                 .scan_a
-                  [ STAT_W_o[`SCAN_${ hsl_s }_rank_n`] ]
+                  [ STAT_W_o[`SCAN_${ HSL_s }_rank_n`] ]
                     [0]
                       [0]
             :
@@ -1574,7 +1681,7 @@ const STAT_W_o =
         STAT_W_o
           .stat_o
             [ `${stat_s}_o` ]
-              [ `${hsl_s}_o` ]
+              [ `${HSL_s}_o` ]
                 .burst_c =
                   new ColorBurst( burst_o )  //: drawing
 
@@ -1588,12 +1695,12 @@ const STAT_W_o =
           STAT_W_o
             .stat_o
               [ `${stat_s}_o` ]   //: paint
-                [ `${part_s}_o` ] //: hue_back, hue_front...
+                [ `${hsl_s}_o` ] //: hue_back, hue_front...
                   .painter_c
 
         switch
         (
-          hsl_s
+          HSL_s
         )
         {
           case 'hue':
@@ -1713,10 +1820,10 @@ const STAT_W_o =
     let
     {
       stat_s,
+      hsl_s,
       operand_a,
       operation_s,
       deviation_n,
-      hsl_s,
       rangeX_n,
       atX_n,
       rangeY_n,
@@ -1888,7 +1995,7 @@ const STAT_W_o =
                               item_o
                                 .layer_n
                               ===
-                              +atOp_o          //: number cast
+                              +atOp_o          //: Number cast
                                 .layer_n
                           ),
             clipRect_a: atOp_o
@@ -2134,6 +2241,135 @@ const STAT_W_o =
 
 
 
+  put_pick__v
+  (
+    payload_o
+  )
+  {
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      ;console.time( 'put_pick__v' )
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const
+      { 
+        stat_s,
+        hsl_s,
+        angle_n,
+        range_n,
+        opacity_n,
+        dim_a,
+      } =
+        payload_o
+
+    const gap_n =
+      360
+      /
+      range_n
+      
+    const start_n =
+      gap_n
+      *
+      angle_n
+
+    const end_n =
+      start_n
+      +
+      gap_n
+
+    const scan_a =
+      STAT_W_o
+        .scan_a
+          [
+            STAT_W_o
+              [ `SCAN_${hsl_s}_n` ]
+          ]
+
+    const
+    {
+      context_o,
+      imgData_o
+    } =
+      STAT_W_o
+        .imgData_o
+          [ `${stat_s}` ]
+
+    let iData_a =
+      imgData_o
+        .data
+  
+    let atHsl_n
+    let atScan_a
+    let length_n
+    let opac_n
+  
+    for
+    (
+       atHsl_n = 0;
+       atHsl_n < 360;
+       ++atHsl_n
+    )
+    {
+      if        //: pick
+      (
+        atHsl_n
+        >=
+        start_n
+        &&
+        atHsl_n
+        <
+        end_n
+      )
+      {
+        opac_n = 255    //: full
+      }
+      else        //: opacity
+      {
+        
+        opac_n =
+          opacity_n
+      }
+
+      atScan_a =
+        scan_a
+          [ atHsl_n ]
+        
+      length_n =
+        atScan_a
+          .length
+        
+      for
+      (
+         atScan_n = 0;
+         atScan_n < length_n;
+         ++atScan_n
+      )
+      {
+        iData_a
+          [
+            atScan_a
+              [ atScan_n ]
+              +
+              3
+          ] =
+            opac_n
+      }
+    }
+
+    context_o
+      .putImageData
+      (
+        imgData_o,
+        0,
+        0
+      )
+
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+      ;console.timeEnd( 'put_pick__v' )
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!
+  }
+  ,
+
+
+
   put_scale__v
   (
     payload_o
@@ -2142,7 +2378,7 @@ const STAT_W_o =
     const
       { 
         stat_s,
-        part_s,
+        hsl_s,
         scale_n,
         burst_b
       } =
@@ -2152,7 +2388,7 @@ const STAT_W_o =
       .scale__n      // scale canvas
       (
         stat_s,
-        part_s,
+        hsl_s,
         scale_n
       )
 
@@ -2167,13 +2403,13 @@ const STAT_W_o =
     //............... STAT_W_o
     //...............   .stat_o
     //...............     [ `${stat_s}_o` ]
-    //...............       [ `${part_s}_o` ]
+    //...............       [ `${hsl_s}_o` ]
     //...............         .burst_c
     //............... &&
     STAT_W_o
       .stat_o
         [ `${stat_s}_o` ]
-          [ `${part_s}_o` ]
+          [ `${hsl_s}_o` ]
             .burst_c
               .draw__v()
   }

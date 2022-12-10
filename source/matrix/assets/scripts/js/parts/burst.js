@@ -2,44 +2,48 @@
 
 const BUR_o =
 {
-  SCALE_V_n: 2,
-
-  status_o: null,    //: STAT_W_o.status_o
-
-  trace_o: null,
-
-  freeze_b: false,    //: freeze || unfreeze hue selection
-
-  hue_n: 0,          //: selected hue
-
+  work_s:
+    document
+      .querySelector( 'body' )
+        .dataset
+          .work_s
+  ,
+  SCALE_V_n: 2
+  ,
+  canvasWidth_n: 0   //: init in screen__v
+  ,
+  freeze_b: false    //: freeze || unfreeze hue selection
+  ,
+  hue_n: 0           //: selected hue
+  ,
+  status_o: null
+  ,
+  trace_o: {}
+  ,
   hue_o:
     {
-      rangeY_n: 1,    //!!!! TEMPORARY//: C_o.BURST_RANGE_n
-      shift_n: 0,     //: from burst_hue_back
+      rangeY_n: 60,    //: C_o.BURST_RANGE_n
+      shift_n: 0,      //: from burst_hue_back
     }
   ,
-
   scale_o:
     {
-      hue_n: 1,    //: C_o.BURST_SCALE_n
+      hue_n: 1,     //: C_o.BURST_SCALE_n
       sat_n: .5,
       lum_n: .5,
     }
   ,
-  
   thresh_o:
     {
       hi_n: 100,    //: C_o.BURST_THRESH_HI_n   left to right
       lo_n: 0,      //: C_o.BURST_THRESH_LO_n
     }
   ,
-  
-  plots_a:
-    null
+  plots_a: null
   ,
-
-  lastPlot_o:
-    null
+  atPlot_o: null
+  ,
+  atAngle_n: 0
   ,
 
 
@@ -64,7 +68,13 @@ const BUR_o =
         BUR_o
           .plots_a =
             payload_o
-              .plots_a 
+              .plots_a
+
+        break
+
+      case 'PUT_canvas_img':
+        BUR_o
+          .put_canvas_img__v( payload_o )
 
         break
     
@@ -88,6 +98,70 @@ const BUR_o =
   ,
 
 
+  async saveFile__o
+  (
+    blob_o,
+    name_s     //: file name
+  )
+  {
+    try
+    {
+      const handle_o =
+        await window
+          .showSaveFilePicker
+          (
+            {
+              suggestedName: name_s
+              ,
+              types:
+                [
+                  {
+                    accept:
+                      {
+                        'image/jpg':
+                          [
+                            '.jpg'
+                          ]
+                      }
+                      ,
+                  }
+                ]
+              ,
+            }
+          )
+
+      const writable =
+        await handle_o
+                .createWritable()
+
+      await writable
+              .write( blob_o )
+
+      await writable
+              .close()
+
+      return handle_o
+    }
+    catch
+    (
+      error_o
+    )
+    {
+      console
+        .error_o
+        (
+          error_o
+            .name
+          ,
+          error_o
+            .message
+        )
+    }
+  }
+  ,
+
+
+
   put_frequency__v
   (
     payload_o
@@ -95,7 +169,7 @@ const BUR_o =
   {
     const
       {
-        part_s
+        hsl_s
         ,
         frequency_n
         ,
@@ -108,7 +182,7 @@ const BUR_o =
         payload_o
 
     BUR_o
-      .lastPlot_o =
+      .atPlot_o =
         plots_a
 
     let html_s =
@@ -128,7 +202,7 @@ const BUR_o =
 
     BUR_o
       .trace_o
-        [`${part_s}_e`]
+        [`${hsl_s}_e`]
           .innerHTML =
             html_s
 
@@ -143,7 +217,7 @@ const BUR_o =
 
     BUR_o
       .trace_o
-        [ `${part_s}Ratio_e` ]
+        [ `${hsl_s}_ratio_e` ]
           .innerHTML =
             new Intl
               .NumberFormat
@@ -154,8 +228,35 @@ const BUR_o =
               (
                 Number
                   .parseFloat( ratio_n )
-                  .toFixed( 2 )
+                  .toFixed( 3 )
               )
+  }
+  ,
+
+
+
+  async put_canvas_img__v
+  (
+    payload_o
+  )
+  {
+    const
+      {
+        blob_o
+      } =
+        payload_o
+
+    const work_s =
+      BUR_o
+        .work_s
+
+    BUR_o
+      .saveFile__o
+      (
+        blob_o
+        ,
+        `${work_s}.jpg`
+      )
   }
   ,
 
@@ -167,48 +268,24 @@ const BUR_o =
     hsl_s
   )
   {
-    let range_n =
-      hsl_s
-      ===
-      'hue'
-      ?
-        360
-      :
-        101
+    const range_n =
+      BUR_o
+        .range__n
+        (
+          hsl_s
+        )
 
-    let angle_n =
+    const angle_n =
       BUR_o
         .angle__n
         (
           event_o,
           range_n
         )
-    
-    if
-    (
-      range_n
-      ===
-      360
-    )
-    {
-      let label_e =
-        document
-          .querySelector(  `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
 
-      if
-      (
-        label_e
-      )
-      {
-        range_n =        //: 360, 120...101..6, 3, 1
-        360
-        /
-        +label_e              //: number cast
-          .dataset
-            .range_n        //: 1, 3, 6...180
-      }
-    }
-                            //=> range_n = 360, 120...101..6, 3, 2  (1 excluded)
+    BUR_o
+      .atAngle_n =
+        angle_n
 
     BUR_o
       .worker_o
@@ -219,7 +296,7 @@ const BUR_o =
             ,
             stat_s: '{{C_o.STAT_a[0]}}'
             ,
-            part_s:  hsl_s
+            hsl_s:  hsl_s
             ,
             angle_n: angle_n
             ,
@@ -229,6 +306,81 @@ const BUR_o =
   }
   ,
 
+
+
+  get_img
+  ()
+  {
+    let work_s =
+      BUR_o
+        .work_s
+
+    const
+      [
+        width_s,
+        height_s
+      ] =
+        document
+          .querySelector( 'body' )
+            .dataset
+              .wh_s
+                .split( '_' )
+
+    const canvas_e =
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+
+    canvas_e
+      .width =
+        +width_s
+
+    canvas_e
+      .height =
+        +height_s
+
+    const offCanvas_e =
+      canvas_e
+        .transferControlToOffscreen()
+  
+    const centerX =
+      +width_s      //: Number cast
+      *
+      .5
+    
+    const centerY =
+      +height_s      //: Number cast
+      *
+      .5
+
+    BUR_o
+      .worker_o           //! using port postMessage directly
+        .port_o           //! to avoid error:
+          .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
+          (
+            {
+              task_s:   'GET_img'
+              ,
+              stat_s: '{{C_o.STAT_a[0]}}'
+              ,
+              rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`
+              ,
+              scale_n:  1
+              ,
+              url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`  //: begining slash for site relative url
+              ,
+              canvas_e: offCanvas_e
+              ,
+              storeBitmap_b: false
+              ,
+              //XX layer_n: layer_n,
+              pixel_n:  window.devicePixelRatio    //????
+              ,
+            },
+            [ offCanvas_e ]
+          )
+
+  }
+  ,
 
 
   screen__v 
@@ -260,6 +412,10 @@ const BUR_o =
       -
       64      //: S_o.NAV_HEIGHT_s * 2
 
+    BUR_o
+      .canvasWidth_n =
+        screenDim_n
+        
     DOM_o
       .rootVar__v
       (
@@ -296,31 +452,29 @@ const BUR_o =
             screenDim_n
       }
     }
-
-/*
-    let div_e =
-      document
-        .getElementById( `goto_{{C_o.STAT_a[0]}}_plots` )
-
-    ;console.log( div_e )
-
-    if
-    (
-      div_e
-    )
-    {
-      div_e
-        .width =
-          screenDim_n
-          
-      div_e
-        .height =
-          screenDim_n
-    }
-    */
   }
   ,
 
+
+
+  bgHsl__s
+  ()
+  {
+    const hue_s =
+      DOM_o
+        .rootVar__s( `--{{C_o.STAT_a[0]}}_img_bg_hue` )
+
+    const sat_s =
+      DOM_o
+        .rootVar__s( `--{{C_o.STAT_a[0]}}_img_bg_sat` )
+
+    const lum_s =
+      DOM_o
+        .rootVar__s( `--{{C_o.STAT_a[0]}}_img_bg_lum` )
+
+    return `hsl( ${hue_s} ${sat_s}% ${lum_s}% /1)`
+  }
+  ,
 
 
 
@@ -474,13 +628,57 @@ const BUR_o =
   ,
 
 
+  range__n
+  (
+    hsl_s
+  )
+  {
+    let range_n =
+      hsl_s
+      ===
+      'hue'
+      ?
+        360
+      :
+        101
+
+    if
+    (
+      range_n
+      ===
+      360
+    )
+    {
+      let label_e =
+        document
+          .querySelector( `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
+
+      if
+      (
+        label_e
+      )
+      {
+        range_n =        //: 360, 120...101..6, 3, 1
+        360
+        /
+        +label_e              //: Number cast
+          .dataset
+            .range_n        //: 1, 3, 6...180
+      }
+    }
+                            //=> range_n = 360, 120...101..6, 3, 2  (1 excluded)
+    return range_n
+  }
+  ,
+
+
 
   draw__v
   ()
   {
     for    //=== worker draw sliders initial state
     (
-      let canvas_s
+      let hsl_s
       of
       [
         'hue_back',
@@ -497,7 +695,7 @@ const BUR_o =
               ,
               stat_s: '{{C_o.STAT_a[0]}}'
               ,
-              part_s: canvas_s
+              hsl_s: hsl_s
               ,
               back_hue_n: +DOM_o
                             .rootVar__s( '--{{C_o.STAT_a[0]}}_hue_back' )
@@ -525,9 +723,103 @@ const BUR_o =
 
 
 
+  pick__v
+  (
+    opacity_n,     //: optional
+    angle_n,       //: optional
+    hsl_s='hue',   //: optional
+  )
+  {
+    if
+    (
+      opacity_n
+      ===
+      undefined
+    )
+    {
+      const input_e =
+        document
+          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )
+                
+      opacity_n =
+              ~~(
+                (
+                  +input_e            //: Number cast
+                    .value
+                  /
+                  100
+                )
+                *
+                255      //: [0...255]
+              )
+    }
+
+    if
+    (
+      angle_n
+      ===
+      undefined
+    )
+    {
+      angle_n =
+        BUR_o
+          .atAngle_n
+    }
+    
+    const canvas_e =
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+
+    BUR_o
+      .worker_o
+        .post__v
+        (
+          { 
+            task_s: 'PUT_pick'
+            ,
+            stat_s: '{{C_o.STAT_a[0]}}'
+            ,
+            hsl_s: hsl_s
+            ,
+            angle_n: angle_n
+            ,
+            range_n:
+              angle_n
+              ===
+              360      //: reset
+              ?
+                0
+              :
+                BUR_o
+                  .range__n
+                  (
+                    hsl_s
+                  )
+            ,
+            opacity_n: opacity_n
+            ,
+            dim_a:
+            [
+              canvas_e
+                .width
+              ,
+              canvas_e
+                .height
+            ]
+            ,
+
+         }
+        )
+
+  }
+  ,
+
+
+
   trace__v
   (
-    //??? hsl_s
+    event_o,
+    hsl_s
   )
   {
     BUR_o
@@ -575,13 +867,13 @@ const BUR_o =
 
     let item_e =
       document
-        .querySelector(  `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
+        .querySelector( `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
 
     if
     (
       item_e
       &&
-      +item_e              //: number cast
+      +item_e              //: Number cast
         .dataset
           .range_n 
       ===
@@ -593,8 +885,7 @@ const BUR_o =
         let hsl_s
         of
         [
-          'sat'
-          ,
+          'sat',
           'lum'
         ]
       )
@@ -608,10 +899,10 @@ const BUR_o =
                 ,
                 stat_s: '{{C_o.STAT_a[0]}}'
                 ,
-                part_s: hsl_s
+                hsl_s: hsl_s
                 ,
                 back_hue_n:
-                  +(BUR_o            //: number cast
+                  +(BUR_o            //: Number cast
                       .trace_o
                         .hue_e
                           .innerHTML
@@ -632,7 +923,9 @@ const BUR_o =
             )
       }
     }
-            
+
+    BUR_o
+      .pick__v()
   }
   ,
 
@@ -696,7 +989,16 @@ const BUR_o =
                 BUR_o
                   .scale_o
                     [ `${hsl_s}_n` ] =
-                      +value_s      //: number cast
+                      +value_s      //: Number cast
+
+                DOM_o
+                  .rootVar__v
+                  (
+                    `--{{C_o.STAT_a[0]}}_scale`
+                    ,
+                    value_s
+                  )
+
     
                 BUR_o
                   .worker_o
@@ -707,7 +1009,7 @@ const BUR_o =
                         ,
                         stat_s:  '{{C_o.STAT_a[0]}}'
                         ,
-                        part_s:  hsl_s
+                        hsl_s:  hsl_s
                         ,
                         scale_n: BUR_o
                                    .scale_o
@@ -720,7 +1022,8 @@ const BUR_o =
                 DOM_o
                   .rootVar__v
                   (
-                    `--{{C_o.STAT_a[0]}}_plots`    ,
+                    `--{{C_o.STAT_a[0]}}_plots`
+                    ,
                     'none'
                   )
 
@@ -780,7 +1083,7 @@ const BUR_o =
 
                 break
 
-              default:    //: reserve other cases
+              default:    //: hue_img_bg_opacity + reserve other cases
                 break
             }
 
@@ -809,7 +1112,7 @@ const BUR_o =
       BUR_o
         .hue_o
           .rangeY_n =
-            +item_e             //: number cast
+            +item_e             //: Number cast
               .dataset
                 .range_n
 
@@ -847,7 +1150,7 @@ const BUR_o =
               [2]
     
       let shift_n =
-        +document             //: number cast
+        +document             //: Number cast
           .getElementById( `output_{{C_o.STAT_a[0]}}_${hsl_s}` )
             .value
 
@@ -901,6 +1204,14 @@ const BUR_o =
 
       BUR_o
         .draw__v()
+
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[0]}}_img_hue`
+          ,
+          shift_n
+        )
     }
   }
   ,
@@ -930,7 +1241,7 @@ const BUR_o =
       event_o
     
     const offsetY_n =
-      +offsetY            //: number cast
+      +offsetY            //: Number cast
 
     DOM_o
       .rootVar__v
@@ -965,7 +1276,7 @@ const BUR_o =
     document
       .getElementById( `output_{{C_o.STAT_a[0]}}_${hsl_s}` )
         .value =
-        shift_n
+          shift_n
   }
   ,
 
@@ -1030,7 +1341,12 @@ const BUR_o =
     )
     {
       BUR_o
-        .trace__v( hsl_s )
+        .trace__v
+        (
+          event_o
+          ,
+          hsl_s
+        )
     }
   }
   ,
@@ -1043,10 +1359,10 @@ const BUR_o =
       hsl_s
   )
   {
-    if     //: must check if lastPlot_o is null
+    if     //: must check if atPlot_o is null
     (
       BUR_o
-        .lastPlot_o
+        .atPlot_o
     )
     {
       let
@@ -1056,23 +1372,19 @@ const BUR_o =
           startY_n
         } =
           BUR_o
-            .lastPlot_o
+            .atPlot_o
           
-      const width_n =
-        +document
-          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )    //: all canvases (hue, sat, lum) have same size
-            .width
-      
-      const center_n =          //>>>>>> TODO: put outside event handler
-        width_n
-        *
-        .5      //: width / 2
-        
       startX_n -=
-        center_n
+        BUR_o
+          .canvasWidth_n
+        *
+        .5
   
       startY_n -=
-        center_n
+        BUR_o
+          .canvasWidth_n
+        *
+        .5
 
       const radius_n =
         Math
@@ -1108,43 +1420,185 @@ const BUR_o =
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[0]}}_plot_scale`,
+          `--{{C_o.STAT_a[0]}}_plots_scale`,
           radius_n
           /
-          width_n
+          BUR_o
+            .canvasWidth_n
         )
     }
   }
   ,
 
   
+  eventImg_reset__v
+  ()
+  {
+    BUR_o
+      .pick__v
+      (
+       +'{{C_o.BURST_IMG_RESET_n}}'
+       ,
+       360    //: reset all
+      )
+  }
+  ,
+
+
+
+  async eventImg_panorama__v
+  ()
+  {
+    ;console.log( 'eventImg_panorama__v'  )
+
+    //...................
+    BUR_o
+      .eventImg_download__v()
+  }
+  ,
+
+
+
+  eventImg_download__v
+  ()
+  {
+    BUR_o
+      .pick__v()
+      
+    BUR_o
+      .worker_o
+        .post__v
+        (
+          { 
+            task_s: 'GET_canvas_img'
+            ,
+            stat_s: '{{C_o.STAT_a[0]}}'
+            ,
+          }
+        )
+  }
+  ,
+
+
+
+  eventImg_background__v
+  (
+    event_o
+  )
+  {
+    const for_s =
+      event_o
+        .target
+          .htmlFor
+
+    switch
+    (
+      true
+    )
+    {
+      case for_s
+             .includes( 'black' ) :
+        DOM_o
+          .rootVar__v
+          (
+            `--{{C_o.STAT_a[0]}}_img_backgroud`
+            ,
+            '{{S_o.bgblack_s}}'
+          )
+
+        break
+
+      case for_s
+             .includes( 'white' ) :
+        DOM_o
+          .rootVar__v
+          (
+            `--{{C_o.STAT_a[0]}}_img_backgroud`
+            ,
+            '{{S_o.bgwhite_s}}'
+          )
+
+        break
+
+      case for_s
+             .includes( 'color' ) :
+
+        DOM_o
+          .rootVar__v
+          (
+            `--{{C_o.STAT_a[0]}}_img_backgroud`
+            ,
+            'hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1)'
+          )
+
+        break
+
+      case for_s
+             .includes( 'picker' ) :
+        DOM_o
+          .rootVar__v
+          (
+            `--{{C_o.STAT_a[0]}}_img_picker`
+            ,
+            true
+          )
+
+        break
+
+      default:
+        break
+    }
+  }
+  ,
+
+
+  eventImg_range__v
+  (
+    event_o
+  )
+  {
+    const range_e =
+      event_o
+        .target
+
+    const value_s =
+      range_e
+        .value
+      
+    range_e
+      .dataset
+        .tip =
+          value_s
+  
+    let id_s =
+      range_e
+        .id
+
+    const hsl_s =
+      id_s
+        .slice
+        (
+          id_s
+            .lastIndexOf( '_' )
+          +
+          1
+        )
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_img_bg_${hsl_s}`
+        ,
+        value_s
+      )
+  }
+  ,
+
+
 
   listener__v
   ()
   {
-    BUR_o
-      .trace_o =
-        {
-          hue_e:
-            document
-              .getElementById( `{{C_o.STAT_a[0]}}_hue_n` ),
-          hueRatio_e:
-            document
-              .getElementById( `{{C_o.STAT_a[0]}}_hue_ratio_n` ),
-          sat_e:
-            document
-              .getElementById( `{{C_o.STAT_a[0]}}_sat_n` ),
-          satRatio_e:
-            document
-              .getElementById( `{{C_o.STAT_a[0]}}_sat_ratio_n` ),
-          lum_e:
-            document
-              .getElementById( `{{C_o.STAT_a[0]}}_lum_n` ),
-          lumRatio_e:
-            document
-              .getElementById( `{{C_o.STAT_a[0]}}_lum_ratio_n` ),
-        }
-
     //=== HUE TRACE EVENTS ===
     for
     (
@@ -1171,11 +1625,24 @@ const BUR_o =
           .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )
             ?.addEventListener
             (
-              event_s,
+              event_s
+              ,
               BUR_o
                 .eventTrace__v
             )
       }
+
+      BUR_o
+        .trace_o
+          [ `${hsl_s}_e`  ] =
+              document
+                .getElementById( `{{C_o.STAT_a[0]}}_${hsl_s}_n` )
+
+      BUR_o
+        .trace_o
+          [ `${hsl_s}_ratio_e`  ] =
+              document
+                .getElementById( `{{C_o.STAT_a[0]}}_${hsl_s}_ratio_n` )
     }
 
     //=== CANVAS + SLIDERSEVENTS ===
@@ -1191,7 +1658,8 @@ const BUR_o =
       DOM_o
         .listener__v
         (
-          `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_range`,
+          `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_range`
+          ,
           BUR_o
             .eventItem__v
         )
@@ -1199,7 +1667,8 @@ const BUR_o =
       DOM_o
         .listener__v
         (
-          `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_back`,
+          `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_back`
+          ,
           BUR_o
             .eventHsl__v
         )
@@ -1207,9 +1676,11 @@ const BUR_o =
       DOM_o
         .listener__v
         (
-          `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_back`,
+          `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_back`
+          ,
           BUR_o
-            .eventHsl__v,
+            .eventHsl__v
+            ,
           'mousemove'
         )
 
@@ -1222,59 +1693,49 @@ const BUR_o =
         )
     }
 
-    //=== GOTO EVENTS ===
+    //=== IMG EVENTS ===
     for
     (
-      node_s
+      let input_s
       of
       [
-          '{{C_o.FULL_SCREEN}}',
-          '{{C_o.PAGE_TOP}}',
-          '{{C_o.BURST_PLOTS}}'
+        'reset',
+        'panorama',
+        'download',
       ]
     )
     {
-      DOM_o
-        .beforeNode__e
-        (
-          document
-            .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view` ),
-          `goto_${node_s}`
-      )
-    }
-
-    const fullscreen_e =
       document
-        .getElementById( `goto_${node_s}` )
-  
-    if
-    (
-      fullscreen_e
-    )
-    {
-      FUL_o
-        .listener__v()
+        .querySelector( `[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_${input_s}]` )
+          ?.addEventListener
+          (
+            'click'
+            ,
+            BUR_o
+              [ `eventImg_${input_s}__v` ]  //:eventImg_panorama__v
+          )
     }
-
+    
     //=== RANGE EVENTS ===
     for
     (
-      let range_s
+      let event_s
       of
       [
-        'view_scale',
-        'thresh_hi',
-        'thresh_lo',
+        'click',
+        'keydown'
       ]
     )
     {
       for
       (
-        let event_s
+        let range_s
         of
         [
-          'click',
-          'keydown'
+          'view_scale',
+          'thresh_hi',
+          'thresh_lo',
+          'hue_img_bg_opacity',
         ]
       )
       {
@@ -1293,6 +1754,90 @@ const BUR_o =
             }
           )
       }
+
+      for
+      (
+        let range_s
+        of
+        [
+          'black',
+          'white',
+          'color',
+        ]
+      )
+      {
+        document
+          .querySelector( `[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_${range_s}]` )
+            ?.addEventListener
+            (
+              event_s
+              ,
+              BUR_o
+                [`eventImg_background__v`]
+            )
+      }
+
+      for
+      (
+        let range_s
+        of
+        [
+          'hue',
+          'sat',
+          'lum',
+        ]
+      )
+      {
+        DOM_o
+          .listener__v
+          (
+            `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_${range_s}`
+            ,
+            BUR_o
+              .eventImg_range__v
+            ,
+            event_s
+            ,
+            {
+              passive: true
+            }
+          )
+      }
+    }
+
+    //=== GOTO EVENTS ===
+    for
+    (
+      node_s
+      of
+      [
+          '{{C_o.FULL_SCREEN}}',
+          '{{C_o.PAGE_TOP}}',
+          '{{C_o.BURST_PLOTS}}'
+      ]
+    )
+    {
+      DOM_o
+        .beforeNode__e
+        (
+          document
+            .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view` )
+            ,
+          `goto_${node_s}`
+      )
+    }
+
+    const fullscreen_e =
+      document
+        .getElementById( `goto_${node_s}` )
+  
+    if
+    (
+      fullscreen_e
+    )
+    {
+      FUL_o
+        .listener__v()
     }
   }
   ,
@@ -1310,27 +1855,33 @@ const BUR_o =
         STAT_o
           .worker__o
           (
-            '{{C_o.STAT_a[0]}}',
+            '{{C_o.STAT_a[0]}}'
+            ,
             [
               'hue',
               'sat',
               'lum',
               'hue_back',
               'hue_front',
-            ],
-            'LogScale Painter ColorBurst',
+            ]
+            ,
+            'LogScale Painter ColorBurst'
+            ,
             BUR_o
-              .message__v,
+              .message__v
           )
 
-    BUR_o                    //XXXXXXXX after draw__v()
+    BUR_o
       .worker_o
         .post__v
         (
           { 
-            task_s:  'PUT_scale',
-            stat_s:  '{{C_o.STAT_a[0]}}',
-            part_s:  'hue',
+            task_s:  'PUT_scale'
+            ,
+            stat_s:  '{{C_o.STAT_a[0]}}'
+            ,
+            hsl_s:  'hue'
+            ,
             scale_n: BUR_o
                        .scale_o
                          .hue_n
@@ -1340,26 +1891,30 @@ const BUR_o =
         )
 
     BUR_o
-      .draw__v()
+      .draw__v()    //: draw before getting plots_a
   
-    BUR_o                    //XXXXXXXX after draw__v()
+    BUR_o
       .worker_o
         .post__v
         (
           { 
-            task_s:  'GET_plots',
-            stat_s:  '{{C_o.STAT_a[0]}}',
-            part_s:  'hue',
+            task_s:  'GET_plots'
+            ,
+            stat_s:  '{{C_o.STAT_a[0]}}'
+            ,
+            hsl_s:  'hue'
+            ,
           }
         )
+
     BUR_o
      .listener__v()
+
+    BUR_o
+      .get_img()
   }
   ,
 }
-
-
-
 
 BUR_o
   .init__v()

@@ -120,9 +120,9 @@ p > label + input:checked + ins > a > img {
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] > {{C_o.ROW_TAG_s}} {
   border-left: 1px solid {{S_o.shadow_ne}};
+  list-style: none;
   padding-left: .8rem;
   color: currentColor;
-  list-style: none;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] > {{C_o.ROW_TAG_s}}:before {
   content: '\{{S_o.LIST_MARKER_s}}';
