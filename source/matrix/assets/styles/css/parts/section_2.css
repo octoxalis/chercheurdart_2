@@ -22,6 +22,7 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   border-bottom: 1px solid {{S_o.shadow_ne}};
   position: absolute;
   top: 0;
+  width: 100%;
   border: none;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption {

@@ -32,6 +32,9 @@ const C_o =
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
   IMG_MAX_PATH_s:    '/full/max/0/',    //: IOR
+  IMG_1024_PATH_s:    '/full/_1024/0/',    //: IOR
+  
+
 
   //=== FILE NAMES
   STAT_W_FILE_s:    '/assets/scripts/js/stat_w.min.js',
@@ -100,7 +103,10 @@ const C_o =
     panorama_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
     panorama_remove: { icon_s: `&nbsp;`, legend_s: `supprimer`},
     panorama_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
+    panorama_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
     panorama_col: { icon_s: `&nbsp;`, legend_s: `Images par rang`},
+    //?? panorama_local: { icon_s: `&nbsp;`, legend_s: `ajouter`},
+    panorama_local: { icon_s: `&nbsp;`, legend_s: `Image locale`},
 
 
     burst: { icon_s: `&#8718;`, legend_s: `répartition`},
@@ -210,6 +216,10 @@ const C_o =
   FULL_SCREEN: 'full_screen',
   BURST_PLOTS: 'burst_plots',
   
+  //=== HTML-BODY CSS SELECTORS
+  BURST_IMG_CAPTION_s: 'h1+p span[data-ins="₉"]',
+  PANORAMA_IMG_PREFIX_s: 'img_local',
+
 
   //=== HTML-BODY: TAGS ===
   CANVAS_ID_s:      'CA',
@@ -248,15 +258,15 @@ const C_o =
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
   IMG_RETRACT_s:        '&#10530;',  //: NE and SW Arrow           ⤢
   IMG_RESET_s:          '&#8634;',   //: Anticlockwise Open Circle Arrow          
-  IMG_PANORAMA_s:       '&#8862;',   //: Squared Plus               ⊞
+  //-- IMG_PANORAMA_s:       '&#8862;',   //: Squared Plus               ⊞
   IMG_DOWNLOAD_s:       '&#11123;',  //: Downwards Triangle-Headed Arrow To Bar   ⭳
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
   SEE_MORE_s:           '&#8943;',          //: 
 
 
-
   ID_PART_DELIM_s:     '~',   //: between parts
+  FILE_ESCAPE_s:       '--',  //: replace ID_PART_DELIM_s in save/retrieve files name
 
   WORDS_DELIM_s:       ' ',
   WORDS_CONCAT_s:      '_',    //: underline

@@ -1,5 +1,6 @@
 // === dom.js ===
-const DOM_o =
+const DOM_o
+=
 {
   rootVar__v:
   (
@@ -14,13 +15,14 @@ const DOM_o =
               varName_s,
               value_s
             )
+
+  
+  
   ,
-  
-  
   rootVar__s:
   ( 
     varName_s
-  ) => 
+  ) =>
     window
       .getComputedStyle
       (
@@ -30,28 +32,28 @@ const DOM_o =
         .getPropertyValue( varName_s )
         ||
         ''
+
+
   ,
-
-
-  appendNode__v:
+  appendNode__v
   (
     fragment_e,
     parent_s      //: node ID, parent of fragment
-  ) =>
+  )
   {
     document
       .getElementById( parent_s )
         ?.appendChild( fragment_e )
   }
+
+
+
   ,
-
-
-
-  beforeNode__e:
+  beforeNode__e
   (
     fragment_e,
     anchor_s      //: node ID, sibling of fragment
-  ) =>
+  )
   {
     const anchor_e =
       document
@@ -69,15 +71,15 @@ const DOM_o =
 
     return fragment_e
   }
+
+
+
   ,
-
-
-
-  fragment__e:
+  fragment__e
   (
     fragment_s,
     anchor_s      //: node ID, sibling of fragment
-  ) =>
+  )
   {
     const fragment_e =
       document
@@ -97,16 +99,16 @@ const DOM_o =
         fragment_e
     )
   }
+
+
   ,
-
-
-  listener__v:
+  listener__v
   (
     id_s,
     handle_f,
     event_s='click',
     option_o
-  ) =>
+  )
   {
     const listen_e =
       document
@@ -122,14 +124,16 @@ const DOM_o =
         option_o
       )
   }
-  ,
+
+
 
   /*//!!! STANDBY !!!
-  throttle__f:
+  ,
+  throttle__f
   (
     callback_f,
     limit_n
-  ) =>
+  )
   {
     let timeout_n
     let stamp_n

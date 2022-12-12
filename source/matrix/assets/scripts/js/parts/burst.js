@@ -2,51 +2,42 @@
 
 const BUR_o =
 {
-  work_s:
-    document
-      .querySelector( 'body' )
-        .dataset
-          .work_s
-  ,
-  SCALE_V_n: 2
-  ,
-  canvasWidth_n: 0   //: init in screen__v
-  ,
-  freeze_b: false    //: freeze || unfreeze hue selection
-  ,
-  hue_n: 0           //: selected hue
-  ,
-  status_o: null
-  ,
-  trace_o: {}
-  ,
-  hue_o:
+  //++ idb_o:          //: init in init__v
+  //++ work_s:
+  //++ width_s:
+  //++ height_s:
+  //++ canvasWidth_n:   //: init in screen__v
+
+  
+    SCALE_V_n: 2
+  , hue_n: 0           //: selected hue
+  , freeze_b: false    //: freeze || unfreeze hue selection
+  , status_o: null
+  , trace_o: {}
+  , hue_o:
     {
       rangeY_n: 60,    //: C_o.BURST_RANGE_n
       shift_n: 0,      //: from burst_hue_back
     }
-  ,
-  scale_o:
+  , scale_o:
     {
       hue_n: 1,     //: C_o.BURST_SCALE_n
       sat_n: .5,
       lum_n: .5,
     }
-  ,
-  thresh_o:
+  , thresh_o:
     {
       hi_n: 100,    //: C_o.BURST_THRESH_HI_n   left to right
       lo_n: 0,      //: C_o.BURST_THRESH_LO_n
     }
-  ,
-  plots_a: null
-  ,
-  atPlot_o: null
-  ,
-  atAngle_n: 0
-  ,
+  , plots_a: null
+  , atPlot_o: null
+  , atAngle_n: 0
+  , download_s: ''    //: download suggested file name
 
+  
 
+  ,
   message__v
   (
     payload_o
@@ -95,9 +86,9 @@ const BUR_o =
         break
     }
   }
+
+
   ,
-
-
   async saveFile__o
   (
     blob_o,
@@ -106,12 +97,22 @@ const BUR_o =
   {
     try
     {
+      const fileName_s       //!!!! TEMPORARY FILENAME
+      =
+        name_s
+          .replaceAll
+          (
+            '{{C_o.ID_PART_DELIM_s}}'
+          , '{{C_o.FILE_ESCAPE_s}}'
+          )
+
       const handle_o =
-        await window
+        await
+        window
           .showSaveFilePicker
           (
             {
-              suggestedName: name_s
+              suggestedName: fileName_s
               ,
               types:
                 [
@@ -131,14 +132,17 @@ const BUR_o =
           )
 
       const writable =
-        await handle_o
-                .createWritable()
+        await
+        handle_o
+          .createWritable()
 
-      await writable
-              .write( blob_o )
+      await 
+      writable
+        .write( blob_o )
 
-      await writable
-              .close()
+      await
+      writable
+        .close()
 
       return handle_o
     }
@@ -148,7 +152,7 @@ const BUR_o =
     )
     {
       console
-        .error_o
+        .error
         (
           error_o
             .name
@@ -158,10 +162,10 @@ const BUR_o =
         )
     }
   }
-  ,
 
 
 
+,
   put_frequency__v
   (
     payload_o
@@ -231,10 +235,10 @@ const BUR_o =
                   .toFixed( 3 )
               )
   }
+  
+
+
   ,
-
-
-
   async put_canvas_img__v
   (
     payload_o
@@ -246,22 +250,18 @@ const BUR_o =
       } =
         payload_o
 
-    const work_s =
-      BUR_o
-        .work_s
-
     BUR_o
       .saveFile__o
       (
         blob_o
-        ,
-        `${work_s}.jpg`
+      , BUR_o
+          .download_s
       )
   }
+  
+
+
   ,
-
-
-
   get_frequency__v
   (
     event_o,
@@ -304,10 +304,10 @@ const BUR_o =
           }
         )
   }
+  
+
+
   ,
-
-
-
   get_img
   ()
   {
@@ -380,104 +380,10 @@ const BUR_o =
           )
 
   }
+  
+
+
   ,
-
-
-  screen__v 
-  ()
-  {
-    const width_n =
-      +screen      // Number cast
-        .availWidth
-      
-    const height_n =
-      +screen      // Number cast
-        .availHeight
-      
-    let screenDim_n =
-        width_n
-        >
-        height_n
-        ?               //: vmin
-          height_n
-        :
-          width_n
-
-    screenDim_n =
-      (
-        screenDim_n
-        //?? *
-        //?? 1       //: C_o.SCREEN_RATIO_n
-      )
-      -
-      64      //: S_o.NAV_HEIGHT_s * 2
-
-    BUR_o
-      .canvasWidth_n =
-        screenDim_n
-        
-    DOM_o
-      .rootVar__v
-      (
-        `--{{C_o.STAT_a[0]}}_screen_dim`,
-        screenDim_n
-      )
-
-    for
-    (
-    canvas_s
-    of
-    [
-      'hue',
-      'sat',
-      'lum',
-    ]
-    )
-    {
-      let canvas_e =
-        document
-          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${canvas_s}` )
-
-      if
-      (
-        canvas_e
-      )
-      {
-        canvas_e
-          .width =
-            screenDim_n
-            
-        canvas_e
-          .height =
-            screenDim_n
-      }
-    }
-  }
-  ,
-
-
-
-  bgHsl__s
-  ()
-  {
-    const hue_s =
-      DOM_o
-        .rootVar__s( `--{{C_o.STAT_a[0]}}_img_bg_hue` )
-
-    const sat_s =
-      DOM_o
-        .rootVar__s( `--{{C_o.STAT_a[0]}}_img_bg_sat` )
-
-    const lum_s =
-      DOM_o
-        .rootVar__s( `--{{C_o.STAT_a[0]}}_img_bg_lum` )
-
-    return `hsl( ${hue_s} ${sat_s}% ${lum_s}% /1)`
-  }
-  ,
-
-
-
   hsl__s
   ()
   {
@@ -488,10 +394,10 @@ const BUR_o =
             .slice( -3 )         //: element ID ends with: 'hue' || 'sat' || 'lum'
     )
   }
+  
+
+
   ,
-
-
-
   coord__a
   (
     event_o,
@@ -533,11 +439,10 @@ const BUR_o =
       ]
     )
   }
+  
+
+
   ,
-
-
-
-
   angle__n    //: in range [0...359]
   (
     event_o,
@@ -625,9 +530,10 @@ const BUR_o =
 
     return angle_n
   }
+  
+
+
   ,
-
-
   range__n
   (
     hsl_s
@@ -669,10 +575,10 @@ const BUR_o =
                             //=> range_n = 360, 120...101..6, 3, 2  (1 excluded)
     return range_n
   }
+  
+
+
   ,
-
-
-
   draw__v
   ()
   {
@@ -719,15 +625,15 @@ const BUR_o =
           )
     }
   }
+  
+
+
   ,
-
-
-
   pick__v
   (
-    opacity_n,     //: optional
-    angle_n,       //: optional
-    hsl_s='hue',   //: optional
+      opacity_n       //: optional
+    , angle_n         //: optional
+    , hsl_s='hue'     //: optional
   )
   {
     if
@@ -775,15 +681,15 @@ const BUR_o =
         .post__v
         (
           { 
-            task_s: 'PUT_pick'
-            ,
-            stat_s: '{{C_o.STAT_a[0]}}'
-            ,
-            hsl_s: hsl_s
-            ,
-            angle_n: angle_n
-            ,
-            range_n:
+            task_s:
+              'PUT_pick'
+          , stat_s:
+              '{{C_o.STAT_a[0]}}'
+          , hsl_s:
+              hsl_s
+          , angle_n:
+              angle_n
+          , range_n:
               angle_n
               ===
               360      //: reset
@@ -795,27 +701,25 @@ const BUR_o =
                   (
                     hsl_s
                   )
-            ,
-            opacity_n: opacity_n
-            ,
-            dim_a:
-            [
-              canvas_e
-                .width
-              ,
-              canvas_e
-                .height
-            ]
-            ,
+          , opacity_n:
+              opacity_n
+          , dim_a:
+              [
+                canvas_e
+                  .width
+                ,
+                canvas_e
+                  .height
+              ]
 
          }
         )
 
   }
+  
+
+
   ,
-
-
-
   trace__v
   (
     event_o,
@@ -885,8 +789,8 @@ const BUR_o =
         let hsl_s
         of
         [
-          'sat',
-          'lum'
+          'sat'
+        , 'lum'
         ]
       )
       {
@@ -896,23 +800,18 @@ const BUR_o =
             (
               { 
                 task_s: 'PUT_draw'
-                ,
-                stat_s: '{{C_o.STAT_a[0]}}'
-                ,
-                hsl_s: hsl_s
-                ,
-                back_hue_n:
+              , stat_s: '{{C_o.STAT_a[0]}}'
+              , hsl_s: hsl_s
+              , back_hue_n:
                   +(BUR_o            //: Number cast
                       .trace_o
                         .hue_e
                           .innerHTML
                   )
-                ,
-                shift_n: BUR_o
+              , shift_n: BUR_o
                           .hue_o
                             .shift_n
-                ,
-                thresh_o: BUR_o
+              , thresh_o: BUR_o
                             .thresh_o
                 //???,
                 //??? maxpos_n: BUR_o
@@ -927,24 +826,18 @@ const BUR_o =
     BUR_o
       .pick__v()
   }
+  
+
+
   ,
-
-
-
   range__v
   (
     range_e,
     callback_f
   )
   {
-    const value_s =
-      range_e
-        .value
-  
-    range_e
-      .dataset
-        .tip =
-          value_s
+    UI_o
+      .rangeVar__v( range_e )
   
     callback_f
     &&
@@ -952,13 +845,14 @@ const BUR_o =
     (
       range_e
         .id,
-      value_s
+      range_e
+        .value_s
     )
   }
+  
+
+
   ,
-
-
-
   eventRange__v        //: scale, threshold sliders
   (
     event_o
@@ -968,8 +862,8 @@ const BUR_o =
       .range__v
       (
         event_o
-          .target,
-        (
+          .target
+      , (
           range_s,    //: id
           value_s
         ) =>
@@ -984,22 +878,20 @@ const BUR_o =
             )
             {
               case range_s
-                    .includes( 'scale' ) :
-
-                BUR_o
+                    .includes( 'scale' )
+              : BUR_o
                   .scale_o
                     [ `${hsl_s}_n` ] =
                       +value_s      //: Number cast
 
-                DOM_o
-                  .rootVar__v
-                  (
-                    `--{{C_o.STAT_a[0]}}_scale`
-                    ,
-                    value_s
-                  )
+                //?? DOM_o
+                //??   .rootVar__v
+                //??   (
+                //??     `--{{C_o.STAT_a[0]}}_scale`
+                //??     ,
+                //??     value_s
+                //??   )
 
-    
                 BUR_o
                   .worker_o
                     .post__v
@@ -1030,9 +922,8 @@ const BUR_o =
                 break
 
               case range_s
-                     .includes( 'thresh' ) :
-
-                let range_n =
+                     .includes( 'thresh' )
+              : let range_n =
                   +event_o    //: Number cast
                     .target
                       .value
@@ -1083,17 +974,17 @@ const BUR_o =
 
                 break
 
-              default:    //: hue_img_bg_opacity + reserve other cases
-                break
+              default    //: hue_img_bg_opacity + reserve other cases
+              :  break
             }
 
           }
       )
   }
+  
+
+
   ,
-
-
-
   eventItem__v        //: hue range list
   (
     event_o
@@ -1121,10 +1012,10 @@ const BUR_o =
     }
 
   }
+  
+
+
   ,
-
-
-
   eventShift__v       //: hue start set
   (
     click_o
@@ -1214,9 +1105,10 @@ const BUR_o =
         )
     }
   }
+  
+
+
   ,
-
-
   eventHsl__v        //: hue start trace
   (
     event_o
@@ -1278,10 +1170,10 @@ const BUR_o =
         .value =
           shift_n
   }
+  
+
+
   ,
-
-
-
   eventTrace__v      //: hue, sat, lum trace
   (
       event_o
@@ -1349,10 +1241,10 @@ const BUR_o =
         )
     }
   }
+  
+
+
   ,
-
-
-
   eventtPlots__v
   (
       event_o,
@@ -1431,6 +1323,7 @@ const BUR_o =
   ,
 
   
+  
   eventImg_reset__v
   ()
   {
@@ -1442,26 +1335,28 @@ const BUR_o =
        360    //: reset all
       )
   }
+
+
+
   ,
-
-
-
-  async eventImg_panorama__v
-  ()
-  {
-    ;console.log( 'eventImg_panorama__v'  )
-
-    //...................
-    BUR_o
-      .eventImg_download__v()
-  }
-  ,
-
-
-
   eventImg_download__v
   ()
   {
+    const date_s
+    = DATE_o
+        .dataTimeNumeric__s()
+      
+    const key_s
+    =
+      BUR_o
+        .work_s
+      + `_${date_s}`
+
+    BUR_o
+      .download_s
+    =
+      `${key_s}.jpg`    //:  used by file picker as suggestedName
+
     BUR_o
       .pick__v()
       
@@ -1471,16 +1366,14 @@ const BUR_o =
         (
           { 
             task_s: 'GET_canvas_img'
-            ,
-            stat_s: '{{C_o.STAT_a[0]}}'
-            ,
+          , stat_s: '{{C_o.STAT_a[0]}}'
           }
         )
   }
+
+
+
   ,
-
-
-
   eventImg_background__v
   (
     event_o
@@ -1549,9 +1442,10 @@ const BUR_o =
         break
     }
   }
+
+
+
   ,
-
-
   eventImg_range__v
   (
     event_o
@@ -1592,10 +1486,10 @@ const BUR_o =
         value_s
       )
   }
+
+
+
   ,
-
-
-
   listener__v
   ()
   {
@@ -1700,7 +1594,6 @@ const BUR_o =
       of
       [
         'reset',
-        'panorama',
         'download',
       ]
     )
@@ -1840,13 +1733,120 @@ const BUR_o =
         .listener__v()
     }
   }
+
+
+
   ,
+  screen__v 
+  ()
+  {
+    const width_n =
+      +screen      // Number cast
+        .availWidth
+      
+    const height_n =
+      +screen      // Number cast
+        .availHeight
+      
+    let screenDim_n =
+        width_n
+        >
+        height_n
+        ?               //: vmin
+          height_n
+        :
+          width_n
+
+    screenDim_n =
+      (
+        screenDim_n
+        //?? *
+        //?? 1       //: C_o.SCREEN_RATIO_n
+      )
+      -
+      64      //: S_o.NAV_HEIGHT_s * 2
+
+    BUR_o
+      .canvasWidth_n =
+        screenDim_n
+        
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_screen_dim`,
+        screenDim_n
+      )
+
+    for
+    (
+      canvas_s
+    of
+    [
+      'hue'
+    , 'sat'
+    , 'lum'
+    ]
+    )
+    {
+      let canvas_e =
+        document
+          .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${canvas_s}` )
+
+      if
+      (
+        canvas_e
+      )
+      {
+        canvas_e
+          .width =
+            screenDim_n
+            
+        canvas_e
+          .height =
+            screenDim_n
+      }
+    }
+  }
 
 
 
+  ,
   init__v
   ()
   {
+    const body_e
+    =
+     document
+      .querySelector( 'body' )
+
+    BUR_o
+      .work_s
+    =
+      body_e
+        .dataset
+          .work_s
+
+    const
+      [
+        width_s,
+        height_s
+      ]
+    =
+      body_e
+        .dataset
+          .wh_s
+            .split( '_' )
+
+    BUR_o
+      .imgWidth_n
+    =
+      +width_s    //: Number cast
+
+    BUR_o
+      .imgHeight_n
+    =
+      +height_s    //: Number cast
+
     BUR_o
       .screen__v()
   
@@ -1908,12 +1908,20 @@ const BUR_o =
         )
 
     BUR_o
+      .idb_o
+    =
+      new Idb
+      (
+        '{{A_o.ID_s}}_idb'
+      , '{{A_o.ID_s}}_store'
+      )
+  
+    BUR_o
      .listener__v()
 
     BUR_o
       .get_img()
   }
-  ,
 }
 
 BUR_o
