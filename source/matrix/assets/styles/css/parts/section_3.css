@@ -20,7 +20,7 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav {
   width: {{ S_o.NAV_SETTINGS_s}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label > span[data-icon=substat] {
-  background: {{S_o.nav_spot_stat}};
+  background: {{S_o.nav_dot_stat}};
   opacity: 0;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] {
@@ -29,13 +29,13 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] {
   height: fit-content;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=increment] {
-  background: {{S_o.nav_spot_set_1}};
+  background: {{S_o.nav_dot_set_1}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=decrement] {
-  background: {{S_o.nav_spot_set_2}};
+  background: {{S_o.nav_dot_set_2}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=open] {
-  background: {{S_o.nav_spot_set_3}};
+  background: {{S_o.nav_dot_set_3}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label:hover > span {
   background: transparent;

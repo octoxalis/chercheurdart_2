@@ -13,10 +13,10 @@
 
 <!-- !!! occurs at chapter end -->
   <hr>
-          width: 95%;     /* keep right space for goto buttons */
+          width: 8%;     /* keep right space for goto buttons */
           height: 1px;
           margin: {{S_o.PAD_6}} auto {{S_o.PAD_10}};
-          background: {{S_o.shadow_ne}};
+          background: {{S_o.shadow_lo1}};
           border: 0;
   </hr>
 
@@ -134,7 +134,7 @@
                   display: table;
                   /*font-style: normal;*/
                   /*font-weight: 200;*/
-                  /*line-height: 1.3;*/
+                  /*line-height: 1.4;*/
           </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}]>
@@ -160,6 +160,7 @@
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
           <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
           context( block, reference_1 )
+                  line-height: 3;
           </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
@@ -171,12 +172,26 @@
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
           <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
           context( block, reference_2 )
+                  line-height: 1.6;
+          </{{C_o.ROW_TAG_s}}>
+          <{{C_o.ROW_TAG_s}}:nth-of-type(4)>
+                   padding-top: {{S_o.PAD_4}};
+                   width: 100%;
+                   border-top: 1px solid {{S_o.ins_shadow_ne}};
+          </{{C_o.ROW_TAG_s}}>
+          <{{C_o.ROW_TAG_s}}:nth-of-type(5)>
+                  padding-top: {{S_o.PAD_2}};
+          </{{C_o.ROW_TAG_s}}>
+          <{{C_o.ROW_TAG_s}}:nth-of-type(6)>
+                  margin-top: 1rem;
           </{{C_o.ROW_TAG_s}}>
         </{{C_o.TABLE_TAG_s}}>
         <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
                 top: 0;
           <{{C_o.ROW_TAG_s}}>
             <i>
+                    font-size: 95%;
+                    font-weight: 200;
                     font-style: normal;
             </i>
             <i:first-of-type::after>

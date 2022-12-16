@@ -58,24 +58,13 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   filter: brightness( {{S_o.brightness_hi}} );
   transition: opacity .2s;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
-  --font_max: 20px;
-  --font_scale: 2.2vw;
-  font-weight: {{S_o.FONT_BOLD_s}};
-}
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
-  --font_max: 18px;
-  --font_scale: 2vw;
-  font-weight: 400;
-  font-style: italic;
-}
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
   transition: opacity 1s ease;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure[data-display_b=false] {
-  border: 1px solid {{S_o.selected_hi}};
+  border: 1px solid {{S_o.selected_lo}};
   border-radius: 4px;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure[data-display_b=false] > img {

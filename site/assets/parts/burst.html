@@ -70,52 +70,52 @@
 
       <div id="DI_burst_slide_hue">
         
-        <div id="DI_burst_hue_range">
-          <ul id="UL_burst_hue_range" data-role=range>
-            <li data-range_n="1">
-              <input name="burst_hue_range" type="radio">
+        <div id="DI_burst_hue_slot">
+          <ul id="UL_burst_hue_slot" data-role=range>
+            <li data-slot_n="1">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="3">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="3">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="6">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="6">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="10">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="10">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="15">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="15">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="20">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="20">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="24">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="24">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="30">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="30">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="36">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="36">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="40">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="40">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="45">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="45">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="60">
-              <input name="burst_hue_range" type="radio" checked>  <!-- TEMPORARY: 1 -->
+            <li data-slot_n="60">
+              <input name="burst_hue_slot" type="radio" checked>  <!-- TEMPORARY: 1 -->
             </li>
-            <li data-range_n="72">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="72">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="90">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="90">
+              <input name="burst_hue_slot" type="radio">
             </li>
-            <li data-range_n="120">
-              <input name="burst_hue_range" type="radio">
+            <li data-slot_n="120">
+              <input name="burst_hue_slot" type="radio">
             </li>
           </ul>
           <hr role="vrange" />
@@ -146,14 +146,14 @@
     <label for="IN_burst_settings" data-legend="palette">
         <span data-role="open">&nbsp;</span>
     </label>
-    <label for="IN_burst_plots" data-legend="étalonnage">
+    <label for="IN_burst_level" data-legend="égaliser">
         <span data-role="open">&nbsp;</span>
     </label>
     <label for="IN_burst_hue_img" data-legend="image">
         <span data-role="open">&nbsp;</span>
     </label>
 
-      <input id="IN_burst_view_scale" type="range" min="0.25" max="4" step="0.25" value="1" data-tip="1">
+      <input id="IN_burst_view_scale" type="range" min="0.25" max="4" step="0.25" value="0.5" data-tip="0.5">
       <label for="IN_burst_view_scale">
       Échelle
       </label>
@@ -163,7 +163,7 @@
   <input id="IN_burst_hue_img_download" type="checkbox">
   <input id="IN_burst_hue_img_panorama" type="checkbox">
   <input id="IN_burst_hue_img_reset" type="checkbox">
-  <input id="IN_burst_hue_img_position" type="checkbox" checked><!--TEMPORARY-->
+  <input id="IN_burst_hue_img_position" type="checkbox">
   <input id="IN_burst_hue_img_picker" type="checkbox">
   <input id="IN_burst_hue_img_bg_black" name="burst_hue_color" type="radio">
   <input id="IN_burst_hue_img_bg_white" name="burst_hue_color" type="radio">
@@ -183,7 +183,7 @@
         &#10530;
         </label><!--NE and SW Arrow-->
     </ul>
-    <canvas id="CA_burst_hue_img" width=60rem height=60rem></canvas>  <!-- 1024: default value -->
+    <canvas id="CA_burst_hue_img" width=60vmin height=60vmin></canvas>  <!-- 1024: default value -->
     <div id="DI_burst_hue_img_bg">
       <label>opacité</label>
       <input id="IN_burst_hue_img_bg_opacity" type="range" min="0" max="100" step="10" value="20" data-tip="20">

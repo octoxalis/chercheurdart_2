@@ -9,7 +9,7 @@ const BUR_o =
   //++ canvasWidth_n:   //: init in screen__v
 
   
-    SCALE_V_n: 2
+    vScale_n: 2
   , hue_n: 0           //: selected hue
   , freeze_b: false    //: freeze || unfreeze hue selection
   , status_o: null
@@ -19,19 +19,29 @@ const BUR_o =
       rangeY_n: 60,    //: C_o.BURST_RANGE_n
       shift_n: 0,      //: from burst_hue_back
     }
+
   , scale_o:
     {
-      hue_n: 1,     //: C_o.BURST_SCALE_n
+      hue_n: .5,     //: C_o.BURST_SCALE_n
       sat_n: .5,
       lum_n: .5,
     }
+
   , thresh_o:
     {
       hi_n: 100,    //: C_o.BURST_THRESH_HI_n   left to right
       lo_n: 0,      //: C_o.BURST_THRESH_LO_n
     }
-  , plots_a: null
-  , atPlot_o: null
+
+  , slot_o:
+    {
+      hue: 360
+    , sat: 101
+    , lum: 101
+    }
+
+  , level_a: null
+  , atLevel_o: null
   , atAngle_n: 0
   , download_s: ''    //: download suggested file name
 
@@ -49,17 +59,17 @@ const BUR_o =
         .task_s
     )
     {
-      case 'PUT_frequency':
+      case 'PUT_rate':
         BUR_o
-          .put_frequency__v( payload_o )
+          .put_rate__v( payload_o )
 
         break
     
-      case 'PUT_plots':
+      case 'PUT_level':
         BUR_o
-          .plots_a =
+          .level_a =
             payload_o
-              .plots_a
+              .level_a
 
         break
 
@@ -166,7 +176,7 @@ const BUR_o =
 
 
 ,
-  put_frequency__v
+  put_rate__v
   (
     payload_o
   )
@@ -175,33 +185,33 @@ const BUR_o =
       {
         hsl_s
         ,
-        frequency_n
+        rate_n
         ,
-        range_a
+        slot_a
         ,
         capacity_n
         ,
-        plots_a
+        level_a
       } =
         payload_o
 
     BUR_o
-      .atPlot_o =
-        plots_a
+      .atLevel_o =
+        level_a
 
     let html_s =
-      range_a[0]
+      slot_a[0]
 
     if
     (
-      range_a
+      slot_a
         .length
       >
       1
     )
     {
       html_s +=
-        `<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${range_a[1]}`
+        `<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${slot_a[1]}`
     }
 
     BUR_o
@@ -212,7 +222,7 @@ const BUR_o =
 
     const ratio_n =
       (
-        frequency_n
+        rate_n
         /
         capacity_n
       )
@@ -262,45 +272,41 @@ const BUR_o =
 
 
   ,
-  get_frequency__v
+  get_rate__v
   (
     event_o,
     hsl_s
   )
   {
-    const range_n =
+    const slot_n
+    =
       BUR_o
-        .range__n
-        (
-          hsl_s
-        )
+        .slot__n ( hsl_s )
 
-    const angle_n =
+    const angle_n
+    =
       BUR_o
         .angle__n
         (
           event_o,
-          range_n
+          slot_n
         )
 
     BUR_o
-      .atAngle_n =
-        angle_n
+      .atAngle_n
+    =
+      angle_n
 
     BUR_o
       .worker_o
         .post__v
         (
           { 
-            task_s: 'GET_frequency'
-            ,
-            stat_s: '{{C_o.STAT_a[0]}}'
-            ,
-            hsl_s:  hsl_s
-            ,
-            angle_n: angle_n
-            ,
-            range_n: range_n
+            task_s: 'GET_rate'
+          , stat_s: '{{C_o.STAT_a[0]}}'
+          , hsl_s:  hsl_s
+          , angle_n: angle_n
+          , slot_n: slot_n
           }
         )
   }
@@ -398,7 +404,7 @@ const BUR_o =
 
 
   ,
-  coord__a
+  locate__a
   (
     event_o,
     hsl_s
@@ -528,52 +534,50 @@ const BUR_o =
         360
     }
 
+    //;console.log( angle_n )
     return angle_n
   }
   
 
 
   ,
-  range__n
+  slot__n
   (
     hsl_s
   )
   {
-    let range_n =
-      hsl_s
-      ===
-      'hue'
-      ?
-        360
-      :
-        101
+    let slot_n =
+      BUR_o
+        .slot_o
+          [ hsl_s ]
 
     if
     (
-      range_n
+      slot_n
       ===
       360
     )
     {
       let label_e =
         document
-          .querySelector( `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
+          .querySelector( `li:has(input[name="{{C_o.STAT_a[0]}}_hue_slot"]:checked)` )
 
       if
       (
         label_e
       )
       {
-        range_n =        //: 360, 120...101..6, 3, 1
+        slot_n =        //: 360, 120...101..6, 3, 1
         360
         /
         +label_e              //: Number cast
           .dataset
-            .range_n        //: 1, 3, 6...180
+            .slot_n        //: 1, 3, 6...180
       }
     }
-                            //=> range_n = 360, 120...101..6, 3, 2  (1 excluded)
-    return range_n
+                            //=> slot_n = 360, 120...101..6, 3, 2  (1 excluded)
+
+    return slot_n
   }
   
 
@@ -643,21 +647,23 @@ const BUR_o =
       undefined
     )
     {
-      const input_e =
+      const input_e
+      =
         document
           .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )
                 
-      opacity_n =
-              ~~(
-                (
-                  +input_e            //: Number cast
-                    .value
-                  /
-                  100
-                )
-                *
-                255      //: [0...255]
-              )
+      opacity_n
+      =
+        ~~(
+          (
+            +input_e            //: Number cast
+              .value
+            /
+            100
+          )
+          *
+          255      //: [0...255]
+        )
     }
 
     if
@@ -667,12 +673,14 @@ const BUR_o =
       undefined
     )
     {
-      angle_n =
+      angle_n
+      =
         BUR_o
           .atAngle_n
     }
     
-    const canvas_e =
+    const canvas_e
+    =
       document
         .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
 
@@ -681,14 +689,10 @@ const BUR_o =
         .post__v
         (
           { 
-            task_s:
-              'PUT_pick'
-          , stat_s:
-              '{{C_o.STAT_a[0]}}'
-          , hsl_s:
-              hsl_s
-          , angle_n:
-              angle_n
+            task_s:  'PUT_slot'
+          , stat_s:  '{{C_o.STAT_a[0]}}'
+          , hsl_s:   hsl_s
+          , angle_n: angle_n
           , range_n:
               angle_n
               ===
@@ -697,12 +701,11 @@ const BUR_o =
                 0
               :
                 BUR_o
-                  .range__n
+                  .slot__n
                   (
                     hsl_s
                   )
-          , opacity_n:
-              opacity_n
+          , opacity_n: opacity_n
           , dim_a:
               [
                 canvas_e
@@ -727,11 +730,13 @@ const BUR_o =
   )
   {
     BUR_o
-      .freeze_b =    //: toggle freeze_b
-        ! BUR_o
-            .freeze_b
+      .freeze_b
+    =
+      ! BUR_o          //: toggle freeze_b
+          .freeze_b
 
     let color_s
+
     let pointer_s
 
     if
@@ -740,19 +745,23 @@ const BUR_o =
         .freeze_b
     )
     {
-      color_s =
+      color_s
+      =
         '{{S_o.bg_higher}}'
 
-      pointer_s =
+      pointer_s
+      =
         'cell'
     }
     else
     {
-      color_s =
+      color_s
+      =
         '{{S_o.bg_lower}}'
 
-      pointer_s =
-        'crosshair'
+      pointer_s
+      =
+        'var(--{{C_o.STAT_a[0]}}_trace_pointer_s)'
     }
 
     DOM_o
@@ -769,9 +778,10 @@ const BUR_o =
         pointer_s
       )
 
-    let item_e =
+    let item_e
+    =
       document
-        .querySelector( `li:has(input[name="{{C_o.STAT_a[0]}}_hue_range"]:checked)` )
+        .querySelector( `li:has(input[name="{{C_o.STAT_a[0]}}_hue_slot"]:checked)` )
 
     if
     (
@@ -779,7 +789,7 @@ const BUR_o =
       &&
       +item_e              //: Number cast
         .dataset
-          .range_n 
+          .slot_n 
       ===
       1                  //: not for hue ranges
     )
@@ -799,7 +809,7 @@ const BUR_o =
             .post__v
             (
               { 
-                task_s: 'PUT_draw'
+                task_s: 'PUT_draw'            //: instanciate sat + lum colorBurst
               , stat_s: '{{C_o.STAT_a[0]}}'
               , hsl_s: hsl_s
               , back_hue_n:
@@ -836,17 +846,31 @@ const BUR_o =
     callback_f
   )
   {
+    const var_s
+    =
+      range_e
+        .id
+          .includes( 'scale' )
+      ?
+        `{{C_o.STAT_a[0]}}_scale`
+      :
+        ''
+
     UI_o
-      .rangeVar__v( range_e )
+      .rangeVar__v
+      (
+        range_e
+      , var_s
+      )
   
     callback_f
     &&
     callback_f
     (
       range_e
-        .id,
-      range_e
-        .value_s
+        .id
+    , range_e
+        .value
     )
   }
   
@@ -863,149 +887,142 @@ const BUR_o =
       (
         event_o
           .target
-      , (
-          range_s,    //: id
-          value_s
-        ) =>
-          {
-            const hsl_s =
-              BUR_o
-                .hsl__s()
-
-            switch
-            (
-              true
-            )
+        , (
+            range_s,    //: id
+            value_s
+          ) =>
             {
-              case range_s
-                    .includes( 'scale' )
-              : BUR_o
-                  .scale_o
-                    [ `${hsl_s}_n` ] =
-                      +value_s      //: Number cast
-
-                //?? DOM_o
-                //??   .rootVar__v
-                //??   (
-                //??     `--{{C_o.STAT_a[0]}}_scale`
-                //??     ,
-                //??     value_s
-                //??   )
-
+              const hsl_s =
                 BUR_o
-                  .worker_o
-                    .post__v
+                  .hsl__s()
+  
+              switch
+              (
+                true
+              )
+              {
+                case range_s
+                      .includes( 'scale' )
+                :
+                  BUR_o
+                    .scale_o
+                      [ `${hsl_s}_n` ] =
+                        +value_s      //: Number cast
+  
+                  BUR_o
+                    .worker_o
+                      .post__v
+                      (
+                        { 
+                          task_s:  'PUT_scale'
+                          ,
+                          stat_s:  '{{C_o.STAT_a[0]}}'
+                          ,
+                          hsl_s:  hsl_s
+                          ,
+                          scale_n: BUR_o
+                                     .scale_o
+                                       [`${hsl_s}_n`]
+                          ,
+                          burst_b: true    //:  redraw
+                        }
+                      )
+  
+                  DOM_o
+                    .rootVar__v
                     (
-                      { 
-                        task_s:  'PUT_scale'
-                        ,
-                        stat_s:  '{{C_o.STAT_a[0]}}'
-                        ,
-                        hsl_s:  hsl_s
-                        ,
-                        scale_n: BUR_o
-                                   .scale_o
-                                     [`${hsl_s}_n`]
-                        ,
-                        burst_b: true    //:  redraw
-                      }
+                      `--{{C_o.STAT_a[0]}}_level`
+                    , 'none'
                     )
-
-                DOM_o
-                  .rootVar__v
+  
+                  break
+  
+                case range_s
+                       .includes( 'thresh' )
+                :
+                  let range_n =
+                    +event_o    //: Number cast
+                      .target
+                        .value
+  
+                  let atRange_s
+  
+                  if
                   (
-                    `--{{C_o.STAT_a[0]}}_plots`
-                    ,
-                    'none'
+                    range_s
+                      .endsWith( 'hi' )   //: left to right slider
                   )
-
-                break
-
-              case range_s
-                     .includes( 'thresh' )
-              : let range_n =
-                  +event_o    //: Number cast
-                    .target
-                      .value
-
-                let atRange_s
-
-                if
-                (
-                  range_s
-                    .endsWith( 'hi' )   //: left to right slider
-                )
-                {
-                  atRange_s = 'hi'
-                    
-                  range_n =
-                    100
-                    -
-                    range_n
-                }
-                else
-                {
-                  atRange_s = 'lo'
-                }
-
-                BUR_o
-                   .thresh_o
-                    [ `${atRange_s}_n` ] =
-                    range_n
-
-                if
-                (
+                  {
+                    atRange_s = 'hi'
+                      
+                    range_n =
+                      100
+                      -
+                      range_n
+                  }
+                  else
+                  {
+                    atRange_s = 'lo'
+                  }
+  
+                  BUR_o
+                     .thresh_o
+                      [ `${atRange_s}_n` ] =
+                      range_n
+  
+                  if
                   (
-                    BUR_o
-                       .thresh_o
-                         .hi_n
-                    <=
-                    BUR_o
-                       .thresh_o
-                         .lo_n
+                    (
+                      BUR_o
+                         .thresh_o
+                           .hi_n
+                      <=
+                      BUR_o
+                         .thresh_o
+                           .lo_n
+                    )
                   )
-                )
-                {
-                  return void alert( 'Les seuils haut et bas se croisent' )
-                }
-
-                BUR_o
-                  .draw__v()
-
-                break
-
-              default    //: hue_img_bg_opacity + reserve other cases
-              :  break
+                  {
+                    return void alert( 'Les seuils haut et bas se croisent' )
+                  }
+  
+                  BUR_o
+                    .draw__v()
+  
+                  break
+  
+                default    //: hue_img_bg_opacity + reserve other cases
+                :  break
+              }
+  
             }
-
-          }
-      )
+        )
   }
   
 
 
   ,
-  eventItem__v        //: hue range list
+  eventSlot__v        //: hue range list
   (
     event_o
   )
   {
-    const item_e =
+    const slot_e =
       event_o
         .target
           .closest( `li` )
 
     if
     (
-      item_e
+      slot_e
     )
     {
       BUR_o
         .hue_o
           .rangeY_n =
-            +item_e             //: Number cast
+            +slot_e             //: Number cast
               .dataset
-                .range_n
+                .slot_n
 
       BUR_o
         .draw__v()
@@ -1084,7 +1101,7 @@ const BUR_o =
           360
           *
           BUR_o
-            .SCALE_V_n
+            .vScale_n
         )
       )
 
@@ -1143,7 +1160,7 @@ const BUR_o =
           360
           *
           BUR_o
-            .SCALE_V_n
+            .vScale_n
           -
           offsetY_n
         )
@@ -1155,7 +1172,7 @@ const BUR_o =
             offsetY_n
             /
             BUR_o
-              .SCALE_V_n
+              .vScale_n
           )
         +
         BUR_o
@@ -1179,7 +1196,8 @@ const BUR_o =
       event_o
   )
   {
-    const hsl_s =
+    const hsl_s
+    =
       BUR_o
         .hsl__s()
 
@@ -1194,10 +1212,10 @@ const BUR_o =
     )
     {
       BUR_o
-        .get_frequency__v
+        .get_rate__v
         (
-          event_o,
-          hsl_s
+          event_o
+        , hsl_s
         )
 
       if
@@ -1212,10 +1230,10 @@ const BUR_o =
       )
       {
         BUR_o
-          .eventtPlots__v
+          .eventLevel__v
           (
-            event_o,
-            hsl_s
+            event_o
+          , hsl_s
           )
       }
     }
@@ -1236,8 +1254,7 @@ const BUR_o =
         .trace__v
         (
           event_o
-          ,
-          hsl_s
+        , hsl_s
         )
     }
   }
@@ -1245,16 +1262,16 @@ const BUR_o =
 
 
   ,
-  eventtPlots__v
+  eventLevel__v
   (
       event_o,
       hsl_s
   )
   {
-    if     //: must check if atPlot_o is null
+    if     //: must check if atLevel_o is null
     (
       BUR_o
-        .atPlot_o
+        .atLevel_o
     )
     {
       let
@@ -1264,7 +1281,7 @@ const BUR_o =
           startY_n
         } =
           BUR_o
-            .atPlot_o
+            .atLevel_o
           
       startX_n -=
         BUR_o
@@ -1305,14 +1322,14 @@ const BUR_o =
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[0]}}_plots`,
+          `--{{C_o.STAT_a[0]}}_level`,
           display_s
         )
   
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[0]}}_plots_scale`,
+          `--{{C_o.STAT_a[0]}}_level_scale`,
           radius_n
           /
           BUR_o
@@ -1552,10 +1569,10 @@ const BUR_o =
       DOM_o
         .listener__v
         (
-          `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_range`
+          `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}_slot`
           ,
           BUR_o
-            .eventItem__v
+            .eventSlot__v
         )
 
       DOM_o
@@ -1706,7 +1723,7 @@ const BUR_o =
       [
           '{{C_o.FULL_SCREEN}}',
           '{{C_o.PAGE_TOP}}',
-          '{{C_o.BURST_PLOTS}}'
+          '{{C_o.BURST_LEVEL}}'
       ]
     )
     {
@@ -1891,14 +1908,14 @@ const BUR_o =
         )
 
     BUR_o
-      .draw__v()    //: draw before getting plots_a
+      .draw__v()    //: draw before getting level_a
   
     BUR_o
       .worker_o
         .post__v
         (
           { 
-            task_s:  'GET_plots'
+            task_s:  'GET_level'
             ,
             stat_s:  '{{C_o.STAT_a[0]}}'
             ,

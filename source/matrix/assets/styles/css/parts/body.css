@@ -44,6 +44,7 @@ body > a#goto_{{C_o.FULL_SCREEN}}:hover, body > a#goto_{{C_o.PAGE_TOP}}:hover {
   background: {{S_o.shadow_ne}};
 }
 .range-separator {
-  display: inline-block;
+  display: inline-flex;
+  align-self: center;
   transform: scaleX( 2 );
 }

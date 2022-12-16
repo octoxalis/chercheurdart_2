@@ -4,8 +4,8 @@ const PAI_o =
 {
   status_o: null,    //: STAT_W_o.status_o
 
-  SCALE_H_n: 1,
-  SCALE_V_n: 2,
+  hScale_n: 1,
+  vScale_n: 2,
 
   hue_o:
   {
@@ -1262,7 +1262,7 @@ const PAI_o =
                 task_s: 'PUT_draw',
                 stat_s: '{{C_o.STAT_a[2]}}',
                 hsl_s: 'sat_front',
-                hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
+                back_hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
               }
             )
       }
@@ -1397,14 +1397,14 @@ const PAI_o =
       ~~( +offsetX      //: number cast
       /
       PAI_o
-        .SCALE_H_n
+        .hScale_n
       )
       
     const atY_n =
       ~~( +offsetY      //: number cast
       /
       PAI_o
-        .SCALE_V_n
+        .vScale_n
       )
 
     PAI_o
@@ -1879,7 +1879,7 @@ const PAI_o =
               task_s: 'PUT_draw',
               stat_s: '{{C_o.STAT_a[2]}}',
               hsl_s: canvas_s,
-              hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
+              back_hue_n:  +DOM_o.rootVar__s( '--{{C_o.STAT_a[2]}}_hue_back' )
             }
           )
 

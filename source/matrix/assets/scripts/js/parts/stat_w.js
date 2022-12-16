@@ -128,14 +128,14 @@ const STAT_W_o =
   [
     'GET_scan',
     'GET_status',
-    'GET_frequency',
-    'GET_plots',
+    'GET_rate',
+    'GET_level',
     'GET_img',
     'GET_canvas_img',
 
     'PUT_canvas',
     'PUT_draw',
-    'PUT_pick',
+    'PUT_slot',
     'PUT_hsl',
     'PUT_scale',
   ]
@@ -144,15 +144,15 @@ const STAT_W_o =
   scan_a: null,
 
   SCAN_hue_n:      0,    //: scan_a hue indices
-  SCAN_hue_freq_n: 1,    //: scan_a hue frequencies
-  SCAN_hue_rank_n: 2,    //: scan_a hue frequency ranks (higher frequency first)
+  SCAN_hue_rate_n: 1,    //: scan_a hue rates
+  SCAN_hue_rank_n: 2,    //: scan_a hue rate ranks (higher rate first)
 
   SCAN_sat_n:      3,
-  SCAN_sat_freq_n: 4,
+  SCAN_sat_rate_n: 4,
   SCAN_sat_rank_n: 5,
 
   SCAN_lum_n:      6,
-  SCAN_lum_freq_n: 7,
+  SCAN_lum_rate_n: 7,
   SCAN_lum_rank_n: 8,
 
   stat_o: {}      //: {{C_o.STAT_a[0]}}: stat_o{ hue_o{ canvas_e, context_o}, ... }
@@ -445,59 +445,54 @@ const STAT_W_o =
 
 
 
-  range__a
+  slot__a
   (
     angle_n,
-    range_n
+    slot_n
   )
   {
-    let range_a    //: [ fromAngle_n, toAngle_n ]
-      
+    let slot_a    //: [ fromHsl_n, toHsl_n ]
+    
     if
     (
-      range_n
+      slot_n
       !==
       360    //: 120...2 (hue range)
       &&
-      range_n
+      slot_n
       !==
       101    //:  sat or lum
     )
     {
-      let partLength_n =
+      let arc_n =
         360
         /
-        range_n
+        slot_n
 
-      angle_n =
-        ~~(
-          angle_n
-          /
-          partLength_n
-        )
-      
       let from_n =
         angle_n
         *
-        partLength_n
+        arc_n
 
-      range_a =
+      slot_a =
         [
           from_n,
           from_n
           +
-          partLength_n
+          arc_n
+          -
+          1        //: upper limit excluded
         ]
     }
     else
     {
-      range_a =
+      slot_a =
         [
           angle_n
         ]
     }
 
-    return range_a
+    return slot_a
   }
   ,
 
@@ -605,7 +600,7 @@ const STAT_W_o =
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_hue_freq_n] =
+          [STAT_W_o.SCAN_hue_rate_n] =
             new Array( capacity_n )
         
       while
@@ -620,7 +615,7 @@ const STAT_W_o =
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_hue_freq_n]
+            [STAT_W_o.SCAN_hue_rate_n]
               [capacity_n] = 0
       }
       
@@ -634,7 +629,7 @@ const STAT_W_o =
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_sat_freq_n] =
+          [STAT_W_o.SCAN_sat_rate_n] =
             new Array( capacity_n )
       
       while
@@ -649,7 +644,7 @@ const STAT_W_o =
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_sat_freq_n]
+            [STAT_W_o.SCAN_sat_rate_n]
               [capacity_n] = 0
       }
       
@@ -663,7 +658,7 @@ const STAT_W_o =
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_lum_freq_n] =
+          [STAT_W_o.SCAN_lum_rate_n] =
             new Array( capacity_n )
       
       while
@@ -678,7 +673,7 @@ const STAT_W_o =
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_lum_freq_n]
+            [STAT_W_o.SCAN_lum_rate_n]
               [capacity_n] = 0
       }
       
@@ -728,7 +723,7 @@ const STAT_W_o =
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_hue_freq_n]
+          .scan_a[STAT_W_o.SCAN_hue_rate_n]
             [hue_n] +=
               1
       
@@ -750,7 +745,7 @@ const STAT_W_o =
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_sat_freq_n]
+          .scan_a[STAT_W_o.SCAN_sat_rate_n]
             [sat_n] +=
               1
     
@@ -772,7 +767,7 @@ const STAT_W_o =
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_lum_freq_n]
+          .scan_a[STAT_W_o.SCAN_lum_rate_n]
             [lum_n] +=
               1
       }
@@ -830,7 +825,7 @@ const STAT_W_o =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_hue_freq_n]
+              .scan_a[STAT_W_o.SCAN_hue_rate_n]
           )      //: hue rank max_n is at [0][0]
   
       STAT_W_o
@@ -838,7 +833,7 @@ const STAT_W_o =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_sat_freq_n]
+              .scan_a[STAT_W_o.SCAN_sat_rate_n]
           )      //: sat rank max_n is at [0][0]
   
       STAT_W_o
@@ -846,7 +841,7 @@ const STAT_W_o =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_lum_freq_n]
+              .scan_a[STAT_W_o.SCAN_lum_rate_n]
           )      //: lum rank max_n is at [0][0]
 
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -858,7 +853,7 @@ const STAT_W_o =
   
 
 
-  get_frequency__v
+  get_rate__v
   (
     payload_o
   )
@@ -867,40 +862,35 @@ const STAT_W_o =
     {
       hsl_s,
       angle_n,
-      range_n     //: 360, 120...101..6, 3, 2  (1 excluded)
+      slot_n     //: 360, 120...101..6, 3, 2  (1 excluded)
     } =
       payload_o
 
-    //;console.log( [angle_n, range_n] )
+    //;console.log( [angle_n, slot_n] )
     
-    const range_a =
+    const slot_a =
       STAT_W_o
-        .range__a
+        .slot__a
         (
           angle_n,
-          range_n
+          slot_n
         )
 
-    const part_a =
+    const rate_o =
       STAT_W_o
         .stat_o
           .burst_o
             [ `${hsl_s}_o` ]
-              .part_a
-
-    const frequency_o =
-      STAT_W_o
-        .stat_o
-          .burst_o
-            [ `${hsl_s}_o` ]
-              .part_a
+              .slot_a
                 [ angle_n ]
 
-    const frequency_n =
-      frequency_o        //: can be null (see put_draw__v)
+                //;console.log( rate_o )
+
+    const rate_n =
+      rate_o        //: can be null (see put_draw__v)
       ?
-        frequency_o
-          .frequency_n
+        rate_o
+          .rate_n
       :
         0
 
@@ -908,25 +898,25 @@ const STAT_W_o =
       .post__v
       (
         {
-          task_s: 'PUT_frequency'
+          task_s: 'PUT_rate'
           ,
           //: CLIENT_ALL_s
           hsl_s: hsl_s
           ,
-          frequency_n: frequency_n
+          rate_n: rate_n
           ,
-          range_a: range_a
+          slot_a: slot_a
           ,
           capacity_n: STAT_W_o      //: reserved for ratio
                         .capacity_n
           ,
-          plots_a:
+          level_a:
             STAT_W_o
               .stat_o
                 .burst_o
                   [ `${hsl_s}_o` ]
                     .burst_c
-                      .plots__a( angle_n )
+                      .level__a( angle_n )
         }
         ,
         [
@@ -935,7 +925,7 @@ const STAT_W_o =
               .burst_o
                 [ `${hsl_s}_o` ]
                   .burst_c
-                    .plots__a( angle_n )
+                    .level__a( angle_n )
         ]
       )
   }
@@ -943,7 +933,7 @@ const STAT_W_o =
 
 
 
-  get_plots__v
+  get_level__v
   (
     payload_o
   )
@@ -959,19 +949,19 @@ const STAT_W_o =
       .post__v
       (
         {
-          task_s: 'PUT_plots'
+          task_s: 'PUT_level'
           ,
           stat_s: '{{C_o.STAT_a[0]}}'
           ,
           hsl_s: hsl_s
           ,
-          plots_a:
+          level_a:
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
                   [ `${hsl_s}_o` ]
                     .burst_c
-                      .plots__a()
+                      .level__a()
         }
         ,
         [
@@ -980,7 +970,7 @@ const STAT_W_o =
               [ `${stat_s}_o` ]
                 [ `${hsl_s}_o` ]
                   .burst_c
-                    .plots__a()
+                    .level__a()
         ]
       )
   }
@@ -1124,8 +1114,6 @@ const STAT_W_o =
            [ stat_s ]
              .canvas_e
 
-    ;console.log( canvas_e  )
-
     let blob_o =
       await
       canvas_e
@@ -1240,7 +1228,7 @@ const STAT_W_o =
       stat_s,
       hsl_s,
       back_hue_n,
-      rangeY_n,     //: {{C_o.STAT_a[0]}}
+      rangeY_n,     //: {{C_o.STAT_a[0]}} : slot arc [1, 3, 6...360]
       shift_n,      //: {{C_o.STAT_a[0]}}
       thresh_o,     //: {{C_o.STAT_a[0]}} ColorBurst
       //??? maxpos_n,     //??????    //: {{C_o.STAT_a[0]}} ColorBurst
@@ -1263,6 +1251,11 @@ const STAT_W_o =
     )
     {
       case '{{C_o.STAT_a[0]}}' :      //=== burst ===
+        
+        const arc_n     //: use for code clarity
+        =
+          rangeY_n
+
         //=== SLIDERS ===
         let capacity_n = 0
             
@@ -1351,14 +1344,12 @@ const STAT_W_o =
                     Math
                       .floor
                       (
-                        (
-                          at_n
-                        )
+                        at_n
                         /
-                        rangeY_n
+                        arc_n
                       )
                     *
-                    rangeY_n
+                    arc_n
                   )
                   +
                   shift_n
@@ -1396,17 +1387,11 @@ const STAT_W_o =
         }
 
         //=== BURST ===      
-        let at_n =        0
-        let fromHue_n =   0
-        let atRange_n =   0
-        let rangeAccu_n = 0
-        let maxfreq_n =   0
-        
         STAT_W_o
           .stat_o
             [ `${stat_s}_o` ]
               [ `${HSL_s}_o` ]
-                .part_a  = []    //: reset if already used
+                .slot_a  = []    //: reset if already used
 
         //: slice array from shift
         const head_a =
@@ -1414,7 +1399,7 @@ const STAT_W_o =
             .scan_a
               [
                 STAT_W_o
-                  [`SCAN_${HSL_s}_freq_n`]
+                  [`SCAN_${HSL_s}_rate_n`]
               ]
               .slice
               (
@@ -1427,24 +1412,38 @@ const STAT_W_o =
             .scan_a
               [
                 STAT_W_o
-                  [`SCAN_${HSL_s}_freq_n`]
+                  [`SCAN_${HSL_s}_rate_n`]
               ]
               .slice
               (
                 shift_n
               )
 
-        const freq_a =
+        const rate_a =
           tail_a
             .concat( head_a )
           
+        let beam_n =      0     //: rate accumulator
+        let arcStart_n =  0
+        let maxRate_n =   0
+        let at_n =        -1    //: to start at 0
+        let slot_n =      -1    //: idem
+        
         for
         (
-          let freq_n
+          let rate_n
           of
-          freq_a
+          rate_a
         )
         {
+          ++at_n    //: start at 0
+
+          ++slot_n  //: start at 0
+
+          arcStart_n
+          =
+            at_n
+
           let hue_n,
               sat_n,
               lum_n
@@ -1496,21 +1495,19 @@ const STAT_W_o =
             case 'hue_front':    //=== hue burst ===
               if
               (
-                rangeY_n
+                arc_n
                 >
                 1
                 &&
-                atRange_n
-                <=
-                rangeY_n
+                slot_n
+                <
+                arc_n
+                -
+                1
               )
               {
-                rangeAccu_n +=
-                  freq_n
-  
-                atRange_n++
-
-                at_n++
+                beam_n +=
+                  rate_n
                 
                 if
                 (
@@ -1523,44 +1520,39 @@ const STAT_W_o =
                 }
               }
 
-              //: else, end of rangeY
+              //: else, end of slot
               if
               (
-                rangeAccu_n
+                beam_n
                 >
-                maxfreq_n
+                maxRate_n
               )
               {
-                maxfreq_n =
-                  rangeAccu_n
+                maxRate_n =
+                  beam_n
               }
 
               if
               (
-                rangeAccu_n
+                beam_n
               )
               {
-                freq_n =
-                  rangeAccu_n
+                rate_n =
+                  beam_n
               }
 
-
-              rangeAccu_n = 0    //: reset
-
-              atRange_n = 0    //: reset
-            
               hue_n =
                 (
                   (
                     Math
                       .floor
                       (
-                        fromHue_n
+                        arcStart_n
                         /
-                        rangeY_n
+                        arc_n
                       )
                     *
-                    rangeY_n
+                    arc_n
                   )
                   +
                   shift_n
@@ -1572,8 +1564,12 @@ const STAT_W_o =
             
               lum_n = 50    //: neutral
 
-              fromHue_n =
-                at_n
+              beam_n = 0    //: reset
+
+              slot_n = -1    //: reset
+            
+              //-- arcStart_n =   //: next slot
+              //--   at_n
 
               break
               
@@ -1585,13 +1581,13 @@ const STAT_W_o =
             .stat_o
               [ `${stat_s}_o` ]
                 [ `${HSL_s}_o` ]
-                  .part_a
+                  .slot_a
                     .push
                     (
-                      freq_n
+                      rate_n
                       ?
                         {
-                          frequency_n: freq_n,
+                          rate_n: rate_n,
                           hsl_a:
                             [
                               hue_n,
@@ -1602,8 +1598,6 @@ const STAT_W_o =
                       :
                         null
                     )
-        
-          ++at_n
         }
 
         if
@@ -1626,12 +1620,12 @@ const STAT_W_o =
 
         const burst_o =        //=== draw arguments ===
         {
-          frequency_a:
+          rate_a:
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
                   [ `${HSL_s}_o` ]
-                    .part_a
+                    .slot_a
           ,
           capacity_n:
             hsl_s
@@ -1642,7 +1636,7 @@ const STAT_W_o =
                 .stat_o
                   [ `${stat_s}_o` ]
                     [ `${HSL_s}_o` ]
-                      .part_a              
+                      .slot_a              
                         .length
             :
               capacity_n
@@ -1659,8 +1653,8 @@ const STAT_W_o =
             *
             .5
           ,
-          maxfreq_n:
-            !maxfreq_n     //: not 'hue_front'
+          maxRate_n:
+            !maxRate_n     //: not 'hue_front'
             ?
               STAT_W_o
                 .scan_a
@@ -1668,7 +1662,7 @@ const STAT_W_o =
                     [0]
                       [0]
             :
-              maxfreq_n
+              maxRate_n
           ,
           maxpos_n:
             width_n    //: maxpos_n as circle radius
@@ -2241,13 +2235,13 @@ const STAT_W_o =
 
 
 
-  put_pick__v
+  put_slot__v
   (
     payload_o
   )
   {
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      ;console.time( 'put_pick__v' )
+      //;console.time( 'put_slot__v' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
     const
       { 
@@ -2308,7 +2302,7 @@ const STAT_W_o =
        ++atHsl_n
     )
     {
-      if        //: pick
+      if        //: slot
       (
         atHsl_n
         >=
@@ -2363,7 +2357,7 @@ const STAT_W_o =
       )
 
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      ;console.timeEnd( 'put_pick__v' )
+      //;console.timeEnd( 'put_slot__v' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
   ,

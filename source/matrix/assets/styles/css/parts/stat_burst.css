@@ -4,10 +4,12 @@
   --{{C_o.STAT_a[0]}}_hue_back: 0;
   --{{C_o.STAT_a[0]}}_nav_dim: {{C_o.BURST_NAV_DIM_n}}px;
   --{{C_o.STAT_a[0]}}_trace_color: {{S_o.bg_lower}};
-  --{{C_o.STAT_a[0]}}_trace_pointer: crosshair;
+  --{{C_o.STAT_a[0]}}_trace_pointer_s: url( /assets/styles/css/spot_cursor.svg ) 8 8, auto;
+  --{{C_o.STAT_a[0]}}_trace_pointer: var(--{{C_o.STAT_a[0]}}_trace_pointer_s);
+  ;
   --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
-  --{{C_o.STAT_a[0]}}_plots_scale: {{C_o.BURST_PLOTS_SCALE_n}};
-  --{{C_o.STAT_a[0]}}_plots: none;
+  --{{C_o.STAT_a[0]}}_level_scale: {{C_o.BURST_LEVEL_SCALE_n}};
+  --{{C_o.STAT_a[0]}}_level: none;
   --{{C_o.STAT_a[0]}}_canvas_dim: calc( (var(--{{C_o.STAT_a[0]}}_screen_dim) * {{C_o.SCREEN_RATIO_n}}) - ({{S_o.NAV_HEIGHT_s}} * 2));
   --{{C_o.STAT_a[0]}}_img_transform: 80vmin;
   --{{C_o.STAT_a[0]}}_img_bg_hue: 180;
@@ -27,7 +29,7 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_I
   display: none;
   width: var(--{{C_o.STAT_a[0]}}_nav_dim);
   height: var(--{{C_o.STAT_a[0]}}_nav_dim);
-  padding: {{S_o.PAD_4}};
+  padding: {{S_o.PAD_8}};
   border-radius: 50%;
   transition: opacity ease 2s;
 }
@@ -87,6 +89,8 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings {
   left: 0;
   width: {{S_o.NAV_SETTINGS_s}};
   height: fit-content;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
   transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
   transition: transform .5s ease;
@@ -109,7 +113,7 @@ input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings:checked ~ div#{{C_o.DIV_ID_s
   gap: {{S_o.PAD_6}};
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings > aside > nav > label > span[data-role] {
-  background: {{S_o.nav_spot_set_3}};
+  background: {{S_o.nav_dot_set_3}};
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings > aside > nav > label:hover > span {
   background: transparent;
@@ -132,10 +136,10 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue {
   padding: {{S_o.PAD_6}};
   height: fit-content;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot {
   display: grid;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > hr[role=vrange] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > hr[role=vrange] {
   grid-area: 1/-1;
   position: relative;
   top: 3rem;
@@ -147,7 +151,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.ST
   transform-origin: top left;
   transform: rotate( 90deg );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot {
   grid-area: 1/-1;
   display: flex;
   justify-content: space-between;
@@ -159,7 +163,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.ST
   transform: translate( 8rem, 2rem ) rotate( 90deg ) scaleY( 1 );
   transform-origin: top left;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n] {
   display: grid;
   justify-content: space-between;
   width: fit-content;
@@ -168,7 +172,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.ST
   filter: brightness( {{S_o.brightness_hi}} );
   transform: rotate( -90deg );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n] > input[name$="_range"] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n] > input[name$="_slot"] {
   appearance: none;
   grid-area: 1/-1;
   width: 32px;
@@ -178,8 +182,8 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.ST
   background: {{S_o.bg_lower}};
   filter: brightness( .8 );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n]:before {
-  content: attr( data-range_n );
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n]:before {
+  content: attr( data-slot_n );
   position: absolute;
   left: -4px;
   width: 4ch;
@@ -193,23 +197,23 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.ST
   transform: scale( 0 );
   transform-origin: center;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n]:hover > span {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n]:hover > span {
   opacity: 1;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n]:hover > input {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n]:hover > input {
   opacity: 0;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n]:has(input:checked) > span {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n]:has(input:checked) > span {
   opacity: 1;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n]:has(input:checked) > input:checked {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n]:has(input:checked) > input:checked {
   opacity: 0;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n]:has(input:checked):before {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n]:has(input:checked):before {
   filter: brightness( {{S_o.brightness_hi2}} );
   transform: scale( 1 );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_range > li[data-range_n]:hover:before {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > ul#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot > li[data-slot_n]:hover:before {
   filter: brightness( {{S_o.brightness_lo2}} );
   transform: scale( 1 );
 }
@@ -231,18 +235,18 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > input[type=range]::-webkit-sl
   width: 100px;
   height: 16px;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div:not([id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range"]) {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div:not([id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot"]) {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   width: fit-content;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div:not([id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range"]) > canvas {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div:not([id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot"]) > canvas {
   width: 48px;
   height: 720px;
   background: transparent;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div:not([id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_range"]) > canvas:nth-of-type(1) {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div:not([id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot"]) > canvas:nth-of-type(1) {
   cursor: var(--{{C_o.STAT_a[0]}}_trace_pointer);
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > label#{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_hue_trace {
@@ -323,13 +327,12 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view:hover {
   transition: opacity .5s ease;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
-  display: flex;
-  flex-direction: column;
   position: fixed;
   top: calc( 100vh - 10em );
   left: calc( 50vw - 100px - {{S_o.PAD_1}} );
+  padding: {{S_o.PAD_2}};
   background: {{S_o.table}};
-  border-radius: 4px;
+  border-radius: 8px;
   opacity: .1;
   transition: opacity .5s ease;
 }
@@ -358,7 +361,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label[data-legend] {
   text-transform: uppercase;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label[data-legend] > span {
-  background: {{S_o.nav_spot_set_3}};
+  background: {{S_o.nav_dot_set_3}};
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label[data-legend]:hover > span[data-role] {
   background: transparent;
@@ -370,39 +373,40 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range]:focus {
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range]:focus + label {
   background: {{S_o.lighter}};
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#goto_{{C_o.STAT_a[0]}}_plots, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#goto_{{C_o.STAT_a[0]}}_level, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
   display: none;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
   display: flex;
+  flex-direction: column;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > a#goto_{{C_o.FULL_SCREEN}} {
   display: block;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#goto_{{C_o.STAT_a[0]}}_plots {
-  display: var(--{{C_o.STAT_a[0]}}_plots);
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#goto_{{C_o.STAT_a[0]}}_level {
+  display: var(--{{C_o.STAT_a[0]}}_level);
   z-index: 19;
   position: absolute;
-  --plots_ratio: calc( var(--{{C_o.STAT_a[0]}}_screen_dim) * var(--{{C_o.STAT_a[0]}}_scale) );
-  top: calc( 50vh - var(--plots_ratio) * .5px  );
-  left: calc( 50vw - var(--plots_ratio) * .5px  );
-  width: calc( var(--plots_ratio) * 1px );
-  height: calc( var(--plots_ratio) * 1px );
+  --level_ratio: calc( var(--{{C_o.STAT_a[0]}}_screen_dim) * var(--{{C_o.STAT_a[0]}}_scale) );
+  top: calc( 50vh - var(--level_ratio) * .5px  );
+  left: calc( 50vw - var(--level_ratio) * .5px  );
+  width: calc( var(--level_ratio) * 1px );
+  height: calc( var(--level_ratio) * 1px );
   border-radius: 50%;
   background: {{S_o.shadow_ne}};
   filter: brightness( .01 );
   pointer-events: none;
   transform-origin: center;
-  transform: scale( var(--{{C_o.STAT_a[0]}}_plots_scale) );
+  transform: scale( var(--{{C_o.STAT_a[0]}}_level_scale) );
   transition: .3s ease;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#goto_{{C_o.STAT_a[0]}}_plots {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#goto_{{C_o.STAT_a[0]}}_level {
   display: none;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_plots:checked ~ div#goto_{{C_o.STAT_a[0]}}_plots {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_level:checked ~ div#goto_{{C_o.STAT_a[0]}}_level {
   display: block;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) > div#goto_{{C_o.STAT_a[0]}}_plots {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) > div#goto_{{C_o.STAT_a[0]}}_level {
   opacity: 0;
   transition: .3s ease;
 }
@@ -418,7 +422,6 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   flex-direction: column;
   justify-content: center;
   position: fixed;
-  min-width: 740px;
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
   filter: drop-shadow( 0 0 10vmax {{S_o.shadow_hi}} );
   transform-origin: bottom left;
@@ -426,8 +429,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img {
   grid-area: 1/-1;
-  max-width: {{C_o.BURST_TRANSFORM_DIM_s}};
-  max-height: {{C_o.BURST_TRANSFORM_DIM_s}};
+  max-width: 40vh;
   background: var(--{{C_o.STAT_a[0]}}_img_backgroud);
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul {
@@ -530,9 +532,9 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   border-radius: 4px;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > input[type=range] {
-  width: 720px;
   position: relative;
   top: -1.1rem;
+  width: 100%;
   cursor: pointer;
   transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
@@ -548,7 +550,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img {
   position: fixed;
   left: 0;
-  top: calc( 100vh - ( {{C_o.BURST_TRANSFORM_DIM_s}} + 6rem ) );
+  top: 33vh;
   box-shadow: none;
   filter: none;
   transform: scale( .33 );

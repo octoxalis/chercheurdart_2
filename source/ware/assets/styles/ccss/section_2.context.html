@@ -45,12 +45,6 @@ context( stack, new )
                       context( block, link_hover )
               </a>
             </{{C_o.ROW_TAG_s}}>
-            <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
-            context( block, reference_1 )
-            </{{C_o.ROW_TAG_s}}>
-            <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
-            context( block, reference_2 )
-            </{{C_o.ROW_TAG_s}}>
           </{{C_o.TABLE_TAG_s}}>
         </figcaption>
         
@@ -62,7 +56,7 @@ context( stack, new )
       </a>
     </figure>
     <figure[data-display_b=false]>
-            border: 1px solid {{S_o.selected_hi}};
+            border: 1px solid {{S_o.selected_lo}};
             border-radius: 4px;
       <img />
             opacity: .01;
@@ -84,7 +78,7 @@ context( stack, new )
   <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control>
           display: flex;
           flex-direction: column;
-          position: fixed;
+          position: fixed;                         /* !!!!!!! TODO */
           top: calc( 100vh - 16em );
           left: calc( 50vw - 100px - {{S_o.PAD_1}} );
           padding: {{S_o.PAD_2}};

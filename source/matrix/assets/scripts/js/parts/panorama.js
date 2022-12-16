@@ -93,22 +93,6 @@ const PAN_o =
 
 
 
-  //?? ,
-  //?? img__s:
-  //?? (
-  //??   src_s
-  //?? ) =>
-  //??   src_s
-  //??     .substring
-  //??     (
-  //??       '{{C_o.MEDIA_DIR_s}}'
-  //??         .length,
-  //??       src_s
-  //??         .lastIndexOf( '.' )      //: extension dot
-  //??     )
-
-
-
   ,
   async show__v
   ()
@@ -186,8 +170,9 @@ const PAN_o =
         caption_s
         =
         `<span data-ins="₉">`
-         + `<b>{{C_o.NAV_LEGEND_o.panorama_local.legend_s}}</b>`
+         + `<b data-local=1>{{C_o.NAV_LEGEND_o.panorama_local.legend_s}}</b>`
          + `<b>`
+
          +  value_o
               .id_s
          + `</b>`
@@ -210,7 +195,7 @@ const PAN_o =
         `<figure data-id="{{C_o.PANORAMA_ID_s}}${value_o.id_s}" data-display_b=${value_o.display_b} data-key_s="${show_o.key_s}">`
         + `<img src="${src_s}" width="${value_o.width_s}" height="${value_o.height_s}" loading="lazy">`
         + `<a href="#AC${value_o.id_s}">`
-        + `<figcaption>`
+        + `<figcaption data-local>`
         + caption_s
         + `</figcaption>`
         + `</a>`
@@ -223,26 +208,8 @@ const PAN_o =
     =
       show_s
 
-    for
-    (
-      let figure_e
-      of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure` )
-        )
-    )
-    {      
-      figure_e
-        .addEventListener
-        (
-          'click',
-          PAN_o
-            .select__v,
-        )
-    }
+    PAN_o
+      .selectable__v()
   }
 
 
@@ -739,8 +706,6 @@ const PAN_o =
         img_e
       )
       {
-        let dataSource_s = 'dataSource_s'
-
         const reader_o
         =
          new FileReader()
@@ -805,10 +770,14 @@ const PAN_o =
             (
               'click',
               PAN_o
-                .select__v,
+                .select__v
             )
       }
     }
+
+    PAN_o
+      .selectable__v()
+
   }
 
 
@@ -828,6 +797,34 @@ const PAN_o =
       )
   }
   
+
+
+  ,
+  selectable__v
+  ()
+  {
+    for
+    (
+      let figure_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure` )
+        )
+    )
+    {
+      figure_e
+        .addEventListener
+        (
+          'click',
+          PAN_o
+            .select__v
+        )
+    }
+  }
+
 
 
   ,
@@ -950,6 +947,20 @@ const PAN_o =
     PAN_o
       .show__v()
   }
+
+  //?? ,
+  //?? img__s:
+  //?? (
+  //??   src_s
+  //?? ) =>
+  //??   src_s
+  //??     .substring
+  //??     (
+  //??       '{{C_o.MEDIA_DIR_s}}'
+  //??         .length,
+  //??       src_s
+  //??         .lastIndexOf( '.' )      //: extension dot
+  //??     )
 
 }
 

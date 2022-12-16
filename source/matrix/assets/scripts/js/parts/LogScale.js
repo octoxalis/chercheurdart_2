@@ -64,7 +64,7 @@ class LogScale
       )
   }
 
-  position__n =
+  locate__n =
     value_n =>
       //??? this
       //???   .minpos_n

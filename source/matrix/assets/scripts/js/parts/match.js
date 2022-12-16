@@ -86,7 +86,7 @@ const MATCH_o =
                         {
                           task_s:   'GET_img',
                           pixel_n:  window.devicePixelRatio,
-                          rect_s:   `${canvas_e.dataset.coord_s} ${canvas_e.width} ${canvas_e.height}`,
+                          rect_s:   `${canvas_e.dataset.locate_s} ${canvas_e.width} ${canvas_e.height}`,
                           scale_n:  canvas_e.dataset.scale_n,
                           url_s:    canvas_e.dataset.src,
                           canvas_e: offCanvas_e,

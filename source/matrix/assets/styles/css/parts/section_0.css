@@ -10,10 +10,10 @@ section#{{C_o.SECTION_a[0]}} {
   font-size: 1.1em;
 }
 section#{{C_o.SECTION_a[0]}} > hr {
-  width: 95%;
+  width: 8%;
   height: 1px;
   margin: {{S_o.PAD_6}} auto {{S_o.PAD_10}};
-  background: {{S_o.shadow_ne}};
+  background: {{S_o.shadow_lo1}};
   border: 0;
 }
 section#{{C_o.SECTION_a[0]}} > h1, section#{{C_o.SECTION_a[0]}} > h2 {
@@ -145,6 +145,7 @@ p > label + input:checked + ins > a > img {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: {{S_o.FONT_BOLD_s}};
+  line-height: 3;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
   --font_max: 18px;
@@ -157,11 +158,25 @@ p > label + input:checked + ins > a > img {
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
+  line-height: 1.6;
+}
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(4) {
+  padding-top: {{S_o.PAD_4}};
+  width: 100%;
+  border-top: 1px solid {{S_o.ins_shadow_ne}};
+}
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(5) {
+  padding-top: {{S_o.PAD_2}};
+}
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(6) {
+  margin-top: 1rem;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] {
   top: 0;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i {
+  font-size: 95%;
+  font-weight: 200;
   font-style: normal;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:first-of-type::after {

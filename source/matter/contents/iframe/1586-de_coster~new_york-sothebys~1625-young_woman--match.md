@@ -20,7 +20,7 @@
         
         {                //: link_a[0]
           id_s:    '1703-boucher~princeton-university~1748-arion',
-          coord_s: '968 468',    //: center point
+          locate_s: '968 468',    //: center point
           scale:   1.5,          //: stretch
         }
         ,
@@ -40,7 +40,7 @@
         
         {                //: link_a[0]
           id_s:    '1703-boucher~princeton-university~1748-arion',
-          coord_s: '1100 600',    //: center point
+          locate_s: '1100 600',    //: center point
           scale:   1,          //: stretch
         }
         ,

@@ -10,14 +10,9 @@ const F_o =   require( '../../make/data/F_o.js' )
 
 
 
-
-
-
-
-
 const IMG_o =
 {
-  inputDir_s:  `${C_o.WARE_DIR_s}${C_o.IMG_DIR_s}`,
+  inputDir_s:  `${C_o.WARE_DIR_s}${C_o.IMG_DIR_s}`,             //!!! put jpeg + avif color file in inputDir_s directory
   outputDir_s: `${C_o.WARE_DIR_s}static/${C_o.IMG_DIR_s}`,
 
 
@@ -205,7 +200,7 @@ void async function
     file_a
   )
   {
-    const path_a =
+    const match_a =
       file_o
         .path
           .match
@@ -217,10 +212,11 @@ void async function
           )
 
     await IMG_o
+
       .image__v
       (
         IOR_o
-          .ior__o( path_a[1] )    //: img id
+          .ior__o( match_a[1] )    //: img id
       )
   }
 }()

@@ -42,7 +42,7 @@ aside > figure:target > label {
   position: absolute;
 }
 aside > figure:target > label > span {
-  background: {{S_o.nav_spot_panorama}};
+  background: {{S_o.nav_dot_panorama}};
 }
 aside > figure:target > label:hover {
   opacity: 1;

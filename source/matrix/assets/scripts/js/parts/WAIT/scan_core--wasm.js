@@ -147,7 +147,7 @@ const RGB_L__n =
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_hue_freq_n] =
+          [STAT_W_o.SCAN_hue_rate_n] =
             new Array( capacity_n )
         
       while
@@ -162,7 +162,7 @@ const RGB_L__n =
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_hue_freq_n]
+            [STAT_W_o.SCAN_hue_rate_n]
               [capacity_n] = 0
       }
       
@@ -176,7 +176,7 @@ const RGB_L__n =
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_sat_freq_n] =
+          [STAT_W_o.SCAN_sat_rate_n] =
             new Array( capacity_n )
       
       while
@@ -191,7 +191,7 @@ const RGB_L__n =
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_sat_freq_n]
+            [STAT_W_o.SCAN_sat_rate_n]
               [capacity_n] = 0
       }
       
@@ -205,7 +205,7 @@ const RGB_L__n =
         
       STAT_W_o
         .scan_a
-          [STAT_W_o.SCAN_lum_freq_n] =
+          [STAT_W_o.SCAN_lum_rate_n] =
             new Array( capacity_n )
       
       while
@@ -220,7 +220,7 @@ const RGB_L__n =
   
         STAT_W_o
           .scan_a
-            [STAT_W_o.SCAN_lum_freq_n]
+            [STAT_W_o.SCAN_lum_rate_n]
               [capacity_n] = 0
       }
       
@@ -270,7 +270,7 @@ const RGB_L__n =
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_hue_freq_n]
+          .scan_a[STAT_W_o.SCAN_hue_rate_n]
             [hue_n] +=
               1
       
@@ -292,7 +292,7 @@ const RGB_L__n =
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_sat_freq_n]
+          .scan_a[STAT_W_o.SCAN_sat_rate_n]
             [sat_n] +=
               1
     
@@ -314,7 +314,7 @@ const RGB_L__n =
               .push( at_n )
         
         STAT_W_o
-          .scan_a[STAT_W_o.SCAN_lum_freq_n]
+          .scan_a[STAT_W_o.SCAN_lum_rate_n]
             [lum_n] +=
               1
       }
@@ -372,7 +372,7 @@ const RGB_L__n =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_hue_freq_n]
+              .scan_a[STAT_W_o.SCAN_hue_rate_n]
           )      //: hue rank max_n is at [0][0]
   
       STAT_W_o
@@ -380,7 +380,7 @@ const RGB_L__n =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_sat_freq_n]
+              .scan_a[STAT_W_o.SCAN_sat_rate_n]
           )      //: sat rank max_n is at [0][0]
   
       STAT_W_o
@@ -388,5 +388,5 @@ const RGB_L__n =
           rank__a
           (
             STAT_W_o
-              .scan_a[STAT_W_o.SCAN_lum_freq_n]
+              .scan_a[STAT_W_o.SCAN_lum_rate_n]
           )      //: lum rank max_n is at [0][0]

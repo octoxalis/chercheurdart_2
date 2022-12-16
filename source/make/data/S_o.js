@@ -45,7 +45,7 @@ const S_o =
   hue_cancel:   0,
   hue_accept:   120,
   hue_p:        CONF_o.HUE_P_n,     /* user definable primary */
-  hue_spot:     CONF_o.HUE_P_n - 180,
+  hue_dot:     CONF_o.HUE_P_n - 180,
   
   sat_hi_4: `94%`,           /* 11 point scale */
   //--
@@ -102,6 +102,7 @@ const S_o =
   
   S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`
   S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`
+  S_o.shadow_lo1 = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.2)`
   S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.1)`
   
   S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`
@@ -114,21 +115,21 @@ const S_o =
   S_o.nav_substat_op = `hsla(${S_o.hue_p + 100} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /1)`
 
 
-  S_o.nav_spot_home =    `hsla( ${S_o.hue_p}    ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
-  S_o.nav_spot_article = `hsla( ${S_o.hue_p}    ${S_o.sat_lo_4} ${S_o.lum_hi_1} /1)`
-  S_o.nav_spot_gallery = `hsla( 60              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
-  S_o.nav_spot_panorama = `hsla( ${S_o.hue_p + 90}              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
-  S_o.nav_spot_stat =    `hsla( ${S_o.hue_spot} ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
+  S_o.nav_dot_home =    `hsla( ${S_o.hue_p}    ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
+  S_o.nav_dot_article = `hsla( ${S_o.hue_p}    ${S_o.sat_lo_4} ${S_o.lum_hi_1} /1)`
+  S_o.nav_dot_gallery = `hsla( 60              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
+  S_o.nav_dot_panorama = `hsla( ${S_o.hue_p + 90}              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
+  S_o.nav_dot_stat =    `hsla( ${S_o.hue_dot} ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
 
-  S_o.nav_spot_set_1 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
-  S_o.nav_spot_set_2 =   `hsla( ${S_o.hue_spot - 180} ${S_o.sat_hi_2} ${S_o.lum_hi_2} /1)`
-  S_o.nav_spot_set_3 =   `hsla( ${S_o.hue_spot - 90} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
+  S_o.nav_dot_set_1 =   `hsla( ${S_o.hue_dot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
+  S_o.nav_dot_set_2 =   `hsla( ${S_o.hue_dot - 180} ${S_o.sat_hi_2} ${S_o.lum_hi_2} /1)`
+  S_o.nav_dot_set_3 =   `hsla( ${S_o.hue_dot - 90} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
 
   S_o.selected_hi =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .9 )`
   S_o.selected_lo =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .2 )`
 
-  S_o.match_spot = `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`
-  S_o.bg_spot = S_o.bgcolor
+  S_o.match_dot = `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`
+  S_o.bg_dot = S_o.bgcolor
   
   S_o.hue_back = 0
   S_o.back_sat = '100'
@@ -182,7 +183,7 @@ module.exports = S_o
   hue_cancel: 0,
   hue_accept: 120,
   hue_p: 190,
-  hue_spot: 10,
+  hue_dot: 10,
   sat_hi_4: '94%',
   sat_hi_2: '72%',
   sat_hi_1: '61%',
@@ -234,18 +235,18 @@ module.exports = S_o
   nav_stat: 'hsla(230  61% 62.25% /1)',
   nav_substat: 'hsla(270  61% 62.25% /1)',
   nav_substat_op: 'hsla(290 28% 62.25% /1)',
-  nav_spot_home: 'hsla( 190    61% 50% /1)',
-  nav_spot_article: 'hsla( 190    6% 37.75% /1)',
-  nav_spot_gallery: 'hsla( 60              61% 37.75% /1)',
-  nav_spot_panorama: 'hsla( 280              61% 37.75% /1)',
-  nav_spot_stat: 'hsla( 10 61% 50% /1)',
-  nav_spot_set_1: 'hsla( -170 72% 74.5% /1)',
-  nav_spot_set_2: 'hsla( -170 72% 25.5% /1)',
-  nav_spot_set_3: 'hsla( -80 72% 74.5% /1)',
+  nav_dot_home: 'hsla( 190    61% 50% /1)',
+  nav_dot_article: 'hsla( 190    6% 37.75% /1)',
+  nav_dot_gallery: 'hsla( 60              61% 37.75% /1)',
+  nav_dot_panorama: 'hsla( 280              61% 37.75% /1)',
+  nav_dot_stat: 'hsla( 10 61% 50% /1)',
+  nav_dot_set_1: 'hsla( -170 72% 74.5% /1)',
+  nav_dot_set_2: 'hsla( -170 72% 25.5% /1)',
+  nav_dot_set_3: 'hsla( -80 72% 74.5% /1)',
   selected_hi: 'hsla( 190 72% 50% / .9 )',
   selected_lo: 'hsla( 190 72% 50% / .2 )',
-  match_spot: 'hsla( 190 94% 50% /1)',
-  bg_spot: 'hsla( 190 28% 13.25% /1)',
+  match_dot: 'hsla( 190 94% 50% /1)',
+  bg_dot: 'hsla( 190 28% 13.25% /1)',
   hue_back: 0,
   back_sat: '100',
   back_lum: '50',

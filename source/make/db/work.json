@@ -20,5 +20,93 @@
 		"height_n" : 2000,
 		"width_n" : 1388,
 		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_1",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 1",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_2",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 2",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_3",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 3",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_4",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 4",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_5",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 5",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_6",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 6",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_8",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 8",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_360",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 360",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
 	}
 ]

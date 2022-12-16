@@ -118,7 +118,7 @@ const C_o =
     burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},
     burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},
     
-    burst_freq: { icon_s: `&#8728;`, legend_s: `proportion`},
+    burst_rate: { icon_s: `&#8728;`, legend_s: `proportion`},
     
     stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
@@ -126,7 +126,7 @@ const C_o =
     stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
     //???. stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
     //???. stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
-    burst_plots: { icon_s: `&nbsp;`, legend_s: `étalonnage`},
+    burst_level: { icon_s: `&nbsp;`, legend_s: `égaliser`},
     burst_img: { icon_s: `&nbsp;`, legend_s: `image`},
     thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
     thresh_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
@@ -180,8 +180,8 @@ const C_o =
   INPUT_RANGE_SCALEY_n:  .5,
   SCREEN_DIM_n:          1024,    //: default, set by burst.init()
   SCREEN_RATIO_n:        1,
-  BURST_SCALE_n:         1,
-  BURST_PLOTS_SCALE_n:   .2,   //: default
+  BURST_SCALE_n:         .5,
+  BURST_LEVEL_SCALE_n:   .2,   //: default
   BURST_RANGE_n:         60,   //!!!  TEMPORARY //: 1 range
   BURST_THRESH_HI_n:     0,
   BURST_THRESH_LO_n:     0,
@@ -189,7 +189,7 @@ const C_o =
   BURST_IMG_RESET_n:     255,    //: contrast
   BURST_NAV_DIM_n:       360,
   BURST_SCALE_MIN_n:     .001,
-  BURST_TRANSFORM_DIM_s: '60rem',  //: keep space for layer_view
+  BURST_TRANSFORM_DIM_s: '60vmin',  //: keep space for layer_view
   BURST_PICK_HUE_n:      0,
   BURST_PICK_SAT_n:      100,
   BURST_PICK_LUM_n:      50,
@@ -207,14 +207,14 @@ const C_o =
   PAINT_SLIDER_n:       2,    //: 2px line
 
   //=== PANORAMA TOOLS ===
-  PANORAMA_COL_n:     2,
+  PANORAMA_COL_n:       2,
 
 
   //=== HTML-BODY ANCHORS
   //-- ANCHOR_DELIM_s : '__',
   PAGE_TOP:    'page_top',
   FULL_SCREEN: 'full_screen',
-  BURST_PLOTS: 'burst_plots',
+  BURST_LEVEL: 'burst_level',
   
   //=== HTML-BODY CSS SELECTORS
   BURST_IMG_CAPTION_s: 'h1+p span[data-ins="₉"]',

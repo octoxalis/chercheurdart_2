@@ -8,7 +8,7 @@ class ColorBurst
   /**
    * 
    * @param {*} burst_o configuration object:
-   * { burst_s: 'ID', width_n, height_n, hsl_a: [34,100, 50], maxfreq_n: 0.0 } ]
+   * { burst_s: 'ID', width_n, height_n, hsl_a: [34,100, 50], maxRate_n: 0.0 } ]
    */
   constructor
   (
@@ -51,7 +51,7 @@ class ColorBurst
         )
 
     this
-      .plots_a = []          //: store all coordinates
+      .level_a = []          //: store all locateinates
 
     this
       .clearWidth_n =        //: to avoid canvas.width after transform
@@ -74,17 +74,17 @@ class ColorBurst
   /**
    * 
    * @param {*} at_n  (IntU32): position of the arc_n in the wheel
-   * @param {*} freq_n (IntU32): frequency ratio of the occurences of a color
+   * @param {*} rate_n (IntU32): rate ratio of the occurences of a color
    */
-  coord__a
+  locate__a
   (
-    cumul_n,
-    freq_n
+    beam_n,
+    rate_n
   )
   {
     const angle_n =
       (
-        cumul_n
+        beam_n
         *
         this
           .unit_n
@@ -99,7 +99,7 @@ class ColorBurst
 
     const x_n =
       (
-        freq_n
+        rate_n
         *
         Math
           .cos( angle_n )
@@ -110,7 +110,7 @@ class ColorBurst
 
     const y_n =
       (
-        freq_n
+        rate_n
         *
         Math
           .sin( angle_n )
@@ -143,7 +143,7 @@ class ColorBurst
     //;console.time( 'draw__v' )
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
     this
-      .filter__n()
+      .filter__v()
 
     const scale_c =        //>>>>>>>  TODO: put in constructor and change maxval_n only 
       new LogScale
@@ -158,14 +158,14 @@ class ColorBurst
           ,
           minval_n:
             //-- this.
-            //--   maxfreqFilterd_n
+            //--   maxRateFiltered_n
             //-- *
             //-- .001      //:BURST_SCALE_MIN_n
             0
           ,
           maxval_n:
             this
-              .maxfreqFilterd_n
+              .maxRateFiltered_n
         }
       )
     
@@ -173,10 +173,10 @@ class ColorBurst
       pie_n
       /
       this
-        .frequency_a
+        .rate_a
           .length
 
-    let cumul_n = 0
+    let beam_n = 0
     
     let at_n = 0
 
@@ -185,7 +185,7 @@ class ColorBurst
 
     for
     (
-      let freq_o
+      let rate_o
       of
       this
         .filtered_a
@@ -193,15 +193,15 @@ class ColorBurst
     {
       if
       (
-        freq_o
+        rate_o
       )
       {
-        const position_n =
+        const locate_n =
           scale_c
-            .position__n
+            .locate__n
             (
-              freq_o
-                .frequency_n
+              rate_o
+                .rate_n
             )
 
         const
@@ -210,13 +210,13 @@ class ColorBurst
             startY_n
           ] =
             this
-              .coord__a
+              .locate__a
               (
-                cumul_n,
-                position_n
+                beam_n,
+                locate_n
               )
 
-        cumul_n +=
+        beam_n +=
           arc_n   //: each color starts where the last color ended, so keep a cumulative bin
 
         const
@@ -225,14 +225,14 @@ class ColorBurst
             endY_n
           ] =
             this
-              .coord__a
+              .locate__a
               (
-                cumul_n,
-                position_n
+                beam_n,
+                locate_n
               )
 
         this
-          .plots_a
+          .level_a
             .push
             (
               {
@@ -247,7 +247,7 @@ class ColorBurst
           .paint_c
             .fill__c
             (
-              freq_o
+              rate_o
                 .hsl_a
             )
             .path__c
@@ -260,10 +260,10 @@ class ColorBurst
       else
       {
         this
-          .plots_a
+          .level_a
             .push( null )
 
-        cumul_n +=
+        beam_n +=
           arc_n    // have to increment anyway
       }
       
@@ -277,45 +277,45 @@ class ColorBurst
 
 
   
-  filter__n
+  filter__v
   ()
   {
     this
       .filtered_a = []
 
     this
-      .maxfreqFilterd_n =
+      .maxRateFiltered_n =
         this
-          .maxfreq_n
+          .maxRate_n
 
     for
     (
-      let freq_o
+      let rate_o
       of
       this
-        .frequency_a
+        .rate_a
     )
     {
       if
       (
-        freq_o    //: can be null
+        rate_o    //: can be null
       )
       {
-        const freq_n =
-          freq_o
-            .frequency_n
+        const rate_n =
+          rate_o
+            .rate_n
 
         if
         (
-          freq_n
+          rate_n
           >
           this
-            .maxfreq_n
+            .maxRate_n
         )
         {
           this
-            .maxfreqFilterd_n =
-              freq_n
+            .maxRateFiltered_n =
+              rate_n
         }
       }
     }
@@ -340,7 +340,7 @@ class ColorBurst
     {
       hi_n =
         this
-          .maxfreqFilterd_n
+          .maxRateFiltered_n
 
       lo_n =
         0
@@ -349,11 +349,11 @@ class ColorBurst
     {
       hi_n =
         this
-          .maxfreqFilterd_n
+          .maxRateFiltered_n
         -
         (
           this
-            .maxfreqFilterd_n
+            .maxRateFiltered_n
           *
           (
             (
@@ -370,7 +370,7 @@ class ColorBurst
   
       lo_n =
         this
-          .maxfreqFilterd_n
+          .maxRateFiltered_n
         *
         this
           .thresh_o
@@ -381,19 +381,19 @@ class ColorBurst
 
     for
     (
-      let freq_o
+      let rate_o
       of
       this
-        .frequency_a
+        .rate_a
     )
     {
-      const freq_n =
-        freq_o
-          ?.frequency_n
+      const rate_n =
+        rate_o
+          ?.rate_n
       
       if
       (
-        freq_n
+        rate_n
         >
         0
       )
@@ -404,19 +404,19 @@ class ColorBurst
             (
               (
                 (
-                  freq_n
+                  rate_n
                   <=                //: inclusive hi range
                   hi_n
                 )
                 &&
                 (
-                  freq_n
+                  rate_n
                   >=              //: inclusive lo range
                   lo_n
                 )
               )
               ?
-                freq_o
+                rate_o
               :
                 null
             )
@@ -431,9 +431,8 @@ class ColorBurst
   }
   
 
-
   
-  plots__a
+  level__a
   (
     at_n    //: optional
   )
@@ -444,11 +443,11 @@ class ColorBurst
       undefined
       ?
         this
-          .plots_a
+          .level_a
             [ at_n ]
       :
         this
-          .plots_a
+          .level_a    //: everything
     )
   }
 
