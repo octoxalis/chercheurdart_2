@@ -177,22 +177,23 @@ const C_o =
 
 
   //=== BURST TOOLS ===
-  INPUT_RANGE_SCALEY_n:  .5,
-  SCREEN_DIM_n:          1024,    //: default, set by burst.init()
-  SCREEN_RATIO_n:        1,
-  BURST_SCALE_n:         .5,
-  BURST_LEVEL_SCALE_n:   .2,   //: default
-  BURST_RANGE_n:         60,   //!!!  TEMPORARY //: 1 range
-  BURST_THRESH_HI_n:     0,
-  BURST_THRESH_LO_n:     0,
-  BURST_IMG_OPACITY_n:  20,
-  BURST_IMG_RESET_n:     255,    //: contrast
-  BURST_NAV_DIM_n:       360,
-  BURST_SCALE_MIN_n:     .001,
-  BURST_TRANSFORM_DIM_s: '60vmin',  //: keep space for layer_view
-  BURST_PICK_HUE_n:      0,
-  BURST_PICK_SAT_n:      100,
-  BURST_PICK_LUM_n:      50,
+  INPUT_RANGE_SCALEY_n:    .5,
+  SCREEN_DIM_n:            1024,    //: default, set by burst.init()
+  SCREEN_RATIO_n:          1,
+  BURST_SCALE_n:           1,
+  BURST_LEVEL_SCALE_n:     .2,   //: default
+  BURST_RANGE_n:           1,   //!!!  TEMPORARY //: 1 range
+  BURST_THRESH_HI_n:       0,
+  BURST_THRESH_LO_n:       0,
+  BURST_IMG_OPACITY_n:     20,
+  BURST_IMG_RESET_n:       255,    //: contrast
+  BURST_NAV_DIM_n:         360,
+  BURST_TRANSFORM_DIM_s:   '100vmin',  //!!! overriden
+  BURST_TRANSFORM_MAX_SCALE_n: .85,  /* keep a tiny space for menu bar */
+  BURST_TRANSFORM_SCALE_n: .33,
+  BURST_PICK_HUE_n:        0,
+  BURST_PICK_SAT_n:        100,
+  BURST_PICK_LUM_n:        50,
 
 
   PAINT_LAYER_n:        8,

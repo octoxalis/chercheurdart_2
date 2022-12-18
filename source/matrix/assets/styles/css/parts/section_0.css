@@ -18,7 +18,7 @@ section#{{C_o.SECTION_a[0]}} > hr {
 }
 section#{{C_o.SECTION_a[0]}} > h1, section#{{C_o.SECTION_a[0]}} > h2 {
   --font_max: 32px;
-  --font_scale: 3vw;
+  --font_scale: 1.8vw;
   margin-top: -{{S_o.PAD_4}};
   min-width: calc(100% - var(--col_width) - var(--gap));
   max-width: 100%;
@@ -28,9 +28,8 @@ section#{{C_o.SECTION_a[0]}} > h1, section#{{C_o.SECTION_a[0]}} > h2 {
   text-align: end;
 }
 section#{{C_o.SECTION_a[0]}} > h1 {
-  margin: {{S_o.PAD_10}} 0;
   --font_max: 40px;
-  --font_scale: 4vw;
+  --font_scale: 2vw;
   font-weight: 600;
 }
 section#{{C_o.SECTION_a[0]}} > h1 + p {
@@ -41,8 +40,9 @@ section#{{C_o.SECTION_a[0]}} > h1 + p {
 }
 section#{{C_o.SECTION_a[0]}} > h1 + p > label {
   --font_max: 32px;
-  --font_scale: 2.5vw;
-  font-weight: 500;
+  --font_scale: 1.2vw;
+  font-weight: 100;
+  font-style: oblique;
 }
 section#{{C_o.SECTION_a[0]}} > div {
   position: relative;

@@ -128,7 +128,7 @@ const S_o =
   S_o.selected_hi =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .9 )`
   S_o.selected_lo =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .2 )`
 
-  S_o.match_dot = `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_ne} /1)`
+  S_o.match_dot = `hsla( ${S_o.hue_p} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /1)`
   S_o.bg_dot = S_o.bgcolor
   
   S_o.hue_back = 0
@@ -139,6 +139,8 @@ const S_o =
 
   S_o.bgblack_s = `hsl( var(--${C_o.STAT_a[0]}_img_bg_hue) 0% 0% /1)`
   S_o.bgwhite_s = `hsl( var(--${C_o.STAT_a[0]}_img_bg_hue) 100% 100% /1)`
+
+  S_o.color_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1 )`
 
 
 void function

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <div id="DI_stat_burst">
+
   <input id="IN_burst_hue" name="burst_nav" type="radio" checked>
   <canvas id="CA_burst_hue" width=1024 height=1024></canvas>  <!-- 1024: default value -->
-
-  
   <nav id="NA_burst_hue">
     <label>tonalité
       <span id="burst_hue_n">0</span>
@@ -53,14 +52,12 @@
     </label>
   </nav>
 
-  <input id="IN_burst_canvas" name="burst_settings" type="radio">
-  <input id="IN_burst_settings" name="burst_settings" type="radio"><!--  TEMPORARY: checked -->
+  <input id="IN_burst_settings" name="burst_settings" type="checkbox"><!--  TEMPORARY: checked -->
   <input id="IN_burst_settings_shadow" type="checkbox">
-
   <div id="DI_burst_settings">
     <aside>
       <nav>
-          <label for="IN_burst_canvas" data-legend="fermer">
+          <label for="IN_burst_settings" data-legend="fermer">
               <span data-role="open">&nbsp;</span>
           </label>
           <label id="LA_burst_settings_shadow" for="IN_burst_settings_shadow" data-legend="replier">
@@ -73,7 +70,7 @@
         <div id="DI_burst_hue_slot">
           <ul id="UL_burst_hue_slot" data-role=range>
             <li data-slot_n="1">
-              <input name="burst_hue_slot" type="radio">
+              <input name="burst_hue_slot" type="radio" checked>
             </li>
             <li data-slot_n="3">
               <input name="burst_hue_slot" type="radio">
@@ -82,7 +79,7 @@
               <input name="burst_hue_slot" type="radio">
             </li>
             <li data-slot_n="10">
-              <input name="burst_hue_slot" type="radio">
+              <input name="burst_hue_slot" type="radio">  <!-- TEMPORARY: 1 -->
             </li>
             <li data-slot_n="15">
               <input name="burst_hue_slot" type="radio">
@@ -106,7 +103,7 @@
               <input name="burst_hue_slot" type="radio">
             </li>
             <li data-slot_n="60">
-              <input name="burst_hue_slot" type="radio" checked>  <!-- TEMPORARY: 1 -->
+              <input name="burst_hue_slot" type="radio">
             </li>
             <li data-slot_n="72">
               <input name="burst_hue_slot" type="radio">
@@ -153,7 +150,7 @@
         <span data-role="open">&nbsp;</span>
     </label>
 
-      <input id="IN_burst_view_scale" type="range" min="0.25" max="4" step="0.25" value="0.5" data-tip="0.5">
+      <input id="IN_burst_view_scale" type="range" min="0.25" max="4" step="0.25" value="1" data-tip="1">
       <label for="IN_burst_view_scale">
       Échelle
       </label>
@@ -169,7 +166,12 @@
   <input id="IN_burst_hue_img_bg_white" name="burst_hue_color" type="radio">
   <input id="IN_burst_hue_img_bg_color" name="burst_hue_color" type="radio">
   <aside id="aside_burst_hue_img">
-    <ul id="UL_burst_opacity" role="icon_list">
+    <ul id="UL_burst_img_control" role="icon_list">
+      <li id="{C_o.LIST_ITEM_ID_s}}_burst_img_control_cbgolor">
+        <label>
+        &nbsp;
+        </label><!--NE and SW Arrow-->
+      <li>
       <li>
         <label for="IN_burst_hue_img_download">
         &#11123;
@@ -183,7 +185,7 @@
         &#10530;
         </label><!--NE and SW Arrow-->
     </ul>
-    <canvas id="CA_burst_hue_img" width=60vmin height=60vmin></canvas>  <!-- 1024: default value -->
+    <canvas id="CA_burst_hue_img" width=100vmin height=100vmin></canvas>  <!-- 1024: default value -->
     <div id="DI_burst_hue_img_bg">
       <label>opacité</label>
       <input id="IN_burst_hue_img_bg_opacity" type="range" min="0" max="100" step="10" value="20" data-tip="20">

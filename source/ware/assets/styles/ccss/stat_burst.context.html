@@ -21,8 +21,11 @@
         --{{C_o.STAT_a[0]}}_img_bg_lum: 25;
         --{{C_o.STAT_a[0]}}_img_bgwhite: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 100% 100% /1);
         --{{C_o.STAT_a[0]}}_img_bgblack: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 0% 0% /1);
-        --{{C_o.STAT_a[0]}}_img_backgroud: var(--{{C_o.STAT_a[0]}}_img_bgwhite);
-        
+        --{{C_o.STAT_a[0]}}_img_backgroud: var(--{{C_o.STAT_a[0]}}_img_bgblack);
+
+        /* --{{C_o.STAT_a[0]}}_hue_img_scale: 1;*/  /* set by burst.js */
+        /* --{{C_o.STAT_a[0]}}_hue_img_height: 20vh;*/
+        --{{C_o.STAT_a[0]}}_satlum_s: none;    /* don't display at start: no slot selected */
 </:root>
 
 <section#{{C_o.STAT_a[0]}}>
@@ -47,7 +50,7 @@
               width: 100%;
               height: {{S_o.PAD_8}};
               line-height: {{S_o.PAD_8}};    /* vertical-align */
-              font-size: 80%;
+              /*font-size: 80%;*/
               text-transform: uppercase;
         <span:not( [data-icon] )>
                 display: flex;
@@ -63,6 +66,12 @@
         <span[id$=_ratio_n]:after>
                 content: '{{C_o.PERCENT_s}}';
         </span>
+      </label>
+      <label:nth-of-type(3)>
+      context( copy, next )
+      </label>
+      <label:nth-of-type(4)>
+              display: var(--{{C_o.STAT_a[0]}}_satlum_s);
       </label>
     </nav>
     <nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}]:hover>
@@ -189,13 +198,6 @@ context( block, settings )
     </div>
   </aside>
 </div>
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings_shadow:checked />
-~
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings>
-  <aside>
-  </aside>
-</div>
-
 
 
 <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue>
@@ -396,9 +398,6 @@ context( block, settings )
   </div>
 </div>
 
-
-
-
 context( stack, new )
 <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view:hover>
         background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
@@ -468,6 +467,7 @@ context( stack, new )
           display: none;
   </div>
 </body>
+
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  )>
   <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view>
           display: flex;
@@ -503,10 +503,39 @@ context( stack, new )
   </div>
 </body>
 
-
-
 context( stack, new )
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings>
+              /*display: none;*/
+        <aside>
+          <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue>
+                  display: none;
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings>
+          box-shadow: 0 0 0 1000vmax {{S_o.shadow_lo}};
+          transition: box-shadow .5s ease;
+    <aside>
+      <nav>
+        <label#{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_settings_shadow:before>
+          content: '{{C_o.NAV_LEGEND_o.stat_shadow_unfold.legend_s}}';
+        </label>
+      </nav>
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue>
+              display: none;
+      </div>
+    </aside>
+  </div>
+
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view>
+          display: none;     /* avoid covering img: z-index unusable */
+  </div>
   <div#goto_{{C_o.STAT_a[0]}}_level>
           opacity: 0;
           transition: .3s ease;
@@ -527,45 +556,54 @@ context( stack, new )
               display: flex;
               flex-direction: column;
               justify-content: center;
+              align-items: center;
               position: fixed;
-              /*min-width: 740px;*/      /* for color picker */
               box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
               filter: drop-shadow( 0 0 10vmax {{S_o.shadow_hi}} );
-              transform-origin: bottom left;
-              transform: scale( 1 );
+              transform-origin: center;
+              transform: scale( var(--{{C_o.STAT_a[0]}}_hue_img_scale) ); /* from burst.js */
         <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img>
               grid-area: 1/-1;
-              max-width: 40vh;
+              max-width: 1000vw;  /* i.e. no max */
               background: var(--{{C_o.STAT_a[0]}}_img_backgroud);
         </canvas>
         <ul>
                 display: flex;
                 /*flex-direction: row;*/
-                /*flex-wrap: wrap;*/
                 justify-content: flex-end;
                 align-items: center;
                 margin: 0;     /* overide */
-                padding: 0 {{S_o.PAD_8}};
                 gap: {{S_o.PAD_16}};
                 width: 100%;
                 height: 2rem;
+                /*background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );*/
                 border: none;
           <li>
                     list-style: none;
+                    width: 4rem;
+                    background: {{S_o.bgcolor}};
                     transform-origin: center;
                     transform: scale( 1 );
             <label>
             context( block, top_button )
-                    padding: 0 {{S_o.PAD_2}};
+                    display: inline-flex;
+                    justify-content: center;
+                    color: {{S_o.color_ne}};
+                    font-size: 110%;
                     border: none;    /* override block*/
                     border-radius: 4px;    /* override block */
             </label>
             <label:hover>
                     background: {{S_o.shadow_ne}};
+                    filter: brightness(4);
             </label>
           </li>
           <li:before>
                   content: '';    /* overide */
+          </li>
+          <li:nth-of-type(1)>
+                  flex-grow: 1;
+                  background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );
           </li>
         </ul>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg>
@@ -663,15 +701,20 @@ context( stack, new )
       <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
               position: fixed;
               left: 0;
-              top: 33vh;  /* don't hide input range */
+              top: calc( 100vh - ( var(--{{C_o.STAT_a[0]}}_hue_img_height) * 1px )); /* from burst.js */
               box-shadow: none;
               filter: none;
-              transform: scale( .33 );  /* keep space under settings */
+              transform-origin: bottom left;
+              transform: scale( {{C_o.BURST_TRANSFORM_SCALE_n}} );  /* keep space under settings */
               transition: transform .2s;
+        <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img>
+              max-width: 100vmin;
+        </canvas>
         <ul>
-                height: 4rem;
+                height: 6rem;
           <li>
-                  transform: scale( 3.33 );
+                  padding-right: 4rem;
+                  transform: scale( calc( 1 / {{C_o.BURST_TRANSFORM_SCALE_n}} ) );
             <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position"]>
             </label>
           </li>
@@ -694,49 +737,21 @@ context( stack, new )
   </section>
 </body>
 
-context( stack, new )
-<dialog_{{C_o.STAT_a[0]}}_hue_img_dialog>
-  display: none;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-
-.modal-inner {
-  background-color: white;
-  border-radius: 0.5em;
-  max-width: 600px;
-  padding: 2em;
-  margin: auto;
-}
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid black;
-}
-#modal-overlay {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  background-color: black;
-  opacity: 0.5;  
-}
-
-
-
-</dialog>
-
-
-<dialog_{{C_o.STAT_a[0]}}_hue_img_dialog>
-.modal[open] {
-  display: flex;
-</dialog>
-
-
-
+<body:has( section#{{C_o.STAT_a[0]}} div[id^={{C_o.DIV_ID_s}}_stat] input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
+      context( copy, next )
+      </aside>
+    </div>
+  </section>
+</body>
+<body:has( section#{{C_o.STAT_a[0]}} div[id^={{C_o.DIV_ID_s}}_stat] input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
+              display: none;
+      </aside>
+    </div>
+  </section>
+</body>

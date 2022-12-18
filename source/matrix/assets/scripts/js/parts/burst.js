@@ -16,15 +16,15 @@ const BUR_o =
   , trace_o: {}
   , hue_o:
     {
-      rangeY_n: 60,    //: C_o.BURST_RANGE_n
+      rangeY_n: 1,     //: C_o.BURST_RANGE_n
       shift_n: 0,      //: from burst_hue_back
     }
 
   , scale_o:
     {
-      hue_n: .5,     //: C_o.BURST_SCALE_n
-      sat_n: .5,
-      lum_n: .5,
+      hue_n: 1,     //: C_o.BURST_SCALE_n
+      sat_n: 1,
+      lum_n: 1,
     }
 
   , thresh_o:
@@ -244,6 +244,26 @@ const BUR_o =
                   .parseFloat( ratio_n )
                   .toFixed( 3 )
               )
+    if
+    (
+      BUR_o
+        .freeze_b
+      &&
+      hsl_s
+      ===
+      'hue'
+    )
+    {
+      DOM_o
+         .rootVar__v
+         (
+           `--{{C_o.STAT_a[0]}}_img_slot_hue_n`,
+           slot_a[0]
+         )
+
+      BUR_o
+        .satLum__v()
+    }
   }
   
 
@@ -412,7 +432,7 @@ const BUR_o =
   {
     const center_n =
       document
-        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )    //: all canvases (hue, sat, lum) have same size
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )    //: all canvas (hue, sat, lum) have same size
           .width
       *
       .5      //: width / 2
@@ -534,7 +554,6 @@ const BUR_o =
         360
     }
 
-    //;console.log( angle_n )
     return angle_n
   }
   
@@ -580,6 +599,36 @@ const BUR_o =
     return slot_n
   }
   
+
+
+  ,
+  satLum__v
+  (
+    event_o
+  )
+  {
+    let satlum_s      //: sat + lum ColorBurst access
+    =
+      'none'
+    
+    if
+    (
+      document
+        .querySelector( `#{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot li[data-slot_n="1"] input:checked` )
+    )
+    {
+      satlum_s
+      =
+        'flex'
+    }
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_satlum_s`,
+        satlum_s
+      )
+  }
 
 
   ,
@@ -991,7 +1040,15 @@ const BUR_o =
   
                   break
   
-                default    //: hue_img_bg_opacity + reserve other cases
+                case range_s
+                      .includes( 'opacity' )
+                :
+                  BUR_o
+                    .pick__v()
+  
+                  break
+
+                default    //: reserve other cases
                 :  break
               }
   
@@ -1026,6 +1083,9 @@ const BUR_o =
 
       BUR_o
         .draw__v()
+
+      BUR_o
+        .satLum__v()
     }
 
   }
@@ -1265,7 +1325,7 @@ const BUR_o =
   eventLevel__v
   (
       event_o,
-      hsl_s
+      hsl_s='hue'
   )
   {
     if     //: must check if atLevel_o is null
@@ -1330,10 +1390,12 @@ const BUR_o =
         .rootVar__v
         (
           `--{{C_o.STAT_a[0]}}_level_scale`,
-          radius_n
-          /
-          BUR_o
-            .canvasWidth_n
+          (
+            radius_n
+            /
+            BUR_o
+              .canvasWidth_n
+          )
         )
     }
   }
@@ -1501,6 +1563,64 @@ const BUR_o =
         `--{{C_o.STAT_a[0]}}_img_bg_${hsl_s}`
         ,
         value_s
+      )
+
+    BUR_o
+      .pick__v()
+
+  }
+
+
+  ,
+  event_colorBurst__v
+  (
+    event_o
+  )
+  {
+    const id_s
+    =
+      event_o
+        .target
+          .id     //: IN_burst_sat
+      
+    const hsl_s
+    =
+      id_s     //: IN_burst_sat
+        .slice
+        (
+          id_s
+            .lastIndexOf( '_' )
+          +
+          1
+        )
+      
+    const scale_e
+    =
+      document
+        .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale' )  //: IN_burst_view_scale
+
+    const scale_n
+    =
+      BUR_o
+        .scale_o
+          [ `${hsl_s}_n` ]
+
+    scale_e
+      .value
+    =
+      scale_n
+
+    scale_e
+      .dataset
+        .tip
+    =
+      scale_n
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_scale`
+      , scale_n
       )
   }
 
@@ -1702,17 +1822,41 @@ const BUR_o =
           .listener__v
           (
             `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_${range_s}`
-            ,
-            BUR_o
+          ,  BUR_o
               .eventImg_range__v
-            ,
-            event_s
-            ,
-            {
+          , event_s
+          , {
               passive: true
             }
           )
       }
+
+      onresize    //: keep aside img at bottom
+      =
+      () =>
+        BUR_o
+          .img_position__v()
+
+    }
+
+    for
+    (
+      let hsl_s
+      of
+      [
+        'hue',
+        'sat',
+        'lum',
+      ]
+    )
+    {
+      DOM_o
+        .listener__v
+        (
+          `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}`
+        , BUR_o
+            .event_colorBurst__v
+        )
     }
 
     //=== GOTO EVENTS ===
@@ -1822,7 +1966,64 @@ const BUR_o =
           .height =
             screenDim_n
       }
+    }      
+  }
+
+
+  ,
+  img_position__v
+  ()
+  {
+    const
+    [
+      width_n
+    , height_n
+    ]
+    =
+      document
+        .body
+          .dataset
+            .wh_s
+              .split( '{{C_o.WORDS_CONCAT_s}}' )
+
+    let scale_n
+    =
+      height_n
+      /
+      window
+        .innerHeight
+
+    if
+    (
+      scale_n
+      >
+      +'{{C_o.BURST_TRANSFORM_MAX_SCALE_n}}'
+    )
+    {
+      scale_n
+      =
+        1
+        /
+        scale_n
+        *
+        +'{{C_o.BURST_TRANSFORM_MAX_SCALE_n}}'      //: don't scale up!
     }
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_hue_img_scale`,
+        scale_n
+      )
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_hue_img_height`,
+        document
+          .getElementById( `aside_{{C_o.STAT_a[0]}}_hue_img` )
+            .offsetHeight
+      )
   }
 
 
@@ -1894,16 +2095,12 @@ const BUR_o =
         (
           { 
             task_s:  'PUT_scale'
-            ,
-            stat_s:  '{{C_o.STAT_a[0]}}'
-            ,
-            hsl_s:  'hue'
-            ,
-            scale_n: BUR_o
+          , stat_s:  '{{C_o.STAT_a[0]}}'
+          , hsl_s:  'hue'
+          , scale_n: BUR_o
                        .scale_o
                          .hue_n
-            ,
-            burst_b: false    //:  don't draw: will do just after
+          , burst_b: false    //:  don't draw: will be done just after
           }
         )
 
@@ -1938,6 +2135,9 @@ const BUR_o =
 
     BUR_o
       .get_img()
+
+    BUR_o
+      .img_position__v()
   }
 }
 

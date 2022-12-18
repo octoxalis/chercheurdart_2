@@ -3,8 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   --font_min: 16px;
-  --font_max: 24px;
-  --font_scale: 1.5vw;
+  --font_max: 22px;
+  --font_scale: 1.4vw;
   --font_relative: .25rem;
   font-size: clamp( var(--font_min), calc( var(--font_scale) + var(--font_relative) ), var(--font_max) );
   font-weight: 300;

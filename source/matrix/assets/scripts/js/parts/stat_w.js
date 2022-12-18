@@ -390,15 +390,6 @@ const STAT_W_o =
     ratio_n
   )
   {
-    //; ;console.log(
-    //;   STAT_W_o
-    //;     .stat_o
-    //;       [ `${stat_s}_o` ]
-    //;         [ `${hsl_s}_o` ]
-    //; )
-    //;console.log( 'scale__n' )
-
-
     const
     {
       width,
@@ -865,8 +856,6 @@ const STAT_W_o =
       slot_n     //: 360, 120...101..6, 3, 2  (1 excluded)
     } =
       payload_o
-
-    //;console.log( [angle_n, slot_n] )
     
     const slot_a =
       STAT_W_o
@@ -883,8 +872,6 @@ const STAT_W_o =
             [ `${hsl_s}_o` ]
               .slot_a
                 [ angle_n ]
-
-                //;console.log( rate_o )
 
     const rate_n =
       rate_o        //: can be null (see put_draw__v)

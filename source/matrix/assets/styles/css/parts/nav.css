@@ -63,10 +63,10 @@ a[data-legend] > span, label[data-legend] > span {
   display: inline-block;
   width: {{S_o.NAV_LABEL_s}};
   height: {{S_o.NAV_LABEL_s}};
-  border: calc( {{S_o.NAV_LABEL_s}} * .25 ) solid var(--bg_dot);
   line-height: {{S_o.NAV_LABEL_s}};
   border-radius: 50%;
   text-align: center;
+  transform: scale( .5 );
 }
 a[data-legend]:hover > span, label[data-legend]:hover > span[data-role] {
   background: transparent;
