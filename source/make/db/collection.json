@@ -16,5 +16,12 @@
 		"location_s" : "dev",
 		"place_s" : "Paris",
 		"country_s" : "France"
+	},
+
+	{
+		"id_s" : "new_york-met",
+		"location_s" : "Metropolitan Museum",
+		"place_s" : "New York",
+		"country_s" : "United States of America"
 	}
 ]

@@ -6,7 +6,7 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      7172,
+  doc_n:      10243,        // 7172,
   title_s:    `colors_6`,
   subtitle_s: `Test`,
   abstract_s: `colors_6`,
@@ -46,7 +46,7 @@
 
 //=== END DECLARATIONS ===//
 //  TOPICS
-‹Test›
+‹colors_6›
 //
 
 

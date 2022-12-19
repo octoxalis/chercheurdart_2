@@ -3,6 +3,8 @@
 node_modules
 env
 _workspace_
+_media_
+_proto_
 source/.cache
 source/.debris
 source/ware/db

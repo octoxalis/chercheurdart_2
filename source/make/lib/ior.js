@@ -17,6 +17,7 @@ const IOR_o =
     let ior_o =
       new Object( null )
 
+    ;console.log(id_s )
    ;[
       ior_o
         .region,
@@ -33,7 +34,7 @@ const IOR_o =
         .db_o
           .work
             [id_s]
-              .default_a
+              ?.default_a
       ??
       I_o
         .IOR_DEFAULT_a

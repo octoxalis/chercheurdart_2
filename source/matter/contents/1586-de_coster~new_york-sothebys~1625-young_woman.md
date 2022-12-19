@@ -64,7 +64,6 @@ Passé en vente chez Sotheby's à New York, cette toile constitue un jalon essen
 <<  {{C_o.NAV_LEGEND_o.paint.legend_s}}  ::  {{U_o.url_s}}{{workID_s}}--paint.html  >>
 <<  {{C_o.NAV_LEGEND_o.match.legend_s}}  ::  {{U_o.url_s}}{{workID_s}}--match.html  >>
 ==
-//  <<  {{C_o.NAV_LEGEND_o.aster.legend_s}}  ::  {{U_o.url_s}}{{workID_s}}--aster.html  >>  //
 
 ##2  Analyse
 

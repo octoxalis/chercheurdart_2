@@ -1,6 +1,7 @@
 [
 	{
 		"id_s" : "1703-boucher~princeton-university~1748-arion",
+		"link_s": "https://artmuseum.princeton.edu/collections/objects/32343",
 		"artist_s" : "1703-boucher",
 		"year_n" : 1748.2,
 		"subject_s" : "Arion chevauchant son dauphin",
@@ -22,61 +23,6 @@
 		"default_a" : null
 	},
 	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_1",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 1",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
-		"default_a" : null
-	},
-	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_2",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 2",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
-		"default_a" : null
-	},
-	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_3",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 3",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
-		"default_a" : null
-	},
-	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_4",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 4",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
-		"default_a" : null
-	},
-	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_5",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 5",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
-		"default_a" : null
-	},
-	{
 		"id_s" : "2022-dev~paris-dev~2022-colors_6",
 		"artist_s" : "2022-dev",
 		"year_n" : 2022,
@@ -88,25 +34,64 @@
 		"default_a" : null
 	},
 	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_8",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 8",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
+		"id_s" : "1593-la_tour~new_york-met~1630-diseuse",
+		"link_s": "https://www.metmuseum.org/art/collection/search/436838",
+		"artist_s" : "1593-la_tour",
+		"year_n" : 1630.5,
+		"subject_s" : "La Diseuse de bonne aventure",
+		"w_height_n" : 101.9,
+		"w_width_n" : 123.5,
+		"height_n" : 3283,
+		"width_n" : 3970,
 		"default_a" : null
 	},
 	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_360",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 360",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
+		"id_s" : "1594-poussin~new_york-met~1658-orion",
+		"link_s": "https://www.metmuseum.org/art/collection/search/437326",
+		"artist_s" : "1594-poussin",
+		"year_n" : 1658,
+		"subject_s" : "Orion aveugle cherchant le soleil levant",
+		"w_height_n" : 119.1,
+		"w_width_n" : 182.9,
+		"height_n" : 2392,
+		"width_n" : 3668,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1560-carracci~new_york-met~1595-coronation",
+		"link_s": "https://www.metmuseum.org/art/collection/search/435853",
+		"artist_s" : "1560-carracci",
+		"year_n" : 1595.3,
+		"subject_s" : "Le couronnement de la Vierge",
+		"w_height_n" : 117.8,
+		"w_width_n" : 141.3,
+		"height_n" : 3104,
+		"width_n" : 3756,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1604-gelée~new_york-met~1658-trojan",
+		"link_s": "https://www.metmuseum.org/art/collection/search/435908",
+		"artist_s" : "1604-gelée",
+		"year_n" : 1658,
+		"subject_s" : "Les femmes troyennes incendient leur flotte",
+		"w_height_n" : 152.1,
+		"w_width_n" : 105.1,
+		"height_n" : 2632,
+		"width_n" : 3836,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1606-rembrandt~new_york-met~1632-turban",
+		"link_s": "https://www.metmuseum.org/art/collection/search/437385",
+		"artist_s" : "1606-rembrandt",
+		"year_n" : 1632,
+		"subject_s" : "L'honne au turban",
+		"w_height_n" : 152.7,
+		"w_width_n" : 111.1,
+		"height_n" : 3804,
+		"width_n" : 3084,
 		"default_a" : null
 	}
+
 ]

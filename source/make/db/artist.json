@@ -28,6 +28,56 @@
 		"death_date_n" : 2022,
 		"birth_place_s" : "Paris",
 		"death_place_s" : "Paris"
+	},
+	{
+		"id_s" : "1593-la_tour",
+		"forename_s" : "George",
+		"lastname_s" : "de La Tour",
+		"nickname_s" : null,
+		"birth_date_n" : 1593,
+		"death_date_n" : 1652,
+		"birth_place_s" : "Lunéville",
+		"death_place_s" : "Lunéville"
+	},
+	{
+		"id_s" : "1594-poussin",
+		"forename_s" : "Nicolas",
+		"lastname_s" : "Poussin",
+		"nickname_s" : null,
+		"birth_date_n" : 1594,
+		"death_date_n" : 1665,
+		"birth_place_s" : "Les Angelys",
+		"death_place_s" : "Rome"
+	},
+	{
+		"id_s" : "1560-carracci",
+		"forename_s" : "Annibale",
+		"lastname_s" : "Carracci",
+		"nickname_s" : null,
+		"birth_date_n" : 1560,
+		"death_date_n" : 1609,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Roma"
+	},
+	{
+		"id_s" : "1604-gelée",
+		"forename_s" : "Claude",
+		"lastname_s" : "Gelée",
+		"nickname_s" : "Le Lorrain",
+		"birth_date_n" : 1604.1,
+		"death_date_n" : 1682,
+		"birth_place_s" : "Chamagne",
+		"death_place_s" : "Roma"
+	},
+	{
+		"id_s" : "1606-rembrandt",
+		"forename_s" : "Rembrandt",
+		"lastname_s" : "Harmenszoon",
+		"nickname_s" : "Rembrandt van Rijn",
+		"birth_date_n" : 1606,
+		"death_date_n" : 1669,
+		"birth_place_s" : "Leiden",
+		"death_place_s" : "Amsterdam"
 	}
-
 ]
+

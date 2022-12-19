@@ -313,17 +313,39 @@ module.exports =
       NUM_o
         .decimalSub__s( work_o.w_width_n )
 
-    let legend_s =
+    let legend_s
+    =
       `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s}>`
       + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
-      + `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
+
+    const link_s
+    =
+      work_o
+        .link_s
+      
+      if
+      (
+        link_s
+      )
+      {
+        legend_s
+        +=
+          `<${C_o.ROW_TAG_s}><a href="${link_s}">${work_o.subject_s}</a></${C_o.ROW_TAG_s}>`
+      }
+      else
+      {
+        legend_s
+        +=
+          `<${C_o.ROW_TAG_s}>${work_o.subject_s}</${C_o.ROW_TAG_s}>`
+      }
 
       if
       (
         full_b
       )
       {
-        legend_s +=
+        legend_s
+        +=
           `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
           + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
           + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`

@@ -17,7 +17,6 @@ const C_o =
   CSS_SITE_DIR_s:        CONF_o.CSS_SITE_DIR_s,
   LIB_PARTS_DIR_s:       CONF_o.LIB_PARTS_DIR_s,
   CONTENT_PARTS_DIR_s:   CONF_o.CONTENT_PARTS_DIR_s,
-  //XX ADOC_PARTS_DIR_s:      CONF_o.ADOC_PARTS_DIR_s,
   COM_OUTPUT_DIR_s:      CONF_o.COM_OUTPUT_DIR_s,
   TOPICS_DIR_s:          CONF_o.TOPICS_DIR_s,
   HTML_PARTS_DIR_s:      CONF_o.HTML_PARTS_DIR_s,
@@ -27,11 +26,10 @@ const C_o =
   INCLUDES_PATH_s:       CONF_o.INCLUDES_PATH_s,
   CONTENTS_PATH_s:       CONF_o.CONTENTS_PATH_s,
   CONTENT_PARTS_PATH_s:  CONF_o.CONTENT_PARTS_PATH_s,
-  //XX ADOC_TEMP_PATH_s:      CONF_o.ADOC_TEMP_PATH_s,
   DB_PATH_s:             CONF_o.DB_PATH_s,
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
 
-  IMG_MAX_PATH_s:    '/full/max/0/',    //: IOR
+  IMG_MAX_PATH_s:     '/full/max/0/',    //: IOR
   IMG_1024_PATH_s:    '/full/_1024/0/',    //: IOR
   
 
