@@ -115,18 +115,17 @@ context( stack, new )
         context( copy, next )
 </section>
 
-<input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked />
-~
-<section#{{C_o.SECTION_a[1]}}>
-        context( copy, next )
-</section>
-
 <input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked />
 ~
 <section#{{C_o.SECTION_a[2]}}>
         display: block;
 </section>
 
+<input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked />
+~
+<section#{{C_o.SECTION_a[1]}}>
+        display: flex;
+</section>
 
 
 context( url, section_0.context.html )

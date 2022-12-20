@@ -12,6 +12,7 @@
   abstract_s: `Jeune femme tenant une quenouille devant une chandelle&mdash;1625&nbsp;c.`,
   workID_s:   '1586-de_coster~new_york-sothebys~1625-young_woman',
   widthHeight_s:  '1388_2000',
+  //... link_s:  '',
   //... issue_n: -1,
 
   section_a:
@@ -69,5 +70,8 @@ Passé en vente chez Sotheby's à New York, cette toile constitue un jalon essen
 
 [[₉  {{C_o.INS_DISPLAY_s}} ::
      1703-boucher~princeton-university~1748-arion ]]
+
+[[₉  {{C_o.INS_DISPLAY_s}} ::
+     1604-gelée~new_york-met~1658-trojan ]]
 
 {% end_section %}

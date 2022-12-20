@@ -9,7 +9,7 @@
   doc_n:      7178,
   title_s:    `François Boucher`,
   subtitle_s: `François Boucher: Arion`,
-  abstract_s: `Arion chevauchant son dauphin&mdash;1750`,
+  abstract_s: `Arion sur le Dauphin&mdash;1750`,
   workID_s:   '1703-boucher~princeton-university~1748-arion',
   widthHeight_s:  '2000_1283',
   //... link_s:  'https://artmuseum.princeton.edu/collections/objects/32343',

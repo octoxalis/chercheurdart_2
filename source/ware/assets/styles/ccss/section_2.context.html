@@ -11,50 +11,59 @@ context( stack, new )
             width: var(--col_width);
             display: grid;
             position: relative;
+            height: fit-content;
       <img/>
               object-fit: contain;
               width: 100%;
               height: auto;
       <a>
-              context( block, link_regular )
+              /*context( block, link_regular )*/
               position: absolute;
               top: 0;
               width: 100%;
               border: none;
-        <figcaption>
-                position: relative;
-                padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
-                background: {{S_o.shadow_hi}};
-                opacity: 0;
-                transition: opacity .6s ease;
-          <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
-                opacity: 0;
-                transition: opacity 1s ease;
-            <{{C_o.ROW_TAG_s}}>
-                      context( block, cartel )
-              <i>
-                      font-style: normal;
-              </i>
-              <i:first-of-type::after>
-                      content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
-              </i>
-              <a>
-                      context( block, link_regular )
-              </a>
-              <a:hover>
-                      context( block, link_hover )
-              </a>
-            </{{C_o.ROW_TAG_s}}>
-          </{{C_o.TABLE_TAG_s}}>
-        </figcaption>
-        
-        <figcaption:hover>
-                clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
-                opacity: 1;
-                transition: opacity 1s ease;
-        </figcaption>
       </a>
+      <figcaption>
+              position: relative;
+              padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+              background: {{S_o.shadow_hi}};
+              opacity: 0;
+              transition: opacity .3s;
+        <a>
+                /*context( block, link_regular )*/
+        </a>
+        <{{C_o.ROW_TAG_s}}>
+                  context( block, cartel )
+          <i>
+                  font-size: 95%;
+                  font-weight: 200;
+                  font-style: normal;
+          </i>
+          <i:first-of-type::after>
+                  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+          </i>
+          <a>
+          /*context( block, link_regular )*/
+          /*context( block, reference_2 )*/
+          </a>
+          <a:hover>
+                  /*context( block, link_hover )*/
+          </a>
+        </{{C_o.ROW_TAG_s}}>
+        <{{C_o.ROW_TAG_s}}:nth-of-type(3)>
+                width: 100%;
+        </{{C_o.ROW_TAG_s}}>
+        <{{C_o.ROW_TAG_s}}:nth-of-type(4)>
+                padding-top: {{S_o.PAD_4}};
+        </{{C_o.ROW_TAG_s}}>
+      </figcaption>
+      <figcaption:hover>
+              clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
+              opacity: 1;
+              transition: opacity .3s;
+      </figcaption>
     </figure>
+
     <figure[data-display_b=false]>
             border: 1px solid {{S_o.selected_lo}};
             border-radius: 4px;
@@ -138,3 +147,4 @@ context( stack, new )
   </div>
 
 </section>
+

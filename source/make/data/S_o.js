@@ -18,8 +18,10 @@ const S_o =
   FONT_BODY_s: `'Cantarell Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif`,
   FONT_MONO_s: `'JetBrains Mono Light', system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace`,
 
-  FIGURE_BORDER_s: '2vmin',
+  FIGURE_BORDER_s: '.5rem',
   PARAGRAPH_WIDTH_s: '50ch',
+  INS_WIDTH_s:       '60ch',
+
 
   FONT_BOLD_s: 600,
 

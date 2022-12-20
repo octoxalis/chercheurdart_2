@@ -49,6 +49,7 @@
           margin: {{S_o.PAD_6}} 2vmin 0 auto;     /* keep right space for goto buttons */
           min-width: var(--col_width);
           width: calc( (var(--threshold) - 100%) * 1000 );
+          max-width: {{S_o.PARAGRAPH_WIDTH_s}};
     <label>
             --font_max: 32px;
             --font_scale: 1.2vw;
@@ -112,6 +113,8 @@
               --font_scale: 1.9vw;
               display: block;
               position: relative;
+              /*width: fit-content;*/
+              max-width: {{S_o.INS_WIDTH_s}};
               height: fit-content;
               margin: {{S_o.PAD_1}} 0;
               padding: {{S_o.PAD_4}};
@@ -127,97 +130,7 @@
                   border-radius: 4px;
           </img>
         </a>
-        context( stack, new )
-        <{{C_o.TABLE_TAG_s}}[data-ins]>
-          <{{C_o.ROW_TAG_s}}>
-                  --font_max: 18px;
-                  --font_scale: 1.9vw;
-                  display: table;
-                  /*font-style: normal;*/
-                  /*font-weight: 200;*/
-                  /*line-height: 1.4;*/
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}]>
-                context( block, reference_1 )
-          <{{C_o.ROW_TAG_s}}>
-                context( block, vertical_hr )
-                context( block, list_item )
-          </{{C_o.ROW_TAG_s}}>
-          <{{C_o.ROW_TAG_s}}:before>
-                  context( block, list_marker )
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
-          context( block, reference_1 )
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
-          context( block, reference_2 )
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
-          context( block, reference_1 )
-                  line-height: 3;
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
-          context( block, reference_2 )
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
-          context( copy, next )
-            <a>
-          context( block, reference_2 )
-                  line-height: 1.6;
-            </a>
-          </{{C_o.ROW_TAG_s}}>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(4)>
-                   padding-top: {{S_o.PAD_4}};
-                   width: 100%;
-                   border-top: 1px solid {{S_o.ins_shadow_ne}};
-          </{{C_o.ROW_TAG_s}}>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(5)>
-                  padding-top: {{S_o.PAD_2}};
-          </{{C_o.ROW_TAG_s}}>
-          <{{C_o.ROW_TAG_s}}:nth-of-type(6)>
-                  margin-top: 1rem;
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
-                top: 0;
-          <{{C_o.ROW_TAG_s}}>
-            <i>
-                    font-size: 95%;
-                    font-weight: 200;
-                    font-style: normal;
-            </i>
-            <i:first-of-type::after>
-                    content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
-           </i>
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
-        <{{C_o.TABLE_TAG_s}}[role=table]>
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 1px;
-                width: 100%;
-          <{{C_o.ROW_TAG_s}}>
-                  flex-grow: 1;
-                  padding: {{S_o.PAD_2}};
-                  background: {{S_o.shadow_ne}};
-                  font-size: 90%;
-            <a>
-                    font-size: 100%;
-            </a>
-          </{{C_o.ROW_TAG_s}}>
-        </{{C_o.TABLE_TAG_s}}>
+
       </ins>
       <label[data-ins={{C_o.INS_QUO_s}}]>
               margin-left: {{S_o.PAD_6}};
@@ -251,6 +164,147 @@
     </blockquote>
 
   </div>
+</section>
+
+
+context( stack, new )
+<{{C_o.TABLE_TAG_s}}[data-ins]>
+  <{{C_o.ROW_TAG_s}}>
+          --font_max: 18px;
+          --font_scale: 1.9vw;
+          display: table;
+          /*font-style: normal;*/
+          /*font-weight: 200;*/
+          /*line-height: 1.4;*/
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+<{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}]>
+        context( block, reference_1 )
+  <{{C_o.ROW_TAG_s}}>
+        context( block, vertical_hr )
+        context( block, list_item )
+  </{{C_o.ROW_TAG_s}}>
+  <{{C_o.ROW_TAG_s}}:before>
+          context( block, list_marker )
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+
+<{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
+  context( block, reference_1 )
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+
+<{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}]>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
+  context( block, reference_2 )
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+
+<{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(1)>
+  context( block, reference_1 )
+          /*line-height: 3;*/
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+
+<{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}]>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
+  context( block, reference_2 )
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+
+<{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}]>
+          top: 0;
+  <{{C_o.ROW_TAG_s}}>
+    <i>
+            font-size: 95%;
+            font-weight: 200;
+            font-style: normal;
+    </i>
+    <i:first-of-type::after>
+            content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+   </i>
+  </{{C_o.ROW_TAG_s}}>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
+          padding-top: {{S_o.PAD_4}};
+  context( copy, next )
+    <a>
+    context( block, reference_2 )
+          line-height: 1.6;
+    </a>
+  </{{C_o.ROW_TAG_s}}>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(4)>
+           width: 100%;
+  </{{C_o.ROW_TAG_s}}>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(5)>
+          padding-top: {{S_o.PAD_4}};
+  </{{C_o.ROW_TAG_s}}>
+  <{{C_o.ROW_TAG_s}}:nth-of-type(6)>
+          /*margin-top: 1rem;*/
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+
+<{{C_o.TABLE_TAG_s}}[role=table]>
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1px;
+        width: 100%;
+  <{{C_o.ROW_TAG_s}}>
+          flex-grow: 1;
+          padding: {{S_o.PAD_2}};
+          background: {{S_o.shadow_ne}};
+          font-size: 90%;
+    <a>
+            font-size: 100%;
+    </a>
+  </{{C_o.ROW_TAG_s}}>
+</{{C_o.TABLE_TAG_s}}>
+
+<section#{{C_o.SECTION_a[1]}}>
+    <figure>
+      <figcaption>
+              position: relative;
+              padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+              background: {{S_o.shadow_hi}};
+              opacity: 0;
+              transition: opacity .3s;
+            <a>
+                    context( block, link_regular )
+            </a>
+          <{{C_o.ROW_TAG_s}}>
+                    context( block, cartel )
+            <i>
+                    font-size: 95%;
+                    font-weight: 200;
+                    font-style: normal;
+            </i>
+            <i:first-of-type::after>
+                    content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+            </i>
+            <a>
+            context( block, link_regular )
+            context( block, reference_2 )
+            </a>
+            <a:hover>
+            context( block, link_hover )
+            </a>
+          </{{C_o.ROW_TAG_s}}>
+          <{{C_o.ROW_TAG_s}}:nth-of-type(3)>
+                   width: 100%;
+          </{{C_o.ROW_TAG_s}}>
+          <{{C_o.ROW_TAG_s}}:nth-of-type(4)>
+                  padding-top: {{S_o.PAD_4}};
+          </{{C_o.ROW_TAG_s}}>
+      </figcaption>
+      
+      <figcaption:hover>
+              clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
+              opacity: 1;
+              transition: opacity .3s;
+      </figcaption>
+    </figure>
 </section>
 
 

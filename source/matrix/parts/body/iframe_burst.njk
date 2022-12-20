@@ -158,8 +158,8 @@
 
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" type="checkbox" checked>
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_download" type="checkbox">
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_panorama" type="checkbox">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_reset" type="checkbox">
+  <!--<input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bar" type="checkbox">-->
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position" type="checkbox">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker" type="checkbox">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
@@ -167,23 +167,28 @@
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
   <aside id="aside_{{C_o.STAT_a[0]}}_hue_img">
     <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_img_control" role="icon_list">
-      <li id="{C_o.LIST_ITEM_ID_s}}_{{C_o.STAT_a[0]}}_img_control_cbgolor">
+      <li id="{C_o.LIST_ITEM_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor">
         <label>
         &nbsp;
-        </label><!--NE and SW Arrow-->
-      <li>
+        </label>
       <li>
         <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_download">
         {{C_o.IMG_DOWNLOAD_s}}
-        </label><!--NE and SW Arrow-->
+        </label>
       <li>
         <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_reset">
         {{C_o.IMG_RESET_s}}
-        </label><!--NE and SW Arrow-->
+        </label>
+      <!--
       <li>
-        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position">
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bar">
+        {{C_o.IMG_BAR_s}}
+        </label>
+      -->
+      <li>
+        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position" tabindex=1><!--NE and SW Arrow-->
         {{C_o.IMG_RETRACT_s}}
-        </label><!--NE and SW Arrow-->
+        </label>
     </ul>
     <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" width={{C_o.BURST_TRANSFORM_DIM_s}} height={{C_o.BURST_TRANSFORM_DIM_s}}></canvas>  <!-- 1024: default value -->
     <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg">

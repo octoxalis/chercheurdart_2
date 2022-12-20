@@ -1,5 +1,15 @@
 [
 	{
+		"id_s" : "2022-dev",
+		"forename_s" : "Test",
+		"lastname_s" : "Dev",
+		"nickname_s" : null,
+		"birth_date_n" : 2022,
+		"death_date_n" : 2022,
+		"birth_place_s" : "Paris",
+		"death_place_s" : "Paris"
+	},
+	{
 		"id_s" : "1703-boucher",
 		"forename_s" : "François",
 		"lastname_s" : "Boucher",
@@ -18,16 +28,6 @@
 		"death_date_n" : 1643,
 		"birth_place_s" : "Mechelen",
 		"death_place_s" : "Antwerpen"
-	},
-	{
-		"id_s" : "2022-dev",
-		"forename_s" : "Test",
-		"lastname_s" : "Dev",
-		"nickname_s" : null,
-		"birth_date_n" : 2022,
-		"death_date_n" : 2022,
-		"birth_place_s" : "Paris",
-		"death_place_s" : "Paris"
 	},
 	{
 		"id_s" : "1593-la_tour",

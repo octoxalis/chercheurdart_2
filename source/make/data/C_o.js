@@ -254,7 +254,7 @@ const C_o =
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow:             ↑
   FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
-  IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
+  IMG_BAR_s:            '&#8597;',   //: NS Arrow           ↕
   IMG_RETRACT_s:        '&#10530;',  //: NE and SW Arrow           ⤢
   IMG_RESET_s:          '&#8634;',   //: Anticlockwise Open Circle Arrow          
   //-- IMG_PANORAMA_s:       '&#8862;',   //: Squared Plus               ⊞
@@ -262,6 +262,7 @@ const C_o =
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
   SEE_MORE_s:           '&#8943;',          //: 
+  IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
 
 
   ID_PART_DELIM_s:     '~',   //: between parts

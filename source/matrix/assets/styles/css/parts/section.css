@@ -87,6 +87,9 @@ section {
 section > iframe {
   display: none;
 }
-input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {
+input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked ~ section#{{C_o.SECTION_a[2]}} {
   display: block;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}} {
+  display: flex;
 }

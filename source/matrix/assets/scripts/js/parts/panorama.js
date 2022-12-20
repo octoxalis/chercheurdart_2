@@ -82,18 +82,6 @@ const PAN_o =
 
 
   ,
-  img__e:
-  (
-    event_e
-  ) =>
-    event_e
-      .target
-        .parentNode
-          .querySelector( 'img' )
-
-
-
-  ,
   async show__v
   ()
   {
@@ -169,14 +157,13 @@ const PAN_o =
 
         caption_s
         =
-        `<span data-ins="₉">`
-         + `<b data-local=1>{{C_o.NAV_LEGEND_o.panorama_local.legend_s}}</b>`
-         + `<b>`
-
-         +  value_o
-              .id_s
-         + `</b>`
-         + `</span>`
+          `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
+          + `<{{C_o.ROW_TAG_s}} data-local=1>{{C_o.NAV_LEGEND_o.panorama_local.legend_s}}</{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}>`
+          +  value_o
+               .id_s
+          + `</{{C_o.ROW_TAG_s}}>`
+          + `</{{C_o.TABLE_TAG_s}}>`
       }
       else            //: img.src
       {
@@ -194,11 +181,11 @@ const PAN_o =
       +=
         `<figure data-id="{{C_o.PANORAMA_ID_s}}${value_o.id_s}" data-display_b=${value_o.display_b} data-key_s="${show_o.key_s}">`
         + `<img src="${src_s}" width="${value_o.width_s}" height="${value_o.height_s}" loading="lazy">`
-        + `<a href="#AC${value_o.id_s}">`
+        //?? + `<a href="#${value_o.id_s}">`
+        //?? + `</a>`
         + `<figcaption data-local>`
         + caption_s
         + `</figcaption>`
-        + `</a>`
         + `</figure>\n`
     }
 
@@ -217,12 +204,21 @@ const PAN_o =
   ,
   select__v
   (
-  event_e
+  event_o
   )
   {
+    if
+    (
+      event_o
+        .ctrlKey
+    )
+    {
+      return    //: let href to image be fired
+    }
+    //>
     const selected_e
     =
-      event_e
+      event_o
         .target
           .closest( 'figure' )
 
@@ -480,13 +476,20 @@ const PAN_o =
   ,
   async add__v    //: add from site
   (
-    event_e
+    event_o
   )
   {
+    const figure_e
+    =
+      event_o
+        .target
+          .closest( 'figure' )
+
+
     const img_e
     =
-      PAN_o
-        .img__e( event_e )
+      figure_e
+        .querySelector( 'img' )
 
     let src_s
     =
@@ -506,10 +509,8 @@ const PAN_o =
 
       const id_s
       =
-        event_e
-          .target
-            .parentNode
-              .id
+        figure_e
+          .id
   
       const caption_e =    //: galery node
         document
@@ -630,11 +631,10 @@ const PAN_o =
 
       const caption_s
         =
-          `<figure data-id="{{C_o.PANORAMA_ID_s}}_${id_s}" data-display_b=true data-key_s="${fileName_s}">`  //: display_b = true
+          `<figure data-id="{{C_o.PANORAMA_ID_s}}_${id_s}" data-display_b=true data-key_s="${fileName_s}">`
           + `<img id="{{C_o.PANORAMA_IMG_PREFIX_s}}_${local_n}" loading="lazy">`  //!!! no src, width, height attributes
-          + `<a href="#">`
+          + `<a href="#"></a>`
           + `<figcaption>${id_s}</figcaption>`
-          + `</a>`
           + `</figure>\n`
 
       local_a

@@ -432,9 +432,6 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) 
 aside#aside_{{C_o.STAT_a[0]}}_hue_img {
   display: none;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > inpu#t{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked {
-  display: none;
-}
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img {
   z-index: 21;
   display: flex;
@@ -463,10 +460,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   border: none;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li {
-  list-style: none;
-  width: 4rem;
   background: {{S_o.bgcolor}};
-  transform-origin: center;
   transform: scale( 1 );
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > label {
@@ -578,8 +572,8 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img {
   position: fixed;
-  left: 0;
-  top: calc( 100vh - ( var(--{{C_o.STAT_a[0]}}_hue_img_height) * 1px ));
+  left: {{S_o.PAD_2}};
+  top: calc( 100vh - {{S_o.PAD_2}} - ( var(--{{C_o.STAT_a[0]}}_hue_img_height) * 1px ));
   box-shadow: none;
   filter: none;
   transform-origin: bottom left;
@@ -588,13 +582,10 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img > canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img {
   max-width: 100vmin;
+  transition: transform .2s;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul {
-  height: 6rem;
-}
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li {
-  padding-right: 4rem;
-  transform: scale( calc( 1 / {{C_o.BURST_TRANSFORM_SCALE_n}} ) );
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position"] {
+  transform: scale( 3 );
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
   display: flex;

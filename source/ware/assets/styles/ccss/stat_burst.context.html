@@ -99,7 +99,7 @@
 </section>
 
 <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue>
-  cursor: var(--{{C_o.STAT_a[0]}}_trace_pointer);
+        cursor: var(--{{C_o.STAT_a[0]}}_trace_pointer);
 </canvas>
 
 <!--variant-->
@@ -548,9 +548,7 @@ context( stack, new )
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked )>
   <section#{{C_o.STAT_a[0]}}>
     <div[id^={{C_o.DIV_ID_s}}_stat]>
-      <inpu#t{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked>
-              display: none;
-      </input>
+      <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked />
       <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
               z-index: 21;
               display: flex;
@@ -579,10 +577,10 @@ context( stack, new )
                 /*background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );*/
                 border: none;
           <li>
-                    list-style: none;
-                    width: 4rem;
+                    /* list-style: none; */
+                    /* width: 4rem; */
                     background: {{S_o.bgcolor}};
-                    transform-origin: center;
+                    /* transform-origin: center; */
                     transform: scale( 1 );
             <label>
             context( block, top_button )
@@ -642,7 +640,6 @@ context( stack, new )
           <label[for]:nth-of-type(3)>
             <span>
                     background: hsl( 0 100% 100% /1);  /* white */
-                    
             </span>
           </label>
           <label[for]:nth-of-type(4)>
@@ -700,8 +697,8 @@ context( stack, new )
       ~
       <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
               position: fixed;
-              left: 0;
-              top: calc( 100vh - ( var(--{{C_o.STAT_a[0]}}_hue_img_height) * 1px )); /* from burst.js */
+              left: {{S_o.PAD_2}};
+              top: calc( 100vh - {{S_o.PAD_2}} - ( var(--{{C_o.STAT_a[0]}}_hue_img_height) * 1px )); /* from burst.js */
               box-shadow: none;
               filter: none;
               transform-origin: bottom left;
@@ -709,13 +706,12 @@ context( stack, new )
               transition: transform .2s;
         <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img>
               max-width: 100vmin;
+              transition: transform .2s;
         </canvas>
         <ul>
-                height: 6rem;
           <li>
-                  padding-right: 4rem;
-                  transform: scale( calc( 1 / {{C_o.BURST_TRANSFORM_SCALE_n}} ) );
             <label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position"]>
+                  transform: scale( 3 );
             </label>
           </li>
         </ul>
@@ -723,6 +719,7 @@ context( stack, new )
     </div>
   </section>
 </body>
+
 
 context( stack, new )
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker:checked )>

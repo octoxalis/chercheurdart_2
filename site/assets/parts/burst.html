@@ -158,8 +158,8 @@
 
   <input id="IN_burst_hue_img" type="checkbox" checked>
   <input id="IN_burst_hue_img_download" type="checkbox">
-  <input id="IN_burst_hue_img_panorama" type="checkbox">
   <input id="IN_burst_hue_img_reset" type="checkbox">
+  <!--<input id="IN_burst_hue_img_bar" type="checkbox">-->
   <input id="IN_burst_hue_img_position" type="checkbox">
   <input id="IN_burst_hue_img_picker" type="checkbox">
   <input id="IN_burst_hue_img_bg_black" name="burst_hue_color" type="radio">
@@ -167,23 +167,28 @@
   <input id="IN_burst_hue_img_bg_color" name="burst_hue_color" type="radio">
   <aside id="aside_burst_hue_img">
     <ul id="UL_burst_img_control" role="icon_list">
-      <li id="{C_o.LIST_ITEM_ID_s}}_burst_img_control_cbgolor">
+      <li id="{C_o.LIST_ITEM_ID_s}}_burst_img_control_bgcolor">
         <label>
         &nbsp;
-        </label><!--NE and SW Arrow-->
-      <li>
+        </label>
       <li>
         <label for="IN_burst_hue_img_download">
         &#11123;
-        </label><!--NE and SW Arrow-->
+        </label>
       <li>
         <label for="IN_burst_hue_img_reset">
         &#8634;
-        </label><!--NE and SW Arrow-->
+        </label>
+      <!--
       <li>
-        <label for="IN_burst_hue_img_position">
+        <label for="IN_burst_hue_img_bar">
+        &#8597;
+        </label>
+      -->
+      <li>
+        <label for="IN_burst_hue_img_position" tabindex=1><!--NE and SW Arrow-->
         &#10530;
-        </label><!--NE and SW Arrow-->
+        </label>
     </ul>
     <canvas id="CA_burst_hue_img" width=100vmin height=100vmin></canvas>  <!-- 1024: default value -->
     <div id="DI_burst_hue_img_bg">

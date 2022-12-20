@@ -10,6 +10,7 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   width: var(--col_width);
   display: grid;
   position: relative;
+  height: fit-content;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > img {
   object-fit: contain;
@@ -17,51 +18,42 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   height: auto;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a {
-  color: currentColor;
-  text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
   position: absolute;
   top: 0;
   width: 100%;
   border: none;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption {
   position: relative;
   padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
   background: {{S_o.shadow_hi}};
   opacity: 0;
-  transition: opacity .6s ease;
+  transition: opacity .3s;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption > {{C_o.ROW_TAG_s}} {
   display: table;
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption > {{C_o.ROW_TAG_s}} > i {
+  font-size: 95%;
+  font-weight: 200;
   font-style: normal;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
   content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a {
-  color: currentColor;
-  text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(3) {
+  width: 100%;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a:hover {
-  border-bottom: 1px solid;
-  filter: brightness( {{S_o.brightness_hi}} );
-  transition: opacity .2s;
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(4) {
+  padding-top: {{S_o.PAD_4}};
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a > figcaption:hover {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
-  transition: opacity 1s ease;
+  transition: opacity .3s;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure[data-display_b=false] {
   border: 1px solid {{S_o.selected_lo}};
