@@ -133,6 +133,7 @@ const C_o =
     img_bgwhite: { icon_s: `&nbsp;`, legend_s: `blanc`},
     img_bgcolor: { icon_s: `&nbsp;`, legend_s: `couleur`},
     img_picker: { icon_s: `&nbsp;`, legend_s: `sélecteur`},
+    slideshow_over: { icon_s: `&nbsp;`, legend_s: `complet`},
 
 
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
@@ -160,6 +161,11 @@ const C_o =
 
   },
 
+  BURST_IMG_SLIDESHOW_1_s: 'Lent',
+  BURST_IMG_SLIDESHOW_2_s: 'Normal',
+  BURST_IMG_SLIDESHOW_3_s: 'Rapide',
+
+
   PERCENT_s: '%',      //: Percent Sign
 
   //=== REPLACE
@@ -175,29 +181,28 @@ const C_o =
 
 
   //=== BURST TOOLS ===
-  INPUT_RANGE_SCALEY_n:    .5,
-  SCREEN_DIM_n:            1024,    //: default, set by burst.init()
-  SCREEN_RATIO_n:          1,
-  BURST_SCALE_n:           1,
-  BURST_LEVEL_SCALE_n:     .2,   //: default
-  BURST_RANGE_n:           1,   //!!!  TEMPORARY //: 1 range
-  BURST_THRESH_HI_n:       0,
-  BURST_THRESH_LO_n:       0,
-  BURST_IMG_OPACITY_n:     20,
-  BURST_IMG_RESET_n:       255,    //: contrast
-  BURST_NAV_DIM_n:         360,
-  BURST_TRANSFORM_DIM_s:   '100vmin',  //!!! overriden
+  INPUT_RANGE_SCALEY_n:         .5,
+  SCREEN_DIM_n:                 1024,    //: default, set by burst.init()
+  SCREEN_RATIO_n:               1,
+  BURST_SCALE_n:                1,
+  BURST_LEVEL_SCALE_n:          .2,   //: default
+  BURST_RANGE_n:                1,   //!!!  TEMPORARY //: 1 range
+  BURST_THRESH_HI_n:            0,
+  BURST_THRESH_LO_n:            0,
+  BURST_IMG_OPACITY_n:          20,
+  BURST_IMG_RESET_n:            255,    //: contrast
+  BURST_NAV_DIM_n:              360,
+  BURST_TRANSFORM_DIM_s:        '100vmin',  //!!! overriden
   BURST_TRANSFORM_MAX_SCALE_n: .85,  /* keep a tiny space for menu bar */
-  BURST_TRANSFORM_SCALE_n: .33,
-  BURST_PICK_HUE_n:        0,
-  BURST_PICK_SAT_n:        100,
-  BURST_PICK_LUM_n:        50,
-
+  BURST_TRANSFORM_SCALE_n:     .33,
+  BURST_PICK_HUE_n:            0,
+  BURST_PICK_SAT_n:            100,
+  BURST_PICK_LUM_n:            50,
 
   PAINT_LAYER_n:        8,
   PAINT_DEVIATION_n:    10,
-  PAINT_DISTANCE_X_n:    0,        /* factor */
-  PAINT_PERSPECTIVE_n:   1000,
+  PAINT_DISTANCE_X_n:   0,        /* factor */
+  PAINT_PERSPECTIVE_n:  1000,
   PAINT_DISTANCE_n:     -100,
   PAINT_ROTATE_n:       0,
   PAINT_SCALE_n:        .25,
@@ -216,7 +221,7 @@ const C_o =
   BURST_LEVEL: 'burst_level',
   
   //=== HTML-BODY CSS SELECTORS
-  BURST_IMG_CAPTION_s: 'h1+p span[data-ins="₉"]',
+  BURST_IMG_CAPTION_s:   'h1+p span[data-ins="₉"]',
   PANORAMA_IMG_PREFIX_s: 'img_local',
 
 
@@ -236,32 +241,35 @@ const C_o =
   PANORAMA_ID_s:    'P',
   TOPICS_ID_s:      'T',
 
+  CHAPTER_TAG_s:    'h2',
+  //??? LABEL_TAG_s:      'label',
   TABLE_TAG_s:      'span',
-  LABEL_TAG_s:      'label',
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
-  CHAPTER_TAG_s:    'h2',
 
   //=== HTML-BODY: CLASSES ===
   SELECTED_CLASS_s: 'selected',
 
 
   //=== LIST ===
-  LIST_INDENT_n:  2,
+  LIST_INDENT_n:    2,
 
   //=== HTML-BODY: EXTEND MARKUP ===
-  INFO_s    :           '&#8505;',   //: Information Source Emoji:  ℹ
+  INFO_s:               '&#8505;',   //: Information Source Emoji:  ℹ
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow:             ↑
   FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
+  RANGE_s:              '&nbsp;&#8230;&nbsp;',   //: Horizontal Ellipsis:      …
+
   IMG_BAR_s:            '&#8597;',   //: NS Arrow           ↕
   IMG_RETRACT_s:        '&#10530;',  //: NE and SW Arrow           ⤢
   IMG_RESET_s:          '&#8634;',   //: Anticlockwise Open Circle Arrow          
-  //-- IMG_PANORAMA_s:       '&#8862;',   //: Squared Plus               ⊞
   IMG_DOWNLOAD_s:       '&#11123;',  //: Downwards Triangle-Headed Arrow To Bar   ⭳
+  IMG_SLIDESHOW_s:      '&#9744;',          //:  ☐☐☐ ∷∷  ⊟⊟  ☰☰
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
-  SEE_MORE_s:           '&#8943;',          //: 
+  SEE_MORE_s:           '&#8943;',          //:
+  //-- IMG_PANORAMA_s:       '&#8862;',   //: Squared Plus               ⊞
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
 
 

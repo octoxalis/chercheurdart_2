@@ -23,9 +23,12 @@
         --{{C_o.STAT_a[0]}}_img_bgblack: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 0% 0% /1);
         --{{C_o.STAT_a[0]}}_img_backgroud: var(--{{C_o.STAT_a[0]}}_img_bgblack);
 
-        /* --{{C_o.STAT_a[0]}}_hue_img_scale: 1;*/  /* set by burst.js */
-        /* --{{C_o.STAT_a[0]}}_hue_img_height: 20vh;*/
         --{{C_o.STAT_a[0]}}_satlum_s: none;    /* don't display at start: no slot selected */
+
+        /* --{{C_o.STAT_a[0]}}_img_slot_fromHue_n: 0 */   /* set by burst.js */
+        /* --{{C_o.STAT_a[0]}}_img_slot_toHue_n: 0 */     /* set by burst.js */
+        /* --{{C_o.STAT_a[0]}}_hue_img_scale: 1; */       /* set by burst.js */
+        /* --{{C_o.STAT_a[0]}}_hue_img_height: 20vh;*/
 </:root>
 
 <section#{{C_o.STAT_a[0]}}>
@@ -573,8 +576,7 @@ context( stack, new )
                 margin: 0;     /* overide */
                 gap: {{S_o.PAD_16}};
                 width: 100%;
-                height: 2rem;
-                /*background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );*/
+                height: 4rem;
                 border: none;
           <li>
                     /* list-style: none; */
@@ -584,10 +586,13 @@ context( stack, new )
                     transform: scale( 1 );
             <label>
             context( block, top_button )
+            width:  4rem;
+            height: 4rem;
+            line-height: 4rem;                /* vertical centering */
                     display: inline-flex;
                     justify-content: center;
                     color: {{S_o.color_ne}};
-                    font-size: 110%;
+                    font-size: 200%;
                     border: none;    /* override block*/
                     border-radius: 4px;    /* override block */
             </label>
@@ -595,13 +600,57 @@ context( stack, new )
                     background: {{S_o.shadow_ne}};
                     filter: brightness(4);
             </label>
+            <ul>
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    margin: 0;     /* overide */
+                    width: 100%;
+                    height: 4rem;
+                    border: none;
+              <li>
+              context( block, list_item  )
+                      padding: 0;
+                  display: inline-flex;
+                  justify-content: center;
+                  color: {{S_o.color_ne}};
+                  font-size: 200%;
+                  border: none;    /* override block*/
+                  border-radius: 4px;    /* override block */
+                  cursor: pointer;
+              </li>
+              <li:before>
+                      content: '';    /* overide */
+              </li>
+              <li:hover>
+                      background: {{S_o.shadow_ne}};
+                      filter: brightness(4);
+              </li>
+            </ul>
           </li>
           <li:before>
                   content: '';    /* overide */
           </li>
           <li:nth-of-type(1)>
                   flex-grow: 1;
-                  background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );
+                  display: flex;
+                  justify-content: flex-end;
+                  /*background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );*/
+                  --fromHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
+                  --toHue:   hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
+                  background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
+            <label>
+                    justify-content: center;
+                    padding: .25rem;
+                    width: 16ch;
+                    color: currentColor;
+                    background: hsla(0 0% 50%/0.5);
+                    font-size: 100%;
+                    text-transform: uppercase;
+            </label>
+            <label:hover>
+                    filter: brightness( .5);
+            </label>
           </li>
         </ul>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg>
@@ -609,12 +658,12 @@ context( stack, new )
                 justify-content: flex-start;
                 padding: 0 {{S_o.PAD_2}};
                 width: 100%;
-                height: 2rem;
+                height: 4rem;
           <label>
                   width: 15%;
                   text-align: center;
-                  font-size: 80%;
-                  line-height: 2rem;    /* vertical centering */
+                  font-size: 150%;
+                  line-height: 4rem;    /* vertical centering */
                   opacity: .5;
           </label>
           <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]>

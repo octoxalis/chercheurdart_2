@@ -456,7 +456,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   margin: 0;
   gap: {{S_o.PAD_16}};
   width: 100%;
-  height: 2rem;
+  height: 4rem;
   border: none;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li {
@@ -471,14 +471,44 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   border: 1px solid {{S_o.shadow_ne}};
   border-radius: 50%;
   background: transparent;
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
   display: inline-flex;
   justify-content: center;
   color: {{S_o.color_ne}};
-  font-size: 110%;
+  font-size: 200%;
   border: none;
   border-radius: 4px;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > label:hover {
+  background: {{S_o.shadow_ne}};
+  filter: brightness(4);
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  height: 4rem;
+  border: none;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > ul > li {
+  /* ERROR: "list_item " statements block is missing */
+padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  color: {{S_o.color_ne}};
+  font-size: 200%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > ul > li:before {
+  content: '';
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > ul > li:hover {
   background: {{S_o.shadow_ne}};
   filter: brightness(4);
 }
@@ -487,20 +517,36 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li:nth-of-type(1) {
   flex-grow: 1;
-  background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );
+  display: flex;
+  justify-content: flex-end;
+  --fromHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
+  --toHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
+  background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li:nth-of-type(1) > label {
+  justify-content: center;
+  padding: .25rem;
+  width: 16ch;
+  color: currentColor;
+  background: hsla(0 0% 50%/0.5);
+  font-size: 100%;
+  text-transform: uppercase;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li:nth-of-type(1) > label:hover {
+  filter: brightness( .5);
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg {
   display: flex;
   justify-content: flex-start;
   padding: 0 {{S_o.PAD_2}};
   width: 100%;
-  height: 2rem;
+  height: 4rem;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label {
   width: 15%;
   text-align: center;
-  font-size: 80%;
-  line-height: 2rem;
+  font-size: 150%;
+  line-height: 4rem;
   opacity: .5;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range] {

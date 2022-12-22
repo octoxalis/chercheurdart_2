@@ -36,7 +36,7 @@
 		"nickname_s" : null,
 		"birth_date_n" : 1593,
 		"death_date_n" : 1652,
-		"birth_place_s" : "Lunéville",
+		"birth_place_s" : "Vic-sur-Seille",
 		"death_place_s" : "Lunéville"
 	},
 	{
@@ -47,7 +47,7 @@
 		"birth_date_n" : 1594,
 		"death_date_n" : 1665,
 		"birth_place_s" : "Les Angelys",
-		"death_place_s" : "Rome"
+		"death_place_s" : "Roma"
 	},
 	{
 		"id_s" : "1560-carracci",
@@ -78,6 +78,26 @@
 		"death_date_n" : 1669,
 		"birth_place_s" : "Leiden",
 		"death_place_s" : "Amsterdam"
+	},
+	{
+		"id_s" : "1577-rubens",
+		"forename_s" : "Peter Paul",
+		"lastname_s" : "Rubens",
+		"nickname_s" : "",
+		"birth_date_n" : 1577,
+		"death_date_n" : 1640,
+		"birth_place_s" : "Siegen",
+		"death_place_s" : "Antwerpen"
+	},
+	{
+		"id_s" : "1599-velazquez",
+		"forename_s" : "Diego Rodríguez de Silva y",
+		"lastname_s" : "Velázquez",
+		"nickname_s" : "",
+		"birth_date_n" : 1599,
+		"death_date_n" : 1660,
+		"birth_place_s" : "Sevilla",
+		"death_place_s" : "Madrid"
 	}
 ]
 

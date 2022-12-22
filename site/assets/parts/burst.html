@@ -167,10 +167,14 @@
   <input id="IN_burst_hue_img_bg_color" name="burst_hue_color" type="radio">
   <aside id="aside_burst_hue_img">
     <ul id="UL_burst_img_control" role="icon_list">
-      <li id="{C_o.LIST_ITEM_ID_s}}_burst_img_control_bgcolor">
-        <label>
-        &nbsp;
-        </label>
+      <li>
+        <label id="{C_o.LABEL_ID_s}}_burst_img_control_bgcolor"></label>
+      <li>
+          <ul id="UL_burst_hue_img_slideshow">   <!-- pseudo label -->
+            <li data-speed_n=1 data-tip="Lent">&#9744;
+            <li data-speed_n=2 data-tip="Normal">&#9744;
+            <li data-speed_n=3 data-tip="Rapide">&#9744;
+          </ul>
       <li>
         <label for="IN_burst_hue_img_download">
         &#11123;

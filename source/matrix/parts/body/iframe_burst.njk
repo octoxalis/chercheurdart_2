@@ -167,10 +167,14 @@
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
   <aside id="aside_{{C_o.STAT_a[0]}}_hue_img">
     <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_img_control" role="icon_list">
-      <li id="{C_o.LIST_ITEM_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor">
-        <label>
-        &nbsp;
-        </label>
+      <li>
+        <label id="{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor"></label>
+      <li>
+          <ul id="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_slideshow">   <!-- pseudo label -->
+            <li data-speed_n=1 data-tip="{{C_o.BURST_IMG_SLIDESHOW_1_s}}">{{C_o.IMG_SLIDESHOW_s}}
+            <li data-speed_n=2 data-tip="{{C_o.BURST_IMG_SLIDESHOW_2_s}}">{{C_o.IMG_SLIDESHOW_s}}
+            <li data-speed_n=3 data-tip="{{C_o.BURST_IMG_SLIDESHOW_3_s}}">{{C_o.IMG_SLIDESHOW_s}}
+          </ul>
       <li>
         <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_download">
         {{C_o.IMG_DOWNLOAD_s}}

@@ -45,7 +45,19 @@ const BUR_o =
   , atAngle_n: 0
   , download_s: ''    //: download suggested file name
 
-  
+  , slideshow_o:
+    {
+      speed_a:
+       [
+         0
+       , 400
+       , 1000
+       , 2000
+       ]
+    , play_b: false
+    }
+
+
 
   ,
   message__v
@@ -76,6 +88,12 @@ const BUR_o =
       case 'PUT_canvas_img':
         BUR_o
           .put_canvas_img__v( payload_o )
+
+        break
+    
+      case 'PUT_hue':
+         BUR_o
+           .put_hue__v( payload_o )
 
         break
     
@@ -200,7 +218,8 @@ const BUR_o =
         level_a
 
     let html_s =
-      slot_a[0]
+      slot_a
+        [0]
 
     if
     (
@@ -254,16 +273,86 @@ const BUR_o =
       'hue'
     )
     {
-      DOM_o
-         .rootVar__v
-         (
-           `--{{C_o.STAT_a[0]}}_img_slot_hue_n`,
-           slot_a[0]
-         )
+      BUR_o
+        .slotHue__v
+        (
+          slot_a
+        )
 
       BUR_o
         .satLum__v()
     }
+  }
+  
+
+
+  ,
+  slotHue__v
+  (
+    hue_a
+  )
+  {
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_img_slot_fromHue_n`
+      , hue_a
+          [0]
+      )
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_img_slot_toHue_n`
+      , hue_a
+          [1]
+      )
+  }
+
+
+  ,
+  put_hue__v
+  (
+    payload_o
+  )
+  {
+    const hue_a
+    =
+      payload_o
+        .hue_a
+
+    let legend_s
+      
+    if    //: continue slideshow
+    (
+      hue_a
+    )
+    {
+      BUR_o
+        .slotHue__v( hue_a )
+
+      legend_s
+      =
+      `${hue_a[0]}{{C_o.RANGE_s}}${hue_a[1]}`
+    }
+    else    //: slideshow is over
+    {
+      legend_s
+      =
+        '{{C_o.NAV_LEGEND_o.slideshow_over.legend_s}}'
+
+      BUR_o
+        .slideshow_o
+          .play_b
+      =
+        false
+    }
+
+    document
+      .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
+        .innerHTML
+    =
+      legend_s
   }
   
 
@@ -763,7 +852,6 @@ const BUR_o =
                 canvas_e
                   .height
               ]
-
          }
         )
 
@@ -1453,6 +1541,76 @@ const BUR_o =
 
 
   ,
+  eventImg_slideshow__v
+  (
+    event_o
+  )
+  {
+    let speed_n
+    =
+      0     //: default to stop slideshow (opacity_n not used)
+
+    let opacity_n
+
+    if
+    (
+      ! BUR_o
+          .slideshow_o
+            .play_b
+    )
+    {
+      speed_n
+      =
+        BUR_o
+          .slideshow_o
+            .speed_a
+              [
+                +event_o          //: Number cast
+                  .target
+                    .closest( 'li' )
+                      .dataset
+                        .speed_n
+              ]
+
+      opacity_n
+      =
+        ~~(
+          (
+            +document
+              .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )            //: Number cast
+                .value
+            /
+            100
+          )
+          *
+          255      //: [0...255]
+        )
+    }
+
+    BUR_o
+      .worker_o
+        .post__v
+        (
+          { 
+            task_s: 'PUT_slideshow'
+          , stat_s: '{{C_o.STAT_a[0]}}'
+          , speed_n: speed_n
+          , opacity_n: opacity_n
+          }
+        )
+
+    BUR_o
+      .slideshow_o
+        .play_b
+    =
+      ! BUR_o
+          .slideshow_o
+            .play_b
+  }
+
+
+
+  ,
   eventImg_background__v
   (
     event_o
@@ -1730,8 +1888,8 @@ const BUR_o =
       let input_s
       of
       [
-        'reset',
-        'download',
+        'reset'
+      , 'download'
       ]
     )
     {
@@ -1742,9 +1900,20 @@ const BUR_o =
             'click'
             ,
             BUR_o
-              [ `eventImg_${input_s}__v` ]  //:eventImg_panorama__v
+              [ `eventImg_${input_s}__v` ]  //:eventImg_slideshow__v
           )
     }
+
+    document
+      .getElementById( `{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_slideshow` )
+        ?.addEventListener
+        (
+          'click'
+          ,
+          BUR_o
+            .eventImg_slideshow__v
+        )
+
     
     //=== RANGE EVENTS ===
     for

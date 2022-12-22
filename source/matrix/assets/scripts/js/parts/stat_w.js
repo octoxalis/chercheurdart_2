@@ -138,6 +138,7 @@ const STAT_W_o =
     'PUT_slot',
     'PUT_hsl',
     'PUT_scale',
+    'PUT_slideshow',
   ]
   ,
 
@@ -167,8 +168,8 @@ const STAT_W_o =
   ,
   imgBitmap_a: new Map()     //: {{C_o.STAT_a[2]}} store for multiple use
   ,
-
-
+  slideShow_n: undefined    //: current setInterval id
+  ,
 
   //=== SCRIPTS ===
   script__v
@@ -383,6 +384,48 @@ const STAT_W_o =
 
 
 
+  clearData__v
+  (
+    context_o
+  , imgData_o
+  , opacity_n
+  )
+  {
+    const iData_a =
+      imgData_o
+        .data
+
+    for
+    (
+       let at_n = 0;
+       at_n
+       <
+       iData_a
+         .length;
+       at_n += 4
+    )
+    {
+      iData_a
+        [
+          at_n
+          +
+          3
+        ] =
+          opacity_n
+    }
+
+    context_o
+      .putImageData
+      (
+        imgData_o,
+        0,
+        0
+      )  
+  }
+  ,
+
+
+
   scale__n
   (
     stat_s,
@@ -488,6 +531,23 @@ const STAT_W_o =
   ,
 
 
+  stopSlideshow__v
+  ()
+  {
+    clearInterval
+    (
+      STAT_W_o
+        .slideShow_n
+    )
+
+    STAT_W_o
+      .slideShow_n
+    =
+      undefined
+  }
+  ,
+
+  
 
   //=== GET    
   get_status__v
@@ -791,8 +851,6 @@ const STAT_W_o =
                 at_n
               ]
         }
-
-
 
         rank_a
           .sort  //: descending order
@@ -2214,6 +2272,10 @@ const STAT_W_o =
       }
     }
 
+
+
+
+
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //;console.timeEnd( 'put_hsl__v' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -2232,12 +2294,13 @@ const STAT_W_o =
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
     const
       { 
-        stat_s,
-        hsl_s,
-        angle_n,
-        range_n,
-        opacity_n,
-        dim_a,
+        stat_s
+      ,  hsl_s
+      ,  angle_n
+      ,  range_n
+      ,  opacity_n
+      ,  dim_a
+      //?? ,  stack_b
       } =
         payload_o
 
@@ -2263,7 +2326,7 @@ const STAT_W_o =
             STAT_W_o
               [ `SCAN_${hsl_s}_n` ]
           ]
-
+          
     const
     {
       context_o,
@@ -2273,10 +2336,24 @@ const STAT_W_o =
         .imgData_o
           [ `${stat_s}` ]
 
-    let iData_a =
+    const iData_a =
       imgData_o
         .data
-  
+
+    //?? if
+    //?? (
+    //??   stack_b
+    //?? )
+    //?? {
+    //??   STAT_W_o
+    //??     .clearData__v
+    //??     (
+    //??       context_o
+    //??     , imgData_o
+    //??     , opacity_n
+    //??     )
+    //?? }
+
     let atHsl_n
     let atScan_a
     let length_n
@@ -2304,9 +2381,14 @@ const STAT_W_o =
       }
       else        //: opacity
       {
-        
-        opac_n =
-          opacity_n
+        //?? if
+        //?? (
+        //??   ! stack_b
+        //?? )
+        //?? {
+          opac_n =
+            opacity_n
+        //?? }
       }
 
       atScan_a =
@@ -2375,10 +2457,17 @@ const STAT_W_o =
 
     if
     (
-      !burst_b
+      //-- !burst_b
+      burst_b
     )
     {
-      return
+      //- return
+      STAT_W_o
+        .stat_o
+          [ `${stat_s}_o` ]
+            [ `${hsl_s}_o` ]
+              .burst_c
+                .draw__v()
     }
 
     //............... STAT_W_o
@@ -2387,14 +2476,270 @@ const STAT_W_o =
     //...............       [ `${hsl_s}_o` ]
     //...............         .burst_c
     //............... &&
-    STAT_W_o
-      .stat_o
-        [ `${stat_s}_o` ]
-          [ `${hsl_s}_o` ]
-            .burst_c
-              .draw__v()
   }
   ,
+
+
+  put_slideshow__v
+  (
+    payload_o
+  )
+  {
+    let      //!!! mutable speed_n
+    {
+      stat_s
+    , speed_n      //: 0 to stop
+    , opacity_n    //: undefined to stop
+    }
+    =
+      payload_o
+
+    if
+    (
+      ! speed_n
+      &&
+      STAT_W_o
+        .slideShow_n
+    )
+    {
+      STAT_W_o
+        .stopSlideshow__v()
+
+      return
+    }
+    //>
+    const slot_a
+    =
+      Array
+        .from
+        (
+         STAT_W_o
+           .stat_o
+             [ `burst_o` ]
+               [ `hue_o` ]
+                 .slot_a
+        )
+ 
+    slot_a
+      .sort        //: descending order
+        (
+          (
+            first,
+            second
+          ) =>
+          {
+            if
+            (
+              first
+              ===
+              null
+            )
+            {
+              return 1
+            }
+            //>
+            if
+            (
+              second
+              ===
+              null
+            )
+            {
+              return -1
+            }
+            //>
+            return (
+              second
+                .rate_n
+              -
+              first
+                .rate_n
+            )
+          }
+      )
+
+    const scan_a
+    =
+      STAT_W_o
+        .scan_a
+          [
+            STAT_W_o
+              [ `SCAN_hue_n` ]
+          ]
+          
+    const
+    {
+      context_o,
+      imgData_o
+    }
+    =
+      STAT_W_o
+        .imgData_o
+          [ `${stat_s}` ]
+
+    const iData_a
+    =
+      imgData_o
+        .data
+
+    STAT_W_o
+      .clearData__v
+      (
+        context_o
+      , imgData_o
+      , opacity_n
+      )
+
+    const gap_n
+    =
+      360
+      /
+      slot_a
+        .length
+    
+    let at_n
+    =
+      slot_a
+        .length
+
+    STAT_W_o
+      .slideShow_n
+    =
+      setInterval
+      (
+        () =>
+        {
+          if
+          (
+            at_n--
+            >
+            -1
+          )
+          {
+            const slot_o
+            =
+              slot_a
+                [ at_n ]
+  
+            if
+            (
+              slot_o    //!!! can be null
+            )
+            {
+              const start_n =
+                slot_o
+                  .hsl_a
+                    [ 0 ]
+          
+              const end_n =
+                start_n
+                +
+                gap_n
+
+              STAT_W_o
+                .post__v
+                (
+                  {
+                    task_s: 'PUT_hue'
+                  , stat_s: '{{C_o.STAT_a[0]}}'
+                  , hue_a:
+                      [
+                        start_n
+                      , end_n
+                      ]
+                  }
+                )
+
+              let atHsl_n
+              let atScan_a
+              let length_n
+            
+              for
+              (
+                 atHsl_n = start_n;
+                 atHsl_n < end_n;
+                 ++atHsl_n
+              )
+              {
+                atScan_a =
+                  scan_a
+                    [ atHsl_n ]
+  
+                if
+                (
+                  atScan_a
+                )
+                {
+                  length_n =
+                    atScan_a
+                      .length
+                    
+                  for
+                  (
+                     atScan_n = 0;
+                     atScan_n < length_n;
+                     ++atScan_n
+                  )
+                  {
+                    iData_a
+                      [
+                        atScan_a
+                          [ atScan_n ]
+                          +
+                          3
+                      ] =
+                        255
+                  }
+                }
+                
+              }
+          
+              context_o
+                .putImageData
+                (
+                  imgData_o,
+                  0,
+                  0
+                )
+  
+            }
+          }
+          else
+          {
+            STAT_W_o
+              .post__v
+              (
+                {
+                  task_s: 'PUT_hue'
+                , stat_s: '{{C_o.STAT_a[0]}}'
+                , hue_a: null    //: stop slideshow
+                }
+              )
+
+            STAT_W_o
+              .stopSlideshow__v()
+
+            return
+          }
+          //;console.timeEnd( 'setInterval'  )
+        }
+        , speed_n
+      )
+  }
+  ,
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
