@@ -25,8 +25,10 @@
 
   script_a:
   [
-    'stat.min.js',
+    'Idb.min.js',
+    'location.min.js',
     'dom.min.js',
+    'stat.min.js',
   ],
   css_a:
   [
@@ -63,6 +65,6 @@
 
 <<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
-Graphique de répartition chromatique à échelle logarithmique
+Répartition chromatique (échelle logarithmique)
 
 {% end_section %}

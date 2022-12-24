@@ -323,23 +323,25 @@ context( block, settings )
 
 
 context( stack, new )
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view:hover>
+<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock:hover>
         background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
         opacity: 1;
-        transition: opacity 1s ease;
+        transform: translateY( 0 );
+        transition: all .4s ease;
 </div>
 
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view>
+<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock>
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: calc( 100vh - 16em );
+        top: calc( 100vh - 14em );
         left: calc( 50vw - 100px - {{S_o.PAD_1}} );
         padding: {{S_o.PAD_2}};
         background: {{S_o.table}};
         border-radius: 4px;
         opacity: .1;
-        transition: opacity .2s ease;
+        transform: translateY( 11em );
+        transition: all .4s ease;
   <input[type=range]>
           position: relative;
           top: {{S_o.PAD_5}};    /* under following label */

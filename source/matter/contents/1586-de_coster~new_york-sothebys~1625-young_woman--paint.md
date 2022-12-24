@@ -24,9 +24,11 @@
 
   script_a:
   [
-    'stat.min.js',
-    'dom.min.js',
+    'Idb.min.js',
+    'location.min.js',
     'Pointer.min.js',
+    'dom.min.js',
+    'stat.min.js',
   ],
   css_a:
   [

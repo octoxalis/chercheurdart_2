@@ -11,7 +11,7 @@
   subtitle_s: `Nicolas Poussin: Orion`,
   abstract_s: `Orion aveugle cherchant le soleil levant&mdash;1658`,
   workID_s:   '1594-poussin~new_york-met~1658-orion',
-  widthHeight_s:  '2000_1283',
+  widthHeight_s:  '3668_2392',
   //... issue_n: -1,
 
   section_a:
@@ -24,8 +24,10 @@
 
   script_a:
   [
-    'stat.min.js',
+    'Idb.min.js',
+    'location.min.js',
     'dom.min.js',
+    'stat.min.js',
   ],
   css_a:
   [
@@ -62,6 +64,6 @@
 
 <<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
-Graphique de répartition chromatique à échelle logarithmique
+Répartition chromatique (échelle logarithmique)
 
 {% end_section %}

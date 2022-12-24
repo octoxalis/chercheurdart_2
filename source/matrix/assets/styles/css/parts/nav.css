@@ -17,7 +17,7 @@ nav > label > span[data-role={{C_o.SECTION_a[1]}}] {
   background: {{S_o.nav_dot_gallery}};
 }
 nav > label > span[data-role={{C_o.SECTION_a[2]}}] {
-  background: {{S_o.nav_dot_panorama}};
+  background: {{S_o.nav_dot_expo}};
 }
 nav > label > span[data-role={{C_o.SECTION_a[3]}}] {
   background: {{S_o.nav_dot_stat}};

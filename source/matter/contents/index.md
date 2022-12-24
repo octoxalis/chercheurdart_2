@@ -20,6 +20,8 @@
   script_a:
   [
     //:TEST 'idecompress.min.js',
+    'Idb.min.js',
+    'location.min.js',
   ],
 
   css_a:
@@ -38,6 +40,9 @@
      {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html  ]]
 
 //  LINKS  //
+[[=  EXPO  ::
+     <<  Sur les cimaises  ::  expo.html  >>  ]]
+
 [[=  SITE_TECH  ::
      <<  Technologie du site  ::  site_tech.html  >>  ]]
 
@@ -71,7 +76,9 @@
 ||+  INDEX_TOC  ||
 
 
+##2 Exposition
 
+||  EXPO  ||
 
 ##2 Avertissement
 

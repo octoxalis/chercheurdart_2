@@ -1,5 +1,5 @@
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry {
-  --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_col_n, 2) - 2 ) * 1% );
+  --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_wrap_n, 2) - 2 ) * 1% );
   display: flex;
   flex-wrap: wrap;
   gap: {{S_o.PAD_2}};
@@ -73,57 +73,92 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   border-radius: 4px;
   background: {{S_o.selected_hi}};
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: calc( 100vh - 16em );
-  left: calc( 50vw - 100px - {{S_o.PAD_1}} );
+  top: 0;
+  left: 0;
+  width: 288px;
+  transform: translateX( -258px );
+  transition: .4s ease;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav {
+  flex-direction: column;
+  align-self: flex-end;
+  padding: 0;
+  align-self: flex-end;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav > label {
+  font-size: 85%;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav > label > span[data-role] {
+  background: white;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav > label:hover > span {
+  background: transparent;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav:hover {
+  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
+  width: 100%;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input, section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input + div {
+  display: none;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div {
+  display: flex;
+  flex-direction: column;
+  margin-top: {{S_o.PAD_3}};
   padding: {{S_o.PAD_2}};
   background: {{S_o.table}};
   border-radius: 4px;
-  opacity: .1;
-  transition: opacity .2s ease;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > label {
   margin: {{S_o.PAD_2}};
-  width: 200px;
   text-align: center;
   text-transform: uppercase;
   border-radius: 4px;
   border: 2px solid {{S_o.shadow_hi}};
   font-size: 85%;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label:hover {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > label:hover {
   filter: invert( .5 ) brightness( {{S_o.brightness_hi}} );
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > input[type=range] {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > label:nth-of-type(1) {
   position: relative;
-  top: {{S_o.PAD_12}};
+  top: -{{S_o.PAD_4}};
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 75%;
+  border: none;
+  opacity: .5;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > input[type=range] {
+  align-self: center;
+  position: relative;
+  top: -{{S_o.PAD_4}};
   width: 200px;
   background: transparent;
   cursor: pointer;
   transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > label[for] {
-  position: relative;
-  top: -{{S_o.PAD_2}};
-  padding: {{S_o.PAD_1}};
-  text-align: left;
-  text-transform: none;
-  font-size: 80%;
-  border: none;
-  opacity: .5;
-}
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control > input[type=range]:focus {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > input[type=range]:focus {
   outline: none;
   filter: hue-rotate( -220deg );
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control:hover {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock:hover {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
   background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
-  opacity: 1;
-  transition: opacity 1s ease;
+  transform: translateX( 0 );
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock:hover > nav {
+  align-self: center;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > * {
   grid-area: 1/-1;
+}
+body:has( #{{C_o.SECTION_a[2]}} ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
+  visibility: hidden;
 }

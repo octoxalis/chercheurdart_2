@@ -24,9 +24,10 @@
 
   script_a:
   [
+    'Idb.min.js',
+    'location.min.js',
+    'dom.min.js',
     'stat.min.js',
-    //XX 'drag.min.js',
-    //XX'imgsLoad.min.js',
   ],
   css_a:
   [

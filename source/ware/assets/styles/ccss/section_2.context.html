@@ -1,7 +1,7 @@
 context( stack, new )
 <section#{{C_o.SECTION_a[2]}}>
   <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry>
-        --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_col_n, 2) - 2 ) * 1% );  /* default var: 2 */
+        --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_wrap_n, 2) - 2 ) * 1% );  /* default var: 2 */
         display: flex;
         flex-wrap: wrap;
         gap: {{S_o.PAD_2}};
@@ -84,60 +84,100 @@ context( stack, new )
   </div>
 
 
-  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock>
           display: flex;
           flex-direction: column;
           position: fixed;                         /* !!!!!!! TODO */
-          top: calc( 100vh - 16em );
-          left: calc( 50vw - 100px - {{S_o.PAD_1}} );
+          top: 0;
+          left: 0;
+          width: 288px;
+          transform: translateX( -258px );  /* 288 - 30 */
+          transition: .4s ease;
+    <nav>
+            flex-direction: column;
+            align-self: flex-end;
+            padding: 0;
+    align-self: flex-end;
+      <label>
+                font-size: 85%;
+        <span[data-role]>
+                background: white; /*{{S_o.nav_dot_set_3}};*/
+        </span>
+      </label>
+      <label:hover>
+        <span>
+                background: transparent;
+        </span> 
+      </label>
+    </nav>
+    <nav:hover>
+          background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
+             width: 100%;
+    </nav>
+    <input>
+    context( copy, next )
+    </input>
+    +
+    <div>
+            display: none;
+    </div>
+    <input:checked>
+    </input>
+    +
+    <div>
+          display: flex;
+          flex-direction: column;
+          margin-top:  {{S_o.PAD_3}};
           padding: {{S_o.PAD_2}};
           background: {{S_o.table}};
           border-radius: 4px;
-          opacity: .1;
-          transition: opacity .2s ease;
-    <label>
-            margin: {{S_o.PAD_2}};
-            width: 200px;
-            text-align: center;
-            text-transform: uppercase;
-            border-radius: 4px;
-            border: 2px solid {{S_o.shadow_hi}};
-            font-size: 85%;
-    </label>
-    <label:hover>
-            filter: invert( .5 ) brightness( {{S_o.brightness_hi}} );
-    </label>
+      <label>
+              margin: {{S_o.PAD_2}};
+              text-align: center;
+              text-transform: uppercase;
+              border-radius: 4px;
+              border: 2px solid {{S_o.shadow_hi}};
+              font-size: 85%;
+      </label>
+      <label:hover>
+              filter: invert( .5 ) brightness( {{S_o.brightness_hi}} );
+      </label>
+      <label:nth-of-type(1)>
+              position: relative;
+              top: -{{S_o.PAD_4}};
+              /*padding: {{S_o.PAD_2}};*/
+              text-align: left;
+              text-transform: uppercase;
+              font-size: 75%;
+              border: none;
+              opacity: .5;
+      </label>
+      <input[type=range]>
+              align-self: center;
+              position: relative;
+              top: -{{S_o.PAD_4}};
+              width: 200px;
+              background: transparent;
+              cursor: pointer;
+              transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
+      </input>
+      <input[type=range]:focus>
+              outline: none;
+              filter: hue-rotate( -220deg );
+      </input>
+    </div>
+  </div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock>
 
-    <input[type=range]>
-            position: relative;
-            top: {{S_o.PAD_12}};    /* under following label */
-            width: 200px;
-            background: transparent;
-            cursor: pointer;
-            transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
-    </input>
-    <label[for]>
-            position: relative;
-            top: -{{S_o.PAD_2}};    /* above preceding input */
-            padding: {{S_o.PAD_1}};
-            text-align: left;
-            text-transform: none;
-            font-size: 80%;
-            border: none;
-            opacity: .5;
-    </label>
-    <input[type=range]:focus>
-            outline: none;
-            filter: hue-rotate( -220deg );
-    </input>
-  </div>
-
-  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_control:hover>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock:hover>
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
           background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
-          opacity: 1;
-          transition: opacity 1s ease;
+          transform: translateX( 0 );
+    <nav>
+            align-self: center;
+    </nav>
   </div>
-
   <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry>
     <figure>
       <*>
@@ -145,6 +185,13 @@ context( stack, new )
       </*>
     </figure>
   </div>
-
 </section>
 
+context( stack, new )
+<body:has( #{{C_o.SECTION_a[2]}} )>
+  <nav>
+    <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}}>
+            visibility: hidden;
+    </label>
+  </nav>
+</body>

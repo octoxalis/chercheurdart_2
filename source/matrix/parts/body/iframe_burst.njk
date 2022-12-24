@@ -139,7 +139,7 @@
     </aside>
   </div>
 
-  <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view">
+  <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock">
     <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings" data-legend="{{C_o.NAV_LEGEND_o.stat_open.legend_s}}">
         <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
     </label>
@@ -150,8 +150,8 @@
         <span data-role="open">{{C_o.NAV_LEGEND_o.empty}}</span>
     </label>
 
-      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale" type="range" min="0.25" max="4" step="0.25" value="{{C_o.BURST_SCALE_n}}" data-tip="{{C_o.BURST_SCALE_n}}">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale">
+      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale" type="range" min="0.25" max="4" step="0.25" value="{{C_o.BURST_SCALE_n}}" data-tip="{{C_o.BURST_SCALE_n}}">
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale">
       {{C_o.NAV_LEGEND_o.layers_scale.legend_s}}
       </label>
   </div>
@@ -222,27 +222,6 @@
     </div>
     
   </aside>
-
-<!--
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_dialog" type="checkbox">
-  <dialog id="dialog_{{C_o.STAT_a[0]}}_hue_img_dialog">
-    <form id="form_{{C_o.STAT_a[0]}}_hue_img_dialog" method="dialog">
-      <div id="_{{C_o.STAT_a[0]}}_hue_img_dialog_panorama">
-        <header>
-          
-        </header>
-        <label>
-          Inclure l'image dans la panorama
-        </label>
-      </div>
-      <div id="_{{C_o.STAT_a[0]}}_hue_img_dialog_download">
-        <label>
-          Sauvegarder l'image localement
-        </label>
-      </div>
-    </form>
-  </dialog>
--->
 
   <script id=script_{{C_o.STAT_a[0]}} data-src="/assets/scripts/js/{{C_o.STAT_a[0]}}.min.js"></script>
 </div>

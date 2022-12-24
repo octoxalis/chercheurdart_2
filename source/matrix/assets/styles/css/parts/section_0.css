@@ -30,6 +30,7 @@ section#{{C_o.SECTION_a[0]}} > h1, section#{{C_o.SECTION_a[0]}} > h2 {
 section#{{C_o.SECTION_a[0]}} > h1 {
   --font_max: 40px;
   --font_scale: 2vw;
+  padding-top: 1rem;
   font-weight: 600;
 }
 section#{{C_o.SECTION_a[0]}} > h1 + p {

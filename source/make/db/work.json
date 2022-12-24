@@ -1,5 +1,27 @@
 [
 	{
+		"id_s" : "2022-dev~paris-dev~2022-colors_6",
+		"artist_s" : "2022-dev",
+		"year_n" : 2022,
+		"subject_s" : "Test colors: 6",
+		"w_height_n" : 360,
+		"w_width_n" : 100,
+		"height_n" : 360,
+		"width_n" : 100,
+		"default_a" : null
+	},
+	{
+		"id_s" : "2022-local~paris-local~2022-burst",
+		"artist_s" : "2022-local",
+		"year_n" : 2022,
+		"subject_s" : "Burst",
+		"w_height_n" : 0,
+		"w_width_n" : 0,
+		"height_n" : 0,
+		"width_n" : 0,
+		"default_a" : null
+	},
+	{
 		"id_s" : "1703-boucher~princeton-university~1748-arion",
 		"link_s": "https://artmuseum.princeton.edu/collections/objects/32343",
 		"artist_s" : "1703-boucher",
@@ -20,17 +42,6 @@
 		"w_width_n" : 94.9,
 		"height_n" : 2000,
 		"width_n" : 1388,
-		"default_a" : null
-	},
-	{
-		"id_s" : "2022-dev~paris-dev~2022-colors_6",
-		"artist_s" : "2022-dev",
-		"year_n" : 2022,
-		"subject_s" : "Test colors: 6",
-		"w_height_n" : 360,
-		"w_width_n" : 100,
-		"height_n" : 360,
-		"width_n" : 100,
 		"default_a" : null
 	},
 	{
@@ -115,6 +126,66 @@
 		"w_width_n" : 225,
 		"height_n" : 2186,
 		"width_n" : 2952,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1571-merisi~roma-borghese~1597-giovane",
+		"link_s": "https://www.collezionegalleriaborghese.it/opere/giovane-con-canestra-di-frutta",
+		"artist_s" : "1571-merisi",
+		"year_n" : 1597.1,
+		"subject_s" : "Giovane con canestra di frutta",
+		"w_height_n" : 70,
+		"w_width_n" : 67,
+		"height_n" : 4000,
+		"width_n" : 3842,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1591-ribera~madrid-prado~1615-jeronimo",
+		"link_s": "https://www.museodelprado.es/coleccion/obra-de-arte/san-jeronimo-escribiendo/ed0b9f12-8471-4d50-88ec-b3ea87667120",
+		"artist_s" : "1591-ribera",
+		"year_n" : 1615.1,
+		"subject_s" : "San Jerónimo escribiendo",
+		"w_height_n" : 131.5,
+		"w_width_n" : 98,
+		"height_n" : 1920,
+		"width_n" : 1426,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1571-merisi~roma-borghese~1605-girolamo",
+		"link_s": "https://www.collezionegalleriaborghese.it/opere/san-girolamo",
+		"artist_s" : "1571-merisi",
+		"year_n" : 1605.1,
+		"subject_s" : "San Girolamo",
+		"w_height_n" : 116,
+		"w_width_n" : 153,
+		"height_n" : 2914,
+		"width_n" : 4000,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1575-reni~roma-borghese~1620-mose",
+		"link_s": "https://www.collezionegalleriaborghese.it/opere/mose-che-infrange-le-tavole-della-legge",
+		"artist_s" : "1575-reni",
+		"year_n" : 1620.5,
+		"subject_s" : "Moïse portant les Tables de la Loi",
+		"w_height_n" : 173,
+		"w_width_n" : 134,
+		"height_n" : 4000,
+		"width_n" : 3046,
+		"default_a" : null
+	},
+	{
+		"id_s" : "1575-reni~roma-borghese~1601-danza",
+		"link_s": "https://www.collezionegalleriaborghese.it/opere/danza-campestre",
+		"artist_s" : "1575-reni",
+		"year_n" : 1601.2,
+		"subject_s" : "Danse champêtre",
+		"w_height_n" : 81,
+		"w_width_n" : 99,
+		"height_n" : 3278,
+		"width_n" : 4000,
 		"default_a" : null
 	}
 

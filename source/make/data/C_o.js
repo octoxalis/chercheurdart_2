@@ -70,7 +70,7 @@ const C_o =
   [
     'article',    //: section[0]
     'galerie',    //: section[1]
-    'panorama',   //: section[2]
+    'expo',       //: section[2]
     'stat',       //: section[3]
   ],
   STAT_a:         //: section[3]
@@ -96,15 +96,16 @@ const C_o =
     home:    { icon_s: `&#8226;`, legend_s: `accueil` },
     article: { icon_s: `&#8226;`, legend_s: `article` },
     galerie: { icon_s: `&#8226;`, legend_s: `galerie` },
-    panorama: { icon_s: `&#8226;`, legend_s: `panorama` },
+    expo:    { icon_s: `&#8226;`, legend_s: `exposition` },
 
-    panorama_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
-    panorama_remove: { icon_s: `&nbsp;`, legend_s: `supprimer`},
-    panorama_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
-    panorama_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
-    panorama_col: { icon_s: `&nbsp;`, legend_s: `Images par rang`},
-    //?? panorama_local: { icon_s: `&nbsp;`, legend_s: `ajouter`},
-    panorama_local: { icon_s: `&nbsp;`, legend_s: `Image locale`},
+    expo_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
+    expo_remove: { icon_s: `&nbsp;`, legend_s: `supprimer`},
+    expo_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
+    //XX expo_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
+    expo_wrap: { icon_s: `&nbsp;`, legend_s: `affichage`},
+    expo_local: { icon_s: `&nbsp;`, legend_s: `ajouter`},
+    expo_caption: { icon_s: `&nbsp;`, legend_s: `caption`},
+   //??  expo_process: { icon_s: `&nbsp;`, legend_s: `répartition`},
 
 
     burst: { icon_s: `&#8718;`, legend_s: `répartition`},
@@ -122,8 +123,6 @@ const C_o =
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
     stat_shadow_fold:     { icon_s: `&nbsp;`, legend_s: `replier`},
     stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
-    //???. stat_increment: { icon_s: `&nbsp;`, legend_s: `agrandir`},
-    //???. stat_decrement: { icon_s: `&nbsp;`, legend_s: `réduire`},
     burst_level: { icon_s: `&nbsp;`, legend_s: `égaliser`},
     burst_img: { icon_s: `&nbsp;`, legend_s: `image`},
     thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
@@ -132,6 +131,7 @@ const C_o =
     img_bgblack: { icon_s: `&nbsp;`, legend_s: `noir`},
     img_bgwhite: { icon_s: `&nbsp;`, legend_s: `blanc`},
     img_bgcolor: { icon_s: `&nbsp;`, legend_s: `couleur`},
+    
     img_picker: { icon_s: `&nbsp;`, legend_s: `sélecteur`},
     slideshow_over: { icon_s: `&nbsp;`, legend_s: `complet`},
 
@@ -210,8 +210,8 @@ const C_o =
 
   PAINT_SLIDER_n:       2,    //: 2px line
 
-  //=== PANORAMA TOOLS ===
-  PANORAMA_COL_n:       2,
+  //=== EXPO TOOLS ===
+  EXPO_WRAP_n:       2,
 
 
   //=== HTML-BODY ANCHORS
@@ -221,8 +221,8 @@ const C_o =
   BURST_LEVEL: 'burst_level',
   
   //=== HTML-BODY CSS SELECTORS
-  BURST_IMG_CAPTION_s:   'h1+p span[data-ins="₉"]',
-  PANORAMA_IMG_PREFIX_s: 'img_local',
+  BURST_IMG_CAPTION_s: 'h1+p span[data-ins="₉"]',
+  EXPO_IMG_PREFIX_s:   'img_local',
 
 
   //=== HTML-BODY: TAGS ===
@@ -238,7 +238,7 @@ const C_o =
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',
   GALERY_ID_s:      'G',
-  PANORAMA_ID_s:    'P',
+  EXPO_ID_s:        'E',
   TOPICS_ID_s:      'T',
 
   CHAPTER_TAG_s:    'h2',
@@ -246,6 +246,10 @@ const C_o =
   TABLE_TAG_s:      'span',
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
+
+  LOC_SEARCH_s:     'k',
+  LOC_JSON_s:       'JSON',
+
 
   //=== HTML-BODY: CLASSES ===
   SELECTED_CLASS_s: 'selected',
@@ -259,7 +263,6 @@ const C_o =
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow:             ↑
   FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
-  RANGE_s:              '&nbsp;&#8230;&nbsp;',   //: Horizontal Ellipsis:      …
 
   IMG_BAR_s:            '&#8597;',   //: NS Arrow           ↕
   IMG_RETRACT_s:        '&#10530;',  //: NE and SW Arrow           ⤢
@@ -269,7 +272,7 @@ const C_o =
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
   SEE_MORE_s:           '&#8943;',          //:
-  //-- IMG_PANORAMA_s:       '&#8862;',   //: Squared Plus               ⊞
+  //-- IMG_EXPO_s:       '&#8862;',   //: Squared Plus               ⊞
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
 
 

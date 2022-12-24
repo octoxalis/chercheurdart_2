@@ -6,9 +6,9 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      7178,
+  doc_n:      7212,
   title_s:    `Annibale Carracci`,
-  subtitle_s: `Annibale Carracci: Orion`,
+  subtitle_s: `Annibale Carracci: Le couronnement de la Vierge`,
   abstract_s: `Le couronnement de la Vierge&mdash;1595&nbsp;post`,
   workID_s:   '1560-carracci~new_york-met~1595-coronation',
   widthHeight_s:  '3756_3104',
@@ -25,8 +25,10 @@
 
   script_a:
   [
-    'stat.min.js',
+    'Idb.min.js',
+    'location.min.js',
     'dom.min.js',
+    'stat.min.js',
   ],
   css_a:
   [
@@ -63,6 +65,6 @@
 
 <<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
-Graphique de répartition chromatique à échelle logarithmique
+Répartition chromatique (échelle logarithmique)
 
 {% end_section %}

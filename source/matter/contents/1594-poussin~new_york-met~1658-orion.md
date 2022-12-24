@@ -18,13 +18,14 @@
   [
     `article`,
     `galerie`,
-    `panorama`,
   ],
 
   script_a:
   [
+    'Idb.min.js',
+    'location.min.js',
     'dom.min.js',
-    'panorama.min.js',
+    'expo_in.min.js',
   ],
   css_a:
   [

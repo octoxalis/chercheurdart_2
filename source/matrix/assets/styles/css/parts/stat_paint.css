@@ -278,24 +278,26 @@ div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"]:hover > 
 div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_slide] > label[id$="_trace"]:hover > output {
   opacity: 1;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view:hover {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock:hover {
   background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
   opacity: 1;
-  transition: opacity 1s ease;
+  transform: translateY( 0 );
+  transition: all .4s ease;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: calc( 100vh - 16em );
+  top: calc( 100vh - 14em );
   left: calc( 50vw - 100px - {{S_o.PAD_1}} );
   padding: {{S_o.PAD_2}};
   background: {{S_o.table}};
   border-radius: 4px;
   opacity: .1;
-  transition: opacity .2s ease;
+  transform: translateY( 11em );
+  transition: all .4s ease;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock > input[type=range] {
   position: relative;
   top: {{S_o.PAD_5}};
   width: 200px;
@@ -303,7 +305,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range] {
   cursor: pointer;
   transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock > label {
   position: relative;
   top: -{{S_o.PAD_6}};
   padding: {{S_o.PAD_1}};
@@ -313,23 +315,23 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label {
   border: none;
   opacity: .5;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label[data-legend] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock > label[data-legend] {
   top: 0;
   margin: 0 0 {{S_o.PAD_4}} {{S_o.PAD_1}};
   font-size: 95%;
   text-transform: uppercase;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label[data-legend] > span {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock > label[data-legend] > span {
   background: {{S_o.nav_dot_set_3}};
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > label[data-legend]:hover > span[data-role] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock > label[data-legend]:hover > span[data-role] {
   background: transparent;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range]:focus {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock > input[type=range]:focus {
   outline: none;
   filter: hue-rotate( -220deg );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view > input[type=range]:focus + label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock > input[type=range]:focus + label {
   background: {{S_o.lighter}};
 }
 .raised {

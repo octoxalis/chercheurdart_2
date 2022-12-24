@@ -6,6 +6,12 @@
 		"country_s" : "France"
 	},
 	{
+		"id_s" : "paris-local",
+		"location_s" : "Local",
+		"place_s" : "Paris",
+		"country_s" : "France"
+	},
+	{
 		"id_s" : "new_york-sothebys",
 		"location_s" : "Sothebys",
 		"place_s" : "New York",
@@ -34,5 +40,11 @@
 		"location_s" : "Museo del Prado",
 		"place_s" : "Madrid",
 		"country_s" : "Espagne"
+	},
+	{
+		"id_s" : "roma-borghese",
+		"location_s" : "Galleria Borghese",
+		"place_s" : "Rome",
+		"country_s" : "Italie"
 	}
 ]

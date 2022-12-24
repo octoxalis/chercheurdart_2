@@ -16,9 +16,9 @@ body > nav {
   z-index: 10;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0 15%;
+  right: 0;
+  width: 80%;
+  padding: 0 5%;
 }
 body > iframe {
   display: none;

@@ -18,7 +18,7 @@ const S_o =
   FONT_BODY_s: `'Cantarell Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif`,
   FONT_MONO_s: `'JetBrains Mono Light', system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace`,
 
-  FIGURE_BORDER_s: '.5rem',
+  FIGURE_BORDER_s:   '.5rem',
   PARAGRAPH_WIDTH_s: '50ch',
   INS_WIDTH_s:       '60ch',
 
@@ -47,7 +47,7 @@ const S_o =
   hue_cancel:   0,
   hue_accept:   120,
   hue_p:        CONF_o.HUE_P_n,     /* user definable primary */
-  hue_dot:     CONF_o.HUE_P_n - 180,
+  hue_dot:      CONF_o.HUE_P_n - 180,
   
   sat_hi_4: `94%`,           /* 11 point scale */
   //--
@@ -120,7 +120,7 @@ const S_o =
   S_o.nav_dot_home =    `hsla( ${S_o.hue_p}    ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
   S_o.nav_dot_article = `hsla( ${S_o.hue_p}    ${S_o.sat_lo_4} ${S_o.lum_hi_1} /1)`
   S_o.nav_dot_gallery = `hsla( 60              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
-  S_o.nav_dot_panorama = `hsla( ${S_o.hue_p + 90}              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
+  S_o.nav_dot_expo = `hsla( ${S_o.hue_p + 90}              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
   S_o.nav_dot_stat =    `hsla( ${S_o.hue_dot} ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
 
   S_o.nav_dot_set_1 =   `hsla( ${S_o.hue_dot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
@@ -242,7 +242,7 @@ module.exports = S_o
   nav_dot_home: 'hsla( 190    61% 50% /1)',
   nav_dot_article: 'hsla( 190    6% 37.75% /1)',
   nav_dot_gallery: 'hsla( 60              61% 37.75% /1)',
-  nav_dot_panorama: 'hsla( 280              61% 37.75% /1)',
+  nav_dot_expo: 'hsla( 280              61% 37.75% /1)',
   nav_dot_stat: 'hsla( 10 61% 50% /1)',
   nav_dot_set_1: 'hsla( -170 72% 74.5% /1)',
   nav_dot_set_2: 'hsla( -170 72% 25.5% /1)',

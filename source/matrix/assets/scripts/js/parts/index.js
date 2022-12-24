@@ -5,7 +5,7 @@ const IND_o =
   () =>
   {
     //-- if ( '{{U_o.url_s}}' === '{{U_o.DEV_s}}' ) return  //: skip service worker in dev mode
-    //>
+    //-->
     navigator  //--  navigator.serviceWorker.register( url_s } )  //: WITHOUT Service-Worker-Allowed HTTP header 
       .serviceWorker
       .register
@@ -172,40 +172,57 @@ const IND_o =
       )
   }
   ,
+
+
+
+  init__v
+  ()
+  {
+    IND_o
+      .service__v()
+    
+    window
+      .onload
+    =
+    async () =>
+    {
+      IND_o
+        .listener__v()
+    
+      const
+        {
+          work_s,
+          stat_s,
+        } =
+          document
+            .querySelector( 'body' )
+              .dataset
+    
+      if
+      (
+        stat_s
+      )
+      {
+        const key_s
+        =
+          await
+          LOC_o
+            .search__()    //: '{{C_o.LOC_SEARCH_s}}'
+    
+        STAT_o
+          .init__v
+          (
+            key_s
+            ||
+            work_s
+          , stat_s
+          )
+      }
+    }
+  }
 }
 
 
 
-void function
-()
-{
-  IND_o
-    .service__v()
-
-  window
-    .onload
-  =
-  () =>
-  {
-    IND_o
-      .listener__v()
-
-    const
-      {
-        work_s,
-        stat_s,
-      } =
-        document
-          .querySelector( 'body' )
-            .dataset
-
-    stat_s
-    &&
-    STAT_o
-      .init__v
-      (
-        work_s,
-        stat_s,
-      )
-  }
-} ()
+IND_o
+  .init__v()

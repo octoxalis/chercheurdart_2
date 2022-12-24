@@ -24,7 +24,7 @@ class Idb
   {
     this.ready_o = new Promise( ( resolve, reject ) =>
     {
-      const open_o = window.indexedDB.open( this.idb_s, this.version_n )
+      const open_o = indexedDB.open( this.idb_s, this.version_n )
 
       open_o.onupgradeneeded = request_o => 
       {
@@ -250,6 +250,6 @@ class Idb
   
   deleteIDB__v ()
   {
-    window.indexedDB.deleteDatabase( this.idb_s )
+    indexedDB.deleteDatabase( this.idb_s )
   }
 }

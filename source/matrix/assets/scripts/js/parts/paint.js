@@ -26,7 +26,7 @@ const PAI_o =
   }
   ,
 
-  view_o:
+  dock_o:
   {
     perspective_n: 1000,
     distance_n:    -100,
@@ -1565,7 +1565,7 @@ const PAI_o =
      
     let scale_n =
       PAI_o
-        .view_o
+        .dock_o
           .scale_n
           
     scale_n +=
@@ -1589,7 +1589,7 @@ const PAI_o =
         )
 
     PAI_o
-      .view_o
+      .dock_o
         .scale_n =
           scale_n
     
@@ -1746,7 +1746,7 @@ const PAI_o =
   
     }
 
-    //=== VIEW ===
+    //=== DOCK ===
     for      //: move nodes in fixed position
     (
       let id_s
@@ -1754,7 +1754,7 @@ const PAI_o =
       [
         '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings',
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings',
-        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_view',
+        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock',
       ]
     )
     {
@@ -1792,7 +1792,7 @@ const PAI_o =
         DOM_o
           .listener__v
           (
-            `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_view_${range_s}`,
+            `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_dock_${range_s}`,
             PAI_o
               .rangeEvent__v,
             event_s

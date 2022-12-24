@@ -10,6 +10,16 @@
 		"death_place_s" : "Paris"
 	},
 	{
+		"id_s" : "2022-local",
+		"forename_s" : "",
+		"lastname_s" : "local",
+		"nickname_s" : null,
+		"birth_date_n" : 2022,
+		"death_date_n" : 2022,
+		"birth_place_s" : "Paris",
+		"death_place_s" : "Paris"
+	},
+	{
 		"id_s" : "1703-boucher",
 		"forename_s" : "François",
 		"lastname_s" : "Boucher",
@@ -98,6 +108,35 @@
 		"death_date_n" : 1660,
 		"birth_place_s" : "Sevilla",
 		"death_place_s" : "Madrid"
+	},
+	{
+		"id_s" : "1571-merisi",
+		"forename_s" : "Michelangelo",
+		"lastname_s" : "Merisi",
+		"nickname_s" : "Caravaggio",
+		"birth_date_n" : 1571,
+		"death_date_n" : 1610,
+		"birth_place_s" : "Milano",
+		"death_place_s" : "Porto Ercole"
+	},
+	{
+		"id_s" : "1591-ribera",
+		"forename_s" : "Jusepe de",
+		"lastname_s" : "Ribera",
+		"nickname_s" : "lo Spagnoletto",
+		"birth_date_n" : 1591,
+		"death_date_n" : 1652,
+		"birth_place_s" : "Játiva",
+		"death_place_s" : "Napoles"
+	},
+	{
+		"id_s" : "1575-reni",
+		"forename_s" : "Guido",
+		"lastname_s" : "Reni",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
 	}
 ]
-

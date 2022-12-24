@@ -610,8 +610,8 @@ css__v:
         (
           `<figure id="${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}">`
 
-          + `<label data-legend="${C_o.NAV_LEGEND_o.panorama.legend_s}">`
-          + `<span data-role="${C_o.NAV_LEGEND_o.panorama.legend_s}">&nbsp;</span>`
+          + `<label data-legend="${C_o.NAV_LEGEND_o.expo.legend_s}">`
+          + `<span data-role="${C_o.NAV_LEGEND_o.expo.legend_s}">&nbsp;</span>`
           + `</label>`
           + `<a href="#${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
           +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
@@ -632,8 +632,8 @@ css__v:
         (
           `<figure id="${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
 
-          + `<label data-legend="${C_o.NAV_LEGEND_o.panorama.legend_s}">`
-          + `<span data-role="${C_o.NAV_LEGEND_o.panorama.legend_s}">&nbsp;</span>`
+          + `<label data-legend="${C_o.NAV_LEGEND_o.expo.legend_s}">`
+          + `<span data-role="${C_o.NAV_LEGEND_o.expo.legend_s}">&nbsp;</span>`
           + `</label>`
           + `<a href="#${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}">`
           +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
@@ -792,7 +792,7 @@ module.exports =
     section_a
   )
   {
-    ;console.log( section_a )
+    //;console.log( section_a )
 
     INS_o
       .gray_a = []       //: create stack

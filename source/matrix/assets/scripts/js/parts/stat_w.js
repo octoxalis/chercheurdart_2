@@ -50,7 +50,6 @@ const RGB_H__n =
 
 
 
-
 const RGB_S__n =
 (
   r_n,
@@ -123,6 +122,8 @@ const STAT_W_o =
     scan_b: false,
   }
   ,
+
+  url_o: {},  //: local img data (base64) indexedDB key_s: src_s
 
   message_a:
   [
@@ -321,6 +322,8 @@ const STAT_W_o =
         )
       }
       //-->
+      //-- else
+      //-- {
       let
       [
         x_n,
@@ -330,15 +333,28 @@ const STAT_W_o =
       ] =
         rect_s
           .split( ' ' )
-  
+
+      if        //: work_s is an indexedDB key
+      (
+        url_s
+          .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
+      )
+      {
+        url_s
+        =
+        STAT_W_o
+          .url_o
+            [ url_s ]
+      }
+    
       const response_o =
         await fetch( url_s )
-  
+    
       const blob_o =
         await response_o
           .blob()
-  
-      const bitmap_o =
+    
+      bitmap_o =
         await createImageBitmap
         (
           blob_o,
@@ -352,6 +368,7 @@ const STAT_W_o =
             resizeQuality: 'high'
           }
         )
+      //-- }
 
       if
       (
@@ -584,10 +601,56 @@ const STAT_W_o =
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
-      //=== fetch image data Array
-      const url_s =
-        `/{{C_o.IMG_DIR_s}}${payload_o.work_s}{{C_o.IMG_MAX_PATH_s}}color.jpeg`
+      const work_s
+      =
+        payload_o
+          .work_s
+
+      let url_s
+      
+      if        //: work_s is an indexedDB key
+      (
+        work_s
+          .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
+      )
+      {
+        STAT_W_o
+          .idb_o
+        =
+          new Idb
+          (
+            '{{A_o.ID_s}}_idb'
+          , '{{A_o.ID_s}}_store'
+          )
+
+        const value_s
+        =
+          await
+          STAT_W_o
+            .idb_o
+              .get__( work_s )
+
+        const value_o
+        =
+          JSON
+            .parse( value_s )
+
+        url_s
+        =
+          value_o
+            .src_s
+
+        STAT_W_o
+          .url_o
+            [ work_s ]
+        =
+          url_s
+      }
+      else
+      {
+        url_s =
+          `/{{C_o.IMG_DIR_s}}${payload_o.work_s}{{C_o.IMG_MAX_PATH_s}}color.jpeg`
+      }
       
       const response_o =
         await fetch( url_s )
@@ -617,6 +680,7 @@ const STAT_W_o =
           0
         )
       
+      //=== fetch image data Array
       const imgData_o =
         context_o
           .getImageData
@@ -1094,7 +1158,7 @@ const STAT_W_o =
                 
           return
         }
-        //>
+        //-->
         if
         (
           payload_o
@@ -2507,7 +2571,7 @@ const STAT_W_o =
 
       return
     }
-    //>
+    //-->
     const slot_a
     =
       Array
@@ -2537,7 +2601,7 @@ const STAT_W_o =
             {
               return 1
             }
-            //>
+            //-->
             if
             (
               second
@@ -2547,7 +2611,7 @@ const STAT_W_o =
             {
               return -1
             }
-            //>
+            //-->
             return (
               second
                 .rate_n

@@ -314,7 +314,7 @@ module.exports =
 
     let legend_s
     =
-      `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s} data-zozo="JAJA">`
+      `<${C_o.TABLE_TAG_s} data-ins=${C_o.INS_IMG_s}>`
       + `<${C_o.ROW_TAG_s}>${artist_o.forename_s} ${artist_o.lastname_s} ${artist_o.nickname_s??''}</${C_o.ROW_TAG_s}>`
 
     const link_s
@@ -347,8 +347,8 @@ module.exports =
         +=
           `<${C_o.ROW_TAG_s}>${year_s}</${C_o.ROW_TAG_s}>`
           + `<${C_o.ROW_TAG_s}><i>${height_s}</i><i>${width_s}</i></${C_o.ROW_TAG_s}>`
-          + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
           + `<${C_o.ROW_TAG_s}>${collection_o.location_s}</${C_o.ROW_TAG_s}>`
+          + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
       }
 
 

@@ -2,7 +2,6 @@
 
 const BUR_o =
 {
-  //++ idb_o:          //: init in init__v
   //++ work_s:
   //++ width_s:
   //++ height_s:
@@ -233,6 +232,12 @@ const BUR_o =
         `<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${slot_a[1]}`
     }
 
+    document
+      .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
+        .innerHTML
+    =
+      html_s
+
     BUR_o
       .trace_o
         [`${hsl_s}_e`]
@@ -274,10 +279,7 @@ const BUR_o =
     )
     {
       BUR_o
-        .slotHue__v
-        (
-          slot_a
-        )
+        .slotHue__v( slot_a )
 
       BUR_o
         .satLum__v()
@@ -333,7 +335,7 @@ const BUR_o =
 
       legend_s
       =
-      `${hue_a[0]}{{C_o.RANGE_s}}${hue_a[1]}`
+      `${hue_a[0]}<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${hue_a[1]}`
     }
     else    //: slideshow is over
     {
@@ -423,49 +425,46 @@ const BUR_o =
 
 
   ,
-  get_img
+  getImage
   ()
   {
-    let work_s =
-      BUR_o
-        .work_s
-
-    const
-      [
-        width_s,
-        height_s
-      ] =
-        document
-          .querySelector( 'body' )
-            .dataset
-              .wh_s
-                .split( '_' )
-
     const canvas_e =
       document
         .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
 
     canvas_e
       .width =
-        +width_s
+        BUR_o
+          .imgWidth_n
 
     canvas_e
       .height =
-        +height_s
+        BUR_o
+          .imgHeight_n
 
     const offCanvas_e =
       canvas_e
         .transferControlToOffscreen()
   
     const centerX =
-      +width_s      //: Number cast
+      BUR_o
+        .imgWidth_n
       *
       .5
     
     const centerY =
-      +height_s      //: Number cast
+      BUR_o
+        .imgHeight_n
       *
       .5
+
+    BUR_o
+        .work_s
+    =
+     document
+      .body
+        .dataset
+          .work_s
 
     BUR_o
       .worker_o           //! using port postMessage directly
@@ -473,27 +472,21 @@ const BUR_o =
           .postMessage    //! 'OffscreenCanvas could not be cloned because it was not transferred'
           (
             {
-              task_s:   'GET_img'
-              ,
-              stat_s: '{{C_o.STAT_a[0]}}'
-              ,
-              rect_s:   `${centerX} ${centerY} ${width_s} ${height_s}`
-              ,
-              scale_n:  1
-              ,
-              url_s:    `/{{C_o.IMG_DIR_s}}${work_s}/full/max/0/color.jpeg`  //: begining slash for site relative url
-              ,
-              canvas_e: offCanvas_e
-              ,
-              storeBitmap_b: false
-              ,
-              //XX layer_n: layer_n,
-              pixel_n:  window.devicePixelRatio    //????
-              ,
-            },
-            [ offCanvas_e ]
+              task_s: 'GET_img'
+            , stat_s: '{{C_o.STAT_a[0]}}'
+            , rect_s: `${centerX} ${centerY} ${BUR_o.imgWidth_n} ${BUR_o.imgHeight_n}`
+            , scale_n: 1
+            , url_s:
+                LOC_o
+                  .localKey_s
+                ||
+                `/{{C_o.IMG_DIR_s}}${BUR_o.work_s}/full/max/0/color.jpeg`  //: begining slash for site relative url
+            , canvas_e: offCanvas_e
+            , storeBitmap_b: false
+            , pixel_n:  window.devicePixelRatio    //????
+            }
+            , [ offCanvas_e ]
           )
-
   }
   
 
@@ -1631,7 +1624,7 @@ const BUR_o =
         DOM_o
           .rootVar__v
           (
-            `--{{C_o.STAT_a[0]}}_img_backgroud`
+            `--{{C_o.STAT_a[0]}}_img_background`
             ,
             '{{S_o.bgblack_s}}'
           )
@@ -1643,7 +1636,7 @@ const BUR_o =
         DOM_o
           .rootVar__v
           (
-            `--{{C_o.STAT_a[0]}}_img_backgroud`
+            `--{{C_o.STAT_a[0]}}_img_background`
             ,
             '{{S_o.bgwhite_s}}'
           )
@@ -1656,7 +1649,7 @@ const BUR_o =
         DOM_o
           .rootVar__v
           (
-            `--{{C_o.STAT_a[0]}}_img_backgroud`
+            `--{{C_o.STAT_a[0]}}_img_background`
             ,
             'hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1)'
           )
@@ -1755,7 +1748,7 @@ const BUR_o =
     const scale_e
     =
       document
-        .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_view_scale' )  //: IN_burst_view_scale
+        .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale' )  //: IN_burst_dock_scale
 
     const scale_n
     =
@@ -1931,7 +1924,7 @@ const BUR_o =
         let range_s
         of
         [
-          'view_scale',
+          'dock_scale',
           'thresh_hi',
           'thresh_lo',
           'hue_img_bg_opacity',
@@ -2004,8 +1997,7 @@ const BUR_o =
       =
       () =>
         BUR_o
-          .img_position__v()
-
+          .placeImage__v()
     }
 
     for
@@ -2044,7 +2036,7 @@ const BUR_o =
         .beforeNode__e
         (
           document
-            .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view` )
+            .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock` )
             ,
           `goto_${node_s}`
       )
@@ -2140,24 +2132,13 @@ const BUR_o =
 
 
   ,
-  img_position__v
+  placeImage__v
   ()
   {
-    const
-    [
-      width_n
-    , height_n
-    ]
-    =
-      document
-        .body
-          .dataset
-            .wh_s
-              .split( '{{C_o.WORDS_CONCAT_s}}' )
-
     let scale_n
     =
-      height_n
+      BUR_o
+        .imgHeight_n
       /
       window
         .innerHeight
@@ -2195,34 +2176,66 @@ const BUR_o =
       )
   }
 
-
-
   ,
-  init__v
+  async imgDim__v
   ()
   {
-    const body_e
-    =
-     document
-      .querySelector( 'body' )
+    let width_s
+    let height_s
 
-    BUR_o
-      .work_s
-    =
-      body_e
-        .dataset
-          .work_s
+    const value_o =
+      await
+      LOC_o
+        .search__( 'JSON' )
 
-    const
+    if
+    (
+     value_o
+    )
+    {
+      width_s
+      =
+        value_o
+          .width_s
+
+      height_s
+      =
+        value_o
+          .height_s
+
+      document
+        .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
+          .innerHTML
+
+      const title_e
+      =
+        document
+          .querySelector( `h1+p` )
+
+      if
+      (
+        title_e
+      )
+      {
+        title_e
+          .innerHTML
+        =
+        key_s
+      }
+    }
+    else
+    {
       [
-        width_s,
-        height_s
+        width_s
+      , height_s
       ]
-    =
-      body_e
-        .dataset
-          .wh_s
-            .split( '_' )
+      =
+       document
+        .body
+          .dataset
+            .wh_s
+              .split( '_' )
+    }
 
     BUR_o
       .imgWidth_n
@@ -2233,6 +2246,17 @@ const BUR_o =
       .imgHeight_n
     =
       +height_s    //: Number cast
+  }
+
+
+
+  ,
+  async init__v
+  ()
+  {
+    await
+    BUR_o
+      .imgDim__v()
 
     BUR_o
       .screen__v()
@@ -2291,24 +2315,17 @@ const BUR_o =
         )
 
     BUR_o
-      .idb_o
-    =
-      new Idb
-      (
-        '{{A_o.ID_s}}_idb'
-      , '{{A_o.ID_s}}_store'
-      )
-  
-    BUR_o
      .listener__v()
 
     BUR_o
-      .get_img()
+      .getImage()
 
     BUR_o
-      .img_position__v()
+      .placeImage__v()
   }
 }
+
+
 
 BUR_o
   .init__v()

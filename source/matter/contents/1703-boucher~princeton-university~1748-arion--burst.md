@@ -30,8 +30,10 @@
   ],
   css_a:
   [
-    'stat.min.css',
-    'stat_burst.min.css',
+    'Idb.min.js',
+    'location.min.js',
+    'dom.min.js',
+    'stat.min.js',
   ],
 
   version_a:
@@ -63,6 +65,6 @@
 
 <<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
-Graphique de répartition chromatique à échelle logarithmique
+Répartition chromatique (échelle logarithmique)
 
 {% end_section %}

@@ -6,18 +6,17 @@
   --{{C_o.STAT_a[0]}}_trace_color: {{S_o.bg_lower}};
   --{{C_o.STAT_a[0]}}_trace_pointer_s: url( /assets/styles/css/spot_cursor.svg ) 8 8, auto;
   --{{C_o.STAT_a[0]}}_trace_pointer: var(--{{C_o.STAT_a[0]}}_trace_pointer_s);
-  ;
   --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
   --{{C_o.STAT_a[0]}}_level_scale: {{C_o.BURST_LEVEL_SCALE_n}};
   --{{C_o.STAT_a[0]}}_level: none;
   --{{C_o.STAT_a[0]}}_canvas_dim: calc( (var(--{{C_o.STAT_a[0]}}_screen_dim) * {{C_o.SCREEN_RATIO_n}}) - ({{S_o.NAV_HEIGHT_s}} * 2));
   --{{C_o.STAT_a[0]}}_img_transform: 80vmin;
-  --{{C_o.STAT_a[0]}}_img_bg_hue: 180;
+  --{{C_o.STAT_a[0]}}_img_bg_hue: {{S_o.hue_p}};
   --{{C_o.STAT_a[0]}}_img_bg_sat: 50;
   --{{C_o.STAT_a[0]}}_img_bg_lum: 25;
   --{{C_o.STAT_a[0]}}_img_bgwhite: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 100% 100% /1);
   --{{C_o.STAT_a[0]}}_img_bgblack: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 0% 0% /1);
-  --{{C_o.STAT_a[0]}}_img_backgroud: var(--{{C_o.STAT_a[0]}}_img_bgblack);
+  --{{C_o.STAT_a[0]}}_img_background: var(--{{C_o.STAT_a[0]}}_img_bgwhite);
   --{{C_o.STAT_a[0]}}_satlum_s: none;
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > canvas {
@@ -324,22 +323,24 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.ST
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo > input[type=range] {
   transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view:hover {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock:hover {
   background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
   opacity: 1;
-  transition: opacity .5s ease;
+  transform: translateY( 0 );
+  transition: all .4s ease;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock {
   position: fixed;
-  top: calc( 100vh - 10em );
+  top: calc( 100vh - 11em );
   left: calc( 50vw - 100px - {{S_o.PAD_1}} );
   padding: {{S_o.PAD_2}};
   background: {{S_o.table}};
   border-radius: 8px;
   opacity: .1;
-  transition: opacity .5s ease;
+  transform: translateY( 8em );
+  transition: all .4s ease;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock > input[type=range] {
   position: relative;
   top: {{S_o.PAD_5}};
   width: 200px;
@@ -347,7 +348,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range] {
   cursor: pointer;
   transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock > label {
   position: relative;
   top: -{{S_o.PAD_6}};
   padding: {{S_o.PAD_1}};
@@ -357,29 +358,29 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label {
   border: none;
   opacity: .5;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label[data-legend] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock > label[data-legend] {
   top: 0;
   margin: 0 0 {{S_o.PAD_4}} {{S_o.PAD_1}};
   font-size: 95%;
   text-transform: uppercase;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label[data-legend] > span {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock > label[data-legend] > span {
   background: {{S_o.nav_dot_set_3}};
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > label[data-legend]:hover > span[data-role] {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock > label[data-legend]:hover > span[data-role] {
   background: transparent;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range]:focus {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock > input[type=range]:focus {
   outline: none;
   filter: hue-rotate( -220deg );
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view > input[type=range]:focus + label {
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock > input[type=range]:focus + label {
   background: {{S_o.lighter}};
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#goto_{{C_o.STAT_a[0]}}_level, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#goto_{{C_o.STAT_a[0]}}_level, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock {
   display: none;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock {
   display: flex;
   flex-direction: column;
 }
@@ -422,7 +423,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) 
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings > aside > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue {
   display: none;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_view {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock {
   display: none;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) > div#goto_{{C_o.STAT_a[0]}}_level {
@@ -447,7 +448,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img {
   grid-area: 1/-1;
   max-width: 1000vw;
-  background: var(--{{C_o.STAT_a[0]}}_img_backgroud);
+  background: var(--{{C_o.STAT_a[0]}}_img_background);
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul {
   display: flex;
@@ -524,7 +525,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li:nth-of-type(1) > label {
-  justify-content: center;
+  justify-content: space-around;
   padding: .25rem;
   width: 16ch;
   color: currentColor;
@@ -631,7 +632,7 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   transition: transform .2s;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position"] {
-  transform: scale( 3 );
+  transform: scale( 2 );
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
   display: flex;

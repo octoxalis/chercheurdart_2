@@ -6,9 +6,9 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      5123,
+  doc_n:      5129,
   title_s:    `Annibale Carracci`,
-  subtitle_s: `Annibale Carracci: LOrion`,
+  subtitle_s: `Annibale Carracci: Le couronnement de la Vierge`,
   abstract_s: `Le couronnement de la Vierge&mdash;1595 post`,
   workID_s:   '1560-carracci~new_york-met~1595-coronation',
   widthHeight_s:  '3756_3104',
@@ -19,13 +19,14 @@
   [
     `article`,
     `galerie`,
-    `panorama`,
   ],
 
   script_a:
   [
+    'Idb.min.js',
+    'location.min.js',
     'dom.min.js',
-    'panorama.min.js',
+    'expo_in.min.js',
   ],
   css_a:
   [
