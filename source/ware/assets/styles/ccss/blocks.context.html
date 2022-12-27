@@ -68,15 +68,6 @@
         text-align: center;
         transform: scale( .5 );
 </block>
-<block top_button>
-          width:  2rem;
-          height: 2rem;
-          line-height: 2rem;                /* vertical centering */
-          text-align: center;
-          border: 1px solid {{S_o.shadow_ne}};
-          border-radius: 50%;
-          background: transparent;
-</block>
 <block input_range>
           width: 200px;
           background: transparent;
@@ -84,7 +75,18 @@
           transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 </block>
 <block settings>
-          border-top-right-radius: 16px;
-          border-bottom-right-radius: 16px;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+          box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
+          background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
+</block>
+<block top_button>
+          width:  2rem;
+          height: 2rem;
+          line-height: 2rem;                /* vertical centering */
+          text-align: center;
+          border: 1px solid {{S_o.nav_dot_set_4}};
+          border-radius: 8px;
+          background: transparent;
 </block>
 

@@ -76,7 +76,7 @@ const C_o =
   STAT_a:         //: section[3]
   [
     'burst',
-    'aster',
+    'reserved',    //.....
     'paint',
     'match',
   ],
@@ -101,15 +101,15 @@ const C_o =
     expo_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
     expo_remove: { icon_s: `&nbsp;`, legend_s: `supprimer`},
     expo_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
-    //XX expo_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
     expo_wrap: { icon_s: `&nbsp;`, legend_s: `affichage`},
-    expo_local: { icon_s: `&nbsp;`, legend_s: `ajouter`},
-    expo_caption: { icon_s: `&nbsp;`, legend_s: `caption`},
+    expo_add: { icon_s: `&nbsp;`, legend_s: `ajouter`},
+    expo_local: { icon_s: `&nbsp;`, legend_s: `image locale`},
+    expo_caption: { icon_s: `&nbsp;`, legend_s: `description`},
    //??  expo_process: { icon_s: `&nbsp;`, legend_s: `répartition`},
 
 
     burst: { icon_s: `&#8718;`, legend_s: `répartition`},
-    aster: { icon_s: `&#8718;`, legend_s: `aster`},
+    reserved: { icon_s: `&#8718;`, legend_s: `reserved`},
     paint: { icon_s: `&#8718;`, legend_s: `transformation`},
     match: { icon_s: `&#8718;`, legend_s: `corrélation`},
 
@@ -175,7 +175,7 @@ const C_o =
   STAT_REPLACE_a:
   [
                        '<del for=burst_div hidden ></del>',    //: STAT_ID_s + _ + STAT_a entry
-                       '<del for=div_aster hidden ></del>',    //: idem
+                       '<del for=div_reserved hidden ></del>',    //: idem
                        '<del for=div_paint hidden ></del>',    //: idem
   ],
 
@@ -211,7 +211,7 @@ const C_o =
   PAINT_SLIDER_n:       2,    //: 2px line
 
   //=== EXPO TOOLS ===
-  EXPO_WRAP_n:       2,
+  EXPO_WRAP_n:       5,
 
 
   //=== HTML-BODY ANCHORS
@@ -260,6 +260,7 @@ const C_o =
 
   //=== HTML-BODY: EXTEND MARKUP ===
   INFO_s:               '&#8505;',   //: Information Source Emoji:  ℹ
+  ZOOM_OUT_s:           '&#10006;',   //: CIRCLED DASH:             ✕
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow:             ↑
   FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮

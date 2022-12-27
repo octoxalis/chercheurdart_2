@@ -478,7 +478,7 @@ const BUR_o =
             , scale_n: 1
             , url_s:
                 LOC_o
-                  .localKey_s
+                  .search_s
                 ||
                 `/{{C_o.IMG_DIR_s}}${BUR_o.work_s}/full/max/0/color.jpeg`  //: begining slash for site relative url
             , canvas_e: offCanvas_e
@@ -1907,6 +1907,16 @@ const BUR_o =
             .eventImg_slideshow__v
         )
 
+    document
+      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_max` )
+        ?.addEventListener
+        (
+          'click'
+          , () =>
+            {
+            
+            }
+        )
     
     //=== RANGE EVENTS ===
     for
@@ -2036,7 +2046,7 @@ const BUR_o =
         .beforeNode__e
         (
           document
-            .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_layer_dock` )
+            .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_dock` )
             ,
           `goto_${node_s}`
       )
@@ -2176,6 +2186,8 @@ const BUR_o =
       )
   }
 
+
+
   ,
   async imgDim__v
   ()
@@ -2186,7 +2198,7 @@ const BUR_o =
     const value_o =
       await
       LOC_o
-        .search__( 'JSON' )
+        .search__( '{{C_o.LOC_JSON_s}}' )
 
     if
     (
@@ -2220,7 +2232,9 @@ const BUR_o =
         title_e
           .innerHTML
         =
-        key_s
+        //-- key_s
+        value_o
+          .id_s
       }
     }
     else

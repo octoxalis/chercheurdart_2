@@ -249,6 +249,7 @@ const PAI_o =
       + ` width=${width_s} height=${height_s}`
       + ` data-layer_n=${layer_n}`
       + ` data-size_n=1`
+      + ` data-fullsize_b=true`
       + ` title="{{C_o.NAV_LEGEND_o.layer_s.legend_s}} ${legend_s}">`
       + `</canvas>`
 
@@ -1754,7 +1755,7 @@ const PAI_o =
       [
         '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings',
         '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings',
-        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock',
+        '{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock',
       ]
     )
     {

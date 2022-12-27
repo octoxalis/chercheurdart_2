@@ -14,65 +14,67 @@ section#{{C_o.SECTION_a[1]}} > figure {
 section#{{C_o.SECTION_a[1]}} > figure > * {
   grid-area: 1/-1;
 }
-section#{{C_o.SECTION_a[1]}} > figure > img {
-  object-fit: contain;
+section#{{C_o.SECTION_a[1]}} > figure > * > {
   max-width: 100%;
   height: auto;
   border-style: solid;
   border-width: {{S_o.FIGURE_BORDER_s}};
   border-image: radial-gradient( {{S_o.frame_gradient_from}}, {{S_o.frame_gradient_to}} ) 1;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a {
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid {{S_o.shadow_ne}};
   border: none;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption {
   padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
   height: 100%;
   background: {{S_o.shadow_hi}};
   opacity: 0;
   transition: opacity .3s;
+  width: fit-content;
+  height: fit-content;
+  border-bottom-right-radius: 18px;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
   opacity: 0;
   transition: opacity 1s ease;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} {
   display: table;
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i {
   font-style: normal;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
   content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a {
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid {{S_o.shadow_ne}};
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a:hover {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a:hover {
   border-bottom: 1px solid;
   filter: brightness( {{S_o.brightness_hi}} );
   transition: opacity .2s;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: {{S_o.FONT_BOLD_s}};
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
 }
-section#{{C_o.SECTION_a[1]}} > figure > a > figcaption:hover {
+section#{{C_o.SECTION_a[1]}} > figure > * >  > a > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
   transition: opacity .3s;

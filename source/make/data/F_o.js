@@ -351,10 +351,6 @@ module.exports =
           + `<${C_o.ROW_TAG_s}>${collection_o.place_s}${C_o.IMG_LEGEND_DELIM_s}${collection_o.country_s}</${C_o.ROW_TAG_s}>`
       }
 
-
-
-
-
       legend_s +=
         `</${C_o.TABLE_TAG_s}>`
 

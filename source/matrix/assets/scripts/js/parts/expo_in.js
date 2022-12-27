@@ -84,7 +84,6 @@ const EXI_o
         .target
           .closest( 'figure' )
 
-
     const img_e
     =
       figure_e

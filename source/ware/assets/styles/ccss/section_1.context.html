@@ -14,7 +14,7 @@ context( stack, new )
             grid-area: 1/-1;    /* matching */
     </*>
     <img/>
-            object-fit: contain;
+            /*object-fit: contain;*/
             max-width: 100%;
             height: auto;
             border-style: solid;
@@ -29,6 +29,14 @@ context( stack, new )
               background: {{S_o.shadow_hi}};
               opacity: 0;
               transition: opacity .3s;
+
+    width: fit-content;
+    height: fit-content;
+    border-bottom-right-radius: 18px;
+
+
+
+
         <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
               opacity: 0;
               transition: opacity 1s ease;

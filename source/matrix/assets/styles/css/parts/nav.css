@@ -1,7 +1,6 @@
 nav {
   display: flex;
   justify-content: center;
-  padding: {{S_o.PAD_2}};
 }
 nav > a {
   text-decoration: none;

@@ -226,33 +226,36 @@ blockquote {
 {{C_o.TABLE_TAG_s}}[role=table] > {{C_o.ROW_TAG_s}} > a {
   font-size: 100%;
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption {
   position: relative;
   padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
   background: {{S_o.shadow_hi}};
   opacity: 0;
   transition: opacity .3s;
+  width: fit-content;
+  height: fit-content;
+  border-bottom-right-radius: 18px;
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > a {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > a {
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid {{S_o.shadow_ne}};
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}} {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} {
   display: table;
   --font_max: 18px;
   --font_scale: 1.9vw;
   font-style: normal;
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i {
   font-size: 95%;
   font-weight: 200;
   font-style: normal;
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
   content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a {
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid {{S_o.shadow_ne}};
@@ -261,18 +264,18 @@ section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a {
   font-weight: 400;
   font-style: italic;
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a:hover {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a:hover {
   border-bottom: 1px solid;
   filter: brightness( {{S_o.brightness_hi}} );
   transition: opacity .2s;
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(3) {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(3) {
   width: 100%;
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(4) {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(4) {
   padding-top: {{S_o.PAD_4}};
 }
-section#{{C_o.SECTION_a[1]}} > figure > figcaption:hover {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
   transition: opacity .3s;

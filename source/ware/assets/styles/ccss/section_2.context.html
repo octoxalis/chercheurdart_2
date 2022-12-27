@@ -1,5 +1,26 @@
+<:root>
+        --{{C_o.SECTION_a[2]}}_zoom_out_s: none;
+</:root>
+
 context( stack, new )
 <section#{{C_o.SECTION_a[2]}}>
+  <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out>
+          z-index: 101;
+          display: var(--{{C_o.SECTION_a[2]}}_zoom_out_s);
+          align-items: center;
+          position: sticky;
+          top: 2rem;
+          left: calc( 50vw - 1rem );
+          width: 2rem;
+          height: 2rem;
+          line-height: 2rem;
+          font-size: 200%;
+          font-weight: 100;
+  </label>
+  <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out:hover>
+          cursor: zoom-out;
+          filter: brightness( 2 );
+  </label>
   <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry>
         --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_wrap_n, 2) - 2 ) * 1% );  /* default var: 2 */
         display: flex;
@@ -12,10 +33,25 @@ context( stack, new )
             display: grid;
             position: relative;
             height: fit-content;
+            cursor: zoom-in;
       <img/>
-              object-fit: contain;
+              /*object-fit: contain;*/
+              position: relative;
+              top: 0;
+              left: 0;
               width: 100%;
               height: auto;
+              cursor: zoom-in;
+              transition: all .5s ease;
+      <img class='fullsize' />
+              position: absolute;
+              z-index: 100;       /* cover all */
+              top: 0;
+              left: 0;
+              width: auto;
+              cursor: move;
+              box-shadow: 0 0 0 1000vmax {{S_o.shadow_full}};
+              transition: all .5s ease;
       <a>
               /*context( block, link_regular )*/
               position: absolute;
@@ -26,7 +62,11 @@ context( stack, new )
       <figcaption>
               position: relative;
               padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+              width: fit-content;
+              height: fit-content;
+              border-bottom-right-radius: 18px;
               background: {{S_o.shadow_hi}};
+              cursor: pointer;
               opacity: 0;
               transition: opacity .3s;
         <a>
@@ -84,24 +124,25 @@ context( stack, new )
   </div>
 
 
-  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock>
           display: flex;
           flex-direction: column;
           position: fixed;                         /* !!!!!!! TODO */
           top: 0;
           left: 0;
           width: 288px;
+          padding: {{S_o.PAD_2}};
           transform: translateX( -258px );  /* 288 - 30 */
           transition: .4s ease;
     <nav>
             flex-direction: column;
             align-self: flex-end;
             padding: 0;
-    align-self: flex-end;
       <label>
                 font-size: 85%;
         <span[data-role]>
-                background: white; /*{{S_o.nav_dot_set_3}};*/
+                background: {{S_o.nav_dot_set_4}};
+                border-radius: 6px;
         </span>
       </label>
       <label:hover>
@@ -111,8 +152,8 @@ context( stack, new )
       </label>
     </nav>
     <nav:hover>
-          background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
-             width: 100%;
+            width: 100%;
+            background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
     </nav>
     <input>
     context( copy, next )
@@ -145,9 +186,8 @@ context( stack, new )
       <label:nth-of-type(1)>
               position: relative;
               top: -{{S_o.PAD_4}};
-              /*padding: {{S_o.PAD_2}};*/
               text-align: left;
-              text-transform: uppercase;
+              /*text-transform: uppercase;*/
               font-size: 75%;
               border: none;
               opacity: .5;
@@ -166,18 +206,22 @@ context( stack, new )
               filter: hue-rotate( -220deg );
       </input>
     </div>
-  </div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock>
+  </div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock>
 
-  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock:hover>
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
-    box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
-          background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
+  <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock:hover>
+    /* border-top-right-radius: 16px;*/
+    /* border-bottom-right-radius: 16px;*/
+    /* box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);*/
+    /*background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);*/  /* {{S_o.table}} opaque */
+    context( block, settings )
           transform: translateX( 0 );
     <nav>
             align-self: center;
     </nav>
   </div>
+
+
+
   <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry>
     <figure>
       <*>
@@ -185,6 +229,7 @@ context( stack, new )
       </*>
     </figure>
   </div>
+  
 </section>
 
 context( stack, new )
@@ -195,3 +240,84 @@ context( stack, new )
     </label>
   </nav>
 </body>
+
+
+<div#dialog_{{C_o.SECTION_a[2]}}_dialog>
+        display: grid;
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        margin: auto;
+        padding: {{S_o.PAD_4}};
+        width: clamp(40ch, 80ch, 80vw);
+        background: {{S_o.form_bg}};
+        border-radius: 4px;
+        box-shadow: 0 0 0 1000vmax {{S_o.form_shadow}};
+  <form>
+          grid-area: 1/-1
+    <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog>
+              display: flex;
+              flex-direction: column;
+      <header>
+              display: flex;
+              gap: {{S_o.PAD_8}};
+              border-bottom: 1px solid {{S_o.form_label}};
+              text-transform: uppercase;
+        <label>
+                width: 2rem;
+                height: 2rem;
+                text-transform: uppercase;
+                font-size: 120%;
+                font-weight: 600;
+                color: {{S_o.darker}};
+        </label>
+        <label:nth-of-type(1)>
+                flex-grow: 2;
+        </label>
+        <label:nth-of-type(2)>
+                color: {{S_o.cancel_hi}};
+        </label>
+        <label:nth-of-type(4)>
+                color: {{S_o.accept_hi}};
+        </label>
+        <label:not(:nth-of-type(1)):hover>
+                filter: brightness( 4 );
+        </label>
+        <input>
+                display: none;
+        </input>
+      </header>
+    </div>
+  </form>
+</div>
+
+      <ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list>
+              display: flex;
+              flex-direction: column;
+              border: none;
+        <li[id^=item_]>
+                display: flex;
+                justify-content: space-between;
+                width: 90%;
+          <label[control]>
+                  width: 30%;
+                  line-height: 2rem;
+                  text-transform: uppercase;
+                  font-size: 85%;
+                  vertical-align: bottom;
+                  color: {{S_o.form_label}};
+          </label>
+          <input[type=text]/>
+                  flex-grow: 2;
+                  border: none;
+                  border-bottom: 1px solid {{S_o.form_text_lo}};
+                  outline: none;
+                  background: transparent;
+                  color: {{S_o.form_text}};
+                font-size: 85%;
+        </li>
+        <li:before>
+                  content: '';
+                  border: none;
+        </li>
+      </ul>

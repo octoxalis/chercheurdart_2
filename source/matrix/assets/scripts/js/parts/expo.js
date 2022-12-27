@@ -4,14 +4,14 @@ const EXP_o
 {
   local_a:
     []
-
-  ,
-  local_n:
+, local_n:
     0
+, full_e:
+    null
 
 
-  ,
-  order__n
+
+, order__n
   ()
   {
     const order_n =
@@ -28,6 +28,71 @@ const EXP_o
       )
 
     return order_n
+  }
+
+
+
+ ,   
+  caption__v
+  ()
+  {
+    ;console.log( 'caption__v' )
+
+  }
+
+
+
+  , 
+  selectable__v
+  ()
+  {
+    for
+    (
+      let figure_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption` )
+        )
+    )
+    {
+      figure_e
+        .addEventListener
+        (
+          'click',
+          EXP_o
+            .select__v
+        )
+    }
+  }
+
+
+  ,
+  zoomable__v
+  ()
+  {
+    for
+    (
+      let img_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `img[data-fullsize_b]` )
+        )
+    )
+    {
+      img_e
+        .addEventListener
+        (
+          'click'
+        , EXP_o
+            .sizeEventFull__v
+        )
+    }
   }
 
 
@@ -108,13 +173,19 @@ const EXP_o
 
         caption_s
         =
-          `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
-          + `<{{C_o.ROW_TAG_s}} data-local=1>{{C_o.NAV_LEGEND_o.expo_local.legend_s}}</{{C_o.ROW_TAG_s}}>`
-          + `<{{C_o.ROW_TAG_s}}>`
-          +  value_o
-               .id_s
-          + `</{{C_o.ROW_TAG_s}}>`
-          + `</{{C_o.TABLE_TAG_s}}>`
+          value_o
+            .caption_b
+          ?
+            value_o
+              .caption_s
+          :
+            `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
+            + `<{{C_o.ROW_TAG_s}} data-local=1>{{C_o.NAV_LEGEND_o.expo_local.legend_s}}</{{C_o.ROW_TAG_s}}>`
+            + `<{{C_o.ROW_TAG_s}}>`
+            +  value_o
+                 .id_s
+            + `</{{C_o.ROW_TAG_s}}>`
+            + `</{{C_o.TABLE_TAG_s}}>`
       }
       else            //: img.src
       {
@@ -131,7 +202,8 @@ const EXP_o
       show_s
       +=
         `<figure data-id="{{C_o.EXPO_ID_s}}${value_o.id_s}" data-display_b=${value_o.display_b} data-key_s="${show_o.key_s}">`
-        + `<img src="${src_s}" width="${value_o.width_s}" height="${value_o.height_s}" loading="lazy">`
+        + `<img src="${src_s}" width="${value_o.width_s}" height="${value_o.height_s}" loading="lazy" data-fullsize_b=true>`
+        //-- + ` data-offx=0  data-offy=0>`
         //?? + `<a href="#${value_o.id_s}">`
         //?? + `</a>`
         + `<figcaption data-local>`
@@ -148,6 +220,9 @@ const EXP_o
 
     EXP_o
       .selectable__v()
+
+    EXP_o
+      .zoomable__v()
   }
 
 
@@ -226,7 +301,6 @@ const EXP_o
         item_o
           .display_b
         =
-//--          after_b
           ! item_o
               .display_b
 
@@ -422,78 +496,8 @@ const EXP_o
 
 
   ,
-  caption__v
-  ()
-  {
-    ;console.log( 'caption__v' )
-
-    //....................
-  }
-
-
-
-  ,
-  burst__v
-  ()
-  {
-    const figure_a
-    =
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `figure.{{C_o.SELECTED_CLASS_s}}` )
-        )
-
-    if
-    (
-      ! figure_a
-          .length
-      ||
-      figure_a
-        .length
-      >
-      1
-    )
-    {
-      return void window
-                    .alert( `Pour effectuer cette opération, sélectionnez une seule image locale.` )
-    }
-
-    const figure_e
-    =
-      figure_a
-        [0]
-
-    if
-    (
-      ! figure_e
-          .querySelector( 'img'  )
-            .src
-              .startsWith( 'data:image/jpeg;base64' )
-    )
-    {
-      return void window
-                    .alert( `Veuillez sélectionnez une image locale.` )
-    }
-
-    const key_s =
-      figure_e
-        .dataset
-          .key_s
-
-    location
-      .href
-    =
-      `local--burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
-  }
-
-
-
-  ,
   async local__v  //: add from local file system
-  (
-  )
+  ()
   {
     //=== display file picker
     const
@@ -720,18 +724,291 @@ const EXP_o
               EXP_o
                 .select__v
             )
+
+        img_e
+          .addEventListener
+          (
+            'click'
+          , EXP_o
+              .sizeEventFull__v
+          )
       }
     }
 
-    EXP_o
-      .selectable__v()
-
+    //-- EXP_o
+    //--   .selectable__v()
   }
 
 
   
   ,
-  rangeEvent__v
+  burst__v
+  ()
+  {
+    const figure_a
+    =
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `figure.{{C_o.SELECTED_CLASS_s}}` )
+        )
+
+    if
+    (
+      ! figure_a
+          .length
+      ||
+      figure_a
+        .length
+      >
+      1
+    )
+    {
+      return void window
+                    .alert( `Pour effectuer cette opération, sélectionnez une seule image locale.` )
+    }
+
+    const figure_e
+    =
+      figure_a
+        [0]
+
+    if
+    (
+      ! figure_e
+          .querySelector( 'img'  )
+            .src
+              .startsWith( 'data:image/jpeg;base64' )
+    )
+    {
+      return void window
+                    .alert( `Veuillez sélectionnez une image locale.` )
+    }
+
+    const key_s =
+      figure_e
+        .dataset
+          .key_s
+
+    location
+      .href
+    =
+      `local--burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
+  }
+
+
+
+, async dialogEvent__v
+(
+    event_o
+)
+{
+  const id_s
+  =
+    event_o
+      .target
+        .id
+
+  switch( true )
+  {
+    case
+      id_s
+        .endsWith( 'cancel' )
+    :
+      ;console.log( 'cancel' )
+
+    break
+
+    case
+      id_s
+        .endsWith( 'accept' )
+    :
+      const figure_a
+      =
+        Array
+          .from
+          (
+            document
+              .querySelectorAll( `figure.{{C_o.SELECTED_CLASS_s}}` )
+          )
+
+      if
+      (
+        ! figure_a
+          .length
+      )
+      {
+        return void window
+                      .alert( `Veuillez sélectionnez une image locale à décrire.` )
+      }
+
+      const figure_e
+      =
+        figure_a
+          [0]
+  
+      if
+      (
+        ! figure_e
+            .querySelector( 'img'  )
+              .src
+                .startsWith( 'data:image/jpeg;base64' )
+      )
+      {
+        return void window
+                      .alert( `Veuillez sélectionnez une image locale.` )
+      }
+
+      const dialog_o
+      =
+        {}
+
+      for
+      (
+        let input_e
+        of
+
+        document
+          .querySelectorAll
+          (
+            `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_][type=text]`
+          )
+      )
+      {
+        const at_n
+        =
+          '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_'
+            .length
+
+        const property_s
+        =
+          input_e
+            .id
+              .substring( at_n )
+
+        dialog_o
+          [ `${property_s}` ]
+        =
+          input_e
+            .value
+      }
+
+    //=== see F_o.legend__s ==
+    let legend_s
+    =
+      `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
+      + `<{{C_o.ROW_TAG_s}}>${dialog_o.artist_s}</{{C_o.ROW_TAG_s}}>`
+
+    const link_s
+    =
+      dialog_o
+        .link_s
+      
+      if
+      (
+        link_s
+      )
+      {
+        legend_s
+        +=
+          `<{{C_o.ROW_TAG_s}}><a href="${link_s}">${dialog_o.subject_s}</a></{{C_o.ROW_TAG_s}}>`
+      }
+      else
+      {
+        legend_s
+        +=
+          `<{{C_o.ROW_TAG_s}}>${dialog_o.subject_s}</{{C_o.ROW_TAG_s}}>`
+      }
+
+        legend_s
+        +=
+          `<{{C_o.ROW_TAG_s}}>${dialog_o.year_n}</{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}><i>${dialog_o.w_height_n}</i><i>${dialog_o.w_width_n}</i></{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}>${dialog_o.location_s}</{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}>${dialog_o.place_s}{{C_o.IMG_LEGEND_DELIM_s}}${dialog_o.country_s}</{{C_o.ROW_TAG_s}}>`
+
+      legend_s +=
+        `</{{C_o.TABLE_TAG_s}}>`
+
+      const key_s =
+        figure_e
+          .dataset
+            .key_s
+
+      let value_s =
+        await
+        LOC_o
+          .idb_o
+            .get__( key_s )
+
+      if
+      (
+        value_s
+      )
+      {
+        const value_o
+        =
+          JSON
+            .parse( value_s )
+
+        value_o
+          .caption_s
+        =
+          legend_s
+
+        value_o
+          .caption_b
+        =
+          true      //: caption edited to display
+
+        LOC_o
+          .idb_o
+            .set__v
+            (
+              key_s,
+              JSON
+                .stringify( value_o )
+            )
+
+        EXP_o
+          .show__v()
+      }
+    
+    break
+
+    case
+      id_s
+        .endsWith( 'reset' )
+    :
+      for
+      (
+        let input_e
+        of
+        document
+          .querySelectorAll
+          (
+            `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_][type=text]`
+          )
+      )
+      {
+        input_e
+          .value
+        =
+          ''
+      }
+
+    break
+    default:
+      break
+
+  }
+
+}
+
+
+
+, rangeEvent__v
   (
     event_o
   )
@@ -748,37 +1025,116 @@ const EXP_o
 
 
   ,
-  selectable__v
-  ()
+  sizeEventFull__v
+  (
+    event_o
+  )
   {
-    for
+    if
     (
-      let figure_e
-      of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure` )
-        )
+      EXP_o
+        .full_e
     )
     {
-      figure_e
-        .addEventListener
-        (
-          'click',
-          EXP_o
-            .select__v
-        )
+      return    //: avoid click event when mouse up
     }
+    //-->
+    EXP_o
+      .full_e
+    =
+      event_o
+        .target
+   
+    if
+    (
+      EXP_o
+        .full_e
+          .parentNode
+            .dataset
+              .display_b
+      ===
+      'false'
+    )
+    {
+      return
+    }
+    //-->
+    EXP_o
+      .full_e
+        .classList
+          .toggle( 'fullsize' )
+
+    DRAG_o
+      .init__v
+      (
+        EXP_o
+          .full_e
+      )
+
+    DRAG_o
+      .enable__v()
+
+    DOM_o
+      .rootVar__v
+      (
+        '--{{C_o.SECTION_a[2]}}_zoom_out_s'
+      , 'flex'
+      )
   }
 
+
+  ,
+  sizeEventTiny__v
+  (
+    //?? event_o
+  )
+  {
+    EXP_o
+      .full_e
+        .classList
+          .toggle( 'fullsize' )
+
+    DRAG_o
+      .disable__v()
+
+    DOM_o
+      .rootVar__v
+      (
+        '--{{C_o.SECTION_a[2]}}_zoom_out_s'
+      , 'none'
+      )
+
+    EXP_o
+      .full_e
+    =
+      null
+
+    //== reinsert img_e to restore initial place
+    EXP_o
+      .show__v()
+  }
 
 
   ,
   listen__v
   ()
   {
+    DOM_o
+      .rootVar__v
+      (
+        '--{{C_o.SECTION_a[2]}}_wrap_n',
+        '{{C_o.EXPO_WRAP_n}}'
+      )
+
+    document
+      .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out' )
+        .addEventListener
+        (
+          'click'
+        , EXP_o
+            .sizeEventTiny__v
+        )
+    
     for
     (
       let id_s
@@ -805,6 +1161,32 @@ const EXP_o
           'click',
           EXP_o
             [ `${id_s}__v` ]
+        )
+    }
+
+    for
+    (
+      let id_s
+      of
+      [
+        'accept'
+      , 'cancel'
+      , 'reset'
+      ]
+    )
+    {
+      const listen_e =
+        document
+          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_${id_s}` )
+          
+      listen_e
+      &&
+      listen_e
+        .addEventListener
+        (
+          'change',
+          EXP_o
+            .dialogEvent__v
         )
     }
 
@@ -839,12 +1221,6 @@ const EXP_o
       }
     }
 
-    DOM_o
-      .rootVar__v
-      (
-        '--{{C_o.SECTION_a[2]}}_wrap_n',
-        '{{C_o.EXPO_WRAP_n}}'
-      )
   }
 
 

@@ -17,7 +17,8 @@ context( stack, new )
           top: 0;
           right: 0;
           width: 80%;
-          padding: 0 5%;
+          padding-right: 20%;  /* 100% - 80% */
+          margin-top: {{S_o.PAD_2}};
   </nav>
   <iframe>
           display: none;
@@ -34,7 +35,7 @@ context( stack, new )
   </a>
   <a#goto_{{C_o.FULL_SCREEN}}>
           display: none;
-          top:  {{S_o.PAD_2}};               /* see PAGE_TOP */
+          top: {{S_o.PAD_2}};               /* see PAGE_TOP */
   </a>
   <a#goto_{{C_o.PAGE_TOP}}>
   </a>

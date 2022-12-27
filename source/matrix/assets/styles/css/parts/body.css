@@ -18,7 +18,8 @@ body > nav {
   top: 0;
   right: 0;
   width: 80%;
-  padding: 0 5%;
+  padding-right: 20%;
+  margin-top: {{S_o.PAD_2}};
 }
 body > iframe {
   display: none;
@@ -32,8 +33,8 @@ body > a#goto_{{C_o.FULL_SCREEN}}, body > a#goto_{{C_o.PAGE_TOP}} {
   height: 2rem;
   line-height: 2rem;
   text-align: center;
-  border: 1px solid {{S_o.shadow_ne}};
-  border-radius: 50%;
+  border: 1px solid {{S_o.nav_dot_set_4}};
+  border-radius: 8px;
   background: transparent;
 }
 body > a#goto_{{C_o.FULL_SCREEN}} {

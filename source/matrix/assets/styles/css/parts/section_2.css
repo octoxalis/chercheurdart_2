@@ -1,3 +1,23 @@
+:root {
+  --{{C_o.SECTION_a[2]}}_zoom_out_s: none;
+}
+section#{{C_o.SECTION_a[2]}} > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out {
+  z-index: 101;
+  display: var(--{{C_o.SECTION_a[2]}}_zoom_out_s);
+  align-items: center;
+  position: sticky;
+  top: 2rem;
+  left: calc( 50vw - 1rem );
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 200%;
+  font-weight: 100;
+}
+section#{{C_o.SECTION_a[2]}} > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out:hover {
+  cursor: zoom-out;
+  filter: brightness( 2 );
+}
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry {
   --col_width: calc( (100 / var(--{{C_o.SECTION_a[2]}}_wrap_n, 2) - 2 ) * 1% );
   display: flex;
@@ -11,11 +31,26 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   display: grid;
   position: relative;
   height: fit-content;
+  cursor: zoom-in;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > img {
-  object-fit: contain;
+  position: relative;
+  top: 0;
+  left: 0;
   width: 100%;
   height: auto;
+  cursor: zoom-in;
+  transition: all .5s ease;
+}
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > .fullsize {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: auto;
+  cursor: move;
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow_full}};
+  transition: all .5s ease;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > a {
   position: absolute;
@@ -26,7 +61,11 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption {
   position: relative;
   padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+  width: fit-content;
+  height: fit-content;
+  border-bottom-right-radius: 18px;
   background: {{S_o.shadow_hi}};
+  cursor: pointer;
   opacity: 0;
   transition: opacity .3s;
 }
@@ -73,39 +112,40 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   border-radius: 4px;
   background: {{S_o.selected_hi}};
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock {
   display: flex;
   flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
   width: 288px;
+  padding: {{S_o.PAD_2}};
   transform: translateX( -258px );
   transition: .4s ease;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > nav {
   flex-direction: column;
   align-self: flex-end;
   padding: 0;
-  align-self: flex-end;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav > label {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > nav > label {
   font-size: 85%;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav > label > span[data-role] {
-  background: white;
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > nav > label > span[data-role] {
+  background: {{S_o.nav_dot_set_4}};
+  border-radius: 6px;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav > label:hover > span {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > nav > label:hover > span {
   background: transparent;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > nav:hover {
-  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > nav:hover {
   width: 100%;
+  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input, section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input + div {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input, section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input + div {
   display: none;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input:checked + div {
   display: flex;
   flex-direction: column;
   margin-top: {{S_o.PAD_3}};
@@ -113,7 +153,7 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   background: {{S_o.table}};
   border-radius: 4px;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > label {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input:checked + div > label {
   margin: {{S_o.PAD_2}};
   text-align: center;
   text-transform: uppercase;
@@ -121,19 +161,18 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   border: 2px solid {{S_o.shadow_hi}};
   font-size: 85%;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > label:hover {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input:checked + div > label:hover {
   filter: invert( .5 ) brightness( {{S_o.brightness_hi}} );
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > label:nth-of-type(1) {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input:checked + div > label:nth-of-type(1) {
   position: relative;
   top: -{{S_o.PAD_4}};
   text-align: left;
-  text-transform: uppercase;
   font-size: 75%;
   border: none;
   opacity: .5;
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > input[type=range] {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input:checked + div > input[type=range] {
   align-self: center;
   position: relative;
   top: -{{S_o.PAD_4}};
@@ -142,18 +181,18 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
   cursor: pointer;
   transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock > input:checked + div > input[type=range]:focus {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock > input:checked + div > input[type=range]:focus {
   outline: none;
   filter: hue-rotate( -220deg );
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock:hover {
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 16px;
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock:hover {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
   background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
   transform: translateX( 0 );
 }
-section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry_dock:hover > nav {
+section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dock:hover > nav {
   align-self: center;
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > * {
@@ -161,4 +200,83 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
 }
 body:has( #{{C_o.SECTION_a[2]}} ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog {
+  display: grid;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  margin: auto;
+  padding: {{S_o.PAD_4}};
+  width: clamp(40ch, 80ch, 80vw);
+  background: {{S_o.form_bg}};
+  border-radius: 4px;
+  box-shadow: 0 0 0 1000vmax {{S_o.form_shadow}};
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form {
+  grid-area: 1/-1;
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog {
+  display: flex;
+  flex-direction: column;
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header {
+  display: flex;
+  gap: {{S_o.PAD_8}};
+  border-bottom: 1px solid {{S_o.form_label}};
+  text-transform: uppercase;
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label {
+  width: 2rem;
+  height: 2rem;
+  text-transform: uppercase;
+  font-size: 120%;
+  font-weight: 600;
+  color: {{S_o.darker}};
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:nth-of-type(1) {
+  flex-grow: 2;
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:nth-of-type(2) {
+  color: {{S_o.cancel_hi}};
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:nth-of-type(4) {
+  color: {{S_o.accept_hi}};
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:not(:nth-of-type(1)):hover {
+  filter: brightness( 4 );
+}
+div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > input {
+  display: none;
+}
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list {
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] > label[control] {
+  width: 30%;
+  line-height: 2rem;
+  text-transform: uppercase;
+  font-size: 85%;
+  vertical-align: bottom;
+  color: {{S_o.form_label}};
+}
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] > input[type=text] {
+  flex-grow: 2;
+  border: none;
+  border-bottom: 1px solid {{S_o.form_text_lo}};
+  outline: none;
+  background: transparent;
+  color: {{S_o.form_text}};
+  font-size: 85%;
+}
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li:before {
+  content: '';
+  border: none;
 }

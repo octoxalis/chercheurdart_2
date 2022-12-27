@@ -189,7 +189,7 @@ context( block, settings )
   </label>
 </li>
 <li:before>
-        content: '';        
+        content: '';    /* overide */
 </li>
 <li[data-layer_b="0"]>    /* masked */
         opacity: .25;
@@ -322,70 +322,109 @@ context( block, settings )
 
 
 
+
 context( stack, new )
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock:hover>
-        background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
-        opacity: 1;
-        transform: translateY( 0 );
-        transition: all .4s ease;
+<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock>
+          display: flex;
+          flex-direction: column;
+          position: fixed;                         /* !!!!!!! TODO */
+          top: 0;
+          left: 0;
+          width: 288px;
+          padding: {{S_o.PAD_2}};
+          transform: translateX( -258px );  /* 288 - 30 */
+          transition: .4s ease;
+    <nav>
+            flex-direction: column;
+            align-self: flex-end;
+            padding: 0;
+      <label>
+                font-size: 85%;
+        <span[data-role]>
+                background: {{S_o.nav_dot_set_4}};
+                border-radius: 6px;
+        </span>
+      </label>
+      <label:hover>
+        <span>
+                background: transparent;
+        </span> 
+      </label>
+    </nav>
+    <nav:hover>
+            width: 100%;
+            background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
+    </nav>
+
+
+    <input>
+    context( copy, next )
+    </input>
+    +
+    <div>
+            display: none;
+    </div>
+    <input:checked>
+    </input>
+    +
+    <div>
+          display: flex;
+          flex-direction: column;
+          margin-top:  {{S_o.PAD_3}};
+          padding: {{S_o.PAD_2}};
+          background: {{S_o.table}};
+          border-radius: 4px;
+      <label>
+              margin: {{S_o.PAD_2}};
+              text-align: center;
+              text-transform: uppercase;
+              border-radius: 4px;
+              border: 2px solid {{S_o.shadow_hi}};
+              font-size: 85%;
+      </label>
+      <label:hover>
+              filter: invert( .5 ) brightness( {{S_o.brightness_hi}} );
+      </label>
+      <label:nth-of-type(1)>
+              position: relative;
+              top: -{{S_o.PAD_4}};
+              text-align: left;
+              /*text-transform: uppercase;*/
+              font-size: 75%;
+              border: none;
+              opacity: .5;
+      </label>
+      <input[type=range]>
+              align-self: center;
+              position: relative;
+              top: -{{S_o.PAD_4}};
+              width: 200px;
+              background: transparent;
+              cursor: pointer;
+              transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
+      </input>
+      <input[type=range]:focus>
+              outline: none;
+              filter: hue-rotate( -220deg );
+      </input>
+    </div>
+</div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock>
+<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock:hover>
+    /* border-top-right-radius: 16px;*/
+    /* border-bottom-right-radius: 16px;*/
+    /* box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);*/
+    /*background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);*/  /* {{S_o.table}} opaque */
+    context( block, settings )
+          transform: translateX( 0 );
+    <nav>
+            align-self: center;
+    </nav>
 </div>
 
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_dock>
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: calc( 100vh - 14em );
-        left: calc( 50vw - 100px - {{S_o.PAD_1}} );
-        padding: {{S_o.PAD_2}};
-        background: {{S_o.table}};
-        border-radius: 4px;
-        opacity: .1;
-        transform: translateY( 11em );
-        transition: all .4s ease;
-  <input[type=range]>
-          position: relative;
-          top: {{S_o.PAD_5}};    /* under following label */
-          width: 200px;
-          background: transparent;
-          cursor: pointer;
-          transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
-  </input>
-  <label>
-          position: relative;
-          top: -{{S_o.PAD_6}};    /* above preceding input */
-          padding: {{S_o.PAD_1}};
-          text-align: left;
-          text-transform: none;
-          font-size: 80%;
-          border: none;
-          opacity: .5;
-  </label>
-
-  /*  inherit nav.context.html */
-  <label[data-legend]>
-        top: 0;                                    /* overwrite -{{S_o.PAD_6}}; */
-        margin: 0 0 {{S_o.PAD_4}} {{S_o.PAD_1}};
-        font-size: 95%;                           /* overwrite 85% */
-        text-transform: uppercase;
-    <span>
-            background: {{S_o.nav_dot_set_3}};    /* same as settings close */
-    </span>
-  </label>
-  <label[data-legend]:hover>
-    <span[data-role]>
-            background: transparent;
-    </span>
-  </label>
 
 
-  <input[type=range]:focus />
-          outline: none;
-          filter: hue-rotate( -220deg );
-  +
-  <label>
-          background: {{S_o.lighter}};
-  </label>
-</div>
+
+
 
 context( stack, new )
 <div class="raised">

@@ -92,6 +92,7 @@ const S_o =
   
   S_o.inscolor =  `hsla( ${S_o.hue_p - 60} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /1)`
   S_o.textcolor = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
+  S_o.textcolor_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /.75)`
   S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`
   S_o.bg_higher = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`
   S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /.6)`
@@ -99,17 +100,19 @@ const S_o =
   S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`
   S_o.lighter =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /1)`
-  S_o.lighter_ne =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.5)`
+  S_o.lighter_ne =`hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.5)`
   S_o.darker =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
   
   S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`
   S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`
   S_o.shadow_lo1 = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.2)`
   S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.1)`
+  S_o.shadow_full = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /1)`
+  S_o.shadow_hi4 = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /1)`
   
   S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`
-  S_o.accept_hi =     `hsla(${S_o.hue_accept} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`
-  S_o.cancel_hi =     `hsla(${S_o.hue_cancel} ${S_o.sat_hi_4} ${S_o.lum_hi_2} /1)`
+  S_o.accept_hi =     `hsla(${S_o.hue_accept} ${S_o.sat_hi_4} ${S_o.lum_hi_1} /1)`
+  S_o.cancel_hi =     `hsla(${S_o.hue_cancel} ${S_o.sat_hi_4} ${S_o.lum_hi_1} /1)`
 
   S_o.nav_main =       `hsla(${S_o.hue_p + 0}   ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`
   S_o.nav_stat =       `hsla(${S_o.hue_p + 40}  ${S_o.sat_hi_1} ${S_o.lum_lo_1} /1)`
@@ -126,6 +129,7 @@ const S_o =
   S_o.nav_dot_set_1 =   `hsla( ${S_o.hue_dot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
   S_o.nav_dot_set_2 =   `hsla( ${S_o.hue_dot - 180} ${S_o.sat_hi_2} ${S_o.lum_hi_2} /1)`
   S_o.nav_dot_set_3 =   `hsla( ${S_o.hue_dot - 90} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`
+  S_o.nav_dot_set_4 =   `hsla( ${S_o.hue_dot - 90} ${S_o.sat_hi_2} ${S_o.lum_lo_4} /1)`
 
   S_o.selected_hi =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .9 )`
   S_o.selected_lo =   `hsla( ${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_ne} / .2 )`
@@ -143,6 +147,12 @@ const S_o =
   S_o.bgwhite_s = `hsl( var(--${C_o.STAT_a[0]}_img_bg_hue) 100% 100% /1)`
 
   S_o.color_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1 )`
+
+  S_o.form_bg = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1)`
+  S_o.form_shadow = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.7)`
+  S_o.form_label = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_3} /.8)`
+  S_o.form_text = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
+  S_o.form_text_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /.25)`
 
 
 void function

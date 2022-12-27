@@ -2,7 +2,7 @@
 
 const LOC_o =
 {
-  //++ search_s      //: for local image, from location.search
+  //++ search_s      //: used by burst for local image, from location.search
   //++ idb_o 
 
 
@@ -39,13 +39,8 @@ const LOC_o =
     const search_s
     =
       param_o
-        .get( query_s )
+        .get( '{{C_o.LOC_SEARCH_s}}' )
 
-    LOC_o
-       .search_s
-     =
-       search_s
-  
     if
     (
       query_s
@@ -53,6 +48,11 @@ const LOC_o =
      '{{C_o.LOC_SEARCH_s}}'
     )
     {
+      LOC_o
+         .search_s
+       =
+         search_s
+  
       return search_s    //: search string
     }
     //-->
