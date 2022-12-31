@@ -46,14 +46,8 @@ const BUR_o =
 
   , slideshow_o:
     {
-      speed_a:
-       [
-         0
-       , 400
-       , 1000
-       , 2000
-       ]
-    , play_b: false
+      play_b: false
+    , progress_n: 0
     }
 
 
@@ -73,6 +67,12 @@ const BUR_o =
       case 'PUT_rate':
         BUR_o
           .put_rate__v( payload_o )
+
+        break
+    
+      case 'PUT_speed':
+        BUR_o
+          .put_speed__v( payload_o )
 
         break
     
@@ -206,6 +206,8 @@ const BUR_o =
         ,
         slot_a
         ,
+        slot_n
+        ,
         capacity_n
         ,
         level_a
@@ -233,7 +235,7 @@ const BUR_o =
     }
 
     document
-      .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
+      .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress' )
         .innerHTML
     =
       html_s
@@ -325,7 +327,7 @@ const BUR_o =
 
     let legend_s
       
-    if    //: continue slideshow
+    if    //: slideshow not completed
     (
       hue_a
     )
@@ -336,25 +338,54 @@ const BUR_o =
       legend_s
       =
       `${hue_a[0]}<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${hue_a[1]}`
-    }
-    else    //: slideshow is over
-    {
-      legend_s
-      =
-        '{{C_o.NAV_LEGEND_o.slideshow_over.legend_s}}'
 
+      if
+      (
+        BUR_o
+          .slideshow_o
+            .play_b
+      )
+      {
+        const progress_n
+        =
+          100
+          /
+          //--slot_n
+          BUR_o
+            .slot__n ( 'hue' )
+  
+        const progress_e
+        =
+          document
+            .getElementById( 'progress_{{C_o.STAT_a[0]}}_playback_progress' )
+    
+        BUR_o
+          .slideshow_o
+            .progress_n
+        +=
+        progress_n
+  
+        progress_e
+          .value
+        =
+          BUR_o
+            .slideshow_o
+              .progress_n  
+      }
+    }
+
+    if
+    (
+      payload_o
+        ?.stop_b
+    )
+    {
       BUR_o
         .slideshow_o
           .play_b
       =
-        false
+        false        //: play over
     }
-
-    document
-      .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
-        .innerHTML
-    =
-      legend_s
   }
   
 
@@ -1539,45 +1570,137 @@ const BUR_o =
     event_o
   )
   {
-    let speed_n
+    let id_s
     =
-      0     //: default to stop slideshow (opacity_n not used)
+       event_o
+         .target
+           .id
 
-    let opacity_n
+    id_s
+    =
+     id_s
+       .substring
+       (
+          id_s
+            .lastIndexOf( '_' )    //: start || progress || stop
+          +
+          1
+       ) 
 
-    if
+    let interval_n     //: only to start
+
+    let shift_n        //: idem
+
+    let opacity_n      //: idem
+
+    switch
     (
-      ! BUR_o
-          .slideshow_o
-            .play_b
+      id_s
     )
     {
-      speed_n
-      =
+      case 'start'
+      :
+        if
+        (
+          BUR_o              //: start not pause
+            .slideshow_o
+              .play_b
+        )
+        {
+          return
+        }
+        //-->
         BUR_o
           .slideshow_o
-            .speed_a
-              [
-                +event_o          //: Number cast
-                  .target
-                    .closest( 'li' )
-                      .dataset
-                        .speed_n
-              ]
-
-      opacity_n
-      =
-        ~~(
-          (
-            +document
-              .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )            //: Number cast
-                .value
-            /
-            100
-          )
-          *
-          255      //: [0...255]
+            .play_b
+        =
+          true
+    
+        BUR_o
+          .slideshow_o
+            .progress_n
+        =
+          0               //: reset
+    
+        interval_n    //: default to stop slideshow (opacity_n not used)
+        =
+          +document
+            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval` )            //: Number cast
+              .value
+    
+          ;console.log( interval_n  )
+    
+        shift_n
+         =
+           +document
+             .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift` )            //: Number cast
+               .value
+           *
+           .1    //: 1/10
+        
+        if
+        (
+          document
+            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower` )
+              .checked
         )
+        {
+          shift_n
+          *=
+            .1      //: divide if slower
+    
+        }
+        ;console.log( shift_n  )
+
+        opacity_n
+        =
+          ~~(
+            (
+              +document
+                .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )            //: Number cast
+                  .value
+              /
+              100
+            )
+            *
+            255      //: [0...255]
+          )
+    
+        DOM_o
+          .rootVar__v
+          (
+            `--{{C_o.STAT_a[0]}}_playback_pause`
+          , 'wait'
+          )
+
+        break
+    
+      case 'progress'
+      :
+        if
+        (
+          ! BUR_o
+              .slideshow_o
+                .play_b
+        )
+        {
+          return
+        }
+        //-->
+        interval_n
+        =
+          {{C_o.PLAY_PAUSE_n}}    //!!! 10' pause (if not resumed will pause for a new 10')
+        
+        break
+
+      //?? case 'stop'
+      //?? :
+      //?? 
+      //??   break
+
+      default
+      :
+        break
     }
 
     BUR_o
@@ -1587,18 +1710,12 @@ const BUR_o =
           { 
             task_s: 'PUT_slideshow'
           , stat_s: '{{C_o.STAT_a[0]}}'
-          , speed_n: speed_n
+          , id_s: id_s
+          , interval_n: interval_n
+          , shift_n: shift_n
           , opacity_n: opacity_n
           }
         )
-
-    BUR_o
-      .slideshow_o
-        .play_b
-    =
-      ! BUR_o
-          .slideshow_o
-            .play_b
   }
 
 
@@ -1685,14 +1802,17 @@ const BUR_o =
       event_o
         .target
 
-    const value_s =
-      range_e
-        .value
-      
-    range_e
-      .dataset
-        .tip =
-          value_s
+    //-- const value_s =
+    //--   range_e
+    //--     .value
+    //--   
+    //-- range_e
+    //--   .dataset
+    //--     .tip =
+    //--       value_s
+    UI_o
+      .rangeVar__v( range_e )
+
   
     let id_s =
       range_e
@@ -1893,31 +2013,68 @@ const BUR_o =
             'click'
             ,
             BUR_o
-              [ `eventImg_${input_s}__v` ]  //:eventImg_slideshow__v
+              [ `eventImg_${input_s}__v` ]
           )
     }
 
-    document
-      .getElementById( `{{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_slideshow` )
-        ?.addEventListener
+    for
+    (
+      let range_s
+      of
+      [
+        'start'
+      , 'stop'
+      ]
+    )
+    {
+      DOM_o
+        .listener__v
         (
-          'click'
-          ,
-          BUR_o
+          `{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_${range_s}`
+        , BUR_o
             .eventImg_slideshow__v
+        , 'click'
+        , {
+            passive: true
+          }
         )
+    }
 
-    document
-      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_max` )
-        ?.addEventListener
-        (
-          'click'
-          , () =>
-            {
-            
-            }
-        )
+    DOM_o
+      .listener__v
+      (
+        `progress_{{C_o.STAT_a[0]}}_playback_progress`
+      , BUR_o
+          .eventImg_slideshow__v
+      , 'click'
+      , {
+          passive: true
+        }
+      )
+
+
+
+    //??? document
+    //???   .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_max` )
+    //???     ?.addEventListener
+    //???     (
+    //???       'click'
+    //???       , () =>
+    //???         {
+    //???         
+    //???         }
+    //???     )
     
+    //?? document
+    //??   .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift` )
+    //??     ?.addEventListener
+    //??     (
+    //??       'click'
+    //??       ,
+    //??       BUR_o
+    //??         .eventImg_slideshowShift__v
+    //??     )
+
     //=== RANGE EVENTS ===
     for
     (
@@ -1934,10 +2091,10 @@ const BUR_o =
         let range_s
         of
         [
-          'dock_scale',
-          'thresh_hi',
-          'thresh_lo',
-          'hue_img_bg_opacity',
+          'dock_scale'
+        , 'thresh_hi'
+        , 'thresh_lo'
+        , 'hue_img_bg_opacity'
         ]
       )
       {
@@ -1954,6 +2111,24 @@ const BUR_o =
             {
               passive: true
             }
+          )
+      }
+
+      for
+      (
+        let range_s
+        of
+        [
+          'shift'
+        , 'interval'
+        ]
+      )
+      {
+        UI_o
+          .rangeVar__v
+          (
+            document
+              .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_${range_s}` )
           )
       }
 
@@ -2216,7 +2391,8 @@ const BUR_o =
           .height_s
 
       document
-        .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
+        //-- .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
+        .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress' )
           .innerHTML
 
       const title_e

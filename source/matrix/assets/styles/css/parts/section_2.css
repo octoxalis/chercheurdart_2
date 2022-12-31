@@ -1,6 +1,31 @@
 :root {
   --{{C_o.SECTION_a[2]}}_zoom_out_s: none;
 }
+section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border: 1px solid {{S_o.nav_dot_set_4}};
+  border-radius: 8px;
+  background: transparent;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  z-index: 20;
+  position: sticky;
+  top: 2rem;
+  left: calc( 100vw - 3rem );
+}
+section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] > span {
+  width: 50%;
+}
+section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] + input {
+  display: none;
+}
+section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll]:hover {
+  background: {{S_o.shadow_ne}};
+}
 section#{{C_o.SECTION_a[2]}} > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out {
   z-index: 101;
   display: var(--{{C_o.SECTION_a[2]}}_zoom_out_s);
@@ -61,7 +86,7 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption {
   position: relative;
   padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
-  width: fit-content;
+  width: clamp( 50%, 32ch, 80% );
   height: fit-content;
   border-bottom-right-radius: 18px;
   background: {{S_o.shadow_hi}};
@@ -103,6 +128,7 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
 }
 section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure[class="selected"]:before {
   content: '';
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -201,32 +227,30 @@ section#{{C_o.SECTION_a[2]}} > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry
 body:has( #{{C_o.SECTION_a[2]}} ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog {
-  display: grid;
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption {
+  display: none;
   position: absolute;
-  top: 10%;
-  left: 10%;
   margin: auto;
   padding: {{S_o.PAD_4}};
   width: clamp(40ch, 80ch, 80vw);
   background: {{S_o.form_bg}};
+  border: none;
   border-radius: 4px;
-  box-shadow: 0 0 0 1000vmax {{S_o.form_shadow}};
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form {
   grid-area: 1/-1;
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption {
   display: flex;
   flex-direction: column;
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption > header {
   display: flex;
   gap: {{S_o.PAD_8}};
   border-bottom: 1px solid {{S_o.form_label}};
   text-transform: uppercase;
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption > header > label {
   width: 2rem;
   height: 2rem;
   text-transform: uppercase;
@@ -234,32 +258,38 @@ div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTI
   font-weight: 600;
   color: {{S_o.darker}};
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:nth-of-type(1) {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption > header > label:nth-of-type(1) {
   flex-grow: 2;
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:nth-of-type(2) {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption > header > label:nth-of-type(2) {
   color: {{S_o.cancel_hi}};
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:nth-of-type(4) {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption > header > label:nth-of-type(4) {
   color: {{S_o.accept_hi}};
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > label:not(:nth-of-type(1)):hover {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption > header > label:not(:nth-of-type(1)):hover {
   filter: brightness( 4 );
 }
-div#dialog_{{C_o.SECTION_a[2]}}_dialog > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog > header > input {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption > form > div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption > header > input {
   display: none;
 }
-ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list {
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption[open] {
+  display: grid;
+}
+dialog#dialog_{{C_o.SECTION_a[2]}}_caption[open]::backdrop {
+  background: {{S_o.form_shadow}};
+}
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_caption_list {
   display: flex;
   flex-direction: column;
   border: none;
 }
-ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] {
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_caption_list > li[id^=item_] {
   display: flex;
   justify-content: space-between;
   width: 90%;
 }
-ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] > label[control] {
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_caption_list > li[id^=item_] > label[control] {
   width: 30%;
   line-height: 2rem;
   text-transform: uppercase;
@@ -267,7 +297,7 @@ ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] > label[co
   vertical-align: bottom;
   color: {{S_o.form_label}};
 }
-ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] > input[type=text] {
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_caption_list > li[id^=item_] > input[type=text] {
   flex-grow: 2;
   border: none;
   border-bottom: 1px solid {{S_o.form_text_lo}};
@@ -276,7 +306,7 @@ ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li[id^=item_] > input[ty
   color: {{S_o.form_text}};
   font-size: 85%;
 }
-ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list > li:before {
+ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_caption_list > li:before {
   content: '';
   border: none;
 }

@@ -38,6 +38,13 @@
 
   <label id="LA_expo_zoom_out">&#10006;</label>
   <!--<input id="IN_expo_zoom_out" type="checkbox">-->
+
+  <label for="IN_expo_selectAll">
+    <span>[</span>
+    <span>]</span>
+  </label>
+  <input id="IN_expo_selectAll" type="checkbox" checked />
+
   <div id="DI_expo_masonry">
   </div>
 
@@ -56,56 +63,58 @@
       <label for="DI_expo_dock_nav" id="LA_expo_remove">supprimer</label>
       <label for="DI_expo_dock_nav" id="LA_expo_group">regrouper</label>
       <label for="DI_expo_dock_nav" id="LA_expo_local">ajouter</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_caption">description</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_caption">cartel</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_save">sauvegarder</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_restore">restaurer</label>
       <label for="DI_expo_dock_nav" id="LA_expo_burst">répartition</label>
     </div>
 
   </div>
 
-  <div id="dialog_expo_dialog">
-    <form id="form_expo_dialog" method="dialog">
-      <div id="DI_expo_dialog">
+  <dialog id="dialog_expo_caption">
+    <form id="form_expo_caption" method="dialog">
+      <div id="DI_expo_caption">
         <header>
           <label control>cartel</label>
-          <label for="IN_expo_dialog_cancel">&#10006;</label>
-          <input id="IN_expo_dialog_cancel" type="checkbox">
-          <label for="IN_expo_dialog_reset">&#8634;</label>
-          <input id="IN_expo_dialog_reset" type="checkbox">
-          <label for="IN_expo_dialog_accept">&#10003;</label>
-          <input id="IN_expo_dialog_accept" type="checkbox">
+          <label for="IN_expo_caption_cancel">&#10006;</label>
+          <input id="IN_expo_caption_cancel" type="checkbox">
+          <label for="IN_expo_caption_reset">&#8634;</label>
+          <input id="IN_expo_caption_reset" type="checkbox">
+          <label for="IN_expo_caption_accept">&#10003;</label>
+          <input id="IN_expo_caption_accept" type="checkbox">
         </header>
-        <ul id="UL_expo_dialog_list">
+        <ul id="UL_expo_caption_list">
           <li id=item_1>
             <label control>créateur</label>
-            <input id="IN_expo_dialog_artist_s" type="text">
+            <input id="IN_expo_caption_artist_s" type="text">
           <li id=item_2>
             <label control>sujet</label>
-            <input id="IN_expo_dialog_subject_s" type="text">
+            <input id="IN_expo_caption_subject_s" type="text">
           <li id=item_3>
             <label control>date de création</label>
-            <input id="IN_expo_dialog_year_n" type="text">
+            <input id="IN_expo_caption_year_n" type="text">
           <li id=item_4>
             <label control>hauteur</label>
-            <input id="IN_expo_dialog_w_height_n" type="text">
+            <input id="IN_expo_caption_w_height_n" type="text">
           <li id=item_5>
             <label control>largeur</label>
-            <input id="IN_expo_dialog_w_width_n" type="text">
+            <input id="IN_expo_caption_w_width_n" type="text">
           <li id=item_6>
             <label control>collection</label>
-            <input id="IN_expo_dialog_location_s" type="text">
+            <input id="IN_expo_caption_location_s" type="text">
           <li id=item_7>
             <label control>lieu</label>
-            <input id="IN_expo_dialog_place_s" type="text">
+            <input id="IN_expo_caption_place_s" type="text">
           <li id=item_8>
             <label control>pays</label>
-            <input id="IN_expo_dialog_country_s" type="text">
+            <input id="IN_expo_caption_country_s" type="text">
           <li id=item_9>
             <label control>lien</label>
-            <input id="IN_expo_dialog_link_s" type="text">
+            <input id="IN_expo_caption_link_s" type="text">
         </ul>
       </div>
     </form>
-  </div>
+  </dialog>
 
 </section>
 <nav>

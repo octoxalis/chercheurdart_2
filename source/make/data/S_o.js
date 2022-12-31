@@ -109,8 +109,8 @@ const S_o =
   S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.1)`
   S_o.shadow_full = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /1)`
   S_o.shadow_hi4 = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /1)`
-  
   S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`
+  
   S_o.accept_hi =     `hsla(${S_o.hue_accept} ${S_o.sat_hi_4} ${S_o.lum_hi_1} /1)`
   S_o.cancel_hi =     `hsla(${S_o.hue_cancel} ${S_o.sat_hi_4} ${S_o.lum_hi_1} /1)`
 
@@ -123,7 +123,7 @@ const S_o =
   S_o.nav_dot_home =    `hsla( ${S_o.hue_p}    ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
   S_o.nav_dot_article = `hsla( ${S_o.hue_p}    ${S_o.sat_lo_4} ${S_o.lum_hi_1} /1)`
   S_o.nav_dot_gallery = `hsla( 60              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
-  S_o.nav_dot_expo = `hsla( ${S_o.hue_p + 90}              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
+  S_o.nav_dot_expo =    `hsla( ${S_o.hue_p + 90}              ${S_o.sat_hi_1} ${S_o.lum_hi_1} /1)`
   S_o.nav_dot_stat =    `hsla( ${S_o.hue_dot} ${S_o.sat_hi_1} ${S_o.lum_ne} /1)`
 
   S_o.nav_dot_set_1 =   `hsla( ${S_o.hue_dot - 180} ${S_o.sat_hi_2} ${S_o.lum_lo_2} /1)`

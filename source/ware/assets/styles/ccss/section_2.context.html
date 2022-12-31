@@ -4,6 +4,25 @@
 
 context( stack, new )
 <section#{{C_o.SECTION_a[2]}}>
+  <label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll]>
+  context( block, top_button )
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: center;
+          z-index: 20;
+          position: sticky;
+          top: 2rem;
+          left: calc( 100vw - 3rem );
+    <span>
+            width: 50%;
+    </span>
+  </label>
+  +
+  <input />
+          display: none;
+  <label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll]:hover>
+          background: {{S_o.shadow_ne}};
+  </label>
   <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out>
           z-index: 101;
           display: var(--{{C_o.SECTION_a[2]}}_zoom_out_s);
@@ -62,7 +81,7 @@ context( stack, new )
       <figcaption>
               position: relative;
               padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
-              width: fit-content;
+              width: clamp( 50%, 32ch, 80% );                           /* keep space for img selection */
               height: fit-content;
               border-bottom-right-radius: 18px;
               background: {{S_o.shadow_hi}};
@@ -112,6 +131,7 @@ context( stack, new )
     </figure>
     <figure[class="selected"]:before>
             content: '';
+            z-index: 1;
             position: absolute;
             top: 0;
             left: 0;
@@ -212,7 +232,7 @@ context( stack, new )
     /* border-top-right-radius: 16px;*/
     /* border-bottom-right-radius: 16px;*/
     /* box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);*/
-    /*background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);*/  /* {{S_o.table}} opaque */
+    /* background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);*/  /* {{S_o.table}} opaque */
     context( block, settings )
           transform: translateX( 0 );
     <nav>
@@ -225,7 +245,7 @@ context( stack, new )
   <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry>
     <figure>
       <*>
-              grid-area: 1/-1;    /* matching */
+              grid-area: 1/-1;
       </*>
     </figure>
   </div>
@@ -242,20 +262,18 @@ context( stack, new )
 </body>
 
 
-<div#dialog_{{C_o.SECTION_a[2]}}_dialog>
-        display: grid;
+<dialog#dialog_{{C_o.SECTION_a[2]}}_caption>
+        display: none;
         position: absolute;
-        top: 20%;
-        left: 10%;
         margin: auto;
         padding: {{S_o.PAD_4}};
         width: clamp(40ch, 80ch, 80vw);
         background: {{S_o.form_bg}};
+        border: none;
         border-radius: 4px;
-        box-shadow: 0 0 0 1000vmax {{S_o.form_shadow}};
   <form>
           grid-area: 1/-1
-    <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_dialog>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_caption>
               display: flex;
               flex-direction: column;
       <header>
@@ -289,35 +307,41 @@ context( stack, new )
       </header>
     </div>
   </form>
-</div>
+</dialog>
+<dialog#dialog_{{C_o.SECTION_a[2]}}_caption[open]>
+        display: grid;
+</dialog>
+<dialog#dialog_{{C_o.SECTION_a[2]}}_caption[open]::backdrop>
+        background: {{S_o.form_shadow}};
+</dialog>
 
-      <ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_list>
-              display: flex;
-              flex-direction: column;
-              border: none;
-        <li[id^=item_]>
-                display: flex;
-                justify-content: space-between;
-                width: 90%;
-          <label[control]>
-                  width: 30%;
-                  line-height: 2rem;
-                  text-transform: uppercase;
-                  font-size: 85%;
-                  vertical-align: bottom;
-                  color: {{S_o.form_label}};
-          </label>
-          <input[type=text]/>
-                  flex-grow: 2;
-                  border: none;
-                  border-bottom: 1px solid {{S_o.form_text_lo}};
-                  outline: none;
-                  background: transparent;
-                  color: {{S_o.form_text}};
-                font-size: 85%;
-        </li>
-        <li:before>
-                  content: '';
-                  border: none;
-        </li>
-      </ul>
+<ul#{{C_o.LIST_ID_s}}_{{C_o.SECTION_a[2]}}_caption_list>
+        display: flex;
+        flex-direction: column;
+        border: none;
+  <li[id^=item_]>
+          display: flex;
+          justify-content: space-between;
+          width: 90%;
+    <label[control]>
+            width: 30%;
+            line-height: 2rem;
+            text-transform: uppercase;
+            font-size: 85%;
+            vertical-align: bottom;
+            color: {{S_o.form_label}};
+    </label>
+    <input[type=text]/>
+            flex-grow: 2;
+            border: none;
+            border-bottom: 1px solid {{S_o.form_text_lo}};
+            outline: none;
+            background: transparent;
+            color: {{S_o.form_text}};
+          font-size: 85%;
+  </li>
+  <li:before>
+            content: '';
+            border: none;
+  </li>
+</ul>

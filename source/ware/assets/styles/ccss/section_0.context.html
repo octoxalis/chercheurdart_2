@@ -222,7 +222,7 @@ context( stack, new )
             font-weight: 200;
             font-style: normal;
     </i>
-    <i:first-of-type::after>
+    <i:not(:empty):first-of-type::after>
             content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
    </i>
   </{{C_o.ROW_TAG_s}}>
@@ -267,13 +267,12 @@ context( stack, new )
       <figcaption>
               position: relative;
               padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+              width: fit-content;
+              height: fit-content;
+              border-bottom-right-radius: 18px;
               background: {{S_o.shadow_hi}};
               opacity: 0;
               transition: opacity .3s;
-
-    width: fit-content;
-    height: fit-content;
-    border-bottom-right-radius: 18px;
             <a>
                     context( block, link_regular )
             </a>
@@ -284,7 +283,7 @@ context( stack, new )
                     font-weight: 200;
                     font-style: normal;
             </i>
-            <i:first-of-type::after>
+            <i:not(:empty):first-of-type::after>
                     content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
             </i>
             <a>

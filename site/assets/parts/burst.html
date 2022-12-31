@@ -166,16 +166,11 @@
   <input id="IN_burst_hue_img_bg_black" name="burst_hue_color" type="radio">
   <input id="IN_burst_hue_img_bg_white" name="burst_hue_color" type="radio">
   <input id="IN_burst_hue_img_bg_color" name="burst_hue_color" type="radio">
+
+
   <aside id="aside_burst_hue_img">
     <ul id="UL_burst_img_control" role="icon_list">
       <li>
-        <label id="{C_o.LABEL_ID_s}}_burst_img_control_bgcolor"></label>
-      <li>
-          <ul id="UL_burst_hue_img_slideshow">   <!-- pseudo label -->
-            <li data-speed_n=1 data-tip="Lent">&#9744;
-            <li data-speed_n=2 data-tip="Normal">&#9744;
-            <li data-speed_n=3 data-tip="Rapide">&#9744;
-          </ul>
       <li>
         <label for="IN_burst_hue_img_download">
         &#11123;
@@ -184,18 +179,38 @@
         <label for="IN_burst_hue_img_reset">
         &#8634;
         </label>
-      <!--
-      <li>
-        <label for="IN_burst_hue_img_bar">
-        &#8597;
-        </label>
-      -->
       <li>
         <label for="IN_burst_hue_img_position" tabindex=1><!--NE and SW Arrow-->
         &#10530;
         </label>
     </ul>
+
     <canvas id="CA_burst_hue_img" width=100vmin height=100vmin data-fullsize_b=true></canvas>  <!-- 1024: default value -->
+
+    <div id="DI_burst_playback">
+      <div id="DI_burst_playback_progress">
+        <label id="LA_burst_playback_start">&nbsp;</label>
+        <progress id="progress_burst_playback_progress" max="100" value="0"></progress>
+        <label id="LA_burst_playback_stop">&nbsp;</label>
+        <label id="LA_burst_playback_progress"></label>
+      </div>
+      <div id="DI_burst_playback_interval">
+        <label>interval</label>
+        <input id="IN_burst_playback_interval" type="range" min="100" max="10000" step="100" value="1000" data-tip="1000">
+      </div>
+      <div id="DI_burst_playback_shift">
+        <input id="IN_burst_playback_slower" name="burst_playback_shift" type="radio" checked>
+        <label for="IN_burst_playback_slower">ralentir</label>
+
+        <input id="IN_burst_playback_faster" name="burst_playback_shift" type="radio">
+        <label for="IN_burst_playback_faster">accélérer</label>
+
+        <input id="IN_burst_playback_shift" type="range" min="0" max="100" step="5" value="0" data-tip="0">
+      </div>
+    </div>
+
+
+
     <div id="DI_burst_hue_img_bg">
       <label>opacité</label>
       <input id="IN_burst_hue_img_bg_opacity" type="range" min="0" max="100" step="10" value="20" data-tip="20">
@@ -212,7 +227,6 @@
           <span data-role="bgcolor">&#8943;</span>
       </label>
     </div>
-
     <div id="DI_burst_hue_img_picker">
       <label for="IN_burst_hue_pick_hue"></label>
       <input id="IN_burst_hue_pick_hue" type="range" min="0" max="360" step="1" value="0" data-tip="0">

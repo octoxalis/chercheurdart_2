@@ -32,14 +32,54 @@ const EXP_o
 
 
 
- ,   
-  caption__v
-  ()
-  {
-    ;console.log( 'caption__v' )
+, async collect__a
+()
+{
+  let collect_a
+  =
+    []    //: array to reorder keys according to their order_n
 
-  }
+  await
+  LOC_o
+    .idb_o
+      .walk__v
+      (
+        (
+          key_s
+        , value_o
+        ) =>
+        {
+          collect_a
+            .push
+            (
+              {
+                key_s: key_s,
+                value_o:
+                  JSON
+                    .parse( value_o )
+              }
+            )
+        }
+      )
 
+  collect_a
+    .sort
+    (
+      (
+        first_o,
+        second_o
+      ) =>
+        first_o
+          .value_o
+            .order_n
+        -
+        second_o
+          .value_o
+            .order_n            
+    )
+
+  return collect_a
+}
 
 
   , 
@@ -66,6 +106,103 @@ const EXP_o
             .select__v
         )
     }
+  }
+
+
+
+  ,
+  selected__
+  (
+    local_b=true          //??? : collect local images only
+  , selected_b=true       //: collect selected image only
+  , multi_b=false         //: , if false: first selected, if true:  whole selected
+  )
+  {
+    let selector_s
+    =
+      'figure'
+
+    if
+    (
+      selected_b    //: only selected figures
+    )
+    {
+      selector_s
+      +=
+        '.{{C_o.SELECTED_CLASS_s}}'
+    }
+
+    const figure_a
+    =
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( selector_s )
+        )
+
+    let alert_s
+
+    switch
+    (
+      true
+    )
+    {
+      case
+        ! figure_a
+          .length
+      :
+        alert_s
+        =
+        `Cette opération ne peut être appliquée sans sélection préalable`
+
+      break
+      
+      case
+        ! multi_b
+        &&
+        (
+          figure_a
+            .length
+          >
+          1
+          ||
+          ! figure_a
+              [0]
+                .querySelector( 'img'  )
+                  .src
+                    .startsWith( 'data:image/jpeg;base64' )
+        )
+      :
+        alert_s
+        =
+        `Cette opération ne peut être appliquée qu'à une seule image locale`
+
+      break
+      
+      default
+      :
+      break
+
+    }
+
+    if
+    (
+      alert_s
+    )
+    {
+      return void window
+                    .alert( alert_s )
+    }
+
+    return (
+      multi_b
+      ?
+        figure_a
+      :
+        figure_a
+          [0]
+    )
   }
 
 
@@ -103,52 +240,12 @@ const EXP_o
   {
     let show_s = ''
 
-    let show_a = []    //: array to reorder keys according to their order_n
-
-    await
-    LOC_o
-      .idb_o
-        .walk__v
-        (
-          (
-            key_s
-          , value_o
-          ) =>
-          {
-            show_a
-              .push
-              (
-                {
-                  key_s: key_s,
-                  value_o:
-                    JSON
-                      .parse( value_o )
-                }
-              )
-          }
-        )
-
-    show_a
-      .sort
-      (
-        (
-          first_o,
-          second_o
-        ) =>
-          first_o
-            .value_o
-              .order_n
-          -
-          second_o
-            .value_o
-              .order_n            
-      )
-
     for
     (
       let show_o
       of
-      show_a
+      await EXP_o
+              .collect__a()
     )
     {
       const value_o
@@ -239,6 +336,9 @@ const EXP_o
         .ctrlKey
     )
     {
+      event_o
+        .preventDefault()
+
       return    //: let href to image be fired
     }
     //-->
@@ -252,6 +352,45 @@ const EXP_o
     &&
     selected_e
       .classList.toggle( '{{C_o.SELECTED_CLASS_s}}' )
+  }
+
+
+
+  ,
+  selectAll__v
+  (
+    event_o
+  )
+  {
+    //-- event_o
+    //--   .preventDefault()
+
+    let method_s
+    =
+      event_o
+        .target
+          .checked
+      ?
+        'remove'
+      :
+        'add'
+ 
+    for
+    (
+      let figure_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( 'figure' )
+        )
+    )
+    {
+      figure_e
+        .classList
+          [ method_s ]( '{{C_o.SELECTED_CLASS_s}}' )
+    }
   }
 
 
@@ -466,16 +605,27 @@ const EXP_o
   remove__v
   ()
   {
+    if
+    (
+      ! window
+          .confirm( `Cette opération va remplacer les images de l'exposition courante qui sont sélectionnées<br>Souhaitez-vous continuer?` )
+    )
+    {
+      return false   //: abort
+    }
+    //-->
     for
     (
       let figure_e
       of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `figure.{{C_o.SELECTED_CLASS_s}}` )
+      EXP_o
+        .selected__
+        ( 
+          false      //: not only local 
+        , true       //: only selected
+        , true       //: multiple images
         )
+
     )
     {
       LOC_o
@@ -491,6 +641,8 @@ const EXP_o
         .parentNode
           .removeChild( figure_e )  
     }
+
+    return true  //: deleted
   }
 
 
@@ -741,65 +893,301 @@ const EXP_o
 
 
   
-  ,
-  burst__v
+  ,   
+  caption__v
   ()
   {
-    const figure_a
-    =
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `figure.{{C_o.SELECTED_CLASS_s}}` )
-        )
-
-    if
-    (
-      ! figure_a
-          .length
-      ||
-      figure_a
-        .length
-      >
-      1
-    )
-    {
-      return void window
-                    .alert( `Pour effectuer cette opération, sélectionnez une seule image locale.` )
-    }
-
     const figure_e
     =
-      figure_a
-        [0]
-
+      EXP_o
+        .selected__()
+  
     if
     (
-      ! figure_e
-          .querySelector( 'img'  )
-            .src
-              .startsWith( 'data:image/jpeg;base64' )
+      figure_e
     )
     {
-      return void window
-                    .alert( `Veuillez sélectionnez une image locale.` )
+      const caption_e
+      =
+        document
+          .getElementById( 'dialog_{{C_o.SECTION_a[2]}}_caption'  )
+  
+      caption_e
+        .showModal()
     }
-
-    const key_s =
-      figure_e
-        .dataset
-          .key_s
-
-    location
-      .href
-    =
-      `local--burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
   }
 
 
 
-, async dialogEvent__v
+  ,
+  burst__v
+  ()
+  {
+    const figure_e
+    =
+      EXP_o
+        .selected__()
+  
+    if
+    (
+      figure_e
+    )
+    {
+      const key_s =
+        figure_e
+          .dataset
+            .key_s
+  
+      location
+        .href
+      =
+        `local--burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
+    }
+  }
+
+
+
+, async store__v
+  ()
+  {
+    const selected_b
+    =
+      window
+        .confirm( 'Voulez-vous sauvegarder uniquement les images sélectionnées?' )
+
+    let collect_a
+    =
+      await
+      EXP_o
+        .selected__
+        ( 
+          false              //???? : not only local 
+        , selected_b         //: only selected
+        , true               //: multiple images
+        )
+
+    if
+    (
+      ! collect_a
+    )
+    {
+      return
+    }
+    //-->
+    try
+    {
+      const store_a
+      =
+        []
+  
+      for
+      (
+        let figure_e
+        of
+        collect_a
+      )
+      {
+        const key_s
+        =
+          figure_e
+            .dataset
+              .key_s
+
+        store_a
+          .push
+          (
+            {
+              key_s:
+                key_s
+            , value_s:
+                await
+                LOC_o
+                  .idb_o
+                    .get__( key_s )
+            }
+          )
+      }
+
+      const json_s
+      =
+        JSON
+          .stringify( store_a )
+  
+      const handle_o
+      =
+        await
+        window
+          .showSaveFilePicker
+          (
+            {
+              suggestedName:
+                DATE_o
+                  .dataTimeNumeric__s()
+                +
+                '-expo.json'
+            , types:
+                [
+                  {
+                    accept:
+                      {
+                        'application/json':
+                          [
+                            '.json'
+                          ]
+                      }
+                      ,
+                  }
+                ]
+            }
+          )    //: options ?
+  
+      const stream_o
+      =
+        await
+        handle_o
+          .createWritable()
+  
+      await
+      stream_o
+        .write( json_s )
+  
+      await
+      stream_o
+        .close()
+    }
+    catch
+    (
+      error_o
+    )
+    {
+      console
+        .log(`ERROR DETECTED @expo.js: ${ error_o }`)
+    }
+  }
+
+
+
+
+, async restore__v    //: without erasing selected images
+()
+{
+  if
+  (
+    ! EXP_o
+        .remove__v()
+  )
+  {
+    return
+  }
+  //-->
+  //=== display file picker
+  const
+    handle_a
+  =
+    await
+    window
+      .showOpenFilePicker
+      (
+        {
+          multiple:
+            false
+        , types:
+          [
+            {
+              description:
+                'fichier JSON'
+            , accept:
+                {
+                  'application/json':
+                    [
+                      '.json'
+                    ]
+                }
+            }
+          ]
+        }
+      )
+
+  if
+  (
+    ! handle_a
+  )
+  {
+    return
+  }
+  //-->
+  let file_o
+  =
+    handle_a
+    [0]
+
+  //=== put items in IndexedDB
+  let reader_o
+  =
+    new FileReader()
+
+  reader_o
+    .onload
+  =
+    async () =>
+    {
+      const json_a
+      =
+        JSON
+          .parse
+          (
+            reader_o
+              .result
+          )
+
+      for
+      (
+        let item_o
+        of
+        json_a
+      )
+      {
+        //?? await
+        LOC_o
+          .idb_o
+            .set__v
+            (
+              item_o
+                .key_s
+            , item_o
+                .value_s
+            )
+      }
+  
+      EXP_o
+        .show__v()
+    }
+
+  reader_o
+    .onerror
+  =
+    () =>
+    {
+      console
+        .log
+        (
+          reader_o
+            .error
+        )
+    }
+
+  reader_o
+    .readAsText
+    (
+      await
+      file_o
+        .getFile()
+    )
+}
+
+
+
+, async captionEvent__v
 (
     event_o
 )
@@ -810,171 +1198,23 @@ const EXP_o
       .target
         .id
 
-  switch( true )
+  const caption_e
+  =
+    document
+      .getElementById( 'dialog_{{C_o.SECTION_a[2]}}_caption'  )
+
+  switch
+  (
+    true
+  )
   {
     case
       id_s
         .endsWith( 'cancel' )
     :
-      ;console.log( 'cancel' )
+        caption_e
+          .close()
 
-    break
-
-    case
-      id_s
-        .endsWith( 'accept' )
-    :
-      const figure_a
-      =
-        Array
-          .from
-          (
-            document
-              .querySelectorAll( `figure.{{C_o.SELECTED_CLASS_s}}` )
-          )
-
-      if
-      (
-        ! figure_a
-          .length
-      )
-      {
-        return void window
-                      .alert( `Veuillez sélectionnez une image locale à décrire.` )
-      }
-
-      const figure_e
-      =
-        figure_a
-          [0]
-  
-      if
-      (
-        ! figure_e
-            .querySelector( 'img'  )
-              .src
-                .startsWith( 'data:image/jpeg;base64' )
-      )
-      {
-        return void window
-                      .alert( `Veuillez sélectionnez une image locale.` )
-      }
-
-      const dialog_o
-      =
-        {}
-
-      for
-      (
-        let input_e
-        of
-
-        document
-          .querySelectorAll
-          (
-            `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_][type=text]`
-          )
-      )
-      {
-        const at_n
-        =
-          '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_'
-            .length
-
-        const property_s
-        =
-          input_e
-            .id
-              .substring( at_n )
-
-        dialog_o
-          [ `${property_s}` ]
-        =
-          input_e
-            .value
-      }
-
-    //=== see F_o.legend__s ==
-    let legend_s
-    =
-      `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
-      + `<{{C_o.ROW_TAG_s}}>${dialog_o.artist_s}</{{C_o.ROW_TAG_s}}>`
-
-    const link_s
-    =
-      dialog_o
-        .link_s
-      
-      if
-      (
-        link_s
-      )
-      {
-        legend_s
-        +=
-          `<{{C_o.ROW_TAG_s}}><a href="${link_s}">${dialog_o.subject_s}</a></{{C_o.ROW_TAG_s}}>`
-      }
-      else
-      {
-        legend_s
-        +=
-          `<{{C_o.ROW_TAG_s}}>${dialog_o.subject_s}</{{C_o.ROW_TAG_s}}>`
-      }
-
-        legend_s
-        +=
-          `<{{C_o.ROW_TAG_s}}>${dialog_o.year_n}</{{C_o.ROW_TAG_s}}>`
-          + `<{{C_o.ROW_TAG_s}}><i>${dialog_o.w_height_n}</i><i>${dialog_o.w_width_n}</i></{{C_o.ROW_TAG_s}}>`
-          + `<{{C_o.ROW_TAG_s}}>${dialog_o.location_s}</{{C_o.ROW_TAG_s}}>`
-          + `<{{C_o.ROW_TAG_s}}>${dialog_o.place_s}{{C_o.IMG_LEGEND_DELIM_s}}${dialog_o.country_s}</{{C_o.ROW_TAG_s}}>`
-
-      legend_s +=
-        `</{{C_o.TABLE_TAG_s}}>`
-
-      const key_s =
-        figure_e
-          .dataset
-            .key_s
-
-      let value_s =
-        await
-        LOC_o
-          .idb_o
-            .get__( key_s )
-
-      if
-      (
-        value_s
-      )
-      {
-        const value_o
-        =
-          JSON
-            .parse( value_s )
-
-        value_o
-          .caption_s
-        =
-          legend_s
-
-        value_o
-          .caption_b
-        =
-          true      //: caption edited to display
-
-        LOC_o
-          .idb_o
-            .set__v
-            (
-              key_s,
-              JSON
-                .stringify( value_o )
-            )
-
-        EXP_o
-          .show__v()
-      }
-    
     break
 
     case
@@ -988,7 +1228,7 @@ const EXP_o
         document
           .querySelectorAll
           (
-            `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_][type=text]`
+            `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_][type=text]`
           )
       )
       {
@@ -999,12 +1239,162 @@ const EXP_o
       }
 
     break
-    default:
-      break
 
+    case
+      id_s
+        .endsWith( 'accept' )
+    :
+      const figure_e
+      =
+        EXP_o
+          .selected__()
+    
+      if
+      (
+        figure_e
+      )
+      {
+        const dialog_o
+        =
+          {}
+    
+        for
+        (
+          let input_e
+          of
+          Array
+            .from
+            (
+              document
+                .querySelectorAll
+                (
+                  `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_][type=text]`
+                )
+            )
+        )
+        {
+          const at_n
+          =
+            '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_'
+              .length
+    
+          const property_s
+          =
+            input_e
+              .id
+                .substring( at_n )
+    
+          dialog_o
+            [ `${property_s}` ]
+          =
+            input_e
+              .value
+            ||
+            ''
+        }
+    
+        //=== see F_o.legend__s ==
+        let legend_s
+        =
+          `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}>${dialog_o.artist_s}</{{C_o.ROW_TAG_s}}>`
+    
+        const link_s
+        =
+          dialog_o
+            .link_s
+          
+        if
+        (
+          link_s
+        )
+        {
+          legend_s
+          +=
+            `<{{C_o.ROW_TAG_s}}><a href="${link_s}">${dialog_o.subject_s}</a></{{C_o.ROW_TAG_s}}>`
+        }
+        else
+        {
+          legend_s
+          +=
+            `<{{C_o.ROW_TAG_s}}>${dialog_o.subject_s}</{{C_o.ROW_TAG_s}}>`
+        }
+    
+        legend_s
+        +=
+          `<{{C_o.ROW_TAG_s}}>${dialog_o.year_n}</{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}><i>${dialog_o.w_height_n}</i><i>${dialog_o.w_width_n}</i></{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}>${dialog_o.location_s}</{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}>${dialog_o.place_s}`
+
+        legend_s
+        +=
+          dialog_o
+              .place_s
+            ?
+              `{{C_o.IMG_LEGEND_DELIM_s}}`
+            :
+              ''
+
+        legend_s +=
+          `${dialog_o.country_s}</{{C_o.ROW_TAG_s}}>`
+          + `</{{C_o.TABLE_TAG_s}}>`
+    
+        const key_s =
+          figure_e
+            .dataset
+              .key_s
+    
+        let value_s =
+          await
+          LOC_o
+            .idb_o
+              .get__( key_s )
+    
+        if
+        (
+          value_s
+        )
+        {
+          const value_o
+          =
+            JSON
+              .parse( value_s )
+    
+          value_o
+            .caption_s
+          =
+            legend_s
+    
+          value_o
+            .caption_b
+          =
+            true      //: caption edited to display
+    
+          LOC_o
+            .idb_o
+              .set__v
+              (
+                key_s,
+                JSON
+                  .stringify( value_o )
+              )
+    
+          EXP_o
+            .show__v()
+
+          caption_e
+            .close()
+        }
+      }
+      
+    break
+
+    default:
+    break
   }
 
-}
+  }
 
 
 
@@ -1135,6 +1525,15 @@ const EXP_o
             .sizeEventTiny__v
         )
     
+    document
+      .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll' )
+        .addEventListener
+        (
+          'change'
+        , EXP_o
+            .selectAll__v
+        )
+  
     for
     (
       let id_s
@@ -1145,6 +1544,8 @@ const EXP_o
       , 'group'
       , 'local'
       , 'caption'
+      , 'store'
+      , 'restore'
       , 'burst'
       ]
     )
@@ -1169,15 +1570,15 @@ const EXP_o
       let id_s
       of
       [
-        'accept'
-      , 'cancel'
+        'cancel'
       , 'reset'
+      , 'accept'
       ]
     )
     {
       const listen_e =
         document
-          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_dialog_${id_s}` )
+          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_${id_s}` )
           
       listen_e
       &&
@@ -1186,7 +1587,7 @@ const EXP_o
         (
           'change',
           EXP_o
-            .dialogEvent__v
+            .captionEvent__v
         )
     }
 

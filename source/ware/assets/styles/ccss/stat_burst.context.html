@@ -24,10 +24,16 @@
 
         --{{C_o.STAT_a[0]}}_satlum_s: none;    /* don't display at start: no slot selected */
 
+        --{{C_o.STAT_a[0]}}_playback_bg: transparent;
+        --{{C_o.STAT_a[0]}}_playback_pause: auto;
+
+
         /* --{{C_o.STAT_a[0]}}_img_slot_fromHue_n: 0 */   /* set by burst.js */
         /* --{{C_o.STAT_a[0]}}_img_slot_toHue_n: 0 */     /* set by burst.js */
         /* --{{C_o.STAT_a[0]}}_hue_img_scale: 1; */       /* set by burst.js */
         /* --{{C_o.STAT_a[0]}}_hue_img_height: 20vh;*/
+
+        --{{C_o.STAT_a[0]}}_img_play: '{{C_o.IMG_PLAY_s}}';
 </:root>
 
 <section#{{C_o.STAT_a[0]}}>
@@ -502,14 +508,6 @@ context( stack, new )
 
 
 
-
-
-
-
-
-
-
-
 context( stack, new )
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:not( :checked )  )>
   <div#goto_{{C_o.STAT_a[0]}}_level>
@@ -593,9 +591,12 @@ context( stack, new )
           transition: .3s ease;
   </div>
 </body>
+
+
 <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
         display: none;
 </aside>
+
 
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked )>
   <section#{{C_o.STAT_a[0]}}>
@@ -608,8 +609,8 @@ context( stack, new )
               justify-content: center;
               align-items: center;
               position: fixed;
+              background: {{S_o.bg_higher}};
               box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
-              filter: drop-shadow( 0 0 10vmax {{S_o.shadow_hi}} );
               transform-origin: center;
               transform: scale( var(--{{C_o.STAT_a[0]}}_hue_img_scale) ); /* from burst.js */
         <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img>
@@ -617,6 +618,7 @@ context( stack, new )
               max-width: 1000vw;  /* i.e. no max */
               background: var(--{{C_o.STAT_a[0]}}_img_background);
         </canvas>
+
         <ul>
                 display: flex;
                 /*flex-direction: row;*/
@@ -627,10 +629,11 @@ context( stack, new )
                 width: 100%;
                 height: 4rem;
                 border: none;
+                border-radius: 4px;
           <li>
                     /* list-style: none; */
                     /* width: 4rem; */
-                    background: {{S_o.bgcolor}};
+                    /*background: {{S_o.bgcolor}};*/
                     /* transform-origin: center; */
                     transform: scale( 1 );
             <label>
@@ -682,34 +685,168 @@ context( stack, new )
           </li>
           <li:nth-of-type(1)>
                   flex-grow: 1;
-                  display: flex;
-                  justify-content: flex-end;
-                  /*background: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_hue_n) 100% 50%/1 );*/
-                  --fromHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
-                  --toHue:   hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
-                  background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
-            <label>
-                    justify-content: space-around;
-                    padding: .25rem;
-                    width: 16ch;
-                    color: currentColor;
-                    background: hsla(0 0% 50%/0.5);
-                    font-size: 100%;
-                    text-transform: uppercase;
-            </label>
-            <label:hover>
-                    filter: brightness( .5);
-            </label>
           </li>
         </ul>
+
+
+
+
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback>
+            display: flex;
+            justify-content: space-evenly;
+            padding: {{S_o.PAD_2}} {{S_o.PAD_4}};
+            width: 100%;
+            height: 5rem;
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress>
+              display: flex;
+              justify-content: space-between;
+              padding: 0 .5rem;
+              position: relative;
+              top: 1rem;
+              width: 50%;
+              height: 4rem;    /* 5 - 2*.5 rem */
+              border: 1px solid {{S_o.selected_lo}};
+              border-radius:  {{S_o.PAD_2}};
+              --fromHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
+              --toHue:   hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
+              background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
+        <label:nth-of-type(1)>
+                display: inline-flex;
+                align-self: center;
+                justify-content: center;
+                width: 2rem;
+                height: 2rem;
+                background: {{S_o.highlight}};
+                cursor: pointer;
+                clip-path: polygon(0 100%, 100% 50%, 0 0);
+        </label>
+        <label:nth-of-type(2)>
+                display: inline-flex;
+                align-self: center;
+                justify-content: center;
+                width: 2rem;
+                height: 2rem;
+                background: {{S_o.highlight}};
+                cursor: pointer;
+        </label>
+        <label:nth-of-type(1):hover>
+        context( copy, next )
+        </label>
+        <label:nth-of-type(2):hover>
+                filter: brightness(4);
+        </label>
+        <label:nth-of-type(3)>
+                font-size: 200%;
+                display: inline-flex;
+                align-self: center;
+                justify-content: center;
+                width: 10%;
+                background: {{S_o.bg_higher}};
+                border-radius: {{S_o.PAD_2}};
+        </label>
+        <progress#progress_{{C_o.STAT_a[0]}}_playback_progress>
+                width: 75%;
+                display: inline-flex;
+                align-self: center;
+                cursor: var(--{{C_o.STAT_a[0]}}_playback_pause);
+        </progress>
+      </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress>
+
+
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 30%;
+              height: 4rem;
+        <label>
+                  font-size: 150%;
+                  opacity: .5;
+        </label>
+        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
+                width: 80%;
+                cursor: ew-resize;
+        </input>
+        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval[type=range]:hover:after>
+                transform: scale( 2 );  /* !!! overide section.context.html where scale is 2 */
+        </input>
+      </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
+
+
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift>
+              display: flex;
+              /*flex-direction: row;*/
+              flex-wrap: wrap;
+              justify-content: center;
+              align-items: center;
+              width: 20%;
+              height: 4rem;
+              border-radius: {{S_o.PAD_2}};
+        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower>
+                display: none;
+        </input>
+        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster>
+                display: none;
+        </input>
+        <label[for]>
+                  margin: 0.1em;
+                  width: 47%;
+                  height: 2rem;
+                  font-size: 150%;
+                  line-height: 1.5rem;
+                  border: 1px solid {{S_o.highlight}};
+                  border-radius:  {{S_o.PAD_4}};
+                  text-align: center;
+                  opacity: .5;
+                  cursor: pointer;
+                  filter: brightness( .75 );
+        </label>
+        <label[for]:hover>
+                  opacity: 1;
+                  filter: brightness(4);
+        </label>
+        <input[type=radio]:checked>
+        </input>
+        +
+        <label[for]>
+                  opacity: 1;
+                  filter: brightness( 1.5 );
+        </label>
+        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift>
+                width: 94%;
+                cursor: ew-resize;
+        </input>
+      </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift>
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower:checked)>
+                background: hsla( 120 {{S_o.sat_hi_4}} {{S_o.lum_hi_2}} /1);
+      </div>
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster:checked)>
+                background: hsla( 0 {{S_o.sat_hi_4}}{{S_o.lum_hi_2}} /1);
+      </div>
+      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift[value=0])>
+                background: transparent;
+      </div>
+
+    </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback>
+
+
+
+
+
+
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg>
                 display: flex;
                 justify-content: flex-start;
+                align-items: stretch;
+                gap: 9rem;
+                margin-top: 2rem;
                 padding: 0 {{S_o.PAD_2}};
                 width: 100%;
                 height: 4rem;
           <label>
-                  width: 15%;
+                  /*width: 15%;*/
+                  flex-grow: 1;
                   text-align: center;
                   font-size: 150%;
                   line-height: 4rem;    /* vertical centering */
@@ -717,17 +854,23 @@ context( stack, new )
           </label>
           <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]>
           context(block, input_range)
+                  /*width: 43%;*/
+                  flex-grow: 4;
+          </input>
+          <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]:hover:after>
+                  transform: scale( 2, 4 );  /* !!! overide section.context.html where scale is 2 */
           </input>
           <label[for]>
                   display: flex;
+                  flex-grow: 1;
                   justify-content: center;
                   align-items: center;
                   cursor: url( /assets/styles/css/paint_brush.svg ) 32 32, auto;
             <span>
-                    width:       calc( 1.5rem - 4px );
-                    height:      calc( 1.5rem - 4px );
-                    line-height: calc( 1.5rem - 4px );
-                    border: 2px solid hsl( 0 0% 50% /1);
+                    width:       6rem;
+                    height:      6rem;
+                    line-height: 6rem;
+                    border: 2px solid hsl( 0 0% 100% /1);
             </span>
           </label>
           <label[for]:nth-of-type(2)>
@@ -763,7 +906,7 @@ context( stack, new )
                display: none;
                flex-direction: column;
                align-items: center;
-               padding: {{S_o.PAD_6}} {{S_o.PAD_4}} 0 {{S_o.PAD_4}};
+               padding: {{S_o.PAD_2}} {{S_o.PAD_4}};
                width: 100%;
                height: fit-content;
           <label>
@@ -795,12 +938,13 @@ context( stack, new )
       ~
       <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
               position: fixed;
-              left: {{S_o.PAD_2}};
-              top: calc( 100vh - {{S_o.PAD_2}} - ( var(--{{C_o.STAT_a[0]}}_hue_img_height) * 1px )); /* from burst.js */
+              top: 100vh;
+              left: 0;
+              border-radius: 4px;
               box-shadow: none;
               filter: none;
-              transform-origin: bottom left;
-              transform: scale( {{C_o.BURST_TRANSFORM_SCALE_n}} );  /* keep space under settings */
+              transform-origin: top left;
+              transform: scale( {{C_o.BURST_TRANSFORM_SCALE_n}} ) translateY( -100% );
               transition: transform .2s;
         <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img>
               max-width: 100vmin;
@@ -841,6 +985,7 @@ context( stack, new )
     </div>
   </section>
 </body>
+
 <body:has( section#{{C_o.STAT_a[0]}} div[id^={{C_o.DIV_ID_s}}_stat] input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked )>
   <section#{{C_o.STAT_a[0]}}>
     <div[id^={{C_o.DIV_ID_s}}_stat]>

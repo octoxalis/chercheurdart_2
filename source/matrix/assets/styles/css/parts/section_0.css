@@ -191,7 +191,7 @@ blockquote {
   font-weight: 200;
   font-style: normal;
 }
-{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
+{{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:not(:empty):first-of-type::after {
   content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2), {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
@@ -229,12 +229,12 @@ blockquote {
 section#{{C_o.SECTION_a[0]}} > figure > figcaption {
   position: relative;
   padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
-  background: {{S_o.shadow_hi}};
-  opacity: 0;
-  transition: opacity .3s;
   width: fit-content;
   height: fit-content;
   border-bottom-right-radius: 18px;
+  background: {{S_o.shadow_hi}};
+  opacity: 0;
+  transition: opacity .3s;
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > a {
   color: currentColor;
@@ -252,7 +252,7 @@ section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i {
   font-weight: 200;
   font-style: normal;
 }
-section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
+section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i:not(:empty):first-of-type::after {
   content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a {

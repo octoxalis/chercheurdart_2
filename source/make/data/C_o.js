@@ -104,7 +104,9 @@ const C_o =
     expo_wrap: { icon_s: `&nbsp;`, legend_s: `affichage`},
     expo_add: { icon_s: `&nbsp;`, legend_s: `ajouter`},
     expo_local: { icon_s: `&nbsp;`, legend_s: `image locale`},
-    expo_caption: { icon_s: `&nbsp;`, legend_s: `description`},
+    expo_caption: { icon_s: `&nbsp;`, legend_s: `cartel`},
+    expo_save: { icon_s: `&nbsp;`, legend_s: `sauvegarder`},
+    expo_restore: { icon_s: `&nbsp;`, legend_s: `restaurer`},
    //??  expo_process: { icon_s: `&nbsp;`, legend_s: `répartition`},
 
 
@@ -128,6 +130,11 @@ const C_o =
     thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
     thresh_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
     img_opacity: { icon_s: `&nbsp;`, legend_s: `opacité`},
+    play_progress: { icon_s: `&nbsp;`, legend_s: `progression`},
+    play_interval: { icon_s: `&nbsp;`, legend_s: `interval`},
+    play_slower: { icon_s: `&nbsp;`, legend_s: `ralentir`},
+    play_faster: { icon_s: `&nbsp;`, legend_s: `accélérer`},
+
     img_bgblack: { icon_s: `&nbsp;`, legend_s: `noir`},
     img_bgwhite: { icon_s: `&nbsp;`, legend_s: `blanc`},
     img_bgcolor: { icon_s: `&nbsp;`, legend_s: `couleur`},
@@ -161,9 +168,9 @@ const C_o =
 
   },
 
-  BURST_IMG_SLIDESHOW_1_s: 'Lent',
-  BURST_IMG_SLIDESHOW_2_s: 'Normal',
-  BURST_IMG_SLIDESHOW_3_s: 'Rapide',
+  //?? BURST_IMG_SLIDESHOW_1_s: 'Lent',
+  //?? BURST_IMG_SLIDESHOW_2_s: 'Normal',
+  //?? BURST_IMG_SLIDESHOW_3_s: 'Rapide',
 
 
   PERCENT_s: '%',      //: Percent Sign
@@ -198,6 +205,10 @@ const C_o =
   BURST_PICK_HUE_n:            0,
   BURST_PICK_SAT_n:            100,
   BURST_PICK_LUM_n:            50,
+  PLAY_INTERVAL_n:             1000,     //: ms
+  PLAY_PAUSE_n:                1000 * 60 * 10,     //: 10' pause
+
+
 
   PAINT_LAYER_n:        8,
   PAINT_DEVIATION_n:    10,
@@ -274,6 +285,7 @@ const C_o =
   BULLET_s:             '&#8857;',   //: bullet                    •
   SEE_MORE_s:           '&#8943;',          //:
   //-- IMG_EXPO_s:       '&#8862;',   //: Squared Plus               ⊞
+  IMG_PLAY_s:           '⊳',   //: CONTAINS AS NORMAL SUBGROUP    &#8883;
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
 
 

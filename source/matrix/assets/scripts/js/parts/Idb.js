@@ -190,7 +190,7 @@ class Idb
         return new Promise( ( resolve, reject ) =>
         {
           const store_o = this.store__o( 'readwrite' )
-          const delete_o = store.openCursor()
+          const delete_o = store_o.openCursor()
 
           delete_o.onsuccess = request_o =>
           {
