@@ -60,12 +60,12 @@ input[type=range]:after {
   position: relative;
   z-index: 2;
   padding: {{S_o.PAD_1}};
-  right: {{S_o.PAD_1}};
+  right: -100%;
   width: fit-content;
   color: currentColor;
-  background: {{S_o.lighter}};
+  border: 1px solid {{S_o.highlight}};
   border-radius: 4px;
-  font-size: 85%;
+  font-size: 150%;
   transform: scaleY( 2 );
 }
 {{C_o.ROW_TAG_s}}[data--=abstract] {

@@ -139,8 +139,7 @@ const STAT_W_o =
     'PUT_slot',
     'PUT_hsl',
     'PUT_scale',
-    'PUT_speed',
-    'PUT_slideshow',
+    'PUT_slides',
   ]
   ,
 
@@ -170,12 +169,24 @@ const STAT_W_o =
   ,
   imgBitmap_a: new Map()     //: {{C_o.STAT_a[2]}} store for multiple use
   ,
-  slideShow_n: null    //: current setInterval id
+
+  slideStack_o:
+    {
+      slide_n:    0           //: current setInterval id
+    , interval_n: 0           //: store current interval for a pause
+    , pause_b:    false       //: slideShow pause if true
+
+    //++ , opacity_n
+    //++ , shift_n
+    //++ , gap_n
+    //++ , slot_a
+    //++ , atSlot_n
+    //++ , shiftGap_n
+    //++ , stop_b
+    }
   ,
-  pause_b: false       //: slideShow pause if true
-  ,
-  interval_n: 0        //: store current interval for a pause
-  ,
+
+
 
   //=== SCRIPTS ===
   script__v
@@ -359,7 +370,7 @@ const STAT_W_o =
         await response_o
           .blob()
     
-      bitmap_o =
+      const bitmap_o =
         await createImageBitmap
         (
           blob_o,
@@ -553,44 +564,6 @@ const STAT_W_o =
   ,
 
 
-  stopSlideshow__v
-  ()
-  {
-    clearInterval
-    (
-      STAT_W_o
-        .slideShow_n
-    )
-
-    STAT_W_o
-      .slideShow_n
-    =
-      null
-
-    STAT_W_o
-      .pause_b
-    =
-      false
-
-    STAT_W_o
-      .interval_n
-    =
-      0
-
-    STAT_W_o
-      .post__v
-      (
-        {
-          task_s: 'PUT_hue'
-        , stat_s: '{{C_o.STAT_a[0]}}'
-        , hue_a: null    //: stop slideshow
-        , stop_b: true   //: slideshow
-        }
-      )
-  }
-  ,
-
-  
 
   //=== GET    
   get_status__v
@@ -1239,21 +1212,216 @@ const STAT_W_o =
     payload_o
   )
   {
+    //=============================
+    ;console.time( 'get_canvas_img__v' )
+    //=============================
     const
     {
       stat_s
+    , hsl_s
+    , rgb_a
+    , img_b
     } =
       payload_o
 
-    const canvas_e =
-       STAT_W_o
-         .imgData_o
-           [ stat_s ]
-             .canvas_e
+    let canvas_e
+    let imgData_o
+    let suffix_s
 
-    let blob_o =
-      await
+    if
+    (
+      img_b
+    )
+    {
       canvas_e
+      =
+        STAT_W_o
+          .imgData_o
+            [ stat_s ]
+              .canvas_e
+
+      imgData_o
+      =
+        STAT_W_o
+          .imgData_o
+            [ stat_s ]
+              .imgData_o
+    }
+    else    //: burst canvas
+    {
+      canvas_e
+      =
+        STAT_W_o
+          .stat_o
+            [ `${stat_s}_o` ]
+              [ `${hsl_s}_o` ]
+                .canvas_o
+
+      imgData_o
+      =
+        STAT_W_o
+          .stat_o
+            [ `${stat_s}_o` ]
+              [ `${hsl_s}_o` ]
+                .context_o        //: store an original ImageData
+                  .getImageData
+                  (
+                    0
+                    , 0
+                    , canvas_e
+                        .width
+                    , canvas_e
+                        .height
+                  )
+    }
+
+    let blob_o
+
+    let blobCanvas_e
+
+    if
+    (
+      rgb_a
+    )
+    {
+      const
+      [
+        r_n
+      , g_n
+      , b_n
+      ]
+       =
+         rgb_a
+         
+      //=== clone image data to keep original image ===
+      const data_a
+      =
+        imgData_o
+          .data
+      
+      const u8Array_a
+      =
+        new Uint8ClampedArray( data_a )
+
+      for
+      (
+        let at_n
+          = 0;
+        at_n
+        <
+        data_a
+          .length;
+        at_n
+        +=
+          4
+      )
+      {
+        if
+        (
+          data_a
+            [ at_n + 3 ]
+            ===
+            255       //: keep canvas_e pixels
+        )
+        {
+          u8Array_a
+            [ at_n ]
+          =
+            data_a
+              [ at_n ]
+          
+          u8Array_a
+            [ at_n + 1 ]
+          =
+            data_a
+              [ at_n + 1 ]
+          
+          u8Array_a
+            [ at_n + 2 ]
+          =
+            data_a
+              [ at_n + 2 ]
+          
+          u8Array_a
+            [ at_n + 3 ]
+          =
+            data_a
+              [ at_n + 3 ]
+        }
+        else         //: put background color pixels
+        {
+          u8Array_a
+            [ at_n ]
+          =
+            r_n
+
+          u8Array_a
+            [ at_n + 1 ]
+          =
+            g_n
+
+          u8Array_a
+            [ at_n + 2 ]
+          =
+            b_n
+
+          u8Array_a
+            [ at_n + 3 ]
+          =
+            data_a
+              [ at_n + 3 ]
+        }
+      }
+
+      //=== clone canvas ===
+      const
+      {
+        width
+      , height
+      }
+      =
+        canvas_e
+
+      blobCanvas_e
+      =
+        new OffscreenCanvas
+        (
+          width
+        , height
+        )
+
+      const blobData_o
+      =
+        new ImageData
+        (
+          u8Array_a
+        , width
+        )
+
+      const blobContext_o
+      =
+        blobCanvas_e
+          .getContext( '2d' )
+
+      blobContext_o
+        .putImageData
+        (
+          blobData_o
+        , 0
+        , 0
+        )
+    }
+    else
+    {
+      blobCanvas_e
+      =
+        canvas_e
+    }
+
+    blob_o
+    =
+      await
+      blobCanvas_e
         .convertToBlob
         (
           {
@@ -1262,6 +1430,10 @@ const STAT_W_o =
             quality: 0.95
           }
         )
+  
+    //=============================
+    ;console.timeEnd( 'get_canvas_img__v' )
+    //=============================
 
     STAT_W_o
       .post__v
@@ -2572,364 +2744,548 @@ const STAT_W_o =
   ,
 
 
-  put_slideshow__v
+
+  put_slides__v
   (
     payload_o
   )
   {
-    let      //!!! mutable interval_n
+    const      //!!! mutable interval_n
     {
-      stat_s
-    , id_s         //: start || progress || stop
+      id_s         //: start || stop || progress
     , interval_n   //: only to start
     , shift_n      //: idem
+    , limit_n      //: idem
     , opacity_n    //: idem
     }
     =
       payload_o
 
-      ;console.log( payload_o )
-
-    if
+    switch
     (
       id_s
-      ===
-      'stop'
-      //-- &&
-      //-- STAT_W_o
-      //--   .slideShow_n
     )
     {
-      STAT_W_o
-        .stopSlideshow__v()
-
-      return
-    }
-    //-->
-    const slot_a
-    =
-      Array
-        .from
-        (
-         STAT_W_o
-           .stat_o
-             [ `burst_o` ]
-               [ `hue_o` ]
-                 .slot_a
+      case 'stop'
+      :
+        return void (
+          STAT_W_o
+            .stopSlide__v()
         )
- 
-    slot_a
-      .sort        //: descending order
-        (
+  
+        break
+  
+      case 'reset'
+      :
+        STAT_W_o
+          .clearData__v
           (
-            first,
-            second
-          ) =>
-          {
-            if
-            (
-              first
-              ===
-              null
-            )
-            {
-              return 1
-            }
-            //-->
-            if
-            (
-              second
-              ===
-              null
-            )
-            {
-              return -1
-            }
-            //-->
-            return (
-              second
-                .rate_n
-              -
-              first
-                .rate_n
-            )
-          }
-      )
-
-    const scan_a
-    =
-      STAT_W_o
-        .scan_a
-          [
             STAT_W_o
-              [ `SCAN_hue_n` ]
-          ]
-          
-    const
-    {
-      context_o,
-      imgData_o
-    }
-    =
-      STAT_W_o
-        .imgData_o
-          [ `${stat_s}` ]
+              .imgData_o
+                [ '{{C_o.STAT_a[0]}}' ]
+                  .context_o
+        , STAT_W_o
+            .imgData_o
+              [ '{{C_o.STAT_a[0]}}' ]
+                .imgData_o
 
-    const iData_a
-    =
-      imgData_o
-        .data
+          , 255
+          )
+    
+        return void (
+          STAT_W_o
+            .stopSlide__v()
+        )
+  
+        break
+  
+      case 'start'
+      :
+        //=== make  stack ===
+        STAT_W_o
+          .slideStack_o
+            .slot_a
+        =
+          Array
+            .from
+            (
+             STAT_W_o
+               .stat_o
+                 [ `burst_o` ]
+                   [ `hue_o` ]
+                     .slot_a
+            )
+     
+        STAT_W_o
+          .slideStack_o
+            .slot_a
+              .sort        //: descending order
+                (
+                  (
+                    first,
+                    second
+                  ) =>
+                  {
+                    if
+                    (
+                      first
+                      ===
+                      null
+                    )
+                {
+                  return 1
+                    }
+                    //-->
+                    if
+                    (
+                      second
+                      ===
+                      null
+                    )
+                {
+                  return -1
+                    }
+                    //-->
+                    return (
+                  second
+                    .rate_n
+                  -
+                  first
+                    .rate_n
+                    )
+                  }
+              )
 
-    STAT_W_o
-      .clearData__v
-      (
-        context_o
-      , imgData_o
-      , opacity_n
-      )
+        let at_n
+        =
+          STAT_W_o
+            .slideStack_o
+              .slot_a
+                .length
 
-    const gap_n
-    =
-      360
-      /
-      slot_a
-        .length
-
-    let at_n
-    =
-      slot_a
-        .length
-
-    let shiftGap_n
-    =
-      shift_n
-      /
-      slot_a
-        .length
-
-    const show__v
-    =
-      () =>
-      {
-        if
+        while
         (
-          at_n--
-          >
-          -1
+          --at_n
         )
         {
-          const slot_o
-          =
-            slot_a
-              [ at_n ]
-  
           if
           (
-            slot_o    //!!! can be null
+            STAT_W_o
+              .slideStack_o
+                .slot_a
+                  [ at_n ]
           )
           {
-            const start_n =
-              slot_o
-                .hsl_a
-                  [ 0 ]
-        
-            const end_n =
-              start_n
-              +
-              gap_n
-
-            STAT_W_o
-              .post__v
-              (
-                {
-                  task_s: 'PUT_hue'
-                , stat_s: '{{C_o.STAT_a[0]}}'
-                , hue_a:
-                    [
-                      start_n
-                    , end_n
-                    ]
-                }
-              )
-
-            let atHsl_n
-            let atScan_a
-            let length_n
-          
-            for
-            (
-               atHsl_n = start_n;
-               atHsl_n < end_n;
-               ++atHsl_n
-            )
-            {
-              atScan_a =
-                scan_a
-                  [ atHsl_n ]
-  
-              if
-              (
-                atScan_a
-              )
-              {
-                length_n =
-                  atScan_a
-                    .length
-                  
-                for
-                (
-                   atScan_n = 0;
-                   atScan_n < length_n;
-                   ++atScan_n
-                )
-                {
-                  iData_a
-                    [
-                      atScan_a
-                        [ atScan_n ]
-                        +
-                        3
-                    ] =
-                      255
-                }
-              }
-              
-            }
-        
-            context_o
-              .putImageData
-              (
-                imgData_o,
-                0,
-                0
-              )
+            break
           }
+        }
 
-         if
-         (
-            shift_n      //: vary interval
-            ||
-            id_s
-            ===
-            'process'
-         )
-         {
-            if
-            (
-              id_s
-              ===
-              'process'    //: pause
-            )
-            {
-              //--clearInterval
-              //--(
-              //--  STAT_W_o
-              //--    .slideShow_n
-              //--)
-        
-              if 
-              (
-                STAT_W_o
-                  .pause_b   //: resume pause
-              )
-              {
-                interval_n   //: restore interval
-                =
-                  STAT_W_o
-                    .interval_n
-        
-                STAT_W_o
-                  .pause_b
-                =
-                  false
-              }
-              else          //: start pause
-              {
-                STAT_W_o
-                  .interval_n                 //: store current interval to pause
-                =
-                  interval_n 
-          
-                STAT_W_o
-                  .pause_b
-                =
-                  true
-              }
-            }
+        STAT_W_o
+          .slideStack_o
+            .slot_a
+              .length
+        =
+          at_n
+          +
+          1     //: truncate slot_a to eliminate null ones
 
-            clearInterval
-            (
-              STAT_W_o
-                .slideShow_n
-            )
+        STAT_W_o
+          .slideStack_o
+            .atSlot_n
+        =
+          STAT_W_o
+            .slideStack_o
+              .slot_a
+                .length
+    
+        STAT_W_o
+          .slideStack_o
+            .opacity_n
+        =
+          opacity_n
+            
+        STAT_W_o
+          .slideStack_o
+            .shift_n
+        =
+          shift_n
 
+        STAT_W_o
+          .slideStack_o
+            .gap_n
+        =
+          ~~
+          (
+            360
+            /
             STAT_W_o
-              .slideShow_n
-            =
-              setInterval
-              (
-                show__v
-              , interval_n
-              )
-
-            shiftGap_n
-            +=
-              shiftGap_n
-               
-            interval_n
-            *=
-              shiftGap_n
-              
-            ;console.log( interval_n )
-         }
+              .slideStack_o
+                .slot_a
+                  .length
+          )
+      
+        if
+        (
+          shift_n
+        )
+        {
+          STAT_W_o
+            .slideStack_o
+              .shiftGap_n
+          =
+            (
+              limit_n
+              -
+              interval_n
+            )
+            /
+            STAT_W_o
+              .slideStack_o
+                .slot_a
+                  .length
         }
         else
         {
-          //--STAT_W_o
-          //--  .post__v
-          //--  (
-          //--    {
-          //--      task_s: 'PUT_hue'
-          //--    , stat_s: '{{C_o.STAT_a[0]}}'
-          //--    , hue_a: null    //: stop slideshow
-          //--    , stop_b: true   //: slideshow
-          //--    }
-          //--  )
           STAT_W_o
-            .stopSlideshow__v()
+            .slideStack_o
+              .shiftGap_n
+          =
+            0
         }
-        //;console.timeEnd( 'setInterval'  )
-      }
 
-    //=== start slideshow ===
-    STAT_W_o
-      .slideShow_n
-    =
-      setInterval
-      (
-          show__v
-        , interval_n
-      )
+        STAT_W_o
+          .slideStack_o
+            .stop_b
+        =
+          false
+    
+        STAT_W_o
+          .clearData__v
+          (
+            STAT_W_o
+              .imgData_o
+                [ '{{C_o.STAT_a[0]}}' ]
+                  .context_o
+        , STAT_W_o
+            .imgData_o
+              [ '{{C_o.STAT_a[0]}}' ]
+                .imgData_o
+
+          , opacity_n
+          )
+    
+        //=== start slideshow ===
+        STAT_W_o
+          .slideStack_o
+            .interval_n    //: store current interval to pause
+        =
+          interval_n
+
+        STAT_W_o
+          .slideStack_o
+            .slide_n
+        =
+          setInterval
+          (
+            STAT_W_o
+                .slide__v
+          , interval_n
+          )
+    
+        break
+    
+      case 'progress'
+      :
+        let pause_n
+
+        if 
+        (
+          ! STAT_W_o
+              .slideStack_o
+                .pause_b    //: not yet pause
+        )
+        {
+          STAT_W_o
+            .slideStack_o
+              .pause_b
+          =
+            true
+    
+          pause_n
+          =
+            +'{{C_o.PLAY_PAUSE_n}}'
+        }
+        else          //: resume pause
+        {
+          STAT_W_o
+            .slideStack_o
+              .pause_b
+          =
+            false
+
+          pause_n
+          =
+            STAT_W_o
+              .slideStack_o
+                .interval_n
+        }
+
+        //=== pause || resume slideshow ===
+        clearInterval
+        (
+          STAT_W_o
+            .slideStack_o
+              .slide_n
+        )
+    
+        STAT_W_o
+          .slideStack_o
+            .slide_n
+        =
+          setInterval
+          (
+            STAT_W_o
+              .slide__v
+          , pause_n
+          )
+
+        break
+
+      default
+      :
+        break
+    }
   }
   ,
 
 
 
-  put_speed__v
-  (
-    payload_o
-  )
+  slide__v
+  ()
   {
-    const
-      { 
-        stat_s,
-        hsl_s,
-        scale_n,
-        burst_b
-      } =
-        payload_o
+    let
+      {
+        slot_a
+      , shift_n
+      , gap_n
+      //?? , shiftGap_n
+      , stop_b
+      }
+    =
+      STAT_W_o
+        .slideStack_o
 
-    ;console.log( 'put_speed__v'  )
+    if
+    (
+      STAT_W_o
+        .slideStack_o
+          .atSlot_n--
+      >
+      -1
+    )
+    {
+      const slot_o
+      =
+        slot_a
+          [
+            STAT_W_o
+              .slideStack_o
+                .atSlot_n
+          ]
+  
+      if
+      (
+        slot_o    //!!! can't be null
+      )
+      {
+        const firstSlot_n =
+          slot_o
+            .hsl_a
+              [ 0 ]
+    
+        const lastSlot_n =
+          firstSlot_n
+          +
+          gap_n
+  
+        STAT_W_o
+          .post__v
+          (
+            {
+              task_s: 'PUT_hue'
+            , stat_s: '{{C_o.STAT_a[0]}}'
+            , hue_a:
+                [
+                  firstSlot_n
+                , lastSlot_n
+                ]
+            }
+          )
+  
+        let context_o
+        =
+          STAT_W_o
+            .imgData_o
+              [ '{{C_o.STAT_a[0]}}' ]
+                .context_o
+    
+        let imgData_o
+        =
+          STAT_W_o
+            .imgData_o
+              [ '{{C_o.STAT_a[0]}}' ]
+                .imgData_o
+
+        let iData_a
+        =
+          imgData_o
+            .data
+
+        let atHsl_n
+        let atScan_a
+        let length_n
+      
+        for
+        (
+           atHsl_n = firstSlot_n;
+           atHsl_n < lastSlot_n;
+           ++atHsl_n
+        )
+        {
+          atScan_a =
+            STAT_W_o
+              .scan_a
+                [
+                  STAT_W_o
+                    [ `SCAN_hue_n` ]
+                ]
+                  [ atHsl_n ]
+  
+          if
+          (
+            atScan_a
+          )
+          {
+            length_n =
+              atScan_a
+                .length
+              
+            for
+            (
+               atScan_n = 0;
+               atScan_n < length_n;
+               ++atScan_n
+            )
+            {
+              iData_a
+                [
+                  atScan_a
+                    [ atScan_n ]
+                    +
+                    3
+                ] =
+                  255
+            }
+          }
+          
+        }
+    
+        context_o
+          .putImageData
+          (
+            imgData_o,
+            0,
+            0
+          )
+      }
+  
+      if
+      (
+        shift_n      //: modify interval
+        //?? shiftGap_n
+      )
+      {
+        clearInterval
+        (
+          STAT_W_o
+            .slideStack_o
+              .slide_n
+        )
+  
+        STAT_W_o
+          .slideStack_o
+            .slide_n
+        =
+          setInterval
+          (
+            STAT_W_o
+              .slide__v
+          , STAT_W_o
+              .slideStack_o
+                .interval_n
+          )
+          
+        STAT_W_o
+          .slideStack_o
+            .interval_n
+        +=
+          STAT_W_o
+            .slideStack_o
+              .shiftGap_n
+      }
+    }
+    else
+    {
+      stop_b
+      =
+        true
+  
+      STAT_W_o
+        .stopSlide__v()
+    }
+  }
+  ,
+
+
+
+  stopSlide__v
+  ()
+  {
+    clearInterval
+    (
+      STAT_W_o
+        .slideStack_o
+          .slide_n
+    )
+
+    STAT_W_o
+      .slideStack_o
+        .slide_n
+    =
+      0        //: reset
+
+    STAT_W_o
+      .slideStack_o
+        .pause_b
+    =
+      false    //: reset
+
+    STAT_W_o
+      .slideStack_o
+        .interval_n
+    =
+      0        //: reset
+
+    STAT_W_o
+      .post__v
+      (
+        {
+          task_s: 'PUT_hue'
+        , stat_s: '{{C_o.STAT_a[0]}}'
+        , hue_a: null    //: stop slideshow
+        , stop_b: true   //: slideshow
+        }
+      )
   }
   ,
 

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <div id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}">
 
+  <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_zoom_out">{{C_o.ZOOM_OUT_s}}</label>
+
+
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue" name="{{C_o.STAT_a[0]}}_nav" type="radio" checked>
   <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue" width=1024 height=1024></canvas>  <!-- 1024: default value -->
   <nav id="{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_hue">
@@ -163,6 +166,7 @@
   <!--<input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bar" type="checkbox">-->
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position" type="checkbox">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker" type="checkbox">
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_transparent" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_white" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
   <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color" name="{{C_o.STAT_a[0]}}_hue_color" type="radio">
@@ -187,56 +191,81 @@
 
     <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" width={{C_o.BURST_TRANSFORM_DIM_s}} height={{C_o.BURST_TRANSFORM_DIM_s}} data-fullsize_b=true></canvas>  <!-- 1024: default value -->
 
-    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback">
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress">
-        <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_start">&nbsp;</label>
-        <progress id="progress_{{C_o.STAT_a[0]}}_playback_progress" max="100" value="0"></progress>
-        <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_stop">&nbsp;</label>
-        <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress"></label>
+    <div>
+      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback">
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress">
+          <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_start">&nbsp;</label>
+          <progress id="progress_{{C_o.STAT_a[0]}}_playback_progress" max="100" value="0"></progress>
+          <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_stop">&nbsp;</label>
+          <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_reset">&nbsp;</label>
+          <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress"></label>
+        </div>
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval">
+          <label>{{C_o.NAV_LEGEND_o.play_interval.legend_s}}</label>
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval" type="range" min="100" max="10000" step="100" value="{{C_o.PLAY_INTERVAL_n}}" data-tip="{{C_o.PLAY_INTERVAL_n}}">
+        </div>
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift">
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower" name="{{C_o.STAT_a[0]}}_playback_shift" type="radio" checked>
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower">{{C_o.NAV_LEGEND_o.play_slower.legend_s}}</label>
+  
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster" name="{{C_o.STAT_a[0]}}_playback_shift" type="radio">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster">{{C_o.NAV_LEGEND_o.play_faster.legend_s}}</label>
+  
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift" type="range" min="0" max="100" step="1" value="0" data-tip="0">
+        </div>
       </div>
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval">
-        <label>{{C_o.NAV_LEGEND_o.play_interval.legend_s}}</label>
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval" type="range" min="100" max="10000" step="100" value="{{C_o.PLAY_INTERVAL_n}}" data-tip="{{C_o.PLAY_INTERVAL_n}}">
-      </div>
-      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift">
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower" name="{{C_o.STAT_a[0]}}_playback_shift" type="radio" checked>
-        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower">{{C_o.NAV_LEGEND_o.play_slower.legend_s}}</label>
-
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster" name="{{C_o.STAT_a[0]}}_playback_shift" type="radio">
-        <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster">{{C_o.NAV_LEGEND_o.play_faster.legend_s}}</label>
-
-        <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift" type="range" min="0" max="100" step="5" value="0" data-tip="0">
+  
+      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg">
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity">
+          <label>{{C_o.NAV_LEGEND_o.img_opacity.legend_s}}</label>
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity" type="range" min="0" max="100" step="1" value="{{C_o.BURST_IMG_OPACITY_n}}" data-tip="{{C_o.BURST_IMG_OPACITY_n}}">
+        </div>
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_transparent" data-legend="{{C_o.NAV_LEGEND_o.img_bgtransparent.legend_s}}">
+              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+          </label>
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black" data-legend="{{C_o.NAV_LEGEND_o.img_bgblack.legend_s}}">
+              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+          </label>
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_white" data-legend="{{C_o.NAV_LEGEND_o.img_bgwhite.legend_s}}">
+              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+          </label>
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color" data-legend="{{C_o.NAV_LEGEND_o.img_bgcolor.legend_s}}">
+              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+          </label>
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker" data-legend="{{C_o.NAV_LEGEND_o.img_picker.legend_s}}">
+              <span data-role="bgcolor">{{C_o.SEE_MORE_s}}</span>
+          </label>
+        </div>
+        <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue"></label>
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue" type="range" min="0" max="360" step="1" value="{{C_o.BURST_PICK_HUE_n}}" data-tip="{{C_o.BURST_PICK_HUE_n}}">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat"></label>
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat" type="range" min="0" max="100" step="1" value="{{C_o.BURST_PICK_SAT_n}}" data-tip="{{C_o.BURST_PICK_SAT_n}}">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum"></label>
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum" type="range" min="0" max="100" step="1" value="{{C_o.BURST_PICK_LUM_n}}" data-tip="{{C_o.BURST_PICK_LUM_n}}">
+        </div>
       </div>
     </div>
 
-
-
-    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg">
-      <label>{{C_o.NAV_LEGEND_o.img_opacity.legend_s}}</label>
-      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity" type="range" min="0" max="100" step="10" value="{{C_o.BURST_IMG_OPACITY_n}}" data-tip="{{C_o.BURST_IMG_OPACITY_n}}">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black" data-legend="{{C_o.NAV_LEGEND_o.img_bgblack.legend_s}}">
-          <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
-      </label>
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_white" data-legend="{{C_o.NAV_LEGEND_o.img_bgwhite.legend_s}}">
-          <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
-      </label>
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color" data-legend="{{C_o.NAV_LEGEND_o.img_bgcolor.legend_s}}">
-          <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
-      </label>
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker" data-legend="{{C_o.NAV_LEGEND_o.img_picker.legend_s}}">
-          <span data-role="bgcolor">{{C_o.SEE_MORE_s}}</span>
-      </label>
-    </div>
-    <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue"></label>
-      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue" type="range" min="0" max="360" step="1" value="{{C_o.BURST_PICK_HUE_n}}" data-tip="{{C_o.BURST_PICK_HUE_n}}">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat"></label>
-      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat" type="range" min="0" max="100" step="1" value="{{C_o.BURST_PICK_SAT_n}}" data-tip="{{C_o.BURST_PICK_SAT_n}}">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum"></label>
-      <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum" type="range" min="0" max="100" step="1" value="{{C_o.BURST_PICK_LUM_n}}" data-tip="{{C_o.BURST_PICK_LUM_n}}">
-    </div>
-    
   </aside>
 
+  <dialog id="dialog_{{C_o.STAT_a[0]}}_download">
+    <form id="form_{{C_o.STAT_a[0]}}_download" method="dialog">
+      <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download">
+        <header>
+          <label control>
+          Création du fichier image
+          </label>
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_download_accept" type="checkbox">
+          <label for="{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_download_accept">&#10003;</label>
+          <input id="{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_download_accept" type="checkbox">
+        </header>
+        <label id="{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_download"></label>
+        <p>Cette opération ne prend que quelques secondes</p>
+      </div>
+    </form>
+  </dialog>
+  
   <script id=script_{{C_o.STAT_a[0]}} data-src="/assets/scripts/js/{{C_o.STAT_a[0]}}.min.js"></script>
 </div>

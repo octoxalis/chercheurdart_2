@@ -14,19 +14,42 @@
   --{{C_o.STAT_a[0]}}_img_bg_hue: {{S_o.hue_p}};
   --{{C_o.STAT_a[0]}}_img_bg_sat: 50;
   --{{C_o.STAT_a[0]}}_img_bg_lum: 25;
-  --{{C_o.STAT_a[0]}}_img_bgwhite: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 100% 100% /1);
-  --{{C_o.STAT_a[0]}}_img_bgblack: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) 0% 0% /1);
-  --{{C_o.STAT_a[0]}}_img_background: var(--{{C_o.STAT_a[0]}}_img_bgwhite);
+  --{{C_o.STAT_a[0]}}_img_bgtransparent: {{S_o.bgtransparent_s}};
+  --{{C_o.STAT_a[0]}}_img_bgwhite: {{S_o.bgwhite_s}};
+  --{{C_o.STAT_a[0]}}_img_bgblack: {{S_o.bgblack_s}};
+  --{{C_o.STAT_a[0]}}_img_background: var(--{{C_o.STAT_a[0]}}_img_bgtransparent);
   --{{C_o.STAT_a[0]}}_satlum_s: none;
   --{{C_o.STAT_a[0]}}_playback_bg: transparent;
   --{{C_o.STAT_a[0]}}_playback_pause: auto;
   --{{C_o.STAT_a[0]}}_img_play: '{{C_o.IMG_PLAY_s}}';
+  --{{C_o.STAT_a[0]}}_zoom_out_s: none;
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > label#{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_zoom_out {
+  z-index: 101;
+  display: var(--{{C_o.STAT_a[0]}}_zoom_out_s);
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border: 1px solid {{S_o.nav_dot_set_4}};
+  border-radius: 8px;
+  background: transparent;
+  position: sticky;
+  top: 2rem;
+  left: calc( 50vw - 1rem );
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > label#{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_zoom_out:hover {
+  cursor: zoom-out;
+  background: {{S_o.shadow_ne}};
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > canvas {
   width: var(--{{C_o.STAT_a[0]}}_canvas_dim);
   height: var(--{{C_o.STAT_a[0]}}_canvas_dim);
   border: 1px solid {{ S_o.shadow_ne}};
   border-radius: 50%;
+  background: var(--{{C_o.STAT_a[0]}}_img_background);
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}] {
   display: none;
@@ -476,15 +499,25 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   justify-content: center;
   align-items: center;
   position: fixed;
+  min-width: 60vw;
   background: {{S_o.bg_higher}};
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+  border-radius: 16px;
   transform-origin: center;
   transform: scale( var(--{{C_o.STAT_a[0]}}_hue_img_scale) );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img {
-  grid-area: 1/-1;
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:not(.fullsize) {
   max-width: 1000vw;
   background: var(--{{C_o.STAT_a[0]}}_img_background);
+  cursor: zoom-in;
+  transition: all .5s ease;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > .fullsize {
+  position: absolute;
+  z-index: 100;
+  cursor: move;
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow_full}};
+  transition: all .5s ease;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul {
   display: flex;
@@ -501,6 +534,8 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   transform: scale( 1 );
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > label {
+  align-items: center;
+  justify-content: center;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
@@ -555,20 +590,25 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li:nth-of-type(1) {
   flex-grow: 1;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div {
   display: flex;
-  justify-content: space-evenly;
-  padding: {{S_o.PAD_2}} {{S_o.PAD_4}};
+  justify-content: space-around;
   width: 100%;
-  height: 5rem;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: {{S_o.PAD_2}};
+  width: 48%;
+  height: fit-content;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress {
   display: flex;
   justify-content: space-between;
-  padding: 0 .5rem;
+  padding: .5rem;
   position: relative;
   top: 1rem;
-  width: 50%;
   height: 4rem;
   border: 1px solid {{S_o.selected_lo}};
   border-radius: {{S_o.PAD_2}};
@@ -576,78 +616,78 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   --toHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
   background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(1) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:not(:nth-of-type(4)) {
   display: inline-flex;
   align-self: center;
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  background: {{S_o.highlight}};
+  background: {{S_o.button}};
+  border-radius: 8px;
   cursor: pointer;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(1) {
   clip-path: polygon(0 100%, 100% 50%, 0 0);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(2) {
-  display: inline-flex;
-  align-self: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: {{S_o.highlight}};
-  cursor: pointer;
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(3) {
+  width: 4rem;
+  clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 40% 100%, 0% 50%);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(1):hover, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(2):hover {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:not(:nth-of-type(4)):hover {
   filter: brightness(4);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(3) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(4) {
   font-size: 200%;
   display: inline-flex;
   align-self: center;
   justify-content: center;
   width: 10%;
+  height: fit-content;
   background: {{S_o.bg_higher}};
   border-radius: {{S_o.PAD_2}};
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > progress#progress_{{C_o.STAT_a[0]}}_playback_progress {
-  width: 75%;
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > progress#progress_{{C_o.STAT_a[0]}}_playback_progress {
   display: inline-flex;
   align-self: center;
+  margin-left: 4rem;
+  width: 75%;
   cursor: var(--{{C_o.STAT_a[0]}}_playback_pause);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 30%;
+  padding: .5rem;
   height: 4rem;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > label {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > label {
   font-size: 150%;
   opacity: .5;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval {
-  width: 80%;
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval {
+  width: 75%;
+  margin-left: 1rem;
   cursor: ew-resize;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval[type=range]:hover:after {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval[type=range]:hover:after {
   transform: scale( 2 );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 20%;
-  height: 4rem;
+  padding: 1rem;
+  width: 85%;
   border-radius: {{S_o.PAD_2}};
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower {
   display: none;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster {
   display: none;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > label[for] {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > label[for] {
   margin: 0.1em;
   width: 47%;
   height: 2rem;
@@ -660,114 +700,119 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   cursor: pointer;
   filter: brightness( .75 );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > label[for]:hover {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > label[for]:hover {
   opacity: 1;
   filter: brightness(4);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input[type=radio]:checked + label[for] {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input[type=radio]:checked + label[for] {
   opacity: 1;
   filter: brightness( 1.5 );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift {
   width: 94%;
   cursor: ew-resize;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower:checked) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower:checked) {
   background: hsla( 120 {{S_o.sat_hi_4}} {{S_o.lum_hi_2}} /1);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster:checked) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster:checked) {
   background: hsla( 0 {{S_o.sat_hi_4}}{{S_o.lum_hi_2}} /1);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift[value=0]) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift[value=0]) {
   background: transparent;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg {
   display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
-  gap: 9rem;
-  margin-top: 2rem;
-  padding: 0 {{S_o.PAD_2}};
-  width: 100%;
-  height: 4rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5em;
+  width: 48%;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity > label:nth-of-type(1) {
   flex-grow: 1;
   text-align: center;
   font-size: 150%;
   line-height: 4rem;
   opacity: .5;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range] {
-  width: 200px;
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range] {
+  margin: 0 6rem;
+  width: 75%;
   background: transparent;
   cursor: pointer;
-  transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
-  flex-grow: 4;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]:hover:after {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]:hover:after {
   transform: scale( 2, 4 );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for] {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color {
   display: flex;
-  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for] {
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: url( /assets/styles/css/paint_brush.svg ) 32 32, auto;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for] > span {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for] > span {
   width: 6rem;
   height: 6rem;
   line-height: 6rem;
   border: 2px solid hsl( 0 0% 100% /1);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for]:nth-of-type(2) > span {
-  background: hsl( 0 0% 0% /1);
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for]:nth-of-type(1) > span {
+  background: {{S_o.bgtransparent_s}};
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for]:nth-of-type(3) > span {
-  background: hsl( 0 100% 100% /1);
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for]:nth-of-type(2) > span {
+  background: {{S_o.bgblack_s}};
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for]:nth-of-type(4) > span {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for]:nth-of-type(3) > span {
+  background: {{S_o.bgwhite_s}};
+}
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for]:nth-of-type(4) > span {
   background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for]:nth-of-type(5) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for]:nth-of-type(5) {
   cursor: pointer;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for]:nth-of-type(5) > span {
-  line-height: calc( 1.5rem - 8px );
-  background: transparent;
-  border: 2px solid transparent;
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for]:nth-of-type(5) > span {
+  background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > label[for]:hover > span {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label[for]:hover > span {
   display: none;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
   display: none;
   flex-direction: column;
-  align-items: center;
-  padding: {{S_o.PAD_2}} {{S_o.PAD_4}};
   width: 100%;
-  height: fit-content;
+  align-self: flex-end;
+  margin-right: 3%;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label {
   width: 100%;
   height: 1.6rem;
   border-radius: 4px;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > input[type=range] {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > input[type=range] {
   position: relative;
   top: -1.1rem;
-  width: 100%;
   cursor: pointer;
-  transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label:nth-of-type(1) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label:nth-of-type(1) {
   background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label:nth-of-type(2) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label:nth-of-type(2) {
   background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat) * 1% ) 50% /1);
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label:nth-of-type(3) {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > label:nth-of-type(3) {
   background: hsl( 0 0% calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum) * 1% ) /1);
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img {
@@ -788,9 +833,68 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img > ul > li > label[for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position"] {
   transform: scale( 2 );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
   display: flex;
 }
 body:has( section#{{C_o.STAT_a[0]}} div[id^={{C_o.DIV_ID_s}}_stat] input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img, body:has( section#{{C_o.STAT_a[0]}} div[id^={{C_o.DIV_ID_s}}_stat] input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img {
   display: none;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download {
+  display: none;
+  position: absolute;
+  margin: auto;
+  padding: {{S_o.PAD_4}};
+  width: clamp(40ch, 80ch, 80vw);
+  background: {{S_o.form_bg}};
+  border: none;
+  border-radius: 4px;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form {
+  grid-area: 1/-1;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download {
+  display: flex;
+  flex-direction: column;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > header {
+  display: flex;
+  gap: {{S_o.PAD_8}};
+  border-bottom: 1px solid {{S_o.form_label}};
+  text-transform: uppercase;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > header > label {
+  width: 2rem;
+  height: 2rem;
+  text-transform: uppercase;
+  font-size: 120%;
+  font-weight: 600;
+  color: {{S_o.darker}};
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > header > label:nth-of-type(1) {
+  flex-grow: 2;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > header > label:nth-of-type(2) {
+  color: {{S_o.accept_hi}};
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > header > label:not(:nth-of-type(1)):hover {
+  filter: brightness( 4 );
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > header > input {
+  display: none;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > label {
+  margin-top: 1rem;
+  color: {{S_o.textcolor_lo}};
+  font-size: 90%;
+  font-style: italic;
+  font-weight: 200;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download > form > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download > p {
+  color: {{S_o.textcolor}};
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download[open] {
+  display: grid;
+}
+dialog#dialog_{{C_o.STAT_a[0]}}_download[open]::backdrop {
+  background: {{S_o.form_shadow}};
 }

@@ -70,12 +70,6 @@ const BUR_o =
 
         break
     
-      case 'PUT_speed':
-        BUR_o
-          .put_speed__v( payload_o )
-
-        break
-    
       case 'PUT_level':
         BUR_o
           .level_a =
@@ -337,7 +331,25 @@ const BUR_o =
 
       legend_s
       =
-      `${hue_a[0]}<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${hue_a[1]}`
+        hue_a
+          [0]
+
+      if     //: range [n - n+1], 360 slots
+      (
+        hue_a
+          [1]
+        >
+        hue_a
+          [0]
+        +
+        1
+      )
+      {
+        legend_s
+        +=
+        `<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${hue_a[1]}`
+      }
+
 
       if
       (
@@ -370,7 +382,13 @@ const BUR_o =
         =
           BUR_o
             .slideshow_o
-              .progress_n  
+              .progress_n
+
+        document
+          .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress' )
+            .innerHTML
+        =
+          legend_s
       }
     }
 
@@ -396,16 +414,15 @@ const BUR_o =
     payload_o
   )
   {
-    const
-      {
-        blob_o
-      } =
-        payload_o
-
+    document
+      .getElementById( 'dialog_{{C_o.STAT_a[0]}}_download'  )
+        .close()
+      
     BUR_o
       .saveFile__o
       (
-        blob_o
+        payload_o
+          .blob_o
       , BUR_o
           .download_s
       )
@@ -793,6 +810,25 @@ const BUR_o =
   }
   
 
+  ,
+  opacity__n
+  ()
+  {
+    return ~~(
+        (
+          //-- +input_e            //: Number cast
+          +document            //: Number cast
+            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )
+             .value
+          /
+          100
+        )
+        *
+        255      //: [0...255]
+      )
+  }
+
+
 
   ,
   pick__v
@@ -809,23 +845,25 @@ const BUR_o =
       undefined
     )
     {
-      const input_e
-      =
-        document
-          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )
+      //-- const input_e
+      //-- =
+      //--   document
+      //--     .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )
                 
       opacity_n
       =
-        ~~(
-          (
-            +input_e            //: Number cast
-              .value
-            /
-            100
-          )
-          *
-          255      //: [0...255]
-        )
+      //--  ~~(
+      //--    (
+      //--      +input_e            //: Number cast
+      //--        .value
+      //--      /
+      //--      100
+      //--    )
+      //--    *
+      //--    255      //: [0...255]
+      //--  )
+      BUR_o
+        .opacity__n()
     }
 
     if
@@ -878,7 +916,6 @@ const BUR_o =
               ]
          }
         )
-
   }
   
 
@@ -1531,8 +1568,56 @@ const BUR_o =
 
   ,
   eventImg_download__v
-  ()
+  (
+    pick_b=true         //: false for playing snapshot
+  , background_b=true   //: include color bg
+  )
   {
+    let suffix_s
+    let img_b
+
+    if
+    (
+      document
+        .querySelector( `#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked` )
+    )
+    {
+      img_b
+      =
+        true
+
+      suffix_s
+      =
+        'img'
+    }
+    else
+    {
+      for
+      (
+        let hsl_s
+        of
+        [
+          'hue'
+        , 'sat'
+        , 'lum'
+        ]
+      )
+      {
+        if
+        (
+           document
+             .querySelector( `#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}:checked` )
+        )
+        {
+          suffix_s
+          =
+            hsl_s
+  
+          break
+        }
+      }
+    }
+
     const date_s
     = DATE_o
         .dataTimeNumeric__s()
@@ -1540,17 +1625,58 @@ const BUR_o =
     const key_s
     =
       BUR_o
-        .work_s
+        .work_s    //!!!!!!!! TODO fot local image: no work_s !!!!!!!!
       + `_${date_s}`
 
     BUR_o
       .download_s
     =
-      `${key_s}.jpg`    //:  used by file picker as suggestedName
+      `${key_s}-${suffix_s}.jpg`    //:  used by file picker as suggestedName
 
-    BUR_o
-      .pick__v()
-      
+
+    let rgb_a
+
+    if
+    (
+      background_b
+    )
+    {
+      const css_s
+      =
+        window
+          .getComputedStyle
+          (
+            document
+              .getElementById( '{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img' )
+          )
+            .backgroundColor
+  
+      rgb_a
+      =
+        css_s
+          .substring
+          (
+            'rgb('            //: skip rgb(
+              .length
+          , css_s
+              .length
+            -1 
+          )
+            .split
+            (
+              ', '
+            )  
+    }
+
+    if
+    (
+      pick_b    //: pick slot snapshot
+    )
+    {
+      BUR_o
+        .pick__v()
+    }
+
     BUR_o
       .worker_o
         .post__v
@@ -1558,11 +1684,78 @@ const BUR_o =
           { 
             task_s: 'GET_canvas_img'
           , stat_s: '{{C_o.STAT_a[0]}}'
+          , hsl_s: suffix_s
+          , img_b: img_b
+          , rgb_a: rgb_a
+          //... , opacity_n: opacity_n
           }
         )
+
+      const download_e
+      =
+        document
+          .getElementById( 'dialog_{{C_o.STAT_a[0]}}_download'  )
+  
+        document
+          .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_download'  )
+            .innerHTML
+        =
+          BUR_o.download_s
+  
+      download_e
+        .showModal()
   }
 
 
+  ,
+  keyImg_slideshow__v    //: must prevent default for space key
+  (
+    event_o
+  )
+  {
+    event_o
+      .preventDefault()      //: keydown event with SPACE key
+
+    switch
+    (
+      event_o
+        .key
+    )
+    {
+      case
+        ' '     //: SPACE key
+      :
+        BUR_o
+          .eventImg_slideshow__v
+          (
+            event_o
+          )
+
+        break
+
+      case
+        's'
+      :
+        if
+        (
+          event_o
+            .ctrlKey
+        )
+        {
+          BUR_o
+            .eventImg_download__v
+            (
+              false      //: don't  pick
+            )
+        }
+
+        break
+
+      default 
+      :
+        break
+    }
+  }
 
   ,
   eventImg_slideshow__v
@@ -1571,27 +1764,46 @@ const BUR_o =
   )
   {
     let id_s
-    =
-       event_o
-         .target
-           .id
 
-    id_s
-    =
-     id_s
-       .substring
-       (
-          id_s
-            .lastIndexOf( '_' )    //: start || progress || stop
-          +
-          1
-       ) 
+    if
+    (
+      event_o
+        ?.key
+      ===
+      ' '     //: keydown event with SPACE key
+    )
+    {
+      id_s
+      =
+        'progress'
+    }
+    else
+    {
+      id_s
+      =
+        event_o
+          .target
+            .id
+  
+      id_s
+      =
+       id_s
+         .substring
+         (
+            id_s
+              .lastIndexOf( '_' )    //: start || progress || stop
+            +
+            1
+         )
+    }
 
-    let interval_n     //: only to start
+    let opacity_n      //: only to start
+
+    let interval_n     //: idem
 
     let shift_n        //: idem
 
-    let opacity_n      //: idem
+    let limit_n        //: idem
 
     switch
     (
@@ -1627,44 +1839,40 @@ const BUR_o =
           +document
             .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval` )            //: Number cast
               .value
-    
-          ;console.log( interval_n  )
-    
+        
         shift_n
          =
            +document
              .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift` )            //: Number cast
                .value
-           *
-           .1    //: 1/10
-        
-        if
-        (
+
+        let delta_n
+        =
+          interval_n
+          *
+          shift_n
+          *
+          0.01    //: percent
+
+
+        limit_n
+        =
           document
             .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower` )
               .checked
-        )
-        {
-          shift_n
-          *=
-            .1      //: divide if slower
-    
-        }
-        ;console.log( shift_n  )
-
+        ?
+          interval_n
+          +
+          delta_n
+        :
+          interval_n
+          -
+          delta_n
+        
         opacity_n
         =
-          ~~(
-            (
-              +document
-                .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity` )            //: Number cast
-                  .value
-              /
-              100
-            )
-            *
-            255      //: [0...255]
-          )
+          BUR_o
+            .opacity__n()
     
         DOM_o
           .rootVar__v
@@ -1672,7 +1880,7 @@ const BUR_o =
             `--{{C_o.STAT_a[0]}}_playback_pause`
           , 'wait'
           )
-
+          
         break
     
       case 'progress'
@@ -1689,10 +1897,14 @@ const BUR_o =
         //-->
         interval_n
         =
-          {{C_o.PLAY_PAUSE_n}}    //!!! 10' pause (if not resumed will pause for a new 10')
+         +' {{C_o.PLAY_PAUSE_n}}'
         
         break
 
+      //?? case 'reset'
+      //?? :
+      //?? 
+      //??   break
       //?? case 'stop'
       //?? :
       //?? 
@@ -1708,11 +1920,12 @@ const BUR_o =
         .post__v
         (
           { 
-            task_s: 'PUT_slideshow'
+            task_s: 'PUT_slides'
           , stat_s: '{{C_o.STAT_a[0]}}'
           , id_s: id_s
           , interval_n: interval_n
           , shift_n: shift_n
+          , limit_n: limit_n
           , opacity_n: opacity_n
           }
         )
@@ -1736,8 +1949,23 @@ const BUR_o =
       true
     )
     {
-      case for_s
-             .includes( 'black' ) :
+      case
+        for_s
+          .includes( 'transparent' )
+      :
+        DOM_o
+          .rootVar__v
+          (
+            `--{{C_o.STAT_a[0]}}_img_background`
+          , '{{S_o.bgtransparent_s}}'
+          )
+
+        break
+
+      case
+        for_s
+          .includes( 'black' )
+      :
         DOM_o
           .rootVar__v
           (
@@ -1748,8 +1976,10 @@ const BUR_o =
 
         break
 
-      case for_s
-             .includes( 'white' ) :
+      case
+        for_s
+          .includes( 'white' )
+      :
         DOM_o
           .rootVar__v
           (
@@ -1760,9 +1990,10 @@ const BUR_o =
 
         break
 
-      case for_s
-             .includes( 'color' ) :
-
+      case
+        for_s
+          .includes( 'color' )
+      :
         DOM_o
           .rootVar__v
           (
@@ -1773,8 +2004,10 @@ const BUR_o =
 
         break
 
-      case for_s
-             .includes( 'picker' ) :
+      case
+        for_s
+          .includes( 'picker' )
+      :
         DOM_o
           .rootVar__v
           (
@@ -1802,16 +2035,11 @@ const BUR_o =
       event_o
         .target
 
-    //-- const value_s =
-    //--   range_e
-    //--     .value
-    //--   
-    //-- range_e
-    //--   .dataset
-    //--     .tip =
-    //--       value_s
     UI_o
-      .rangeVar__v( range_e )
+      .rangeVar__v
+      (
+        range_e
+      )
 
   
     let id_s =
@@ -1832,8 +2060,8 @@ const BUR_o =
       .rootVar__v
       (
         `--{{C_o.STAT_a[0]}}_img_bg_${hsl_s}`
-        ,
-        value_s
+        , range_e
+            .value
       )
 
     BUR_o
@@ -2017,6 +2245,7 @@ const BUR_o =
           )
     }
 
+    //=== SLIDES EVENTS ===
     for
     (
       let range_s
@@ -2024,6 +2253,7 @@ const BUR_o =
       [
         'start'
       , 'stop'
+      , 'reset'
       ]
     )
     {
@@ -2052,6 +2282,27 @@ const BUR_o =
         }
       )
 
+    document
+      .body
+        .addEventListener
+        (
+          'keydown'
+        , BUR_o
+            .keyImg_slideshow__v
+        , {
+            passive: false
+          }
+        )
+
+    document
+      .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_zoom_out' )
+        .addEventListener
+        (
+          'click'
+        , BUR_o
+            .sizeEventTiny__v
+        )
+    
 
 
     //??? document
@@ -2119,8 +2370,8 @@ const BUR_o =
         let range_s
         of
         [
-          'shift'
-        , 'interval'
+          'interval'
+        , 'shift'
         ]
       )
       {
@@ -2130,13 +2381,14 @@ const BUR_o =
             document
               .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_${range_s}` )
           )
-      }
 
+      }
       for
       (
         let range_s
         of
         [
+          'transparent',
           'black',
           'white',
           'color',
@@ -2239,8 +2491,135 @@ const BUR_o =
       FUL_o
         .listener__v()
     }
+
+    BUR_o
+     .zoomable__v()
+   
   }
 
+
+  ,
+  zoomable__v
+  ()
+  {
+    for
+    (
+      let zoomable__e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `[data-fullsize_b]` )
+        )
+    )
+    {
+      zoomable__e
+        .addEventListener
+        (
+          'click'
+        , BUR_o
+            .sizeEventFull__v
+        )
+    }
+  }
+
+
+
+  ,
+  sizeEventFull__v
+  (
+    event_o
+  )
+  {
+    if
+    (
+      BUR_o
+        .full_e
+    )
+    {
+      return    //: avoid click event when mouse up
+    }
+    //-->
+    BUR_o
+      .full_e
+    =
+      event_o
+        .target
+   
+    //XX if
+    //XX (
+    //XX   BUR_o
+    //XX     .full_e
+    //XX       .parentNode
+    //XX         .dataset
+    //XX           .display_b
+    //XX   ===
+    //XX   'false'
+    //XX )
+    //XX {
+    //XX   return
+    //XX }
+    //XX //-->
+    BUR_o
+      .full_e
+        .classList
+          .toggle( 'fullsize' )
+
+    DRAG_o
+      .init__v
+      (
+        BUR_o
+          .full_e
+      )
+
+    DRAG_o
+      .enable__v()
+
+    DOM_o
+      .rootVar__v
+      (
+        '--{{C_o.STAT_a[0]}}_zoom_out_s'
+      , 'flex'
+      )
+  }
+
+
+  ,
+  sizeEventTiny__v
+  (
+    //?? event_o
+  )
+  {
+    BUR_o
+      .full_e
+        .classList
+          .toggle( 'fullsize' )
+
+    DRAG_o
+      .disable__v()
+
+    DOM_o
+      .rootVar__v
+      (
+        '--{{C_o.STAT_a[0]}}_zoom_out_s'
+      , 'none'
+      )
+
+    //== restore initial place ===
+    BUR_o
+      .full_e
+        .setAttribute
+        (
+          'style'
+        , ''       //: remove drag transform
+        )
+
+    BUR_o
+      .full_e
+    =
+      null
+  }
 
 
   ,
@@ -2377,7 +2756,7 @@ const BUR_o =
 
     if
     (
-     value_o
+     value_o    //: local image
     )
     {
       width_s
@@ -2389,11 +2768,6 @@ const BUR_o =
       =
         value_o
           .height_s
-
-      document
-        //-- .getElementById( '{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_img_control_bgcolor' )
-        .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress' )
-          .innerHTML
 
       const title_e
       =
@@ -2413,7 +2787,7 @@ const BUR_o =
           .id_s
       }
     }
-    else
+    else    //: site image
     {
       [
         width_s

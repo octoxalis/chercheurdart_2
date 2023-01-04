@@ -135,6 +135,7 @@ const C_o =
     play_slower: { icon_s: `&nbsp;`, legend_s: `ralentir`},
     play_faster: { icon_s: `&nbsp;`, legend_s: `accélérer`},
 
+    img_bgtransparent: { icon_s: `&nbsp;`, legend_s: `transparent`},
     img_bgblack: { icon_s: `&nbsp;`, legend_s: `noir`},
     img_bgwhite: { icon_s: `&nbsp;`, legend_s: `blanc`},
     img_bgcolor: { icon_s: `&nbsp;`, legend_s: `couleur`},
@@ -207,7 +208,8 @@ const C_o =
   BURST_PICK_LUM_n:            50,
   PLAY_INTERVAL_n:             1000,     //: ms
   PLAY_PAUSE_n:                1000 * 60 * 10,     //: 10' pause
-
+  SHOT_IMG_s:                  'image',
+  SHOT_HSL_s:                  'burst',
 
 
   PAINT_LAYER_n:        8,
@@ -271,7 +273,7 @@ const C_o =
 
   //=== HTML-BODY: EXTEND MARKUP ===
   INFO_s:               '&#8505;',   //: Information Source Emoji:  ℹ
-  ZOOM_OUT_s:           '&#10006;',   //: CIRCLED DASH:             ✕
+  ZOOM_OUT_s:           '&#10005;',   //: CIRCLED DASH:             ✕
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow:             ↑
   FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
@@ -283,7 +285,7 @@ const C_o =
   IMG_SLIDESHOW_s:      '&#9744;',          //:  ☐☐☐ ∷∷  ⊟⊟  ☰☰
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
-  SEE_MORE_s:           '&#8943;',          //:
+  SEE_MORE_s:           '&#8230;',   //:HORIZONTAL ELLIPSIS
   //-- IMG_EXPO_s:       '&#8862;',   //: Squared Plus               ⊞
   IMG_PLAY_s:           '⊳',   //: CONTAINS AS NORMAL SUBGROUP    &#8883;
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙

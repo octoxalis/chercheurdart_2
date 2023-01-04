@@ -96,6 +96,7 @@ const S_o =
   S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`
   S_o.bg_higher = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`
   S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /.6)`
+  S_o.button =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1)`
   S_o.highlight = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_2} /1)`
   S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`
@@ -143,6 +144,7 @@ const S_o =
 
   S_o.paint_brush_s = `${S_o.hue_p} ${S_o.sat_hi_2} ${S_o.lum_lo_2}`
 
+  S_o.bgtransparent_s = `transparent`
   S_o.bgblack_s = `hsl( var(--${C_o.STAT_a[0]}_img_bg_hue) 0% 0% /1)`
   S_o.bgwhite_s = `hsl( var(--${C_o.STAT_a[0]}_img_bg_hue) 100% 100% /1)`
 

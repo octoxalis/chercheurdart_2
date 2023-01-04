@@ -212,17 +212,17 @@ const EXP_o
   {
     for
     (
-      let img_e
+      let zoomable__e
       of
       Array
         .from
         (
           document
-            .querySelectorAll( `img[data-fullsize_b]` )
+            .querySelectorAll( `[data-fullsize_b]` )
         )
     )
     {
-      img_e
+      zoomable__e
         .addEventListener
         (
           'click'
@@ -1494,14 +1494,21 @@ const EXP_o
       , 'none'
       )
 
+    //== reinsert img_e to restore initial place
+    //-- EXP_o
+    //--   .show__v()
+    EXP_o
+      .full_e
+        .setAttribute
+        (
+          'style'
+        , ''       //: remove drag transform
+        )
+        
     EXP_o
       .full_e
     =
       null
-
-    //== reinsert img_e to restore initial place
-    EXP_o
-      .show__v()
   }
 
 

@@ -29,6 +29,8 @@ body > a#goto_{{C_o.FULL_SCREEN}}, body > a#goto_{{C_o.PAGE_TOP}} {
   position: fixed;
   top: calc( 100vh - 6vmin );
   left: calc( 100vw - 6vmin );
+  align-items: center;
+  justify-content: center;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
