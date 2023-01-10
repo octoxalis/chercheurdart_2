@@ -1,15 +1,15 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1593-la_tour.html',
+  permalink: '1591-ribera~madrid-prado~1615-jeronimo.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      10,
-  title_s:    `Georges de La Tour`,
-  subtitle_s: `Georges de La Tour`,
-  abstract_s: `Georges de La Tour&colon; oeuvres choisies`,
+  doc_n:      16,
+  title_s:    `Jusepe de Ribera`,
+  subtitle_s: `Jusepe de Ribera`,
+  abstract_s: `Jusepe de Ribera`,
   //... issue_n: -1,
 
   section_a:
@@ -31,7 +31,7 @@
 
   version_a:
   [
-    '2023-01-10T12:00:00Z'
+    '2022-12-19T15:00:00Z'
   ],
 
 }
@@ -39,9 +39,8 @@
 {% _section section_a[0] %}
 // END DECLARATIONS //
 //  TOPICS
-‹Georges de La Tour›
+‹Jusepe de Ribera›
 //
-
 
 
 ##1 {{title_s}}
@@ -56,6 +55,6 @@
 ##2  Sélection d'oeuvres
 
 [[₉  {{C_o.INS_DISPLAY_s}} ::
-     1593-la_tour~new_york-met~1630-diseuse ]]
+     1591-ribera~madrid-prado~1615-jeronimo ]]
 
 {% end_section %}

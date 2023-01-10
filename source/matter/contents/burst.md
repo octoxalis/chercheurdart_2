@@ -1,17 +1,17 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1593-la_tour~new_york-met~1630-diseuse--burst.html',
+  permalink: 'local--burst.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      7172,
-  title_s:    `Georges de La Tour`,
-  subtitle_s: `Georges de La Tour: La Diseuse de bonne aventure`,
-  abstract_s: `La Diseuse de bonne aventure&mdash;1630&nbsp;c.`,
-  workID_s:   '1593-la_tour~new_york-met~1630-diseuse',
-  widthHeight_s:  '3970_3283',
+  doc_n:      10245,
+  title_s:    `Répartition`,
+  subtitle_s: `image locale`,
+  abstract_s: `Répartition chromatique d'image locale`,
+  //--  workID_s:   '2022-local~paris-local~2022-burst',
+  //--  widthHeight_s:  '0_0',
   //... issue_n: -1,
 
   section_a:
@@ -22,47 +22,44 @@
 
   stat_s: `burst`,
 
+  //... dialog_alert_b: true,
+
   script_a:
   [
     'Idb.min.js',
     'location.min.js',
     'dom.min.js',
     'stat.min.js',
+    //... 'dialog_alert.min.js',
   ],
   css_a:
   [
     'stat.min.css',
     'stat_burst.min.css',
+    //... 'dialog_alert.min.css',
   ],
 
   version_a:
   [
-    '2022-12-19T12:00:00Z'
+    '2021-10-14T12:00:00Z'
   ],
 
 }
 ---
 {% _section section_a[0] %}
-[[=  DISEUSE  ::
-     [[₉  {{C_o.INS_DISPLAY_s}}  :: 1593-la_tour~new_york-met~1630-diseuse ]]
 
 //=== END DECLARATIONS ===//
 //  TOPICS
-‹Georges de La Tour›
+‹image locale›
 //
-
 
 
 ##1  {{title_s}}
 
-||  DISEUSE  ||
-
-
+Image locale
 
 
 ##2  Colorimétrie
-
-<<  Présentation  ::  {{U_o.url_s}}{{workID_s}}.html  >>
 
 Répartition chromatique (échelle logarithmique)
 

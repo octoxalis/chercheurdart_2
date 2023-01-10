@@ -1,15 +1,15 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1593-la_tour.html',
+  permalink: '1703-boucher~princeton-university~1748-arion.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      10,
-  title_s:    `Georges de La Tour`,
-  subtitle_s: `Georges de La Tour`,
-  abstract_s: `Georges de La Tour&colon; oeuvres choisies`,
+  doc_n:      11,
+  title_s:    `François Boucher`,
+  subtitle_s: `François Boucher`,
+  abstract_s: `François Boucher&colon; oeuvres choisies`,
   //... issue_n: -1,
 
   section_a:
@@ -31,7 +31,7 @@
 
   version_a:
   [
-    '2023-01-10T12:00:00Z'
+    '2022-12-19T15:00:00Z'
   ],
 
 }
@@ -39,7 +39,7 @@
 {% _section section_a[0] %}
 // END DECLARATIONS //
 //  TOPICS
-‹Georges de La Tour›
+‹François Boucher›
 //
 
 
@@ -56,6 +56,6 @@
 ##2  Sélection d'oeuvres
 
 [[₉  {{C_o.INS_DISPLAY_s}} ::
-     1593-la_tour~new_york-met~1630-diseuse ]]
+     1703-boucher~princeton-university~1748-arion ]]
 
 {% end_section %}

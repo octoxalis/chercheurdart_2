@@ -1,15 +1,15 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1593-la_tour.html',
+  permalink: '1586-de_coster~new_york-sothebys~1625-young_woman.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      10,
-  title_s:    `Georges de La Tour`,
-  subtitle_s: `Georges de La Tour`,
-  abstract_s: `Georges de La Tour&colon; oeuvres choisies`,
+  doc_n:      17,
+  title_s:    `Adam de Coster`,
+  subtitle_s: `Adam de Coster`,
+  abstract_s: `Adam de Coster`,
   //... issue_n: -1,
 
   section_a:
@@ -31,7 +31,7 @@
 
   version_a:
   [
-    '2023-01-10T12:00:00Z'
+    '2021-10-14T12:00:00Z'
   ],
 
 }
@@ -39,10 +39,8 @@
 {% _section section_a[0] %}
 // END DECLARATIONS //
 //  TOPICS
-‹Georges de La Tour›
+‹Adam de Coster›
 //
-
-
 
 ##1 {{title_s}}
 
@@ -56,6 +54,6 @@
 ##2  Sélection d'oeuvres
 
 [[₉  {{C_o.INS_DISPLAY_s}} ::
-     1593-la_tour~new_york-met~1630-diseuse ]]
+     1586-de_coster~new_york-sothebys~1625-young_woman ]]
 
 {% end_section %}
