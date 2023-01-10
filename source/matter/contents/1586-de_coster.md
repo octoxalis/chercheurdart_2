@@ -1,7 +1,7 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1586-de_coster~new_york-sothebys~1625-young_woman.html',
+  permalink: '1586-de_coster.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,

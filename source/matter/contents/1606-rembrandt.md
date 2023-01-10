@@ -1,7 +1,7 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1606-rembrandt~amsterdam-rijks~1630-jeremiah.html',
+  permalink: '1606-rembrandt.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,

@@ -1,7 +1,7 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: '1594-poussin~new_york-met~1658-orion.html',
+  permalink: '1594-poussin.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
