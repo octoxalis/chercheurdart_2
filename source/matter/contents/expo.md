@@ -18,15 +18,19 @@
     `expo`,
   ],
 
+  dialog_alert_b: true,
+
   script_a:
   [
     'Idb.min.js',
     'location.min.js',
     'dom.min.js',
+    'dialog_alert.min.js',
     'expo.min.js',
   ],
   css_a:
   [
+    'dialog_alert.min.css',
   ],
 
   version_a:

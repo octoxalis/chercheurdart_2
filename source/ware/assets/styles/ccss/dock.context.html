@@ -1,0 +1,94 @@
+context( stack, new )
+<div[id$=_dock]>
+          display: flex;
+          flex-direction: column;
+          position: fixed;                         /* !!!!!!! TODO */
+          top: 0;
+          left: 0;
+          width: 288px;
+          padding: {{S_o.PAD_2}};
+          transform: translateX( -258px );  /* 288 - 30 */
+          transition: .4s ease;
+    <nav>
+            flex-direction: column;
+            align-self: flex-end;
+            padding: 0;
+      <label>
+                font-size: 80%;
+        <span[data-role]>
+                background: {{S_o.nav_dot_set_4}};
+                border-radius: 6px;
+        </span>
+      </label>
+      <label:hover>
+        <span>
+                background: transparent;
+        </span> 
+      </label>
+    </nav>
+    <nav:hover>
+            width: 100%;
+            background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
+    </nav>
+
+    <input>
+    context( copy, next )
+    </input>
+    +
+    <div>
+            display: none;
+    </div>
+    <input:checked>
+    </input>
+    +
+    <div>
+          display: flex;
+          flex-direction: column;
+          margin-top:  {{S_o.PAD_3}};
+          padding: {{S_o.PAD_2}};
+          background: {{S_o.table}};
+          border-radius: 4px;
+      <label>
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              margin: {{S_o.PAD_2}};
+              text-align: center;
+              text-transform: uppercase;
+              border-radius: 4px;
+              border: 2px solid {{S_o.shadow_hi}};
+              font-size: 85%;
+      </label>
+      <label:hover>
+              filter: brightness( {{S_o.brightness_hi2}} );
+      </label>
+      <label:nth-of-type(1)>
+              position: relative;
+              top: -{{S_o.PAD_4}};
+              text-align: left;
+              font-size: 80%;
+              border: none;
+              opacity: .5;
+      </label>
+      <input[type=range]>
+              align-self: center;
+              position: relative;
+              top: -{{S_o.PAD_4}};
+              width: 200px;
+              background: transparent;
+              cursor: pointer;
+              transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
+      </input>
+      <input[type=range]:focus>
+              outline: none;
+              filter: hue-rotate( -220deg );
+      </input>
+    </div>
+</div[id$=_dock]>
+<div[id$=_dock]:hover>
+    context( block, settings )
+          transform: translateX( 0 );
+    <nav>
+            align-self: center;
+    </nav>
+</div[id$=_dock]:hover>

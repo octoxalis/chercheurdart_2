@@ -180,6 +180,7 @@ const CCSS_o =
   ADJACENT_SIBLING_s: '+',
   BLOCK_s:            'block',
   TAG_START_s:        '<',
+  STAR_TAG_s:          '__star__',
   AT_RULE_s:          '@',
   AT_RULE_a:          //: at-rule keywords
   [
@@ -458,6 +459,11 @@ const CCSS_o =
             .path__s(),
           CCSS_o
             .css_s
+              .replaceAll
+              (
+                CCSS_o.STAR_TAG_s
+              , '*'
+              )
         )
     }
 

@@ -96,7 +96,7 @@ const S_o =
   S_o.bgcolor =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /1)`
   S_o.bg_higher = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /1)`
   S_o.bg_lower =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_1} /.6)`
-  S_o.button =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1)`
+  S_o.button =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1)`
   S_o.highlight = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_2} /1)`
   S_o.insert =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_1} /.1)`
   S_o.table =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.25)`
@@ -104,11 +104,11 @@ const S_o =
   S_o.lighter_ne =`hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_4} /.5)`
   S_o.darker =    `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
   
-  S_o.shadow_hi = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`
-  S_o.shadow_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`
+  S_o.shadow_hi =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.75)`
+  S_o.shadow_ne =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.5)`
   S_o.shadow_lo1 = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.2)`
-  S_o.shadow_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.1)`
-  S_o.shadow_full = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /1)`
+  S_o.shadow_lo =  `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /.1)`
+  S_o.shadow_full =`hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /1)`
   S_o.shadow_hi4 = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_2} /1)`
   S_o.ins_shadow_ne = `hsla( ${S_o.hue_p - 200} ${S_o.sat_hi_4} ${S_o.lum_lo_3} /.25)`
   
@@ -149,6 +149,7 @@ const S_o =
   S_o.bgwhite_s = `hsl( var(--${C_o.STAT_a[0]}_img_bg_hue) 100% 100% /1)`
 
   S_o.color_ne = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1 )`
+  S_o.key =      `hsla( ${S_o.hue_p} ${S_o.sat_hi_1} ${S_o.lum_hi_2} /.75)`
 
   S_o.form_bg = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /1)`
   S_o.form_shadow = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_ne} /.7)`

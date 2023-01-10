@@ -24,7 +24,7 @@ body > nav {
 body > iframe {
   display: none;
 }
-body > a#goto_{{C_o.FULL_SCREEN}}, body > a#goto_{{C_o.PAGE_TOP}} {
+body > label#goto_{{C_o.FULL_SCREEN}}, body > label#goto_{{C_o.PAGE_TOP}} {
   z-index: 20;
   position: fixed;
   top: calc( 100vh - 6vmin );
@@ -39,11 +39,11 @@ body > a#goto_{{C_o.FULL_SCREEN}}, body > a#goto_{{C_o.PAGE_TOP}} {
   border-radius: 8px;
   background: transparent;
 }
-body > a#goto_{{C_o.FULL_SCREEN}} {
+body > label#goto_{{C_o.FULL_SCREEN}} {
   display: none;
   top: {{S_o.PAD_2}};
 }
-body > a#goto_{{C_o.FULL_SCREEN}}:hover, body > a#goto_{{C_o.PAGE_TOP}}:hover {
+body > label#goto_{{C_o.FULL_SCREEN}}:hover, body > label#goto_{{C_o.PAGE_TOP}}:hover {
   background: {{S_o.shadow_ne}};
 }
 .range-separator {

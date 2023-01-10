@@ -154,9 +154,9 @@
       Échelle
       </label>
       <input id="IN_burst_dock_scale" type="range" min="0.25" max="4" step="0.25" value="1" data-tip="1">
-      <label for="IN_burst_settings">palette</label>
-      <label for="IN_burst_level"   >égaliser</label>
-      <label for="IN_burst_hue_img" >image</label>
+      <label for="IN_burst_settings" data-key=p>palette</label>
+      <label for="IN_burst_level" data-key=e>égaliser</label>
+      <label for="IN_burst_hue_img" data-key=i>image</label>
     </div>
   </div>
 
@@ -190,6 +190,10 @@
     </ul>
 
     <canvas id="CA_burst_hue_img" width=100vmin height=100vmin data-fullsize_b=true></canvas>  <!-- 1024: default value -->
+    <div id="CA_burst_hue_img_back" width=100vmin height=100vmin></div>
+
+  <label for="IN_burst_hue_img_settings">&#8285;</label>
+  <input id="IN_burst_hue_img_settings"  type="checkbox">
 
     <div>
       <div id="DI_burst_playback">

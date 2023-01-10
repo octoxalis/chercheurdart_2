@@ -132,7 +132,13 @@ class Idb
       {
         return new Promise( ( resolve, reject ) =>
         {
-          const get_o = this.store__o().get( key_s )
+          const get_o
+          = 
+            this.store__o()
+              .get
+              (
+                encodeURI( key_s )   //!!!! IndexedDB encode keys
+              )
 
           get_o.onsuccess = request_o => resolve( request_o.target.result )
 
@@ -150,7 +156,11 @@ class Idb
       {
         return new Promise( ( resolve, reject ) =>
         {
-          const key_o = this.store__o().count( key_s )
+          const key_o = this.store__o()
+            .count
+            (
+              encodeURI( key_s )   //!!!! IndexedDB encode keys
+            )
 
           key_o.onsuccess = request_o => resolve( request_o.target.result )
 
@@ -219,7 +229,11 @@ class Idb
       {
         return new Promise( ( resolve, reject ) =>
         {
-          const delete_o = this.store__o( 'readwrite' ).delete( key_s )
+          const delete_o = this.store__o( 'readwrite' )
+            .delete
+            (
+              encodeURI( key_s )   //!!!! IndexedDB encode keys
+            )
 
           delete_o.onsuccess = resolve    //: nothing to do
 

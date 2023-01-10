@@ -130,7 +130,7 @@ const STAT_W_o =
     'GET_scan',
     'GET_status',
     'GET_rate',
-    'GET_level',
+    'GET_equal',
     'GET_img',
     'GET_canvas_img',
 
@@ -338,8 +338,6 @@ const STAT_W_o =
         )
       }
       //-->
-      //-- else
-      //-- {
       let
       [
         x_n,
@@ -350,7 +348,7 @@ const STAT_W_o =
         rect_s
           .split( ' ' )
 
-      if        //: work_s is an indexedDB key
+      if        //: local key_s
       (
         url_s
           .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
@@ -384,7 +382,6 @@ const STAT_W_o =
             resizeQuality: 'high'
           }
         )
-      //-- }
 
       if
       (
@@ -600,16 +597,16 @@ const STAT_W_o =
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      const work_s
+      const key_s
       =
         payload_o
-          .work_s
+          .key_s
 
       let url_s
       
-      if        //: work_s is an indexedDB key
+      if        //: key_s is an indexedDB key
       (
-        work_s
+        key_s
           .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
       )
       {
@@ -627,7 +624,7 @@ const STAT_W_o =
           await
           STAT_W_o
             .idb_o
-              .get__( work_s )
+              .get__( key_s )
 
         const value_o
         =
@@ -641,14 +638,14 @@ const STAT_W_o =
 
         STAT_W_o
           .url_o
-            [ work_s ]
+            [ key_s ]
         =
           url_s
       }
       else
       {
         url_s =
-          `/{{C_o.IMG_DIR_s}}${payload_o.work_s}{{C_o.IMG_MAX_PATH_s}}color.jpeg`
+          `/{{C_o.IMG_DIR_s}}${payload_o.key_s}.jpeg`
       }
       
       const response_o =
@@ -1020,13 +1017,13 @@ const STAT_W_o =
           ,
           slot_a: slot_a
           ,
-          level_a:
+          equal_a:
             STAT_W_o
               .stat_o
                 .burst_o
                   [ `${hsl_s}_o` ]
                     .burst_c
-                      .level__a( angle_n )
+                      .equal__a( angle_n )
         }
         ,
         [
@@ -1035,7 +1032,7 @@ const STAT_W_o =
               .burst_o
                 [ `${hsl_s}_o` ]
                   .burst_c
-                    .level__a( angle_n )
+                    .equal__a( angle_n )
         ]
       )
   }
@@ -1043,7 +1040,7 @@ const STAT_W_o =
 
 
 
-  get_level__v
+  get_equal__v
   (
     payload_o
   )
@@ -1059,19 +1056,19 @@ const STAT_W_o =
       .post__v
       (
         {
-          task_s: 'PUT_level'
+          task_s: 'PUT_equal'
           ,
           stat_s: '{{C_o.STAT_a[0]}}'
           ,
           hsl_s: hsl_s
           ,
-          level_a:
+          equal_a:
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
                   [ `${hsl_s}_o` ]
                     .burst_c
-                      .level__a()
+                      .equal__a()
         }
         ,
         [
@@ -1080,7 +1077,7 @@ const STAT_W_o =
               [ `${stat_s}_o` ]
                 [ `${hsl_s}_o` ]
                   .burst_c
-                    .level__a()
+                    .equal__a()
         ]
       )
   }
@@ -2140,42 +2137,42 @@ const STAT_W_o =
       /
       rangeX_n
 
-    let levelX_n =
-      ~~ratioX_n       //: floor level
+    let equalX_n =
+      ~~ratioX_n       //: floor equal
 
     if
     (
       ratioX_n
       >
-      1               //: inside lower level --> 0
+      1               //: inside lower equal --> 0
     )
     {
-      ++levelX_n      //: outside lower level --> level above
+      ++equalX_n      //: outside lower equal --> equal above
     }
 
-    levelX_n *=
+    equalX_n *=
       rangeX_n        //: [ 0...100 ]
 
     if
     (
-      levelX_n
+      equalX_n
       >
       100
     )
     {
-      levelX_n =
+      equalX_n =
         100          //: clamp
     }
 
     let opacity_n =   //: in image data, opacity range is [0...255]
     ~~(
-        levelX_n
+        equalX_n
         *
-        2.559          //: force to 255 when levelX_n is 100
+        2.559          //: force to 255 when equalX_n is 100
       )
 
     let opac_n =
-      levelX_n
+      equalX_n
       *
       .01             //: 100 --> 1,  0 --> 0, 60 --> 0.6
       +
@@ -2204,9 +2201,9 @@ const STAT_W_o =
             )
             .rect__c                 //::: wipe upper area with white
             (
-              levelX_n,
+              equalX_n,
               atY_n,                //??* STAT_W_o.pixel_n
-              100 - levelX_n,       //??* STAT_W_o.pixel_n,
+              100 - equalX_n,       //??* STAT_W_o.pixel_n,
               rangeY_n,             //??* STAT_W_o.pixel_n,
               'fill'
             )
@@ -2215,7 +2212,7 @@ const STAT_W_o =
             (
               0,
               atY_n,                 //??* STAT_W_o.pixel_n
-              levelX_n,              //??* STAT_W_o.pixel_n,
+              equalX_n,              //??* STAT_W_o.pixel_n,
               rangeY_n,              //??* STAT_W_o.pixel_n,
               'clear'
             )
@@ -2226,14 +2223,14 @@ const STAT_W_o =
                 0,
                 0,
                 100,
-                1 - opac_n           //: lower levels more transparent, upper levels more colored
+                1 - opac_n           //: lower equals more transparent, upper equals more colored
               ]
             )
             .rect__c      
             (
               0,
               atY_n,                 //??* STAT_W_o.pixel_n
-              levelX_n,              //??* STAT_W_o.pixel_n,
+              equalX_n,              //??* STAT_W_o.pixel_n,
               rangeY_n,              //??* STAT_W_o.pixel_n,
               'fill'
             )
@@ -2563,8 +2560,8 @@ const STAT_W_o =
       ,  angle_n
       ,  range_n
       ,  opacity_n
+      ,  stack_b
       ,  dim_a
-      //?? ,  stack_b
       } =
         payload_o
 
@@ -2641,18 +2638,21 @@ const STAT_W_o =
         end_n
       )
       {
-        opac_n = 255    //: full
+        opac_n
+        =
+          255     //: bright
       }
-      else        //: opacity
+      else        //: transparent (opacity)
       {
-        //?? if
-        //?? (
-        //??   ! stack_b
-        //?? )
-        //?? {
-          opac_n =
+        if
+        (
+          ! stack_b
+        )
+        {
+          opac_n
+          =
             opacity_n
-        //?? }
+        }
       }
 
       atScan_a =
@@ -2670,14 +2670,20 @@ const STAT_W_o =
          ++atScan_n
       )
       {
-        iData_a
-          [
-            atScan_a
-              [ atScan_n ]
-              +
-              3
-          ] =
-            opac_n
+        if
+        (
+          opac_n    //: undefined if stack_b, i.e. not modified
+        )
+        {
+          iData_a
+            [
+              atScan_a
+                [ atScan_n ]
+                +
+                3
+            ] =
+              opac_n
+        }
       }
     }
 
@@ -3336,28 +3342,28 @@ const STAT_W_o =
 
 
 
-post__v    //: post to stat
-(
-  payload_o
-)
-{
-  STAT_W_o
-    .port_o
-      .postMessage( payload_o )
-}
-,
+  post__v    //: post to stat
+  (
+    payload_o
+  )
+  {
+    STAT_W_o
+      .port_o
+        .postMessage( payload_o )
+  }
+  ,
 
 
 
-handleError__v
-(
-  error_o
-)
-{
-  console
-    .log`ERROR: ${error_o.message}`
-}
-,
+  handleError__v
+  (
+    error_o
+  )
+  {
+    console
+      .log`ERROR: ${error_o.message}`
+  }
+  ,
 
 }
 

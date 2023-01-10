@@ -102,6 +102,28 @@ const DOM_o
 
 
   ,
+  event__v
+  (
+    event_s
+  , callback_f
+  )
+  {
+    document
+      .body
+        .addEventListener
+        (
+          event_s
+        , event_o =>
+            callback_f( event_o  )
+        //-- , {
+        //--     once: true
+        //--   }
+        )
+  }
+
+
+
+  ,
   listener__v
   (
     id_s,

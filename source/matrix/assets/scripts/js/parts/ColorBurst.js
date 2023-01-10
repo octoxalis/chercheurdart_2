@@ -51,7 +51,7 @@ class ColorBurst
         )
 
     this
-      .level_a = []          //: store all locateinates
+      .equal_a = []          //: store all coordinates
 
     this
       .clearWidth_n =        //: to avoid canvas.width after transform
@@ -232,7 +232,7 @@ class ColorBurst
               )
 
         this
-          .level_a
+          .equal_a
             .push
             (
               {
@@ -260,7 +260,7 @@ class ColorBurst
       else
       {
         this
-          .level_a
+          .equal_a
             .push( null )
 
         beam_n +=
@@ -432,7 +432,7 @@ class ColorBurst
   
 
   
-  level__a
+  equal__a
   (
     at_n    //: optional
   )
@@ -443,11 +443,11 @@ class ColorBurst
       undefined
       ?
         this
-          .level_a
+          .equal_a
             [ at_n ]
       :
         this
-          .level_a    //: everything
+          .equal_a    //: everything
     )
   }
 

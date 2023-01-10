@@ -1,6 +1,6 @@
 <html>
   context( stack, ignore )
-  <*>
+  <__star__>
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -11,21 +11,21 @@
           font-size: clamp( var(--font_min), calc( var(--font_scale) + var(--font_relative) ), var(--font_max) );
           font-weight: 300;
           line-height: 1.6;
-  </*>
-  <*:before>
+  </__star__>
+  <__star__:before>
     context( copy, next )
-  </*:before>
-  <*:after>
+  </__star__:before>
+  <__star__:after>
           box-sizing: inherit;
-  </*:after>
-  <*::-webkit-scrollbar>
+  </__star__:after>
+  <__star__::-webkit-scrollbar>
           width:  10px;
           height: 10px;
-  </*>
-  <*::-webkit-scrollbar-track>
+  </__star__>
+  <__star__::-webkit-scrollbar-track>
           background:{{S_o.bgcolor}};
-  </*>
-  <*::-webkit-scrollbar-thumb>
+  </__star__>
+  <__star__::-webkit-scrollbar-thumb>
           background-color:{{S_o.bg_higher}};
           border:.2em solid {{S_o.bgcolor}};
           border-radius: 4px;

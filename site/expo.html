@@ -15,6 +15,7 @@
 <link rel="canonical" href="https://chercheurdart-2.netlify.app/expo.html" />
 
 <link rel="stylesheet" href="assets/styles/css/index.min.css" />
+<link rel="stylesheet" href="assets/styles/css/dialog_alert.min.css" />
   
 </head>
 
@@ -39,7 +40,7 @@
   <label id="LA_expo_zoom_out">&#10005;</label>
   <!--<input id="IN_expo_zoom_out" type="checkbox">-->
 
-  <label for="IN_expo_selectAll">
+  <label for="IN_expo_selectAll" title="Tout sélectionner">
     <span>[</span>
     <span>]</span>
   </label>
@@ -59,14 +60,14 @@
       <label for="IN_expo_wrap_n">affichage</label>
       <input id="IN_expo_wrap_n" type="range" min="1" max="10" step="1" value="5" data-tip="5"/>
   
-      <label for="DI_expo_dock_nav" id="LA_expo_hide">masquer</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_remove">supprimer</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_group">regrouper</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_local">ajouter</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_caption">cartel</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_save">sauvegarder</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_restore">restaurer</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_burst">répartition</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_local" data-key=n>ajouter</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_remove" data-key=x>supprimer</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_hide" data-key=m>masquer</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_group" data-key=g>regrouper</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_caption" data-key=c>cartel</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_save" data-key=^s>sauvegarder</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_restore" data-key=^o>restaurer</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_burst" data-key=b>répartition</label>
     </div>
 
   </div>
@@ -117,26 +118,56 @@
   </dialog>
 
 </section>
+  <dialog id="dialog_main_alert">
+    <form id="form_main_alert" method="dialog">
+      <div id="DI_main_alert">
+        <header>
+          <label id="LA_main_alert_accept" role=button></label>
+          
+          <input  id="IN_main_alert_accept" type="checkbox">
+          <label for="IN_main_alert_accept">&#10003;</label>
+        </header>
+        <p id="PA_main_alert_accept"></p>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dialog_main_confirm">
+    <form id="form_main_confirm" method="dialog">
+      <div id="DI_main_confirm">
+        <header>
+          <label id="LA_main_confirm_accept" role=button></label>
+
+          <input id="IN_main_confirm_cancel" type="checkbox">
+          <label for="IN_main_confirm_cancel">&#10006;</label>
+          <input  id="IN_main_confirm_accept" type="checkbox">
+          <label for="IN_main_confirm_accept">&#10003;</label>
+        </header>
+        <p id="PA_main_confirm_accept"></p>
+      </div>
+    </form>
+  </dialog>
 <nav>
-  <a href="index.html" data-legend="accueil">
+  <a href="index.html" data-legend="accueil" data-key=0>
     <span data-role=home>&nbsp;</span>
   </a>
-  <label id="LA_article" for="IN_article" data-legend="article">
+  <label id="LA_article" for="IN_article" data-legend="article" data-key=1>
     <span data-role=article>&nbsp;</span>
   </label>
-  <label id="LA_galerie" for="IN_galerie" data-legend="galerie">
+  <label id="LA_galerie" for="IN_galerie" data-legend="galerie" data-key=2>
     <span data-role=galerie>&nbsp;</span>
   </label>
-  <label id="LA_expo" for="IN_expo" data-legend="exposition">
+  <label id="LA_expo" for="IN_expo" data-legend="exposition" data-key=3>
     <span data-role=expo>&nbsp;</span>
   </label>
 </nav>
     <!-- at end to be upper layer -->
-<a id="goto_page_top" href=#page_top>&#8593;</a>
+<label id="goto_page_top">&#8593;</label>
 
 <script src="assets/scripts/js/Idb.min.js" defer></script>
 <script src="assets/scripts/js/location.min.js" defer></script>
 <script src="assets/scripts/js/dom.min.js" defer></script>
+<script src="assets/scripts/js/dialog_alert.min.js" defer></script>
 <script src="assets/scripts/js/expo.min.js" defer></script>
 <script src="assets/scripts/js/index.min.js" defer></script>
 </body>

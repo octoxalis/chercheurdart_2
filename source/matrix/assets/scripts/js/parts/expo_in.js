@@ -137,9 +137,9 @@ const EXI_o
               , caption_s: caption_e
                              .innerHTML
               , width_s: img_e
-                           .width
+                           .naturalWidth
               , height_s: img_e
-                            .height
+                            .naturalHeight
               }
             )
         )
@@ -148,7 +148,7 @@ const EXI_o
 
   
   ,
-  listen__v
+  listener__v
   ()
   {
 
@@ -190,7 +190,7 @@ const EXI_o
   ()
   {
     EXI_o
-      .listen__v()
+      .listener__v()
 
   }
 }

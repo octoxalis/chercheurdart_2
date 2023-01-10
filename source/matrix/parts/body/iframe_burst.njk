@@ -154,9 +154,9 @@
       {{C_o.NAV_LEGEND_o.layers_scale.legend_s}}
       </label>
       <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale" type="range" min="0.25" max="4" step="0.25" value="{{C_o.BURST_SCALE_n}}" data-tip="{{C_o.BURST_SCALE_n}}">
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings">{{C_o.NAV_LEGEND_o.stat_open.legend_s}}</label>
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_level"   >{{C_o.NAV_LEGEND_o.burst_level.legend_s}}</label>
-      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" >{{C_o.NAV_LEGEND_o.burst_img.legend_s}}</label>
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings" data-key=p>{{C_o.NAV_LEGEND_o.stat_open.legend_s}}</label>
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_level" data-key=e>{{C_o.NAV_LEGEND_o.burst_equal.legend_s}}</label>
+      <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" data-key=i>{{C_o.NAV_LEGEND_o.burst_img.legend_s}}</label>
     </div>
   </div>
 
@@ -190,6 +190,10 @@
     </ul>
 
     <canvas id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img" width={{C_o.BURST_TRANSFORM_DIM_s}} height={{C_o.BURST_TRANSFORM_DIM_s}} data-fullsize_b=true></canvas>  <!-- 1024: default value -->
+    <div id="{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back" width={{C_o.BURST_TRANSFORM_DIM_s}} height={{C_o.BURST_TRANSFORM_DIM_s}}></div>
+
+  <label for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings">{{C_o.IMG_SETTINGS_s}}</label>
+  <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings"  type="checkbox">
 
     <div>
       <div id="{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback">

@@ -22,17 +22,21 @@
 
   stat_s: `burst`,
 
+  //... dialog_alert_b: true,
+
   script_a:
   [
     'Idb.min.js',
     'location.min.js',
-    'stat.min.js',
     'dom.min.js',
+    'stat.min.js',
+    //... 'dialog_alert.min.js',
   ],
   css_a:
   [
     'stat.min.css',
     'stat_burst.min.css',
+    //... 'dialog_alert.min.css',
   ],
 
   version_a:

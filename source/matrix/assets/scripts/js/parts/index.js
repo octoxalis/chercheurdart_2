@@ -1,8 +1,23 @@
 // === index.js ===
 const IND_o =
 {
-  service__v:
-  () =>
+  eventKey_a:
+    [
+      '0'          //: goto accueil
+    , '1'          //: goto article
+    , '2'          //: goto gallery
+    ]
+
+  , keySection_o:
+    {
+      1: '{{C_o.SECTION_a[0]}}'
+    , 2: '{{C_o.SECTION_a[1]}}'
+    }
+
+
+  ,  
+  service__v
+  ()
   {
     //-- if ( '{{U_o.url_s}}' === '{{U_o.DEV_s}}' ) return  //: skip service worker in dev mode
     //-->
@@ -24,16 +39,16 @@ const IND_o =
         )
     
   }
+  
+  
+  
   ,
-
-
-
-  adopt__v:    //!!! ensure id_s
+  adopt__v    //!!! ensure id_s
   (
     adopter_s,    //: adopter element ID
     iframe_s,     //: iframe element ID
     callback_f
-  ) =>
+  )
   {
     try
     {
@@ -77,12 +92,84 @@ const IND_o =
         .log(`ERROR DETECTED @iframe.js: ${ error_o }`)
     }
   }
+
+
+
   ,
+  eventKey__v    //: must prevent default for space key
+  (
+    event_o
+  )
+  {
+    if
+    (
+      ! IND_o
+          .eventKey_a
+            .includes
+            (
+              event_o
+                .key
+            )
+    )
+    {
+      return     //: let event buble
+    }
+
+    event_o
+      .preventDefault()
+
+    let input_e
+
+    switch
+    (
+      event_o
+        .key
+    )
+    {
+      case
+        '0'    //: show gallery
+      :
+        location
+        =
+          'index.html'
+
+        break
+
+      case
+        '1'    //: show article
+      :
+      case
+        '2'    //: show gallery
+      :
+        const input_e
+        =
+          document
+            .getElementById( `{{C_o.INPUT_ID_s}}_${IND_o.keySection_o[event_o.key]}` )
+
+        if
+        (
+          input_e
+        )
+        {
+          input_e
+              .checked
+          =
+            true
+        }
+
+        break
+
+      default 
+      :
+        break
+    }
+  }
 
 
 
-  listener__v:
-  () =>
+  ,
+  listener__v
+  ()
   {
     for
     (
@@ -136,21 +223,63 @@ const IND_o =
             )
             {
               location
-                .hash = ''    //: remove hash
-                
+                .hash = ''    //: remove hash                
             }
           }
         )
     }
+
+    for
+    (
+      let top_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `label[id^=goto]` )
+        )
+    )
+    {
+      top_e
+        .addEventListener
+        (
+          'click',
+          () =>
+          {
+            window
+              .scroll
+              (
+                {
+                  top: 0
+                ,  left: 0
+                ,  behavior: 'smooth'
+                }
+              )
+          }
+        )
+    }
+
+    DOM_o
+      .event__v
+      (
+        'keydown'
+      , event_o =>
+          IND_o
+            .eventKey__v
+            (
+              event_o
+            )
+      )          
   }
+
+
+
   ,
-
-
-
-  comment_label__v:
+  comment_label__v
   (
     //-- event_e    //: not used
-  ) =>
+  )
   {
     IND_o
       .adopt__v
@@ -191,8 +320,8 @@ const IND_o =
     
       const
         {
-          work_s,
-          stat_s,
+          stat_s
+        , work_s
         } =
           document
             .querySelector( 'body' )
@@ -212,10 +341,10 @@ const IND_o =
         STAT_o
           .init__v
           (
-            key_s
+            stat_s
+          , key_s
             ||
             work_s
-          , stat_s
           )
       }
     }

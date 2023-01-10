@@ -10,9 +10,16 @@ const BUR_o =
   
     vScale_n: 2
   , hue_n: 0           //: selected hue
+  , atAngle_n: 0
+  , download_s: ''    //: download suggested file name
+  , fullsize_n: 1     //: keep scale (eventSizeFull__v + eventSizeTiny__v)
   , freeze_b: false    //: freeze || unfreeze hue selection
+
   , status_o: null
+  , equal_a: null
+  , atEqual_o: null
   , trace_o: {}
+
   , hue_o:
     {
       rangeY_n: 1,     //: C_o.BURST_RANGE_n
@@ -39,17 +46,24 @@ const BUR_o =
     , lum: 101
     }
 
-  , level_a: null
-  , atLevel_o: null
-  , atAngle_n: 0
-  , download_s: ''    //: download suggested file name
-
   , slideshow_o:
     {
       play_b: false
     , progress_n: 0
     }
 
+  , eventKey_a:
+    [
+      'ArrowRight' //: toggle img_position checked
+    , 'ArrowLeft'  //: idem
+    , '+'          //: increment scale
+    , '-'          //: decrement scale
+    , 'p'          //: show/hide palette
+    , 'e'          //: show/hide equalizer
+    , 'i'          //: show/hide Image
+    , ' '          //: suspend || resume slideshow
+    , 's'          //: (+ ctrlKey) save image
+    ]
 
 
   ,
@@ -70,11 +84,11 @@ const BUR_o =
 
         break
     
-      case 'PUT_level':
+      case 'PUT_equal':
         BUR_o
-          .level_a =
+          .equal_a =
             payload_o
-              .level_a
+              .equal_a
 
         break
 
@@ -204,13 +218,13 @@ const BUR_o =
         ,
         capacity_n
         ,
-        level_a
+        equal_a
       } =
         payload_o
 
     BUR_o
-      .atLevel_o =
-        level_a
+      .atEqual_o =
+        equal_a
 
     let html_s =
       slot_a
@@ -474,7 +488,9 @@ const BUR_o =
 
   ,
   getImage
-  ()
+  (
+    key_s
+  )
   {
     const canvas_e =
       document
@@ -507,12 +523,35 @@ const BUR_o =
       .5
 
     BUR_o
-        .work_s
+      .work_s
     =
-     document
-      .body
-        .dataset
-          .work_s
+      key_s
+        .split
+        (
+          /\/[^\/]+\/[^\/]+\/[^\/]+\//
+        )
+          [0]
+
+    let url_s
+
+    if
+    (
+      LOC_o
+        .search_s
+          .match( /\/[^\/]+\/[^\/]+\/[^\/]+\// )    //: work_s ID
+    )
+    {
+      url_s
+      =
+        `/{{C_o.IMG_DIR_s}}${LOC_o.search_s}.jpeg`  //: begining slash for site relative url    }
+    }
+    else
+    {
+      url_s
+      =
+        LOC_o
+          .search_s
+    }
 
     BUR_o
       .worker_o           //! using port postMessage directly
@@ -524,11 +563,7 @@ const BUR_o =
             , stat_s: '{{C_o.STAT_a[0]}}'
             , rect_s: `${centerX} ${centerY} ${BUR_o.imgWidth_n} ${BUR_o.imgHeight_n}`
             , scale_n: 1
-            , url_s:
-                LOC_o
-                  .search_s
-                ||
-                `/{{C_o.IMG_DIR_s}}${BUR_o.work_s}/full/max/0/color.jpeg`  //: begining slash for site relative url
+            , url_s: url_s
             , canvas_e: offCanvas_e
             , storeBitmap_b: false
             , pixel_n:  window.devicePixelRatio    //????
@@ -906,6 +941,9 @@ const BUR_o =
                     hsl_s
                   )
           , opacity_n: opacity_n
+          , stack_b:
+              BUR_o
+                .stack_b
           , dim_a:
               [
                 canvas_e
@@ -914,8 +952,14 @@ const BUR_o =
                 canvas_e
                   .height
               ]
-         }
+          }
         )
+
+    BUR_o
+      .stack_b
+    =
+      false    //: reset
+       
   }
   
 
@@ -1032,6 +1076,12 @@ const BUR_o =
     }
 
     BUR_o
+      .stack_b
+    =
+      event_o
+        .ctrlKey
+
+    BUR_o
       .pick__v()
   }
   
@@ -1072,6 +1122,256 @@ const BUR_o =
     )
   }
   
+
+
+  ,
+  eventKey__v    //: must prevent default for space key
+  (
+    event_o
+  )
+  {
+    if
+    (
+      ! BUR_o
+        .eventKey_a
+          .includes
+          (
+            event_o
+              .key
+          )
+    )
+    {
+      return     //: let event buble
+    }
+
+    event_o
+      .preventDefault()
+
+    let input_e
+
+    switch
+    (
+      event_o
+        .key
+    )
+    {
+      case
+        ' '     //: SPACE key
+      :
+        BUR_o
+          .eventImg_slideshow__v
+          (
+            event_o
+          )
+
+        break
+
+      case
+        'ArrowRight'     //: > keypad
+      :
+        if
+        (
+          document
+            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position` )
+              .checked
+        )
+        {
+          if
+          (
+            ! document
+                .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+                  .classList
+                    .contains( 'fullsize' )
+          )
+          {
+            BUR_o
+              .eventSizeFull__v()
+          }
+        }
+        else
+        {
+          document
+            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position` )
+              .checked
+          =
+            true
+        }
+
+        break
+
+      case
+        'ArrowLeft'     //: < keypad
+      :
+        if
+        (
+          document
+            .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+              .classList
+                .contains( 'fullsize' )
+        )
+        {
+          BUR_o
+            .eventSizeTiny__v()
+        }
+        else
+        {
+          if
+          (
+            document
+              .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position` )
+                .checked
+          )
+          {
+            document
+              .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position` )
+                .checked
+            =
+              false
+          }
+        }
+        
+        break
+
+      case
+        '+'    //: increment scale
+      :
+        input_e
+        =
+          document
+            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale' )
+
+          if
+          (
+            +input_e    //: Number cast...
+              .value
+            <
+            +input_e
+              .max
+          )
+          {
+            input_e
+              .value
+            =
+              +input_e
+                .value
+              +
+              +input_e
+                .step
+
+            BUR_o
+              .eventRange__v
+              (
+                {
+                  target:
+                    input_e
+                }
+              )
+          }
+
+        break
+
+      case
+        '-'    //: decrement scale
+      :
+        input_e
+        =
+          document
+            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale' )
+
+          if
+          (
+            +input_e    //: Number cast...
+              .value
+            >
+            +input_e
+              .min
+          )
+          {
+            input_e
+              .value
+            =
+              +input_e
+                .value
+              -
+              +input_e
+                .step
+
+            BUR_o
+              .eventRange__v
+              (
+                {
+                  target:
+                    input_e
+                }
+              )
+          }
+
+
+        break
+
+      case
+        's'
+      :
+        if
+        (
+          event_o
+            .ctrlKey
+        )
+        {
+          BUR_o
+            .eventImg_download__v
+            (
+              false      //: don't  pick
+            )
+        }
+
+        break
+
+      case
+        'p'    //: show/hide palette
+      :
+        document
+          .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings' )
+            .checked
+        =
+          ! document
+              .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings' )
+                .checked
+          
+        break
+
+      case
+        'e'    //: show/hide equalizer
+      :
+        document
+          .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal' )
+            .checked
+        =
+          ! document
+              .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal' )
+                .checked
+
+        break
+
+      case
+        'i'    //: show/hide Image
+      :
+        document
+          .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img' )
+            .checked
+        =
+          ! document
+              .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img' )
+                .checked
+
+        break
+
+      default 
+      :
+        break
+    }
+  }
+
 
 
   ,
@@ -1129,7 +1429,7 @@ const BUR_o =
                   DOM_o
                     .rootVar__v
                     (
-                      `--{{C_o.STAT_a[0]}}_level`
+                      `--{{C_o.STAT_a[0]}}_equal`
                     , 'none'
                     )
   
@@ -1181,9 +1481,26 @@ const BUR_o =
                     )
                   )
                   {
-                    return void alert( 'Les seuils haut et bas se croisent' )
+                    DIA_o
+                      .open__v
+                      (
+                        {
+                          '{{C_o.LABEL_ID_s}}': `Attention`
+                        , '{{C_o.PARAGRAPH_ID_s}}': `Les seuils haut et bas s'entrecroisent`
+                        , option_a:
+                          [
+                            'accept'
+                          ]
+                        }        
+                      )
+                    
+                    await
+                    DIA_o
+                      .confirm__b()
+              
+                     return
                   }
-  
+                  //-->
                   BUR_o
                     .draw__v()
   
@@ -1193,7 +1510,7 @@ const BUR_o =
                       .includes( 'opacity' )
                 :
                   BUR_o
-                    .pick__v()
+                    .pick__v()  //:stack_b = false
   
                   break
 
@@ -1435,11 +1752,11 @@ const BUR_o =
         'click'
         &&
         event_o
-          .ctrlKey
+          .altKey    //: equalizer
       )
       {
         BUR_o
-          .eventLevel__v
+          .eventEqual__v
           (
             event_o
           , hsl_s
@@ -1471,16 +1788,16 @@ const BUR_o =
 
 
   ,
-  eventLevel__v
+  eventEqual__v
   (
       event_o,
       hsl_s='hue'
   )
   {
-    if     //: must check if atLevel_o is null
+    if     //: must check if atEqual_o is null
     (
       BUR_o
-        .atLevel_o
+        .atEqual_o
     )
     {
       let
@@ -1490,7 +1807,7 @@ const BUR_o =
           startY_n
         } =
           BUR_o
-            .atLevel_o
+            .atEqual_o
           
       startX_n -=
         BUR_o
@@ -1531,14 +1848,14 @@ const BUR_o =
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[0]}}_level`,
+          `--{{C_o.STAT_a[0]}}_equal`,
           display_s
         )
   
       DOM_o
         .rootVar__v
         (
-          `--{{C_o.STAT_a[0]}}_level_scale`,
+          `--{{C_o.STAT_a[0]}}_equal_scale`,
           (
             radius_n
             /
@@ -1558,9 +1875,8 @@ const BUR_o =
     BUR_o
       .pick__v
       (
-       +'{{C_o.BURST_IMG_RESET_n}}'
-       ,
-       360    //: reset all
+        +'{{C_o.BURST_IMG_RESET_n}}'
+      , 360    //: reset all
       )
   }
 
@@ -1570,12 +1886,18 @@ const BUR_o =
   eventImg_download__v
   (
     pick_b=true         //: false for playing snapshot
-  , background_b=true   //: include color bg
   )
   {
+    let background_b    //: no rgb_a if transparent background is selected
+    =
+      DOM_o
+        .rootVar__s( '--{{C_o.STAT_a[0]}}_img_background' )
+      !==
+      'transparent'
+
     let suffix_s
     let img_b
-
+    
     if
     (
       document
@@ -1625,7 +1947,7 @@ const BUR_o =
     const key_s
     =
       BUR_o
-        .work_s    //!!!!!!!! TODO fot local image: no work_s !!!!!!!!
+        .work_s    //!!!!!!!! TODO for local image: no work_s !!!!!!!!
       + `_${date_s}`
 
     BUR_o
@@ -1700,62 +2022,14 @@ const BUR_o =
           .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_download'  )
             .innerHTML
         =
-          BUR_o.download_s
+          BUR_o
+            .download_s
   
       download_e
         .showModal()
   }
 
 
-  ,
-  keyImg_slideshow__v    //: must prevent default for space key
-  (
-    event_o
-  )
-  {
-    event_o
-      .preventDefault()      //: keydown event with SPACE key
-
-    switch
-    (
-      event_o
-        .key
-    )
-    {
-      case
-        ' '     //: SPACE key
-      :
-        BUR_o
-          .eventImg_slideshow__v
-          (
-            event_o
-          )
-
-        break
-
-      case
-        's'
-      :
-        if
-        (
-          event_o
-            .ctrlKey
-        )
-        {
-          BUR_o
-            .eventImg_download__v
-            (
-              false      //: don't  pick
-            )
-        }
-
-        break
-
-      default 
-      :
-        break
-    }
-  }
 
   ,
   eventImg_slideshow__v
@@ -2071,7 +2345,7 @@ const BUR_o =
 
 
   ,
-  event_colorBurst__v
+  event_burstScale__v
   (
     event_o
   )
@@ -2080,11 +2354,11 @@ const BUR_o =
     =
       event_o
         .target
-          .id     //: IN_burst_sat
+          .id     //: IN_burst_dock_scale
       
     const hsl_s
     =
-      id_s     //: IN_burst_sat
+      id_s        //: IN_burst_dock_scale
         .slice
         (
           id_s
@@ -2093,33 +2367,26 @@ const BUR_o =
           1
         )
       
-    const scale_e
-    =
-      document
-        .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale' )  //: IN_burst_dock_scale
-
     const scale_n
     =
       BUR_o
         .scale_o
           [ `${hsl_s}_n` ]
 
+    const scale_e
+    =
+      document
+        .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale' )  //: IN_burst_dock_scale
+
     scale_e
       .value
     =
       scale_n
 
-    scale_e
-      .dataset
-        .tip
-    =
-      scale_n
-
-    DOM_o
-      .rootVar__v
+    UI_o
+      .rangeVar__v
       (
-        `--{{C_o.STAT_a[0]}}_scale`
-      , scale_n
+        scale_e
       )
   }
 
@@ -2288,7 +2555,7 @@ const BUR_o =
         (
           'keydown'
         , BUR_o
-            .keyImg_slideshow__v
+            .eventKey__v
         , {
             passive: false
           }
@@ -2300,7 +2567,7 @@ const BUR_o =
         (
           'click'
         , BUR_o
-            .sizeEventTiny__v
+            .eventSizeTiny__v
         )
     
 
@@ -2453,7 +2720,7 @@ const BUR_o =
         (
           `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}`
         , BUR_o
-            .event_colorBurst__v
+            .event_burstScale__v
         )
     }
 
@@ -2465,7 +2732,7 @@ const BUR_o =
       [
           '{{C_o.FULL_SCREEN}}',
           '{{C_o.PAGE_TOP}}',
-          '{{C_o.BURST_LEVEL}}'
+          '{{C_o.BURST_EQUAL}}'
       ]
     )
     {
@@ -2502,75 +2769,72 @@ const BUR_o =
   zoomable__v
   ()
   {
-    for
-    (
-      let zoomable__e
-      of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `[data-fullsize_b]` )
-        )
-    )
-    {
-      zoomable__e
+    //-- for
+    //-- (
+    //--   let zoomable__e
+    //--   of
+    //--   Array
+    //--     .from
+    //--     (
+    //--       document
+    //--         .querySelectorAll( `[data-fullsize_b]` )
+    //--     )
+    //-- )
+    //-- {
+    //--  zoomable__e
+    document
+      .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
         .addEventListener
         (
           'click'
         , BUR_o
-            .sizeEventFull__v
+            .eventSizeFull__v
         )
-    }
+    //-- }
   }
 
 
 
   ,
-  sizeEventFull__v
-  (
-    event_o
-  )
+  eventSizeFull__v
+  ()
   {
+    const full_e
+    =
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+
     if
     (
-      BUR_o
-        .full_e
+      full_e
+        .classList
+          .contains( 'fullsize' )      //: already full
     )
     {
       return    //: avoid click event when mouse up
     }
     //-->
+    full_e
+      .classList
+        .toggle( 'fullsize' )
+
     BUR_o
-      .full_e
+      .fullsize_n    //: store scale
     =
-      event_o
-        .target
-   
-    //XX if
-    //XX (
-    //XX   BUR_o
-    //XX     .full_e
-    //XX       .parentNode
-    //XX         .dataset
-    //XX           .display_b
-    //XX   ===
-    //XX   'false'
-    //XX )
-    //XX {
-    //XX   return
-    //XX }
-    //XX //-->
-    BUR_o
-      .full_e
-        .classList
-          .toggle( 'fullsize' )
+      +DOM_o
+        .rootVar__s( '--{{C_o.STAT_a[0]}}_hue_img_scale' )
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_hue_img_scale`,
+        1
+      )
 
     DRAG_o
       .init__v
       (
-        BUR_o
-          .full_e
+        full_e
       )
 
     DRAG_o
@@ -2586,39 +2850,51 @@ const BUR_o =
 
 
   ,
-  sizeEventTiny__v
-  (
-    //?? event_o
-  )
+  eventSizeTiny__v
+  ()
   {
-    BUR_o
-      .full_e
+    const full_e
+    = 
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+
+    if
+    (
+      full_e
+        .classList
+          .contains( 'fullsize' )
+    )
+    {
+      full_e
         .classList
           .toggle( 'fullsize' )
-
-    DRAG_o
-      .disable__v()
-
-    DOM_o
-      .rootVar__v
-      (
-        '--{{C_o.STAT_a[0]}}_zoom_out_s'
-      , 'none'
-      )
-
-    //== restore initial place ===
-    BUR_o
-      .full_e
+  
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[0]}}_hue_img_scale`,    //: restore scale
+          BUR_o
+            .fullsize_n
+        )
+  
+      DRAG_o
+        .disable__v()
+  
+      DOM_o
+        .rootVar__v
+        (
+          '--{{C_o.STAT_a[0]}}_zoom_out_s'
+        , 'none'
+        )
+  
+      //== restore initial place ===
+      full_e
         .setAttribute
         (
           'style'
         , ''       //: remove drag transform
         )
-
-    BUR_o
-      .full_e
-    =
-      null
+    }
   }
 
 
@@ -2787,19 +3063,6 @@ const BUR_o =
           .id_s
       }
     }
-    else    //: site image
-    {
-      [
-        width_s
-      , height_s
-      ]
-      =
-       document
-        .body
-          .dataset
-            .wh_s
-              .split( '_' )
-    }
 
     BUR_o
       .imgWidth_n
@@ -2862,14 +3125,14 @@ const BUR_o =
         )
 
     BUR_o
-      .draw__v()    //: draw before getting level_a
+      .draw__v()    //: draw before getting equal_a
   
     BUR_o
       .worker_o
         .post__v
         (
           { 
-            task_s:  'GET_level'
+            task_s:  'GET_equal'
             ,
             stat_s:  '{{C_o.STAT_a[0]}}'
             ,
@@ -2881,8 +3144,14 @@ const BUR_o =
     BUR_o
      .listener__v()
 
+    const key_s
+    =
+      await
+      LOC_o
+        .search__()    //: '{{C_o.LOC_SEARCH_s}}'
+
     BUR_o
-      .getImage()
+      .getImage( key_s )
 
     BUR_o
       .placeImage__v()

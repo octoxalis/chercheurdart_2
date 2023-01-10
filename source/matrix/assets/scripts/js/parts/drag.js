@@ -32,7 +32,7 @@ const DRAG_o
 
 
 
-, listen__v
+, listener__v
   (
     listen_a,
     method_s='remove'
@@ -68,7 +68,7 @@ const DRAG_o
       false
 
     DRAG_o
-     .listen__v
+     .listener__v
      (            //: remove
        [
          'down'
@@ -88,7 +88,7 @@ const DRAG_o
       true
 
     DRAG_o
-     .listen__v
+     .listener__v
      (            //: remove
        [
          'down'
@@ -133,7 +133,7 @@ const DRAG_o
           .atY_n
   
     DRAG_o
-      .listen__v
+      .listener__v
       (
         [
           'move',
@@ -209,7 +209,7 @@ const DRAG_o
     }
     //-->
     DRAG_o
-      .listen__v
+      .listener__v
       (            //: remove
         [
           'move'

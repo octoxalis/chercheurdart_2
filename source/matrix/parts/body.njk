@@ -22,11 +22,11 @@
 {% endif %}
 {% include "parts/body/nav_label.njk" %}    <!-- at end to be upper layer -->
 {% if workID_s %}
-<input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_level" type="checkbox">
-<div id="goto_{{C_o.BURST_LEVEL}}"></div>
-<a id="goto_{{C_o.FULL_SCREEN}}" href=#{{C_o.PAGE_TOP}}>{{C_o.FULL_SCREEN_s}}</a>
+<input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal" type="checkbox">
+<div id="goto_{{C_o.BURST_EQUAL}}"></div>
+<label id="goto_{{C_o.FULL_SCREEN}}">{{C_o.FULL_SCREEN_s}}</label>
 {% endif %}
-<a id="goto_{{C_o.PAGE_TOP}}" href=#{{C_o.PAGE_TOP}}>{{C_o.GOTO_TOP_s}}</a>
+<label id="goto_{{C_o.PAGE_TOP}}">{{C_o.GOTO_TOP_s}}</label>
 {#% include "parts/body/svg_inline.njk" %#}
 {% if C_o.SERVICE_b === true %}
 {% include "parts/body/script.njk" %}

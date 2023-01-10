@@ -49,9 +49,9 @@ const LOC_o =
     )
     {
       LOC_o
-         .search_s
-       =
-         search_s
+        .search_s
+      =
+        search_s
   
       return search_s    //: search string
     }
@@ -81,8 +81,8 @@ const LOC_o =
       ?
         value_o         //: Idb JSON object
       :
-       value_o
-         [ key_s ]     //: Idb JSON object property
+        value_o
+          [ key_s ]     //: Idb JSON object property
     )    
   }
 

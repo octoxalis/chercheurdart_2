@@ -19,6 +19,7 @@
 
   script_a:
   [
+    'dom.min.js',
   ],
   css_a:
   [

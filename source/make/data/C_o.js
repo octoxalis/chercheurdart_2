@@ -125,7 +125,7 @@ const C_o =
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
     stat_shadow_fold:     { icon_s: `&nbsp;`, legend_s: `replier`},
     stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
-    burst_level: { icon_s: `&nbsp;`, legend_s: `égaliser`},
+    burst_equal: { icon_s: `&nbsp;`, legend_s: `égaliser`},
     burst_img: { icon_s: `&nbsp;`, legend_s: `image`},
     thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
     thresh_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
@@ -193,7 +193,7 @@ const C_o =
   SCREEN_DIM_n:                 1024,    //: default, set by burst.init()
   SCREEN_RATIO_n:               1,
   BURST_SCALE_n:                1,
-  BURST_LEVEL_SCALE_n:          .2,   //: default
+  BURST_EQUAL_SCALE_n:          .2,   //: default
   BURST_RANGE_n:                1,   //!!!  TEMPORARY //: 1 range
   BURST_THRESH_HI_n:            0,
   BURST_THRESH_LO_n:            0,
@@ -201,7 +201,7 @@ const C_o =
   BURST_IMG_RESET_n:            255,    //: contrast
   BURST_NAV_DIM_n:              360,
   BURST_TRANSFORM_DIM_s:        '100vmin',  //!!! overriden
-  BURST_TRANSFORM_MAX_SCALE_n: .85,  /* keep a tiny space for menu bar */
+  BURST_TRANSFORM_MAX_SCALE_n: .85,  //: keep a tiny space for menu bar
   BURST_TRANSFORM_SCALE_n:     .33,
   BURST_PICK_HUE_n:            0,
   BURST_PICK_SAT_n:            100,
@@ -214,7 +214,7 @@ const C_o =
 
   PAINT_LAYER_n:        8,
   PAINT_DEVIATION_n:    10,
-  PAINT_DISTANCE_X_n:   0,        /* factor */
+  PAINT_DISTANCE_X_n:   0,        //: factor
   PAINT_PERSPECTIVE_n:  1000,
   PAINT_DISTANCE_n:     -100,
   PAINT_ROTATE_n:       0,
@@ -231,7 +231,7 @@ const C_o =
   //-- ANCHOR_DELIM_s : '__',
   PAGE_TOP:    'page_top',
   FULL_SCREEN: 'full_screen',
-  BURST_LEVEL: 'burst_level',
+  BURST_EQUAL: 'burst_equal',
   
   //=== HTML-BODY CSS SELECTORS
   BURST_IMG_CAPTION_s: 'h1+p span[data-ins="₉"]',
@@ -247,6 +247,7 @@ const C_o =
   LIST_ID_s:        'UL',
   LIST_ITEM_ID_s:   'LI',
   NAV_ID_s:         'NA',
+  PARAGRAPH_ID_s:   'PA',
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',
@@ -285,10 +286,11 @@ const C_o =
   IMG_SLIDESHOW_s:      '&#9744;',          //:  ☐☐☐ ∷∷  ⊟⊟  ☰☰
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
-  SEE_MORE_s:           '&#8230;',   //:HORIZONTAL ELLIPSIS
+  SEE_MORE_s:           '&#8230;',   //: HORIZONTAL ELLIPSIS
   //-- IMG_EXPO_s:       '&#8862;',   //: Squared Plus               ⊞
   IMG_PLAY_s:           '⊳',   //: CONTAINS AS NORMAL SUBGROUP    &#8883;
   IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
+  IMG_SETTINGS_s:       '&#8285;',   //:  VERTICAL ELLIPSIS      ⁝
 
 
   ID_PART_DELIM_s:     '~',   //: between parts

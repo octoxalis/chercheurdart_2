@@ -9,229 +9,22 @@ const EXP_o
 , full_e:
     null
 
+, eventKey_a:
+  [
+  , '3'          //: goto exposition
 
+  , '+'     //: increment image by row
+  , '-'     //: decrement image by row
 
-, order__n
-  ()
-  {
-    const order_n =
-      +DOM_o
-        .rootVar__s( '--{{C_o.SECTION_a[2]}}_order_n' )
-      +
-      1
-
-    DOM_o
-      .rootVar__v
-      (
-        '--{{C_o.SECTION_a[2]}}_order_n',
-        order_n
-      )
-
-    return order_n
-  }
-
-
-
-, async collect__a
-()
-{
-  let collect_a
-  =
-    []    //: array to reorder keys according to their order_n
-
-  await
-  LOC_o
-    .idb_o
-      .walk__v
-      (
-        (
-          key_s
-        , value_o
-        ) =>
-        {
-          collect_a
-            .push
-            (
-              {
-                key_s: key_s,
-                value_o:
-                  JSON
-                    .parse( value_o )
-              }
-            )
-        }
-      )
-
-  collect_a
-    .sort
-    (
-      (
-        first_o,
-        second_o
-      ) =>
-        first_o
-          .value_o
-            .order_n
-        -
-        second_o
-          .value_o
-            .order_n            
-    )
-
-  return collect_a
-}
-
-
-  , 
-  selectable__v
-  ()
-  {
-    for
-    (
-      let figure_e
-      of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption` )
-        )
-    )
-    {
-      figure_e
-        .addEventListener
-        (
-          'click',
-          EXP_o
-            .select__v
-        )
-    }
-  }
-
-
-
-  ,
-  selected__
-  (
-    local_b=true          //??? : collect local images only
-  , selected_b=true       //: collect selected image only
-  , multi_b=false         //: , if false: first selected, if true:  whole selected
-  )
-  {
-    let selector_s
-    =
-      'figure'
-
-    if
-    (
-      selected_b    //: only selected figures
-    )
-    {
-      selector_s
-      +=
-        '.{{C_o.SELECTED_CLASS_s}}'
-    }
-
-    const figure_a
-    =
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( selector_s )
-        )
-
-    let alert_s
-
-    switch
-    (
-      true
-    )
-    {
-      case
-        ! figure_a
-          .length
-      :
-        alert_s
-        =
-        `Cette opération ne peut être appliquée sans sélection préalable`
-
-      break
-      
-      case
-        ! multi_b
-        &&
-        (
-          figure_a
-            .length
-          >
-          1
-          ||
-          ! figure_a
-              [0]
-                .querySelector( 'img'  )
-                  .src
-                    .startsWith( 'data:image/jpeg;base64' )
-        )
-      :
-        alert_s
-        =
-        `Cette opération ne peut être appliquée qu'à une seule image locale`
-
-      break
-      
-      default
-      :
-      break
-
-    }
-
-    if
-    (
-      alert_s
-    )
-    {
-      return void window
-                    .alert( alert_s )
-    }
-
-    return (
-      multi_b
-      ?
-        figure_a
-      :
-        figure_a
-          [0]
-    )
-  }
-
-
-  ,
-  zoomable__v
-  ()
-  {
-    for
-    (
-      let zoomable__e
-      of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( `[data-fullsize_b]` )
-        )
-    )
-    {
-      zoomable__e
-        .addEventListener
-        (
-          'click'
-        , EXP_o
-            .sizeEventFull__v
-        )
-    }
-  }
-
+  , 'n'     //: ajouter
+  , 'x'     //: effacer supprimer
+  , 'm'     //: masquer
+  , 'g'     //: regrouper
+  , 'c'     //: cartel
+  , 's'     //: (+ ctrlKey) sauvegarder
+  , 'o'     //: (+ ctrlKey) charger
+  , 'b'     //: burst image
+  ]
 
 
   ,
@@ -324,6 +117,136 @@ const EXP_o
 
 
 
+
+  ,
+  order__n
+  ()
+  {
+    const order_n =
+      +DOM_o
+        .rootVar__s( '--{{C_o.SECTION_a[2]}}_order_n' )
+      +
+      1
+
+    DOM_o
+      .rootVar__v
+      (
+        '--{{C_o.SECTION_a[2]}}_order_n',
+        order_n
+      )
+
+    return order_n
+  }
+
+
+
+  ,
+  zoomable__v
+  ()
+  {
+    for
+    (
+      let zoomable__e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `[data-fullsize_b]` )
+        )
+    )
+    {
+      zoomable__e
+        .addEventListener
+        (
+          'click'
+        , EXP_o
+            .eventSizeFull__v
+        )
+    }
+  }
+
+
+
+  ,
+  async collect__a
+  ()
+  {
+    let collect_a
+    =
+      []    //: array to reorder keys according to their order_n
+  
+    await
+    LOC_o
+      .idb_o
+        .walk__v
+        (
+          (
+            key_s
+          , value_o
+          ) =>
+          {
+            collect_a
+              .push
+              (
+                {
+                  key_s: key_s,
+                  value_o:
+                    JSON
+                      .parse( value_o )
+                }
+              )
+          }
+        )
+  
+    collect_a
+      .sort
+      (
+        (
+          first_o,
+          second_o
+        ) =>
+          first_o
+            .value_o
+              .order_n
+          -
+          second_o
+            .value_o
+              .order_n            
+      )
+  
+    return collect_a
+  }
+
+
+  , 
+  selectable__v
+  ()
+  {
+    for
+    (
+      let figure_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption` )
+        )
+    )
+    {
+      figure_e
+        .addEventListener
+        (
+          'click',
+          EXP_o
+            .select__v
+        )
+    }
+  }
+
+
+
   ,
   select__v
   (
@@ -352,6 +275,120 @@ const EXP_o
     &&
     selected_e
       .classList.toggle( '{{C_o.SELECTED_CLASS_s}}' )
+  }
+
+
+
+  ,
+  async selected__
+  (
+    local_b=true          //??? : collect local images only
+  , selected_b=true       //: collect selected image only
+  , multi_b=false         //: , if false: first selected, if true:  whole selected
+  )
+  {
+    let selector_s
+    =
+      'figure'
+
+    if
+    (
+      selected_b    //: only selected figures
+    )
+    {
+      selector_s
+      +=
+        '.{{C_o.SELECTED_CLASS_s}}'
+    }
+
+    const figure_a
+    =
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( selector_s )
+        )
+
+    let alert_s
+
+    switch
+    (
+      true
+    )
+    {
+      case
+        ! figure_a
+          .length
+      :
+        alert_s
+        =
+        `Cette opération ne peut être appliquée sans sélection préalable`
+
+
+      break
+      
+      case
+        ! multi_b
+        &&
+        (
+          figure_a
+            .length
+          >
+          1
+          //-- ||
+          //-- ! figure_a
+          //--     [0]
+          //--       .querySelector( 'img'  )
+          //--         .src
+          //--           .startsWith( 'data:image/jpeg;base64' )
+        )
+      :
+        alert_s
+        =
+        `Cette opération ne peut être appliquée qu'à une seule image locale`
+
+      break
+      
+      default
+      :
+      break
+
+    }
+
+    if
+    (
+      alert_s
+    )
+    {
+      DIA_o
+        .open__v
+        (
+          {
+            '{{C_o.LABEL_ID_s}}': `Attention`
+          , '{{C_o.PARAGRAPH_ID_s}}': alert_s
+          , option_a:
+            [
+              'accept'
+            ]
+          }        
+        )
+      
+      await
+      DIA_o
+        .confirm__b()
+
+       return
+    }
+    //-->
+    return (
+      multi_b
+      ?
+        figure_a
+      :
+        figure_a
+          [0]
+    )
   }
 
 
@@ -391,6 +428,337 @@ const EXP_o
         .classList
           [ method_s ]( '{{C_o.SELECTED_CLASS_s}}' )
     }
+  }
+
+
+
+  ,
+  async local__v  //: add from local file system
+  ()
+  {
+    //=== display file picker
+    const
+      handle_a
+    =
+      await
+      window
+        .showOpenFilePicker
+        (
+          {
+            multiple:
+              true
+          , types:
+            [
+              {
+                description:
+                  'Image JPEG'
+              , accept:
+                  {
+                    'image/jpeg':
+                      [
+                        '.jpg'
+                      , '.jpeg'
+                      ]
+                  }
+              }
+            ]
+          }
+        )
+
+    //=== identify selected files
+    let local_a
+    =
+      []
+
+    let local_n
+    =
+      EXP_o
+        .local_n++  //: increment for next showOpenFilePicker
+
+    let local_s    //: html string of figure nodes to create
+    =
+      ''
+
+    for
+    (
+      let file_o
+      of
+      handle_a
+    )
+    {
+      const fileName_s
+      =
+        file_o
+          .name
+            .slice
+            (
+              0
+            , file_o
+                .name
+                  .lastIndexOf( '.' )    //: strip file name extension (jpg || jpeg )
+            )
+
+      const id_s
+      =
+        fileName_s
+          .replaceAll
+          (
+            '{{C_o.FILE_ESCAPE_s}}'
+          , '{{C_o.ID_PART_DELIM_s}}'
+          )
+
+      const key_s
+      =
+        DATE_o
+          .dataTimeNumeric__s()
+
+      const caption_s
+        =
+          `<figure data-id="{{C_o.EXPO_ID_s}}_${id_s}" data-display_b=true data-key_s="${key_s}">`
+          + `<img id="{{C_o.EXPO_IMG_PREFIX_s}}_${local_n}" loading="lazy">`  //!!! no src, width, height attributes
+          + `<a href="#"></a>`
+          + `<figcaption>${id_s}</figcaption>`
+          + `</figure>\n`
+
+      local_a
+        .push
+        (
+          {                //: local_o
+            id_s:
+              fileName_s    //: without extension
+          , key_s:
+              key_s
+          , local_n:
+              local_n
+          , file_o:
+              file_o
+          , caption_s:
+              caption_s
+          }
+        )
+
+      local_s
+      +=
+        caption_s
+    }
+
+    //=== instanciate new figure node
+    const masonry_e
+    =
+      document
+        .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry' )
+      
+    let masonry_s
+    =
+      masonry_e
+        .innerHTML
+
+    masonry_e
+      .innerHTML
+    =
+      masonry_s
+      +
+      local_s
+
+    //=== read new img file data
+    for
+    (
+      let local_o
+      of
+      local_a
+    )
+    {
+      const
+        {
+          id_s
+        , local_n
+        , caption_s
+        , file_o
+        , key_s
+        }
+        =
+          local_o
+    
+      const img_e
+      =
+        document
+          .querySelector
+          (
+            `#{{C_o.EXPO_IMG_PREFIX_s}}_${local_n}`
+          )
+
+      if
+      (
+        img_e
+      )
+      {
+        const reader_o
+        =
+         new FileReader()
+        
+        reader_o
+          .addEventListener
+          (
+            'load'
+          , () => 
+            {
+              img_e
+                .src
+              =
+                reader_o
+                  .result    //: convert image file to base64 string
+
+              img_e
+                .addEventListener
+                (
+                  'load'
+                , () => 
+                  {
+                    LOC_o
+                      .idb_o
+                        .set__v
+                      (
+                        key_s
+                      , JSON
+                          .stringify
+                          (
+                            {
+                              id_s:
+                                id_s
+                            , order_n:
+                                EXP_o
+                                  .order__n()
+                            , display_b: true
+                            , caption_s:
+                                caption_s
+                            , width_s:
+                                img_e
+                                  .naturalWidth
+                            , height_s:
+                                img_e
+                                  .naturalHeight
+                            , src_s:
+                                img_e
+                                  .src
+                            }
+                          )
+                      )
+                  }
+                )
+                }
+              , false
+          )
+        
+        const blob_o
+        =
+          await
+          file_o
+            .getFile()
+  
+        await
+        reader_o
+          .readAsDataURL( blob_o )
+
+        img_e
+          .parentNode      //: set figure_e selectable
+            .addEventListener
+            (
+              'click',
+              EXP_o
+                .select__v
+            )
+
+        img_e
+          .addEventListener
+          (
+            'click'
+          , EXP_o
+              .eventSizeFull__v
+          )
+      }
+    }
+
+    //-- EXP_o
+    //--   .selectable__v()
+  }
+
+
+  
+  ,
+  async remove__v
+  ()
+  {
+    const selected_a
+    =
+      await
+      EXP_o
+        .selected__
+        ( 
+          false      //: not only local 
+        , false      //: only selected
+        , true       //: multiple images
+        )
+
+    if
+    (
+      ! selected_a
+          .length
+    )
+    {
+      return true
+    }
+    //-->
+    DIA_o
+      .open__v
+      (
+        {
+          '{{C_o.LABEL_ID_s}}': `Attention`
+        , '{{C_o.PARAGRAPH_ID_s}}':
+            `Cette opération va remplacer les images de l'exposition courante qui sont sélectionnées.<br>Souhaitez-vous continuer?`
+        , option_a:
+          [
+            'cancel'
+          , 'accept'
+          ]
+        }        
+      )
+    
+    const accept_b
+    =
+      await
+      DIA_o
+        .confirm__b( 'confirm' )
+  
+    if
+    (
+      ! accept_b
+    )
+    {
+      return false   //: abort
+    }
+    //-->
+    for
+    (
+      let figure_e
+      of
+      selected_a
+    )
+    {
+      LOC_o
+        .idb_o
+          .delete__v
+          (
+            figure_e
+              .dataset
+                .key_s
+          )
+  
+      figure_e
+        .parentNode
+          .removeChild( figure_e )  
+    }
+
+    return true  //: deleted
   }
 
 
@@ -601,304 +969,13 @@ const EXP_o
 
 
 
-  ,
-  remove__v
-  ()
-  {
-    if
-    (
-      ! window
-          .confirm( `Cette opération va remplacer les images de l'exposition courante qui sont sélectionnées<br>Souhaitez-vous continuer?` )
-    )
-    {
-      return false   //: abort
-    }
-    //-->
-    for
-    (
-      let figure_e
-      of
-      EXP_o
-        .selected__
-        ( 
-          false      //: not only local 
-        , true       //: only selected
-        , true       //: multiple images
-        )
-
-    )
-    {
-      LOC_o
-        .idb_o
-          .delete__v
-          (
-            figure_e
-              .dataset
-                .key_s
-          )
-
-      figure_e
-        .parentNode
-          .removeChild( figure_e )  
-    }
-
-    return true  //: deleted
-  }
-
-
-
-  ,
-  async local__v  //: add from local file system
-  ()
-  {
-    //=== display file picker
-    const
-      handle_a
-    =
-      await
-      window
-        .showOpenFilePicker
-        (
-          {
-            multiple:
-              true
-          , types:
-            [
-              {
-                description:
-                  'Image JPEG'
-              , accept:
-                  {
-                    'image/jpeg':
-                      [
-                        '.jpg'
-                      , '.jpeg'
-                      ]
-                  }
-              }
-            ]
-          }
-        )
-
-    //=== identify selected files
-    let local_a
-    =
-      []
-
-    let local_n
-    =
-      EXP_o
-        .local_n++  //: increment for next showOpenFilePicker
-
-    let local_s    //: html string of figure nodes to create
-    =
-      ''
-
-    for
-    (
-      let file_o
-      of
-      handle_a
-    )
-    {
-      const fileName_s
-      =
-        file_o
-          .name
-            .slice
-            (
-              0
-            , file_o
-                .name
-                  .lastIndexOf( '.' )    //: strip file name extension (jpg || jpeg )
-            )
-
-      const id_s
-      =
-        fileName_s
-          .replaceAll
-          (
-            '{{C_o.FILE_ESCAPE_s}}'
-          , '{{C_o.ID_PART_DELIM_s}}'
-          )
-
-
-      const caption_s
-        =
-          `<figure data-id="{{C_o.EXPO_ID_s}}_${id_s}" data-display_b=true data-key_s="${fileName_s}">`
-          + `<img id="{{C_o.EXPO_IMG_PREFIX_s}}_${local_n}" loading="lazy">`  //!!! no src, width, height attributes
-          + `<a href="#"></a>`
-          + `<figcaption>${id_s}</figcaption>`
-          + `</figure>\n`
-
-      local_a
-        .push
-        (
-          {                //: local_o
-            id_s:
-              fileName_s    //: without extension
-          , local_n:
-              local_n
-          , file_o:
-              file_o
-          , caption_s:
-              caption_s
-          }
-        )
-
-      local_s
-      +=
-        caption_s
-    }
-
-    //=== instanciate new figure node
-    const masonry_e
-    =
-      document
-        .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry' )
-      
-    let masonry_s
-    =
-      masonry_e
-        .innerHTML
-
-    masonry_e
-      .innerHTML
-    =
-      masonry_s
-      +
-      local_s
-
-    //=== read new img file data
-    for
-    (
-      let local_o
-      of
-      local_a
-    )
-    {
-      const
-        {
-          id_s
-        , local_n
-        , caption_s
-        , file_o
-        }
-        =
-          local_o
-    
-      const img_e
-      =
-        document
-          .querySelector
-          (
-            `#{{C_o.EXPO_IMG_PREFIX_s}}_${local_n}`
-          )
-
-      if
-      (
-        img_e
-      )
-      {
-        const reader_o
-        =
-         new FileReader()
-        
-        reader_o
-          .addEventListener
-          (
-            'load'
-          , () => 
-            {
-              img_e
-                .src
-              =
-                reader_o
-                  .result    //: convert image file to base64 string
-
-              img_e
-                .addEventListener
-                (
-                  'load'
-                , () => 
-                  {
-                    LOC_o
-                      .idb_o
-                        .set__v
-                      (
-                        DATE_o
-                          .dataTimeNumeric__s()
-                      , JSON
-                          .stringify
-                          (
-                            {
-                              id_s:
-                                id_s
-                            , order_n:
-                                EXP_o
-                                  .order__n()
-                            , display_b: true
-                            , caption_s:
-                                caption_s
-                            , width_s:
-                                img_e
-                                  .naturalWidth
-                            , height_s:
-                                img_e
-                                  .naturalHeight
-                            , src_s:
-                                img_e
-                                  .src
-                            }
-                          )
-                      )
-                  }
-                )
-                }
-              , false
-          )
-        
-        const blob_o
-        =
-          await
-          file_o
-            .getFile()
-  
-        await
-        reader_o
-          .readAsDataURL( blob_o )
-
-        img_e
-          .parentNode      //: set figure_e selectable
-            .addEventListener
-            (
-              'click',
-              EXP_o
-                .select__v
-            )
-
-        img_e
-          .addEventListener
-          (
-            'click'
-          , EXP_o
-              .sizeEventFull__v
-          )
-      }
-    }
-
-    //-- EXP_o
-    //--   .selectable__v()
-  }
-
-
-  
   ,   
-  caption__v
+  async caption__v
   ()
   {
     const figure_e
     =
+      await
       EXP_o
         .selected__()
   
@@ -919,41 +996,29 @@ const EXP_o
 
 
 
-  ,
-  burst__v
-  ()
-  {
-    const figure_e
-    =
-      EXP_o
-        .selected__()
-  
-    if
-    (
-      figure_e
-    )
-    {
-      const key_s =
-        figure_e
-          .dataset
-            .key_s
-  
-      location
-        .href
-      =
-        `local--burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
-    }
-  }
-
-
-
 , async store__v
   ()
   {
+    DIA_o
+      .open__v
+      (
+        {
+          '{{C_o.LABEL_ID_s}}': `Attention`
+        , '{{C_o.PARAGRAPH_ID_s}}':
+            `Voulez-vous sauvegarder uniquement les images sélectionnées?`
+        , option_a:
+          [
+            'cancel'
+          , 'accept'
+          ]
+        }        
+      )
+    
     const selected_b
     =
-      window
-        .confirm( 'Voulez-vous sauvegarder uniquement les images sélectionnées?' )
+      await
+      DIA_o
+        .confirm__b( 'confirm' )
 
     let collect_a
     =
@@ -1073,7 +1138,8 @@ const EXP_o
 {
   if
   (
-    ! EXP_o
+    ! await
+      EXP_o
         .remove__v()
   )
   {
@@ -1187,7 +1253,294 @@ const EXP_o
 
 
 
-, async captionEvent__v
+  ,
+  async burst__v
+  ()
+  {
+    const figure_e
+    =
+      await
+      EXP_o
+        .selected__()
+  
+    if
+    (
+      figure_e
+    )
+    {
+      let key_s =
+        figure_e
+          .dataset
+            .key_s
+  
+      let key_a
+
+      if        //: work_s is an indexedDB key
+      (
+        ! key_s
+            .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
+      )
+      {
+        key_a
+        =
+          key_s
+            .split
+            (
+              /\/[^\/]+\/[^\/]+\/[^\/]+\//
+            )
+      }
+
+      if
+      (
+        key_a
+          ?.[1]
+        ===
+        'gray'
+      )
+      {
+        DIA_o
+          .open__v
+          (
+            {
+              '{{C_o.LABEL_ID_s}}': `Attention`
+            , '{{C_o.PARAGRAPH_ID_s}}': `Cette opération ne s'applique qu'aux images en couleur`
+            , option_a:
+              [
+                'accept'
+              ]
+            }        
+          )
+        
+        await
+        DIA_o
+          .confirm__b()
+
+        return
+      }
+      //-->
+
+      location
+        .href
+      =
+        `local--burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
+    }
+  }
+
+
+
+  ,
+  async eventKey__v    //: must prevent default for space key
+  (
+    event_o
+  )
+  {
+    if
+    (
+      document
+        .querySelector( '#dialog_{{C_o.SECTION_a[2]}}_caption[open]')
+      ||
+      ! EXP_o
+        .eventKey_a
+          .includes
+          (
+            event_o
+              .key
+          )
+    )
+    {
+      return     //: let event buble
+    }
+
+    event_o
+      .preventDefault()
+
+    let input_e
+
+    switch
+    (
+      event_o
+        .key
+    )
+    {
+      case
+        '3'
+      :
+        document
+           .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}` )
+             .checked
+         =
+           true
+
+        break
+
+      case
+        '+'    //: show/hide Image
+      :
+        input_e
+        =
+          document
+            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_wrap_n' )
+
+          if
+          (
+            +input_e    //: Number cast...
+              .value
+            <
+            +input_e
+              .max
+          )
+          {
+            input_e
+              .value
+            =
+              +input_e
+                .value
+              +
+              +input_e
+                .step
+
+            EXP_o
+              .eventRange__v
+              (
+                {
+                  target:
+                    input_e
+                }
+              )
+          }
+
+        break
+
+      case
+        '-'    //: show/hide Image
+      :
+        input_e
+        =
+          document
+            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_wrap_n' )
+
+          if
+          (
+            +input_e    //: Number cast...
+              .value
+            >
+            +input_e
+              .min
+          )
+          {
+            input_e
+              .value
+            =
+              +input_e
+                .value
+              -
+              +input_e
+                .step
+
+            EXP_o
+              .eventRange__v
+              (
+                {
+                  target:
+                    input_e
+                }
+              )
+          }
+
+
+        break
+
+      case
+        's'
+      :
+        if
+        (
+          event_o
+            .ctrlKey
+        )
+        {
+          EXP_o
+            .store__v
+            (
+              false      //: don't  pick
+            )
+        }
+
+        break
+
+      case
+        'o'
+      :
+        if
+        (
+          event_o
+            .ctrlKey
+        )
+        {
+          await
+          EXP_o
+            .restore__v()
+        }
+
+        break
+
+      case
+        'n'
+      :
+        EXP_o
+          .local__v()
+
+        break
+
+      case
+        'x'
+      :
+        EXP_o
+          .remove__v()
+          
+        break
+
+      case
+        'm'
+      :
+        EXP_o
+          .hide__v()
+          
+        break
+
+      case
+        'g'
+      :
+        EXP_o
+          .group__v()
+          
+        break
+
+      case
+        'c'
+      :
+        EXP_o
+          .caption__v()
+          
+        break
+
+      case
+        'b'
+      :
+        EXP_o
+          .burst__v()
+          
+        break
+
+      default
+      :
+        break
+    }
+  }
+
+
+
+, async eventCaption__v
 (
     event_o
 )
@@ -1246,6 +1599,7 @@ const EXP_o
     :
       const figure_e
       =
+        await
         EXP_o
           .selected__()
     
@@ -1382,9 +1736,6 @@ const EXP_o
     
           EXP_o
             .show__v()
-
-          caption_e
-            .close()
         }
       }
       
@@ -1393,12 +1744,15 @@ const EXP_o
     default:
     break
   }
+  
+          caption_e
+            .close()
 
   }
 
 
 
-, rangeEvent__v
+, eventRange__v
   (
     event_o
   )
@@ -1415,7 +1769,7 @@ const EXP_o
 
 
   ,
-  sizeEventFull__v
+  eventSizeFull__v
   (
     event_o
   )
@@ -1474,7 +1828,7 @@ const EXP_o
 
 
   ,
-  sizeEventTiny__v
+  eventSizeTiny__v
   (
     //?? event_o
   )
@@ -1494,9 +1848,7 @@ const EXP_o
       , 'none'
       )
 
-    //== reinsert img_e to restore initial place
-    //-- EXP_o
-    //--   .show__v()
+    //: reinsert img_e to restore initial place
     EXP_o
       .full_e
         .setAttribute
@@ -1513,7 +1865,7 @@ const EXP_o
 
 
   ,
-  listen__v
+  listener__v
   ()
   {
     DOM_o
@@ -1529,7 +1881,7 @@ const EXP_o
         (
           'click'
         , EXP_o
-            .sizeEventTiny__v
+            .eventSizeTiny__v
         )
     
     document
@@ -1541,6 +1893,18 @@ const EXP_o
             .selectAll__v
         )
   
+    document
+      .body
+        .addEventListener
+        (
+          'keydown'
+        , EXP_o
+            .eventKey__v
+        , {
+            passive: false
+          }
+        )
+
     for
     (
       let id_s
@@ -1594,7 +1958,7 @@ const EXP_o
         (
           'change',
           EXP_o
-            .captionEvent__v
+            .eventCaption__v
         )
     }
 
@@ -1623,7 +1987,7 @@ const EXP_o
           (
             `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_${range_s}`
           , EXP_o
-              .rangeEvent__v
+              .eventRange__v
           , event_s
           )
       }
@@ -1638,7 +2002,7 @@ const EXP_o
   ()
   {
     EXP_o
-      .listen__v()
+      .listener__v()
   
     EXP_o
       .show__v()

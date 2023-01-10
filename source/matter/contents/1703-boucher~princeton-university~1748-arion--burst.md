@@ -25,15 +25,15 @@
 
   script_a:
   [
-    'stat.min.js',
-    'dom.min.js',
-  ],
-  css_a:
-  [
     'Idb.min.js',
     'location.min.js',
     'dom.min.js',
     'stat.min.js',
+  ],
+  css_a:
+  [
+    'stat.min.css',
+    'stat_burst.min.css',
   ],
 
   version_a:

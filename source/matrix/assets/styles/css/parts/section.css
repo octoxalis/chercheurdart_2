@@ -65,8 +65,6 @@ input[type=range]:after {
   color: currentColor;
   border: 1px solid {{S_o.highlight}};
   border-radius: 4px;
-  font-size: 150%;
-  transform: scaleY( 2 );
 }
 {{C_o.ROW_TAG_s}}[data--=abstract] {
   font-style: italic;

@@ -1,0 +1,62 @@
+<dialog[id^=dialog_main_]>
+        display: none;
+        position: absolute;
+        margin: auto;
+        padding: {{S_o.PAD_4}};
+        width: clamp(20ch, 40ch, 50vw);
+        background: {{S_o.form_bg}};
+        border: none;
+        border-radius: 4px;
+  <form>
+          grid-area: 1/-1
+    <div[id^={{C_o.DIV_ID_s}}_main_]>
+              display: flex;
+              flex-direction: column;
+      <header>
+              display: flex;
+              gap: {{S_o.PAD_8}};
+              border-bottom: 1px solid {{S_o.form_label}};
+              text-transform: uppercase;
+        <label>
+                width: 2rem;
+                height: 2rem;
+                text-transform: uppercase;
+                font-size: 120%;
+                font-weight: 600;
+                color: {{S_o.darker}};
+        </label>
+        <label:nth-of-type(1)>
+                flex-grow: 2;
+        </label>
+        <label[for$=cancel]>
+                color: {{S_o.cancel_hi}};
+        </label>
+        <label[for$=accept]>
+                color: {{S_o.accept_hi}};
+        </label>
+        <label:not(:nth-of-type(1)):hover>
+                filter: brightness( 4 );
+        </label>
+        <input>
+                display: none;
+        </input>
+      </header>
+      <label>
+              margin-top: 1rem;
+              color: {{S_o.textcolor_lo}};
+              font-size: 90%;
+              font-style: italic;
+              font-weight: 200;
+      </label>
+      <p>
+              color: {{S_o.textcolor}};
+      </p>
+    </div>
+  </form>
+</dialog>
+<dialog[id^=dialog_main_][open]>
+        display: grid;
+</dialog>
+<dialog[id^=dialog_main_][open]::backdrop>
+        background: {{S_o.form_shadow}};
+</dialog>

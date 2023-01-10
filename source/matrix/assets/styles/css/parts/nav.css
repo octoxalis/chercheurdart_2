@@ -38,13 +38,29 @@ nav > a:hover > span[data-role], nav:hover > a, nav:hover > label {
 }
 a[data-legend]:before, label[data-legend]:before {
   content: attr( data-legend );
-  position: absolute;
+  position: relative;
   font-size: 85%;
   transform: scaleX( 0 );
   transform-origin: center;
   transition: transform ease .2s;
 }
-a[data-legend]:hover:before, label[data-legend]:hover:before {
+a[data-legend]:after, label[data-key]:after {
+  content: attr( data-key );
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-self: center;
+  right: -1ch;
+  width: 4ch;
+  height: 1rem;
+  font-size: 65%;
+  background: {{S_o.key}};
+  border-radius: 4px;
+  transform: scaleX( 0 );
+  transform-origin: center;
+  transition: transform ease .2s;
+}
+a[data-legend]:hover:before, label[data-legend]:hover:before, a[data-key]:hover:after, label[data-key]:hover:after {
   transform: scaleX( 1 );
 }
 a[data-legend], label[data-legend] {

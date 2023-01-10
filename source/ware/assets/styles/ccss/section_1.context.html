@@ -10,9 +10,9 @@ context( stack, new )
           position: relative;
           width: 49%;           /* 2 columns */
           height: fit-content;
-    <*>
+    <__star__>
             grid-area: 1/-1;    /* matching */
-    </*>
+    </__star__>
     <img/>
             /*object-fit: contain;*/
             max-width: 100%;
@@ -25,18 +25,12 @@ context( stack, new )
             border: none;
       <figcaption>
               padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
-              height: 100%;
+              width: fit-content;
+              height: fit-content;
+              border-bottom-right-radius: 18px;
               background: {{S_o.shadow_hi}};
               opacity: 0;
               transition: opacity .3s;
-
-    width: fit-content;
-    height: fit-content;
-    border-bottom-right-radius: 18px;
-
-
-
-
         <{{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}]>
               opacity: 0;
               transition: opacity 1s ease;

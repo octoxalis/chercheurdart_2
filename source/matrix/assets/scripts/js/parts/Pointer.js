@@ -65,7 +65,7 @@ class Pointer
                     true
 
                 this
-                  .listen__v
+                  .listener__v
                   (
                     [
                       'pointermove',
@@ -134,7 +134,7 @@ class Pointer
 
 
 
-  listen__v
+  listener__v
   (
     listen_a,
     method_s='add'

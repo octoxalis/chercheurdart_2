@@ -4,16 +4,19 @@ const STAT_o =
   worker_o: null,
 
   get_scan_a:    //: stats needing scan
-  [
-    '{{C_o.STAT_a[0]}}',
-    '{{C_o.STAT_a[1]}}',
-    '{{C_o.STAT_a[2]}}',
-    //-- '{{C_o.STAT_a[3]}}',    //: no scan
-  ]
+    [
+      '{{C_o.STAT_a[0]}}',
+      '{{C_o.STAT_a[1]}}',
+      '{{C_o.STAT_a[2]}}',
+      //-- '{{C_o.STAT_a[3]}}',    //: no scan
+    ]
+
+  , eventKey_a:
+    [
+    , '3'          //: goto stat (burst...)
+    ]
+
   ,
-
-
-
   canvas__e    //!!! 4. from section
   (
     stat_s,
@@ -201,10 +204,72 @@ const STAT_o =
         )
     }
   }
-  ,
   
 
 
+  ,
+  eventKey__v    //: must prevent default for space key
+  (
+    event_o
+  , stat_s
+  )
+  {
+    if
+    (
+      ! STAT_o
+          .eventKey_a
+            .includes
+            (
+              event_o
+                .key
+            )
+    )
+    {
+      return     //: let event buble
+    }
+
+    event_o
+      .preventDefault()
+
+    let input_e
+
+    switch
+    (
+      event_o
+        .key
+    )
+    {
+      case
+        '3'    //: show stat
+      :
+        if      //: still iframe
+        (
+          document
+            .getElementById( `{{C_O.IFRAME_ID_s}}${stat_s}` )
+        )
+        {
+          STAT_o
+            .adopt__v( stat_s )
+        }
+
+        document
+           .getElementById( `{{C_o.INPUT_ID_s}}_${stat_s}` )
+             .checked
+         =
+           true
+
+        break
+        
+
+      default 
+      :
+        break
+    }
+  }
+
+
+
+  ,
   listener__v
   ()
   {
@@ -224,19 +289,36 @@ const STAT_o =
         document
           .getElementById( `{{C_o.LABEL_ID_s}}_${stat_s}` )
           
-      listen_e
-      &&
-      listen_e
-        .addEventListener
-        (
-          'click',
-          () =>
-            STAT_o
-              .adopt__v( stat_s ),
-          {
-            once: true
-          }
-        )
+      if
+      (
+        listen_e
+      )
+      {
+        listen_e
+          .addEventListener
+          (
+            'click',
+            () =>
+              STAT_o
+                .adopt__v( stat_s ),
+            {
+              once: true
+            }
+          )
+
+        DOM_o
+          .event__v
+          (
+            'keydown'
+          , event_o =>
+              STAT_o
+                .eventKey__v
+                (
+                  event_o
+                , stat_s
+                )
+          )          
+      }
     }
   }
   ,
@@ -245,8 +327,8 @@ const STAT_o =
 
   init__v    //!!! 1. from index.js
   (
-    work_s,
-    stat_s,
+    stat_s
+  , key_s
   )
   {
     STAT_o
@@ -274,7 +356,7 @@ const STAT_o =
             { 
               task_s: 'GET_scan',
               stat_s: '{{C_o.STAT_s}}',
-              work_s: work_s,
+              key_s: key_s,
             }
           )
     }
