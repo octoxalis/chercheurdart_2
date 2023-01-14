@@ -487,9 +487,9 @@ const BUR_o =
 
 
   ,
-  getImage
+  get_img__v
   (
-    key_s
+    source_s
   )
   {
     const canvas_e =
@@ -522,35 +522,55 @@ const BUR_o =
       *
       .5
 
-    BUR_o
-      .work_s
-    =
-      key_s
-        .split
-        (
-          /\/[^\/]+\/[^\/]+\/[^\/]+\//
-        )
-          [0]
-
     let url_s
 
     if
     (
       LOC_o
         .search_s
+      &&
+      LOC_o
+        .search_s
           .match( /\/[^\/]+\/[^\/]+\/[^\/]+\// )    //: work_s ID
     )
     {
+      BUR_o
+        .work_s
+      =
+        source_s
+          .split
+          (
+            /\/[^\/]+\/[^\/]+\/[^\/]+\//
+          )
+            [0]
+
       url_s
       =
         `/{{C_o.IMG_DIR_s}}${LOC_o.search_s}.jpeg`  //: begining slash for site relative url    }
     }
     else
     {
-      url_s
-      =
-        LOC_o
-          .search_s
+      if
+      (
+        BUR_o
+          .source_s
+      )
+      {
+        BUR_o
+          .work_s
+        =
+        url_s
+        =
+          BUR_o
+            .source_s
+      }
+      else
+      {
+        url_s
+        =
+          LOC_o
+            .search_s
+      }
     }
 
     BUR_o
@@ -1944,16 +1964,16 @@ const BUR_o =
     = DATE_o
         .dataTimeNumeric__s()
       
-    const key_s
+    const source_s
     =
       BUR_o
-        .work_s    //!!!!!!!! TODO for local image: no work_s !!!!!!!!
+        .work_s    //!!!!!!!! TODO for import image: no work_s !!!!!!!!
       + `_${date_s}`
 
     BUR_o
       .download_s
     =
-      `${key_s}-${suffix_s}.jpg`    //:  used by file picker as suggestedName
+      `${source_s}-${suffix_s}.jpg`    //:  used by file picker as suggestedName
 
 
     let rgb_a
@@ -2701,7 +2721,7 @@ const BUR_o =
       =
       () =>
         BUR_o
-          .placeImage__v()
+          .scale__v()
     }
 
     for
@@ -2972,7 +2992,7 @@ const BUR_o =
 
 
   ,
-  placeImage__v
+  scale__v
   ()
   {
     let scale_n
@@ -3019,50 +3039,84 @@ const BUR_o =
 
 
   ,
-  async imgDim__v
+  async source__v
   ()
   {
+    let src_s
     let width_s
     let height_s
 
-    const value_o =
+    const param_o
+    =
       await
       LOC_o
-        .search__( '{{C_o.LOC_JSON_s}}' )
+        .search__( '{{C_o.LOC_IMG_s}}' )
 
     if
     (
-     value_o    //: local image
+      param_o
     )
     {
+      src_s
+      =
+        param_o
+          .get( 's' )
+  
       width_s
       =
-        value_o
-          .width_s
-
+        param_o
+          .get( 'w' )
+  
       height_s
       =
-        value_o
-          .height_s
-
-      const title_e
-      =
-        document
-          .querySelector( `h1+p` )
-
+        param_o
+          .get( 'h' )
+    }
+    else
+    {
+      const value_o =
+        await
+        LOC_o
+          .search__( '{{C_o.LOC_JSON_s}}' )
+  
       if
       (
-        title_e
+       value_o    //: import image
       )
       {
-        title_e
-          .innerHTML
+        width_s
         =
-        //-- key_s
-        value_o
-          .id_s
+          value_o
+            .width_s
+  
+        height_s
+        =
+          value_o
+            .height_s
+  
+        const title_e
+        =
+          document
+            .querySelector( `h1+p` )
+  
+        if
+        (
+          title_e
+        )
+        {
+          title_e
+            .innerHTML
+          =
+          value_o
+            .id_s
+        }
       }
     }
+
+    BUR_o
+      .source_s
+    =
+      src_s
 
     BUR_o
       .imgWidth_n
@@ -3081,9 +3135,10 @@ const BUR_o =
   async init__v
   ()
   {
+    
     await
     BUR_o
-      .imgDim__v()
+      .source__v()
 
     BUR_o
       .screen__v()
@@ -3144,17 +3199,28 @@ const BUR_o =
     BUR_o
      .listener__v()
 
-    const key_s
+    let source_s
     =
       await
       LOC_o
-        .search__()    //: '{{C_o.LOC_SEARCH_s}}'
+        .search__( '{{C_o.LOC_SEARCH_s}}' )
+
+    if
+    (
+      ! source_s
+    )
+    {
+      source_s
+      =
+        BUR_o
+          .source_s     //: set by source__v
+    }
 
     BUR_o
-      .getImage( key_s )
+      .get_img__v( source_s )
 
     BUR_o
-      .placeImage__v()
+      .scale__v()
   }
 }
 

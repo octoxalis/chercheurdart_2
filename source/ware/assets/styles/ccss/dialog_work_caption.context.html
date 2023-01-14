@@ -1,0 +1,95 @@
+context( stack, new )
+<dialog#dialog_work_caption>
+        display: none;
+        position: absolute;
+        margin: auto;
+        padding: {{S_o.PAD_4}};
+        width: clamp(40ch, 80ch, 80vw);
+        background: {{S_o.form_bg}};
+        border: none;
+        border-radius: 4px;
+  <form>
+          grid-area: 1/-1
+    <div#{{C_o.DIV_ID_s}}_work_caption>
+              display: flex;
+              flex-direction: column;
+      <header>
+              display: flex;
+              gap: {{S_o.PAD_8}};
+              border-bottom: 1px solid {{S_o.form_label}};
+              text-transform: uppercase;
+        <label>
+                width: 2rem;
+                height: 2rem;
+                text-transform: uppercase;
+                font-size: 120%;
+                font-weight: 600;
+                color: {{S_o.darker}};
+        </label>
+        <label:nth-of-type(1)>
+                flex-grow: 2;
+        </label>
+        <label[for$=cancel]>
+                color: {{S_o.cancel_hi}};
+        </label>
+        <label[for$=accept]>
+                color: {{S_o.accept_hi}};
+        </label>
+        <label:not(:nth-of-type(1)):hover>
+                filter: brightness( 4 );
+        </label>
+        <input>
+                display: none;
+        </input>
+      </header>
+    </div>
+  </form>
+</dialog>
+<dialog#dialog_work_caption[open]>
+        display: grid;
+</dialog>
+<dialog#dialog_work_caption[open]::backdrop>
+        background: {{S_o.form_shadow}};
+</dialog>
+
+<ul#{{C_o.LIST_ID_s}}_work_caption_list>
+        display: flex;
+        flex-direction: column;
+        border: none;
+  <li[id^=item_]>
+          display: flex;
+          justify-content: space-between;
+          width: 90%;
+    <label[control]>
+            width: 30%;
+            line-height: 2rem;
+            text-transform: uppercase;
+            font-size: 85%;
+            vertical-align: bottom;
+            color: {{S_o.form_label}};
+    </label>
+    <input[type=text]/>
+            flex-grow: 2;
+            border: none;
+            border-bottom: 1px solid {{S_o.form_text_lo}};
+            outline: none;
+            background: transparent;
+            color: {{S_o.form_text}};
+          font-size: 85%;
+  </li>
+  <li:before>
+            content: '';
+            border: none;
+  </li>
+</ul>
+
+<ul#{{C_o.LIST_ID_s}}_work_caption_list.reserve>
+background: red;
+  <li[id^=item_]:has(input:empty)>
+          display: none;
+  </li>
+</ul>
+
+<label class="hidden">
+        display: none;
+</label>

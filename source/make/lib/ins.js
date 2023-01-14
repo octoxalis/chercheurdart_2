@@ -47,9 +47,6 @@ parse__s:
     .image_s = ''
 
   INS_o
-    .legend_s = ''
-
-  INS_o
     .aside_n = 1    //: post increment
 
   let method_s =
@@ -202,11 +199,6 @@ imgLine__v:    //: ₉
   key_s
 ) =>
 {
-  INS_o
-    .legend_s =
-      F_o
-        .legend__s( imgId_s )
-      
   INS_o
     .image__v( imgId_s )
 }
@@ -599,7 +591,11 @@ css__v:
         + ` width="${width_n}" height="${height_n}"`
         + ` loading="lazy" />`
         + `</a>`
-        + INS_o.legend_s
+        +  F_o
+            .legend__s
+            (
+              imgId_s
+            )
 
     ;[ width_n, height_n ] =
       dim_a[at_n]
@@ -610,9 +606,9 @@ css__v:
         (
           `<figure id="${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}">`
 
-          + `<label data-legend="${C_o.NAV_LEGEND_o.expo.legend_s}">`
-          + `<span data-role="${C_o.NAV_LEGEND_o.expo.legend_s}">&nbsp;</span>`
-          + `</label>`
+          //-- + `<label data-legend="${C_o.NAV_LEGEND_o.expo.legend_s}">`
+          //-- + `<span data-role="${C_o.NAV_LEGEND_o.expo.legend_s}">&nbsp;</span>`
+          //-- + `</label>`
           + `<a href="#${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
           +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
           +   ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n++]})"`        //: increment at_n
@@ -632,9 +628,9 @@ css__v:
         (
           `<figure id="${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
 
-          + `<label data-legend="${C_o.NAV_LEGEND_o.expo.legend_s}">`
-          + `<span data-role="${C_o.NAV_LEGEND_o.expo.legend_s}">&nbsp;</span>`
-          + `</label>`
+          //-- + `<label data-legend="${C_o.NAV_LEGEND_o.expo.legend_s}">`
+          //-- + `<span data-role="${C_o.NAV_LEGEND_o.expo.legend_s}">&nbsp;</span>`
+          //-- + `</label>`
           + `<a href="#${C_o.ASIDE_GRAY_ID_s}${INS_o.index_n}">`
           +   `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
           +   ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
@@ -644,32 +640,28 @@ css__v:
           + `</figure>`
         )
 
-    if
-    (
-      true
-    )
-    {
       INS_o
         .gallery_a
           .push
           (
-            `<figure id="${C_o.GALERY_ID_s}${INS_o.index_n}">`
-            
+            `<figure id="${C_o.GALLERY_ID_s}${INS_o.index_n}">`
             + `<img src="${C_o.IMG_DIR_s}${imgId_s}${I_o.IOR_TRIPLE_a[at_n]}"`
             + ` alt="${alt_s} (${I_o.IMG_SIZE_ALT_a[at_n]})"`        //: no more increment
             + ` width="${width_n}" height="${height_n}"`
-            + ` loading="lazy" />`
-            
+            + ` loading="lazy">`
             + `<a href="#${C_o.ASIDE_COLOR_ID_s}${INS_o.index_n}">`
             + `<figcaption>`
-            +   INS_o
-                  .legend_s
+            + F_o
+                .legend__s
+                (
+                  imgId_s
+                , false
+                )
             + `</figcaption>`
             + `</a>`
   
             + `</figure>`
           )
-      }
   }
   ,
 
@@ -951,6 +943,13 @@ module.exports =
             + gallery_s
             + `</section>`
             + `<aside>`
+            + `<nav id="${C_o.NAV_ID_s}_aside_burst_zoom">`
+            +   `<label id="${C_o.LABEL_ID_s}_aside_burst">${C_o.IMG_BURST_s}</label>`
+            +   `<label id="${C_o.LABEL_ID_s}_aside_expo">${C_o.IMG_EXPO_s}</label>`
+            +   `<input id="${C_o.INPUT_ID_s}_aside_zoom" type=checkbox>`
+            +   `<label for="${C_o.INPUT_ID_s}_aside_zoom">${C_o.ZOOM_IN_s}</label>`
+            +   `<label for="${C_o.INPUT_ID_s}_aside_zoom">${C_o.ZOOM_OUT_s}</label>`
+            + `</nav>`
             + INS_o.gray_a.join( '\n' )
             + INS_o.color_a.join( '\n' )
             + `</aside>`

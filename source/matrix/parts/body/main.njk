@@ -1,8 +1,6 @@
 {{- layoutContent | safe -}}
 {{C_o.GALERY_REPLACE_s}}{# custom tag deleted after section insertion #}
-{% if section_a[2] %}{# expo #}
-{% include "parts/body/expo.njk" %}
-{% endif %}
-{% if dialog_alert_b %}
-{% include "parts/body/dialog_alert.njk" %}
-{% endif %}
+
+{% for include_s in include_a %}
+{% include "parts/body/" + include_s + ".njk" %}
+{% endfor %}

@@ -114,7 +114,7 @@ const EXI_o
         document
           .querySelector
           (
-            `#{{C_o.GALERY_ID_s}}`
+            `#{{C_o.GALLERY_ID_s}}`
             + id_s
                 .substring( 2 )    //: skip leading ASIDE_GRAY_ID_s or ASIDE_COLOR_ID_s
             + ` figcaption`
@@ -148,7 +148,7 @@ const EXI_o
 
   
   ,
-  listener__v
+  async listener__v
   ()
   {
 
@@ -173,12 +173,17 @@ const EXI_o
         )
     }
 
+    const index_n
+    =
+      await
+      EXI_o
+        .index__n()
+
     DOM_o
       .rootVar__v
       (
-        '--{{C_o.SECTION_a[2]}}_n',
-        EXI_o
-          .index__n()
+        '--{{C_o.SECTION_a[2]}}_n'
+      , index_n
       )
 
   }

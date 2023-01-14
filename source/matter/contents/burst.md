@@ -1,17 +1,15 @@
 ---js
 {
   layout:    'frame.njk',
-  permalink: 'local--burst.html',
+  permalink: 'burst.html',
   tags:      [ 'collection' ],
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
   doc_n:      10245,
-  title_s:    `Répartition`,
-  subtitle_s: `image locale`,
-  abstract_s: `Répartition chromatique d'image locale`,
-  //--  workID_s:   '2022-local~paris-local~2022-burst',
-  //--  widthHeight_s:  '0_0',
+  title_s:    `Analyse colorimétrique`,
+  subtitle_s: `Répartition chromatique`,
+  abstract_s: `Répartition chromatique`,
   //... issue_n: -1,
 
   section_a:
@@ -30,18 +28,16 @@
     'location.min.js',
     'dom.min.js',
     'stat.min.js',
-    //... 'dialog_alert.min.js',
   ],
   css_a:
   [
     'stat.min.css',
     'stat_burst.min.css',
-    //... 'dialog_alert.min.css',
   ],
 
   version_a:
   [
-    '2021-10-14T12:00:00Z'
+    '2023-01-12T18:00:00Z'
   ],
 
 }
@@ -50,14 +46,17 @@
 
 //=== END DECLARATIONS ===//
 //  TOPICS
-‹image locale›
+‹répartition chromatique›
+‹colorimétrie›
 //
 
 
-##1  {{title_s}}
+##1 {{title_s}}
 
-Image locale
+[[₀  {{abstract_s}}  ::
+     {{F_o.versionList__s(version_a)}}  ]]
 
+##2  Presentation
 
 ##2  Colorimétrie
 

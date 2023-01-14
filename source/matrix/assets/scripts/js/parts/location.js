@@ -2,14 +2,14 @@
 
 const LOC_o =
 {
-  //++ search_s      //: used by burst for local image, from location.search
+  //++ search_s      //: used by burst for import image, from location.search
   //++ idb_o 
 
 
 
-  async search__    //: return search string|| IDb object || IDb object property
+  async search__    //: return search string|| param_o || IDb object || IDb object property
   (
-    query_s='{{C_o.LOC_SEARCH_s}}'
+    query_s
   )
   {
     const loc_s
@@ -39,51 +39,62 @@ const LOC_o =
     const search_s
     =
       param_o
-        .get( '{{C_o.LOC_SEARCH_s}}' )
+        .get( query_s )
 
     if
     (
       query_s
       ===
-     '{{C_o.LOC_SEARCH_s}}'
+     '{{C_o.LOC_IMG_s}}'
     )
     {
-      LOC_o
-        .search_s
+      return param_o
+    }
+    //-->
+    if
+    (
+      query_s
+      ===
+     '{{C_o.LOC_JSON_s}}'
+    )
+    {
+      const key_s    //: for readibility
       =
         search_s
   
-      return search_s    //: search string
+      const value_s    //; JSON entry
+      =
+        await
+        LOC_o
+          .idb_o
+            .get__( key_s )
+    
+      let value_o =
+        JSON
+          .parse
+          (
+            value_s
+          )
+  
+      return value_o
+      //?? return (
+      //??   query_s
+      //??   ===
+      //??   '{{C_o.LOC_JSON_s}}'
+      //??   ?
+      //??     value_o         //: Idb JSON object
+      //??   :
+      //??     value_o
+      //??       [ key_s ]     //: Idb JSON object property
+      //?? )
     }
     //-->
-    const key_s    //: for readibility
+    LOC_o
+      .search_s
     =
       search_s
-
-    const value_s    //; JSON entry
-    =
-      await
-      LOC_o
-        .idb_o
-          .get__( key_s )
   
-    let value_o =
-      JSON
-        .parse
-        (
-          value_s
-        )
-
-    return (
-      query_s
-      ===
-      '{{C_o.LOC_JSON_s}}'
-      ?
-        value_o         //: Idb JSON object
-      :
-        value_o
-          [ key_s ]     //: Idb JSON object property
-    )    
+    return search_s    //: search string
   }
 
 

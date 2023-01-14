@@ -24,15 +24,15 @@
 }
 100% {
   opacity: 1 }}@media screen and (max-width: 900px) and  (min-height: 500px) {
-  body > ol {
+  html > *: :-webkit-scrollbar-thumb > ol {
   --col_count: 2;
 }
-body > ol > li {
+html > *::-webkit-scrollbar-thumb > ol > li {
   color: red;
   }}@supports (display: grid) {
-  body > ol {
+  html > *: :-webkit-scrollbar-thumb > ol {
   display: grid;
 }
-body > ol > li {
+html > *::-webkit-scrollbar-thumb > ol > li {
   color: red;
   }}

@@ -1,0 +1,92 @@
+dialog#dialog_work_caption {
+  display: none;
+  position: absolute;
+  margin: auto;
+  padding: {{S_o.PAD_4}};
+  width: clamp(40ch, 80ch, 80vw);
+  background: {{S_o.form_bg}};
+  border: none;
+  border-radius: 4px;
+}
+dialog#dialog_work_caption > form {
+  grid-area: 1/-1;
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption {
+  display: flex;
+  flex-direction: column;
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption > header {
+  display: flex;
+  gap: {{S_o.PAD_8}};
+  border-bottom: 1px solid {{S_o.form_label}};
+  text-transform: uppercase;
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption > header > label {
+  width: 2rem;
+  height: 2rem;
+  text-transform: uppercase;
+  font-size: 120%;
+  font-weight: 600;
+  color: {{S_o.darker}};
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption > header > label:nth-of-type(1) {
+  flex-grow: 2;
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption > header > label[for$=cancel] {
+  color: {{S_o.cancel_hi}};
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption > header > label[for$=accept] {
+  color: {{S_o.accept_hi}};
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption > header > label:not(:nth-of-type(1)):hover {
+  filter: brightness( 4 );
+}
+dialog#dialog_work_caption > form > div#{{C_o.DIV_ID_s}}_work_caption > header > input {
+  display: none;
+}
+dialog#dialog_work_caption[open] {
+  display: grid;
+}
+dialog#dialog_work_caption[open]::backdrop {
+  background: {{S_o.form_shadow}};
+}
+ul#{{C_o.LIST_ID_s}}_work_caption_list {
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+ul#{{C_o.LIST_ID_s}}_work_caption_list > li[id^=item_] {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+ul#{{C_o.LIST_ID_s}}_work_caption_list > li[id^=item_] > label[control] {
+  width: 30%;
+  line-height: 2rem;
+  text-transform: uppercase;
+  font-size: 85%;
+  vertical-align: bottom;
+  color: {{S_o.form_label}};
+}
+ul#{{C_o.LIST_ID_s}}_work_caption_list > li[id^=item_] > input[type=text] {
+  flex-grow: 2;
+  border: none;
+  border-bottom: 1px solid {{S_o.form_text_lo}};
+  outline: none;
+  background: transparent;
+  color: {{S_o.form_text}};
+  font-size: 85%;
+}
+ul#{{C_o.LIST_ID_s}}_work_caption_list > li:before {
+  content: '';
+  border: none;
+}
+ul#{{C_o.LIST_ID_s}}_work_caption_list.reserve {
+  background: red;
+}
+ul#{{C_o.LIST_ID_s}}_work_caption_list.reserve > li[id^=item_]:has(input:empty) {
+  display: none;
+}
+.hidden {
+  display: none;
+}

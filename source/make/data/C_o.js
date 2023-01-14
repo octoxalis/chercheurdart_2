@@ -76,12 +76,14 @@ const C_o =
   STAT_a:         //: section[3]
   [
     'burst',
-    'reserved',    //.....
+    '__reserved__',    //.....
     'paint',
     'match',
   ],
 
   STAT_s: 'stat',
+
+  MASONRY_s: 'masonry',
 
   NAV_LEGEND_o:    //: property names === SECTION_a + STAT_a
   {
@@ -98,17 +100,15 @@ const C_o =
     galerie: { icon_s: `&#8226;`, legend_s: `galerie` },
     expo:    { icon_s: `&#8226;`, legend_s: `exposition` },
 
-    expo_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
+    expo_import: { icon_s: `&nbsp;`, legend_s: `importer`},
     expo_remove: { icon_s: `&nbsp;`, legend_s: `supprimer`},
+    expo_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
     expo_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
-    expo_wrap: { icon_s: `&nbsp;`, legend_s: `affichage`},
-    expo_add: { icon_s: `&nbsp;`, legend_s: `ajouter`},
-    expo_local: { icon_s: `&nbsp;`, legend_s: `image locale`},
-    expo_caption: { icon_s: `&nbsp;`, legend_s: `cartel`},
+    expo_work_caption: { icon_s: `&nbsp;`, legend_s: `cartel`},
     expo_save: { icon_s: `&nbsp;`, legend_s: `sauvegarder`},
     expo_restore: { icon_s: `&nbsp;`, legend_s: `restaurer`},
-   //??  expo_process: { icon_s: `&nbsp;`, legend_s: `répartition`},
-
+    expo_imported: { icon_s: `&nbsp;`, legend_s: `image importée`},
+    expo_wrap: { icon_s: `&nbsp;`, legend_s: `affichage`},
 
     burst: { icon_s: `&#8718;`, legend_s: `répartition`},
     reserved: { icon_s: `&#8718;`, legend_s: `reserved`},
@@ -118,18 +118,19 @@ const C_o =
     burst_hue:  { icon_s: `&#8728;`, legend_s: `tonalité`},
     burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},
     burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},
-    
     burst_rate: { icon_s: `&#8728;`, legend_s: `proportion`},
     
     stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
     stat_shadow_fold:     { icon_s: `&nbsp;`, legend_s: `replier`},
     stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
+
     burst_equal: { icon_s: `&nbsp;`, legend_s: `égaliser`},
     burst_img: { icon_s: `&nbsp;`, legend_s: `image`},
-    thresh_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
-    thresh_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
-    img_opacity: { icon_s: `&nbsp;`, legend_s: `opacité`},
+    burst_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
+    burst_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
+    burst_opacity: { icon_s: `&nbsp;`, legend_s: `opacité`},
+
     play_progress: { icon_s: `&nbsp;`, legend_s: `progression`},
     play_interval: { icon_s: `&nbsp;`, legend_s: `interval`},
     play_slower: { icon_s: `&nbsp;`, legend_s: `ralentir`},
@@ -139,9 +140,8 @@ const C_o =
     img_bgblack: { icon_s: `&nbsp;`, legend_s: `noir`},
     img_bgwhite: { icon_s: `&nbsp;`, legend_s: `blanc`},
     img_bgcolor: { icon_s: `&nbsp;`, legend_s: `couleur`},
-    
     img_picker: { icon_s: `&nbsp;`, legend_s: `sélecteur`},
-    slideshow_over: { icon_s: `&nbsp;`, legend_s: `complet`},
+    //?? slideshow_over: { icon_s: `&nbsp;`, legend_s: `complet`},
 
 
     paint_origin:   { icon_s: `&nbsp;`, legend_s: `original`},
@@ -226,6 +226,9 @@ const C_o =
   //=== EXPO TOOLS ===
   EXPO_WRAP_n:       5,
 
+  //=== RESERVE TOOLS ===
+  RESERVE_WRAP_n:    5,
+
 
   //=== HTML-BODY ANCHORS
   //-- ANCHOR_DELIM_s : '__',
@@ -235,7 +238,7 @@ const C_o =
   
   //=== HTML-BODY CSS SELECTORS
   BURST_IMG_CAPTION_s: 'h1+p span[data-ins="₉"]',
-  EXPO_IMG_PREFIX_s:   'img_local',
+  EXPO_IMG_PREFIX_s:   'img_import',
 
 
   //=== HTML-BODY: TAGS ===
@@ -251,8 +254,9 @@ const C_o =
   INSERT_ID_s:      'I',
   ASIDE_GRAY_ID_s:  'AG',
   ASIDE_COLOR_ID_s: 'AC',
-  GALERY_ID_s:      'G',
+  GALLERY_ID_s:     'G',
   EXPO_ID_s:        'E',
+  RESERVE_ID_s:     'R',
   TOPICS_ID_s:      'T',
 
   CHAPTER_TAG_s:    'h2',
@@ -261,7 +265,10 @@ const C_o =
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
 
-  LOC_SEARCH_s:     'k',
+  LOC_SEARCH_s:     'k',    //: key
+  LOC_IMG_s:        's',    //: src
+  LOC_IMG_WIDTH_s:  'w',    //: src width
+  LOC_IMG_HEIGHT_s: 'h',    //: src height
   LOC_JSON_s:       'JSON',
 
 
@@ -274,10 +281,11 @@ const C_o =
 
   //=== HTML-BODY: EXTEND MARKUP ===
   INFO_s:               '&#8505;',   //: Information Source Emoji:  ℹ
-  ZOOM_OUT_s:           '&#10005;',   //: CIRCLED DASH:             ✕
-  GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow:             ↑
-  FULL_SCREEN_s:        '&#9974;',   //: square four corners:       ⛶
-  LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis:        ⋮
+  ZOOM_IN_s:            '&#9903;',   //: UNMARRIED PARTNERSHIP SYMBOL  ⚯
+  ZOOM_OUT_s:           '&#10005;',   //: CIRCLED DASH             ✕
+  FULL_SCREEN_s:        '&#9974;',   //: square four corners       ⛶
+  GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow             ↑
+  LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis        ⋮
 
   IMG_BAR_s:            '&#8597;',   //: NS Arrow           ↕
   IMG_RETRACT_s:        '&#10530;',  //: NE and SW Arrow           ⤢
@@ -287,10 +295,11 @@ const C_o =
   RANGE_GAP_s:          '&#8703;',   //: LR Open-Headed Arrow      ⇿
   BULLET_s:             '&#8857;',   //: bullet                    •
   SEE_MORE_s:           '&#8230;',   //: HORIZONTAL ELLIPSIS
-  //-- IMG_EXPO_s:       '&#8862;',   //: Squared Plus               ⊞
+  IMG_EXPO_s:           '&#8862;',   //: Squared Plus               ⊞
   IMG_PLAY_s:           '⊳',   //: CONTAINS AS NORMAL SUBGROUP    &#8883;
-  IMG_LEGEND_DELIM_s:   ' \u2219 ',  //: bullet                    ∙
-  IMG_SETTINGS_s:       '&#8285;',   //:  VERTICAL ELLIPSIS      ⁝
+  IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet                    ∙
+  IMG_SETTINGS_s:       '&#8285;',    //:  VERTICAL ELLIPSIS      ⁝
+  IMG_BURST_s:          '&#10035;',   //: EIGHT SPOKED ASTERISK  ✳
 
 
   ID_PART_DELIM_s:     '~',   //: between parts

@@ -292,6 +292,8 @@ const TOC_o =
       if
       (
         atdoc_o
+        &&
+        atdoc_o
           .doc_n
         >
         X_o

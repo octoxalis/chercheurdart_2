@@ -278,6 +278,8 @@ const TOP_o =
       
     let atdoc_n = -1      //: pre-incremented to 0
 
+    //;console.log( topic_a )
+    
     for
     (
       const atdoc_o
@@ -287,6 +289,8 @@ const TOP_o =
     {
       if
       (
+        atdoc_o
+        &&
         atdoc_o
           .doc_n
         !==

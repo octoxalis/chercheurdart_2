@@ -6,10 +6,10 @@
   eleventyExcludeFromCollections: false,
   //-- expires_n: 10,
 
-  doc_n:      5129,
+  doc_n:      -1,
   title_s:    `Exposition`,
   subtitle_s: `Exposition temporaire`,
-  abstract_s: `Collection personnelle`,
+  abstract_s: `Exposition temporaire`,
 
   section_a:
   [
@@ -18,7 +18,11 @@
     `expo`,
   ],
 
-  dialog_alert_b: true,
+  include_a:
+  [
+    `expo`
+  , `dialog_alert`
+  ],
 
   script_a:
   [
@@ -35,7 +39,7 @@
 
   version_a:
   [
-    '2022-12-23T15:00:00Z'
+    '2023-01-12T18:00:00Z'
   ],
 
 }
@@ -43,7 +47,7 @@
 {% _section section_a[0] %}
 // END DECLARATIONS //
 //  TOPICS
-Exposition temporaire›
+‹exposition temporaire›
 //
 
 

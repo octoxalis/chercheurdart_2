@@ -24,7 +24,6 @@
   <input id="IN_article" name="main_nav" type="radio" checked />
   <input id="IN_galerie" name="main_nav" type="radio"  />
   <input id="IN_expo" name="main_nav" type="radio"  />
-
 <a id="page_top"></a>
 <section id="article">
 <h1>Exposition</h1>
@@ -46,7 +45,7 @@
   </label>
   <input id="IN_expo_selectAll" type="checkbox" checked />
 
-  <div id="DI_expo_masonry">
+  <div id="DI_masonry">
   </div>
 
   <div id="DI_expo_dock">
@@ -57,14 +56,14 @@
     </nav>
     <input id="DI_expo_dock_nav" type="checkbox">
     <div>
-      <label for="IN_expo_wrap_n">affichage</label>
-      <input id="IN_expo_wrap_n" type="range" min="1" max="10" step="1" value="5" data-tip="5"/>
+      <label for="IN_masonry_wrap_n">affichage</label>
+      <input id="IN_masonry_wrap_n" type="range" min="1" max="10" step="1" value="5" data-tip="5"/>
   
-      <label for="DI_expo_dock_nav" id="LA_expo_local" data-key=n>ajouter</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_import" data-key=n>importer</label>
       <label for="DI_expo_dock_nav" id="LA_expo_remove" data-key=x>supprimer</label>
       <label for="DI_expo_dock_nav" id="LA_expo_hide" data-key=m>masquer</label>
       <label for="DI_expo_dock_nav" id="LA_expo_group" data-key=g>regrouper</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_caption" data-key=c>cartel</label>
+      <label for="DI_expo_dock_nav" id="LA_expo_work_caption" data-key=c>cartel</label>
       <label for="DI_expo_dock_nav" id="LA_expo_save" data-key=^s>sauvegarder</label>
       <label for="DI_expo_dock_nav" id="LA_expo_restore" data-key=^o>restaurer</label>
       <label for="DI_expo_dock_nav" id="LA_expo_burst" data-key=b>répartition</label>
@@ -72,50 +71,50 @@
 
   </div>
 
-  <dialog id="dialog_expo_caption">
-    <form id="form_expo_caption" method="dialog">
-      <div id="DI_expo_caption">
-        <header>
-          <label control>cartel</label>
-          <label for="IN_expo_caption_cancel">&#10006;</label>
-          <input id="IN_expo_caption_cancel" type="checkbox">
-          <label for="IN_expo_caption_reset">&#8634;</label>
-          <input id="IN_expo_caption_reset" type="checkbox">
-          <label for="IN_expo_caption_accept">&#10003;</label>
-          <input id="IN_expo_caption_accept" type="checkbox">
-        </header>
-        <ul id="UL_expo_caption_list">
-          <li id=item_1>
-            <label control>créateur</label>
-            <input id="IN_expo_caption_artist_s" type="text">
-          <li id=item_2>
-            <label control>sujet</label>
-            <input id="IN_expo_caption_subject_s" type="text">
-          <li id=item_3>
-            <label control>date de création</label>
-            <input id="IN_expo_caption_year_n" type="text">
-          <li id=item_4>
-            <label control>hauteur</label>
-            <input id="IN_expo_caption_w_height_n" type="text">
-          <li id=item_5>
-            <label control>largeur</label>
-            <input id="IN_expo_caption_w_width_n" type="text">
-          <li id=item_6>
-            <label control>collection</label>
-            <input id="IN_expo_caption_location_s" type="text">
-          <li id=item_7>
-            <label control>lieu</label>
-            <input id="IN_expo_caption_place_s" type="text">
-          <li id=item_8>
-            <label control>pays</label>
-            <input id="IN_expo_caption_country_s" type="text">
-          <li id=item_9>
-            <label control>lien</label>
-            <input id="IN_expo_caption_link_s" type="text">
-        </ul>
-      </div>
-    </form>
-  </dialog>
+<dialog id="dialog_work_caption">
+  <form id="form_work_caption" method="dialog">
+    <div id="DI_work_caption">
+      <header>
+        <label id="LA_work_caption_header" control></label>
+        <label for="IN_work_caption_cancel">&#10006;</label>
+        <input id="IN_work_caption_cancel" type="checkbox">
+        <label for="IN_work_caption_reset">&#8634;</label>
+        <input id="IN_work_caption_reset" type="checkbox">
+        <label for="IN_work_caption_accept">&#10003;</label>
+        <input id="IN_work_caption_accept" type="checkbox">
+      </header>
+      <ul id="UL_work_caption_list">
+        <li id=item_1>
+          <label control>créateur</label>
+          <input id="IN_work_caption_artist_s" type="text">
+        <li id=item_2>
+          <label control>sujet</label>
+          <input id="IN_work_caption_subject_s" type="text">
+        <li id=item_3>
+          <label control>date de création</label>
+          <input id="IN_work_caption_year_n" type="text">
+        <li id=item_4>
+          <label control>hauteur</label>
+          <input id="IN_work_caption_w_height_n" type="text">
+        <li id=item_5>
+          <label control>largeur</label>
+          <input id="IN_work_caption_w_width_n" type="text">
+        <li id=item_6>
+          <label control>collection</label>
+          <input id="IN_work_caption_location_s" type="text">
+        <li id=item_7>
+          <label control>lieu</label>
+          <input id="IN_work_caption_place_s" type="text">
+        <li id=item_8>
+          <label control>pays</label>
+          <input id="IN_work_caption_country_s" type="text">
+        <li id=item_9>
+          <label control>lien</label>
+          <input id="IN_work_caption_link_s" type="text">
+      </ul>
+    </div>
+  </form>
+</dialog>
 
 </section>
   <dialog id="dialog_main_alert">

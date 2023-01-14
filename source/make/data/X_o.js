@@ -13,12 +13,12 @@ const X_o =
   AT_DOCN_n:   0,      //: doc_n in docs_a
   AT_TOPICS_n: 4,      //: [topic_s,...]
 
-  ARTICLE_n:     0,      //: 0-1023
+  ARTICLE_n:     0,      //: 0-1023    !!! -10-100 reserve for collection pages
   NEWS_n:        1,      //: 1024-
   SITE_n:        3,      //: 3072-
   TECH_n:        4,      //: 4096-
   WORKS_n:       5,      //: 5120-
-  WORKS_CHART_n: 7,      //: 7168-
+  //?? WORKS_CHART_n: 7,      //: 7168-
   HIDDEN_n:      10,     //: 10240-
 
 

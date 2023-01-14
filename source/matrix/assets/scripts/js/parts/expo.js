@@ -2,9 +2,9 @@
 const EXP_o
 =
 {
-  local_a:
+  import_a:
     []
-, local_n:
+, import_n:
     0
 , full_e:
     null
@@ -16,8 +16,8 @@ const EXP_o
   , '+'     //: increment image by row
   , '-'     //: decrement image by row
 
-  , 'n'     //: ajouter
-  , 'x'     //: effacer supprimer
+  , 'i'     //: importer
+  , 'x'     //: supprimer
   , 'm'     //: masquer
   , 'g'     //: regrouper
   , 'c'     //: cartel
@@ -70,7 +70,7 @@ const EXP_o
               .caption_s
           :
             `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
-            + `<{{C_o.ROW_TAG_s}} data-local=1>{{C_o.NAV_LEGEND_o.expo_local.legend_s}}</{{C_o.ROW_TAG_s}}>`
+            + `<{{C_o.ROW_TAG_s}} data-import=1>{{C_o.NAV_LEGEND_o.expo_imported.legend_s}}</{{C_o.ROW_TAG_s}}>`
             + `<{{C_o.ROW_TAG_s}}>`
             +  value_o
                  .id_s
@@ -96,14 +96,14 @@ const EXP_o
         //-- + ` data-offx=0  data-offy=0>`
         //?? + `<a href="#${value_o.id_s}">`
         //?? + `</a>`
-        + `<figcaption data-local>`
+        + `<figcaption data-import>`
         + caption_s
         + `</figcaption>`
         + `</figure>\n`
     }
 
     document
-      .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry' )
+      .getElementById( '{{C_o.DIV_ID_s}}_masonry' )
         .innerHTML
     =
       show_s
@@ -114,8 +114,6 @@ const EXP_o
     EXP_o
       .zoomable__v()
   }
-
-
 
 
   ,
@@ -231,7 +229,7 @@ const EXP_o
         .from
         (
           document
-            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure > figcaption` )
+            .querySelectorAll( `#{{C_o.DIV_ID_s}}_masonry > figure > figcaption` )
         )
     )
     {
@@ -282,7 +280,7 @@ const EXP_o
   ,
   async selected__
   (
-    local_b=true          //??? : collect local images only
+    import_b=true          //??? : collect import images only
   , selected_b=true       //: collect selected image only
   , multi_b=false         //: , if false: first selected, if true:  whole selected
   )
@@ -346,7 +344,7 @@ const EXP_o
       :
         alert_s
         =
-        `Cette opération ne peut être appliquée qu'à une seule image locale`
+          `Cette opération ne peut être appliquée qu'à une seule image importée`
 
       break
       
@@ -433,7 +431,7 @@ const EXP_o
 
 
   ,
-  async local__v  //: add from local file system
+  async import__v  //: import from import file system
   ()
   {
     //=== display file picker
@@ -466,16 +464,16 @@ const EXP_o
         )
 
     //=== identify selected files
-    let local_a
+    let import_a
     =
       []
 
-    let local_n
+    let import_n
     =
       EXP_o
-        .local_n++  //: increment for next showOpenFilePicker
+        .import_n++  //: increment for next showOpenFilePicker
 
-    let local_s    //: html string of figure nodes to create
+    let import_s    //: html string of figure nodes to create
     =
       ''
 
@@ -515,21 +513,21 @@ const EXP_o
       const caption_s
         =
           `<figure data-id="{{C_o.EXPO_ID_s}}_${id_s}" data-display_b=true data-key_s="${key_s}">`
-          + `<img id="{{C_o.EXPO_IMG_PREFIX_s}}_${local_n}" loading="lazy">`  //!!! no src, width, height attributes
+          + `<img id="{{C_o.EXPO_IMG_PREFIX_s}}_${import_n}" loading="lazy">`  //!!! no src, width, height attributes
           + `<a href="#"></a>`
           + `<figcaption>${id_s}</figcaption>`
           + `</figure>\n`
 
-      local_a
+      import_a
         .push
         (
-          {                //: local_o
+          {                //: import_o
             id_s:
               fileName_s    //: without extension
           , key_s:
               key_s
-          , local_n:
-              local_n
+          , import_n:
+              import_n
           , file_o:
               file_o
           , caption_s:
@@ -537,7 +535,7 @@ const EXP_o
           }
         )
 
-      local_s
+      import_s
       +=
         caption_s
     }
@@ -546,7 +544,7 @@ const EXP_o
     const masonry_e
     =
       document
-        .getElementById( '{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry' )
+        .getElementById( '{{C_o.DIV_ID_s}}_masonry' )
       
     let masonry_s
     =
@@ -558,33 +556,33 @@ const EXP_o
     =
       masonry_s
       +
-      local_s
+      import_s
 
     //=== read new img file data
     for
     (
-      let local_o
+      let import_o
       of
-      local_a
+      import_a
     )
     {
       const
         {
           id_s
-        , local_n
+        , import_n
         , caption_s
         , file_o
         , key_s
         }
         =
-          local_o
+          import_o
     
       const img_e
       =
         document
           .querySelector
           (
-            `#{{C_o.EXPO_IMG_PREFIX_s}}_${local_n}`
+            `#{{C_o.EXPO_IMG_PREFIX_s}}_${import_n}`
           )
 
       if
@@ -677,9 +675,6 @@ const EXP_o
           )
       }
     }
-
-    //-- EXP_o
-    //--   .selectable__v()
   }
 
 
@@ -694,8 +689,8 @@ const EXP_o
       EXP_o
         .selected__
         ( 
-          false      //: not only local 
-        , false      //: only selected
+          false      //: not only import
+        , true       //: only selected
         , true       //: multiple images
         )
 
@@ -896,7 +891,7 @@ const EXP_o
         .from
         (
           document
-            .querySelectorAll( `#{{C_o.DIV_ID_s}}_{{C_o.SECTION_a[2]}}_masonry > figure` )
+            .querySelectorAll( `#{{C_o.DIV_ID_s}}_masonry > figure` )
         )
     )
     {
@@ -987,7 +982,7 @@ const EXP_o
       const caption_e
       =
         document
-          .getElementById( 'dialog_{{C_o.SECTION_a[2]}}_caption'  )
+          .getElementById( 'dialog_work_caption'  )
   
       caption_e
         .showModal()
@@ -1026,7 +1021,7 @@ const EXP_o
       EXP_o
         .selected__
         ( 
-          false              //???? : not only local 
+          false              //???? : not only import 
         , selected_b         //: only selected
         , true               //: multiple images
         )
@@ -1322,7 +1317,7 @@ const EXP_o
       location
         .href
       =
-        `local--burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
+        `burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
     }
   }
 
@@ -1337,7 +1332,7 @@ const EXP_o
     if
     (
       document
-        .querySelector( '#dialog_{{C_o.SECTION_a[2]}}_caption[open]')
+        .querySelector( '#dialog_work_caption[open]')
       ||
       ! EXP_o
         .eventKey_a
@@ -1379,7 +1374,7 @@ const EXP_o
         input_e
         =
           document
-            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_wrap_n' )
+            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.MASONRY_s}}_wrap_n' )
 
           if
           (
@@ -1417,7 +1412,7 @@ const EXP_o
         input_e
         =
           document
-            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_wrap_n' )
+            .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.MASONRY_s}}_wrap_n' )
 
           if
           (
@@ -1485,10 +1480,10 @@ const EXP_o
         break
 
       case
-        'n'
+        'i'
       :
         EXP_o
-          .local__v()
+          .import__v()
 
         break
 
@@ -1540,63 +1535,62 @@ const EXP_o
 
 
 
-, async eventCaption__v
-(
-    event_o
-)
-{
-  const id_s
-  =
-    event_o
-      .target
-        .id
-
-  const caption_e
-  =
-    document
-      .getElementById( 'dialog_{{C_o.SECTION_a[2]}}_caption'  )
-
-  switch
+  ,
+  async eventCaption__v
   (
-    true
+      event_o
   )
   {
-    case
-      id_s
-        .endsWith( 'cancel' )
-    :
-        caption_e
-          .close()
+    const id_s
+    =
+      event_o
+        .target
+          .id
+  
+    const caption_e
+    =
+      document
+        .getElementById( 'dialog_work_caption'  )
+  
+    switch
+    (
+      true
+    )
+    {
+      //XX case
+      //XX   id_s
+      //XX     .endsWith( 'cancel' )
+      //XX :
 
-    break
-
-    case
-      id_s
-        .endsWith( 'reset' )
-    :
-      for
-      (
-        let input_e
-        of
-        document
-          .querySelectorAll
-          (
-            `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_][type=text]`
-          )
-      )
+      //XX  break
+  
+      case
+        id_s
+          .endsWith( 'reset' )
+      :
+        for
+        (
+          let input_e
+          of
+          document
+            .querySelectorAll
+            (
+              `input[id^={{C_o.INPUT_ID_s}}_work_caption_][type=text]`
+            )
+        )
       {
         input_e
           .value
         =
           ''
-      }
-
-    break
-
-    case
-      id_s
-        .endsWith( 'accept' )
-    :
+        }
+  
+      break
+  
+      case
+        id_s
+          .endsWith( 'accept' )
+      :
       const figure_e
       =
         await
@@ -1622,14 +1616,14 @@ const EXP_o
               document
                 .querySelectorAll
                 (
-                  `input[id^={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_][type=text]`
+                  `input[id^={{C_o.INPUT_ID_s}}_work_caption_][type=text]`
                 )
             )
         )
         {
           const at_n
           =
-            '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_'
+            '{{C_o.INPUT_ID_s}}_work_caption_'
               .length
     
           const property_s
@@ -1740,19 +1734,19 @@ const EXP_o
       }
       
     break
-
-    default:
-    break
-  }
   
-          caption_e
-            .close()
+      default:
+        break
+    }
 
+    caption_e
+      .close()
   }
 
 
 
-, eventRange__v
+  ,
+  eventRange__v
   (
     event_o
   )
@@ -1762,7 +1756,7 @@ const EXP_o
       (
         event_o
           .target
-      , '{{C_o.SECTION_a[2]}}_wrap_n'
+      , '{{C_o.MASONRY_s}}_wrap_n'
       )
   }
   
@@ -1829,9 +1823,7 @@ const EXP_o
 
   ,
   eventSizeTiny__v
-  (
-    //?? event_o
-  )
+  ()
   {
     EXP_o
       .full_e
@@ -1871,7 +1863,7 @@ const EXP_o
     DOM_o
       .rootVar__v
       (
-        '--{{C_o.SECTION_a[2]}}_wrap_n',
+        '--{{C_o.MASONRY_s}}_wrap_n',
         '{{C_o.EXPO_WRAP_n}}'
       )
 
@@ -1910,10 +1902,10 @@ const EXP_o
       let id_s
       of
       [
-        'hide'
+        'import'
       , 'remove'
+      , 'hide'
       , 'group'
-      , 'local'
       , 'caption'
       , 'store'
       , 'restore'
@@ -1949,7 +1941,7 @@ const EXP_o
     {
       const listen_e =
         document
-          .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_caption_${id_s}` )
+          .getElementById( `{{C_o.INPUT_ID_s}}_work_caption_${id_s}` )
           
       listen_e
       &&
@@ -2006,6 +1998,12 @@ const EXP_o
   
     EXP_o
       .show__v()
+
+    document
+      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}` )
+        .checked
+    =
+      true
   }
 }
 

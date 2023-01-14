@@ -3,9 +3,8 @@
   {% if _section === C_o.SECTION_a[0] %}
   {% set _checked = 'checked' %}
   {% endif %}
-  <input id="{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[loop.index0]}}" name="main_nav" type="radio" {{_checked}} />
+  <input id="{{C_o.INPUT_ID_s}}_{{section_a[loop.index0]}}" name="main_nav" type="radio" {{_checked}} />
 {% endfor %}
 {% if stat_s %}
   <input id="{{C_o.INPUT_ID_s}}_{{stat_s}}" name="main_nav" type="radio" />
 {% endif %}
-

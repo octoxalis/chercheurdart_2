@@ -123,7 +123,7 @@ const STAT_W_o =
   }
   ,
 
-  url_o: {},  //: local img data (base64) indexedDB key_s: src_s
+  url_o: {},  //: import img data (base64) indexedDB key_s: src_s
 
   message_a:
   [
@@ -348,7 +348,7 @@ const STAT_W_o =
         rect_s
           .split( ' ' )
 
-      if        //: local key_s
+      if        //: import key_s
       (
         url_s
           .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
@@ -591,7 +591,7 @@ const STAT_W_o =
     (
 
       ! STAT_W_o
-        .scan_a    //: already loaded?
+          .scan_a    //: already loaded?
     )
     {
       //!!!!!!!!!!!!!!!!!!!!!!!!!!

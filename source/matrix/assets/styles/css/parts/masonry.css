@@ -1,0 +1,103 @@
+body > :root {
+  --masonry_wrap_n: 2;
+}
+div[id$=_masonry] {
+  --col_width: calc( ((100 / var(--{{C_o.MASONRY_s}}_wrap_n) ) - 2) * 1% );
+  display: flex;
+  flex-wrap: wrap;
+  gap: {{S_o.PAD_2}};
+  padding: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_4}} ) 1vmin 1vmin;
+  max-width: 100vw;
+}
+div[id$=_masonry] > figure {
+  display: grid;
+  position: relative;
+  width: var(--col_width);
+  min-width: 5rem;
+  height: fit-content;
+  border: 1px solid red;
+  cursor: zoom-in;
+}
+div[id$=_masonry] > figure > img {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  cursor: zoom-in;
+  transition: all .5s ease;
+}
+div[id$=_masonry] > figure > .fullsize {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: auto;
+  cursor: move;
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow_full}};
+  transition: all .5s ease;
+}
+div[id$=_masonry] > figure > a {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border: none;
+}
+div[id$=_masonry] > figure > figcaption {
+  position: relative;
+  padding: calc( {{S_o.FIGURE_BORDER_s}} * 2);
+  width: clamp( 50%, 32ch, 80% );
+  height: fit-content;
+  border-bottom-right-radius: 18px;
+  background: {{S_o.shadow_hi}};
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s;
+}
+div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}} {
+  display: table;
+  --font_max: 18px;
+  --font_scale: 1.9vw;
+  font-style: normal;
+}
+div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}} > i {
+  font-size: 95%;
+  font-weight: 200;
+  font-style: normal;
+}
+div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
+  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+}
+div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(3) {
+  width: 100%;
+}
+div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(4) {
+  padding-top: {{S_o.PAD_4}};
+}
+div[id$=_masonry] > figure > figcaption:hover {
+  clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
+  opacity: 1;
+  transition: opacity .3s;
+}
+div[id$=_masonry] > figure[data-display_b=false] {
+  border: 1px solid {{S_o.selected_lo}};
+  border-radius: 4px;
+}
+div[id$=_masonry] > figure[data-display_b=false] > img {
+  opacity: .01;
+}
+div[id$=_masonry] > figure[class="selected"]:before {
+  content: '';
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: {{S_o.PAD_4}};
+  height: {{S_o.PAD_4}};
+  border: 2px solid {{S_o.selected_hi}};
+  border-radius: 4px;
+  background: {{S_o.selected_hi}};
+}
+div[id$=_masonry] > figure > * {
+  grid-area: 1/-1;
+}

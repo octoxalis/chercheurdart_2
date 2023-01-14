@@ -230,10 +230,7 @@ class Idb
         return new Promise( ( resolve, reject ) =>
         {
           const delete_o = this.store__o( 'readwrite' )
-            .delete
-            (
-              encodeURI( key_s )   //!!!! IndexedDB encode keys
-            )
+            .delete(  key_s )
 
           delete_o.onsuccess = resolve    //: nothing to do
 

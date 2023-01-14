@@ -31,7 +31,7 @@
 
   version_a:
   [
-    '2021-10-14T12:00:00Z'
+    '2023-01-12T18:00:00Z'
   ],
 }
 ---
@@ -41,6 +41,18 @@
      {{C_o.CONTENT_PARTS_DIR_s}}index_toc.html  ]]
 
 //  LINKS  //
+[[=  NORD  ::
+     <<  Peintres du Nord  ::  collection_nord.html  >>  ]]
+
+[[=  FRANCE  ::
+     <<  Peintres de France  ::  collection_france.html  >>  ]]
+
+[[=  SUD  ::
+     <<  Peintres du Sud  ::  collection_sud.html  >>  ]]
+
+[[=  RESERVE  ::
+     <<  Dans les réserves  ::  reserve.html  >>  ]]
+
 [[=  EXPO  ::
      <<  Sur les cimaises  ::  expo.html  >>  ]]
 
@@ -59,7 +71,6 @@
 //=== END DECLARATIONS ===//
 
 //  TOPICS
-‹François Boucher›
 //
 
 
@@ -73,13 +84,36 @@
 
 
 
-##2 Contenu en ligne
-||+  INDEX_TOC  ||
+##2 Collection
+
+||  NORD  ||
+
+||  FRANCE  ||
+
+||  SUD  ||
+
+
+
+
+##2 Réserves
+
+||  RESERVE  ||
+
+
 
 
 ##2 Exposition
 
 ||  EXPO  ||
+
+
+
+
+##2 Écrits
+||+  INDEX_TOC  ||
+
+
+
 
 ##2 Avertissement
 

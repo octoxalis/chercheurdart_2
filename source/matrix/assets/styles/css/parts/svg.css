@@ -1,10 +1,10 @@
-body > svg {
+html > *::-webkit-scrollbar-thumb > svg {
   display: none;
   stroke: {{S_o.highlight}};
   stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-body > svg > symbol {
+html > *::-webkit-scrollbar-thumb > svg > symbol {
   display: none;
 }
