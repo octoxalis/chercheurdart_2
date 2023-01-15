@@ -11,15 +11,17 @@
             <{{C_o.ROW_TAG_s}}>Espagne</{{C_o.ROW_TAG_s}}>
           </dd>
         </dl>
-        
     </ul>
   </div>
 
-  <input id="{{C_o.INPUT_ID_s}}_reserve_img" type="checkbox">
-  <div id="{{C_o.DIV_ID_s}}_reserve_img">
+  <input id="{{C_o.INPUT_ID_s}}_toolset" type="checkbox">
+  <div id="{{C_o.DIV_ID_s}}_toolset">
+
+    {% include "parts/body/toolset.njk" %}
+
     <img id="img_reserve_img" loading="lazy">
-    <label id="{{C_o.LABEL_ID_s}}_reserve_img">{{C_o.IMG_BURST_s}}</label>
-    <label for="{{C_o.INPUT_ID_s}}_reserve_img">{{C_o.ZOOM_OUT_s}}</label>
+    <label for="{{C_o.INPUT_ID_s}}_toolset">{{C_o.CLOSE_s}}</label><!-- CLOSE -->
+    
   </div>
 
 </section>

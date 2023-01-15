@@ -2,9 +2,9 @@
 const EXP_o
 =
 {
-  import_a:
+  add_a:
     []
-, import_n:
+, add_n:
     0
 , full_e:
     null
@@ -16,15 +16,67 @@ const EXP_o
   , '+'     //: increment image by row
   , '-'     //: decrement image by row
 
-  , 'i'     //: importer
-  , 'x'     //: supprimer
+  , 'i'     //: ajouter
+  , 'x'     //: retirer
   , 'm'     //: masquer
   , 'g'     //: regrouper
   , 'c'     //: cartel
-  , 's'     //: (+ ctrlKey) sauvegarder
-  , 'o'     //: (+ ctrlKey) charger
+  , 's'     //: (+ ctrlKey) exporter
+  , 'o'     //: (+ ctrlKey) adder
   , 'b'     //: burst image
   ]
+
+
+  ,
+  async collect__a
+  ()
+  {
+    let collect_a
+    =
+      []    //: array to reorder keys according to their order_n
+  
+    await
+    LOC_o
+      .idb_o
+        .walk__v
+        (
+          (
+            key_s
+          , value_o
+          ) =>
+          {
+            collect_a
+              .push
+              (
+                {
+                  key_s: key_s,
+                  value_o:
+                    JSON
+                      .parse( value_o )
+                }
+              )
+          }
+        )
+  
+    collect_a
+      .sort
+      (
+        (
+          first_o,
+          second_o
+        ) =>
+          first_o
+            .value_o
+              .order_n
+          -
+          second_o
+            .value_o
+              .order_n            
+      )
+  
+    return collect_a
+  }
+
 
 
   ,
@@ -46,49 +98,106 @@ const EXP_o
         show_o
           .value_o
 
-      let src_s
-
       let caption_s
+          =
+          value_o
+            .caption_s
 
-      if
+      let src_s
+      let key_s
+
+      //-- if
+      //-- (
+      //--   value_o
+      //--     .src_s      //: data:image base64
+      //-- )
+      //-- {
+      //-- }
+      //-- else            //: img.src
+      //-- {
+      //-- }
+
+      switch
       (
-        value_o
-          .src_s      //: data:image base64
+        true
       )
       {
-        src_s
-        =
-          value_o
-            .src_s
+        case
+          show_o
+            .key_s
+              .startsWith( '{{C_o.PROTOCOLE_SITE_s}}'  )
+        :
+          key_s
+          =
+            show_o
+              .key_s
+                .substring
+                (
+                  '{{C_o.PROTOCOLE_SITE_s}}'
+                    .length
+                )
 
-        caption_s
-        =
-          value_o
-            .caption_b
-          ?
+          src_s
+          =
+            `{{C_o.MEDIA_DIR_s}}${key_s}`
+
+          break
+      
+        case
+          show_o
+            .key_s
+              .startsWith( '{{C_o.PROTOCOLE_RESERVE_s}}'  )
+        :
+          key_s
+          =
+            show_o
+              .key_s
+                .substring
+                (
+                  '{{C_o.PROTOCOLE_RESERVE_s}}'
+                    .length
+                )
+
+          src_s
+          =
+            `{{C_o.RESERVE_DIR_s}}${key_s}`
+
+          break
+      
+        case
+          show_o
+            .key_s
+              .startsWith( '{{C_o.PROTOCOLE_FILE_s}}'  )
+        :
+          src_s
+          =
             value_o
-              .caption_s
-          :
-            `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
-            + `<{{C_o.ROW_TAG_s}} data-import=1>{{C_o.NAV_LEGEND_o.expo_imported.legend_s}}</{{C_o.ROW_TAG_s}}>`
-            + `<{{C_o.ROW_TAG_s}}>`
-            +  value_o
-                 .id_s
-            + `</{{C_o.ROW_TAG_s}}>`
-            + `</{{C_o.TABLE_TAG_s}}>`
-      }
-      else            //: img.src
-      {
-        src_s
-        =
-          `{{C_o.MEDIA_DIR_s}}${show_o.key_s}.avif`
+              .src_s
+          
+          if
+          (
+            ! value_o
+                .caption_b
+          )
+          {
+            caption_s
+            =
+              `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
+              + `<{{C_o.ROW_TAG_s}} data-add=1>{{C_o.NAV_LEGEND_o.expo_added.legend_s}}</{{C_o.ROW_TAG_s}}>`
+              + `<{{C_o.ROW_TAG_s}}>`
+              +  value_o
+                   .id_s
+              + `</{{C_o.ROW_TAG_s}}>`
+              + `</{{C_o.TABLE_TAG_s}}>`
+          }
 
-        caption_s
-        =
-        value_o
-          .caption_s
+          break
+
+        default
+        :
+          break
       }
-    
+
       show_s
       +=
         `<figure data-id="{{C_o.EXPO_ID_s}}${value_o.id_s}" data-display_b=${value_o.display_b} data-key_s="${show_o.key_s}">`
@@ -96,7 +205,7 @@ const EXP_o
         //-- + ` data-offx=0  data-offy=0>`
         //?? + `<a href="#${value_o.id_s}">`
         //?? + `</a>`
-        + `<figcaption data-import>`
+        + `<figcaption data-add>`
         + caption_s
         + `</figcaption>`
         + `</figure>\n`
@@ -166,57 +275,6 @@ const EXP_o
 
 
 
-  ,
-  async collect__a
-  ()
-  {
-    let collect_a
-    =
-      []    //: array to reorder keys according to their order_n
-  
-    await
-    LOC_o
-      .idb_o
-        .walk__v
-        (
-          (
-            key_s
-          , value_o
-          ) =>
-          {
-            collect_a
-              .push
-              (
-                {
-                  key_s: key_s,
-                  value_o:
-                    JSON
-                      .parse( value_o )
-                }
-              )
-          }
-        )
-  
-    collect_a
-      .sort
-      (
-        (
-          first_o,
-          second_o
-        ) =>
-          first_o
-            .value_o
-              .order_n
-          -
-          second_o
-            .value_o
-              .order_n            
-      )
-  
-    return collect_a
-  }
-
-
   , 
   selectable__v
   ()
@@ -280,7 +338,7 @@ const EXP_o
   ,
   async selected__
   (
-    import_b=true          //??? : collect import images only
+    add_b=true          //??? : collect add images only
   , selected_b=true       //: collect selected image only
   , multi_b=false         //: , if false: first selected, if true:  whole selected
   )
@@ -344,7 +402,7 @@ const EXP_o
       :
         alert_s
         =
-          `Cette opération ne peut être appliquée qu'à une seule image importée`
+          `Cette opération ne peut être appliquée qu'à une seule image addée`
 
       break
       
@@ -431,7 +489,7 @@ const EXP_o
 
 
   ,
-  async import__v  //: import from import file system
+  async add__v  //: add PROTOCOLE_FILE_s  >>>>>>>>>> add
   ()
   {
     //=== display file picker
@@ -464,16 +522,16 @@ const EXP_o
         )
 
     //=== identify selected files
-    let import_a
+    let add_a
     =
       []
 
-    let import_n
+    let add_n
     =
       EXP_o
-        .import_n++  //: increment for next showOpenFilePicker
+        .add_n++  //: increment for next showOpenFilePicker
 
-    let import_s    //: html string of figure nodes to create
+    let add_s    //: html string of figure nodes to create
     =
       ''
 
@@ -513,21 +571,21 @@ const EXP_o
       const caption_s
         =
           `<figure data-id="{{C_o.EXPO_ID_s}}_${id_s}" data-display_b=true data-key_s="${key_s}">`
-          + `<img id="{{C_o.EXPO_IMG_PREFIX_s}}_${import_n}" loading="lazy">`  //!!! no src, width, height attributes
+          + `<img id="{{C_o.EXPO_IMG_PREFIX_s}}_${add_n}" loading="lazy">`  //!!! no src, width, height attributes
           + `<a href="#"></a>`
           + `<figcaption>${id_s}</figcaption>`
           + `</figure>\n`
 
-      import_a
+      add_a
         .push
         (
-          {                //: import_o
+          {                //: add_o
             id_s:
               fileName_s    //: without extension
           , key_s:
               key_s
-          , import_n:
-              import_n
+          , add_n:
+              add_n
           , file_o:
               file_o
           , caption_s:
@@ -535,7 +593,7 @@ const EXP_o
           }
         )
 
-      import_s
+      add_s
       +=
         caption_s
     }
@@ -556,33 +614,33 @@ const EXP_o
     =
       masonry_s
       +
-      import_s
+      add_s
 
     //=== read new img file data
     for
     (
-      let import_o
+      let add_o
       of
-      import_a
+      add_a
     )
     {
       const
         {
           id_s
-        , import_n
+        , add_n
         , caption_s
         , file_o
         , key_s
         }
         =
-          import_o
+          add_o
     
       const img_e
       =
         document
           .querySelector
           (
-            `#{{C_o.EXPO_IMG_PREFIX_s}}_${import_n}`
+            `#{{C_o.EXPO_IMG_PREFIX_s}}_${add_n}`
           )
 
       if
@@ -616,6 +674,8 @@ const EXP_o
                       .idb_o
                         .set__v
                       (
+                        '{{C_o.PROTOCOLE_FILE_s}}'
+                        +
                         key_s
                       , JSON
                           .stringify
@@ -689,7 +749,7 @@ const EXP_o
       EXP_o
         .selected__
         ( 
-          false      //: not only import
+          false      //: not only add
         , true       //: only selected
         , true       //: multiple images
         )
@@ -991,7 +1051,7 @@ const EXP_o
 
 
 
-, async store__v
+, async export__v
   ()
   {
     DIA_o
@@ -1021,7 +1081,7 @@ const EXP_o
       EXP_o
         .selected__
         ( 
-          false              //???? : not only import 
+          false              //???? : not only add 
         , selected_b         //: only selected
         , true               //: multiple images
         )
@@ -1036,7 +1096,7 @@ const EXP_o
     //-->
     try
     {
-      const store_a
+      const export_a
       =
         []
   
@@ -1053,7 +1113,7 @@ const EXP_o
             .dataset
               .key_s
 
-        store_a
+        export_a
           .push
           (
             {
@@ -1071,7 +1131,7 @@ const EXP_o
       const json_s
       =
         JSON
-          .stringify( store_a )
+          .stringify( export_a )
   
       const handle_o
       =
@@ -1128,7 +1188,7 @@ const EXP_o
 
 
 
-, async restore__v    //: without erasing selected images
+, async import__v    //: without erasing selected images
 ()
 {
   if
@@ -1455,7 +1515,7 @@ const EXP_o
         )
         {
           EXP_o
-            .store__v
+            .export__v
             (
               false      //: don't  pick
             )
@@ -1474,7 +1534,7 @@ const EXP_o
         {
           await
           EXP_o
-            .restore__v()
+            .import__v()
         }
 
         break
@@ -1483,7 +1543,7 @@ const EXP_o
         'i'
       :
         EXP_o
-          .import__v()
+          .add__v()
 
         break
 
@@ -1840,7 +1900,7 @@ const EXP_o
       , 'none'
       )
 
-    //: reinsert img_e to restore initial place
+    //: reinsert img_e to import initial place
     EXP_o
       .full_e
         .setAttribute
@@ -1902,13 +1962,13 @@ const EXP_o
       let id_s
       of
       [
-        'import'
+        'add'
       , 'remove'
       , 'hide'
       , 'group'
       , 'caption'
-      , 'store'
-      , 'restore'
+      , 'export'
+      , 'import'
       , 'burst'
       ]
     )

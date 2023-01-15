@@ -48,7 +48,10 @@ const LOC_o =
      '{{C_o.LOC_IMG_s}}'
     )
     {
-      return param_o
+      return (
+        param_o
+          //--.get( query_s )
+      )
     }
     //-->
     if

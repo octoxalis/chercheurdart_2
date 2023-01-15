@@ -604,49 +604,91 @@ const STAT_W_o =
 
       let url_s
       
-      if        //: key_s is an indexedDB key
+      //-- if        //: key_s is an indexedDB key
+      //-- (
+      //--   key_s
+      //--     .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
+      //-- )
+      //-- {
+      //-- }
+      //-- else
+      //-- {
+      //--   url_s =
+      //--     `/{{C_o.IMG_DIR_s}}${payload_o.key_s}.jpeg`
+      //-- }
+
+      switch
       (
-        key_s
-          .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
+        true
       )
       {
-        STAT_W_o
-          .idb_o
-        =
-          new Idb
-          (
-            '{{A_o.ID_s}}_idb'
-          , '{{A_o.ID_s}}_store'
-          )
-
-        const value_s
-        =
-          await
+        case
+          key_s
+            .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
+        :
           STAT_W_o
             .idb_o
-              .get__( key_s )
-
-        const value_o
-        =
-          JSON
-            .parse( value_s )
-
-        url_s
-        =
-          value_o
-            .src_s
-
-        STAT_W_o
-          .url_o
-            [ key_s ]
-        =
+          =
+            new Idb
+            (
+              '{{A_o.ID_s}}_idb'
+            , '{{A_o.ID_s}}_store'
+            )
+  
+          const value_s
+          =
+            await
+            STAT_W_o
+              .idb_o
+                .get__( key_s )
+  
+          const value_o
+          =
+            JSON
+              .parse( value_s )
+  
           url_s
+          =
+            value_o
+              .src_s
+  
+          STAT_W_o
+            .url_o
+              [ key_s ]
+          =
+            url_s
+
+          break
+
+        case
+          key_s
+            .endsWith( 'full/max/0/color' )
+        :
+          url_s
+          =
+            `/{{C_o.IMG_DIR_s}}${payload_o.key_s}.jpeg`
+          break
+          
+        case
+          key_s
+            .startsWith( 'https' )
+        :
+          url_s
+          =
+            key_s
+            
+          break
+          
+        default
+        :
+          break
+          
       }
-      else
-      {
-        url_s =
-          `/{{C_o.IMG_DIR_s}}${payload_o.key_s}.jpeg`
-      }
+
+
+
+
+
       
       const response_o =
         await fetch( url_s )

@@ -943,12 +943,13 @@ module.exports =
             + gallery_s
             + `</section>`
             + `<aside>`
-            + `<nav id="${C_o.NAV_ID_s}_aside_burst_zoom">`
-            +   `<label id="${C_o.LABEL_ID_s}_aside_burst">${C_o.IMG_BURST_s}</label>`
-            +   `<label id="${C_o.LABEL_ID_s}_aside_expo">${C_o.IMG_EXPO_s}</label>`
-            +   `<input id="${C_o.INPUT_ID_s}_aside_zoom" type=checkbox>`
-            +   `<label for="${C_o.INPUT_ID_s}_aside_zoom">${C_o.ZOOM_IN_s}</label>`
-            +   `<label for="${C_o.INPUT_ID_s}_aside_zoom">${C_o.ZOOM_OUT_s}</label>`
+            //=== toolset ===
+            + `<nav id="${C_o.NAV_ID_s}_toolset_zoom">`
+            +   `<input id="${C_o.INPUT_ID_s}_toolset_zoom" type=checkbox>`
+            +   `<label for="${C_o.INPUT_ID_s}_toolset_zoom">${C_o.ZOOM_OUT_s}</label>`
+            +   `<label for="${C_o.INPUT_ID_s}_toolset_zoom">${C_o.ZOOM_IN_s}</label>`
+            +   `<label id="${C_o.LABEL_ID_s}_toolset_expo">${C_o.IMG_EXPO_s}</label>`
+            +   `<label id="${C_o.LABEL_ID_s}_toolset_burst">${C_o.IMG_BURST_s}</label>`
             + `</nav>`
             + INS_o.gray_a.join( '\n' )
             + INS_o.color_a.join( '\n' )

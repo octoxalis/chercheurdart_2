@@ -13,32 +13,36 @@
 
   version_a:
   [
-    `2023-01-12T18:00:00Z`
+    '2023-01-12T18:00:00Z'
   ],
 
   section_a:
   [
-    `article`,
-    `galerie`,
-    `reserve`,
+    'article',
+    'galerie',
+    'reserve',
   ],
 
   include_a:
   [
-    `reserve`
+    'reserve'
+  , 'dialog_alert'
   ],
 
   script_a:
   [
-    `Idb.min.js`,
-    `location.min.js`,
-    `dom.min.js`,
-    `reserve.min.js`,
+    'Idb.min.js',
+    'location.min.js',
+    'dom.min.js',
+    'drag.min.js',
+    'dialog_alert.min.js',
+    'reserve.min.js',
   ],
 
   css_a:
   [
-    `reserve.min.css`
+    'reserve.min.css'
+  , 'dialog_alert.min.css',
   ],
 
 }

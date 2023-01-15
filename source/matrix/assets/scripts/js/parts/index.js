@@ -8,17 +8,17 @@ const IND_o =
     , '2'          //: goto gallery
     ]
 
-  , keySection_o:
-    {
-      1: '{{C_o.SECTION_a[0]}}'
-    , 2: '{{C_o.SECTION_a[1]}}'
-    }
+, keySection_o:
+  {
+    1: '{{C_o.SECTION_a[0]}}'
+  , 2: '{{C_o.SECTION_a[1]}}'
+  }
 
-  , href_s:      //: kepp location.hash when dragging
+, href_s:      //: kepp location.hash when dragging
     ''
 
-  ,  
-  service__v
+
+, service__v
   ()
   {
     //-- if ( '{{U_o.url_s}}' === '{{U_o.DEV_s}}' ) return  //: skip service worker in dev mode
@@ -44,8 +44,7 @@ const IND_o =
   
   
   
-  ,
-  adopt__v    //!!! ensure id_s
+, adopt__v    //!!! ensure id_s
   (
     adopter_s,    //: adopter element ID
     iframe_s,     //: iframe element ID
@@ -97,8 +96,7 @@ const IND_o =
 
 
 
-  ,
-  eventKey__v    //: must prevent default for space key
+, eventKey__v    //: must prevent default for space key
   (
     event_o
   )
@@ -168,8 +166,7 @@ const IND_o =
   }
 
 
-  ,
-  zoom__v
+, zoom__v
   (
     event_o    //: not used
   )
@@ -192,12 +189,12 @@ const IND_o =
     const input_e
     =
       document
-        .getElementById( '{{C_o.INPUT_ID_s}}_aside_zoom' ) 
+        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
 
     if
     (
       document
-        .getElementById( '{{C_o.INPUT_ID_s}}_aside_zoom' ) 
+        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
           .checked
     )
     {
@@ -218,7 +215,6 @@ const IND_o =
   
       DRAG_o
         .enable__v()
-
     }
     else
     {
@@ -245,15 +241,13 @@ const IND_o =
           'style'
         , ''       //: remove drag transform
         )
-
     }
 
   }
 
 
 
-  ,
-  async expo__v
+, async expo__v    //: add PROTOCOLE_SITE_s
   (
     event_o
   )
@@ -300,14 +294,16 @@ const IND_o =
         (
           '{{C_o.MEDIA_DIR_s}}'
             .length,
-          src_s
-            .lastIndexOf( '.' )      //: extension dot
+          //-- src_s
+          //--   .lastIndexOf( '.' )      //: extension dot
         )
 
     LOC_o
       .idb_o
         .set__v
       (
+        '{{C_o.PROTOCOLE_SITE_s}}'
+        +
         src_s
       , JSON
           .stringify
@@ -350,8 +346,7 @@ const IND_o =
 
 
 
-  ,
-  burst__v
+, burst__v
   (
     event_o
   )
@@ -388,8 +383,7 @@ const IND_o =
 
 
 
-  ,
-  listener__v
+, listener__v
   ()
   {
     for
@@ -484,7 +478,7 @@ const IND_o =
     let input_e
     =
       document
-        .getElementById( '{{C_o.INPUT_ID_s}}_aside_zoom' )
+        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' )
 
     input_e
     &&
@@ -523,7 +517,7 @@ const IND_o =
     {
       const listen_e =
         document
-          .getElementById( `{{C_o.LABEL_ID_s}}_aside_${id_s}` )
+          .getElementById( `{{C_o.LABEL_ID_s}}_toolset_${id_s}` )
           
       listen_e
       &&
@@ -551,8 +545,7 @@ const IND_o =
 
 
 
-  ,
-  comment_label__v
+, comment_label__v
   (
     //-- event_e    //: not used
   )
@@ -576,11 +569,11 @@ const IND_o =
         }
       )
   }
-  ,
 
 
 
-  init__v
+
+, async init__v
   ()
   {
     IND_o
@@ -597,7 +590,6 @@ const IND_o =
       const
         {
           stat_s
-        , work_s
         } =
           document
             .querySelector( 'body' )
@@ -608,19 +600,42 @@ const IND_o =
         stat_s
       )
       {
-        const key_s
+        let key_s
         =
           await
           LOC_o
             .search__( '{{C_o.LOC_SEARCH_s}}' )
     
+        if
+        (
+          ! key_s
+        )
+        {
+          const param_o
+          =
+            await
+            LOC_o
+              .search__( '{{C_o.LOC_IMG_s}}' )
+
+          if
+          (
+            param_o
+          )
+          {
+            key_s
+            =
+              param_o
+                .get( '{{C_o.LOC_IMG_s}}' )
+          }
+        }
+
+        key_s
+        &&
         STAT_o
           .init__v
           (
             stat_s
           , key_s
-            ||
-            work_s
           )
       }
     }

@@ -1,0 +1,50 @@
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  top: {{S_o.PAD_8}};
+  width: calc( 50% + 6rem);
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > label {
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border: 1px solid {{S_o.nav_dot_set_4}};
+  border-radius: 8px;
+  background: transparent;
+  z-index: 101;
+  position: relative;
+  color: currentColor;
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > label:hover {
+  cursor: pointer;
+  background: {{S_o.shadow_ne}};
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > label#{{C_o.LABEL_ID_s}}_aside_burst {
+  position: relative;
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > input {
+  display: none;
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > label:nth-of-type( 1 ) {
+  transform: translateX( -100% );
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > label:nth-of-type( 3 ) {
+  transform: translateX( 100% );
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > input:checked ~ label[for]:nth-of-type( 3 ) {
+  visibility: hidden;
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > input:not( :checked ) ~ label[for]:nth-of-type( 3 ) {
+  visibility: visible;
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > input:checked ~ label[for]:nth-of-type( 4 ) {
+  visibility: visible;
+}
+nav#{{C_o.NAV_ID_s}}_aside_burst_zoom > input:not( :checked ) ~ label[for]:nth-of-type( 4 ) {
+  visibility: hidden;
+}

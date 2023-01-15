@@ -38,6 +38,7 @@ const C_o =
   STAT_W_FILE_s:    '/assets/scripts/js/stat_w.min.js',
   PAINT_W_FILE_s:   '/assets/scripts/js/paint_w.min.js',
   MEDIA_DIR_s:      `${U_o.url_s}assets/media/img/`,
+  RESERVE_DIR_s:    `${U_o.url_s}assets/media/img/reserve/`,
 
 
   //=== CONFIGURE FLAG
@@ -100,14 +101,14 @@ const C_o =
     galerie: { icon_s: `&#8226;`, legend_s: `galerie` },
     expo:    { icon_s: `&#8226;`, legend_s: `exposition` },
 
-    expo_import: { icon_s: `&nbsp;`, legend_s: `importer`},
-    expo_remove: { icon_s: `&nbsp;`, legend_s: `supprimer`},
+    expo_add: { icon_s: `&nbsp;`, legend_s: `ajouter`},
+    expo_remove: { icon_s: `&nbsp;`, legend_s: `retirer`},
     expo_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
     expo_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
     expo_work_caption: { icon_s: `&nbsp;`, legend_s: `cartel`},
-    expo_save: { icon_s: `&nbsp;`, legend_s: `sauvegarder`},
-    expo_restore: { icon_s: `&nbsp;`, legend_s: `restaurer`},
-    expo_imported: { icon_s: `&nbsp;`, legend_s: `image importée`},
+    expo_export: { icon_s: `&nbsp;`, legend_s: `exporter`},
+    expo_import: { icon_s: `&nbsp;`, legend_s: `importer`},
+    expo_added: { icon_s: `&nbsp;`, legend_s: `image locale`},
     expo_wrap: { icon_s: `&nbsp;`, legend_s: `affichage`},
 
     burst: { icon_s: `&#8718;`, legend_s: `répartition`},
@@ -281,8 +282,9 @@ const C_o =
 
   //=== HTML-BODY: EXTEND MARKUP ===
   INFO_s:               '&#8505;',   //: Information Source Emoji:  ℹ
-  ZOOM_IN_s:            '&#9903;',   //: UNMARRIED PARTNERSHIP SYMBOL  ⚯
-  ZOOM_OUT_s:           '&#10005;',   //: CIRCLED DASH             ✕
+  ZOOM_IN_s:            '&#8853;',   //: CIRCLED PLUS              ⊕
+  ZOOM_OUT_s:           '&#8854;',   //: CIRCLED MINUS             ⊖
+  CLOSE_s:              '&#10005;',   //: CIRCLED DASH             ✕
   FULL_SCREEN_s:        '&#9974;',   //: square four corners       ⛶
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow             ↑
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis        ⋮
@@ -300,6 +302,8 @@ const C_o =
   IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet                    ∙
   IMG_SETTINGS_s:       '&#8285;',    //:  VERTICAL ELLIPSIS      ⁝
   IMG_BURST_s:          '&#10035;',   //: EIGHT SPOKED ASTERISK  ✳
+//: &#8853;     CIRCLED PLUS    ⊕
+//: &#8854;     CIRCLED MINUS   ⊖
 
 
   ID_PART_DELIM_s:     '~',   //: between parts
@@ -361,6 +365,9 @@ const C_o =
 
 
   //=== DB ===
+  PROTOCOLE_SITE_s:     'ca:',            // IndexedDB
+  PROTOCOLE_RESERVE_s:  're:',
+  PROTOCOLE_FILE_s:     'fs:',
   //-- 1586-de_coster--new_york-sothebys--1625-young_woman
 
   DB_a:    //: db tables names
