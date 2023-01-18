@@ -16,7 +16,6 @@
   [
    `article`,
     `galerie`,
-
   ],
 
   script_a:

@@ -1,36 +1,13 @@
 context( stack, new )
 <div[id$=_dock]>
-          display: flex;
+          z-index: 21;
+          /*display: flex;*/
           flex-direction: column;
-          position: fixed;                         /* !!!!!!! TODO */
+          position: fixed;
           top: 0;
           left: 0;
-          width: 288px;
-          padding: {{S_o.PAD_2}};
-          transform: translateX( -258px );  /* 288 - 30 */
-          transition: .4s ease;
-    <nav>
-            flex-direction: column;
-            align-self: flex-end;
-            padding: 0;
-      <label>
-                font-size: 80%;
-        <span[data-role]>
-                background: {{S_o.nav_dot_set_4}};
-                border-radius: 6px;
-        </span>
-      </label>
-      <label:hover>
-        <span>
-                background: transparent;
-        </span> 
-      </label>
-    </nav>
-    <nav:hover>
-            width: 100%;
-            background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);  /* {{S_o.table}} opaque */
-    </nav>
-
+          width: 16rem;
+context( block, settings )
     <input>
     context( copy, next )
     </input>
@@ -44,10 +21,10 @@ context( stack, new )
     <div>
           display: flex;
           flex-direction: column;
-          margin-top:  {{S_o.PAD_3}};
           padding: {{S_o.PAD_2}};
-          background: {{S_o.table}};
+          background: {{S_o.lighter}};
           border-radius: 4px;
+          box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
       <label>
               display: inline-flex;
               justify-content: center;
@@ -77,7 +54,7 @@ context( stack, new )
               width: 200px;
               background: transparent;
               cursor: pointer;
-              transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
+              /*transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );*/
       </input>
       <input[type=range]:focus>
               outline: none;
@@ -86,9 +63,10 @@ context( stack, new )
     </div>
 </div[id$=_dock]>
 <div[id$=_dock]:hover>
-    context( block, settings )
-          transform: translateX( 0 );
+          /*transform: translateX( 0 );*/
     <nav>
             align-self: center;
     </nav>
 </div[id$=_dock]:hover>
+
+

@@ -15,33 +15,58 @@ context( stack, new )
           z-index: 10;
           position: fixed;
           top: 0;
-          margin: 0 15%;
-          width: 70%;
+          margin: 0 23%;
+          width: 54%;
   </nav>
   <iframe>
           display: none;
   </iframe>
+
+  <label#goto_{{C_o.MAIN_DOCK}}>
+  context( copy, next )
+  </label>
   <label#goto_{{C_o.FULL_SCREEN}}>
   context( copy, next )
   </label>
   <label#goto_{{C_o.PAGE_TOP}}>
+  context( copy, next )
+  </label>
+  <label#goto_{{C_o.PLACE_CENTER}}>
+  context( block, top_button )
           z-index: 20;
           position: fixed;
-          top:  calc( 100vh - 6vmin );
-          left: calc( 100vw - 6vmin );
-  context( block, top_button )
+  </label>
+  <label#goto_{{C_o.MAIN_DOCK}}>
+          display: none;
+          top: 0;
+          left: 0;
   </label>
   <label#goto_{{C_o.FULL_SCREEN}}>
           display: none;
-          top: {{S_o.PAD_2}};               /* see PAGE_TOP */
+          top: 0;
+          left: 100vw;
+          transform: translateX( -126% );     /* +26% for window slider */
+  </label>
+  <label#goto_{{C_o.PAGE_TOP}}>
+          top: 100vh;
+          left: 100vw;
+          transform: translate( -126%, -100% );     /* +26% for window slider */
+  </label>
+  <label#goto_{{C_o.PLACE_CENTER}}>
+          display: none;
+          left: 0;
+          top: 100vh;
+          transform: translateY( -100% );
   </label>
   <!--variant-->
   <label#goto_{{C_o.FULL_SCREEN}}:hover>
   context( copy, next )
   </label>
+  <label#goto_{{C_o.PLACE_CENTER}}:hover>
+  context( copy, next )
+  </label>
   <label#goto_{{C_o.PAGE_TOP}}:hover>
           background: {{S_o.shadow_ne}};
-          /*filter: brightness( {{S_o.brightness_lo}} );*/
   </label>
 
 
@@ -61,5 +86,6 @@ context( stack, new )
 <b class="range-separator">
         display: inline-flex;
         align-self: center;
+        margin: 0 .5rem;
         transform: scaleX( 2 );
 </b>

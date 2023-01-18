@@ -171,20 +171,33 @@ const IND_o =
     event_o    //: not used
   )
   {
-    const hash_s
+    let hash_s
+
+    let img_e
     =
-      location
-        .hash
-        
-    const img_e
-    =
-      document
-        .getElementById
-        (
-          hash_s
+    document
+      .getElementById( 'img_reserve_img'  )
+
+    if
+    (
+      ! img_e    //: reserve is not here
+    )
+    {
+      hash_s
+      =
+        location
+          .hash
+          
+      img_e
+      =
+        document
+          .getElementById
+          (
+            hash_s
               .substring( 1 )       //: skip # = figure:target
-        ) 
-          .querySelector( 'img' )
+          ) 
+            .querySelector( 'img' )
+    }
 
     const input_e
     =
@@ -199,13 +212,19 @@ const IND_o =
     )
     {
       //== block link behaviour ===
-      img_e
-        .parentNode
-          .setAttribute
-          (
-            'href'
-          , hash_s
-          )
+      if
+      (
+        hash_s
+      )
+      {
+        img_e
+          .parentNode
+            .setAttribute
+            (
+              'href'
+            , hash_s
+            )
+      }
 
       DRAG_o
         .init__v
@@ -223,24 +242,30 @@ const IND_o =
 
     //== restore initial  link behaviour + image position ===
       img_e
-        .parentNode
-          .setAttribute
-          (
-            'href'
-          , hash_s
-              .replace
-              (
-                '{{C_o.ASIDE_COLOR_ID_s}}'
-              , '{{C_o.ASIDE_GRAY_ID_s}}'
-              )
-          )
-
-      img_e
         .setAttribute
         (
           'style'
         , ''       //: remove drag transform
         )
+
+      if
+      (
+        hash_s
+      )
+      {
+        img_e
+          .parentNode
+            .setAttribute
+            (
+              'href'
+            , hash_s
+                .replace
+                (
+                  '{{C_o.ASIDE_COLOR_ID_s}}'
+                , '{{C_o.ASIDE_GRAY_ID_s}}'
+                )
+            )
+      }
     }
 
   }
@@ -446,7 +471,7 @@ const IND_o =
 
     for
     (
-      let top_e
+      let label_e
       of
       Array
         .from
@@ -456,7 +481,7 @@ const IND_o =
         )
     )
     {
-      top_e
+      label_e
         .addEventListener
         (
           'click',
@@ -489,21 +514,6 @@ const IND_o =
       , IND_o
           .zoom__v
       )
-
-    //-- let label_e
-    //-- =
-    //--   document
-    //--     .getElementById( '{{C_o.LABEL_ID_s}}_aside_burst' )
-    //-- 
-    //-- label_e
-    //-- &&
-    //-- label_e
-    //--   .addEventListener
-    //--   (
-    //--     'click'
-    //--   , IND_o
-    //--       .burst__v
-    //--   )
 
     for
     (

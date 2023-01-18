@@ -56,6 +56,8 @@
   +
   <div#{{C_o.DIV_ID_s}}_toolset>
           display: grid;
+          position: absolute;
+          top: {{S_o.NAV_HEIGHT_s}};
           margin: auto;
           max-width: 100vmin;
     <__star__>
@@ -70,8 +72,9 @@
     <label>
     context( block, top_button )
             z-index: 101;
-            position: relative;
-            transform: translateY( -100% );  /* outside */
+            position: absolute;
+            top: -{{S_o.NAV_HEIGHT_s}};
+            /*transform: translateY( -100% );*/  /* outside */
             background: {{S_o.shadow_full}};
     </label>
     <label:hover>
@@ -80,6 +83,12 @@
     </label>
   </div>
 
+  <input:not( :checked ) />
+  +
+  <div#{{C_o.DIV_ID_s}}_toolset>
+          display: none;
+  </div>
+  
   <div#{{C_o.DIV_ID_s}}_toolset:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked )>
      <img>
              position: absolute;
@@ -87,13 +96,17 @@
              max-width: none;
              max-height: none;
              object-fit: none;
+             cursor: move;
      </img>
-  </div>
 
-  <input:not( :checked ) />
-  +
-  <div#{{C_o.DIV_ID_s}}_toolset>
-          display: none;
+     <nav#{{C_o.NAV_ID_s}}_toolset_zoom>
+       <input:checked/>
+       ~
+       <label[for]:nth-of-type( 1 )>
+               background: {{S_o.highlight}};
+       </label>
+     </nav>
+
   </div>
 
 </section>

@@ -72,19 +72,20 @@ context( stack, new )
 </blockquote>
 -->
 
+<input[type=range]:before />
+        content: attr( data-label );
+        position: relative;
+        top: -.75rem;
+        color: currentColor;
+        font-size: 95%;
+
 <input[type=range]:after />
         content: attr( data-tip );
         position: relative;
+        top: -.75rem;
         z-index: 2;
         padding: {{S_o.PAD_1}};
-        right: -100%;
-        width: fit-content;
         color: currentColor;
-        /*background: {{S_o.lighter}};*/
-        border: 1px solid {{S_o.highlight}};
-        border-radius: 4px;
-        /*font-size: 150%;*/
-        /*transform: scaleY( 2 );*/  /* compensation for scaleY ( .5 ) */
 
 <{{C_o.ROW_TAG_s}}[data--=abstract]>
         font-style: italic;

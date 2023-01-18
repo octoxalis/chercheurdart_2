@@ -32,9 +32,9 @@ context( stack, new )
           position: fixed;
           padding-top: {{S_o.NAV_HEIGHT_s}};
           top: 0;
-          right:0;
-          bottom:0;
-          left:0;
+          right: 0;
+          bottom: 0;
+          left: 0;
           background: {{S_o.bgcolor}};
     <a:hover>
             border: 0;
@@ -51,13 +51,21 @@ context( stack, new )
   </figure>
 </aside>
 
+context( stack, new )
 <aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target )>
   <nav#{{C_o.NAV_ID_s}}_toolset_zoom>
           display: flex;
-          top: {{S_o.NAV_HEIGHT_s}};
+          top: 0;
+          left: 0;
+  <input:checked/>
+  ~
+  <label[for]:nth-of-type( 1 )>
+          background: {{S_o.highlight}};
+  </label>
   </nav>
 </aside>
 
+context( stack, new )
 <aside:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked )>
   <figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target>
     <a>
@@ -66,6 +74,7 @@ context( stack, new )
               max-width: none;
               max-height: none;
               object-fit: none;
+              cursor: move;
       </img>
     </a>
   </figure>

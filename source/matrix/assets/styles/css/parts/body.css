@@ -16,19 +16,13 @@ body > nav {
   z-index: 10;
   position: fixed;
   top: 0;
-  margin: 0 15%;
-  width: 70%;
+  margin: 0 23%;
+  width: 54%;
 }
 body > iframe {
   display: none;
 }
-body > label#goto_{{C_o.FULL_SCREEN}}, body > label#goto_{{C_o.PAGE_TOP}} {
-  z-index: 20;
-  position: fixed;
-  top: calc( 100vh - 6vmin );
-  left: calc( 100vw - 6vmin );
-  align-items: center;
-  justify-content: center;
+body > label#goto_{{C_o.MAIN_DOCK}}, body > label#goto_{{C_o.FULL_SCREEN}}, body > label#goto_{{C_o.PAGE_TOP}}, body > label#goto_{{C_o.PLACE_CENTER}} {
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
@@ -36,16 +30,37 @@ body > label#goto_{{C_o.FULL_SCREEN}}, body > label#goto_{{C_o.PAGE_TOP}} {
   border: 1px solid {{S_o.nav_dot_set_4}};
   border-radius: 8px;
   background: transparent;
+  z-index: 20;
+  position: fixed;
+}
+body > label#goto_{{C_o.MAIN_DOCK}} {
+  display: none;
+  top: 0;
+  left: 0;
 }
 body > label#goto_{{C_o.FULL_SCREEN}} {
   display: none;
-  top: {{S_o.PAD_2}};
+  top: 0;
+  left: 100vw;
+  transform: translateX( -126% );
 }
-body > label#goto_{{C_o.FULL_SCREEN}}:hover, body > label#goto_{{C_o.PAGE_TOP}}:hover {
+body > label#goto_{{C_o.PAGE_TOP}} {
+  top: 100vh;
+  left: 100vw;
+  transform: translate( -126%, -100% );
+}
+body > label#goto_{{C_o.PLACE_CENTER}} {
+  display: none;
+  left: 0;
+  top: 100vh;
+  transform: translateY( -100% );
+}
+body > label#goto_{{C_o.FULL_SCREEN}}:hover, body > label#goto_{{C_o.PLACE_CENTER}}:hover, body > label#goto_{{C_o.PAGE_TOP}}:hover {
   background: {{S_o.shadow_ne}};
 }
 .range-separator {
   display: inline-flex;
   align-self: center;
+  margin: 0 .5rem;
   transform: scaleX( 2 );
 }

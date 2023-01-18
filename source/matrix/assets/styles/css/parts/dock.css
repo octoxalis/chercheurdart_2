@@ -1,32 +1,12 @@
 div[id$=_dock] {
-  display: flex;
+  z-index: 21;
   flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
-  width: 288px;
-  padding: {{S_o.PAD_2}};
-  transform: translateX( -258px );
-  transition: .4s ease;
-}
-div[id$=_dock] > nav {
-  flex-direction: column;
-  align-self: flex-end;
-  padding: 0;
-}
-div[id$=_dock] > nav > label {
-  font-size: 80%;
-}
-div[id$=_dock] > nav > label > span[data-role] {
-  background: {{S_o.nav_dot_set_4}};
-  border-radius: 6px;
-}
-div[id$=_dock] > nav > label:hover > span {
-  background: transparent;
-}
-div[id$=_dock] > nav:hover {
-  width: 100%;
-  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
+  width: 16rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 div[id$=_dock] > input, div[id$=_dock] > input + div {
   display: none;
@@ -34,10 +14,10 @@ div[id$=_dock] > input, div[id$=_dock] > input + div {
 div[id$=_dock] > input:checked + div {
   display: flex;
   flex-direction: column;
-  margin-top: {{S_o.PAD_3}};
   padding: {{S_o.PAD_2}};
-  background: {{S_o.table}};
+  background: {{S_o.lighter}};
   border-radius: 4px;
+  box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
 }
 div[id$=_dock] > input:checked + div > label {
   display: inline-flex;
@@ -68,18 +48,10 @@ div[id$=_dock] > input:checked + div > input[type=range] {
   width: 200px;
   background: transparent;
   cursor: pointer;
-  transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );
 }
 div[id$=_dock] > input:checked + div > input[type=range]:focus {
   outline: none;
   filter: hue-rotate( -220deg );
-}
-div[id$=_dock]:hover {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
-  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
-  transform: translateX( 0 );
 }
 div[id$=_dock]:hover > nav {
   align-self: center;

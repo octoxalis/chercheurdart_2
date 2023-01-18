@@ -52,6 +52,8 @@ body > section#reserve > input {
 }
 body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset {
   display: grid;
+  position: absolute;
+  top: {{S_o.NAV_HEIGHT_s}};
   margin: auto;
   max-width: 100vmin;
 }
@@ -65,8 +67,6 @@ body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > img {
   width: 100%;
 }
 body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > label {
-  align-items: center;
-  justify-content: center;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
@@ -75,13 +75,16 @@ body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > label {
   border-radius: 8px;
   background: transparent;
   z-index: 101;
-  position: relative;
-  transform: translateY( -100% );
+  position: absolute;
+  top: -{{S_o.NAV_HEIGHT_s}};
   background: {{S_o.shadow_full}};
 }
 body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > label:hover {
   background: {{S_o.shadow_hi4}};
   cursor: pointer;
+}
+body > section#reserve > input:not( :checked ) + div#{{C_o.DIV_ID_s}}_toolset {
+  display: none;
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_toolset:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > img {
   position: absolute;
@@ -89,9 +92,10 @@ body > section#reserve > div#{{C_o.DIV_ID_s}}_toolset:has( #{{C_o.INPUT_ID_s}}_t
   max-width: none;
   max-height: none;
   object-fit: none;
+  cursor: move;
 }
-body > section#reserve > input:not( :checked ) + div#{{C_o.DIV_ID_s}}_toolset {
-  display: none;
+body > section#reserve > div#{{C_o.DIV_ID_s}}_toolset:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom > input:checked ~ label[for]:nth-of-type( 1 ) {
+  background: {{S_o.highlight}};
 }
 body:has( #reserve ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;

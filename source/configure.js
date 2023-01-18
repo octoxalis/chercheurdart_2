@@ -6,7 +6,6 @@
 module.exports =
 {
   //=== SERVICE WORKER ===
-  SERVICE_b: true,      //: enable Service Worker (false to disable)
   KEY_n: 2,             //: service worker key
 
 

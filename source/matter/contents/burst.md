@@ -20,8 +20,6 @@
 
   stat_s: `burst`,
 
-  //... dialog_alert_b: true,
-
   script_a:
   [
     'Idb.min.js',

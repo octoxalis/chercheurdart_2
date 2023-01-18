@@ -40,7 +40,7 @@ a[data-legend]:before, label[data-legend]:before {
   content: attr( data-legend );
   position: relative;
   font-size: 85%;
-  transform: scaleX( 0 );
+  transform: scaleX( 0 ) ;
   transform-origin: center;
   transition: transform ease .2s;
 }

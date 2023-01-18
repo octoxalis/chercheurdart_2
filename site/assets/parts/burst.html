@@ -1,271 +1,242 @@
 <!DOCTYPE html>
-<div id="DI_stat_burst">
-
-  <label id="LA_burst_zoom_out">&#8854;</label>
+<div id=DI_stat_burst>
 
 
-  <input id="IN_burst_hue" name="burst_nav" type="radio" checked>
-  <canvas id="CA_burst_hue" width=1024 height=1024></canvas>  <!-- 1024: default value -->
-  <nav id="NA_burst_hue">
+<input id=IN_toolset type=checkbox>
+<div id=DI_toolset>
+  <nav id=NA_toolset_zoom>
+    <input id=IN_toolset_zoom type=checkbox>
+    <label for=IN_toolset_zoom>&#8854;</label>
+    <label for=IN_toolset_zoom>&#8853;</label>
+  </nav>
+</div>
+
+
+
+  <input id=IN_burst_hue name=burst_nav type=radio checked>
+  <canvas id=CA_burst_hue width=1024 height=1024></canvas>  <!-- 1024: default value -->
+  <nav id=NA_burst_hue>
     <label>tonalité
-      <span id="burst_hue_n">0</span>
+      <span id=burst_hue_n>0</span>
     </label>
     <label>proportion
-      <span id="burst_hue_ratio_n">0</span>
+      <span id=burst_hue_ratio_n>0</span>
     </label>
-    <label for="IN_burst_sat" data-legend="intensité">
+    <label for=IN_burst_sat data-legend="intensité">
         <span data-icon="substat">&nbsp;</span>
     </label>
-    <label for="IN_burst_lum" data-legend="luminosité">
+    <label for=IN_burst_lum data-legend="luminosité">
       <span data-icon="substat">&nbsp;</span>
     </label>
   </nav>
 
-  <input id="IN_burst_sat" name="burst_nav" type="radio">
-  <canvas id="CA_burst_sat" width=1024 height=1024></canvas>
-  <nav id="NA_burst_sat">
+  <input id=IN_burst_sat name=burst_nav type=radio>
+  <canvas id=CA_burst_sat width=1024 height=1024></canvas>
+  <nav id=NA_burst_sat>
     <label>intensité
-      <span id="burst_sat_n">0</span>
+      <span id=burst_sat_n>0</span>
     </label>
     <label>proportion
-      <span id="burst_sat_ratio_n">0</span>
+      <span id=burst_sat_ratio_n>0</span>
     </label>
-    <label for="IN_burst_hue" data-legend="tonalité">
+    <label for=IN_burst_hue data-legend="tonalité">
       <span data-icon="substat">&nbsp;</span>
     </label>
-    <label for="IN_burst_lum" data-legend="luminosité">
+    <label for=IN_burst_lum data-legend="luminosité">
       <span data-icon="substat">&nbsp;</span>
     </label>
   </nav>
 
-  <input id="IN_burst_lum" name="burst_nav" type="radio">
-  <canvas id="CA_burst_lum" width=1024 height=1024></canvas>
-  <nav id="NA_burst_lum">
+  <input id=IN_burst_lum name=burst_nav type=radio>
+  <canvas id=CA_burst_lum width=1024 height=1024></canvas>
+  <nav id=NA_burst_lum>
     <label>luminosité
-      <span id="burst_lum_n">0</span>
+      <span id=burst_lum_n>0</span>
     </label>
     <label>proportion
-      <span id="burst_lum_ratio_n">0</span>
+      <span id=burst_lum_ratio_n>0</span>
     </label>
-    <label for="IN_burst_hue" data-legend="tonalité">
+    <label for=IN_burst_hue data-legend="tonalité">
       <span data-icon="substat">&nbsp;</span>
     </label>
-    <label for="IN_burst_sat" data-legend="intensité">
+    <label for=IN_burst_sat data-legend="intensité">
       <span data-icon="substat">&nbsp;</span>
     </label>
   </nav>
 
-  <input id="IN_burst_settings" name="burst_settings" type="checkbox"><!--  TEMPORARY: checked -->
-  <input id="IN_burst_settings_shadow" type="checkbox">
-  <div id="DI_burst_settings">
+  <input id=IN_burst_settings name=burst_settings type=checkbox>
+  <div id=DI_burst_settings>
     <aside>
-      <nav>
-          <label for="IN_burst_settings" data-legend="fermer">
-              <span data-role="open">&nbsp;</span>
-          </label>
-          <label id="LA_burst_settings_shadow" for="IN_burst_settings_shadow" data-legend="replier">
-              <span data-role="shadow">&nbsp;</span>
-          </label>
-      </nav>
-
-      <div id="DI_burst_slide_hue">
+      <div id=DI_burst_slide_hue>
         
-        <div id="DI_burst_hue_slot">
-          <ul id="UL_burst_hue_slot" data-role=range>
+        <div id=DI_burst_hue_slot>
+          <ul id=UL_burst_hue_slot data-role=range>
             <li data-slot_n="1">
-              <input name="burst_hue_slot" type="radio" checked>
+              <input name=burst_hue_slot type=radio checked>
             </li>
             <li data-slot_n="3">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="6">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="10">
-              <input name="burst_hue_slot" type="radio">  <!-- TEMPORARY: 1 -->
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="15">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="20">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="24">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="30">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="36">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="40">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="45">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="60">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="72">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="90">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
             <li data-slot_n="120">
-              <input name="burst_hue_slot" type="radio">
+              <input name=burst_hue_slot type=radio>
             </li>
           </ul>
           <hr role="vrange" />
         </div>
 
         <div>
-          <canvas id="CA_burst_hue_back" width=48 height=720></canvas>
-          <canvas id="CA_burst_hue_front" width=48 height=720></canvas>
+          <canvas id=CA_burst_hue_back width=48 height=720></canvas>
+          <canvas id=CA_burst_hue_front width=48 height=720></canvas>
         </div>
-        <label id="LA_burst_hue_trace">
-          <output id="output_burst_hue" type="text">0</output>
+        <label id=LA_burst_hue_trace>
+          <output id=output_burst_hue type="text">0</output>
           <span data-icon="&nbsp;">⊳</span>
         </label>
 
-        <div id="DI_burst_thresh_hi">
-         <label for="IN_burst_thresh_hi">seuil haut</label>
-         <input id="IN_burst_thresh_hi" type="range" min="0" max="100" step="1" value="0" data-tip="0">
+        <div id=DI_burst_thresh_hi>
+         <input id=IN_burst_thresh_hi data-label="seuil haut" type=range min=0 max=100 step=1 value=0 data-tip="0">
         </div>
-        <div id="DI_burst_thresh_lo">
-         <input id="IN_burst_thresh_lo" type="range" min="0" max="100" step="1" value="0" data-tip="0">
-         <label for="IN_burst_thresh_lo">seuil bas</label>
+        <div id=DI_burst_thresh_lo>
+         <input id=IN_burst_thresh_lo data-label="seuil bas" type=range min=0 max=100 step=1 value=0 data-tip="0">
         </div>
       </div>
     </aside>
   </div>
 
-  <div id="DI_burst_dock">
-    <nav>
-      <label for="DI_burst_dock_nav" data-legend="deplier">
-          <span data-role="open">&nbsp;</span>
-      </label>
-    </nav>
-    <input id="DI_burst_dock_nav" type="checkbox">
+  <input id=IN_burst_sequencer  type=checkbox>
+  <div id=DI_burst_sequencer>
+    <input id=IN_burst_hue_img_settings  type=checkbox>
     <div>
-      <label for="IN_burst_dock_scale">
-      Échelle
-      </label>
-      <input id="IN_burst_dock_scale" type="range" min="0.25" max="4" step="0.25" value="1" data-tip="1">
-      <label for="IN_burst_settings" data-key=p>palette</label>
-      <label for="IN_burst_level" data-key=e>égaliser</label>
-      <label for="IN_burst_hue_img" data-key=i>image</label>
+      <div id=DI_burst_playback>
+        <div id=DI_burst_playback_progress>
+          <label id=LA_burst_playback_start>&nbsp;</label>
+          <progress id=progress_burst_playback_progress max=100 value=0></progress>
+          <label id=LA_burst_playback_stop>&nbsp;</label>
+          <label id=LA_burst_playback_reset>&nbsp;</label>
+          <label id=LA_burst_playback_progress></label>
+        </div>
+        <div id=DI_burst_playback_interval>
+          <input id=IN_burst_playback_interval data-label="interval" data-label="" type=range min=100 max=10000 step=100 value=1000 data-tip="1000">
+        </div>
+        <div id=DI_burst_playback_shift>
+          <input id=IN_burst_playback_slower name=burst_playback_shift type=radio checked>
+          <label for=IN_burst_playback_slower>ralentir</label>
+
+          <input id=IN_burst_playback_faster name=burst_playback_shift type=radio>
+          <label for=IN_burst_playback_faster>accélérer</label>
+          <input id=IN_burst_playback_shift type=range min=0 max=100 step=1 value=0 data-tip="0">
+        </div>
+      </div>
+  
+      <div id=DI_burst_hue_img_bg>
+        <div id=DI_burst_hue_img_bg_opacity>
+          <input id=IN_burst_hue_img_bg_opacity data-label="opacité" type=range min=0 max=100 step=1 value=20 data-tip="20">
+        </div>
+        <div id=DI_burst_hue_img_bg_color>
+          <label for=IN_burst_hue_img_bg_transparent data-legend="transparent">
+              <span data-role="bgcolor">&nbsp;</span>
+          </label>
+          <label for=IN_burst_hue_img_bg_black data-legend="noir">
+              <span data-role="bgcolor">&nbsp;</span>
+          </label>
+          <label for=IN_burst_hue_img_bg_white data-legend="blanc">
+              <span data-role="bgcolor">&nbsp;</span>
+          </label>
+          <label for=IN_burst_hue_img_bg_color data-legend="couleur">
+              <span data-role="bgcolor">&nbsp;</span>
+          </label>
+        </div>
+        <div id=DI_burst_hue_img_picker>
+          <label for=IN_burst_hue_pick_hue></label>
+          <input id=IN_burst_hue_pick_hue data-label="tonalité" type=range min=0 max=360 step=1 value=0 data-tip="0">
+          <label for=IN_burst_hue_pick_sat></label>
+          <input id=IN_burst_hue_pick_sat data-label="intensité" type=range min=0 max=100 step=1 value=100 data-tip="100">
+          <label for=IN_burst_hue_pick_lum></label>
+          <input id=IN_burst_hue_pick_lum data-label="luminosité" type=range min=0 max=100 step=1 value=50 data-tip="50">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div id=DI_burst_dock>
+    <input id=IN_dock_nav type=checkbox>
+    <div>
+      <label for=IN_burst_dock_scale></label>
+      <input id=IN_burst_dock_scale data-label="Échelle" type=range min=0.25 max=4 step=0.25 value=1 data-tip="1">
+
+      <label for=IN_burst_settings data-key=p>palette</label>
+      <label for=IN_burst_sequencer data-key=a>animation</label>
+      <label for=IN_burst_hue_img data-key=v>visualiser</label>
+      <label for=IN_burst_equal data-key=e>égaliser</label>
+      <label for=IN_burst_hue_img_reset data-key=&#8705;z>reinitialiser</label>
+      <label for=IN_burst_hue_img_download data-key=&#8705;s>exporter</label>
     </div>
   </div>
 
-  <input id="IN_burst_hue_img" type="checkbox" checked>
-  <input id="IN_burst_hue_img_download" type="checkbox">
-  <input id="IN_burst_hue_img_reset" type="checkbox">
-  <!--<input id="IN_burst_hue_img_bar" type="checkbox">-->
-  <input id="IN_burst_hue_img_position" type="checkbox">
-  <input id="IN_burst_hue_img_picker" type="checkbox">
-  <input id="IN_burst_hue_img_bg_transparent" name="burst_hue_color" type="radio">
-  <input id="IN_burst_hue_img_bg_black" name="burst_hue_color" type="radio">
-  <input id="IN_burst_hue_img_bg_white" name="burst_hue_color" type="radio">
-  <input id="IN_burst_hue_img_bg_color" name="burst_hue_color" type="radio">
+  <input id=IN_burst_hue_img_position type=checkbox>
+  <input id=IN_burst_hue_img type=checkbox checked>
+  <input id=IN_burst_hue_img_reset type=checkbox>
+  <input id=IN_burst_hue_img_download type=checkbox>
 
+  <input id=IN_burst_hue_img_bg_transparent name=burst_hue_color type=radio>
+  <input id=IN_burst_hue_img_bg_black name=burst_hue_color type=radio>
+  <input id=IN_burst_hue_img_bg_white name=burst_hue_color type=radio>
+  <input id=IN_burst_hue_img_bg_color name=burst_hue_color type=radio>
 
-  <aside id="aside_burst_hue_img">
-    <ul id="UL_burst_img_control" role="icon_list">
-      <li>
-      <li>
-        <label for="IN_burst_hue_img_download">
-        &#11123;
-        </label>
-      <li>
-        <label for="IN_burst_hue_img_reset">
-        &#8634;
-        </label>
-      <li>
-        <label for="IN_burst_hue_img_position" tabindex=1><!--NE and SW Arrow-->
-        &#10530;
-        </label>
-    </ul>
-
-    <canvas id="CA_burst_hue_img" width=100vmin height=100vmin data-fullsize_b=true></canvas>  <!-- 1024: default value -->
-    <div id="CA_burst_hue_img_back" width=100vmin height=100vmin></div>
-
-  <label for="IN_burst_hue_img_settings">&#8285;</label>
-  <input id="IN_burst_hue_img_settings"  type="checkbox">
-
-    <div>
-      <div id="DI_burst_playback">
-        <div id="DI_burst_playback_progress">
-          <label id="LA_burst_playback_start">&nbsp;</label>
-          <progress id="progress_burst_playback_progress" max="100" value="0"></progress>
-          <label id="LA_burst_playback_stop">&nbsp;</label>
-          <label id="LA_burst_playback_reset">&nbsp;</label>
-          <label id="LA_burst_playback_progress"></label>
-        </div>
-        <div id="DI_burst_playback_interval">
-          <label>interval</label>
-          <input id="IN_burst_playback_interval" type="range" min="100" max="10000" step="100" value="1000" data-tip="1000">
-        </div>
-        <div id="DI_burst_playback_shift">
-          <input id="IN_burst_playback_slower" name="burst_playback_shift" type="radio" checked>
-          <label for="IN_burst_playback_slower">ralentir</label>
-  
-          <input id="IN_burst_playback_faster" name="burst_playback_shift" type="radio">
-          <label for="IN_burst_playback_faster">accélérer</label>
-  
-          <input id="IN_burst_playback_shift" type="range" min="0" max="100" step="1" value="0" data-tip="0">
-        </div>
-      </div>
-  
-      <div id="DI_burst_hue_img_bg">
-        <div id="DI_burst_hue_img_bg_opacity">
-          <label>opacité</label>
-          <input id="IN_burst_hue_img_bg_opacity" type="range" min="0" max="100" step="1" value="20" data-tip="20">
-        </div>
-        <div id="DI_burst_hue_img_bg_color">
-          <label for="IN_burst_hue_img_bg_transparent" data-legend="transparent">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-          <label for="IN_burst_hue_img_bg_black" data-legend="noir">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-          <label for="IN_burst_hue_img_bg_white" data-legend="blanc">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-          <label for="IN_burst_hue_img_bg_color" data-legend="couleur">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-          <label for="IN_burst_hue_img_picker" data-legend="sélecteur">
-              <span data-role="bgcolor">&#8230;</span>
-          </label>
-        </div>
-        <div id="DI_burst_hue_img_picker">
-          <label for="IN_burst_hue_pick_hue"></label>
-          <input id="IN_burst_hue_pick_hue" type="range" min="0" max="360" step="1" value="0" data-tip="0">
-          <label for="IN_burst_hue_pick_sat"></label>
-          <input id="IN_burst_hue_pick_sat" type="range" min="0" max="100" step="1" value="100" data-tip="100">
-          <label for="IN_burst_hue_pick_lum"></label>
-          <input id="IN_burst_hue_pick_lum" type="range" min="0" max="100" step="1" value="50" data-tip="50">
-        </div>
-      </div>
-    </div>
-
+  <aside id=aside_burst_hue_img>
+    <canvas id=CA_burst_hue_img width=100vmin height=100vmin data-fullsize_b=true></canvas>  <!-- 1024: default value -->
+    <div id=CA_burst_hue_img_back width=100vmin height=100vmin></div>
   </aside>
 
-  <dialog id="dialog_burst_download">
-    <form id="form_burst_download" method="dialog">
-      <div id="DI_burst_download">
+  <dialog id=dialog_burst_download>
+    <form id=form_burst_download method="dialog">
+      <div id=DI_burst_download>
         <header>
           <label control>
           Création du fichier image
           </label>
-          <input id="IN_burst_download_accept" type="checkbox">
-          <label for="IN_expo_download_accept">&#10003;</label>
-          <input id="IN_expo_download_accept" type="checkbox">
+          <input id=IN_burst_download_accept type=checkbox>
+          <label for=IN_expo_download_accept>&#10003;</label>
+          <input id=IN_expo_download_accept type=checkbox>
         </header>
-        <label id="LA_burst_download"></label>
+        <label id=LA_burst_download></label>
         <p>Cette opération ne prend que quelques secondes</p>
       </div>
     </form>

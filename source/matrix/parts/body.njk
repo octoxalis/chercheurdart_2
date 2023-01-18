@@ -13,22 +13,22 @@
 {% endif %}
 
 <body{{_work_s}}{{_wh_s}}{{_stat_s}}{{_layer_s}}>
-{#% include "parts/body/full_canvas.njk" %#}
-{% include "parts/body/nav_input.njk" %}
 <a id="{{C_o.PAGE_TOP}}"></a>
+{% include "parts/body/nav_input.njk" %}
 {% include "parts/body/main.njk" %}
 {% if stat_s %}
 {% include "parts/body/iframe_stat.njk" %}
 {% endif %}
-{% include "parts/body/nav_label.njk" %}    <!-- at end to be upper layer -->
-{% if workID_s %}
+{% if stat_s === 'burst' %}
+<label id="goto_{{C_o.MAIN_DOCK}}" for="{{C_o.INPUT_ID_s}}_dock_nav">{{C_o.MAIN_DOCK_s}}</label>
 <input id="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal" type="checkbox">
 <div id="goto_{{C_o.BURST_EQUAL}}"></div>
+<label id="goto_{{C_o.PLACE_CENTER}}" for="{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position" tabindex=1>{{C_o.GOTO_CENTER_s}}</label>
 <label id="goto_{{C_o.FULL_SCREEN}}">{{C_o.FULL_SCREEN_s}}</label>
 {% endif %}
+
 <label id="goto_{{C_o.PAGE_TOP}}">{{C_o.GOTO_TOP_s}}</label>
+{% include "parts/body/nav_label.njk" %}    <!-- at end to be upper layer -->
 {#% include "parts/body/svg_inline.njk" %#}
-{% if C_o.SERVICE_b === true %}
 {% include "parts/body/script.njk" %}
-{% endif %}
 </body>

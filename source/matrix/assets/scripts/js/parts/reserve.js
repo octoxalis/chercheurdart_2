@@ -1,6 +1,6 @@
 //=== reserve.js ===
 
-RES_o
+var RES_o
 =
 {
   href_s:     //: selected img source
@@ -40,47 +40,8 @@ RES_o
   }
 
 
+//-- , zoom__v      //: eventListener declared in index.js
 
-, zoom__v
-  (
-    event_o    //: not used
-  )
-  {
-    const img_e
-    =
-    document
-      .getElementById( 'img_reserve_img'  )
-
-    if
-    (
-      document
-        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
-          .checked
-    )
-    {
-      DRAG_o
-        .init__v
-        (
-          img_e
-        )
-  
-      DRAG_o
-        .enable__v()
-    }
-    else
-    {
-      DRAG_o
-        .disable__v()
-
-      img_e
-        .setAttribute
-        (
-          'style'
-        , ''       //: remove drag transform
-        )
-    }
-
-  }
 
 
 , async expo__v    //: add PROTOCOLE_RESERVE_s
@@ -323,21 +284,6 @@ RES_o
             .show__v
         )
     }
-
-    let input_e
-    =
-      document
-        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' )
-
-    input_e
-    &&
-    input_e
-      .addEventListener
-      (
-        'change'
-      , RES_o
-          .zoom__v
-      )
 
     for
     (

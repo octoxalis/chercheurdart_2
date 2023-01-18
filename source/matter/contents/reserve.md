@@ -13,20 +13,20 @@
 
   version_a:
   [
-    '2023-01-12T18:00:00Z'
+    `2023-01-12T18:00:00Z`
   ],
 
   section_a:
   [
-    'article',
-    'galerie',
-    'reserve',
+    `article`,
+    `galerie`,
+    `reserve`,
   ],
 
   include_a:
   [
-    'reserve'
-  , 'dialog_alert'
+    `reserve`
+  , `dialog_alert`
   ],
 
   script_a:

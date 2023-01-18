@@ -2,8 +2,6 @@
   --{{C_o.SECTION_a[2]}}_zoom_out_s: none;
 }
 section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] {
-  align-items: center;
-  justify-content: center;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
@@ -31,8 +29,6 @@ section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}
 section#{{C_o.SECTION_a[2]}} > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out {
   z-index: 101;
   display: var(--{{C_o.SECTION_a[2]}}_zoom_out_s);
-  align-items: center;
-  justify-content: center;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;

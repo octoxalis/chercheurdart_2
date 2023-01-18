@@ -121,13 +121,15 @@ const C_o =
     burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},
     burst_rate: { icon_s: `&#8728;`, legend_s: `proportion`},
     
-    stat_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
-    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
     stat_shadow_fold:     { icon_s: `&nbsp;`, legend_s: `replier`},
     stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
-
+    stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
+    settings_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
+    anim_open:      { icon_s: `&nbsp;`, legend_s: `animation`},
     burst_equal: { icon_s: `&nbsp;`, legend_s: `égaliser`},
-    burst_img: { icon_s: `&nbsp;`, legend_s: `image`},
+    burst_img: { icon_s: `&nbsp;`, legend_s: `visualiser`},
+    burst_reset: { icon_s: `&nbsp;`, legend_s: `reinitialiser`},
+    burst_download: { icon_s: `&nbsp;`, legend_s: `exporter`},
     burst_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
     burst_lo: { icon_s: `&nbsp;`, legend_s: `seuil bas`},
     burst_opacity: { icon_s: `&nbsp;`, legend_s: `opacité`},
@@ -233,8 +235,11 @@ const C_o =
 
   //=== HTML-BODY ANCHORS
   //-- ANCHOR_DELIM_s : '__',
-  PAGE_TOP:    'page_top',
-  FULL_SCREEN: 'full_screen',
+  MAIN_DOCK:    'main_dock',
+  FULL_SCREEN:  'full_screen',
+  PAGE_TOP:     'page_top',
+  PLACE_CENTER: 'place_center',
+
   BURST_EQUAL: 'burst_equal',
   
   //=== HTML-BODY CSS SELECTORS
@@ -284,13 +289,18 @@ const C_o =
   INFO_s:               '&#8505;',   //: Information Source Emoji:  ℹ
   ZOOM_IN_s:            '&#8853;',   //: CIRCLED PLUS              ⊕
   ZOOM_OUT_s:           '&#8854;',   //: CIRCLED MINUS             ⊖
-  CLOSE_s:              '&#10005;',   //: CIRCLED DASH             ✕
+  CLOSE_s:              '&#10005;',  //: CIRCLED DASH             ✕
+  //-- MAIN_DOCK_s:          '&#9776;',   //:  TRIGRAM FOR HEAVEN       ☰
+  MAIN_DOCK_s:          '&#10097;',   //:  DOUBLE RIGHT-POINTING ANGLE QUOTATION MARK   »
   FULL_SCREEN_s:        '&#9974;',   //: square four corners       ⛶
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow             ↑
-  LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis        ⋮
+  GOTO_CENTER_s:        '&#10530;',  //: NE and SW Arrow           ⤢
+  SHIFT_KEY_s:          '&#8679;',   //: ARROW                     ⇧
+  CTRL_KEY_s:           '&#8705;',   //:                      ⇧
+
+  LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis         ⋮
 
   IMG_BAR_s:            '&#8597;',   //: NS Arrow           ↕
-  IMG_RETRACT_s:        '&#10530;',  //: NE and SW Arrow           ⤢
   IMG_RESET_s:          '&#8634;',   //: Anticlockwise Open Circle Arrow          
   IMG_DOWNLOAD_s:       '&#11123;',  //: Downwards Triangle-Headed Arrow To Bar   ⭳
   IMG_SLIDESHOW_s:      '&#9744;',          //:  ☐☐☐ ∷∷  ⊟⊟  ☰☰
@@ -298,7 +308,7 @@ const C_o =
   BULLET_s:             '&#8857;',   //: bullet                    •
   SEE_MORE_s:           '&#8230;',   //: HORIZONTAL ELLIPSIS
   IMG_EXPO_s:           '&#8862;',   //: Squared Plus               ⊞
-  IMG_PLAY_s:           '⊳',   //: CONTAINS AS NORMAL SUBGROUP    &#8883;
+  IMG_PLAY_s:           '⊳',         //: CONTAINS AS NORMAL SUBGROUP    &#8883;
   IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet                    ∙
   IMG_SETTINGS_s:       '&#8285;',    //:  VERTICAL ELLIPSIS      ⁝
   IMG_BURST_s:          '&#10035;',   //: EIGHT SPOKED ASTERISK  ✳
@@ -380,7 +390,6 @@ const C_o =
 
 
   //=== SERVICE WORKER ===
-  SERVICE_b: CONF_o.SERVICE_b,
   KEY_n:     CONF_o.KEY_n,
 
   //=== SHARED WORKER ===

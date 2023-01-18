@@ -30,7 +30,6 @@
     'dom.min.js',
     'drag.min.js',
     'dialog_alert.min.js',
-    //-- 'expo_in.min.js',
   ],
   css_a:
   [

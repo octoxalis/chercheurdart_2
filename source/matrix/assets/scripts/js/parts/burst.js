@@ -54,15 +54,18 @@ const BUR_o =
 
   , eventKey_a:
     [
-      'ArrowRight' //: toggle img_position checked
-    , 'ArrowLeft'  //: idem
+      'ArrowUp' //: toggle img_position checked
+    , 'ArrowDown'  //: idem
     , '+'          //: increment scale
     , '-'          //: decrement scale
+    , 'd'          //: show/hide dock
     , 'p'          //: show/hide palette
+    , 'a'          //: show/hide animation
     , 'e'          //: show/hide equalizer
-    , 'i'          //: show/hide Image
-    , ' '          //: suspend || resume slideshow
+    , 'v'          //: show/hide Image
+    , 'z'          //: (+ ctrlKey) reset
     , 's'          //: (+ ctrlKey) save image
+    , ' '          //: suspend || resume slideshow
     ]
 
 
@@ -1187,7 +1190,7 @@ const BUR_o =
         break
 
       case
-        'ArrowRight'     //: > keypad
+        'ArrowUp'     //: > keypad
       :
         if
         (
@@ -1220,7 +1223,7 @@ const BUR_o =
         break
 
       case
-        'ArrowLeft'     //: < keypad
+        'ArrowDown'     //: < keypad
       :
         if
         (
@@ -1330,6 +1333,21 @@ const BUR_o =
         break
 
       case
+        'z'
+      :
+        if
+        (
+          event_o
+            .ctrlKey
+        )
+        {
+          BUR_o
+            .eventImg_reset__v()
+        }
+
+        break
+
+      case
         's'
       :
         if
@@ -1348,40 +1366,59 @@ const BUR_o =
         break
 
       case
+        'd'    //: show/hide dock
+      :
+      case
         'p'    //: show/hide palette
       :
-        document
-          .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings' )
-            .checked
-        =
-          ! document
-              .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings' )
-                .checked
-          
-        break
-
+      case
+        'a'    //: show/hide animation
+      :
       case
         'e'    //: show/hide equalizer
       :
-        document
-          .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal' )
-            .checked
-        =
-          ! document
-              .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal' )
-                .checked
-
-        break
-
       case
-        'i'    //: show/hide Image
+        'v'    //: show/hide Image
       :
+        const case_o
+        =
+          {
+            'd': 'dock_nav'
+          , 'p': 'settings'
+          , 'a': 'sequencer'
+          , 'e': 'equal'
+          , 'v': 'hue_img'
+          }
+        
+        let id_s
+        = '{{C_o.INPUT_ID_s}}_'
+
+        if
+        (
+          event_o.key
+          !==
+          'd'
+        )
+        {
+          id_s
+          +=
+            '{{C_o.STAT_a[0]}}_'
+        }
+
+          id_s
+          +=
+            case_o
+              [
+                event_o
+                  .key
+              ]
+
         document
-          .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img' )
+          .getElementById( id_s )
             .checked
         =
           ! document
-              .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img' )
+              .getElementById( id_s )
                 .checked
 
         break
@@ -2581,14 +2618,25 @@ const BUR_o =
           }
         )
 
-    document
-      .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_zoom_out' )
+    let input_e
+    =
+      document
+        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' )
+
+    if
+    (
+      input_e
+    )
+    {
+      input_e
         .addEventListener
         (
-          'click'
+          'change'
         , BUR_o
-            .eventSizeTiny__v
+            .eventZoom__v
         )
+    }
+
     
 
 
@@ -2745,43 +2793,17 @@ const BUR_o =
     }
 
     //=== GOTO EVENTS ===
-    for
-    (
-      node_s
-      of
-      [
-          '{{C_o.FULL_SCREEN}}',
-          '{{C_o.PAGE_TOP}}',
-          '{{C_o.BURST_EQUAL}}'
-      ]
-    )
-    {
-      DOM_o
-        .beforeNode__e
-        (
-          document
-            .getElementById( `{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_dock` )
-            ,
-          `goto_${node_s}`
-      )
-    }
-
     const fullscreen_e =
       document
-        .getElementById( `goto_${node_s}` )
-  
-    if
-    (
-      fullscreen_e
-    )
-    {
-      FUL_o
-        .listener__v()
-    }
+        .getElementById( 'goto_{{C_o.FULL_SCREEN}}' )
+
+    fullscreen_e
+    &&
+    FUL_o
+      .listener__v()
 
     BUR_o
      .zoomable__v()
-   
   }
 
 
@@ -2789,19 +2811,6 @@ const BUR_o =
   zoomable__v
   ()
   {
-    //-- for
-    //-- (
-    //--   let zoomable__e
-    //--   of
-    //--   Array
-    //--     .from
-    //--     (
-    //--       document
-    //--         .querySelectorAll( `[data-fullsize_b]` )
-    //--     )
-    //-- )
-    //-- {
-    //--  zoomable__e
     document
       .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
         .addEventListener
@@ -2810,7 +2819,25 @@ const BUR_o =
         , BUR_o
             .eventSizeFull__v
         )
-    //-- }
+  }
+
+
+  ,
+  eventZoom__v
+  ()
+  {
+    const method_s
+    =
+      document
+        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
+          .checked
+      ?
+        'Tiny'
+      :
+        'Full'
+
+    BUR_o
+      [ `eventSize${method_s}__v` ]()
   }
 
 
@@ -2866,6 +2893,12 @@ const BUR_o =
         '--{{C_o.STAT_a[0]}}_zoom_out_s'
       , 'flex'
       )
+
+    document
+      .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
+        .checked
+    =
+      false      //: show toolset to zoom-in || out
   }
 
 

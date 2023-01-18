@@ -17,7 +17,7 @@
     `article`,
   ],
 
-  script_a:
+  script_a:      //!!! no backtick !!! //
   [
     //:TEST 'idecompress.min.js',
     'Idb.min.js',
