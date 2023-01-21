@@ -1,6 +1,6 @@
 context( stack, new )
 <div[id$=_dock]>
-          z-index: 21;
+          z-index: 101;
           /*display: flex;*/
           flex-direction: column;
           position: fixed;
@@ -21,7 +21,7 @@ context( block, settings )
     <div>
           display: flex;
           flex-direction: column;
-          padding: {{S_o.PAD_2}};
+          padding: {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_2}};
           background: {{S_o.lighter}};
           border-radius: 4px;
           box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
@@ -39,18 +39,10 @@ context( block, settings )
       <label:hover>
               filter: brightness( {{S_o.brightness_hi2}} );
       </label>
-      <label:nth-of-type(1)>
-              position: relative;
-              top: -{{S_o.PAD_4}};
-              text-align: left;
-              font-size: 80%;
-              border: none;
-              opacity: .5;
-      </label>
       <input[type=range]>
               align-self: center;
               position: relative;
-              top: -{{S_o.PAD_4}};
+              /*top: -{{S_o.PAD_4}};*/
               width: 200px;
               background: transparent;
               cursor: pointer;

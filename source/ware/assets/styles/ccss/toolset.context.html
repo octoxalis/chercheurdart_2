@@ -4,8 +4,8 @@ context( stack, new )
           align-items: center;
           justify-content: right;
           position: absolute;
-          top: -{{S_o.NAV_HEIGHT_s}};      /* outside to be really at top */
-          left: 2rem;                      /* keep space for close button */
+          top: 0;
+          left: 0;
           width: fit-content;
   <label>
   context( block, top_button )
@@ -20,8 +20,13 @@ context( stack, new )
   <input>
           display: none;
   </input>
-  <label:not(:nth-of-type( 1 ))>
-          transform: translateX( -100% );
+  <label:nth-of-type( 1 )>           /* ZOOM_OUT_s */
+  context( copy, next )
+  </label>
+  <label:nth-of-type( 2 )>           /* ZOOM_IN_s */
+          position: fixed;
+          top: {{S_o.NAV_HEIGHT_s}};
+          left: calc( 50vw - 1rem );       /* 2rem / 2 */
   </label>
 </nav>
 

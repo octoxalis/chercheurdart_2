@@ -45,13 +45,10 @@ const LOC_o =
     (
       query_s
       ===
-     '{{C_o.LOC_IMG_s}}'
+     '{{C_o.LOC_SRC_s}}'
     )
     {
-      return (
-        param_o
-          //--.get( query_s )
-      )
+      return param_o
     }
     //-->
     if
@@ -63,7 +60,8 @@ const LOC_o =
     {
       const key_s    //: for readibility
       =
-        search_s
+        param_o
+          .get( '{{C_o.LOC_KEY_s}}' )
   
       const value_s    //; JSON entry
       =
@@ -80,16 +78,6 @@ const LOC_o =
           )
   
       return value_o
-      //?? return (
-      //??   query_s
-      //??   ===
-      //??   '{{C_o.LOC_JSON_s}}'
-      //??   ?
-      //??     value_o         //: Idb JSON object
-      //??   :
-      //??     value_o
-      //??       [ key_s ]     //: Idb JSON object property
-      //?? )
     }
     //-->
     LOC_o

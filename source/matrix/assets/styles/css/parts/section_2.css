@@ -1,5 +1,5 @@
-:root {
-  --{{C_o.SECTION_a[2]}}_zoom_out_s: none;
+section#{{C_o.SECTION_a[2]}} > input {
+  display: none;
 }
 section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] {
   width: 2rem;
@@ -14,36 +14,32 @@ section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}
   justify-content: center;
   z-index: 20;
   position: sticky;
-  top: 2rem;
-  left: calc( 100vw - 3rem );
+  top: 4rem;
+  left: 1rem;
 }
 section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] > span {
   width: 50%;
 }
-section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] + input {
-  display: none;
-}
 section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll]:hover {
-  background: {{S_o.shadow_ne}};
-}
-section#{{C_o.SECTION_a[2]}} > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out {
-  z-index: 101;
-  display: var(--{{C_o.SECTION_a[2]}}_zoom_out_s);
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  border: 1px solid {{S_o.nav_dot_set_4}};
-  border-radius: 8px;
-  background: transparent;
-  position: sticky;
-  top: 2rem;
-  left: calc( 50vw - 1rem );
-}
-section#{{C_o.SECTION_a[2]}} > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out:hover {
-  cursor: zoom-out;
   background: {{S_o.shadow_ne}};
 }
 body:has( section#{{C_o.SECTION_a[2]}} ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;
+}
+section#{{C_o.SECTION_a[2]}}:has( figure.selected ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
+  display: flex;
+  left: 2rem;
+}
+section#{{C_o.SECTION_a[2]}}:has( figure.selected ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:not( :nth-of-type( 4 ) ) {
+  display: none;
+}
+section#{{C_o.SECTION_a[2]}}:has( img.fullsize ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
+  display: flex;
+  left: 2rem;
+}
+section#{{C_o.SECTION_a[2]}}:has( img.fullsize ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:nth-of-type( 1 ), section#{{C_o.SECTION_a[2]}}:has( img.fullsize ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:nth-of-type( 4 ) {
+  display: block;
+}
+section#{{C_o.SECTION_a[2]}}:has( img.fullsize ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:nth-of-type( 3 ) {
+  display: none;
 }

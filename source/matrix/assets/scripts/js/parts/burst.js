@@ -18,6 +18,7 @@ const BUR_o =
   , status_o: null
   , equal_a: null
   , atEqual_o: null
+  , idb_o: null
   , trace_o: {}
 
   , hue_o:
@@ -490,10 +491,8 @@ const BUR_o =
 
 
   ,
-  get_img__v
-  (
-    source_s
-  )
+  async get_img__v
+  ()
   {
     const canvas_e =
       document
@@ -525,57 +524,6 @@ const BUR_o =
       *
       .5
 
-    let url_s
-
-    if
-    (
-      LOC_o
-        .search_s
-      &&
-      LOC_o
-        .search_s
-          .match( /\/[^\/]+\/[^\/]+\/[^\/]+\// )    //: work_s ID
-    )
-    {
-      BUR_o
-        .work_s
-      =
-        source_s
-          .split
-          (
-            /\/[^\/]+\/[^\/]+\/[^\/]+\//
-          )
-            [0]
-
-      url_s
-      =
-        `/{{C_o.IMG_DIR_s}}${LOC_o.search_s}.jpeg`  //: begining slash for site relative url    }
-    }
-    else
-    {
-      if
-      (
-        BUR_o
-          .source_s
-      )
-      {
-        BUR_o
-          .work_s
-        =
-        url_s
-        =
-          BUR_o
-            .source_s
-      }
-      else
-      {
-        url_s
-        =
-          LOC_o
-            .search_s
-      }
-    }
-
     BUR_o
       .worker_o           //! using port postMessage directly
         .port_o           //! to avoid error:
@@ -586,7 +534,9 @@ const BUR_o =
             , stat_s: '{{C_o.STAT_a[0]}}'
             , rect_s: `${centerX} ${centerY} ${BUR_o.imgWidth_n} ${BUR_o.imgHeight_n}`
             , scale_n: 1
-            , url_s: url_s
+            , url_s:
+                BUR_o
+                  .src_s
             , canvas_e: offCanvas_e
             , storeBitmap_b: false
             , pixel_n:  window.devicePixelRatio    //????
@@ -3072,94 +3022,35 @@ const BUR_o =
 
 
   ,
-  async source__v
+  async src__v
   ()
   {
-    let src_s
-    let width_s
-    let height_s
-
-    const param_o
+    const store_o
     =
-      await
-      LOC_o
-        .search__( '{{C_o.LOC_IMG_s}}' )
-
-    if
-    (
-      param_o
-    )
-    {
-      src_s
-      =
-        param_o
-          .get( 's' )
-  
-      width_s
-      =
-        param_o
-          .get( 'w' )
-  
-      height_s
-      =
-        param_o
-          .get( 'h' )
-    }
-    else
-    {
-      const value_o =
-        await
-        LOC_o
-          .search__( '{{C_o.LOC_JSON_s}}' )
-  
-      if
-      (
-       value_o    //: import image
-      )
-      {
-        width_s
-        =
-          value_o
-            .width_s
-  
-        height_s
-        =
-          value_o
-            .height_s
-  
-        const title_e
-        =
-          document
-            .querySelector( `h1+p` )
-  
-        if
+      JSON
+        .parse
         (
-          title_e
+          sessionStorage
+            .getItem( 'burst' )
         )
-        {
-          title_e
-            .innerHTML
-          =
-          value_o
-            .id_s
-        }
-      }
-    }
 
     BUR_o
-      .source_s
+      .src_s
     =
-      src_s
+      store_o
+        .src_s
 
     BUR_o
       .imgWidth_n
     =
-      +width_s    //: Number cast
+      store_o
+        .width_s
 
     BUR_o
       .imgHeight_n
     =
-      +height_s    //: Number cast
+      store_o
+        .height_s
   }
 
 
@@ -3168,10 +3059,9 @@ const BUR_o =
   async init__v
   ()
   {
-    
     await
     BUR_o
-      .source__v()
+      .src__v()
 
     BUR_o
       .screen__v()
@@ -3208,7 +3098,7 @@ const BUR_o =
           , scale_n: BUR_o
                        .scale_o
                          .hue_n
-          , burst_b: false    //:  don't draw: will be done just after
+          , burst_b: false    //: don't draw: will be done just after
           }
         )
 
@@ -3232,25 +3122,8 @@ const BUR_o =
     BUR_o
      .listener__v()
 
-    let source_s
-    =
-      await
-      LOC_o
-        .search__( '{{C_o.LOC_SEARCH_s}}' )
-
-    if
-    (
-      ! source_s
-    )
-    {
-      source_s
-      =
-        BUR_o
-          .source_s     //: set by source__v
-    }
-
     BUR_o
-      .get_img__v( source_s )
+      .get_img__v()
 
     BUR_o
       .scale__v()

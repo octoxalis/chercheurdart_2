@@ -26,11 +26,11 @@
   script_a:
   [
     'Idb.min.js',
-    'location.min.js',
     'dom.min.js',
     'drag.min.js',
     'dialog_alert.min.js',
   ],
+  
   css_a:
   [
     'dialog_alert.min.css',

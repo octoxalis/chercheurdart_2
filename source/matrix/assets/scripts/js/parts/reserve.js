@@ -6,8 +6,8 @@ var RES_o
   href_s:     //: selected img source
     ''
 
-, full_e:
-    null
+//?? , full_e:
+//??     null
 
 , eventKey_a:
   [
@@ -44,37 +44,11 @@ var RES_o
 
 
 
-, async expo__v    //: add PROTOCOLE_RESERVE_s
+, async expo__v    //: add PRO_RESERVE_s
   (
     event_o
   )
   {
-  /*
-    const figure_e
-    =
-      document
-        .getElementById
-        (
-          location
-            .hash
-              .substring( 1 )       //: skip # = figure:target
-        )
-        
-    const id_s
-    =
-      figure_e
-        .id
-  
-    const caption_e =    //: galery node
-      document
-        .querySelector
-        (
-          `#{{C_o.GALLERY_ID_s}}`
-          + id_s
-              .substring( 2 )    //: skip leading ASIDE_GRAY_ID_s or ASIDE_COLOR_ID_s
-          + ` figcaption`
-        )
-    */
     const img_e
     =
       document
@@ -111,27 +85,41 @@ var RES_o
             .length
         )
 
-    LOC_o
+    const key_s
+    =
+      '{{C_o.PRO_RESERVE_s}}'
+      +
+      DATE_o
+        .dataTimeNumeric__s()
+
+    IDB_o
       .idb_o
         .set__v
       (
-        '{{C_o.PROTOCOLE_RESERVE_s}}'
-        +
-        id_s
+        key_s
       , JSON
           .stringify
           (
             {
-              id_s: id_s
-            , order_n: //-- EXI_o
-                       //--   .order__n()
-                       0
-            , display_b: true
-            , caption_s: caption_s
-            , width_s: img_e
-                         .naturalWidth
-            , height_s: img_e
-                          .naturalHeight
+              id_s:    //: AC1383
+                id_s
+            , order_n:
+                //-- EXI_o
+                //--   .order__n()
+                0
+            , display_b:
+                true
+            , caption_s: 
+                caption_s
+            , width_s: 
+                img_e
+                  .naturalWidth
+            , height_s:
+                img_e
+                  .naturalHeight
+            , src_s:
+                img_e
+                  .src
             }
           )
       )
@@ -164,13 +152,26 @@ var RES_o
       document
         .getElementById( 'img_reserve_img' )
 
+    sessionStorage
+      .setItem
+      (
+        'burst'
+      ,  JSON
+           .stringify
+           (
+              {
+                origin_s: 'reserve'
+              , src_s:    img_e.src
+              , width_s:  +img_e.naturalWidth     //: Number cast
+              , height_s: +img_e.naturalHeight    //: Number cast
+              }
+           )
+      )
+
     location
       .href
     =
       `burst.html`
-      + `?{{C_o.LOC_IMG_s}}=${img_e.src}`
-      + `&{{C_o.LOC_IMG_WIDTH_s}}=${img_e.naturalWidth}`
-      + `&{{C_o.LOC_IMG_HEIGHT_s}}=${img_e.naturalHeight}`
   }
 
 
@@ -321,6 +322,15 @@ var RES_o
               event_o
             )
       )
+
+    const fullscreen_e =
+      document
+        .getElementById( 'goto_{{C_o.FULL_SCREEN}}' )
+
+    fullscreen_e
+    &&
+    FUL_o
+      .listener__v()
   }
 
 

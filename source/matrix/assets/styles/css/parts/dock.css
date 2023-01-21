@@ -1,5 +1,5 @@
 div[id$=_dock] {
-  z-index: 21;
+  z-index: 101;
   flex-direction: column;
   position: fixed;
   top: 0;
@@ -14,7 +14,7 @@ div[id$=_dock] > input, div[id$=_dock] > input + div {
 div[id$=_dock] > input:checked + div {
   display: flex;
   flex-direction: column;
-  padding: {{S_o.PAD_2}};
+  padding: {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_2}};
   background: {{S_o.lighter}};
   border-radius: 4px;
   box-shadow: 0 0 0 1000vmax hsla( 190 28% 25.5% /.75);
@@ -33,18 +33,9 @@ div[id$=_dock] > input:checked + div > label {
 div[id$=_dock] > input:checked + div > label:hover {
   filter: brightness( {{S_o.brightness_hi2}} );
 }
-div[id$=_dock] > input:checked + div > label:nth-of-type(1) {
-  position: relative;
-  top: -{{S_o.PAD_4}};
-  text-align: left;
-  font-size: 80%;
-  border: none;
-  opacity: .5;
-}
 div[id$=_dock] > input:checked + div > input[type=range] {
   align-self: center;
   position: relative;
-  top: -{{S_o.PAD_4}};
   width: 200px;
   background: transparent;
   cursor: pointer;

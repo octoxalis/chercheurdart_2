@@ -36,7 +36,7 @@ const EXP_o
       []    //: array to reorder keys according to their order_n
   
     await
-    LOC_o
+    IDB_o
       .idb_o
         .walk__v
         (
@@ -49,7 +49,8 @@ const EXP_o
               .push
               (
                 {
-                  key_s: key_s,
+                  key_s:
+                    key_s,
                   value_o:
                     JSON
                       .parse( value_o )
@@ -87,124 +88,39 @@ const EXP_o
 
     for
     (
-      let show_o
+      let collect_o
       of
-      await EXP_o
-              .collect__a()
+      await
+      EXP_o
+        .collect__a()
     )
     {
       const value_o
       =
-        show_o
+        collect_o
           .value_o
 
-      let caption_s
-          =
+      const caption_s
+      =
+        value_o
+          .caption_s
+            .startsWith( '<{{C_o.TABLE_TAG_s}} data-ins' )
+        ?
           value_o
             .caption_s
-
-      let src_s
-      let key_s
-
-      //-- if
-      //-- (
-      //--   value_o
-      //--     .src_s      //: data:image base64
-      //-- )
-      //-- {
-      //-- }
-      //-- else            //: img.src
-      //-- {
-      //-- }
-
-      switch
-      (
-        true
-      )
-      {
-        case
-          show_o
-            .key_s
-              .startsWith( '{{C_o.PROTOCOLE_SITE_s}}'  )
-        :
-          key_s
-          =
-            show_o
-              .key_s
-                .substring
-                (
-                  '{{C_o.PROTOCOLE_SITE_s}}'
-                    .length
-                )
-
-          src_s
-          =
-            `{{C_o.MEDIA_DIR_s}}${key_s}`
-
-          break
-      
-        case
-          show_o
-            .key_s
-              .startsWith( '{{C_o.PROTOCOLE_RESERVE_s}}'  )
-        :
-          key_s
-          =
-            show_o
-              .key_s
-                .substring
-                (
-                  '{{C_o.PROTOCOLE_RESERVE_s}}'
-                    .length
-                )
-
-          src_s
-          =
-            `{{C_o.RESERVE_DIR_s}}${key_s}`
-
-          break
-      
-        case
-          show_o
-            .key_s
-              .startsWith( '{{C_o.PROTOCOLE_FILE_s}}'  )
-        :
-          src_s
-          =
-            value_o
-              .src_s
-          
-          if
-          (
-            ! value_o
-                .caption_b
-          )
-          {
-            caption_s
-            =
-              `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
-              + `<{{C_o.ROW_TAG_s}} data-add=1>{{C_o.NAV_LEGEND_o.expo_added.legend_s}}</{{C_o.ROW_TAG_s}}>`
-              + `<{{C_o.ROW_TAG_s}}>`
-              +  value_o
-                   .id_s
-              + `</{{C_o.ROW_TAG_s}}>`
-              + `</{{C_o.TABLE_TAG_s}}>`
-          }
-
-          break
-
-        default
-        :
-          break
-      }
+       :
+          `<{{C_o.TABLE_TAG_s}} data-ins={{C_o.INS_IMG_s}}>`
+          + `<{{C_o.ROW_TAG_s}} data-add=1>{{C_o.NAV_LEGEND_o.expo_added.legend_s}}</{{C_o.ROW_TAG_s}}>`
+          + `<{{C_o.ROW_TAG_s}}>`
+          +  value_o
+               .id_s
+          + `</{{C_o.ROW_TAG_s}}>`
+          + `</{{C_o.TABLE_TAG_s}}>`
 
       show_s
       +=
-        `<figure data-id="{{C_o.EXPO_ID_s}}${value_o.id_s}" data-display_b=${value_o.display_b} data-key_s="${show_o.key_s}">`
-        + `<img src="${src_s}" width="${value_o.width_s}" height="${value_o.height_s}" loading="lazy" data-fullsize_b=true>`
-        //-- + ` data-offx=0  data-offy=0>`
-        //?? + `<a href="#${value_o.id_s}">`
-        //?? + `</a>`
+        `<figure data-id="{{C_o.EXPO_ID_s}}${value_o.id_s}" data-display_b=${value_o.display_b} data-key_s="${collect_o.key_s}">`
+        + `<img src="${value_o.src_s}" width="${value_o.width_s}" height="${value_o.height_s}" loading="lazy" data-fullsize_b=true>`
         + `<figcaption data-add>`
         + caption_s
         + `</figcaption>`
@@ -281,7 +197,7 @@ const EXP_o
   {
     for
     (
-      let figure_e
+      let caption_e
       of
       Array
         .from
@@ -291,7 +207,7 @@ const EXP_o
         )
     )
     {
-      figure_e
+      caption_e
         .addEventListener
         (
           'click',
@@ -327,10 +243,51 @@ const EXP_o
         .target
           .closest( 'figure' )
 
-    selected_e
-    &&
-    selected_e
-      .classList.toggle( '{{C_o.SELECTED_CLASS_s}}' )
+    if
+    (
+      selected_e
+    )
+    {
+      selected_e
+        .classList
+          .toggle( '{{C_o.SELECTED_CLASS_s}}' )
+    }
+  }
+
+
+
+  ,
+  selectAll__v
+  (
+    event_o
+  )
+  {
+    let method_s
+    =
+      event_o
+        .target
+          .checked
+      ?
+        'remove'
+      :
+        'add'
+ 
+    for
+    (
+      let figure_e
+      of
+      Array
+        .from
+        (
+          document
+            .querySelectorAll( 'figure' )
+        )
+    )
+    {
+      figure_e
+        .classList
+          [ method_s ]( '{{C_o.SELECTED_CLASS_s}}' )
+    }
   }
 
 
@@ -338,7 +295,7 @@ const EXP_o
   ,
   async selected__
   (
-    add_b=true          //??? : collect add images only
+    add_b=true            //??? : collect add images only
   , selected_b=true       //: collect selected image only
   , multi_b=false         //: , if false: first selected, if true:  whole selected
   )
@@ -375,7 +332,7 @@ const EXP_o
     {
       case
         ! figure_a
-          .length
+            .length
       :
         alert_s
         =
@@ -402,7 +359,7 @@ const EXP_o
       :
         alert_s
         =
-          `Cette opération ne peut être appliquée qu'à une seule image addée`
+          `Cette opération ne peut être appliquée qu'à une seule image importée`
 
       break
       
@@ -450,46 +407,7 @@ const EXP_o
 
 
   ,
-  selectAll__v
-  (
-    event_o
-  )
-  {
-    //-- event_o
-    //--   .preventDefault()
-
-    let method_s
-    =
-      event_o
-        .target
-          .checked
-      ?
-        'remove'
-      :
-        'add'
- 
-    for
-    (
-      let figure_e
-      of
-      Array
-        .from
-        (
-          document
-            .querySelectorAll( 'figure' )
-        )
-    )
-    {
-      figure_e
-        .classList
-          [ method_s ]( '{{C_o.SELECTED_CLASS_s}}' )
-    }
-  }
-
-
-
-  ,
-  async add__v  //: add PROTOCOLE_FILE_s  >>>>>>>>>> add
+  async add__v  //: add PRO_FILE_s
   ()
   {
     //=== display file picker
@@ -513,7 +431,9 @@ const EXP_o
                     'image/jpeg':
                       [
                         '.jpg'
+                      , '.JPG'
                       , '.jpeg'
+                      , '.JPEG'
                       ]
                   }
               }
@@ -565,6 +485,8 @@ const EXP_o
 
       const key_s
       =
+        '{{C_o.PRO_FILE_s}}'
+        +
         DATE_o
           .dataTimeNumeric__s()
 
@@ -627,10 +549,10 @@ const EXP_o
       const
         {
           id_s
-        , add_n
-        , caption_s
-        , file_o
         , key_s
+        , add_n
+        , file_o
+        , caption_s
         }
         =
           add_o
@@ -670,12 +592,10 @@ const EXP_o
                   'load'
                 , () => 
                   {
-                    LOC_o
+                    IDB_o
                       .idb_o
                         .set__v
                       (
-                        '{{C_o.PROTOCOLE_FILE_s}}'
-                        +
                         key_s
                       , JSON
                           .stringify
@@ -686,7 +606,8 @@ const EXP_o
                             , order_n:
                                 EXP_o
                                   .order__n()
-                            , display_b: true
+                            , display_b:
+                                true
                             , caption_s:
                                 caption_s
                             , width_s:
@@ -799,7 +720,7 @@ const EXP_o
       selected_a
     )
     {
-      LOC_o
+      IDB_o
         .idb_o
           .delete__v
           (
@@ -846,7 +767,7 @@ const EXP_o
 
       let item_s =
         await
-        LOC_o
+        IDB_o
           .idb_o
             .get__( key_s )
 
@@ -866,7 +787,7 @@ const EXP_o
           ! item_o
               .display_b
 
-        LOC_o
+        IDB_o
           .idb_o
             .set__v
             (
@@ -965,7 +886,7 @@ const EXP_o
       const item_o
       =
         await
-        LOC_o
+        IDB_o
           .idb_o
             .get__( key_s )
 
@@ -996,7 +917,7 @@ const EXP_o
           }
         )
 
-      LOC_o
+      IDB_o
         .idb_o
           .delete__v( key_s  )
 
@@ -1010,7 +931,7 @@ const EXP_o
       idb_a
     )
     {
-      LOC_o
+      IDB_o
         .idb_o
           .set__v
           (
@@ -1121,7 +1042,7 @@ const EXP_o
                 key_s
             , value_s:
                 await
-                LOC_o
+                IDB_o
                   .idb_o
                     .get__( key_s )
             }
@@ -1269,7 +1190,7 @@ const EXP_o
       )
       {
         //?? await
-        LOC_o
+        IDB_o
           .idb_o
             .set__v
             (
@@ -1323,61 +1244,41 @@ const EXP_o
       figure_e
     )
     {
-      let key_s =
+      const img_e
+      =
         figure_e
-          .dataset
-            .key_s
-  
-      let key_a
+          .querySelector( 'img' )
 
-      if        //: work_s is an indexedDB key
-      (
-        ! key_s
-            .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
-      )
-      {
-        key_a
-        =
-          key_s
-            .split
-            (
-              /\/[^\/]+\/[^\/]+\/[^\/]+\//
-            )
-      }
-
-      if
-      (
-        key_a
-          ?.[1]
-        ===
-        'gray'
-      )
-      {
-        DIA_o
-          .open__v
-          (
-            {
-              '{{C_o.LABEL_ID_s}}': `Attention`
-            , '{{C_o.PARAGRAPH_ID_s}}': `Cette opération ne s'applique qu'aux images en couleur`
-            , option_a:
-              [
-                'accept'
-              ]
-            }        
-          )
-        
-        await
-        DIA_o
-          .confirm__b()
-
-        return
-      }
-      //-->
+      sessionStorage
+        .setItem
+        (
+          'burst'
+        ,  JSON
+             .stringify
+             (
+                {
+                  origin_s: 'expo'
+                , src_s:
+                    img_e
+                      .src
+                        .startsWith( 'http' )
+                    ?
+                      img_e
+                        .src
+                    :
+                      figure_e
+                        .dataset
+                          .key_s     //: avoid base64 src transfert
+                , width_s:    +img_e.naturalWidth     //: Number cast
+                , height_s:   +img_e.naturalHeight    //: Number cast
+                }
+             )
+        )
 
       location
         .href
       =
-        `burst.html?{{C_o.LOC_SEARCH_s}}=${key_s}`
+        `burst.html`
     }
   }
 
@@ -1755,7 +1656,7 @@ const EXP_o
     
         let value_s =
           await
-          LOC_o
+          IDB_o
             .idb_o
               .get__( key_s )
     
@@ -1779,7 +1680,7 @@ const EXP_o
           =
             true      //: caption edited to display
     
-          LOC_o
+          IDB_o
             .idb_o
               .set__v
               (
@@ -1834,22 +1735,25 @@ const EXP_o
         .full_e
     )
     {
-      return    //: avoid click event when mouse up
+      return
     }
     //-->
-    EXP_o
-      .full_e
+    const full_e
     =
       event_o
         .target
+
+    EXP_o
+      .full_e
+    =
+      full_e
    
     if
     (
-      EXP_o
-        .full_e
-          .parentNode
-            .dataset
-              .display_b
+      full_e
+        .parentNode
+          .dataset
+            .display_b
       ===
       'false'
     )
@@ -1857,63 +1761,20 @@ const EXP_o
       return
     }
     //-->
-    EXP_o
-      .full_e
-        .classList
-          .toggle( 'fullsize' )
+    full_e
+      .classList
+        .toggle( 'fullsize' )
 
-    DRAG_o
-      .init__v
-      (
-        EXP_o
-          .full_e
-      )
-
-    DRAG_o
-      .enable__v()
-
-    DOM_o
-      .rootVar__v
-      (
-        '--{{C_o.SECTION_a[2]}}_zoom_out_s'
-      , 'flex'
-      )
-  }
-
-
-  ,
-  eventSizeTiny__v
-  ()
-  {
-    EXP_o
-      .full_e
-        .classList
-          .toggle( 'fullsize' )
-
-    DRAG_o
-      .disable__v()
-
-    DOM_o
-      .rootVar__v
-      (
-        '--{{C_o.SECTION_a[2]}}_zoom_out_s'
-      , 'none'
-      )
-
-    //: reinsert img_e to import initial place
-    EXP_o
-      .full_e
-        .setAttribute
-        (
-          'style'
-        , ''       //: remove drag transform
-        )
-        
-    EXP_o
-      .full_e
+    document
+      .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' )
+        .checked
     =
-      null
+      true
+
+    IND_o
+      .zoom__v()
   }
+
 
 
   ,
@@ -1927,15 +1788,6 @@ const EXP_o
         '{{C_o.EXPO_WRAP_n}}'
       )
 
-    document
-      .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out' )
-        .addEventListener
-        (
-          'click'
-        , EXP_o
-            .eventSizeTiny__v
-        )
-    
     document
       .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll' )
         .addEventListener
@@ -1969,7 +1821,6 @@ const EXP_o
       , 'caption'
       , 'export'
       , 'import'
-      , 'burst'
       ]
     )
     {
@@ -1987,6 +1838,20 @@ const EXP_o
             [ `${id_s}__v` ]
         )
     }
+
+    const listen_e =
+      document
+        .getElementById( `{{C_o.LABEL_ID_s}}_toolset_burst` )
+        
+    listen_e
+    &&
+    listen_e
+      .addEventListener
+      (
+        'click',
+        EXP_o
+          .burst__v
+      )
 
     for
     (
@@ -2045,6 +1910,14 @@ const EXP_o
       }
     }
 
+    const fullscreen_e =
+      document
+        .getElementById( 'goto_{{C_o.FULL_SCREEN}}' )
+
+    fullscreen_e
+    &&
+    FUL_o
+      .listener__v()
   }
 
 

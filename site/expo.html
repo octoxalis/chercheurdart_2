@@ -15,6 +15,7 @@
 <link rel="canonical" href="https://chercheurdart-2.netlify.app/expo.html" />
 
 <link rel="stylesheet" href="assets/styles/css/index.min.css" />
+<link rel="stylesheet" href="assets/styles/css/dock.min.css" />
 <link rel="stylesheet" href="assets/styles/css/dialog_alert.min.css" />
   
 </head>
@@ -35,12 +36,20 @@
 
 <section id="expo">
 
-  <label id="LA_expo_zoom_out">&#8854;</label>
-  <!--<input id="IN_expo_zoom_out" type="checkbox">-->
+  <input id="IN_toolset" type="checkbox" checked>
+  <div id="DI_toolset">
+<nav id="NA_toolset_zoom">
+  <input id="IN_toolset_zoom" type=checkbox>
+  <label for="IN_toolset_zoom">&#8854;</label>
+  <label for="IN_toolset_zoom">&#8853;</label>
+  <label id="LA_toolset_expo">&#8862;</label>
+  <label id="LA_toolset_burst">&#10035;</label>
+</nav>
+    
+  </div>
 
   <label for="IN_expo_selectAll" title="Tout sélectionner">
-    <span>[</span>
-    <span>]</span>
+    <span>[</span><span>]</span>
   </label>
   <input id="IN_expo_selectAll" type="checkbox" checked />
 
@@ -48,24 +57,17 @@
   </div>
 
   <div id="DI_expo_dock">
-    <nav>
-      <label for="DI_expo_dock_nav" data-legend="deplier">
-          <span data-role="open">&nbsp;</span>
-      </label>
-    </nav>
-    <input id="DI_expo_dock_nav" type="checkbox">
+    <input id=IN_dock_nav type=checkbox>
     <div>
-      <label for="IN_masonry_wrap_n">affichage</label>
-      <input id="IN_masonry_wrap_n" type="range" min="1" max="10" step="1" value="5" data-tip="5"/>
+      <input id="IN_masonry_wrap_n" data-label="affichage" type="range" min="1" max="10" step="1" value="5" data-tip="5"/>
   
-      <label for="DI_expo_dock_nav" id="LA_expo_add" data-key=n>ajouter</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_remove" data-key=x>retirer</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_hide" data-key=m>masquer</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_group" data-key=g>regrouper</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_work_caption" data-key=c>cartel</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_export" data-key=^s>exporter</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_import" data-key=^o>importer</label>
-      <label for="DI_expo_dock_nav" id="LA_expo_burst" data-key=b>répartition</label>
+      <label for="IN_dock_nav" id="LA_expo_add" data-key=n>ajouter</label>
+      <label for="IN_dock_nav" id="LA_expo_remove" data-key=x>retirer</label>
+      <label for="IN_dock_nav" id="LA_expo_hide" data-key=m>masquer</label>
+      <label for="IN_dock_nav" id="LA_expo_group" data-key=g>regrouper</label>
+      <label for="IN_dock_nav" id="LA_expo_caption" data-key=c>cartel</label>
+      <label for="IN_dock_nav" id="LA_expo_export" data-key=&#8705;s>exporter</label>
+      <label for="IN_dock_nav" id="LA_expo_import" data-key=&#8705;o>importer</label>
     </div>
 
   </div>
@@ -146,6 +148,11 @@
     </form>
   </dialog>
 
+
+
+<label id="goto_main_dock" for="IN_dock_nav">&#10097;</label>
+<label id="goto_full_screen">&#9974;</label>
+
 <label id="goto_page_top">&#8593;</label>
 <nav>
   <a href="index.html" data-legend="accueil" data-key=0>
@@ -164,9 +171,9 @@
     <!-- at end to be upper layer -->
 
 <script src="assets/scripts/js/Idb.min.js" defer></script>
-<script src="assets/scripts/js/location.min.js" defer></script>
 <script src="assets/scripts/js/dom.min.js" defer></script>
 <script src="assets/scripts/js/dialog_alert.min.js" defer></script>
+<script src="assets/scripts/js/toolset.min.js" defer></script>
 <script src="assets/scripts/js/expo.min.js" defer></script>
 <script src="assets/scripts/js/index.min.js" defer></script>
 </body>

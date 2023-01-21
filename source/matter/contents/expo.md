@@ -27,13 +27,14 @@
   script_a:
   [
     'Idb.min.js',
-    'location.min.js',
     'dom.min.js',
     'dialog_alert.min.js',
+    'toolset.min.js',
     'expo.min.js',
   ],
   css_a:
   [
+    'dock.min.css',
     'dialog_alert.min.css',
   ],
 

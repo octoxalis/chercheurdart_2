@@ -21,12 +21,12 @@
   [
     //:TEST 'idecompress.min.js',
     'Idb.min.js',
-    'location.min.js',
     'dom.min.js',
   ],
 
   css_a:
   [
+    'dock.min.css',
   ],
 
   version_a:

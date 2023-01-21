@@ -5,30 +5,40 @@ const DATE_o
 {
   dataTimeNumeric__s
   (
-      name_b=true      //: for file name
+      locale_s
+    , name_b=true      //: for file name
     , iso_s=new Date().toISOString()
-    , locale_s='fr-FR'
   )
   {
     let dateTime_s
     =
-      new Intl
-          .DateTimeFormat
-          (
-            locale_s
-            , {
-                year:  'numeric'
-              , month: 'numeric'
-              , day:   'numeric'
-              , hour:  'numeric'
-              , minute: 'numeric'
-              , second: 'numeric'
-              }
-          )
-            .format
+      iso_s
+
+    if
+    (
+      locale_s
+    )
+    {
+      dateTime_s
+      =
+        new Intl
+            .DateTimeFormat
             (
-              new Date( iso_s )
+              locale_s
+              , {
+                  year:  'numeric'
+                , month: 'numeric'
+                , day:   'numeric'
+                , hour:  'numeric'
+                , minute: 'numeric'
+                , second: 'numeric'
+                }
             )
+              .format
+              (
+                new Date( iso_s )
+              )
+    }
   
     if
     (
@@ -52,6 +62,16 @@ const DATE_o
           (
             ' '
           , '_'
+          )
+          .replace
+          (
+            'T'
+          , '_'
+          )
+          .replace
+          (
+            'Z'
+          , ''
           )
     }
   

@@ -307,8 +307,56 @@ const STAT_W_o =
   ,
   */
 
+  async url__s     //: URL to fetch image
+  (
+    src_s
+  )
+  {
+    let url_s
+    =
+      src_s
 
-  async bitmap__o
+    if
+    (
+      url_s
+        .startsWith( '{{C_o.PRO_FILE_s}}'  )
+    )
+    {
+      const value_s
+      =
+        await
+        STAT_W_o
+          .idb_o
+            .get__( src_s )
+    
+      const value_o
+      =
+        JSON
+          .parse( value_s )
+    
+      url_s
+      =
+        value_o
+          .src_s
+    }
+    else    //: http...
+    {
+      url_s
+      =
+        url_s
+          .replace
+          (
+            '{{C_o.IMG_SCAN_DISPLAY_s}}'
+          ,  '{{C_o.IMG_SCAN_FORMAT_s}}'
+          )
+    }
+
+    return url_s
+  }
+
+
+
+, async bitmap__o
   (
     payload_o
   )
@@ -322,7 +370,9 @@ const STAT_W_o =
         scale_n,
         url_s,
         storeBitmap_b
-      } = payload_o
+      }
+      =
+        payload_o
   
       if
       (
@@ -348,28 +398,33 @@ const STAT_W_o =
         rect_s
           .split( ' ' )
 
-      if        //: import key_s
+      if        //: imported src_s
       (
+        //-- url_s
+        //--   .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
         url_s
-          .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
+          .startsWith( '{{C_o.PRO_FILE_s}}' )
       )
       {
         url_s
         =
-        STAT_W_o
-          .url_o
-            [ url_s ]
+          STAT_W_o
+            .url_o
+              [ url_s ]
       }
     
       const response_o =
-        await fetch( url_s )
+        await
+        fetch( url_s )
     
       const blob_o =
-        await response_o
+        await
+        response_o
           .blob()
     
       const bitmap_o =
-        await createImageBitmap
+        await
+        createImageBitmap
         (
           blob_o,
           x_n - ( width_n / scale_n * .5 ),    //: center point
@@ -597,99 +652,30 @@ const STAT_W_o =
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //;console.time( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
-      const key_s
+      const url_s
       =
-        payload_o
-          .key_s
+        await
+        STAT_W_o
+          .url__s
+          (
+            payload_o
+              .src_s
+          )
 
-      let url_s
-      
-      //-- if        //: key_s is an indexedDB key
-      //-- (
-      //--   key_s
-      //--     .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
-      //-- )
-      //-- {
-      //-- }
-      //-- else
-      //-- {
-      //--   url_s =
-      //--     `/{{C_o.IMG_DIR_s}}${payload_o.key_s}.jpeg`
-      //-- }
-
-      switch
+      if
       (
-        true
+        payload_o
+          .src_s
+            .startsWith( '{{C_o.PRO_FILE_s}}' )
       )
       {
-        case
-          key_s
-            .match( /\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}/ )    //: dd-mm-yyyy_hh-mm-ss
-        :
-          STAT_W_o
-            .idb_o
-          =
-            new Idb
-            (
-              '{{A_o.ID_s}}_idb'
-            , '{{A_o.ID_s}}_store'
-            )
-  
-          const value_s
-          =
-            await
-            STAT_W_o
-              .idb_o
-                .get__( key_s )
-  
-          const value_o
-          =
-            JSON
-              .parse( value_s )
-  
+        STAT_W_o
+          .url_o
+            [ payload_o.src_s ]
+        =
           url_s
-          =
-            value_o
-              .src_s
-  
-          STAT_W_o
-            .url_o
-              [ key_s ]
-          =
-            url_s
-
-          break
-
-        case
-          key_s
-            .endsWith( 'full/max/0/color' )
-        :
-          url_s
-          =
-            `/{{C_o.IMG_DIR_s}}${payload_o.key_s}.jpeg`
-          break
-          
-        case
-          key_s
-            .startsWith( 'https' )
-        :
-          url_s
-          =
-            key_s
-            
-          break
-          
-        default
-        :
-          break
-          
       }
 
-
-
-
-
-      
       const response_o =
         await fetch( url_s )
       
@@ -1135,7 +1121,8 @@ const STAT_W_o =
     try
     {
       const bitmap_o =
-        await STAT_W_o
+        await
+        STAT_W_o
           .bitmap__o( payload_o )
 
       if
@@ -2433,46 +2420,37 @@ const STAT_W_o =
            ++atScan_n
         )
         {
-          //--if
-          //--(
-          //--  oper_a
-          //--    .length
-          //--  >
-          //--  1
-          //--)
-          //--{
-            if
-            (
-              op0imgData_o    //: operation
-              &&
-              op1imgData_o
-            )
-            {
-              op0opac_n =
-                op0imgData_o
-                  [
-                    atScan_a
-                      [ atScan_n ]
-                      +
-                      3
-                  ]
+          if
+          (
+            op0imgData_o    //: operation
+            &&
+            op1imgData_o
+          )
+          {
+            op0opac_n =
+              op0imgData_o
+                [
+                  atScan_a
+                    [ atScan_n ]
+                    +
+                    3
+                ]
   
-              op1opac_n =
-                op1imgData_o
-                  [
-                    atScan_a
-                      [ atScan_n ]
-                      +
-                      3
-                  ]
+            op1opac_n =
+              op1imgData_o
+                [
+                  atScan_a
+                    [ atScan_n ]
+                    +
+                    3
+                ]
 
-              diff_n =
-                ~~(
-                  op0opac_n
-                  -
-                  op1opac_n
-                )
-            //--}
+            diff_n =
+              ~~(
+                op0opac_n
+                -
+                op1opac_n
+              )
 
               switch
               (
@@ -2515,7 +2493,6 @@ const STAT_W_o =
                   break
               }
             }
-          //--}
       
           if
           (
@@ -2769,11 +2746,11 @@ const STAT_W_o =
 
     if
     (
-      //-- !burst_b
+      //--> !burst_b
       burst_b
     )
     {
-      //- return
+      //--> return
       STAT_W_o
         .stat_o
           [ `${stat_s}_o` ]
@@ -2781,13 +2758,6 @@ const STAT_W_o =
               .burst_c
                 .draw__v()
     }
-
-    //............... STAT_W_o
-    //...............   .stat_o
-    //...............     [ `${stat_s}_o` ]
-    //...............       [ `${hsl_s}_o` ]
-    //...............         .burst_c
-    //............... &&
   }
   ,
 
@@ -3434,4 +3404,20 @@ onconnect =
       .onmessageerror =
         STAT_W_o
           .handleError__v
+
+  if
+  (
+    ! STAT_W_o
+        .idb_o
+  )
+  {
+    STAT_W_o
+      .idb_o
+    =
+      new Idb
+      (
+        '{{A_o.ID_s}}_idb'
+      , '{{A_o.ID_s}}_store'
+      )
+  }
 }

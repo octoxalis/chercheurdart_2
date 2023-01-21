@@ -1,13 +1,20 @@
 <section#reserve>
-
-  <div#{{C_o.DIV_ID_s}}_reserve_list>
-        padding-top: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_4}} );
+        padding: {{S_o.NAV_HEIGHT_s}} {{S_o.PAD_4}};
         max-width: 100vw;
+  <h2>
+          --font_max: 32px;
+          --font_scale: 1.8vw;
+
+          margin-top: 2rem;
+          font-weight: 600;
+          text-align: start;
+  </h2>
+  <div#{{C_o.DIV_ID_s}}_reserve_list>
     <ul>
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            margin: 0 2rem;    /* keep space for toolset buttons */
+            margin: 1rem;    /* keep space for toolset buttons */
             border: none;
       <li>
               width: 31%;
@@ -65,16 +72,19 @@
     </__star__>
     <nav#{{C_o.NAV_ID_s}}_toolset_zoom>
             display: flex;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
     </nav>
     <img>
             width: 100%;
+            cursor: zoom-in;
     </img>
     <label>
     context( block, top_button )
             z-index: 101;
             position: absolute;
             top: -{{S_o.NAV_HEIGHT_s}};
-            /*transform: translateY( -100% );*/  /* outside */
             background: {{S_o.shadow_full}};
     </label>
     <label:hover>
@@ -111,14 +121,6 @@
 
 </section>
 
-context( stack, new )
-<body:has( #reserve )>
-  <nav>
-    <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}}>
-            visibility: hidden;
-    </label>
-  </nav>
-</body>
 
 context( stack, new )
 <body:has( #reserve )>
@@ -127,4 +129,7 @@ context( stack, new )
             visibility: hidden;
     </label>
   </nav>
+  <label#goto_{{C_o.FULL_SCREEN}}>
+          display: block;
+  </label>
 </body>

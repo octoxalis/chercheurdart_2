@@ -328,7 +328,6 @@ const STAT_o =
   init__v    //!!! 1. from index.js
   (
     stat_s
-  , key_s
   )
   {
     STAT_o
@@ -349,14 +348,25 @@ const STAT_o =
           .includes( stat_s )
     )
     {
+      const store_o
+      =
+        JSON
+          .parse
+          (
+            sessionStorage
+              .getItem( stat_s )
+          )
+
       STAT_o
         .worker_o
           .post__v
           (
             { 
-              task_s: 'GET_scan',
-              stat_s: '{{C_o.STAT_s}}',
-              key_s: key_s,
+              task_s: 'GET_scan'
+            , stat_s: '{{C_o.STAT_s}}'
+            , src_s:
+                store_o
+                  .src_s
             }
           )
     }

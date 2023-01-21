@@ -296,7 +296,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div[id^={{C_o.DIV_ID_s}}_{{C_
   align-items: center;
   position: relative;
   left: -1.5rem;
-  margin: {{S_o.PAD_1}} 0;
+  margin: {{S_o.PAD_2}} 0;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_] > input[type=range] {
   width: 200px;
@@ -689,8 +689,8 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section
   transition: all .5s ease;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > .fullsize {
-  position: absolute;
   z-index: 100;
+  position: absolute;
   cursor: move;
   box-shadow: 0 0 0 1000vmax {{S_o.shadow_full}};
   transition: all .5s ease;
@@ -787,9 +787,8 @@ dialog#dialog_{{C_o.STAT_a[0]}}_download[open] {
   display: grid;
 }
 dialog#dialog_{{C_o.STAT_a[0]}}_download[open]::backdrop {
-  background: {{S_o.form_shadow}};
+  background: {{S_o.alert_back}};
 }
 nav#{{C_o.NAV_ID_s}}_toolset_zoom {
   display: var(--{{C_o.STAT_a[0]}}_zoom_out_s);
-  top: 0;
 }

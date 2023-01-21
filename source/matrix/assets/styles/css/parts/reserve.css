@@ -1,12 +1,19 @@
-body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list {
-  padding-top: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_4}} );
+body > section#reserve {
+  padding: {{S_o.NAV_HEIGHT_s}} {{S_o.PAD_4}};
   max-width: 100vw;
+}
+body > section#reserve > h2 {
+  --font_max: 32px;
+  --font_scale: 1.8vw;
+  margin-top: 2rem;
+  font-weight: 600;
+  text-align: start;
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin: 0 2rem;
+  margin: 1rem;
   border: none;
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul > li {
@@ -62,9 +69,13 @@ body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > * {
 }
 body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
   display: flex;
+  position: absolute;
+  top: -2rem;
+  left: 2rem;
 }
 body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > img {
   width: 100%;
+  cursor: zoom-in;
 }
 body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > label {
   width: 2rem;
@@ -100,6 +111,6 @@ body > section#reserve > div#{{C_o.DIV_ID_s}}_toolset:has( #{{C_o.INPUT_ID_s}}_t
 body:has( #reserve ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;
 }
-body:has( #reserve ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
-  visibility: hidden;
+body:has( #reserve ) > label#goto_{{C_o.FULL_SCREEN}} {
+  display: block;
 }

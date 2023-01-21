@@ -1,9 +1,7 @@
-<:root>
-        --{{C_o.SECTION_a[2]}}_zoom_out_s: none;
-</:root>
-
 context( stack, new )
 <section#{{C_o.SECTION_a[2]}}>
+  <input />
+          display: none;
   <label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll]>
   context( block, top_button )
           display: flex;
@@ -11,35 +9,17 @@ context( stack, new )
           justify-content: center;
           z-index: 20;
           position: sticky;
-          top: 2rem;
-          left: calc( 100vw - 3rem );
+          top: 4rem;
+          left: 1rem;
     <span>
             width: 50%;
     </span>
   </label>
-  +
-  <input />
-          display: none;
   <label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll]:hover>
           background: {{S_o.shadow_ne}};
   </label>
-  <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out>
-          z-index: 101;
-          display: var(--{{C_o.SECTION_a[2]}}_zoom_out_s);
-  context( block, top_button )
-          position: sticky;
-          top: 2rem;
-          left: calc( 50vw - 1rem );
-  </label>
-  <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[2]}}_zoom_out:hover>
-          cursor: zoom-out;
-          background: {{S_o.shadow_ne}};
-            /*filter: brightness( 2 );*/
-  </label>
-  
 </section>
 
-context( stack, new )
 <body:has( section#{{C_o.SECTION_a[2]}} )>
   <nav>
     <label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}}>
@@ -47,3 +27,33 @@ context( stack, new )
     </label>
   </nav>
 </body>
+
+<section#{{C_o.SECTION_a[2]}}:has( figure.selected )>
+  <div#{{C_o.DIV_ID_s}}_toolset>
+    <nav#{{C_o.NAV_ID_s}}_toolset_zoom>
+              display: flex;
+              left: 2rem;                      /* overide */
+      <label:not( :nth-of-type( 4 ) )>
+              display: none;   /* label(3) is expo!!! */
+      </label>
+    </nav>
+  </div>
+</section>
+
+<section#{{C_o.SECTION_a[2]}}:has( img.fullsize )>
+  <div#{{C_o.DIV_ID_s}}_toolset>
+    <nav#{{C_o.NAV_ID_s}}_toolset_zoom>
+              display: flex;
+              left: 2rem;                      /* overide */
+      <label:nth-of-type( 1 )>
+      context( copy, next)
+      </label>
+      <label:nth-of-type( 4 )>
+              display: block;
+      </label>
+      <label:nth-of-type( 3 )>
+              display: none;      /*!!! expo button */
+      </label>
+    </nav>
+  </div>
+</section>

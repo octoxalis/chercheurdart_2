@@ -910,8 +910,8 @@ context( stack, new )
               transition: all .5s ease;
         </canvas>
         <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img class='fullsize'>
-              position: absolute;
               z-index: 100;       /* cover all */
+              position: absolute;
               /*width: auto;*/
               cursor: move;
               box-shadow: 0 0 0 1000vmax {{S_o.shadow_full}};
@@ -1057,7 +1057,7 @@ context( stack, new )
         display: grid;
 </dialog>
 <dialog#dialog_{{C_o.STAT_a[0]}}_download[open]::backdrop>
-        background: {{S_o.form_shadow}};
+        background: {{S_o.alert_back}};
 </dialog>
 
 
@@ -1069,5 +1069,5 @@ context( stack, new )
 /* override toolset position */
 <nav#{{C_o.NAV_ID_s}}_toolset_zoom>
           display: var(--{{C_o.STAT_a[0]}}_zoom_out_s);
-          top: 0
+          /*top: 0*/
 </nav>

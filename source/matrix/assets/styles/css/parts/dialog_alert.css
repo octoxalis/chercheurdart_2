@@ -58,5 +58,5 @@ body > dialog[id^=dialog_main_][open] {
   display: grid;
 }
 body > dialog[id^=dialog_main_][open]::backdrop {
-  background: {{S_o.form_shadow}};
+  background: {{S_o.alert_back}};
 }

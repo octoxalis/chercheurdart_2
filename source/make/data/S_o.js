@@ -157,6 +157,9 @@ const S_o =
   S_o.form_text = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /1)`
   S_o.form_text_lo = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_lo_4} /.25)`
 
+  S_o.alert_back = `hsla( ${S_o.hue_p} ${S_o.sat_lo_2} ${S_o.lum_hi_3} /.9)`
+
+
 
 void function
 ()

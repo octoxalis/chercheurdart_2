@@ -31,7 +31,7 @@ const EXI_o
     let index_n = 0
 
     await
-    LOC_o
+    IDB_o
       .idb_o
         .walk__v
         (
@@ -94,57 +94,59 @@ const EXI_o
       img_e
         .src
 
-    src_s
+    const key_s
     =
-      src_s
-        .substring
-        (
-          '{{C_o.MEDIA_DIR_s}}'
-            .length,
-          src_s
-            .lastIndexOf( '.' )      //: extension dot
-        )
+      '{{C_o.PRO_SITE_s}}'
+      +
+      DATE_o
+        .dataTimeNumeric__s()
 
-      const id_s
-      =
-        figure_e
-          .id
+    const id_s
+    =
+      figure_e
+        .id
   
-      const caption_e =    //: galery node
-        document
-          .querySelector
-          (
-            `#{{C_o.GALLERY_ID_s}}`
-            + id_s
-                .substring( 2 )    //: skip leading ASIDE_GRAY_ID_s or ASIDE_COLOR_ID_s
-            + ` figcaption`
-          )
-
-      LOC_o
-        .idb_o
-          .set__v
+    const caption_e =    //: galery node
+      document
+        .querySelector
         (
-          '{{C_o.PROTOCOLE_SITE_s}}'
-          +
-          src_s
-        , JSON
-            .stringify
-            (
-              {
-                id_s:    //: AG1383
-                  id_s
-              , order_n: EXI_o
-                           .order__n()
-              , display_b: true
-              , caption_s: caption_e
-                             .innerHTML
-              , width_s: img_e
-                           .naturalWidth
-              , height_s: img_e
-                            .naturalHeight
-              }
-            )
+          `#{{C_o.GALLERY_ID_s}}`
+          + id_s
+              .substring( 2 )    //: skip leading ASIDE_GRAY_ID_s or ASIDE_COLOR_ID_s
+          + ` figcaption`
         )
+
+    IDB_o
+      .idb_o
+        .set__v
+      (
+        key_s
+      , JSON
+          .stringify
+          (
+            {
+              id_s:    //: AC1383
+                id_s
+            , order_n:
+                EXI_o
+                  .order__n()
+            , display_b:
+                true
+            , caption_s: 
+                caption_e
+                  .innerHTML
+            , width_s: 
+                img_e
+                  .naturalWidth
+            , height_s:
+                img_e
+                  .naturalHeight
+            , src_s:
+                img_e
+                  .src
+            }
+          )
+      )
   }
 
 

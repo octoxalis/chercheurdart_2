@@ -23,13 +23,14 @@
   script_a:
   [
     'Idb.min.js',
-    'location.min.js',
     'dom.min.js',
     'stat.min.js',
   ],
+  
   css_a:
   [
     'stat.min.css',
+    'dock.min.css',
     'stat_burst.min.css',
   ],
 

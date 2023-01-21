@@ -50,7 +50,7 @@ aside > figure:target > label:hover {
 aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
   display: flex;
   top: 0;
-  left: 0;
+  left: 2rem;
 }
 aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom > input:checked ~ label[for]:nth-of-type( 1 ) {
   background: {{S_o.highlight}};

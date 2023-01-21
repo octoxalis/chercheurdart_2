@@ -264,3 +264,17 @@ class Idb
     indexedDB.deleteDatabase( this.idb_s )
   }
 }
+
+
+
+const IDB_o
+=
+{
+  idb_o:
+    new Idb
+    (
+      '{{A_o.ID_s}}_idb'
+    , '{{A_o.ID_s}}_store'
+    )
+        
+}

@@ -173,30 +173,58 @@ const IND_o =
   {
     let hash_s
 
-    let img_e
+    let section_e
+
+    let img_e      //:::::: reserve
     =
-    document
-      .getElementById( 'img_reserve_img'  )
+      document
+        .getElementById( 'img_reserve_img'  )
 
     if
     (
-      ! img_e    //: reserve is not here
+      ! img_e
     )
     {
-      hash_s
-      =
-        location
-          .hash
-          
-      img_e
+      section_e
       =
         document
-          .getElementById
-          (
-            hash_s
-              .substring( 1 )       //: skip # = figure:target
-          ) 
-            .querySelector( 'img' )
+          .getElementById( 'expo' )
+      
+      if    //::::: expo
+      (
+        section_e
+      )
+      {
+        img_e
+        =
+          EXP_o
+            .full_e
+        
+        if
+        (
+          ! img_e
+        )
+        {
+          return    //--> TODO: alert
+        }
+      }
+      else    //::::: aside gallery
+      {
+        hash_s
+        =
+          location
+            .hash
+            
+        img_e
+        =
+          document
+            .getElementById
+            (
+              hash_s
+                .substring( 1 )       //: skip # = figure:target
+            ) 
+              .querySelector( 'img' )
+      }
     }
 
     const input_e
@@ -211,8 +239,8 @@ const IND_o =
           .checked
     )
     {
-      //== block link behaviour ===
-      if
+      
+      if    //::::: aside gallery  (block link behaviour)
       (
         hash_s
       )
@@ -240,6 +268,21 @@ const IND_o =
       DRAG_o
         .disable__v()
 
+      if       //::::: expo
+      (
+        section_e
+      )
+      {
+        img_e
+          .classList
+            .toggle( 'fullsize' )
+
+        EXP_o
+          .full_e
+        =
+          null
+      }
+
     //== restore initial  link behaviour + image position ===
       img_e
         .setAttribute
@@ -248,7 +291,7 @@ const IND_o =
         , ''       //: remove drag transform
         )
 
-      if
+      if    //::::: aside gallery
       (
         hash_s
       )
@@ -272,7 +315,7 @@ const IND_o =
 
 
 
-, async expo__v    //: add PROTOCOLE_SITE_s
+, async expo__v    //: add PRO_SITE_s
   (
     event_o
   )
@@ -301,55 +344,52 @@ const IND_o =
               .substring( 2 )    //: skip leading ASIDE_GRAY_ID_s or ASIDE_COLOR_ID_s
           + ` figcaption`
         )
-
+  
     const img_e
     =
       figure_e
         .querySelector( 'img' )
-
-    let src_s
+  
+    const key_s
     =
-      img_e
-        .src
-
-    src_s
-    =
-      src_s
-        .substring
-        (
-          '{{C_o.MEDIA_DIR_s}}'
-            .length,
-          //-- src_s
-          //--   .lastIndexOf( '.' )      //: extension dot
-        )
-
-    LOC_o
+      '{{C_o.PRO_SITE_s}}'
+      +
+      DATE_o
+        .dataTimeNumeric__s()
+  
+    IDB_o
       .idb_o
         .set__v
       (
-        '{{C_o.PROTOCOLE_SITE_s}}'
-        +
-        src_s
+        key_s
       , JSON
           .stringify
           (
             {
               id_s:    //: AC1383
                 id_s
-            , order_n: //-- EXI_o
-                       //--   .order__n()
-                       0
-            , display_b: true
-            , caption_s: caption_e
-                           .innerHTML
-            , width_s: img_e
-                         .naturalWidth
-            , height_s: img_e
-                          .naturalHeight
+            , order_n:
+                //-- EXI_o
+                //--   .order__n()
+                0
+            , display_b:
+                true
+            , caption_s: 
+                caption_e
+                  .innerHTML
+            , width_s: 
+                img_e
+                  .naturalWidth
+            , height_s:
+                img_e
+                  .naturalHeight
+            , src_s:
+                img_e
+                  .src
             }
           )
       )
-
+  
     DIA_o
       .open__v
       (
@@ -366,12 +406,11 @@ const IND_o =
     await
     DIA_o
       .confirm__b()
-
   }
 
 
 
-, burst__v
+, burst__v      //: <aside> color img call
   (
     event_o
   )
@@ -386,24 +425,34 @@ const IND_o =
               .substring( 1 )       //: skip # = figure:target
         ) 
           .querySelector( 'img' )
-
-    const src_s
-    =
-    img_e
-      .src
-        .replace
-        (
-          'avif'
-        , 'jpeg'    //: need a JPEG to scan
-        )
+  
+    sessionStorage
+      .setItem
+      (
+        'burst'
+      ,  JSON
+           .stringify
+           (
+              {
+                origin_s: 'index'
+              , src_s:
+                  img_e
+                    .src
+                      .replace
+                      (
+                        '{{C_o.IMG_SCAN_DISPLAY_s}}'
+                      ,  '{{C_o.IMG_SCAN_FORMAT_s}}'
+                      )
+              , width_s:  +img_e.naturalWidth     //: Number cast
+              , height_s: +img_e.naturalHeight    //: Number cast
+              }
+           )
+      )
 
     location
       .href
     =
       `burst.html`
-      + `?{{C_o.LOC_IMG_s}}=${src_s}`
-      + `&{{C_o.LOC_IMG_WIDTH_s}}=${img_e.naturalWidth}`
-      + `&{{C_o.LOC_IMG_HEIGHT_s}}=${img_e.naturalHeight}`
   }
 
 
@@ -515,6 +564,25 @@ const IND_o =
           .zoom__v
       )
 
+    const location_s
+    =
+      location
+        .href
+
+    const start_n
+    =
+      location_s
+        .indexOf
+        (
+          '/'
+        , 'https://'
+            .length
+          +
+          1
+        )
+        +
+        1
+
     for
     (
       let id_s    
@@ -525,6 +593,28 @@ const IND_o =
       ]
     )
     {
+      if
+      (
+        location_s
+          .includes
+          (
+            'reserve'
+          , start_n
+
+          )
+        ||
+        location_s
+          .includes
+          (
+            'expo'
+          , start_n
+
+          )
+      )
+      {
+        continue   //: let the event be processed by the page
+      }
+
       const listen_e =
         document
           .getElementById( `{{C_o.LABEL_ID_s}}_toolset_${id_s}` )
@@ -539,7 +629,7 @@ const IND_o =
             [ `${id_s}__v` ]
         )
     }
-
+  
     DOM_o
       .event__v
       (
@@ -550,7 +640,7 @@ const IND_o =
             (
               event_o
             )
-      )          
+      )
   }
 
 
@@ -592,62 +682,21 @@ const IND_o =
     window
       .onload
     =
-    async () =>
+    () =>
     {
       IND_o
         .listener__v()
     
-      const
-        {
-          stat_s
-        } =
-          document
-            .querySelector( 'body' )
-              .dataset
+      const { stat_s }
+      =
+        document
+          .querySelector( 'body' )
+            .dataset
     
-      if
-      (
-        stat_s
-      )
-      {
-        let key_s
-        =
-          await
-          LOC_o
-            .search__( '{{C_o.LOC_SEARCH_s}}' )
-    
-        if
-        (
-          ! key_s
-        )
-        {
-          const param_o
-          =
-            await
-            LOC_o
-              .search__( '{{C_o.LOC_IMG_s}}' )
-
-          if
-          (
-            param_o
-          )
-          {
-            key_s
-            =
-              param_o
-                .get( '{{C_o.LOC_IMG_s}}' )
-          }
-        }
-
-        key_s
-        &&
-        STAT_o
-          .init__v
-          (
-            stat_s
-          , key_s
-          )
-      }
+      stat_s
+      &&
+      STAT_o
+        .init__v( stat_s )
     }
   }
 }

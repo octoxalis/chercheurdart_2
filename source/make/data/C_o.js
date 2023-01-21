@@ -31,6 +31,9 @@ const C_o =
 
   IMG_MAX_PATH_s:     '/full/max/0/',    //: IOR
   IMG_1024_PATH_s:    '/full/_1024/0/',    //: IOR
+
+  IMG_SCAN_FORMAT_s:  'jpeg',
+  IMG_SCAN_DISPLAY_s: 'avif',
   
 
 
@@ -42,7 +45,7 @@ const C_o =
 
 
   //=== CONFIGURE FLAG
-  ADOC_MARKUP_b:        CONF_o.ADOC_MARKUP_b,
+  ADOC_MARKUP_b:    CONF_o.ADOC_MARKUP_b,
 
 
   //=== HTML-HEAD: HEADERS ===
@@ -180,7 +183,7 @@ const C_o =
   PERCENT_s: '%',      //: Percent Sign
 
   //=== REPLACE
-  GALERY_REPLACE_s:    '<del for=section_galery hidden ></del>',
+  GALERY_REPLACE_s:    '<del for=section_galerie hidden ></del>',
   TOPICS_REPLACE_s:    '<del for=div_topics hidden ></del>',
   COMMENTS_REPLACE_s:  '<del for=div_comment hidden ></del>',
   STAT_REPLACE_a:
@@ -271,11 +274,6 @@ const C_o =
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
 
-  LOC_SEARCH_s:     'k',    //: key
-  LOC_IMG_s:        's',    //: src
-  LOC_IMG_WIDTH_s:  'w',    //: src width
-  LOC_IMG_HEIGHT_s: 'h',    //: src height
-  LOC_JSON_s:       'JSON',
 
 
   //=== HTML-BODY: CLASSES ===
@@ -375,10 +373,9 @@ const C_o =
 
 
   //=== DB ===
-  PROTOCOLE_SITE_s:     'ca:',            // IndexedDB
-  PROTOCOLE_RESERVE_s:  're:',
-  PROTOCOLE_FILE_s:     'fs:',
-  //-- 1586-de_coster--new_york-sothebys--1625-young_woman
+  PRO_SITE_s:     'IND:',    //: site page (not reserve)
+  PRO_RESERVE_s:  'RES:',    //: site reserve
+  PRO_FILE_s:     'LOC:',    //: local file system
 
   DB_a:    //: db tables names
   [
