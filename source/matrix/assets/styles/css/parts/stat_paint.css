@@ -84,9 +84,8 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings {
   left: 0;
   width: {{S_o.NAV_SETTINGS_s}};
   height: fit-content;
-  border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+  box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
   transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
   transition: transform .5s ease;
 }
@@ -108,7 +107,7 @@ input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s
   gap: {{S_o.PAD_6}};
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav > label > span[data-role=open] {
-  background: {{S_o.nav_dot_set_3}};
+  background: {{S_o.dot_set_3}};
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_settings > aside > nav > label:hover > span {
   background: transparent;
@@ -133,22 +132,22 @@ ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label {
   justify-items: center;
   margin: 2px 0;
   border-radius: 2px;
-  border: 1px solid {{S_o.shadow_ne}};
+  border: 1px solid {{S_o.light_05}};
   font-size: 85%;
 }
 ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > label:not(:first-of-type):hover {
   filter: brightness( {{S_o.brightness_lo}} );
-  background: {{S_o.ins_shadow_ne}};
+  background: {{S_o.light_02}};
 }
 ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li > input:checked + label {
-  background: {{S_o.table}};
+  background: {{S_o.bg_hi}};
 }
 ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label {
   cursor: pointer;
 }
 ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:not(:first-child) > label[for]:hover {
   filter: brightness( {{S_o.brightness_lo}} );
-  background: {{S_o.ins_shadow_ne}};
+  background: {{S_o.light_02}};
 }
 ul[id^="{{C_o.LIST_ID_s}}_{{C_o.STAT_a[2]}}_layer_"] > li:before {
   content: '';
@@ -185,7 +184,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup > label {
   text-align: center;
   text-transform: uppercase;
   border-radius: 4px;
-  border: 2px solid {{S_o.shadow_hi}};
+  border: 2px solid {{S_o.light_07}};
   font-size: 85%;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_layer_setup > label:hover {
@@ -298,7 +297,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > nav > label {
   font-size: 85%;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > nav > label > span[data-role] {
-  background: {{S_o.nav_dot_set_4}};
+  background: {{S_o.dot_set_4}};
   border-radius: 6px;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > nav > label:hover > span {
@@ -306,7 +305,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > nav > label:hover > span {
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > nav:hover {
   width: 100%;
-  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_2}} {{S_o.lum_hi_4}} /1);
+  background: hsla( {{S_o.hue_p}} {{S_o.sat_lo_4}} {{S_o.lum_hi_100}} /1);
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > input, div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > input + div {
   display: none;
@@ -316,7 +315,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > input:checked + div {
   flex-direction: column;
   margin-top: {{S_o.PAD_3}};
   padding: {{S_o.PAD_2}};
-  background: {{S_o.table}};
+  background: {{S_o.bg_hi}};
   border-radius: 4px;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > input:checked + div > label {
@@ -324,7 +323,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > input:checked + div > label {
   text-align: center;
   text-transform: uppercase;
   border-radius: 4px;
-  border: 2px solid {{S_o.shadow_hi}};
+  border: 2px solid {{S_o.light_07}};
   font-size: 85%;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > input:checked + div > label:hover {
@@ -352,7 +351,6 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock > input:checked + div > input[type=r
   filter: hue-rotate( -220deg );
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[2]}}_dock:hover {
-  border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   transform: translateX( 0 );
 }
@@ -369,7 +367,7 @@ div.raised:before {
   left: 0;
   width: {{S_o.PAD_16}};
   height: {{S_o.PAD_16}};
-  border: 4px solid  {{S_o.selected_hi}};
+  border: 4px solid  {{S_o.medium_07}};
   border-radius: 8px;
   background: transparent;
 }

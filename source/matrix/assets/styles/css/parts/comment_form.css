@@ -1,12 +1,12 @@
 form[name=comment] {
   padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
-  background: {{S_o.bgcolor}};
-  border: 2px solid {{S_o.shadow_ne}};
+  background: {{S_o.bg}};
+  border: 2px solid {{S_o.light_05}};
   border-radius: 4px;
   position: relative;
   width: 100%;
-  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+  box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
 }
 form[name=comment] > label[for=comment_input] {
   position: absolute;
@@ -15,8 +15,8 @@ form[name=comment] > label[for=comment_input] {
   margin: {{S_o.PAD_1}};
   padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
-  background: {{S_o.bgcolor}};
-  border: 2px solid {{S_o.shadow_ne}};
+  background: {{S_o.bg}};
+  border: 2px solid {{S_o.light_05}};
   border-radius: 4px;
 }
 form[name=comment] > p[data--=netlify-honeypot] {
@@ -34,8 +34,8 @@ form[name=comment] > textarea {
 form[name=comment] > textarea, form[name=comment] > input {
   padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
-  background: {{S_o.bgcolor}};
-  border: 2px solid {{S_o.shadow_ne}};
+  background: {{S_o.bg}};
+  border: 2px solid {{S_o.light_05}};
   border-radius: 4px;
   font-weight: 200;
 }
@@ -45,13 +45,13 @@ form[name=comment] > textarea:focus, form[name=comment] > label:hover, form[name
 form[name=comment] > button {
   padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
-  background: {{S_o.bgcolor}};
-  border: 2px solid {{S_o.shadow_ne}};
+  background: {{S_o.bg}};
+  border: 2px solid {{S_o.light_05}};
   border-radius: 4px;
   --font_max: 20px;
   --font_scale: 2.2vw;
   font-weight: {{S_o.FONT_BOLD_s}};
-  border: 2px solid {{S_o.accept_hi}};
+  border: 2px solid {{S_o.green_100}};
   text-transform: uppercase;
   cursor: pointer;
   filter: brightness( {{S_o.brightness_lo}} );
@@ -63,6 +63,6 @@ form[name=comment] > button[type=reset] {
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
-  border: 2px solid {{S_o.cancel_hi}};
+  border: 2px solid {{S_o.red_100}};
   font-style: normal;
 }

@@ -15,19 +15,19 @@
           left: 25%;
           width: 75vw;
           min-height: 20ex;  /* TEMPORARY */
-          background: {{S_o.bg_higher}};
+          background: {{S_o.bg_hi}};
   </div>
   <input:checked />
   +
   <div>
           display: block;
-          box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+          box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
           overflow: auto;
           resize: both;
     <header>
             display: flex;
             padding: {{S_o.PAD_1}};
-            border-bottom: 1px solid {{S_o.ins_shadow_ne}};
+            border-bottom: 1px solid {{S_o.light_07}};
     <label:nth-of-type( 2 )>
             flex-grow: 1;
             padding: {{S_o.PAD_1}};
@@ -41,7 +41,7 @@
     </label>
     <label:not(:nth-of-type( 2 )):hover>
             filter: brightness( {{S_o.brightness_lo}} );
-            background: {{S_o.ins_shadow_ne}};
+            background: {{S_o.light_02}};
     </label>
     </header>
 
@@ -65,7 +65,7 @@
 context( stack, new )
 <main>
         flex-grow: 1;
-        border-right: 1px solid {{S_o.ins_shadow_ne}};
+        border-right: 1px solid {{S_o.light_07}};
   /* --------------- */
   <details>
           position: relative;
@@ -74,7 +74,7 @@ context( stack, new )
     <summary>
             position: relative;
             margin-top: {{S_o.PAD_1}};
-            color: {{S_o.inscolor}};
+            color: {{S_o.medium_100}};
             padding: {{S_o.PAD_1}} {{S_o.PAD_2}} {{S_o.PAD_1}};
             background: transparent;
             font-size: 90%;
@@ -86,8 +86,8 @@ context( stack, new )
             flex-direction: column;
             margin: 0 0 {{S_o.PAD_2}} {{S_o.PAD_3}};
             padding: {{S_o.PAD_1}} 0 {{S_o.PAD_1}} {{S_o.PAD_2}};
-            border-left:   2px dotted {{S_o.ins_shadow_ne}};
-            border-bottom: 2px dotted {{S_o.ins_shadow_ne}};
+            border-left:   2px dotted {{S_o.light_07}};
+            border-bottom: 2px dotted {{S_o.light_07}};
     <input />
             display: none;
     <label>
@@ -99,14 +99,14 @@ context( stack, new )
     </label>
     <label:hover>
             filter: brightness( {{S_o.brightness_hi}} );
-            background: {{S_o.ins_shadow_ne}};
+            background: {{S_o.light_02}};
     </label>
     <input:checked />
     +
     <label>
-            border: 2px solid {{S_o.shadow_ne}};
+            border: 2px solid {{S_o.light_05}};
             border-radius: 4px;
-            background: {{S_o.table}};
+            background: {{S_o.bg_hi}};
     </label>
     </div>
   </details>
@@ -118,7 +118,7 @@ context( stack, new )
           max-height: 100vh !important;
           transition: all 1s ease;
     <summary>
-            background: {{S_o.shadow_lo}};
+            background: {{S_o.light_01}};
     <summary>
   </details>
   <details:not([open])>

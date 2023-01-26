@@ -5,9 +5,33 @@ body > section#reserve {
 body > section#reserve > h2 {
   --font_max: 32px;
   --font_scale: 1.8vw;
-  margin-top: 2rem;
+  min-width: calc(100% - var(--col_width) - var(--gap));
+  max-width: 100%;
+  width: calc((var(--threshold) - 100%) * 1000);
+  float: left;
   font-weight: 600;
-  text-align: start;
+  text-align: end;
+}
+body > section#reserve > div {
+  position: relative;
+  margin: {{S_o.PAD_16}} 2vmin 0 auto;
+  min-width: var(--col_width);
+  width: calc( (var(--threshold) - 100%) * 1000 );
+}
+body > section#reserve > div > p {
+  max-width: {{S_o.PARAGRAPH_WIDTH_s}};
+  margin-bottom: {{S_o.PAD_4}};
+}
+body > section#reserve > div > p > label:hover {
+  filter: invert( .5 );
+}
+body > section#reserve > div > p > label {
+  margin: 0 {{S_o.PAD_1}};
+  vertical-align: baseline;
+  color: {{S_o.medium_100}};
+}
+body > section#reserve > div > p > label > em {
+  font-style: italic;
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul {
   display: flex;
@@ -17,12 +41,12 @@ body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul {
   border: none;
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul > li {
-  width: 31%;
+  width: 24%;
   cursor: pointer;
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul > li > dl {
   border-radius: 4px;
-  background: hsla( 190 28% 37.75% /1);
+  background: hsla( 211 28% 37.75% /1);
   opacity: .75;
   transition: .2s ease;
   transition-delay: .2s;
@@ -32,10 +56,10 @@ body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul > li > dl > dt {
   text-transform: uppercase;
   font-size: 90%;
   font-weight: 500;
-  color: {{S_o.darker}};
+  color: {{S_o.text}};
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul > li > dl > dt:hover {
-  background: {{S_o.shadow_ne}};
+  background: {{S_o.light_05}};
   filter: brightness( 4 );
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_reserve_list > ul > li > dl > dd {
@@ -82,16 +106,16 @@ body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > label {
   height: 2rem;
   line-height: 2rem;
   text-align: center;
-  border: 1px solid {{S_o.nav_dot_set_4}};
+  border: 1px solid {{S_o.dot_set_4}};
   border-radius: 8px;
   background: transparent;
   z-index: 101;
   position: absolute;
   top: -{{S_o.NAV_HEIGHT_s}};
-  background: {{S_o.shadow_full}};
+  background: {{S_o.light_100}};
 }
 body > section#reserve > input:checked + div#{{C_o.DIV_ID_s}}_toolset > label:hover {
-  background: {{S_o.shadow_hi4}};
+  background: {{211_o.lighter}};
   cursor: pointer;
 }
 body > section#reserve > input:not( :checked ) + div#{{C_o.DIV_ID_s}}_toolset {
@@ -106,7 +130,7 @@ body > section#reserve > div#{{C_o.DIV_ID_s}}_toolset:has( #{{C_o.INPUT_ID_s}}_t
   cursor: move;
 }
 body > section#reserve > div#{{C_o.DIV_ID_s}}_toolset:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom > input:checked ~ label[for]:nth-of-type( 1 ) {
-  background: {{S_o.highlight}};
+  background: {{S_o.bg_lo}};
 }
 body:has( #reserve ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;

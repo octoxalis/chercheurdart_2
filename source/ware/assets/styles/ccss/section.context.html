@@ -1,6 +1,6 @@
 context( stack, new )
 <:root>
-          --bg_dot: {{S_o.bg_dot}};
+          --bg_dot: {{S_o.bg}};
 </:root>
 
 
@@ -46,7 +46,7 @@ context( stack, new )
 
 <pre>
         width: 100%;
-        background: {{S_o.shadow_lo}};
+        background: {{S_o.light_01}};
   <code>
         width: 100%;
         padding: {{S_o.PAD_1}};
@@ -65,7 +65,7 @@ context( stack, new )
 <!--
 <blockquote>
         margin: 0 0 1rem 1rem;
-        border-left: 4px solid {{S_o.shadow_ne}};
+        border-left: 4px solid {{S_o.light_05}};
     <p>
           padding-left: .8rem;
     </p>
@@ -103,7 +103,7 @@ context( stack, new )
         top: 0;
         min-width: {{S_o.FULL_WIDTH_s}};
         min-height: var(--min_height);
-        background: {{S_o.bgcolor}};
+        background: {{S_o.bg}};
   <iframe>
           display: none;
   </iframe>
@@ -134,6 +134,24 @@ context( stack, new )
         display: flex;
 </section>
 
+
+<span[data-wait]>
+        display: inline-block;
+        padding: {{S_o.PAD_4}};
+        font-weight: 400;
+        will-change: background;
+        border: 1px solid currentColor;
+        border-radius: 8px;
+        box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
+        animation: 1s linear 0s infinite alternate data_wait;
+</span>
+
+@keyframes
+data_wait
+
+  from { background: hsla( 211 77% 11%/1 ); }
+  to   { background: hsla( 250 33% 55%/1 ); }
+@
 
 context( url, section_0.context.html )
 context( url, section_1.context.html )

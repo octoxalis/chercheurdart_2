@@ -4,6 +4,7 @@ const CONF_o = require( '../../configure.js' )
 const A_o = require( './A_o.js' )
 const U_o = require( './U_o.js' )
 
+
 const C_o =
 {
   //=== DIR ===     relative to source dir
@@ -103,6 +104,7 @@ const C_o =
     article: { icon_s: `&#8226;`, legend_s: `article` },
     galerie: { icon_s: `&#8226;`, legend_s: `galerie` },
     expo:    { icon_s: `&#8226;`, legend_s: `exposition` },
+    reserve:    { icon_s: `&#8226;`, legend_s: `réserve` },
 
     expo_add: { icon_s: `&nbsp;`, legend_s: `ajouter`},
     expo_remove: { icon_s: `&nbsp;`, legend_s: `retirer`},
@@ -139,8 +141,12 @@ const C_o =
 
     play_progress: { icon_s: `&nbsp;`, legend_s: `progression`},
     play_interval: { icon_s: `&nbsp;`, legend_s: `interval`},
-    play_slower: { icon_s: `&nbsp;`, legend_s: `ralentir`},
-    play_faster: { icon_s: `&nbsp;`, legend_s: `accélérer`},
+    play_slower: { icon_s: `&nbsp;`, legend_s: `&#8600;`},           //: ralentir
+    play_steady: { icon_s: `&nbsp;`, legend_s: `&#10230;`},           //: constant
+    play_faster: { icon_s: `&nbsp;`, legend_s: `&#8599;`},           //: accélérer
+    play_forward: { icon_s: `&nbsp;`, legend_s: `&#10230;`},   //: ⟶
+    play_backward: { icon_s: `&nbsp;`, legend_s: `&#10229;`},  //: ⟵
+    play_step: { icon_s: `&nbsp;`, legend_s: `&#8631;&#8631;&#8631;`},  //: ↷↷↷
 
     img_bgtransparent: { icon_s: `&nbsp;`, legend_s: `transparent`},
     img_bgblack: { icon_s: `&nbsp;`, legend_s: `noir`},
@@ -354,6 +360,14 @@ const C_o =
   INS_VAL_DELIM_s:  '⁞',           //: &#8286;
 
 
+  //=== DIALOGS ===
+  //++ CSS selector: data-wait={{F_o.slug__s( C_o.WAIT_EXPO_HEAD_s )}}
+  WAIT_SCAN_HEAD_s: `Analyse de l'image`,
+  WAIT_SCAN_TAIL_s: `Cette opération ne prend que quelques secondes`,
+  WAIT_EXPO_HEAD_s: `Chargement des images`,
+  WAIT_EXPO_TAIL_s: `La durée de cette opération dépend de la taille et du nombre des images`,
+
+
 
   //=== HTML-BODY: TABLE
   CELL_ALIGN_a:
@@ -364,7 +378,7 @@ const C_o =
   ],
 
   CELL_RATIO_n: .1,
-  CELL_EMPTY_s: '__',                //: double underline
+  CELL_EMPTY_s: '__',                //: 2mark: double underline
   CELL_EMPTY_ENTITY_s: '&#8280;',    //: ⁘
   CELL_DELIM_s:        '₊',          //: subscript ++
 

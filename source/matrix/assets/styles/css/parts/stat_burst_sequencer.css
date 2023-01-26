@@ -1,0 +1,193 @@
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer {
+  display: none;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer {
+  display: none;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked + div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer {
+  z-index: 21;
+  display: flex;
+  flex-wrap: wrap;
+  gap: {{S_o.PAD_1}};
+  position: fixed;
+  top: 0;
+  left: {{S_o.NAV_SETTINGS_s}};
+  width: calc( 100% - ({{S_o.NAV_SETTINGS_s}} * 2) );
+  background: {{S_o.light_100}};
+  border-radius: 4px;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked + div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer > div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 15%;
+  padding: .5rem;
+  border: 1px solid {{S_o.bg_hi}};
+  border-radius: {{S_o.PAD_1}};
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked + div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer > div:nth-of-type(1) {
+  width: 8%;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked + div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer > div:nth-of-type(4) {
+  width: 10%;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked + div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer > div:nth-of-type(5) {
+  width: fit-content;
+}
+input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked + div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer > div:nth-of-type(6) {
+  width: 380px;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward {
+  align-items: center;
+  gap: {{S_o.PAD_1}};
+  width: 8%;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > input {
+  display: none;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > label {
+  width: 47%;
+  height: 1rem;
+  line-height: 1rem;
+  border-radius: {{S_o.PAD_1}};
+  background: {{S_o.bg_lo}};
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > label:nth-of-type(1) {
+  text-align: left;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > label:nth-of-type(2) {
+  text-align: right;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > label:nth-of-type(3) {
+  flex-grow: 1;
+  text-align: center;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > label:hover {
+  color: {{211_o.lighter}};
+  filter: brightness(4);
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval {
+  justify-content: center;
+  gap: {{S_o.PAD_1}};
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input[type=range] {
+  width: 100%;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input[type=radio] {
+  display: none;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > label {
+  position: relative;
+  top: -.5rem;
+  width: 31%;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  border-radius: {{S_o.PAD_1}};
+  background: {{S_o.bg_lo}};
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > label:hover {
+  color: {{211_o.lighter}};
+  filter: brightness(4);
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress {
+  --fromHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
+  --toHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
+  flex-grow: 2;
+  justify-content: space-between;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(1) {
+  display: inline-flex;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
+  border-radius: {{S_o.PAD_2}};
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > progress#progress_{{C_o.STAT_a[0]}}_playback_progress {
+  display: inline-flex;
+  align-self: center;
+  gap: .25rem;
+  width: 100%;
+  height: 2rem;
+  cursor: var(--{{C_o.STAT_a[0]}}_playback_pause);
+  accent-color: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:not(:nth-of-type(1)) {
+  display: inline-flex;
+  align-self: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: {{S_o.bg_lo}};
+  border-radius: 8px;
+  cursor: pointer;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(2) {
+  clip-path: polygon(0 100%, 100% 50%, 0 0);
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(3) {
+  margin: 0 35%;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(4) {
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:not(:nth-of-type(1)):hover {
+  filter: brightness(4);
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity {
+  align-items: center;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity > input[type=range] {
+  width: 100%;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label {
+  display: flex;
+  align-items: center;
+  gap: {{S_o.PAD_2}};
+  width: fit-content;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label > span {
+  width: 1.6rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  border: 2px solid hsl( 0 0% 100% /1);
+  border-radius: 100%;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label > span:nth-of-type(1) {
+  background: {{S_o.bgtransparent_s}};
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label > span:nth-of-type(2) {
+  background: {{S_o.bg_0}};
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label > span:nth-of-type(3) {
+  background: {{S_o.bg_100}};
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label > span:nth-of-type(4) {
+  background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label > span:hover {
+  transform: scale( 1.8 );
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
+  display: flex;
+  flex-wrap: wrap;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > input {
+  width: 50%;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > input:nth-of-type(1) {
+  width: 100%;
+}
+div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > input:checked + label, div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input:checked + label {
+  color: {{211_o.lighter}};
+  filter: brightness( 1.5 );
+}
+body:has(#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked) > nav {
+  visibility: hidden;
+}

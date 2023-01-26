@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <div id=DI_stat_burst>
-
-
-<input id=IN_toolset type=checkbox>
-<div id=DI_toolset>
-  <nav id=NA_toolset_zoom>
-    <input id=IN_toolset_zoom type=checkbox>
-    <label for=IN_toolset_zoom>&#8854;</label>
-    <label for=IN_toolset_zoom>&#8853;</label>
-  </nav>
-</div>
+  <input id=IN_toolset type=checkbox>
+  <div id=DI_toolset>
+    <nav id=NA_toolset_zoom>
+      <input id=IN_toolset_zoom type=checkbox>
+      <label for=IN_toolset_zoom>&#8854;</label>
+      <label for=IN_toolset_zoom>&#8853;</label>
+    </nav>
+  </div>
 
 
 
@@ -63,6 +61,20 @@
       <span data-icon="substat">&nbsp;</span>
     </label>
   </nav>
+
+  <div id=DI_burst_dock>
+    <input id=IN_dock_nav type=checkbox>
+    <div>
+      <input id=IN_burst_dock_scale data-label="Échelle" type=range min=0.25 max=4 step=0.25 value=1 data-tip="1">
+
+      <label for=IN_burst_settings data-key=p>palette</label>
+      <label for=IN_burst_sequencer data-key=a>animation</label>
+      <label for=IN_burst_hue_img data-key=v>visualiser</label>
+      <label for=IN_burst_equal data-key=e>égaliser</label>
+      <label for=IN_burst_hue_img_reset data-key=&#8705;z>reinitialiser</label>
+      <label for=IN_burst_hue_img_download data-key=&#8705;s>exporter</label>
+    </div>
+  </div>
 
   <input id=IN_burst_settings name=burst_settings type=checkbox>
   <div id=DI_burst_settings>
@@ -139,75 +151,59 @@
     </aside>
   </div>
 
-  <input id=IN_burst_sequencer  type=checkbox>
-  <div id=DI_burst_sequencer>
-    <input id=IN_burst_hue_img_settings  type=checkbox>
-    <div>
-      <div id=DI_burst_playback>
-        <div id=DI_burst_playback_progress>
-          <label id=LA_burst_playback_start>&nbsp;</label>
-          <progress id=progress_burst_playback_progress max=100 value=0></progress>
-          <label id=LA_burst_playback_stop>&nbsp;</label>
-          <label id=LA_burst_playback_reset>&nbsp;</label>
-          <label id=LA_burst_playback_progress></label>
-        </div>
-        <div id=DI_burst_playback_interval>
-          <input id=IN_burst_playback_interval data-label="interval" data-label="" type=range min=100 max=10000 step=100 value=1000 data-tip="1000">
-        </div>
-        <div id=DI_burst_playback_shift>
-          <input id=IN_burst_playback_slower name=burst_playback_shift type=radio checked>
-          <label for=IN_burst_playback_slower>ralentir</label>
-
-          <input id=IN_burst_playback_faster name=burst_playback_shift type=radio>
-          <label for=IN_burst_playback_faster>accélérer</label>
-          <input id=IN_burst_playback_shift type=range min=0 max=100 step=1 value=0 data-tip="0">
-        </div>
-      </div>
+<input id=IN_burst_sequencer type=checkbox>
+<div id=DI_burst_sequencer>
+  <div id=DI_burst_playback_forward>
+    <input id=IN_burst_playback_forward name=playback_direction type=radio checked/>
+    <label for=IN_burst_playback_forward>&#10230;</label>
+    <input id=IN_burst_playback_backward name=playback_direction type=radio />
+    <label for=IN_burst_playback_backward>&#10229;</label>
+    <input id=IN_burst_playback_step type=checkbox />
+    <label for=IN_burst_playback_step>&#8631;&#8631;&#8631;</label>
+  </div>
   
-      <div id=DI_burst_hue_img_bg>
-        <div id=DI_burst_hue_img_bg_opacity>
-          <input id=IN_burst_hue_img_bg_opacity data-label="opacité" type=range min=0 max=100 step=1 value=20 data-tip="20">
-        </div>
-        <div id=DI_burst_hue_img_bg_color>
-          <label for=IN_burst_hue_img_bg_transparent data-legend="transparent">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-          <label for=IN_burst_hue_img_bg_black data-legend="noir">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-          <label for=IN_burst_hue_img_bg_white data-legend="blanc">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-          <label for=IN_burst_hue_img_bg_color data-legend="couleur">
-              <span data-role="bgcolor">&nbsp;</span>
-          </label>
-        </div>
-        <div id=DI_burst_hue_img_picker>
-          <label for=IN_burst_hue_pick_hue></label>
-          <input id=IN_burst_hue_pick_hue data-label="tonalité" type=range min=0 max=360 step=1 value=0 data-tip="0">
-          <label for=IN_burst_hue_pick_sat></label>
-          <input id=IN_burst_hue_pick_sat data-label="intensité" type=range min=0 max=100 step=1 value=100 data-tip="100">
-          <label for=IN_burst_hue_pick_lum></label>
-          <input id=IN_burst_hue_pick_lum data-label="luminosité" type=range min=0 max=100 step=1 value=50 data-tip="50">
-        </div>
-      </div>
-    </div>
-    
+  <div id=DI_burst_playback_interval>
+    <input id=IN_burst_playback_interval data-label="interval" type=range min=100 max=10000 step=100 value=1000 data-tip="1000">
+
+    <input id=IN_burst_playback_shift type=range min=0 max=400 step=1 value=0 data-tip="0">
+
+    <input id=IN_burst_playback_slower name=burst_playback_shift type=radio>
+    <label for=IN_burst_playback_slower>&#8600;</label>
+    <input id=IN_burst_playback_steady name=burst_playback_shift type=radio checked>
+    <label for=IN_burst_playback_steady>&#10230;</label>
+    <input id=IN_burst_playback_faster name=burst_playback_shift type=radio>
+    <label for=IN_burst_playback_faster>&#8599;</label>
   </div>
 
-  <div id=DI_burst_dock>
-    <input id=IN_dock_nav type=checkbox>
-    <div>
-      <input id=IN_burst_dock_scale data-label="Échelle" type=range min=0.25 max=4 step=0.25 value=1 data-tip="1">
-
-      <label for=IN_burst_settings data-key=p>palette</label>
-      <label for=IN_burst_sequencer data-key=a>animation</label>
-      <label for=IN_burst_hue_img data-key=v>visualiser</label>
-      <label for=IN_burst_equal data-key=e>égaliser</label>
-      <label for=IN_burst_hue_img_reset data-key=&#8705;z>reinitialiser</label>
-      <label for=IN_burst_hue_img_download data-key=&#8705;s>exporter</label>
-    </div>
+  <div id=DI_burst_playback_progress>
+    <label id=LA_burst_playback_progress></label>
+    <progress id=progress_burst_playback_progress max=100 value=0></progress>
+    <label id=LA_burst_playback_start>&nbsp;</label>
+    <label id=LA_burst_playback_stop>&nbsp;</label>
+    <label id=LA_burst_playback_reset>&nbsp;</label>
   </div>
+
+  <div id=DI_burst_hue_img_bg_opacity>
+    <input id=IN_burst_hue_img_bg_opacity data-label="opacité" type=range min=0 max=100 step=1 value=20 data-tip="20">
+  </div>
+
+  <div id=DI_burst_hue_img_bg_color>
+    <label for=IN_burst_hue_img_bg_transparent>
+        <span id=span_burst_hue_img_bg_transparent data-role="bgcolor">&nbsp;</span>
+        <span id=span_burst_hue_img_bg_black data-role="bgcolor">&nbsp;</span>
+        <span id=span_burst_hue_img_bg_white data-role="bgcolor">&nbsp;</span>
+        <span id=span_burst_hue_img_bg_color data-role="bgcolor">&nbsp;</span>
+    </label>
+  </div>
+
+  <div id=DI_burst_hue_img_picker>
+    <input id=IN_burst_hue_pick_hue data-label="tonalité" type=range min=0 max=360 step=1 value=0 data-tip="0">
+    <input id=IN_burst_hue_pick_sat data-label="intensité" type=range min=0 max=100 step=1 value=100 data-tip="100">
+    <input id=IN_burst_hue_pick_lum data-label="luminosité" type=range min=0 max=100 step=1 value=50 data-tip="50">
+  </div>
+  
+</div>
+
 
   <input id=IN_burst_hue_img_position type=checkbox>
   <input id=IN_burst_hue_img type=checkbox checked>

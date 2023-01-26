@@ -4,7 +4,7 @@
         --{{C_o.STAT_a[0]}}_hue_back:  0;
 
         --{{C_o.STAT_a[0]}}_nav_dim: {{C_o.BURST_NAV_DIM_n}}px;
-        --{{C_o.STAT_a[0]}}_trace_color: {{S_o.bg_lower}};
+        --{{C_o.STAT_a[0]}}_trace_color: {{S_o.text_lo}};
         --{{C_o.STAT_a[0]}}_trace_pointer_s: url( /assets/styles/css/spot_cursor.svg ) 8 8, auto;
         --{{C_o.STAT_a[0]}}_trace_pointer: var(--{{C_o.STAT_a[0]}}_trace_pointer_s);
 
@@ -16,11 +16,11 @@
         --{{C_o.STAT_a[0]}}_img_transform: 80vmin;
 
         --{{C_o.STAT_a[0]}}_img_bg_hue: {{S_o.hue_p}};
-        --{{C_o.STAT_a[0]}}_img_bg_sat: 50;
-        --{{C_o.STAT_a[0]}}_img_bg_lum: 25;
+        --{{C_o.STAT_a[0]}}_img_bg_sat: 70;
+        --{{C_o.STAT_a[0]}}_img_bg_lum: 50;
         --{{C_o.STAT_a[0]}}_img_bgtransparent: {{S_o.bgtransparent_s}};
-        --{{C_o.STAT_a[0]}}_img_bgwhite: {{S_o.bgwhite_s}};
-        --{{C_o.STAT_a[0]}}_img_bgblack: {{S_o.bgblack_s}};
+        --{{C_o.STAT_a[0]}}_img_bgwhite: {{S_o.bg_100}};
+        --{{C_o.STAT_a[0]}}_img_bgblack: {{S_o.bg_0}};
         --{{C_o.STAT_a[0]}}_img_background: var(--{{C_o.STAT_a[0]}}_img_bgtransparent);
         --{{C_o.STAT_a[0]}}_img_label_size: 100%; /*calc( 150 / var(--{{C_o.STAT_a[0]}}_img_scale)  * 1%);*/  /* initial 150% */
         --{{C_o.STAT_a[0]}}_satlum_s: none;    /* don't display at start: no slot selected */
@@ -44,7 +44,7 @@
     <canvas>
             width: var(--{{C_o.STAT_a[0]}}_canvas_dim);
             height: var(--{{C_o.STAT_a[0]}}_canvas_dim);
-            border: 1px solid {{ S_o.shadow_ne}};
+            border: 1px solid {{ S_o.light_05}};
             border-radius: 50%;
             background: var(--{{C_o.STAT_a[0]}}_img_background);
     </canvas>
@@ -89,8 +89,8 @@
     <nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}]:hover>
             opacity: 1;
             transition: opacity ease .2s;
-            background: {{S_o.shadow_ne}};
-            box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+            background: {{S_o.light_05}};
+            box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
       <label>
         <span>
                 opacity: 1;
@@ -103,7 +103,7 @@
       </label>
       <label:not([for]):hover>
         <span>
-                background: {{S_o.lighter_ne}};
+                background: {{S_o.light_07}};
         </span>
       </label>
     </nav>
@@ -153,12 +153,13 @@ context( stack, new )
         display: none;
         z-index: 10;
         position: fixed;
-        top: {{S_o.PAD_8}};
+        top: 0;
         left: 0;
         width: {{S_o.NAV_SETTINGS_s}};  /* MANDATORY */
         height: fit-content;
 context( block, settings )
-        box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+        border: 1px solid {{S_o.bg_hi}};
+        /*box-shadow: 0 0 0 1000vmax {{S_o.light_07}};*/
         transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
         transition: transform .5s ease;
 </div>
@@ -182,7 +183,7 @@ context( block, settings )
             gap: {{S_o.PAD_6}};
       <label>
         <span[data-role]>
-                background: {{S_o.nav_dot_set_4}};
+                background: {{S_o.dot_set_4}};
                 border-radius: 6px;
         </span>
       </label>
@@ -197,6 +198,7 @@ context( block, settings )
 </div>
 
 
+context( stack, new )
 <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue>
         display: flex;
         flex-direction: column;
@@ -213,7 +215,7 @@ context( block, settings )
             left: 7.2rem;
             width: 96%;
             height: 0;
-            border-color: {{S_o.bg_lower}};
+            border-color: {{S_o.text_lo}};
             pointer-events: none;        /* above input */
             transform-origin: top left;
             transform: rotate( 90deg );
@@ -243,9 +245,9 @@ context( block, settings )
                 grid-area: 1/-1;
                 width: 32px;
                 height: 32px;
-                border: 12px solid {{S_o.bgcolor}};
+                border: 12px solid {{S_o.light_100}};
                 border-radius: 50%;
-                background: {{S_o.bg_lower}};
+                background: {{S_o.text_lo}};
                 filter: brightness( .8 );
         </input>
       </li>
@@ -257,7 +259,7 @@ context( block, settings )
               text-align: center;
               padding: {{S_o.PAD_1}};
               color: currentColor;
-              background: {{S_o.bg_lower}};
+              background: {{S_o.text_lo}};
               font-size: 80%;
               font-weight: 200;
               border-radius: 4px;
@@ -339,7 +341,7 @@ context( block, settings )
             padding: {{S_o.PAD_1}};
             width: 4ch;
             color: currentColor;
-            background: {{S_o.bg_lower}};        /* = span background */
+            background: {{S_o.text_lo}};        /* = span background */
             font-size: 80%;
             font-weight: 200;
             border-radius: 4px;
@@ -348,7 +350,7 @@ context( block, settings )
     </output>
     <span>
             width: 2ch;
-            color: {{S_o.bg_lower}};            /* = output background */
+            color: {{S_o.text_lo}};            /* = output background */
     </span>
   </label>
   <label[id$="_trace"]:hover>
@@ -400,420 +402,6 @@ context( block, settings )
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
-        display: none;
-</input>
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
-              z-index: 21;
-              display: none;
-              flex-direction: column;
-              justify-content: center;
-              position: fixed;
-              padding-top: .5rem;
-              top: {{S_o.NAV_HEIGHT_s}};
-              left: 288px;
-              width: 70%;  /* calc( 100% - 288px - 2rem ); */
-              height: 15rem;
-              background:{{S_o.bgcolor}};
-              /*box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};*/
-              border-radius: 4px;
-  <ul>
-                display: flex;
-                /*flex-direction: row;*/
-                justify-content: flex-start;
-                align-items: center;
-                margin: 0;     /* overide */
-                padding-left: 2rem;   /* keep space for nav */
-                gap: {{S_o.PAD_4}};
-                width: 100%;
-                height: {{S_o.NAV_HEIGHT_s}};
-                border: none;
-                border-radius: 4px;
-          <li>
-                    /* list-style: none; */
-                    /* width: 4rem; */
-                    /*background: {{S_o.bgcolor}};*/
-                    /* transform-origin: center; */
-                    transform: scale( 1 );
-            <label>
-            context( block, top_button )
-                    padding: 0 {{S_o.PAD_1}};
-                    display: inline-flex;
-                    color: {{S_o.color_ne}};
-                    /*font-size: var(--{{C_o.STAT_a[0]}}_img_label_size);*/
-                    border: none;    /* override block*/
-                    border-radius: 4px;    /* override block */
-            </label>
-            <label:hover>
-                    background: {{S_o.shadow_ne}};
-                    filter: brightness(4);
-            </label>
-            <ul>
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                    margin: 0;     /* overide */
-                    width: 100%;
-                    height: 4rem;
-                    border: none;
-              <li>
-              context( block, list_item  )
-                      padding: 0;
-                  display: inline-flex;
-                  justify-content: center;
-                  color: {{S_o.color_ne}};
-                  /*font-size: var(--{{C_o.STAT_a[0]}}_img_label_size);*/
-                  border: none;    /* override block*/
-                  border-radius: 4px;    /* override block */
-                  cursor: pointer;
-              </li>
-              <li:before>
-                      content: '';    /* overide */
-              </li>
-              <li:hover>
-                      background: {{S_o.shadow_ne}};
-                      filter: brightness(4);
-              </li>
-      </ul>
-    </li>
-    <li:before>
-            content: '';    /* overide */
-    </li>
-    <li:nth-of-type(1)>
-            /*flex-grow: 1;*/
-    </li>
-  </ul>
-  <label[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings]>
-                z-index: 101;
-                /*display: var(--{{C_o.STAT_a[0]}}_zoom_out_s);*/
-                /*font-size: var(--{{C_o.STAT_a[0]}}_img_label_size);*/
-                padding-left: 3.5rem;
-                border-radius: 4px;
-  </label>
-  <label[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings]:hover>
-                background: {{S_o.shadow_ne}};
-                /*filter: brightness( 2 );*/
-  </label>
-  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings>
-          display: none;
-  </input>
-  
-  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings>
-  </input>
-  +
-  <div>
-                /*display: none;*/
-                display: flex;
-  </div>
-  
-  <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings:checked />
-  +
-  <div>
-                /*display: flex;*/
-  </div>
-  <div>
-          justify-content: space-around;
-          /*width: 100%;*/
-    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback>
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            /*padding: {{S_o.PAD_2}};*/
-            width: 50%;       /* keep space for slider tip */
-            height: fit-content;  /* 16rem;*/
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress>
-              display: flex;
-              /*flex-direction: column;*/
-              justify-content: space-between;
-              padding: .5rem;
-              position: relative;
-              /*top: 1rem;*/
-              /*width: 50%;*/
-              /*height: 4rem;*/    /* 5 - 2*.5 rem */
-              /*border: 1px solid {{S_o.selected_lo}};*/
-              border-radius:  {{S_o.PAD_2}};
-              --fromHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
-              --toHue:   hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
-              background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
-        <label:not(:nth-of-type(4))>
-                display: inline-flex;
-                align-self: center;
-                justify-content: center;
-                width: 2rem;
-                height: 2rem;
-                background: {{S_o.button}};
-                border-radius: 8px;
-                cursor: pointer;
-        </label>
-        <label:nth-of-type(1)>
-                clip-path: polygon(0 100%, 100% 50%, 0 0);
-        </label>
-        <label:nth-of-type(2)>
-        /* no clip */
-        </label>
-        <label:nth-of-type(3)>
-                width: 3rem;     /* wider */
-                clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 40% 100%, 0% 50%);
-        </label>
-        <label:not(:nth-of-type(4)):hover>
-                filter: brightness(4);
-        </label>
-        <label:nth-of-type(4)>
-                display: inline-flex;
-                      align-self: center;
-                justify-content: center;
-                width: 14%;
-                height: fit-content;
-                /*font-size: var(--{{C_o.STAT_a[0]}}_img_label_size);*/
-                background: {{S_o.bg_higher}};
-                border-radius: {{S_o.PAD_2}};
-        </label>
-        <progress#progress_{{C_o.STAT_a[0]}}_playback_progress>
-                      display: inline-flex;
-                      align-self: center;
-                      /*margin-left: 4rem;*/
-                      width: 77%;
-                      cursor: var(--{{C_o.STAT_a[0]}}_playback_pause);
-        </progress>
-      </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress>
-  
-  
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
-              display: flex;
-              /*flex-direction: column;*/
-              justify-content: flex-start;
-              align-items: center;
-              padding: .5rem;
-              /*width: 30%;*/
-              height: 4rem;
-        <label>
-                /*font-size: var(--{{C_o.STAT_a[0]}}_img_label_size);*/
-                opacity: .5;
-        </label>
-        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
-                width: 94%;
-                cursor: ew-resize;
-        </input>
-        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval[type=range]:hover:after>
-                transform: scale( 2 );  /* !!! overide section.context.html where scale is 2 */
-        </input>
-      </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
-  
-  
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift>
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: center;
-              align-items: center;
-              padding: 1rem;
-              width: 100%;
-              border-radius: {{S_o.PAD_2}};
-        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower>
-                display: none;
-        </input>
-        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster>
-                display: none;
-        </input>
-        <label[for]>
-                        margin: 0.1em;
-                        width: 47%;
-                        /*height: 2rem;*/
-                        /*font-size: var(--{{C_o.STAT_a[0]}}_img_label_size);*/
-                        /*line-height: 1.5rem;*/
-                        border: 1px solid {{S_o.highlight}};
-                        border-radius:  {{S_o.PAD_4}};
-                        text-align: center;
-                        opacity: .5;
-                        cursor: pointer;
-                        filter: brightness( .75 );
-        </label>
-        <label[for]:hover>
-                        opacity: 1;
-                        filter: brightness(4);
-        </label>
-        <input[type=radio]:checked>
-        </input>
-        +
-        <label[for]>
-                        opacity: 1;
-                        filter: brightness( 1.5 );
-        </label>
-        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift>
-                width: 94%;
-                cursor: ew-resize;
-        </input>
-      </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift>
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower:checked)>
-                      background: hsla( 120 {{S_o.sat_hi_4}} {{S_o.lum_hi_2}} /1);
-      </div>
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster:checked)>
-                      background: hsla( 0 {{S_o.sat_hi_4}}{{S_o.lum_hi_2}} /1);
-      </div>
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift:has(input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift[value=0])>
-                      background: transparent;
-      </div>
-    </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback>
-
-
-
-
-
-
-
-
-    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg>
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            /*margin-top: 2rem;*/
-            padding: 0 0.5em;
-            width: 50%;
-            /*height: 4rem;*/
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity>
-             display: flex;
-             align-items: center;
-             padding-right: 1rem;    /* keep space for tip */
-             width: 100%;
-        <label:nth-of-type(1)>
-                flex-grow: 1;
-                text-align: center;
-                line-height: 4rem;    /* vertical centering */
-                opacity: .5;
-        </label>
-        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]>
-                margin-right: 1vw;    /* keep space for tip */
-                width: 100%;
-                background: transparent;
-                cursor: pointer;
-        </input>
-        <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity[type=range]:hover:after>
-                transform: scale( 2, 4 );  /* !!! overide section.context.html where scale is 2 */
-        </input>
-      </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity>
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color>
-                   display: flex;
-                   justify-content: flex-start;
-                   align-items: stretch;
-                   padding: 0 {{S_o.PAD_2}};
-                   width: 100%;
-                   height: 3rem;
-              <label[for]>
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      cursor: url( /assets/styles/css/paint_brush.svg ) 32 32, auto;
-                <span>
-                        width:       2rem;
-                        height:      2rem;
-                        line-height: 2rem;
-                        border: 2px solid hsl( 0 0% 100% /1);
-                </span>
-              </label>
-              <label[for]:nth-of-type(1)>
-                <span>
-                        background: {{S_o.bgtransparent_s}};
-                </span>
-              </label>
-              <label[for]:nth-of-type(2)>
-                <span>
-                        background: {{S_o.bgblack_s}};
-                </span>
-              </label>
-              <label[for]:nth-of-type(3)>
-                <span>
-                        background: {{S_o.bgwhite_s}};
-                </span>
-              </label>
-              <label[for]:nth-of-type(4)>
-                <span>
-                        background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
-                </span>
-              </label>
-              <label[for]:nth-of-type(5)>
-                      cursor: pointer;
-                <span>
-                        background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
-                </span>
-              </label>
-              <label[for]:hover>
-                <span>
-                        visibility: hidden;
-                </span>
-              </label>
-      </div>
-      <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker>
-                   display: flex;
-                   flex-direction: column;
-                   align-self: flex-end;
-                   width: 95%;
-                   /*height: 10rem;*/
-                   margin-right: 5%;
-              <label>
-                    width: 100%;
-                    height: 1.6rem;
-                    border-radius: 4px;
-              </label>
-              <input[type=range]>
-                      position: relative;
-                      top: -1.1rem;
-                      cursor: pointer;
-              </input>
-              <label:nth-of-type(1)>
-                      background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
-              </label>
-              <label:nth-of-type(2)>
-                      background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat) * 1% ) 50% /1);
-              </label>
-              <label:nth-of-type(3)>
-                      background: hsl( 0 0% calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum) * 1% ) /1);
-              </label>
-            </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker>
-          </div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color>
-
-  </div>
-
-</div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
-
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked />
-+
-<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
-        display: flex;
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 context( stack, new )
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  )>
   <label#goto_{{C_o.MAIN_DOCK}}>
@@ -835,7 +423,7 @@ context( stack, new )
           width:  calc( var(--equal_ratio) * 1px );
           height: calc( var(--equal_ratio) * 1px );
           border-radius: 50%;
-          background: {{S_o.shadow_ne}};
+          background: {{S_o.light_05}};
           filter: brightness( .01 ); 
           pointer-events: none;
           transform-origin: center;
@@ -868,7 +456,7 @@ context( stack, new )
   </section>
 
   <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings>
-          box-shadow: 0 0 0 1000vmax {{S_o.shadow_lo}};
+          box-shadow: 0 0 0 1000vmax {{S_o.light_01}};
           transition: box-shadow .5s ease;
     <aside>
       <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue>
@@ -899,8 +487,8 @@ context( stack, new )
               justify-content: center;
               align-items: center;
               position: fixed;
-              background: {{S_o.bg_higher}};
-              box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+              background: {{S_o.bg_hi}};
+              box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
               transform-origin: center;
               transform: scale( var(--{{C_o.STAT_a[0]}}_hue_img_scale) ); /* from burst.js */
         <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:not(.fullsize)>
@@ -914,7 +502,7 @@ context( stack, new )
               position: absolute;
               /*width: auto;*/
               cursor: move;
-              box-shadow: 0 0 0 1000vmax {{S_o.shadow_full}};
+              box-shadow: 0 0 0 1000vmax {{S_o.light_100}};
               transition: all .5s ease;
         </canvas>
       </aside>
@@ -941,14 +529,15 @@ context( stack, new )
   </section>
 </body>
 
+
 context( stack, new )
 <body:has( canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize )>
   <section#{{C_o.STAT_a[0]}}>
     <div[id^={{C_o.DIV_ID_s}}_stat]>
       <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
         <div#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back>
-                width: 100vw;
-                height: 100vh;
+                width: {{S_o.FULL_WIDTH_s}};
+                height: {{S_o.FULL_HEIGHT_s}};
                 background: var(--{{C_o.STAT_a[0]}}_img_background);
         </div>
         <ul>
@@ -979,6 +568,7 @@ context( stack, new )
 </body>
 
 
+context( stack, new )
 <body:has( section#{{C_o.STAT_a[0]}} div[id^={{C_o.DIV_ID_s}}_stat] input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked )>
   <section#{{C_o.STAT_a[0]}}>
     <div[id^={{C_o.DIV_ID_s}}_stat]>
@@ -989,6 +579,8 @@ context( stack, new )
   </section>
 </body>
 
+
+context( stack, new )
 <body:has( section#{{C_o.STAT_a[0]}} div[id^={{C_o.DIV_ID_s}}_stat] input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked )>
   <section#{{C_o.STAT_a[0]}}>
     <div[id^={{C_o.DIV_ID_s}}_stat]>
@@ -1000,13 +592,14 @@ context( stack, new )
 </body>
 
 
+context( stack, new )
 <dialog#dialog_{{C_o.STAT_a[0]}}_download>
         display: none;
         position: absolute;
         margin: auto;
         padding: {{S_o.PAD_4}};
         width: clamp(40ch, 80ch, 80vw);
-        background: {{S_o.form_bg}};
+        background: {{S_o.bg_hi}};
         border: none;
         border-radius: 4px;
   <form>
@@ -1017,7 +610,7 @@ context( stack, new )
       <header>
               display: flex;
               gap: {{S_o.PAD_8}};
-              border-bottom: 1px solid {{S_o.form_label}};
+              border-bottom: 1px solid {{S_o.text}};
               text-transform: uppercase;
         <label>
                 width: 2rem;
@@ -1025,13 +618,13 @@ context( stack, new )
                 text-transform: uppercase;
                 font-size: 120%;
                 font-weight: 600;
-                color: {{S_o.darker}};
+                color: {{S_o.text}};
         </label>
         <label:nth-of-type(1)>
                 flex-grow: 2;
         </label>
         <label:nth-of-type(2)>
-                color: {{S_o.accept_hi}};
+                color: {{S_o.green_100}};
         </label>
         <label:not(:nth-of-type(1)):hover>
                 filter: brightness( 4 );
@@ -1042,13 +635,13 @@ context( stack, new )
       </header>
       <label>
               margin-top: 1rem;
-              color: {{S_o.textcolor_lo}};
+              color: {{S_o.bg}};
               font-size: 90%;
               font-style: italic;
               font-weight: 200;
       </label>
       <p>
-              color: {{S_o.textcolor}};
+              color: {{S_o.text}};
       </p>
     </div>
   </form>
@@ -1057,7 +650,7 @@ context( stack, new )
         display: grid;
 </dialog>
 <dialog#dialog_{{C_o.STAT_a[0]}}_download[open]::backdrop>
-        background: {{S_o.alert_back}};
+        background: {{S_o.light_09}};
 </dialog>
 
 
@@ -1071,3 +664,6 @@ context( stack, new )
           display: var(--{{C_o.STAT_a[0]}}_zoom_out_s);
           /*top: 0*/
 </nav>
+
+
+  context( url, stat_burst_sequencer.context.html )

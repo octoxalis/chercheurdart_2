@@ -3,7 +3,7 @@ label[data-list=link_n]:hover {
 }
 label[data-list=link_n] {
   padding: {{S_o.PAD_2}};
-  border: 1px solid {{S_o.shadow_ne}};
+  border: 1px solid {{S_o.light_07}};
   border-radius: 4px;
   font-weight: {{S_o.FONT_BOLD_s}};
   cursor: pointer;
@@ -54,7 +54,7 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > label:not(data--=a
   font-size: 90%;
   text-align: center;
   vertical-align: bottom;
-  border: 2px solid {{S_o.shadow_ne}};
+  border: 2px solid {{S_o.light_05}};
   border-radius: 50%;
   background: transparent;
 }
@@ -67,9 +67,9 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + in
   height: fit-content;
   margin: {{S_o.PAD_1}} 0;
   padding: {{S_o.PAD_4}};
-  background: {{S_o.insert}};
+  background: {{S_o.light_01}};
   text-decoration: none;
-  border: 1px solid {{S_o.shadow_ne}};
+  border: 1px solid {{S_o.light_05}};
   border-radius: 4px;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins > p:first-of-type {
@@ -82,8 +82,8 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + in
   margin: {{S_o.PAD_1}};
   padding: {{S_o.PAD_1}} {{S_o.PAD_2}};
   color: currentColor;
-  background: {{S_o.bgcolor}};
-  border: 2px solid {{S_o.shadow_ne}};
+  background: {{S_o.bg}};
+  border: 2px solid {{S_o.light_05}};
   border-radius: 4px;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins + label {

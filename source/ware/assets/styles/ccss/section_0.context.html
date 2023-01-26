@@ -16,7 +16,7 @@
           width: 8%;     /* keep right space for goto buttons */
           height: 1px;
           margin: {{S_o.PAD_6}} auto {{S_o.PAD_10}};
-          background: {{S_o.shadow_lo1}};
+          background: {{S_o.light_02}};
           border: 0;
   </hr>
 
@@ -68,7 +68,7 @@
             width: 30%;
             height: 1px;
             margin: {{S_o.PAD_4}} auto {{S_o.PAD_4}};
-            background: {{S_o.shadow_ne}};
+            background: {{S_o.light_05}};
             border: 0;
     </hr>
 
@@ -90,7 +90,7 @@
               margin: 0 {{S_o.PAD_1}};
               vertical-align: baseline;
                                          /*cursor: pointer;*/
-              color: {{S_o.inscolor}};
+              color: {{S_o.medium_100}};
         <em>
                 font-style: italic;
         </em>
@@ -114,13 +114,13 @@
               display: block;
               position: relative;
               /*width: fit-content;*/
-              max-width: {{S_o.INS_WIDTH_s}};
+              max-width: {{S_o.medium_WIDTH_s}};
               height: fit-content;
               margin: {{S_o.PAD_1}} 0;
               padding: {{S_o.PAD_4}};
-              background: {{S_o.insert}};
+              background: {{S_o.light_05}};
               text-decoration: none;
-              border: 1px solid {{S_o.ins_shadow_ne}};
+              border: 1px solid {{S_o.light_07}};
               border-radius: 4px;
         <a>
                 context( block, link_raw )
@@ -158,7 +158,7 @@
     <blockquote>
             display: block;
             padding-left: {{S_o.PAD_4}};
-            border-left: .5rem solid {{S_o.shadow_ne}};
+            border-left: .5rem solid {{S_o.light_05}};
             font-style: italic;
             context( block, reference_1 )
     </blockquote>
@@ -254,7 +254,7 @@ context( stack, new )
   <{{C_o.ROW_TAG_s}}>
           flex-grow: 1;
           padding: {{S_o.PAD_2}};
-          background: {{S_o.shadow_ne}};
+          background: {{S_o.light_05}};
           font-size: 90%;
     <a>
             font-size: 100%;
@@ -270,7 +270,7 @@ context( stack, new )
               width: fit-content;
               height: fit-content;
               border-bottom-right-radius: 18px;
-              background: {{S_o.shadow_hi}};
+              background: {{S_o.light_07}};
               opacity: 0;
               transition: opacity .3s;
             <a>

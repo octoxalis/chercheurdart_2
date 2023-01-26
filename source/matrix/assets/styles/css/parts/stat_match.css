@@ -129,10 +129,10 @@ details[data--="{{C_o.STAT_a[3]}}_details"][open] > summary:hover > span {
 }
 details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div {
   height: var(--height_n);
-  border: 2px solid {{S_o.ins_shadow_ne}};
+  border: 2px solid {{S_o.light_07}};
 }
 details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > div:hover, details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > canvas:hover, details[data--="{{C_o.STAT_a[3]}}_details"][open] > div > article > label:hover {
-  box-shadow: 0 0 0 1000vmax {{S_o.shadow_hi}};
+  box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
   transition-property: box-shadow;
   transition-delay: .25s;
   transition-duration: .5s;
@@ -142,7 +142,7 @@ details[data--="{{C_o.STAT_a[3]}}_details"][open] ~ img {
 }
 .svg_icon {
   --svg_icon_dim: 24px;
-  fill: {{S_o.highlight}};
+  fill: {{S_o.bg_lo}};
   stroke: none;
   width: var(--svg_icon_dim);
   height: var(--svg_icon_dim);

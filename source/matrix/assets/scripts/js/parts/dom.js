@@ -146,6 +146,73 @@ const DOM_o
         option_o
       )
   }
+  ,
+
+
+
+  removeWait__v    //: <a><h2><div><hr>
+  ()
+  {
+    const slug_s
+    =
+      document
+        .querySelector( `span[data-wait]`  )
+          ?.dataset
+            ?.wait
+    
+    if
+    (
+      slug_s
+    )
+    {
+      const link_e
+      =
+      document
+        .getElementById( slug_s  )
+
+      const section_e
+      =
+        link_e
+          .parentNode
+
+      for
+      (
+        let tag_s
+        of
+        [
+          'H2'
+        , 'DIV'
+        , 'HR'
+        ]
+      )
+      {
+        const sibling_e
+        =
+          link_e
+            .nextElementSibling
+
+        if
+        (
+          sibling_e
+          &&
+          sibling_e
+            .tagName
+          ===
+          tag_s
+        )
+        {
+          section_e
+            .removeChild( sibling_e )
+        }
+      }
+
+      section_e
+        .removeChild( link_e )     //: a
+    }
+
+
+  }
+  ,
 
 
 

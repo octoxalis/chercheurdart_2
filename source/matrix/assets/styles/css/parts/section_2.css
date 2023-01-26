@@ -6,7 +6,7 @@ section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}
   height: 2rem;
   line-height: 2rem;
   text-align: center;
-  border: 1px solid {{S_o.nav_dot_set_4}};
+  border: 1px solid {{S_o.dot_set_4}};
   border-radius: 8px;
   background: transparent;
   display: flex;
@@ -21,7 +21,7 @@ section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}
   width: 50%;
 }
 section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll]:hover {
-  background: {{S_o.shadow_ne}};
+  background: {{S_o.light_05}};
 }
 body:has( section#{{C_o.SECTION_a[2]}} ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;

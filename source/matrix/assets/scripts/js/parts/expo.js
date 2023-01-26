@@ -16,6 +16,7 @@ const EXP_o
   , '+'     //: increment image by row
   , '-'     //: decrement image by row
 
+  , 'f'     //: full screen
   , 'i'     //: ajouter
   , 'x'     //: retirer
   , 'm'     //: masquer
@@ -1407,6 +1408,14 @@ const EXP_o
         break
 
       case
+        'f'
+      :
+        FUL_o
+          .toggle__v()
+          
+        break
+
+      case
         's'
       :
         if
@@ -1923,20 +1932,21 @@ const EXP_o
 
 
   ,
-  init__v
+  async init__v
   ()
   {
     EXP_o
       .listener__v()
   
+    await
     EXP_o
       .show__v()
 
-    document
-      .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}` )
-        .checked
-    =
-      true
+    UI_o
+      .showSection__v( '{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}'  )
+
+    DOM_o
+      .removeWait__v()
   }
 }
 

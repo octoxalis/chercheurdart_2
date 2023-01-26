@@ -17,16 +17,23 @@
     `article`,
   ],
 
+  include_a:
+  [
+    //-- `dialog_alert`
+  ],
+
   script_a:      //!!! no backtick !!! //
   [
     //:TEST 'idecompress.min.js',
     'Idb.min.js',
     'dom.min.js',
+    //-- 'dialog_alert.min.js',
   ],
 
   css_a:
   [
     'dock.min.css',
+    //-- 'dialog_alert.min.css',
   ],
 
   version_a:
@@ -121,7 +128,9 @@
 [[₀  expérimental  ::
      Certains de ses éléments, et **en tout premier lieu les images**, ne sont accessibles qu'en utilisant la version la plus récente d'un navigateur Internet tel que, ou compatible avec:
      - **Google Chrome** (de préférence ||  BRAVE  ||, pour des raisons de confidentialité)
-     - **Mozilla Firefox**.
+//
+      - **Mozilla Firefox**.
+//
      La page ||  SITE_TECH  || donne un aperçu de son infrastructure
      La page ||  GUIDE  || détaille son fonctionnement  ]]
 

@@ -984,6 +984,18 @@ const STAT_W_o =
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //;console.timeEnd( 'scan' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    STAT_W_o
+      .post__v
+      (
+        {
+          task_s: 'PUT_scan'
+        , //: CLIENT_ALL_s
+          ready_b: true
+        }
+      )
+
+
     }
   }
   ,
@@ -2774,7 +2786,10 @@ const STAT_W_o =
     , interval_n   //: only to start
     , shift_n      //: idem
     , limit_n      //: idem
+    , backward_b   //: idem, from most capacity to less capacity
+    , step_b       //: idem, manual step by step
     , opacity_n    //: idem
+
     }
     =
       payload_o
@@ -2846,31 +2861,51 @@ const STAT_W_o =
                   {
                     if
                     (
-                      first
-                      ===
-                      null
+                      backward_b
                     )
-                {
-                  return 1
+                    {
+                      return (
+                        first
+                          .rate_n
+                        >
+                        second
+                          .rate_n
+                        ?
+                          1
+                        :
+                          first
+                            .rate_n
+                          <
+                          second
+                            .rate_n
+                          ?
+                            -1
+                            :
+                            0
+                      )
                     }
-                    //-->
-                    if
-                    (
-                      second
-                      ===
-                      null
-                    )
-                {
-                  return -1
+                    else
+                    {
+                      return (
+                        first
+                          .rate_n
+                        >
+                        second
+                          .rate_n
+                        ?
+                          -1
+                        :
+                          first
+                            .rate_n
+                          <
+                          second
+                            .rate_n
+                          ?
+                            1
+                            :
+                            0
+                      )
                     }
-                    //-->
-                    return (
-                  second
-                    .rate_n
-                  -
-                  first
-                    .rate_n
-                    )
                   }
               )
 
@@ -2921,6 +2956,12 @@ const STAT_W_o =
             .opacity_n
         =
           opacity_n
+            
+        STAT_W_o
+          .slideStack_o
+            .step_b
+        =
+          step_b
             
         STAT_W_o
           .slideStack_o
@@ -3015,37 +3056,45 @@ const STAT_W_o =
       case 'progress'
       :
         let pause_n
+        =
+          0       //: valid for step_b
 
-        if 
+        if
         (
-          ! STAT_W_o
-              .slideStack_o
-                .pause_b    //: not yet pause
+          ! step_b
         )
         {
-          STAT_W_o
-            .slideStack_o
-              .pause_b
-          =
-            true
-    
-          pause_n
-          =
-            +'{{C_o.PLAY_PAUSE_n}}'
-        }
-        else          //: resume pause
-        {
-          STAT_W_o
-            .slideStack_o
-              .pause_b
-          =
-            false
-
-          pause_n
-          =
+          if 
+          (
+            ! STAT_W_o
+                .slideStack_o
+                  .pause_b    //: not yet pause
+          )
+          {
             STAT_W_o
               .slideStack_o
-                .interval_n
+                .pause_b
+            =
+              true
+      
+            pause_n
+            =
+              +'{{C_o.PLAY_PAUSE_n}}'
+          }
+          else          //: resume pause
+          {
+            STAT_W_o
+              .slideStack_o
+                .pause_b
+            =
+              false
+  
+            pause_n
+            =
+              STAT_W_o
+                .slideStack_o
+                  .interval_n
+          }
         }
 
         //=== pause || resume slideshow ===
@@ -3086,8 +3135,7 @@ const STAT_W_o =
         slot_a
       , shift_n
       , gap_n
-      //?? , shiftGap_n
-      , stop_b
+      , step_b
       }
     =
       STAT_W_o
@@ -3220,7 +3268,8 @@ const STAT_W_o =
       if
       (
         shift_n      //: modify interval
-        //?? shiftGap_n
+        ||
+        step_b
       )
       {
         clearInterval
@@ -3238,9 +3287,13 @@ const STAT_W_o =
           (
             STAT_W_o
               .slide__v
-          , STAT_W_o
-              .slideStack_o
-                .interval_n
+          , step_b
+            ?
+              +'{{C_o.PLAY_PAUSE_n}}'
+            :
+              STAT_W_o
+                  .slideStack_o
+                    .interval_n
           )
           
         STAT_W_o
@@ -3254,10 +3307,6 @@ const STAT_W_o =
     }
     else
     {
-      stop_b
-      =
-        true
-  
       STAT_W_o
         .stopSlide__v()
     }

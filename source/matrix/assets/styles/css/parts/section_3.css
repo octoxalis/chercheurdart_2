@@ -20,7 +20,7 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav {
   width: {{ S_o.NAV_SETTINGS_s}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label > span[data-icon=substat] {
-  background: {{S_o.nav_dot_stat}};
+  background: {{S_o.dot_stat}};
   opacity: 0;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] {
@@ -29,20 +29,19 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] {
   height: fit-content;
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=increment] {
-  background: {{S_o.nav_dot_set_1}};
+  background: {{S_o.dot_set_1}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=decrement] {
-  background: {{S_o.nav_dot_set_2}};
+  background: {{S_o.dot_set_2}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label > span[data-role=open] {
-  background: {{S_o.nav_dot_set_3}};
+  background: {{S_o.dot_set_3}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id$="_settings"] > label:hover > span {
   background: transparent;
 }
 section > div:not([id="{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[3]}}"]) {
   width: {{S_o.FULL_WIDTH_s}};
-  height: 100vh;
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked ~ section#{{C_o.STAT_a[0]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[1]}}:checked ~ section#{{C_o.STAT_a[1]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[2]}}:checked ~ section#{{C_o.STAT_a[2]}}, input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[3]}}:checked ~ section#{{C_o.STAT_a[3]}} {
   display: block;

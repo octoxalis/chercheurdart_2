@@ -39,12 +39,20 @@ const UN_o =
             `,       //: pattern: `{{`  //: preserve Nunjucks
           `_OPEN_NUNJUCKS_`
         )
+        //-- .replace
+        //-- (
+        //--   GM_re
+        //--     `
+        //--     \}{2}\n
+        //--     `,       //: pattern: `}}`  //: preserve Nunjucks
+        //--   `}}\n\n`
+        //-- )
         .replace
         (
           GM_re
             `
             \}{2}
-            `,       //: pattern: `{{`  //: preserve Nunjucks
+            `,       //: pattern: `}}`  //: preserve Nunjucks
           `_CLOSE_NUNJUCKS_`
         )
         .replace

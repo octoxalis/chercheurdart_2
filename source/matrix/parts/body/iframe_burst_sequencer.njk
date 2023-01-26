@@ -1,0 +1,52 @@
+<input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer type=checkbox>
+<div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
+  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward name=playback_direction type=radio checked/>
+    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward>{{C_o.NAV_LEGEND_o.play_forward.legend_s}}</label>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_backward name=playback_direction type=radio />
+    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_backward>{{C_o.NAV_LEGEND_o.play_backward.legend_s}}</label>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_step type=checkbox />
+    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_step>{{C_o.NAV_LEGEND_o.play_step.legend_s}}</label>
+  </div>
+  
+  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval data-label="{{C_o.NAV_LEGEND_o.play_interval.legend_s}}" type=range min=100 max=10000 step=100 value={{C_o.PLAY_INTERVAL_n}} data-tip="{{C_o.PLAY_INTERVAL_n}}">
+
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift type=range min=0 max=400 step=1 value=0 data-tip="0">
+
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower name={{C_o.STAT_a[0]}}_playback_shift type=radio>
+    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower>{{C_o.NAV_LEGEND_o.play_slower.legend_s}}</label>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_steady name={{C_o.STAT_a[0]}}_playback_shift type=radio checked>
+    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_steady>{{C_o.NAV_LEGEND_o.play_steady.legend_s}}</label>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster name={{C_o.STAT_a[0]}}_playback_shift type=radio>
+    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster>{{C_o.NAV_LEGEND_o.play_faster.legend_s}}</label>
+  </div>
+
+  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress>
+    <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress></label>
+    <progress id=progress_{{C_o.STAT_a[0]}}_playback_progress max=100 value=0></progress>
+    <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_start>&nbsp;</label>
+    <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_stop>&nbsp;</label>
+    <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_reset>&nbsp;</label>
+  </div>
+
+  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity data-label="{{C_o.NAV_LEGEND_o.burst_opacity.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_IMG_OPACITY_n}} data-tip="{{C_o.BURST_IMG_OPACITY_n}}">
+  </div>
+
+  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color>
+    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_transparent>
+        <span id=span_{{C_o.STAT_a[0]}}_hue_img_bg_transparent data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+        <span id=span_{{C_o.STAT_a[0]}}_hue_img_bg_black data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+        <span id=span_{{C_o.STAT_a[0]}}_hue_img_bg_white data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+        <span id=span_{{C_o.STAT_a[0]}}_hue_img_bg_color data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
+    </label>
+  </div>
+
+  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker>
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue data-label="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}" type=range min=0 max=360 step=1 value={{C_o.BURST_PICK_HUE_n}} data-tip="{{C_o.BURST_PICK_HUE_n}}">
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat data-label="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_PICK_SAT_n}} data-tip="{{C_o.BURST_PICK_SAT_n}}">
+    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum data-label="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_PICK_LUM_n}} data-tip="{{C_o.BURST_PICK_LUM_n}}">
+  </div>
+  
+</div>

@@ -28,11 +28,11 @@
 
   script_a:
   [
-    'stat.min.js',
+    //-- 'stat.min.js',
   ],
   css_a:
   [
-    'stat.min.css',
+    //-- 'stat.min.css',
   ],
 
   version_a:

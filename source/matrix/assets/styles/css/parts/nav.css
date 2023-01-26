@@ -7,22 +7,22 @@ nav > a {
   border: 0;
 }
 nav > a > span[data-role=home] {
-  background: {{S_o.nav_dot_home}};
+  background: {{S_o.dot_home}};
 }
 nav > label > span[data-role={{C_o.SECTION_a[0]}}] {
-  background: {{S_o.nav_dot_article}};
+  background: {{S_o.dot_article}};
 }
 nav > label > span[data-role={{C_o.SECTION_a[1]}}] {
-  background: {{S_o.nav_dot_gallery}};
+  background: {{S_o.dot_gallery}};
 }
 nav > label > span[data-role={{C_o.SECTION_a[2]}}] {
-  background: {{S_o.nav_dot_expo}};
+  background: {{S_o.dot_expo}};
 }
 nav > label > span[data-role={{C_o.SECTION_a[3]}}] {
-  background: {{S_o.nav_dot_stat}};
+  background: {{S_o.dot_stat}};
 }
 nav > label > span[data-role={{C_o.STAT_s}}] {
-  background: {{S_o.nav_dot_stat}};
+  background: {{S_o.dot_stat}};
 }
 nav > a:hover, nav > label:hover {
   transition: all ease .3s;
@@ -54,7 +54,7 @@ a[data-legend]:after, label[data-key]:after {
   width: 4ch;
   height: 1rem;
   font-size: 65%;
-  background: {{S_o.key}};
+  background: {{S_o.light}};
   border-radius: 4px;
   transform: scaleX( 0 );
   transform-origin: center;

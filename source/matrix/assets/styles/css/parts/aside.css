@@ -1,6 +1,6 @@
 aside {
   display: grid;
-  background: {{S_o.bgcolor}};
+  background: {{S_o.light_100}};
 }
 aside > figure {
   display: none;
@@ -33,7 +33,7 @@ aside > figure:target {
   right: 0;
   bottom: 0;
   left: 0;
-  background: {{S_o.bgcolor}};
+  background: {{S_o.bg}};
 }
 aside > figure:target > a:hover {
   border: 0;
@@ -42,7 +42,7 @@ aside > figure:target > label {
   position: absolute;
 }
 aside > figure:target > label > span {
-  background: {{S_o.nav_dot_expo}};
+  background: {{S_o.dot_expo}};
 }
 aside > figure:target > label:hover {
   opacity: 1;
@@ -53,7 +53,7 @@ aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_
   left: 2rem;
 }
 aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom > input:checked ~ label[for]:nth-of-type( 1 ) {
-  background: {{S_o.highlight}};
+  background: {{S_o.bg_lo}};
 }
 aside:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target > a > img {
   width: auto;

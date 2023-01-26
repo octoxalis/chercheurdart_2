@@ -8,7 +8,7 @@
 
   doc_n:      -1,
   title_s:    `Réserves`,
-  subtitle_s: `Réserves`,
+  subtitle_s: `Peintres du Nord`,
   abstract_s: `Réserves`,
 
   school_s: `du Nord`,

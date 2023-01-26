@@ -55,11 +55,31 @@ const STAT_o =
         .task_s
     )
     {
-      //-- case 'PUT_scan':      //: { task_s, msg_s }
-      //-- 
-      //--   break
+      case 'PUT_scan'
+      :
+        const stat_s
+        =
+          document
+            .body
+              .dataset
+                .stat_s
+
+        STAT_o
+          .adopt__v( stat_s )
+
+        document
+           .getElementById( `{{C_o.INPUT_ID_s}}_${stat_s}` )
+             .checked
+         =
+           true
+
+        DOM_o
+          .removeWait__v()
+          
+        break
     
-      default:
+      default
+      :
         break
     }
   }
@@ -294,17 +314,17 @@ const STAT_o =
         listen_e
       )
       {
-        listen_e
-          .addEventListener
-          (
-            'click',
-            () =>
-              STAT_o
-                .adopt__v( stat_s ),
-            {
-              once: true
-            }
-          )
+        //-- listen_e
+        //--   .addEventListener
+        //--   (
+        //--     'click',
+        //--     () =>
+        //--       STAT_o
+        //--         .adopt__v( stat_s ),
+        //--     {
+        //--       once: true
+        //--     }
+        //--   )
 
         DOM_o
           .event__v
@@ -369,6 +389,9 @@ const STAT_o =
                   .src_s
             }
           )
+
+
+      //++ wait GET_scan worker message
     }
   }
 }

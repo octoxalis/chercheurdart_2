@@ -8,7 +8,7 @@
 
   doc_n:      -1,
   title_s:    `Réserves`,
-  subtitle_s: `Réserves`,
+  subtitle_s: `Peintres du Sud`,
   abstract_s: `Réserves`,
 
   school_s: `du Sud`,
@@ -23,7 +23,7 @@
   section_a:
   [
     `article`,
-    `galerie`,
+    ``,
     `reserve`,
   ],
 
@@ -59,7 +59,6 @@
 
 
 ##1  {{title_s}}
-
 
 ##2  Presentation
 

@@ -15,15 +15,21 @@
   section_a:
   [
     `article`,
-    `galerie`,
+    ``,
   ],
 
   stat_s: `burst`,
+
+  include_a:
+  [
+    `dialog_alert`
+  ],
 
   script_a:
   [
     'Idb.min.js',
     'dom.min.js',
+    'dialog_alert.min.js',
     'stat.min.js',
   ],
   
@@ -31,6 +37,7 @@
   [
     'stat.min.css',
     'dock.min.css',
+    'dialog_alert.min.css',
     'stat_burst.min.css',
   ],
 
@@ -55,10 +62,15 @@
 [[₀  {{abstract_s}}  ::
      {{F_o.versionList__s(version_a)}}  ]]
 
+{% _wait "Analyse de l'image" %}
+Cette opération ne prend que quelques secondes
+{% end_wait %}
+
 ##2  Presentation
 
 ##2  Colorimétrie
 
 Répartition chromatique (échelle logarithmique)
+
 
 {% end_section %}

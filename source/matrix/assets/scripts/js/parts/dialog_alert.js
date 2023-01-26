@@ -47,9 +47,22 @@ const DIA_o =
   ,
   async confirm__b
   (
-    id_s='alert'
+    close_b=false
+  , id_s='alert'
   )
   {
+    if
+    (
+      close_b
+    )
+    {
+      document
+        .getElementById( `dialog_main_${id_s}`  )
+          .close()
+
+      return
+    }
+    //-->
     return new Promise
       (
         resolve =>

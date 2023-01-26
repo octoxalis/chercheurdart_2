@@ -4,7 +4,7 @@
         margin: auto;
         padding: {{S_o.PAD_4}};
         width: clamp(20ch, 40ch, 50vw);
-        background: {{S_o.form_bg}};
+        background: {{S_o.bg_hi}};
         border: none;
         border-radius: 4px;
   <form>
@@ -15,7 +15,7 @@
       <header>
               display: flex;
               gap: {{S_o.PAD_8}};
-              border-bottom: 1px solid {{S_o.form_label}};
+              border-bottom: 1px solid {{S_o.text}};
               text-transform: uppercase;
         <label>
                 width: 2rem;
@@ -23,16 +23,16 @@
                 text-transform: uppercase;
                 font-size: 120%;
                 font-weight: 600;
-                color: {{S_o.darker}};
+                color: {{S_o.text}};
         </label>
         <label:nth-of-type(1)>
                 flex-grow: 2;
         </label>
         <label[for$=cancel]>
-                color: {{S_o.cancel_hi}};
+                color: {{S_o.red_100}};
         </label>
         <label[for$=accept]>
-                color: {{S_o.accept_hi}};
+                color: {{S_o.green_100}};
         </label>
         <label:not(:nth-of-type(1)):hover>
                 filter: brightness( 4 );
@@ -43,13 +43,13 @@
       </header>
       <label>
               margin-top: 1rem;
-              color: {{S_o.textcolor_lo}};
+              color: {{S_o.bg}};
               font-size: 90%;
               font-style: italic;
               font-weight: 200;
       </label>
       <p>
-              color: {{S_o.textcolor}};
+              color: {{S_o.text}};
       </p>
     </div>
   </form>
@@ -58,5 +58,5 @@
         display: grid;
 </dialog>
 <dialog[id^=dialog_main_][open]::backdrop>
-        background: {{S_o.alert_back}};
+        background: {{S_o.light_09}};
 </dialog>

@@ -12,7 +12,7 @@ nav#{{C_o.NAV_ID_s}}_toolset_zoom > label {
   height: 2rem;
   line-height: 2rem;
   text-align: center;
-  border: 1px solid {{S_o.nav_dot_set_4}};
+  border: 1px solid {{S_o.dot_set_4}};
   border-radius: 8px;
   background: transparent;
   z-index: 101;
@@ -21,7 +21,7 @@ nav#{{C_o.NAV_ID_s}}_toolset_zoom > label {
 }
 nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:hover {
   cursor: pointer;
-  background: {{S_o.shadow_ne}};
+  background: {{S_o.light_05}};
 }
 nav#{{C_o.NAV_ID_s}}_toolset_zoom > input {
   display: none;

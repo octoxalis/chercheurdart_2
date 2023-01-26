@@ -14,7 +14,7 @@
   section_a:
   [
     `article`,
-    `galerie`,
+    ``,
     `expo`,
   ],
 
@@ -55,14 +55,19 @@
 
 ##1  {{title_s}}
 
+[[₀  {{abstract_s}}  ::
+     {{F_o.versionList__s(version_a)}}  ]]
+
+{% _wait "Chargement des images" %}
+La durée de cette opération dépend de la taille et du nombre des images
+{% end_wait %}
 
 ##2  Presentation
 
-Exposition présente.
+Exposition actuelle.
 
 
 ##2  Expositions précédentes
-
 
 
 {% end_section %}

@@ -18,10 +18,10 @@
   height: 10px;
 }
 *::-webkit-scrollbar-track {
-  background: {{S_o.bgcolor}};
+  background: {{S_o.bg}};
 }
 *::-webkit-scrollbar-thumb {
-  background-color: {{S_o.bg_higher}};
-  border: .2em solid {{S_o.bgcolor}};
+  background-color: {{S_o.bg_hi}};
+  border: .2em solid {{S_o.bg}};
   border-radius: 4px;
 }

@@ -10,15 +10,17 @@ const MARK_HEAD_o =
 const FLY_o =
   require( '../lib/flyer.js' )
   
+const F_o =
+  require( '../data/F_o.js' )
 
 
 const CODES_o =
 {
-  section__s:    //: 2mark section
+  section__s    //: 2mark section
   (
     source_s,
     section_s
-  ) =>
+  )
   {
     MARK_HEAD_o      //: extension at section level
       .extend__v()
@@ -35,16 +37,26 @@ const CODES_o =
         //... + C_o.COMMENTS_REPLACE_s     //: to be replaced by comment part, if issue_n is defined
       + `</section>\n`         //: \n is mandatory
 
+    processed_s
+    =
+      processed_s
+        .replace
+        (
+          '</div>'    //!!! first div in 2mark-header.js anteDiv_s
+        , ''
+        )
+
     return processed_s
   }
   ,
 
 
-  flyer__s:
+
+  flyer__s
   (
     source_s,
     key_s
-  ) =>
+  )
   {
     FLY_o
       .flyer__v
@@ -53,7 +65,28 @@ const CODES_o =
         source_s
       )
   }
+  ,
+  
 
+
+  wait__s
+  (
+    source_s
+  , header_s
+  )
+  {
+    const id_s =
+      F_o
+        .slug__s( header_s )
+
+    return (
+      `<hr><a id=${id_s}></a>`
+      + `<h2>${header_s}</h2>`
+      + `<div>`
+      + `<span data-wait=${id_s}>${source_s}</span>`
+      + `</div>`
+    )
+  }
 }
 
 
@@ -67,8 +100,9 @@ module.exports =
       let code_s
       of
       [
-        'section',
-        'flyer'
+        'section'
+      , 'flyer'
+      , 'wait'
       ]
     )
     {

@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <div id={{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}>
-
-
-<input id={{C_o.INPUT_ID_s}}_toolset type=checkbox>
-<div id={{C_o.DIV_ID_s}}_toolset>
-  <nav id={{C_o.NAV_ID_s}}_toolset_zoom>
-    <input id={{C_o.INPUT_ID_s}}_toolset_zoom type=checkbox>
-    <label for={{C_o.INPUT_ID_s}}_toolset_zoom>{{C_o.ZOOM_OUT_s}}</label>
-    <label for={{C_o.INPUT_ID_s}}_toolset_zoom>{{C_o.ZOOM_IN_s}}</label>
-  </nav>
-</div>
+  <input id={{C_o.INPUT_ID_s}}_toolset type=checkbox>
+  <div id={{C_o.DIV_ID_s}}_toolset>
+    <nav id={{C_o.NAV_ID_s}}_toolset_zoom>
+      <input id={{C_o.INPUT_ID_s}}_toolset_zoom type=checkbox>
+      <label for={{C_o.INPUT_ID_s}}_toolset_zoom>{{C_o.ZOOM_OUT_s}}</label>
+      <label for={{C_o.INPUT_ID_s}}_toolset_zoom>{{C_o.ZOOM_IN_s}}</label>
+    </nav>
+  </div>
 
 
 
@@ -64,150 +62,12 @@
     </label>
   </nav>
 
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings name={{C_o.STAT_a[0]}}_settings type=checkbox>
-  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings>
-    <aside>
-      <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue>
-        
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot>
-          <ul id={{C_o.LIST_ID_s}}_{{C_o.STAT_a[0]}}_hue_slot data-role=range>
-            <li data-slot_n="1">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio checked>
-            </li>
-            <li data-slot_n="3">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="6">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="10">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="15">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="20">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="24">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="30">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="36">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="40">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="45">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="60">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="72">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="90">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-            <li data-slot_n="120">
-              <input name={{C_o.STAT_a[0]}}_hue_slot type=radio>
-            </li>
-          </ul>
-          <hr role="vrange" />
-        </div>
+{% include "parts/body/iframe_burst_dock.njk" %}
 
-        <div>
-          <canvas id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_back width=48 height=720></canvas>
-          <canvas id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_front width=48 height=720></canvas>
-        </div>
-        <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_hue_trace>
-          <output id=output_{{C_o.STAT_a[0]}}_hue type="text">{{S_o.hue_back}}</output>
-          <span data-icon="{{C_o.NAV_LEGEND_o.empty}}">{{C_o.NAV_LEGEND_o.open_list_marker.legend_s}}</span>
-        </label>
+{% include "parts/body/iframe_burst_settings.njk" %}
 
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi>
-         <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi data-label="{{C_o.NAV_LEGEND_o.burst_hi.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_THRESH_HI_n}} data-tip="{{C_o.BURST_THRESH_HI_n}}">
-        </div>
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo>
-         <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_thresh_lo data-label="{{C_o.NAV_LEGEND_o.burst_lo.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_THRESH_LO_n}} data-tip="{{C_o.BURST_THRESH_LO_n}}">
-        </div>
-      </div>
-    </aside>
-  </div>
+{% include "parts/body/iframe_burst_sequencer.njk" %}
 
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer  type=checkbox>
-  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
-    <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_settings  type=checkbox>
-    <div>
-      <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback>
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress>
-          <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_start>&nbsp;</label>
-          <progress id=progress_{{C_o.STAT_a[0]}}_playback_progress max=100 value=0></progress>
-          <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_stop>&nbsp;</label>
-          <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_reset>&nbsp;</label>
-          <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress></label>
-        </div>
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval data-label="{{C_o.NAV_LEGEND_o.play_interval.legend_s}}" data-label="" type=range min=100 max=10000 step=100 value={{C_o.PLAY_INTERVAL_n}} data-tip="{{C_o.PLAY_INTERVAL_n}}">
-        </div>
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower name={{C_o.STAT_a[0]}}_playback_shift type=radio checked>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower>{{C_o.NAV_LEGEND_o.play_slower.legend_s}}</label>
-
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster name={{C_o.STAT_a[0]}}_playback_shift type=radio>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_faster>{{C_o.NAV_LEGEND_o.play_faster.legend_s}}</label>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift type=range min=0 max=100 step=1 value=0 data-tip="0">
-        </div>
-      </div>
-  
-      <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg>
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity data-label="{{C_o.NAV_LEGEND_o.burst_opacity.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_IMG_OPACITY_n}} data-tip="{{C_o.BURST_IMG_OPACITY_n}}">
-        </div>
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_transparent data-legend="{{C_o.NAV_LEGEND_o.img_bgtransparent.legend_s}}">
-              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
-          </label>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black data-legend="{{C_o.NAV_LEGEND_o.img_bgblack.legend_s}}">
-              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
-          </label>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_white data-legend="{{C_o.NAV_LEGEND_o.img_bgwhite.legend_s}}">
-              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
-          </label>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color data-legend="{{C_o.NAV_LEGEND_o.img_bgcolor.legend_s}}">
-              <span data-role="bgcolor">{{C_o.NAV_LEGEND_o.empty}}</span>
-          </label>
-        </div>
-        <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue></label>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_hue data-label="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}" type=range min=0 max=360 step=1 value={{C_o.BURST_PICK_HUE_n}} data-tip="{{C_o.BURST_PICK_HUE_n}}">
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat></label>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_sat data-label="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_PICK_SAT_n}} data-tip="{{C_o.BURST_PICK_SAT_n}}">
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum></label>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_pick_lum data-label="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}" type=range min=0 max=100 step=1 value={{C_o.BURST_PICK_LUM_n}} data-tip="{{C_o.BURST_PICK_LUM_n}}">
-        </div>
-      </div>
-    </div>
-    
-  </div>
-
-  <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_dock>
-    <input id={{C_o.INPUT_ID_s}}_dock_nav type=checkbox>
-    <div>
-      <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale data-label="{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}" type=range min=0.25 max=4 step=0.25 value={{C_o.BURST_SCALE_n}} data-tip="{{C_o.BURST_SCALE_n}}">
-
-      <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings data-key=p>{{C_o.NAV_LEGEND_o.settings_open.legend_s}}</label>
-      <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer data-key=a>{{C_o.NAV_LEGEND_o.anim_open.legend_s}}</label>
-      <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img data-key=v>{{C_o.NAV_LEGEND_o.burst_img.legend_s}}</label>
-      <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal data-key=e>{{C_o.NAV_LEGEND_o.burst_equal.legend_s}}</label>
-      <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_reset data-key={{C_o.CTRL_KEY_s}}z>{{C_o.NAV_LEGEND_o.burst_reset.legend_s}}</label>
-      <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_download data-key={{C_o.CTRL_KEY_s}}s>{{C_o.NAV_LEGEND_o.burst_download.legend_s}}</label>
-    </div>
-  </div>
 
   <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position type=checkbox>
   <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img type=checkbox checked>

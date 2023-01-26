@@ -1,5 +1,5 @@
 :root {
-  --bg_dot: {{S_o.bg_dot}};
+  --bg_dot: {{S_o.bg}};
 }
 h3 {
   --font_scale: 3vw;
@@ -19,7 +19,7 @@ h6 {
 }
 ul:not([data-role=range]) {
   margin: {{S_o.PAD_2}} 0;
-  border-left: 1px solid {{S_o.shadow_ne}};
+  border-left: 1px solid {{S_o.light_05}};
 }
 ul:not([data-role=range]) > li {
   list-style: none;
@@ -29,7 +29,7 @@ ul:not([data-role=range]) > li {
 ul:not([data-role=range]) > li > a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border-bottom: 1px solid {{S_o.light_05}};
 }
 ul:not([data-role=range]) > li > a:hover {
   border-bottom: 1px solid;
@@ -40,11 +40,11 @@ ul:not([data-role=range]) > li:before {
   content: '\{{S_o.LIST_MARKER_s}}';
   position: relative;
   left: -{{S_o.PAD_4}};
-  color: {{S_o.shadow_ne}};
+  color: {{S_o.light_05}};
 }
 pre {
   width: 100%;
-  background: {{S_o.shadow_lo}};
+  background: {{S_o.light_01}};
 }
 pre > code {
   width: 100%;
@@ -84,7 +84,7 @@ section {
   top: 0;
   min-width: {{S_o.FULL_WIDTH_s}};
   min-height: var(--min_height);
-  background: {{S_o.bgcolor}};
+  background: {{S_o.bg}};
 }
 section > iframe {
   display: none;
@@ -95,3 +95,20 @@ input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[0]}}:checked ~ section#{{C_o.SECTION_a[
 input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[1]}}:checked ~ section#{{C_o.SECTION_a[1]}} {
   display: flex;
 }
+span[data-wait] {
+  display: inline-block;
+  padding: {{S_o.PAD_4}};
+  font-weight: 400;
+  will-change: background;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
+  animation: 1s linear 0s infinite alternate data_wait;
+}
+@keyframes data_wait {
+  from {
+  background: hsla( 211 77% 11%/1 );
+}
+to {
+  background: hsla( 250 33% 55%/1 );
+  }}

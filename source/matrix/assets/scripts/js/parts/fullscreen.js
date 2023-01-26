@@ -18,19 +18,38 @@ const FUL_o =
         .addEventListener
         (
           "click",
-          () =>
-            (
-              document
-                .fullscreenElement
-              &&
-              document
-                .exitFullscreen()
-            )
-            ||
-            document
-              .querySelector( "body" )
-              ?.requestFullscreen()
+          //-- () =>
+          //--   (
+          //--     document
+          //--       .fullscreenElement
+          //--     &&
+          //--     document
+          //--       .exitFullscreen()
+          //--   )
+          //--   ||
+          //--   document
+          //--     .querySelector( "body" )
+          //--     ?.requestFullscreen()
+          FUL_o
+            .toggle__v
         )
     }
   }
+
+
+,  toggle__v
+   ()
+   {
+     (
+       document
+         .fullscreenElement
+       &&
+       document
+         .exitFullscreen()
+     )
+     ||
+     document
+       .querySelector( "body" )
+       ?.requestFullscreen()
+   }
 }

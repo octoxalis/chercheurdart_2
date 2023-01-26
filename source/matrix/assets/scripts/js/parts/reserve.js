@@ -341,11 +341,8 @@ var RES_o
     RES_o
       .listener__v()
   
-    document
-      .getElementById( `{{C_o.INPUT_ID_s}}_reserve` )
-        .checked
-    =
-      true
+    UI_o
+      .showSection__v( '{{C_o.INPUT_ID_s}}_reserve'  )
   }
 }
 

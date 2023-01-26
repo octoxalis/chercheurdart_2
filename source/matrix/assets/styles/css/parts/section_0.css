@@ -13,7 +13,7 @@ section#{{C_o.SECTION_a[0]}} > hr {
   width: 8%;
   height: 1px;
   margin: {{S_o.PAD_6}} auto {{S_o.PAD_10}};
-  background: {{S_o.shadow_lo1}};
+  background: {{S_o.light_02}};
   border: 0;
 }
 section#{{C_o.SECTION_a[0]}} > h1, section#{{C_o.SECTION_a[0]}} > h2 {
@@ -56,7 +56,7 @@ section#{{C_o.SECTION_a[0]}} > div > hr {
   width: 30%;
   height: 1px;
   margin: {{S_o.PAD_4}} auto {{S_o.PAD_4}};
-  background: {{S_o.shadow_ne}};
+  background: {{S_o.light_05}};
   border: 0;
 }
 p {
@@ -66,7 +66,7 @@ p {
 p > a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border-bottom: 1px solid {{S_o.light_05}};
 }
 p > a:hover {
   border-bottom: 1px solid;
@@ -79,7 +79,7 @@ p > label:hover {
 p > label {
   margin: 0 {{S_o.PAD_1}};
   vertical-align: baseline;
-  color: {{S_o.inscolor}};
+  color: {{S_o.medium_100}};
 }
 p > label > em {
   font-style: italic;
@@ -92,13 +92,13 @@ p > label + input:checked + ins {
   --font_scale: 1.9vw;
   display: block;
   position: relative;
-  max-width: {{S_o.INS_WIDTH_s}};
+  max-width: {{S_o.medium_WIDTH_s}};
   height: fit-content;
   margin: {{S_o.PAD_1}} 0;
   padding: {{S_o.PAD_4}};
-  background: {{S_o.insert}};
+  background: {{S_o.light_05}};
   text-decoration: none;
-  border: 1px solid {{S_o.ins_shadow_ne}};
+  border: 1px solid {{S_o.light_07}};
   border-radius: 4px;
 }
 p > label + input:checked + ins > a {
@@ -120,7 +120,7 @@ p > label[data-ins={{C_o.INS_QUO_s}}]:before {
 a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border-bottom: 1px solid {{S_o.light_05}};
 }
 a:hover {
   border-bottom: 1px solid;
@@ -133,7 +133,7 @@ strong, bold {
 blockquote {
   display: block;
   padding-left: {{S_o.PAD_4}};
-  border-left: .5rem solid {{S_o.shadow_ne}};
+  border-left: .5rem solid {{S_o.light_05}};
   font-style: italic;
   --font_max: 20px;
   --font_scale: 2.2vw;
@@ -150,7 +150,7 @@ blockquote {
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] > {{C_o.ROW_TAG_s}} {
-  border-left: 1px solid {{S_o.shadow_ne}};
+  border-left: 1px solid {{S_o.light_05}};
   list-style: none;
   padding-left: .8rem;
   color: currentColor;
@@ -159,7 +159,7 @@ blockquote {
   content: '\{{S_o.LIST_MARKER_s}}';
   position: relative;
   left: -{{S_o.PAD_4}};
-  color: {{S_o.shadow_ne}};
+  color: {{S_o.light_05}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
   --font_max: 20px;
@@ -220,7 +220,7 @@ blockquote {
 {{C_o.TABLE_TAG_s}}[role=table] > {{C_o.ROW_TAG_s}} {
   flex-grow: 1;
   padding: {{S_o.PAD_2}};
-  background: {{S_o.shadow_ne}};
+  background: {{S_o.light_05}};
   font-size: 90%;
 }
 {{C_o.TABLE_TAG_s}}[role=table] > {{C_o.ROW_TAG_s}} > a {
@@ -232,14 +232,14 @@ section#{{C_o.SECTION_a[0]}} > figure > figcaption {
   width: fit-content;
   height: fit-content;
   border-bottom-right-radius: 18px;
-  background: {{S_o.shadow_hi}};
+  background: {{S_o.light_07}};
   opacity: 0;
   transition: opacity .3s;
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border-bottom: 1px solid {{S_o.light_05}};
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} {
   display: table;
@@ -258,7 +258,7 @@ section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i:not(:
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border-bottom: 1px solid {{S_o.light_05}};
   --font_max: 18px;
   --font_scale: 2vw;
   font-weight: 400;

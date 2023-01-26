@@ -24,7 +24,7 @@ const BUR_o =
   , hue_o:
     {
       rangeY_n: 1,     //: C_o.BURST_RANGE_n
-      shift_n: 0,      //: from burst_hue_back
+      shift_n:  0,     //: from burst_hue_back
     }
 
   , scale_o:
@@ -59,6 +59,7 @@ const BUR_o =
     , 'ArrowDown'  //: idem
     , '+'          //: increment scale
     , '-'          //: decrement scale
+    , 'f'          //: full screen
     , 'd'          //: show/hide dock
     , 'p'          //: show/hide palette
     , 'a'          //: show/hide animation
@@ -393,7 +394,7 @@ const BUR_o =
           .slideshow_o
             .progress_n
         +=
-        progress_n
+          progress_n
   
         progress_e
           .value
@@ -433,7 +434,7 @@ const BUR_o =
   )
   {
     document
-      .getElementById( 'dialog_{{C_o.STAT_a[0]}}_download'  )
+      .getElementById( 'dialog_{{C_o.STAT_a[0]}}_download' )
         .close()
       
     BUR_o
@@ -446,7 +447,6 @@ const BUR_o =
       )
   }
   
-
 
   ,
   get_rate__v
@@ -544,7 +544,6 @@ const BUR_o =
             , [ offCanvas_e ]
           )
   }
-  
 
 
   ,
@@ -769,6 +768,7 @@ const BUR_o =
   }
 
 
+
   ,
   draw__v
   ()
@@ -817,6 +817,7 @@ const BUR_o =
     }
   }
   
+
 
   ,
   opacity__n
@@ -962,7 +963,7 @@ const BUR_o =
     {
       color_s
       =
-        '{{S_o.bg_higher}}'
+        '{{S_o.bg_hi}}'
 
       pointer_s
       =
@@ -972,7 +973,7 @@ const BUR_o =
     {
       color_s
       =
-        '{{S_o.bg_lower}}'
+        '{{S_o.text_lo}}'
 
       pointer_s
       =
@@ -1309,9 +1310,17 @@ const BUR_o =
           BUR_o
             .eventImg_download__v
             (
-              false      //: don't  pick
+              false      //: don't pick
             )
         }
+
+        break
+
+      case
+        'f'
+      :
+        FUL_o
+          .toggle__v()
 
         break
 
@@ -1549,10 +1558,11 @@ const BUR_o =
     {
       BUR_o
         .hue_o
-          .rangeY_n =
-            +slot_e             //: Number cast
-              .dataset
-                .slot_n
+          .rangeY_n
+      =
+        +slot_e             //: Number cast
+          .dataset
+            .slot_n
 
       BUR_o
         .draw__v()
@@ -1560,7 +1570,6 @@ const BUR_o =
       BUR_o
         .satLum__v()
     }
-
   }
   
 
@@ -2086,6 +2095,14 @@ const BUR_o =
 
     let limit_n        //: idem
 
+    let backward_b     //: idem
+
+    let step_b         //: start + progress
+    =
+      document
+        .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_step` )
+          .checked
+
     switch
     (
       id_s
@@ -2115,45 +2132,73 @@ const BUR_o =
         =
           0               //: reset
     
+        opacity_n
+        =
+          BUR_o
+            .opacity__n()
+
+        backward_b
+        =
+          document
+            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_backward` )
+              .checked
+
         interval_n    //: default to stop slideshow (opacity_n not used)
         =
           +document
             .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval` )            //: Number cast
               .value
-        
-        shift_n
-         =
-           +document
-             .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift` )            //: Number cast
-               .value
 
-        let delta_n
-        =
+        if
+        (
+          step_b
+        )
+        {
           interval_n
-          *
+          =
+            0      //: start without delay
+        }
+        else       //: no need to shift in step mode
+        {
           shift_n
-          *
-          0.01    //: percent
-
-
-        limit_n
-        =
-          document
-            .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower` )
-              .checked
-        ?
-          interval_n
-          +
-          delta_n
-        :
-          interval_n
-          -
-          delta_n
-        
-        opacity_n
-        =
-          BUR_o
-            .opacity__n()
+           =
+             +document
+               .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_shift` )            //: Number cast
+                 .value
+  
+          if
+          (
+            shift_n
+            &&
+            ! document
+                .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_steady` )
+                  .checked
+          )
+          {
+            let delta_n
+            =
+              interval_n
+              *
+              shift_n
+              *
+              0.01    //: percent
+    
+    
+            limit_n
+            =
+              document
+                .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_slower` )
+                  .checked
+              ?
+                interval_n
+                +
+                delta_n
+              :
+                interval_n
+                -
+                delta_n
+          }
+        }
     
         DOM_o
           .rootVar__v
@@ -2178,7 +2223,11 @@ const BUR_o =
         //-->
         interval_n
         =
-         +' {{C_o.PLAY_PAUSE_n}}'
+          step_b
+          ?
+            0
+          :
+            +'{{C_o.PLAY_PAUSE_n}}'
         
         break
 
@@ -2207,6 +2256,8 @@ const BUR_o =
           , interval_n: interval_n
           , shift_n: shift_n
           , limit_n: limit_n
+          , backward_b: backward_b
+          , step_b: step_b
           , opacity_n: opacity_n
           }
         )
@@ -2220,10 +2271,10 @@ const BUR_o =
     event_o
   )
   {
-    const for_s =
+    const id_s =
       event_o
         .target
-          .htmlFor
+          .id
 
     switch
     (
@@ -2231,7 +2282,7 @@ const BUR_o =
     )
     {
       case
-        for_s
+        id_s
           .includes( 'transparent' )
       :
         DOM_o
@@ -2244,7 +2295,7 @@ const BUR_o =
         break
 
       case
-        for_s
+        id_s
           .includes( 'black' )
       :
         DOM_o
@@ -2252,13 +2303,13 @@ const BUR_o =
           (
             `--{{C_o.STAT_a[0]}}_img_background`
             ,
-            '{{S_o.bgblack_s}}'
+            '{{S_o.bg_0}}'
           )
 
         break
 
       case
-        for_s
+        id_s
           .includes( 'white' )
       :
         DOM_o
@@ -2266,13 +2317,13 @@ const BUR_o =
           (
             `--{{C_o.STAT_a[0]}}_img_background`
             ,
-            '{{S_o.bgwhite_s}}'
+            '{{S_o.bg_100}}'
           )
 
         break
 
       case
-        for_s
+        id_s
           .includes( 'color' )
       :
         DOM_o
@@ -2285,23 +2336,67 @@ const BUR_o =
 
         break
 
-      case
-        for_s
-          .includes( 'picker' )
-      :
-        DOM_o
-          .rootVar__v
-          (
-            `--{{C_o.STAT_a[0]}}_img_picker`
-            ,
-            true
-          )
-
-        break
+      //XX case
+      //XX   id_s
+      //XX     .includes( 'picker' )
+      //XX :
+      //XX   DOM_o
+      //XX     .rootVar__v
+      //XX     (
+      //XX       `--{{C_o.STAT_a[0]}}_img_picker`
+      //XX       ,
+      //XX       true
+      //XX     )
+      //XX 
+      //XX   break
 
       default:
         break
     }
+  }
+
+
+
+  ,
+  eventInterval_range__v
+  (
+    event_o
+  )
+  {
+    const range_e =
+      event_o
+        .target
+
+    UI_o
+      .rangeVar__v
+      (
+        range_e
+      )
+
+  
+    let id_s =
+      range_e
+        .id
+
+    const hsl_s =
+      id_s
+        .slice
+        (
+          id_s
+            .lastIndexOf( '_' )
+          +
+          1
+        )
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_${hsl_s}`
+        
+        , range_e
+            .value
+      )
+
   }
 
 
@@ -2347,7 +2442,6 @@ const BUR_o =
 
     BUR_o
       .pick__v()
-
   }
 
 
@@ -2397,6 +2491,150 @@ const BUR_o =
       )
   }
 
+
+
+  ,
+  zoomable__v
+  ()
+  {
+    document
+      .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+        .addEventListener
+        (
+          'click'
+        , BUR_o
+            .eventSizeFull__v
+        )
+  }
+
+
+  ,
+  eventZoom__v
+  ()
+  {
+    const method_s
+    =
+      document
+        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
+          .checked
+      ?
+        'Tiny'
+      :
+        'Full'
+
+    BUR_o
+      [ `eventSize${method_s}__v` ]()
+  }
+
+
+
+  ,
+  eventSizeFull__v
+  ()
+  {
+    const full_e
+    =
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+
+    if
+    (
+      full_e
+        .classList
+          .contains( 'fullsize' )      //: already full
+    )
+    {
+      return    //: avoid click event when mouse up
+    }
+    //-->
+    full_e
+      .classList
+        .toggle( 'fullsize' )
+
+    BUR_o
+      .fullsize_n    //: store scale
+    =
+      +DOM_o
+        .rootVar__s( '--{{C_o.STAT_a[0]}}_hue_img_scale' )
+
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_hue_img_scale`,
+        1
+      )
+
+    DRAG_o
+      .init__v
+      (
+        full_e
+      )
+
+    DRAG_o
+      .enable__v()
+
+    DOM_o
+      .rootVar__v
+      (
+        '--{{C_o.STAT_a[0]}}_zoom_out_s'
+      , 'flex'
+      )
+
+    document
+      .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
+        .checked
+    =
+      false      //: show toolset to zoom-in || out
+  }
+
+
+  ,
+  eventSizeTiny__v
+  ()
+  {
+    const full_e
+    = 
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
+
+    if
+    (
+      full_e
+        .classList
+          .contains( 'fullsize' )
+    )
+    {
+      full_e
+        .classList
+          .toggle( 'fullsize' )
+  
+      DOM_o
+        .rootVar__v
+        (
+          `--{{C_o.STAT_a[0]}}_hue_img_scale`,    //: restore scale
+          BUR_o
+            .fullsize_n
+        )
+  
+      DRAG_o
+        .disable__v()
+  
+      DOM_o
+        .rootVar__v
+        (
+          '--{{C_o.STAT_a[0]}}_zoom_out_s'
+        , 'none'
+        )
+  
+      //== restore initial place ===
+      full_e
+        .setAttribute
+        (
+          'style'
+        , ''       //: remove drag transform
+        )
+    }
+  }
 
 
   ,
@@ -2573,22 +2811,15 @@ const BUR_o =
       document
         .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' )
 
-    if
-    (
-      input_e
-    )
-    {
-      input_e
-        .addEventListener
-        (
-          'change'
-        , BUR_o
-            .eventZoom__v
-        )
-    }
-
-    
-
+    input_e
+    &&
+    input_e
+      .addEventListener
+      (
+        'change'
+      , BUR_o
+          .eventZoom__v
+      )
 
     //??? document
     //???   .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_max` )
@@ -2660,14 +2891,20 @@ const BUR_o =
         ]
       )
       {
-        UI_o
-          .rangeVar__v
+        DOM_o
+          .listener__v
           (
-            document
-              .getElementById( `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_${range_s}` )
+            `{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_playback_${range_s}`
+          ,  BUR_o
+              .eventInterval_range__v
+          , event_s
+          , {
+              passive: true
+            }
           )
 
       }
+
       for
       (
         let range_s
@@ -2754,150 +2991,6 @@ const BUR_o =
 
     BUR_o
      .zoomable__v()
-  }
-
-
-  ,
-  zoomable__v
-  ()
-  {
-    document
-      .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
-        .addEventListener
-        (
-          'click'
-        , BUR_o
-            .eventSizeFull__v
-        )
-  }
-
-
-  ,
-  eventZoom__v
-  ()
-  {
-    const method_s
-    =
-      document
-        .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
-          .checked
-      ?
-        'Tiny'
-      :
-        'Full'
-
-    BUR_o
-      [ `eventSize${method_s}__v` ]()
-  }
-
-
-
-  ,
-  eventSizeFull__v
-  ()
-  {
-    const full_e
-    =
-      document
-        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
-
-    if
-    (
-      full_e
-        .classList
-          .contains( 'fullsize' )      //: already full
-    )
-    {
-      return    //: avoid click event when mouse up
-    }
-    //-->
-    full_e
-      .classList
-        .toggle( 'fullsize' )
-
-    BUR_o
-      .fullsize_n    //: store scale
-    =
-      +DOM_o
-        .rootVar__s( '--{{C_o.STAT_a[0]}}_hue_img_scale' )
-
-    DOM_o
-      .rootVar__v
-      (
-        `--{{C_o.STAT_a[0]}}_hue_img_scale`,
-        1
-      )
-
-    DRAG_o
-      .init__v
-      (
-        full_e
-      )
-
-    DRAG_o
-      .enable__v()
-
-    DOM_o
-      .rootVar__v
-      (
-        '--{{C_o.STAT_a[0]}}_zoom_out_s'
-      , 'flex'
-      )
-
-    document
-      .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom' ) 
-        .checked
-    =
-      false      //: show toolset to zoom-in || out
-  }
-
-
-  ,
-  eventSizeTiny__v
-  ()
-  {
-    const full_e
-    = 
-      document
-        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img` )
-
-    if
-    (
-      full_e
-        .classList
-          .contains( 'fullsize' )
-    )
-    {
-      full_e
-        .classList
-          .toggle( 'fullsize' )
-  
-      DOM_o
-        .rootVar__v
-        (
-          `--{{C_o.STAT_a[0]}}_hue_img_scale`,    //: restore scale
-          BUR_o
-            .fullsize_n
-        )
-  
-      DRAG_o
-        .disable__v()
-  
-      DOM_o
-        .rootVar__v
-        (
-          '--{{C_o.STAT_a[0]}}_zoom_out_s'
-        , 'none'
-        )
-  
-      //== restore initial place ===
-      full_e
-        .setAttribute
-        (
-          'style'
-        , ''       //: remove drag transform
-        )
-    }
   }
 
 

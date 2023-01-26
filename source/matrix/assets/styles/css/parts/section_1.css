@@ -24,7 +24,7 @@ section#{{C_o.SECTION_a[1]}} > figure > img {
 section#{{C_o.SECTION_a[1]}} > figure > a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border-bottom: 1px solid {{S_o.light_05}};
   border: none;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
@@ -32,7 +32,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
   width: fit-content;
   height: fit-content;
   border-bottom-right-radius: 18px;
-  background: {{S_o.shadow_hi}};
+  background: {{S_o.light_07}};
   opacity: 0;
   transition: opacity .3s;
 }
@@ -55,7 +55,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a {
   color: currentColor;
   text-decoration: none;
-  border-bottom: 1px solid {{S_o.shadow_ne}};
+  border-bottom: 1px solid {{S_o.light_05}};
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a:hover {
   border-bottom: 1px solid;

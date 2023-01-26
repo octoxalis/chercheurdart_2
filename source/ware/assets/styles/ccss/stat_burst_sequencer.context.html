@@ -1,0 +1,236 @@
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
+        display: none;
+</input>
+<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
+        display: none;
+</div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
+
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked>
+</input>
++
+<div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_sequencer>
+        z-index: 21;
+        display: flex;
+        flex-wrap: wrap;
+        gap: {{S_o.PAD_1}};
+        position: fixed;
+        top: 0;
+        left: {{S_o.NAV_SETTINGS_s}};
+        width:  calc( 100% - ({{S_o.NAV_SETTINGS_s}} * 2) );    /* reserve a place for future palette at right */
+        background: {{S_o.light_100}};
+        border-radius: 4px;
+  <div>
+          display: flex;
+          flex-wrap: wrap;
+          width: 15%;
+          padding: .5rem;
+          border: 1px solid {{S_o.bg_hi}};
+          border-radius: {{S_o.PAD_1}};
+  </div>
+  <div:nth-of-type(1)>
+          width: 8%;
+  </div>
+  <div:nth-of-type(4)>
+          width: 10%;
+  </div>
+  <div:nth-of-type(5)>
+          width: fit-content;
+  </div>
+  <div:nth-of-type(6)>
+          width: 380px;
+  </div>
+</div>
+
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward>
+          align-items: center;
+          gap: {{S_o.PAD_1}};
+          width: 8%;
+    <input>
+            display: none;
+    </input>
+    <label>
+            width: 47%;
+            height: 1rem;
+            line-height: 1rem;    /* vertical centering */
+            border-radius: {{S_o.PAD_1}};
+            background: {{S_o.bg_lo}};
+    </label>
+    <label:nth-of-type(1)>
+            text-align: left;
+    </label>
+    <label:nth-of-type(2)>
+            text-align: right;
+    </label>
+    <label:nth-of-type(3)>
+            flex-grow: 1;
+            text-align: center;
+    </label>
+    <label:hover>
+            color: {{211_o.lighter}};
+            filter: brightness(4);
+    </label>
+  </div>
+
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
+          justify-content: center;
+          gap: {{S_o.PAD_1}};
+    <input[type=range]>
+            width: 100%;
+    </input>
+    <input[type=radio]>
+            display: none;
+    </input>
+    <label>
+            position: relative;
+            top: -.5rem;
+            width: 31%;
+            height: 1rem;
+            line-height: 1rem;    /* vertical centering */
+            text-align: center;
+            border-radius: {{S_o.PAD_1}};
+            background: {{S_o.bg_lo}};
+    </label>
+    <label:hover>
+            color: {{211_o.lighter}};
+            filter: brightness(4);
+    </label>
+  </div>
+
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress>
+          --fromHue: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);
+          --toHue:   hsla( var(--{{C_o.STAT_a[0]}}_img_slot_toHue_n) 100% 50%/1);
+          flex-grow: 2;
+          justify-content: space-between;
+    <label:nth-of-type(1)>
+            display: inline-flex;
+            align-self: center;
+            justify-content: center;
+            width: 100%;
+            height: fit-content;
+            /*font-size: var(--{{C_o.STAT_a[0]}}_img_label_size);*/
+            /*background: {{S_o.bg_hi}};*/
+            background: linear-gradient(90deg, var(--fromHue), var(--toHue) );
+            border-radius: {{S_o.PAD_2}};
+    </label>
+    <progress#progress_{{C_o.STAT_a[0]}}_playback_progress>
+            display: inline-flex;
+            align-self: center;
+            gap: .25rem;
+            width: 100%;
+            height: 2rem;
+            cursor: var(--{{C_o.STAT_a[0]}}_playback_pause);
+            accent-color: hsla( var(--{{C_o.STAT_a[0]}}_img_slot_fromHue_n) 100% 50%/1);  /* linear-gradient(90deg, var(--fromHue), var(--toHue) ); */
+    </progress>
+    <label:not(:nth-of-type(1))>
+            display: inline-flex;
+            align-self: center;
+            justify-content: center;
+            width:  1.5rem;
+            height: 1.5rem;
+            background: {{S_o.bg_lo}};
+            border-radius: 8px;
+            cursor: pointer;
+    </label>
+    <label:nth-of-type(2)>
+            clip-path: polygon(0 100%, 100% 50%, 0 0);
+    </label>
+    <label:nth-of-type(3)>
+              /* no clip */
+              margin: 0 35%;
+    </label>
+    <label:nth-of-type(4)>
+            clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    </label>
+    <label:not(:nth-of-type(1)):hover>
+            filter: brightness(4);
+    </label>
+  </div>
+
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_opacity>
+          align-items: center;
+    <input[type=range]>
+            width: 100%;
+    </input>
+  </div>
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color>
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    <label>
+            display: flex;
+            align-items: center;
+            gap: {{S_o.PAD_2}};
+            width: fit-content;
+      <span>
+              width:       1.6rem;
+              height:      1.6rem;
+              line-height: 1.6rem;
+              border: 2px solid hsl( 0 0% 100% /1);
+              border-radius: 100%;
+      </span>
+      <span:nth-of-type(1)>
+              background: {{S_o.bgtransparent_s}};
+      </span>
+      <span:nth-of-type(2)>
+              background: {{S_o.bg_0}};
+      </span>
+      <span:nth-of-type(3)>
+              background: {{S_o.bg_100}};
+      </span>
+      <span:nth-of-type(4)>
+              background: hsl( var(--{{C_o.STAT_a[0]}}_img_bg_hue) calc(var(--{{C_o.STAT_a[0]}}_img_bg_sat)  *1% ) calc(var(--{{C_o.STAT_a[0]}}_img_bg_lum)  *1%) /1);
+      </span>
+      <span:hover>
+            transform: scale( 1.8 );
+      </span>
+    </label>
+  </div>
+
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker>
+        display: flex;
+        flex-wrap: wrap;
+    <input>
+            width: 50%;
+    </input>
+    <input:nth-of-type(1)>
+          width: 100%;
+    </input>
+  </div>
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward>
+    <input:checked/>
+    +
+    <label>
+            context( copy, next)
+    </label>
+  </div>
+
+context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval>
+    <input:checked/>
+    +
+    <label>
+            color: {{211_o.lighter}};
+            filter: brightness( 1.5 );
+    </label>
+  </div>
+
+context( stack, new )
+<body:has(#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked)>
+  <nav>
+          visibility: hidden;
+  </nav>
+</body>

@@ -693,10 +693,20 @@ const IND_o =
           .querySelector( 'body' )
             .dataset
     
+    if
+    (
       stat_s
-      &&
+    )
+    {
       STAT_o
         .init__v( stat_s )
+
+    }
+    
+
+
+
+
     }
   }
 }
