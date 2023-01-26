@@ -7,7 +7,7 @@
   //-- expires_n: 10,
 
   doc_n:      -11,
-  title_s:    `Collection peintres de France`,
+  title_s:    `Peintres de France`,
   subtitle_s: `Peintres de France`,
   abstract_s: `Oeuvres choisies`,
   //... issue_n: -1,

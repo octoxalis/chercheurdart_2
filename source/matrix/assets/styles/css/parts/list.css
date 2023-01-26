@@ -59,7 +59,7 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > label:not(data--=a
   background: transparent;
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + ins {
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 1.6vw;
   display: block;
   position: relative;

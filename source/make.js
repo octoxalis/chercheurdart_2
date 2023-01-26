@@ -5,7 +5,6 @@ const C_o = require( './make/data/C_o.js' )
 
 const MAKE_o =
 {
-  adocTemplateEngine:     'adoc',  //!!!
   markdownTemplateEngine: 'njk',
   htmlTemplateEngine:     'njk',
   dataTemplateEngine:     'njk',

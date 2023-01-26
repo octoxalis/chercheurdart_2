@@ -15,8 +15,8 @@
         gap: {{S_o.PAD_1}};
         position: fixed;
         top: 0;
-        left: {{S_o.NAV_SETTINGS_s}};
-        width:  calc( 100% - ({{S_o.NAV_SETTINGS_s}} * 2) );    /* reserve a place for future palette at right */
+        left: {{S_o.NAV_SETTINGS}};
+        width:  calc( 100% - ({{S_o.NAV_SETTINGS}} * 2) );    /* reserve a place for future palette at right */
         background: {{S_o.light_100}};
         border-radius: 4px;
   <div>
@@ -55,7 +55,7 @@ context( stack, new )
             height: 1rem;
             line-height: 1rem;    /* vertical centering */
             border-radius: {{S_o.PAD_1}};
-            background: {{S_o.bg_lo}};
+            background: {{S_o.bg_hi}};
     </label>
     <label:nth-of-type(1)>
             text-align: left;
@@ -69,7 +69,7 @@ context( stack, new )
     </label>
     <label:hover>
             color: {{211_o.lighter}};
-            filter: brightness(4);
+            filter: brightness( .5 );
     </label>
   </div>
 
@@ -92,11 +92,11 @@ context( stack, new )
             line-height: 1rem;    /* vertical centering */
             text-align: center;
             border-radius: {{S_o.PAD_1}};
-            background: {{S_o.bg_lo}};
+            background: {{S_o.bg_hi}};
     </label>
     <label:hover>
             color: {{211_o.lighter}};
-            filter: brightness(4);
+            filter: brightness( .5 );
     </label>
   </div>
 
@@ -133,7 +133,7 @@ context( stack, new )
             justify-content: center;
             width:  1.5rem;
             height: 1.5rem;
-            background: {{S_o.bg_lo}};
+            background: {{S_o.bg_hi}};
             border-radius: 8px;
             cursor: pointer;
     </label>
@@ -148,7 +148,7 @@ context( stack, new )
             clip-path: polygon(100% 0, 0 50%, 100% 100%);
     </label>
     <label:not(:nth-of-type(1)):hover>
-            filter: brightness(4);
+            filter: brightness( .5 );
     </label>
   </div>
 

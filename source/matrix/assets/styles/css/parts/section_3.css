@@ -17,7 +17,7 @@ section > div[id^={{C_o.DIV_ID_s}}_stat] > nav {
   z-index: 1;
   position: absolute;
   padding: {{S_o.PAD_2}};
-  width: {{ S_o.NAV_SETTINGS_s}};
+  width: {{ S_o.NAV_SETTINGS}};
 }
 section > div[id^={{C_o.DIV_ID_s}}_stat] > nav > label > span[data-icon=substat] {
   background: {{S_o.dot_stat}};

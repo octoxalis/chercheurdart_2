@@ -58,7 +58,7 @@ div[id$=_masonry] > figure > figcaption {
 }
 div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}} {
   display: table;
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 1.9vw;
   font-style: normal;
 }
@@ -68,7 +68,7 @@ div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}} > i {
   font-style: normal;
 }
 div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
-  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+  content: '\00A0\{{C_o.DIM_SEPARATOR}}\00A0';
 }
 div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(3) {
   width: 100%;

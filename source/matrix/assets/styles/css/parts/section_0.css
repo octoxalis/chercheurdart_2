@@ -35,20 +35,21 @@ section#{{C_o.SECTION_a[0]}} > h1 {
 }
 section#{{C_o.SECTION_a[0]}} > h1 + p {
   position: relative;
-  margin: {{S_o.PAD_6}} 2vmin 0 auto;
+  top: 0;
+  margin: 0 2vmin 0 auto;
   min-width: var(--col_width);
   width: calc( (var(--threshold) - 100%) * 1000 );
   max-width: {{S_o.PARAGRAPH_WIDTH_s}};
 }
 section#{{C_o.SECTION_a[0]}} > h1 + p > label {
-  --font_max: 32px;
   --font_scale: 1.2vw;
+  font-size: 1.2em;
   font-weight: 100;
   font-style: oblique;
 }
 section#{{C_o.SECTION_a[0]}} > div {
   position: relative;
-  margin: {{S_o.PAD_16}} 2vmin 0 auto;
+  margin: 0 2vmin 0 auto;
   min-width: var(--col_width);
   width: calc( (var(--threshold) - 100%) * 1000 );
 }
@@ -60,6 +61,8 @@ section#{{C_o.SECTION_a[0]}} > div > hr {
   border: 0;
 }
 p {
+  position: relative;
+  top: -1em;
   max-width: {{S_o.PARAGRAPH_WIDTH_s}};
   margin-bottom: {{S_o.PAD_4}};
 }
@@ -88,11 +91,11 @@ p > label + input, p > label + input + ins {
   display: none;
 }
 p > label + input:checked + ins {
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 1.9vw;
   display: block;
   position: relative;
-  max-width: {{S_o.medium_WIDTH_s}};
+  max-width: {{S_o.INS_WIDTH_s}};
   height: fit-content;
   margin: {{S_o.PAD_1}} 0;
   padding: {{S_o.PAD_4}};
@@ -140,7 +143,7 @@ blockquote {
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins] > {{C_o.ROW_TAG_s}} {
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 1.9vw;
   display: table;
 }
@@ -156,7 +159,7 @@ blockquote {
   color: currentColor;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_DEF_s}}] > {{C_o.ROW_TAG_s}}:before {
-  content: '\{{S_o.LIST_MARKER_s}}';
+  content: '\{{C_o.LIST_MARKER}}';
   position: relative;
   left: -{{S_o.PAD_4}};
   color: {{S_o.light_05}};
@@ -167,7 +170,7 @@ blockquote {
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_QUO_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(1) {
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
@@ -178,7 +181,7 @@ blockquote {
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_REF_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
@@ -192,13 +195,13 @@ blockquote {
   font-style: normal;
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:not(:empty):first-of-type::after {
-  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+  content: '\00A0\{{C_o.DIM_SEPARATOR}}\00A0';
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2), {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
   padding-top: {{S_o.PAD_4}};
 }
 {{C_o.TABLE_TAG_s}}[data-ins={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) > a {
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;
@@ -243,7 +246,7 @@ section#{{C_o.SECTION_a[0]}} > figure > figcaption > a {
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} {
   display: table;
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 1.9vw;
   font-style: normal;
 }
@@ -253,13 +256,13 @@ section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i {
   font-style: normal;
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > i:not(:empty):first-of-type::after {
-  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+  content: '\00A0\{{C_o.DIM_SEPARATOR}}\00A0';
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}} > a {
   color: currentColor;
   text-decoration: none;
   border-bottom: 1px solid {{S_o.light_05}};
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;

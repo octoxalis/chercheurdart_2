@@ -7,7 +7,7 @@
   //-- expires_n: 10,
 
   doc_n:      -12,
-  title_s:    `Collection peintres du Sud`,
+  title_s:    `Peintres du Sud`,
   subtitle_s: `Peintres d'Italie, Espagne`,
   abstract_s: `Oeuvres choisies`,
   //... issue_n: -1,

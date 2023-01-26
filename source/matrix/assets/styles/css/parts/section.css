@@ -37,7 +37,7 @@ ul:not([data-role=range]) > li > a:hover {
   transition: opacity .2s;
 }
 ul:not([data-role=range]) > li:before {
-  content: '\{{S_o.LIST_MARKER_s}}';
+  content: '\{{C_o.LIST_MARKER}}';
   position: relative;
   left: -{{S_o.PAD_4}};
   color: {{S_o.light_05}};

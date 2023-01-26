@@ -96,11 +96,11 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings {
   position: fixed;
   top: 0;
   left: 0;
-  width: {{S_o.NAV_SETTINGS_s}};
+  width: {{S_o.NAV_SETTINGS}};
   height: fit-content;
   border-bottom-right-radius: 8px;
   border: 1px solid {{S_o.bg_hi}};
-  transform: translateX( -{{S_o.NAV_SETTINGS_s}} );
+  transform: translateX( -{{S_o.NAV_SETTINGS}} );
   transition: transform .5s ease;
 }
 input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings:checked ~ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings {

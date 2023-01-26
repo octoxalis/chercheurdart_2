@@ -7,7 +7,7 @@
   //-- expires_n: 10,
 
   doc_n:      -10,
-  title_s:    `Collection peintres du Nord`,
+  title_s:    `Peintres du Nord`,
   subtitle_s: `Peintres de Hollande, Flandres, Allemagne`,
   abstract_s: `Oeuvres choisies`,
   //... issue_n: -1,

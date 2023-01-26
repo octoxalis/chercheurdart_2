@@ -6,31 +6,17 @@ const C_o = require( './C_o.js' )
 
 const S_o =
 {
-  EXT_ARROW_s:     '2303',
-  INT_ARROW_s:     '2304',
-  DIM_SEPARATOR_s: '00D7',
-  LIST_MARKER_s:   '25AA',
-
+  FONT_BODY_s: `'Cantarell Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif`,
+  FONT_MONO_s: `'JetBrains Mono Light', system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace`,
   
   FULL_WIDTH_s:  '100vw',
   FULL_HEIGHT_s: '100vh',
   
-  FONT_BODY_s: `'Cantarell Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif`,
-  FONT_MONO_s: `'JetBrains Mono Light', system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace`,
-
   FIGURE_BORDER_s:   '.5rem',
-  PARAGRAPH_WIDTH_s: '50ch',
+  PARAGRAPH_WIDTH_s: '60ch',
   INS_WIDTH_s:       '60ch',
 
-
   FONT_BOLD_s: 600,
-
-
-  LUM_BASE_n:     CONF_o.LUM_BASE_n,
-  LUM_CONTRAST_n: CONF_o.LUM_CONTRAST_n,
-  LUM_FRONT_s:    CONF_o.LUM_FRONT_s,
-  LUM_BACK_s:     CONF_o.LUM_BACK_s,
-
 
   PAD_1:  .25 * 1 + 'em',
   PAD_2:  .25 * 2 + 'em',
@@ -44,7 +30,7 @@ const S_o =
   PAD_16: .25 * 16 + 'em',
   PAD_20: .25 * 20 + 'em',
 
-  NAV_SETTINGS_s: '288px',  //: 18em
+  NAV_SETTINGS: '288px',  //: 18em
 
 
   hue_p:        CONF_o.HUE_P_n,     /* user definable primary */
@@ -57,14 +43,15 @@ const S_o =
   sat_hi_2: `72%`,
   sat_hi_1: `61%`,
   sat_ne:   `50%`,
-  //-- sat_lo_1: `39%`,
-  //-- sat_lo_2: `28%`,
+  //--- sat_lo_1: `39%`,
+  //--- sat_lo_2: `28%`,
   //+++
-  sat_lo_4: `17%`,
+  sat_lo_4: `11%`,
 
   
-  lum_mode:     CONF_o.LUM_MODE_n,
-  lum_contrast: 45,
+  LUM_MODE_n:       CONF_o.LUM_MODE_n,
+  LUM_BASE_n:     CONF_o.LUM_BASE_n,
+  LUM_CONTRAST_n: CONF_o.LUM_CONTRAST_n,
 
   brightness_hi4: 4,
   brightness_hi2: 2,
@@ -85,16 +72,16 @@ const S_o =
   S_o.NAV_LABEL_s  = S_o.PAD_4
 
 
-  S_o.lum_hi_100 = `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =90%
-  S_o.lum_hi_75 =  `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =80%
-  S_o.lum_hi_62 =  `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .55 )}%`     // = 20/40 =70%
-  S_o.lum_hi_50 =  `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =70%
-  S_o.lum_hi_25 =  `${S_o.LUM_BASE_n + ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =60%
+  S_o.lum_hi_100 = `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =90%
+  S_o.lum_hi_75 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =80%
+  S_o.lum_hi_62 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .55 )}%`     // = 20/40 =70%
+  S_o.lum_hi_50 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =70%
+  S_o.lum_hi_25 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =60%
   S_o.lum_0 =      `${S_o.LUM_BASE_n +  0 }%`                                             // = 50%
-  S_o.lum_lo_25 =  `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =40%
-  S_o.lum_lo_50 =  `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =30%
-  S_o.lum_lo_75 =  `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =20%
-  S_o.lum_lo_100 = `${S_o.LUM_BASE_n - ( S_o.lum_mode * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =10%
+  S_o.lum_lo_25 =  `${S_o.LUM_BASE_n - ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =40%
+  S_o.lum_lo_50 =  `${S_o.LUM_BASE_n - ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =30%
+  S_o.lum_lo_75 =  `${S_o.LUM_BASE_n - ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =20%
+  S_o.lum_lo_100 = `${S_o.LUM_BASE_n - ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =10%
   
 
 

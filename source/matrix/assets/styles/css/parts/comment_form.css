@@ -59,7 +59,7 @@ form[name=comment] > button {
 form[name=comment] > button[type=reset] {
   margin: auto;
   width: 33%;
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;

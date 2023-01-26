@@ -16,7 +16,6 @@ module.exports =
   DATA_PATH_s:          'make/data',
   INCLUDES_PATH_s:      'matrix',
   CONTENT_PARTS_PATH_s: 'matter/contents/parts',
-  //XXADOC_TEMP_PATH_s:     'make/adoc/templates',
 
   MAKE_DIR_s:           'make/11ty/',
   CONTENT_DIR_s:        'matter/contents/',
@@ -25,13 +24,12 @@ module.exports =
 
 
   //=== DIR ===     relative to site || source/ware dir
-  JS_DIR_s:             '/assets/scripts/js/',    //: site
+  JS_DIR_s:             '/assets/scripts/js/',
   IMG_DIR_s:            'assets/media/img/',
   HTML_PARTS_DIR_s:     'assets/parts/',
   CSS_SITE_DIR_s:       '../site/assets/styles/css/',
   LIB_PARTS_DIR_s:      'make/lib/parts/',
   CONTENT_PARTS_DIR_s:  'matter/contents/parts/',
-  //XXADOC_PARTS_DIR_s:     'source/matter/contents/parts/',
   CONTEXT_PARTS_DIR_s:  'source/matrix/assets/styles/css/parts/',
   WARE_DIR_s:           'source/ware/',
 
@@ -44,15 +42,9 @@ module.exports =
   COM_OUTPUT_DIR_s:    'make/comment/',
 
 
-  //=== GENERATE ===
-  ADOC_MARKUP_b:        false,
-
-
   //=== CSS constants to avoid calc(): can be changed! ===  
   HUE_P_n:        210,     //: theme PRIMARY color in range [0...359]
   LUM_MODE_n:     -1,      //: luminosity mode: 1 (light) || -1 (dark)
-  LUM_BASE_n:     48,
-  LUM_CONTRAST_n: 49,      //: luminosity contrast in range [30...49] - (30 is less contrast than 49) - see https://www.w3.org/TR/WCAG20/ §1.4.1 compliance
-  LUM_FRONT_s:    '72%',   //: fixed front color luminosity (code)
-  LUM_BACK_s:     '17%',   //: fixed back color luminosity (code)
+  LUM_BASE_n:     55,
+  LUM_CONTRAST_n: 48,      //: luminosity contrast in range [30...49] - (30 is less contrast than 49) - see https://www.w3.org/TR/WCAG20/ §1.4.1 compliance
 }

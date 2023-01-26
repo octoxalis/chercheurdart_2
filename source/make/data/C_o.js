@@ -45,10 +45,6 @@ const C_o =
   RESERVE_DIR_s:    `${U_o.url_s}assets/media/img/reserve/`,
 
 
-  //=== CONFIGURE FLAG
-  ADOC_MARKUP_b:    CONF_o.ADOC_MARKUP_b,
-
-
   //=== HTML-HEAD: HEADERS ===
   HEAD_CSP_o:  //!!! KEEP order
   {
@@ -318,6 +314,10 @@ const C_o =
   IMG_BURST_s:          '&#10035;',   //: EIGHT SPOKED ASTERISK  ✳
 //: &#8853;     CIRCLED PLUS    ⊕
 //: &#8854;     CIRCLED MINUS   ⊖
+
+  DIM_SEPARATOR:   '00D7',
+  LIST_MARKER:     '25AA',
+
 
 
   ID_PART_DELIM_s:     '~',   //: between parts

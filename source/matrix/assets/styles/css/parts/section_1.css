@@ -42,7 +42,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} {
   display: table;
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 1.9vw;
   font-style: normal;
 }
@@ -50,7 +50,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
   font-style: normal;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > i:first-of-type::after {
-  content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+  content: '\00A0\{{C_o.DIM_SEPARATOR}}\00A0';
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} > a {
   color: currentColor;
@@ -68,7 +68,7 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}}:nth-of-type(2) {
-  --font_max: 18px;
+  --font_max: 20px;
   --font_scale: 2vw;
   font-weight: 400;
   font-style: italic;

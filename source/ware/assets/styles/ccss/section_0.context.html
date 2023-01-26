@@ -46,14 +46,15 @@
   +
   <p>
           position: relative;         /* to position comment dialog */
-          margin: {{S_o.PAD_6}} 2vmin 0 auto;     /* keep right space for goto buttons */
+          top: 0;                     /* overide */
+          margin: 0 2vmin 0 auto;     /* keep right space for goto buttons */
           min-width: var(--col_width);
           width: calc( (var(--threshold) - 100%) * 1000 );
           max-width: {{S_o.PARAGRAPH_WIDTH_s}};
     <label>
-            --font_max: 32px;
+            /*--font_max: 32px;*/
             --font_scale: 1.2vw;
-
+             font-size: 1.2em;
             font-weight: 100;
             font-style: oblique;
     </label>
@@ -61,9 +62,11 @@
 
   <div>
           position: relative;         /* to position comment dialog */
-          margin: {{S_o.PAD_16}} 2vmin 0 auto;     /* keep right space for goto buttons */
+          margin: 0 2vmin 0 auto;
           min-width: var(--col_width);
           width: calc( (var(--threshold) - 100%) * 1000 );
+
+
     <hr><!-- !!! occurs inside chapter -->
             width: 30%;
             height: 1px;
@@ -74,6 +77,8 @@
 
     context( stack, new )
     <p>
+            position: relative;
+            top: -1em;
             max-width: {{S_o.PARAGRAPH_WIDTH_s}};
             margin-bottom: {{S_o.PAD_4}};
             /*margin-top: {{S_o.PAD_10}} 0 {{S_o.PAD_10}} 0;*/
@@ -109,12 +114,12 @@
       <input:checked />
       +
       <ins>
-              --font_max: 18px;
+              --font_max: 20px;
               --font_scale: 1.9vw;
               display: block;
               position: relative;
               /*width: fit-content;*/
-              max-width: {{S_o.medium_WIDTH_s}};
+              max-width: {{S_o.INS_WIDTH_s}};
               height: fit-content;
               margin: {{S_o.PAD_1}} 0;
               padding: {{S_o.PAD_4}};
@@ -170,7 +175,7 @@
 context( stack, new )
 <{{C_o.TABLE_TAG_s}}[data-ins]>
   <{{C_o.ROW_TAG_s}}>
-          --font_max: 18px;
+          --font_max: 20px;
           --font_scale: 1.9vw;
           display: table;
           /*font-style: normal;*/
@@ -223,7 +228,7 @@ context( stack, new )
             font-style: normal;
     </i>
     <i:not(:empty):first-of-type::after>
-            content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+            content: '\00A0\{{C_o.DIM_SEPARATOR}}\00A0';
    </i>
   </{{C_o.ROW_TAG_s}}>
   <{{C_o.ROW_TAG_s}}:nth-of-type(2)>
@@ -284,7 +289,7 @@ context( stack, new )
                     font-style: normal;
             </i>
             <i:not(:empty):first-of-type::after>
-                    content: '\00A0\{{S_o.DIM_SEPARATOR_s}}\00A0';
+                    content: '\00A0\{{C_o.DIM_SEPARATOR}}\00A0';
             </i>
             <a>
             context( block, link_regular )
