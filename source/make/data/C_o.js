@@ -100,13 +100,13 @@ const C_o =
     article: { icon_s: `&#8226;`, legend_s: `article` },
     galerie: { icon_s: `&#8226;`, legend_s: `galerie` },
     expo:    { icon_s: `&#8226;`, legend_s: `exposition` },
-    reserve:    { icon_s: `&#8226;`, legend_s: `réserve` },
+    reserve: { icon_s: `&#8226;`, legend_s: `réserve` },
 
     expo_add: { icon_s: `&nbsp;`, legend_s: `ajouter`},
     expo_remove: { icon_s: `&nbsp;`, legend_s: `retirer`},
     expo_hide: { icon_s: `&nbsp;`, legend_s: `masquer`},
     expo_group: { icon_s: `&nbsp;`, legend_s: `regrouper`},
-    expo_work_caption: { icon_s: `&nbsp;`, legend_s: `cartel`},
+    expo_caption: { icon_s: `&nbsp;`, legend_s: `cartel`},
     expo_export: { icon_s: `&nbsp;`, legend_s: `exporter`},
     expo_import: { icon_s: `&nbsp;`, legend_s: `importer`},
     expo_added: { icon_s: `&nbsp;`, legend_s: `image locale`},
@@ -197,6 +197,15 @@ const C_o =
 
 
   //=== BURST TOOLS ===
+  MAP_THRESHOLD_n:              2,
+  MAP_WIDTH_n:                  8192,
+  MAP_HEIGHT_n:                 64,
+
+  MAP_SHIFT_n:                  10,     //: map scaling
+  MAP_CLAMP_MIN_n:              4,
+  MAP_CLAMP_MAX_n:              16,
+
+
   INPUT_RANGE_SCALEY_n:         .5,
   SCREEN_DIM_n:                 1024,    //: default, set by burst.init()
   SCREEN_RATIO_n:               1,
@@ -309,11 +318,13 @@ const C_o =
   SEE_MORE_s:           '&#8230;',   //: HORIZONTAL ELLIPSIS
   IMG_EXPO_s:           '&#8862;',   //: Squared Plus               ⊞
   IMG_PLAY_s:           '⊳',         //: CONTAINS AS NORMAL SUBGROUP    &#8883;
-  IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet                    ∙
   IMG_SETTINGS_s:       '&#8285;',    //:  VERTICAL ELLIPSIS      ⁝
+  IMG_MAP_s:            '&#9783;',    //: TRIGRAM FOR EARTH      ☷
   IMG_BURST_s:          '&#10035;',   //: EIGHT SPOKED ASTERISK  ✳
 //: &#8853;     CIRCLED PLUS    ⊕
 //: &#8854;     CIRCLED MINUS   ⊖
+
+  IMG_LEGEND_DELIM_s:   ' \u2219 ',   //: bullet                    ∙
 
   DIM_SEPARATOR:   '00D7',
   LIST_MARKER:     '25AA',

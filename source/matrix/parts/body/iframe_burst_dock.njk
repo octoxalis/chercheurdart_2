@@ -1,7 +1,12 @@
   <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_dock>
     <input id={{C_o.INPUT_ID_s}}_dock_nav type=checkbox>
     <div>
-      <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale data-label="{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}" type=range min=0.25 max=4 step=0.25 value={{C_o.BURST_SCALE_n}} data-tip="{{C_o.BURST_SCALE_n}}">
+      <div id={{C_o.DIV_ID_s}}_dock_nav_top>
+        <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map>{{C_o.IMG_MAP_s}}</label>
+        <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue>{{C_o.IMG_BURST_s}}</label>
+      </div>
+      
+      <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_dock_scale data-label="{{C_o.NAV_LEGEND_o.layers_scale.legend_s}}" type=range min=0.2 max=2 step=0.1 value={{C_o.BURST_SCALE_n}} data-tip="{{C_o.BURST_SCALE_n}}">
 
       <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings data-key=p>{{C_o.NAV_LEGEND_o.settings_open.legend_s}}</label>
       <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer data-key=a>{{C_o.NAV_LEGEND_o.anim_open.legend_s}}</label>

@@ -47,8 +47,8 @@ const DIA_o =
   ,
   async confirm__b
   (
-    close_b=false
-  , id_s='alert'
+    id_s='alert'
+  , close_b=false
   )
   {
     if

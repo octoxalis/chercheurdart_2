@@ -9,9 +9,28 @@
     </nav>
   </div>
 
+  <input id=IN_burst_map name=burst_nav type=radio checked>
+  <canvas id=CA_burst_map width=8192 height=64></canvas>
+  <nav id=NA_burst_map>
+    <div id=DI_burst_map_all>
+      <label>tonalités      <!-- plural -->
+        <span id=burst_map_all_n>360</span>
+      </label>
+      <label>proportion
+        <span id=burst_map_all_ratio_n>99,999 %</span>
+      </label>
+    </div>
+    <div id=DI_burst_map_current>
+      <label>tonalité
+        <span id=burst_map_n>&nbsp;</span>
+      </label>
+      <label>proportion
+        <span id=burst_map_ratio_n>&nbsp;</span>
+      </label>
+    </div>
+  </nav>
 
-
-  <input id=IN_burst_hue name=burst_nav type=radio checked>
+  <input id=IN_burst_hue name=burst_nav type=radio>
   <canvas id=CA_burst_hue width=1024 height=1024></canvas>  <!-- 1024: default value -->
   <nav id=NA_burst_hue>
     <label>tonalité
@@ -62,10 +81,16 @@
     </label>
   </nav>
 
+
   <div id=DI_burst_dock>
     <input id=IN_dock_nav type=checkbox>
     <div>
-      <input id=IN_burst_dock_scale data-label="Échelle" type=range min=0.25 max=4 step=0.25 value=1 data-tip="1">
+      <div id=DI_dock_nav_top>
+        <label for=IN_burst_map>&#9783;</label>
+        <label for=IN_burst_hue>&#10035;</label>
+      </div>
+      
+      <input id=IN_burst_dock_scale data-label="Échelle" type=range min=0.2 max=2 step=0.1 value=1 data-tip="1">
 
       <label for=IN_burst_settings data-key=p>palette</label>
       <label for=IN_burst_sequencer data-key=a>animation</label>

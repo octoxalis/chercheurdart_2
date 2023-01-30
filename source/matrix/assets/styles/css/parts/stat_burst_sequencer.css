@@ -11,8 +11,8 @@ input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked + div#{{C_o.DIV_ID_
   gap: {{S_o.PAD_1}};
   position: fixed;
   top: 0;
-  left: {{S_o.NAV_SETTINGS}};
-  width: calc( 100% - ({{S_o.NAV_SETTINGS}} * 2) );
+  left: {{S_o.SETTINGS_WIDTH}};
+  width: calc( 100% - ({{S_o.SETTINGS_WIDTH}} * 2) );
   background: {{S_o.light_100}};
   border-radius: 4px;
 }

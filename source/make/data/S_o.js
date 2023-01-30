@@ -30,7 +30,7 @@ const S_o =
   PAD_16: .25 * 16 + 'em',
   PAD_20: .25 * 20 + 'em',
 
-  NAV_SETTINGS: '288px',  //: 18em
+  SETTINGS_WIDTH: '24ch',
 
 
   hue_p:        CONF_o.HUE_P_n,     /* user definable primary */

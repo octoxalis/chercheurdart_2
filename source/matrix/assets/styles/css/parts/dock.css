@@ -4,7 +4,7 @@ div[id$=_dock] {
   position: fixed;
   top: 0;
   left: 0;
-  width: 16rem;
+  width: {{S_o.SETTINGS_WIDTH}};
   border-bottom-right-radius: 8px;
 }
 div[id$=_dock] > input, div[id$=_dock] > input + div {
@@ -32,14 +32,34 @@ div[id$=_dock] > input:checked + div > label {
 div[id$=_dock] > input:checked + div > label:hover {
   filter: brightness( {{S_o.brightness_hi2}} );
 }
-div[id$=_dock] > input:checked + div > input[type=range] {
+div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top {
+  display: flex;
+  gap: {{S_o.PAD_2}};
+  position: relative;
+  top: -2rem;
+  left: 2rem;
+  margin-bottom: 1rem;
+}
+div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top > label {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border: 1px solid {{S_o.dot_set_4}};
+  border-radius: 8px;
+  background: transparent;
+}
+div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top > label:nth-of-type( 2 ) {
+  transform: translateX( calc( -100% - {{S_o.PAD_2}} ) );
+}
+div[id$=_dock] > input[type=range] {
   align-self: center;
   position: relative;
   width: 200px;
   background: transparent;
   cursor: pointer;
 }
-div[id$=_dock] > input:checked + div > input[type=range]:focus {
+div[id$=_dock] > input[type=range]:focus {
   outline: none;
   filter: hue-rotate( -220deg );
 }

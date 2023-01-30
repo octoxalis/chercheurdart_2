@@ -102,11 +102,11 @@
         position: fixed;
         top: {{S_o.PAD_8}};
         left: 0;
-        width: {{S_o.NAV_SETTINGS}};
+        width: {{S_o.SETTINGS_WIDTH}};
         height: fit-content;
 context( block, settings )
         box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
-        transform: translateX( -{{S_o.NAV_SETTINGS}} );
+        transform: translateX( -{{S_o.SETTINGS_WIDTH}} );
         transition: transform .5s ease;
 </div>
 <!--variant-->
@@ -330,7 +330,7 @@ context( stack, new )
           position: fixed;                         /* !!!!!!! TODO */
           top: 0;
           left: 0;
-          width: 288px;
+          width: {{S_o.SETTINGS_WIDTH}};
           padding: {{S_o.PAD_2}};
           transform: translateX( -258px );  /* 288 - 30 */
           transition: .4s ease;

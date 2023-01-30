@@ -8,6 +8,7 @@
         --{{C_o.STAT_a[0]}}_trace_pointer_s: url( /assets/styles/css/spot_cursor.svg ) 8 8, auto;
         --{{C_o.STAT_a[0]}}_trace_pointer: var(--{{C_o.STAT_a[0]}}_trace_pointer_s);
 
+        --{{C_o.STAT_a[0]}}_map_scale: {{C_o.BURST_SCALE_n}};
         --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
         --{{C_o.STAT_a[0]}}_equal_scale: {{C_o.BURST_EQUAL_SCALE_n}};
         --{{C_o.STAT_a[0]}}_equal: none;
@@ -41,10 +42,19 @@
 
 <section#{{C_o.STAT_a[0]}}>
   <div[id^={{C_o.DIV_ID_s}}_stat]>
-    <canvas>
+    <canvas[id^={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_]>
             width: var(--{{C_o.STAT_a[0]}}_canvas_dim);
             height: var(--{{C_o.STAT_a[0]}}_canvas_dim);
             border: 1px solid {{ S_o.light_05}};
+    </canvas>
+    <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map>
+            position: relative;
+            top: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_12}} );
+            background: var(--{{C_o.STAT_a[0]}}_img_background);
+            --scale_x: var(--{{C_o.STAT_a[0]}}_window_width) / {{C_o.MAP_WIDTH_n}}  * .99;      /* keep tiny HZ margin */
+            transform: scaleX( calc( var(--scale_x) ) );
+    </canvas>
+    <canvas:not(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map)>
             border-radius: 50%;
             background: var(--{{C_o.STAT_a[0]}}_img_background);
     </canvas>
@@ -110,20 +120,28 @@
   </div>
 </section>
 
+<canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map>
+context( copy, next )
+</canvas>
 <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue>
         cursor: var(--{{C_o.STAT_a[0]}}_trace_pointer);
 </canvas>
 
 <!--variant-->
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked />
+~
+<canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map>
+context( copy, next )
+</canvas>
 <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked />
 ~
 <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue>
-        context( copy, next )
+context( copy, next )
 </canvas>
 <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat:checked />
 ~
 <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_sat>
-        context( copy, next )
+context( copy, next )
 </canvas>
 <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum:checked />
 ~
@@ -148,6 +166,134 @@
 </nav>
 
 
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked />
+~
+<nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_map>
+        display: flex;
+        top: 8.5rem;
+        left: .5%;                        /*  align with map canvas */
+        width: calc( {{S_o.SETTINGS_WIDTH}} - .5% );             /* var(--{{C_o.STAT_a[0]}}_nav_dim); */
+        height: fit-content;
+        padding: {{S_o.PAD_1}};
+        transition: opacity ease 2s;
+  <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map]>
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+          position: absolute;
+          padding: .25rem;
+          width: fit-content;
+          left: 0;
+          border: 1px solid  var(--{{C_o.STAT_a[0]}}_trace_color);
+          border-radius: 4px;
+    <label>
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 10rem;
+            height: 2em;
+            line-height: 2em;
+            text-transform: uppercase;
+            font-size: 70%;
+      <span>
+              display: flex;
+              justify-content: space-evenly;
+              margin: .5rem;
+              width: 9ch;
+              padding: 0 .25rem;
+              height: 2em;
+              line-height: 2em;
+              background: var(--burst_trace_color);
+              font-weight: 500;
+              text-align: center;
+              border-radius: 4px;
+              font-size: 95%;
+      </span>
+      <span[id$=_ratio_n]:after>
+              content: '{{C_o.PERCENT_s}}';
+      </span>
+    </label>
+  </div>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map_all>
+          top: -130px;
+          filter: brightness( .8 );
+    <label>
+            font-size: 75%;
+      <span>
+              font-size: 100%;
+      </span>
+    </label>
+
+  </div>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map_current>
+          top: 0;
+          filter: brightness( 1.2 );
+  </div>  
+</nav>
+<nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_map:hover>
+        opacity: 1;
+        transition: opacity ease .2s;
+        background: {{S_o.light_05}};
+        box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map_current>
+    <label>
+      <span>
+              opacity: 1;
+      </span>
+    </label>
+    <label:hover>
+      <span>
+              background: transparent;
+      </span>
+    </label>
+    <label:not([for]):hover>
+      <span>
+              background: {{S_o.light_07}};
+      </span>
+    </label>
+  </div>
+</nav>
+
+
+
+
+  context( stack, new )
+  <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}:has(#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked)>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_dock>
+      <div>
+        <div#{{C_o.DIV_ID_s}}_dock_nav_top>
+          <label[for$=hue]>
+                  visibility: hidden;
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}:has(#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked)>
+    <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_dock>
+      <div>
+        <div#{{C_o.DIV_ID_s}}_dock_nav_top>
+          <label[for$=map]>
+                  visibility: hidden;
+          </label>
+        </div#{{C_o.DIV_ID_s}}_dock_nav_top>
+        <label[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings]>
+                display: none;
+        </label>
+        <label[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal]>
+                display: none;
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
 context( stack, new )
 <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings>
         display: none;
@@ -155,12 +301,12 @@ context( stack, new )
         position: fixed;
         top: 0;
         left: 0;
-        width: {{S_o.NAV_SETTINGS}};  /* MANDATORY */
+        width: {{S_o.SETTINGS_WIDTH}};  /* MANDATORY */
         height: fit-content;
 context( block, settings )
         border: 1px solid {{S_o.bg_hi}};
         /*box-shadow: 0 0 0 1000vmax {{S_o.light_07}};*/
-        transform: translateX( -{{S_o.NAV_SETTINGS}} );
+        transform: translateX( -{{S_o.SETTINGS_WIDTH}} );
         transition: transform .5s ease;
 </div>
 <!--variant-->
@@ -475,6 +621,17 @@ context( stack, new )
 <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
         display: none;
 </aside>
+
+context( stack, new )
+<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked ):has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
+              position: unset;
+      </aside>
+    </div>
+  </section>
+</body>
 
 context( stack, new )
 <body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked )>

@@ -21,55 +21,77 @@ const BUR_o =
   , idb_o: null
   , trace_o: {}
 
-  , hue_o:
+  , hue_o
+    :
     {
       rangeY_n: 1,     //: C_o.BURST_RANGE_n
       shift_n:  0,     //: from burst_hue_back
     }
 
-  , scale_o:
+  , scale_o
+    :
     {
+      map_n: 1,
       hue_n: 1,     //: C_o.BURST_SCALE_n
       sat_n: 1,
       lum_n: 1,
     }
 
-  , thresh_o:
+  , thresh_o
+    :
     {
       hi_n: 100,    //: C_o.BURST_THRESH_HI_n   left to right
       lo_n: 0,      //: C_o.BURST_THRESH_LO_n
     }
 
-  , slot_o:
+  , slot_o
+    :
     {
-      hue: 360
-    , sat: 101
-    , lum: 101
+      map
+      :
+        360
+    , hue
+      : 360
+    , sat
+      :
+        101
+    , lum
+      :
+        101
     }
 
-  , slideshow_o:
+  , slideshow_o
+    :
     {
       play_b: false
     , progress_n: 0
     }
 
-  , eventKey_a:
-    [
-      'ArrowUp' //: toggle img_position checked
-    , 'ArrowDown'  //: idem
-    , '+'          //: increment scale
-    , '-'          //: decrement scale
-    , 'f'          //: full screen
-    , 'd'          //: show/hide dock
-    , 'p'          //: show/hide palette
-    , 'a'          //: show/hide animation
-    , 'e'          //: show/hide equalizer
-    , 'v'          //: show/hide Image
-    , 'z'          //: (+ ctrlKey) reset
-    , 's'          //: (+ ctrlKey) save image
-    , ' '          //: suspend || resume slideshow
-    ]
+  , eventKey_a
+    :
+      [
+        'ArrowUp' //: toggle img_position checked
+      , 'ArrowDown'  //: idem
+      , '+'          //: increment scale
+      , '-'          //: decrement scale
+      , 'f'          //: full screen
+      , 'd'          //: show/hide dock
+      , 'p'          //: show/hide palette
+      , 'a'          //: show/hide animation
+      , 'e'          //: show/hide equalizer
+      , 'v'          //: show/hide Image
+      , 'z'          //: (+ ctrlKey) reset
+      , 's'          //: (+ ctrlKey) save image
+      , ' '          //: suspend || resume slideshow
+      ]
 
+  , map_o
+    :
+      {
+        slot_a
+        :
+          []
+      }
 
   ,
   message__v
@@ -83,13 +105,75 @@ const BUR_o =
         .task_s
     )
     {
-      case 'PUT_rate':
+      case
+        'PUT_map'
+      :
+        BUR_o
+          .map_o
+            .slot_a
+        =
+          payload_o
+            .slot_a
+
+        document
+          .getElementById( '{{C_o.STAT_a[0]}}_map_all_n'  )
+            .innerHTML
+        =
+          payload_o
+            .slot_a
+              .length
+
+        document
+          .getElementById( '{{C_o.STAT_a[0]}}_map_all_ratio_n'  )
+            .innerHTML
+        =
+          new Intl
+            .NumberFormat
+            (
+              'fr-FR', 
+            )
+            .format
+            (
+              Number
+                .parseFloat
+                (
+                  payload_o
+                    .ratio_n
+                  *
+                  100       //: percent
+                )
+                .toFixed( 3 )
+            )
+
+        break
+    
+      case
+        'PUT_rate'
+      :
+        if
+        (
+          payload_o
+            .hsl_s
+          ===
+          'map'
+        )
+        {
+          payload_o
+            .slot_a
+          =
+            BUR_o
+              .map_o
+                .slot_a
+        }
+
         BUR_o
           .put_rate__v( payload_o )
 
         break
     
-      case 'PUT_equal':
+      case
+        'PUT_equal'
+      :
         BUR_o
           .equal_a =
             payload_o
@@ -97,19 +181,25 @@ const BUR_o =
 
         break
 
-      case 'PUT_canvas_img':
+      case
+        'PUT_canvas_img'
+      :
         BUR_o
           .put_canvas_img__v( payload_o )
 
         break
     
-      case 'PUT_hue':
+      case
+        'PUT_hue'
+      :
          BUR_o
            .put_hue__v( payload_o )
 
         break
     
-      case 'PUT_status':
+      case
+        'PUT_status'
+      :
         BUR_o
           .status_o =
             payload_o
@@ -117,7 +207,9 @@ const BUR_o =
       
         break
     
-      case 'PUT_error':
+      case
+        'PUT_error'
+      :
         console.log( `ERROR: ${payload_o.error_s}` ) //... TODO: load error page ...
         
         break
@@ -227,31 +319,63 @@ const BUR_o =
       } =
         payload_o
 
-    BUR_o
-      .atEqual_o =
-        equal_a
-
-    let html_s =
-      slot_a
-        [0]
-
+    let html_s
+    
     if
     (
-      slot_a
-        .length
-      >
-      1
+      hsl_s
+      ===
+      'map'
     )
     {
-      html_s +=
-        `<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${slot_a[1]}`
+      if
+      (
+        BUR_o
+          .atAngle_n
+        >=             //: cursor is outside slot area
+        slot_a
+          .length
+      )
+      {
+        return
+      }
+      //--->
+      html_s =
+        slot_a
+          [
+            BUR_o
+              .atAngle_n
+          ]
+            .hue_n
     }
+    else
+    {
+      html_s =
+        slot_a
+          [0]
+  
+      if
+      (
+        slot_a
+          .length
+        >
+        1
+      )
+      {
+        html_s +=
+          `<b class=range-separator>{{C_o.RANGE_GAP_s}}</b>${slot_a[1]}`
+      }
+  
+      document
+        .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress' )
+          .innerHTML
+      =
+        html_s
 
-    document
-      .getElementById( '{{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress' )
-        .innerHTML
-    =
-      html_s
+      BUR_o
+        .atEqual_o =
+          equal_a  
+    }
 
     BUR_o
       .trace_o
@@ -458,15 +582,16 @@ const BUR_o =
     const slot_n
     =
       BUR_o
-        .slot__n ( hsl_s )
+        .slot__n( hsl_s )
 
     const angle_n
     =
       BUR_o
         .angle__n
         (
-          event_o,
-          slot_n
+          event_o
+        , hsl_s
+        , slot_n
         )
 
     BUR_o
@@ -554,7 +679,7 @@ const BUR_o =
       document
         ?.querySelector( `input[name="burst_nav"]:checked` )
           ?.id
-            .slice( -3 )         //: element ID ends with: 'hue' || 'sat' || 'lum'
+            .slice( -3 )     //: element ID ends with: 'map' || 'hue' || 'sat' || 'lum'
     )
   }
   
@@ -608,10 +733,83 @@ const BUR_o =
   ,
   angle__n    //: in range [0...359]
   (
-    event_o,
-    range_n    //: 360 || 101 i.e. hue || sat or lum
+    event_o
+  , hsl_s
+  , range_n    //: 360 || 101 i.e. hue || sat or lum
   )
   {
+    const canvas_e
+    =
+      document
+        .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )
+
+    const pointer_x
+    =
+      event_o
+        .offsetX
+            
+    const pointer_y
+    =
+      event_o
+        .offsetY
+            
+    let x_n
+    =
+      event_o
+        .offsetX
+
+    let y_n
+    =
+      event_o
+        .offsetY
+
+    let angle_n
+    =
+      0
+
+    if
+    (
+      hsl_s
+      ===
+      'map'
+    )
+    {
+      for
+      (
+        let slot_o
+        of
+        BUR_o
+          .map_o
+            .slot_a
+      )
+      {
+        if
+        (
+          x_n
+          >=
+          slot_o
+            .from_n
+          &&
+          x_n
+          <
+          slot_o
+            .from_n
+          +
+          slot_o
+            .width_n
+        )
+        {
+          //;console.log( angle_n )
+          return angle_n
+        }
+        //--->
+        ++angle_n
+      }
+
+      return angle_n
+    }
+    //--->
+    //: hsl_s === hue || sat || lum
     const center_n =
       document
         .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue` )    //: all canvases (hue, sat, lum) have same size
@@ -622,7 +820,7 @@ const BUR_o =
       //??window
       //??  .devicePixelRatio
 
-    const x_n =
+     x_n =
       event_o
         .offsetX
       //??*
@@ -631,7 +829,7 @@ const BUR_o =
       -
       center_n
   
-     const y_n =
+      y_n =
       event_o
         .offsetY
       //??*
@@ -640,7 +838,7 @@ const BUR_o =
       -
       center_n      
 
-    let angle_n =
+    angle_n =
       ~~(
         Math
           .atan2
@@ -714,6 +912,16 @@ const BUR_o =
       360
     )
     {
+      if
+      (
+        hsl_s
+        ===
+        'map'
+      )
+      {
+        return slot_n
+      }
+
       let label_e =
         document
           .querySelector( `li:has(input[name="{{C_o.STAT_a[0]}}_hue_slot"]:checked)` )
@@ -770,6 +978,28 @@ const BUR_o =
 
 
   ,
+  drawMap__v
+  ()
+  {
+    BUR_o
+      .worker_o
+        .post__v
+        (
+          { 
+            task_s: 'PUT_draw'
+          , stat_s: '{{C_o.STAT_a[0]}}'
+          , hsl_s: 'map'
+          , scale_n:
+              BUR_o
+                .scale_o
+                  .map_n
+          }
+        )
+  }
+  
+
+
+  ,
   draw__v
   ()
   {
@@ -807,6 +1037,10 @@ const BUR_o =
               ,
               thresh_o: BUR_o
                           .thresh_o
+              //--- , scale_n:
+              //---     BUR_o
+              //---       .scale_o
+              //---         .map_n
               //??? ,
               //??? maxpos_n: BUR_o
               //???            .scale_o
@@ -886,6 +1120,25 @@ const BUR_o =
       =
         BUR_o
           .atAngle_n
+    }
+    
+    if
+    (
+      hsl_s
+      ===
+      'map'
+    )
+    {
+      angle_n
+      =
+        BUR_o
+          .map_o
+            .slot_a
+            [
+              BUR_o
+                .atAngle_n
+            ]
+              .hue_n
     }
     
     const canvas_e
@@ -1056,7 +1309,12 @@ const BUR_o =
         .ctrlKey
 
     BUR_o
-      .pick__v()
+      .pick__v
+      (
+        undefined
+      , undefined
+      , hsl_s
+      )
   }
   
 
@@ -1391,7 +1649,7 @@ const BUR_o =
 
 
   ,
-  eventRange__v        //: scale, threshold sliders
+  async eventRange__v        //: scale, threshold sliders
   (
     event_o
   )
@@ -1423,31 +1681,57 @@ const BUR_o =
                       [ `${hsl_s}_n` ] =
                         +value_s      //: Number cast
   
-                  BUR_o
-                    .worker_o
-                      .post__v
-                      (
-                        { 
-                          task_s:  'PUT_scale'
-                          ,
-                          stat_s:  '{{C_o.STAT_a[0]}}'
-                          ,
-                          hsl_s:  hsl_s
-                          ,
-                          scale_n: BUR_o
-                                     .scale_o
-                                       [`${hsl_s}_n`]
-                          ,
-                          burst_b: true    //:  redraw
-                        }
-                      )
-  
-                  DOM_o
-                    .rootVar__v
-                    (
-                      `--{{C_o.STAT_a[0]}}_equal`
-                    , 'none'
-                    )
+                  switch
+                  (
+                    hsl_s
+                  )
+                  {
+                    case
+                      'map'
+                    :
+                      //--- DOM_o
+                      //---   .rootVar__v
+                      //---   (
+                      //---     `--{{C_o.STAT_a[0]}}_map_scale`
+                      //---   , BUR_o
+                      //---       .scale_o
+                      //---         [ `${hsl_s}_n` ]
+                      //---   )
+                      BUR_o
+                        .drawMap__v()
+                      
+                      break
+
+                    default
+                    :
+                      BUR_o
+                        .worker_o
+                          .post__v
+                          (
+                            { 
+                              task_s:  'PUT_scale'
+                              ,
+                              stat_s:  '{{C_o.STAT_a[0]}}'
+                              ,
+                              hsl_s:  hsl_s
+                              ,
+                              scale_n: BUR_o
+                                         .scale_o
+                                           [`${hsl_s}_n`]
+                              ,
+                              burst_b: true    //:  redraw
+                            }
+                          )
+      
+                      DOM_o
+                        .rootVar__v
+                        (
+                          `--{{C_o.STAT_a[0]}}_equal`
+                        , 'none'
+                        )
+
+                      break
+                  }
   
                   break
   
@@ -1733,9 +2017,9 @@ const BUR_o =
 
 
   ,
-  eventTrace__v      //: hue, sat, lum trace
+  eventTrace__v      //: map, hue, sat, lum trace
   (
-      event_o
+    event_o
   )
   {
     const hsl_s
@@ -1787,9 +2071,15 @@ const BUR_o =
       ===
       'click'
       &&
-      hsl_s
-      ===
-      'hue'
+      (
+        hsl_s
+        ===
+        'map'
+        ||
+        hsl_s
+        ===
+        'hue'
+      )
     )
     {
       BUR_o
@@ -2647,9 +2937,10 @@ const BUR_o =
       let hsl_s
       of
       [
-        'hue',
-        'sat',
-        'lum',
+        'map'
+      , 'hue'
+      , 'sat'
+      , 'lum'
       ]
     )
     {
@@ -2998,10 +3289,19 @@ const BUR_o =
   screen__v 
   ()
   {
+    DOM_o
+      .rootVar__v
+      (
+        `--{{C_o.STAT_a[0]}}_window_width`,    //: for map scaling
+        window
+          .innerWidth
+      )
+
     const width_n =
       +screen      // Number cast
         .availWidth
       
+
     const height_n =
       +screen      // Number cast
         .availHeight
@@ -3040,7 +3340,8 @@ const BUR_o =
       canvas_s
     of
     [
-      'hue'
+      'map'
+    , 'hue'
     , 'sat'
     , 'lum'
     ]
@@ -3053,6 +3354,10 @@ const BUR_o =
       if
       (
         canvas_e
+        &&
+        canvas_s
+        !==
+        'map'           //: map keeps html canvas width/height
       )
       {
         canvas_e
@@ -3167,11 +3472,12 @@ const BUR_o =
             '{{C_o.STAT_a[0]}}'
             ,
             [
-              'hue',
-              'sat',
-              'lum',
-              'hue_back',
-              'hue_front',
+              'map'
+            , 'hue'
+            , 'sat'
+            , 'lum'
+            , 'hue_back'
+            , 'hue_front'
             ]
             ,
             'LogScale Painter ColorBurst'
@@ -3180,6 +3486,11 @@ const BUR_o =
               .message__v
           )
 
+    const hsl_s
+    =
+    BUR_o
+      .hsl__s()
+      
     BUR_o
       .worker_o
         .post__v
@@ -3187,7 +3498,7 @@ const BUR_o =
           { 
             task_s:  'PUT_scale'
           , stat_s:  '{{C_o.STAT_a[0]}}'
-          , hsl_s:  'hue'
+          , hsl_s:  hsl_s
           , scale_n: BUR_o
                        .scale_o
                          .hue_n
@@ -3195,6 +3506,8 @@ const BUR_o =
           }
         )
 
+    BUR_o
+      .drawMap__v()    //: draw before getting equal_a
     BUR_o
       .draw__v()    //: draw before getting equal_a
   

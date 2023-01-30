@@ -93,7 +93,7 @@ const STAT_o =
     canvas_a,
     script_s,
     worker_o,
-    storeBitmap_b
+    //??? storeBitmap_b
   )
   {
     for

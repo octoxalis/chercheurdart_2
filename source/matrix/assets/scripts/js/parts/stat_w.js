@@ -1,5 +1,24 @@
 //=== stat_w.js ===
 
+const clamp__n
+=
+  (
+    number_n, 
+    min_n=0,
+    max_n=1
+  ) =>
+    Math
+      .max
+      (
+        min_n
+      , Math
+          .min
+          (
+            max_n
+          , number_n
+          )
+      )
+
 const RGB_H__n =
 (
   r_n,
@@ -1007,7 +1026,7 @@ const STAT_W_o =
     payload_o
   )
   {
-    const
+    let          //: angle_n is mutable
     {
       hsl_s,
       angle_n,
@@ -1023,11 +1042,51 @@ const STAT_W_o =
           slot_n
         )
 
+    let HSL_s
+
+    if
+    (
+      hsl_s
+      ===
+      'map'
+    )
+    {
+      HSL_s
+      =
+        'hue'   //!!! map uses hue slot_a
+
+      angle_n   //!!! angle_n is in rank order: change to hue as angle
+      =
+        STAT_W_o
+          .stat_o
+            .burst_o
+              [ `${hsl_s}_o` ]
+                .slot_a
+                  ?.[ angle_n ]
+                    ?.hue_n
+    }
+    else
+    {
+      HSL_s
+      =
+        hsl_s
+    }
+
+    if
+    (
+      angle_n
+      ===
+      null
+    )
+    {
+      return
+    }
+    //--->
     const rate_o =
       STAT_W_o
         .stat_o
           .burst_o
-            [ `${hsl_s}_o` ]
+            [ `${HSL_s}_o` ]
               .slot_a
                 [ angle_n ]
 
@@ -1062,8 +1121,8 @@ const STAT_W_o =
               .stat_o
                 .burst_o
                   [ `${hsl_s}_o` ]
-                    .burst_c
-                      .equal__a( angle_n )
+                    ?.burst_c                //!!! null if map
+                      ?.equal__a( angle_n )
         }
         ,
         [
@@ -1071,8 +1130,8 @@ const STAT_W_o =
             .stat_o
               .burst_o
                 [ `${hsl_s}_o` ]
-                  .burst_c
-                    .equal__a( angle_n )
+                  ?.burst_c                  //!!! null if map
+                    ?.equal__a( angle_n )
         ]
       )
   }
@@ -1578,6 +1637,7 @@ const STAT_W_o =
       rangeY_n,     //: {{C_o.STAT_a[0]}} : slot arc [1, 3, 6...360]
       shift_n,      //: {{C_o.STAT_a[0]}}
       thresh_o,     //: {{C_o.STAT_a[0]}} ColorBurst
+      scale_n       //: map
       //??? maxpos_n,     //??????    //: {{C_o.STAT_a[0]}} ColorBurst
     } =
       payload_o
@@ -1603,9 +1663,11 @@ const STAT_W_o =
         =
           rangeY_n
 
-        //=== SLIDERS ===
-        let capacity_n = 0
+        let capacity_n
+        =
+          0
             
+        //=== SLIDERS ===
         switch
         (
           HSL_s
@@ -1636,8 +1698,186 @@ const STAT_W_o =
           hsl_s
         )
         {
+//------------------------------------------------------------------------
+
+
+
+
+
+          //=== MAP ===      
+          case
+            'map'
+          :
+            const slot_a
+            =
+              []
+                
+            painter_c
+              .clear__c()
+
+
+            const height_n
+            =
+              +'{{C_o.MAP_HEIGHT_n}}'
+
+            const rshift_n
+            =
+              clamp__n
+              (
+                ~~(
+                    scale_n
+                    *
+                    (+'{{C_o.MAP_SHIFT_n}}')    //: '{{C_o.MAP_SHIFT_n}}'
+                  )
+              , +'{{C_o.MAP_CLAMP_MIN_n}}'
+              , +'{{C_o.MAP_CLAMP_MAX_n}}'
+              )
+
+            let threshold_n
+            =
+              STAT_W_o
+                .capacity_n
+              >>>
+              (
+                rshift_n
+                -
+                (+'{{MAP_THRESHOLD_n}}')
+              )
+           
+            let from_n
+            =
+              0
+
+            let rate_n
+            =
+              0
+
+            for
+            (
+              let rank_a
+              of
+              STAT_W_o
+                .scan_a
+                  [
+                    STAT_W_o
+                      .SCAN_hue_rank_n
+                  ]
+            )
+            {
+              const
+                [
+                   capacity_n
+                ,  hue_n
+                ]
+              =
+                rank_a
+
+              let width_n
+              =
+                (
+                  capacity_n
+                  >>>
+                  (+'{{C_o.MAP_SHIFT_n}}')
+                )
+                *
+                scale_n
+
+              if
+              (
+                capacity_n
+                >
+                threshold_n
+              )
+              {
+                painter_c
+                  .fill__c
+                  (
+                    [
+                      hue_n
+                    , 100
+                    , 50
+                    ]
+                  )
+                  .rect__c
+                  (
+                    from_n
+                  , 0
+                  , width_n
+                  , height_n
+                  , 'fill'
+                  )
+  
+                rate_n
+                +=
+                  capacity_n
+
+                slot_a
+                  .push
+                  (
+                    {
+                      hue_n
+                      :
+                        hue_n
+                    , from_n
+                      :
+                        from_n
+                    , width_n
+                      :
+                        width_n
+                    }
+                  )
+
+                from_n
+                +=
+                  width_n
+              }
+            }
+
+            STAT_W_o
+              .stat_o
+                [ `${stat_s}_o` ]
+                  [ `${hsl_s}_o` ]
+                    .slot_a
+            =
+              slot_a
+
+            STAT_W_o
+              .post__v
+              (
+                {
+                  task_s
+                  :
+                    'PUT_map'
+                , stat_s
+                  :
+                    '{{C_o.STAT_a[0]}}'
+                , slot_a
+                  :
+                    slot_a
+                , ratio_n
+                :
+                  rate_n
+                  /
+                    STAT_W_o
+                      .capacity_n
+                }
+              , [
+                  slot_a
+                ]
+              )
+
+
+            break
+
+
+
+
+
+//------------------------------------------------------------------------
         //=== BACK SLIDER ===
-          case 'hue_back':
+          case
+            'hue_back'
+          :
             for
             (
               let at_n = 0;
@@ -1734,298 +1974,306 @@ const STAT_W_o =
         }
 
         //=== BURST ===      
-        STAT_W_o
-          .stat_o
-            [ `${stat_s}_o` ]
-              [ `${HSL_s}_o` ]
-                .slot_a  = []    //: reset if already used
-
-        //: slice array from shift
-        const head_a =
-          STAT_W_o
-            .scan_a
-              [
-                STAT_W_o
-                  [`SCAN_${HSL_s}_rate_n`]
-              ]
-              .slice
-              (
-                0,
-                shift_n
-              )
-
-        const tail_a =
-          STAT_W_o
-            .scan_a
-              [
-                STAT_W_o
-                  [`SCAN_${HSL_s}_rate_n`]
-              ]
-              .slice
-              (
-                shift_n
-              )
-
-        const rate_a =
-          tail_a
-            .concat( head_a )
-          
-        let beam_n =      0     //: rate accumulator
-        let arcStart_n =  0
-        let maxRate_n =   0
-        let at_n =        -1    //: to start at 0
-        let slot_n =      -1    //: idem
-        
-        for
-        (
-          let rate_n
-          of
-          rate_a
-        )
-        {
-          ++at_n    //: start at 0
-
-          ++slot_n  //: start at 0
-
-          arcStart_n
-          =
-            at_n
-
-          let hue_n,
-              sat_n,
-              lum_n
-        
-          switch
-          (
-            hsl_s
-          )
-          {
-            case 'hue':
-              //?? painter_c
-              //??   .clear__c()
-            
-              hue_n =
-                (
-                  at_n
-                  +
-                  shift_n
-                )
-                %
-                360
-        
-              sat_n = 100
-        
-              lum_n = 50    //: neutral
-        
-              break
-          
-            case 'sat':
-              hue_n =
-                back_hue_n
-        
-              sat_n = at_n
-        
-              lum_n = 50
-              
-              break
-          
-            case 'lum':
-              hue_n =
-                back_hue_n
-        
-              sat_n = 0    //: neutral
-        
-              lum_n = at_n
-              
-              break
-              
-            case 'hue_front':    //=== hue burst ===
-              if
-              (
-                arc_n
-                >
-                1
-                &&
-                slot_n
-                <
-                arc_n
-                -
-                1
-              )
-              {
-                beam_n +=
-                  rate_n
-                
-                if
-                (
-                  at_n
-                  <
-                  360
-                )
-                {
-                  continue    //: not at end otherwise don't miss last group
-                }
-              }
-
-              //: else, end of slot
-              if
-              (
-                beam_n
-                >
-                maxRate_n
-              )
-              {
-                maxRate_n =
-                  beam_n
-              }
-
-              if
-              (
-                beam_n
-              )
-              {
-                rate_n =
-                  beam_n
-              }
-
-              hue_n =
-                (
-                  (
-                    Math
-                      .floor
-                      (
-                        arcStart_n
-                        /
-                        arc_n
-                      )
-                    *
-                    arc_n
-                  )
-                  +
-                  shift_n
-                )
-                %
-                360
-            
-              sat_n = 100
-            
-              lum_n = 50    //: neutral
-
-              beam_n = 0    //: reset
-
-              slot_n = -1    //: reset
-            
-              //-- arcStart_n =   //: next slot
-              //--   at_n
-
-              break
-              
-            default:
-              break
-          }
-  
-          STAT_W_o
-            .stat_o
-              [ `${stat_s}_o` ]
-                [ `${HSL_s}_o` ]
-                  .slot_a
-                    .push
-                    (
-                      rate_n
-                      ?
-                        {
-                          rate_n: rate_n,
-                          hsl_a:
-                            [
-                              hue_n,
-                              sat_n,
-                              lum_n
-                            ]
-                        }
-                      :
-                        null
-                    )
-        }
-
         if
         (
           hsl_s
-          ===
-          'hue_back'    //: don't draw burst twice
+          !==
+          'map'
         )
         {
-          return
-        }
-
-        const width_n =
           STAT_W_o
             .stat_o
               [ `${stat_s}_o` ]
                 [ `${HSL_s}_o` ]
-                  .canvas_o
-                    .width
-
-        const burst_o =        //=== draw arguments ===
-        {
-          rate_a:
+                  .slot_a  = []    //: reset if already used
+  
+          //: slice array from shift
+          const head_a =
+            STAT_W_o
+              .scan_a
+                [
+                  STAT_W_o
+                    [`SCAN_${HSL_s}_rate_n`]
+                ]
+                .slice
+                (
+                  0,
+                  shift_n
+                )
+  
+          const tail_a =
+            STAT_W_o
+              .scan_a
+                [
+                  STAT_W_o
+                    [`SCAN_${HSL_s}_rate_n`]
+                ]
+                .slice
+                (
+                  shift_n
+                )
+  
+          const rate_a =
+            tail_a
+              .concat( head_a )
+            
+          let beam_n =      0     //: rate accumulator
+          let arcStart_n =  0
+          let maxRate_n =   0
+          let at_n =        -1    //: to start at 0
+          let slot_n =      -1    //: idem
+          
+          for
+          (
+            let rate_n
+            of
+            rate_a
+          )
+          {
+            ++at_n    //: start at 0
+  
+            ++slot_n  //: start at 0
+  
+            arcStart_n
+            =
+              at_n
+  
+            let hue_n,
+                sat_n,
+                lum_n
+          
+            switch
+            (
+              hsl_s
+            )
+            {
+              case 'hue':
+                //?? painter_c
+                //??   .clear__c()
+              
+                hue_n =
+                  (
+                    at_n
+                    +
+                    shift_n
+                  )
+                  %
+                  360
+          
+                sat_n = 100
+          
+                lum_n = 50    //: neutral
+          
+                break
+            
+              case 'sat':
+                hue_n =
+                  back_hue_n
+          
+                sat_n = at_n
+          
+                lum_n = 50
+                
+                break
+            
+              case 'lum':
+                hue_n =
+                  back_hue_n
+          
+                sat_n = 0    //: neutral
+          
+                lum_n = at_n
+                
+                break
+                
+              case 'hue_front':    //=== hue burst ===
+                if
+                (
+                  arc_n
+                  >
+                  1
+                  &&
+                  slot_n
+                  <
+                  arc_n
+                  -
+                  1
+                )
+                {
+                  beam_n +=
+                    rate_n
+                  
+                  if
+                  (
+                    at_n
+                    <
+                    360
+                  )
+                  {
+                    continue    //: not at end otherwise don't miss last group
+                  }
+                }
+  
+                //: else, end of slot
+                if
+                (
+                  beam_n
+                  >
+                  maxRate_n
+                )
+                {
+                  maxRate_n =
+                    beam_n
+                }
+  
+                if
+                (
+                  beam_n
+                )
+                {
+                  rate_n =
+                    beam_n
+                }
+  
+                hue_n =
+                  (
+                    (
+                      Math
+                        .floor
+                        (
+                          arcStart_n
+                          /
+                          arc_n
+                        )
+                      *
+                      arc_n
+                    )
+                    +
+                    shift_n
+                  )
+                  %
+                  360
+              
+                sat_n = 100
+              
+                lum_n = 50    //: neutral
+  
+                beam_n = 0    //: reset
+  
+                slot_n = -1    //: reset
+              
+                //-- arcStart_n =   //: next slot
+                //--   at_n
+  
+                break
+                
+              default:
+                break
+            }
+    
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
                   [ `${HSL_s}_o` ]
                     .slot_a
-          ,
-          capacity_n:
+                      .push
+                      (
+                        rate_n
+                        ?
+                          {
+                            rate_n: rate_n,
+                            hsl_a:
+                              [
+                                hue_n,
+                                sat_n,
+                                lum_n
+                              ]
+                          }
+                        :
+                          null
+                      )
+          }
+  
+          if
+          (
             hsl_s
             ===
-            'hue_front'
-            ?
-              STAT_W_o
-                .stat_o
-                  [ `${stat_s}_o` ]
-                    [ `${HSL_s}_o` ]
-                      .slot_a              
-                        .length
-            :
-              capacity_n
-          ,
-          canvas_o:
+            'hue_back'    //: don't draw burst twice
+          )
+          {
+            return
+          }
+  
+          const width_n =
             STAT_W_o
               .stat_o
                 [ `${stat_s}_o` ]
                   [ `${HSL_s}_o` ]
                     .canvas_o
-          ,
-          center_n:
-            width_n
-            *
-            .5
-          ,
-          maxRate_n:
-            !maxRate_n     //: not 'hue_front'
-            ?
+                      .width
+  
+          const burst_o =        //=== draw arguments ===
+          {
+            rate_a:
               STAT_W_o
-                .scan_a
-                  [ STAT_W_o[`SCAN_${ HSL_s }_rank_n`] ]
-                    [0]
+                .stat_o
+                  [ `${stat_s}_o` ]
+                    [ `${HSL_s}_o` ]
+                      .slot_a
+            ,
+            capacity_n:
+              hsl_s
+              ===
+              'hue_front'
+              ?
+                STAT_W_o
+                  .stat_o
+                    [ `${stat_s}_o` ]
+                      [ `${HSL_s}_o` ]
+                        .slot_a              
+                          .length
+              :
+                capacity_n
+            ,
+            canvas_o:
+              STAT_W_o
+                .stat_o
+                  [ `${stat_s}_o` ]
+                    [ `${HSL_s}_o` ]
+                      .canvas_o
+            ,
+            center_n:
+              width_n
+              *
+              .5
+            ,
+            maxRate_n:
+              !maxRate_n     //: not 'hue_front'
+              ?
+                STAT_W_o
+                  .scan_a
+                    [ STAT_W_o[`SCAN_${ HSL_s }_rank_n`] ]
                       [0]
-            :
-              maxRate_n
-          ,
-          maxpos_n:
-            width_n    //: maxpos_n as circle radius
-          ,
-          thresh_o:
-            thresh_o
-          ,
+                        [0]
+              :
+                maxRate_n
+            ,
+            maxpos_n:
+              width_n    //: maxpos_n as circle radius
+            ,
+            thresh_o:
+              thresh_o
+            ,
+          }
+          
+          STAT_W_o
+            .stat_o
+              [ `${stat_s}_o` ]
+                [ `${HSL_s}_o` ]
+                  .burst_c =
+                    new ColorBurst( burst_o )  //: drawing
         }
-        
-        STAT_W_o
-          .stat_o
-            [ `${stat_s}_o` ]
-              [ `${HSL_s}_o` ]
-                .burst_c =
-                  new ColorBurst( burst_o )  //: drawing
-
+  
         break
 
     
@@ -2427,9 +2675,9 @@ const STAT_W_o =
 
         for
         (
-           atScan_n = 0;
-           atScan_n < length_n;
-           ++atScan_n
+          let atScan_n = 0;
+          atScan_n < length_n;
+          ++atScan_n
         )
         {
           if
@@ -2611,13 +2859,26 @@ const STAT_W_o =
       +
       gap_n
 
-    const scan_a =
-      STAT_W_o
-        .scan_a
-          [
-            STAT_W_o
-              [ `SCAN_${hsl_s}_n` ]
-          ]
+    const scan_a
+    =
+      hsl_s
+      ===
+      'map'
+      ?
+        STAT_W_o
+          .scan_a
+            [
+              STAT_W_o
+                [ `SCAN_hue_n` ]
+            ]
+      :
+        STAT_W_o
+          .scan_a
+            [
+              STAT_W_o
+                [ `SCAN_${hsl_s}_n` ]
+            ]
+
           
     const
     {

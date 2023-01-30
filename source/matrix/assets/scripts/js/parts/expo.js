@@ -679,6 +679,8 @@ const EXP_o
     if
     (
       ! selected_a
+      ||
+      ! selected_a
           .length
     )
     {
@@ -704,8 +706,11 @@ const EXP_o
     =
       await
       DIA_o
-        .confirm__b( 'confirm' )
-  
+        .confirm__b
+        (
+          'confirm'
+        )
+
     if
     (
       ! accept_b
@@ -1403,7 +1408,6 @@ const EXP_o
                 }
               )
           }
-
 
         break
 

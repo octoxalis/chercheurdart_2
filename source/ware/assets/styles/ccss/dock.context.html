@@ -6,7 +6,7 @@ context( stack, new )
           position: fixed;
           top: 0;
           left: 0;
-          width: 16rem;
+          width: {{S_o.SETTINGS_WIDTH}};
 context( block, settings )
     <input>
     context( copy, next )
@@ -39,6 +39,22 @@ context( block, settings )
       <label:hover>
               filter: brightness( {{S_o.brightness_hi2}} );
       </label>
+      <div#{{C_o.DIV_ID_s}}_dock_nav_top>
+              display: flex;
+              gap: {{S_o.PAD_2}};
+              position: relative;
+              top: -2rem;
+              left: 2rem;
+              margin-bottom: 1rem;
+        <label>
+        context( block, top_button )
+        </label>
+        <label:nth-of-type( 1 )>
+        </label>
+        <label:nth-of-type( 2 )>
+                transform: translateX( calc( -100% - {{S_o.PAD_2}} ) );    /* under 1rst label */
+        </label>
+      </div>
       <input[type=range]>
               align-self: center;
               position: relative;
