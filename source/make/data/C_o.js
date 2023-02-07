@@ -67,7 +67,7 @@ const C_o =
     OBJECT_SRC:      '',
     SCRIPT_SRC:      `'unsafe-eval'`,
     WORKER_SRC:      `'unsafe-eval'`,
-    STYLE_SRC:       ``,
+    STYLE_SRC:       `'unsafe-inline'`,
   },
 
 
