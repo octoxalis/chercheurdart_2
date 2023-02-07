@@ -1,16 +1,18 @@
 <section#{{C_o.SECTION_a[0]}}>
         --max_width: 100vw;
         --col_width: 70%;
-        --threshold: calc(var(--max_width) - 100px);
         --gap: {{S_o.NAV_HEIGHT_s}};
 
-        max-width: var(--max_width);
+        max-width: 100vw;  /* var(--max_width); */
         margin: auto;
         padding: var(--gap);
         align-self: center;
         font-size: 1.1em;
         /*line-height: 2;*/
-
+        background: linear-gradient(90deg, 
+          hsla( {{S_o.hue_p}} {{S_o.sat_lo_4}} {{S_o.lum_hi_75}}  /1)  28.9vw, 
+          hsla( {{S_o.hue_p}} {{S_o.sat_lo_4}} {{S_o.lum_hi_75}}  /.5) 28.9vw,
+          hsla( {{S_o.hue_p}} {{S_o.sat_lo_4}} {{S_o.lum_hi_75}}  /.5) 100%);
 <!-- !!! occurs at chapter end -->
   <hr>
           width: 8%;     /* keep right space for goto buttons */
@@ -31,7 +33,7 @@
           margin-top: -{{S_o.PAD_4}};     /* vertical-align with <p> */
           min-width: calc(100% - var(--col_width) - var(--gap));
           max-width: 100%;
-          width: calc((var(--threshold) - 100%) * 1000);
+          width: calc( (100vw - 100px - 100%) * 1000 );
           float: left;
           font-weight: 600;
           text-align: end;
@@ -49,7 +51,7 @@
           top: 0;                     /* overide */
           margin: 0 2vmin 0 auto;     /* keep right space for goto buttons */
           min-width: var(--col_width);
-          width: calc( (var(--threshold) - 100%) * 1000 );
+          width: calc( (100vw - 100px - 100%) * 1000 );
           max-width: {{S_o.PARAGRAPH_WIDTH_s}};
     <label>
             /*--font_max: 32px;*/
@@ -64,7 +66,7 @@
           position: relative;         /* to position comment dialog */
           margin: 0 2vmin 0 auto;
           min-width: var(--col_width);
-          width: calc( (var(--threshold) - 100%) * 1000 );
+          width: calc( (100vw - 100px - 100%) * 1000 );
 
 
     <hr><!-- !!! occurs inside chapter -->

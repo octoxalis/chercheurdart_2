@@ -138,5 +138,81 @@
 		"death_date_n" : 1642,
 		"birth_place_s" : "Bologna",
 		"death_place_s" : "Bologna"
+	},
+
+
+
+
+
+
+	{
+		"id_s" : "1602-champaigne",
+		"forename_s" : "Philippe",
+		"lastname_s" : "de Champaigne",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
+	},
+	{
+		"id_s" : "1606-la_hyre",
+		"forename_s" : "Laurent",
+		"lastname_s" : "de La Hyre",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
+	},
+	{
+		"id_s" : "1612-mignard",
+		"forename_s" : "Pierre",
+		"lastname_s" : "Mignard",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
+	},
+	{
+		"id_s" : "1617-le_brun",
+		"forename_s" : "Charles",
+		"lastname_s" : "Le Brun",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
+	},
+	{
+		"id_s" : "1599-van_dyck",
+		"forename_s" : "Anton",
+		"lastname_s" : "van Dyck",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
+	},
+	{
+		"id_s" : "1563-gentileschi",
+		"forename_s" : "Orazio",
+		"lastname_s" : "Gentileschi",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
+	},
+	{
+		"id_s" : "1632-vermeer",
+		"forename_s" : "Johannes",
+		"lastname_s" : "Vermeer",
+		"nickname_s" : "",
+		"birth_date_n" : 1575,
+		"death_date_n" : 1642,
+		"birth_place_s" : "Bologna",
+		"death_place_s" : "Bologna"
 	}
 ]

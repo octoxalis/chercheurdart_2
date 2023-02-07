@@ -20,21 +20,21 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li {
   justify-content: space-between;
   margin: {{S_o.PAD_2}} 0 {{S_o.PAD_2}} ;
 }
-label[data-list=link_n] + input + ul[data-list=link_a] > li > b:first-child {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > {{C_o.ROW_TAG_s}}:first-child {
   width: 45%;
   font-size: 80%;
 }
-label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > {{C_o.ROW_TAG_s}}:nth-child(2) {
   width: 50%;
   text-align: right;
   font-family: {{S_o.FONT_BODY_s}};
   font-weight: {{S_o.FONT_BOLD_s}};
 }
-label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > label[for] {
-  font-weight: {{S_o.FONT_BOLD_s}};
+label[data-list=link_n] + input + ul[data-list=link_a] > li > {{C_o.ROW_TAG_s}}:nth-child(2) > label[for] {
   margin-bottom: {{S_o.PAD_4}};
+  font-weight: {{S_o.FONT_BOLD_s}};
 }
-label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > bold, label[data-list=link_n] + input + ul[data-list=link_a] > li > b:nth-child(2) > bold {
+label[data-list=link_n] + input + ul[data-list=link_a] > li > {{C_o.ROW_TAG_s}}:nth-child(2) > bold, label[data-list=link_n] + input + ul[data-list=link_a] > li > {{C_o.ROW_TAG_s}}:nth-child(2) > bold {
   font-weight: {{S_o.FONT_BOLD_s}};
 }
 label[data-list=link_n] + input + ul[data-list=link_a] > li > input, label[data-list=link_n] + input + ul[data-list=link_a] > li > input + ins {
@@ -94,4 +94,5 @@ label[data-list=link_n] + input + ul[data-list=link_a] > li > input:checked + in
 }
 label[data-list=link_n] + input:checked + ul[data-list=link_a] {
   display: block;
+  width: {{S_o.INS_WIDTH_s}};
 }

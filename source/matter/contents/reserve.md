@@ -25,16 +25,23 @@
 
   include_a:
   [
+    `reserve`
+  , `dialog_alert`
   ],
 
   script_a:
   [
     'Idb.min.js'
   , 'dom.min.js'
+  , 'drag.min.js'
+  , 'dialog_alert.min.js'
+  , 'reserve.min.js'
   ],
 
   css_a:
   [
+    'reserve.min.css'
+  , 'dialog_alert.min.css',
   ],
 
 }
@@ -59,11 +66,11 @@ Les réserves présentent les images en libre accès provenant des grandes
      << Museo del Prado  ::  https://www.museodelprado.es/ >>
      etc.  ]]
 
-Ces images sont réparties en trois régions correspondant à la classification classique d'écoles:
+Ces images sont réparties en trois régions correspondant à la classification classique:
 ==
-<< française  ::  reserve_france.html >>
-<< du Nord  ::  reserve_nord.html >>
-<< du Sud  ::  reserve_sud.html >>
+École française
+École du Nord
+École du Sud
 ==
 
 {% end_section %}

@@ -203,14 +203,6 @@ module.exports =
 
 
 
-  exist__b:    //: check if file/dir exists
-    url_s =>
-      FS_o
-        .existsSync( url_s )
-  ,
-  
-
-
   stamp__s:
     stamp_s =>
       F_o
@@ -377,6 +369,13 @@ module.exports =
   ,
 
 
+
+  exist__b:    //: check if file/dir exists
+    url_s =>
+      FS_o
+        .existsSync( url_s )
+  ,
+  
 
 
   mkDir__b:    //: check if a dir exists, otherwise create it and its parents

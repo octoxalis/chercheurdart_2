@@ -18,6 +18,7 @@ const C_o =
   CSS_SITE_DIR_s:        CONF_o.CSS_SITE_DIR_s,
   LIB_PARTS_DIR_s:       CONF_o.LIB_PARTS_DIR_s,
   CONTENT_PARTS_DIR_s:   CONF_o.CONTENT_PARTS_DIR_s,
+  RESERVE_PARTS_DIR_s:   CONF_o.RESERVE_PARTS_DIR_s,
   COM_OUTPUT_DIR_s:      CONF_o.COM_OUTPUT_DIR_s,
   TOPICS_DIR_s:          CONF_o.TOPICS_DIR_s,
   HTML_PARTS_DIR_s:      CONF_o.HTML_PARTS_DIR_s,
@@ -29,6 +30,8 @@ const C_o =
   CONTENT_PARTS_PATH_s:  CONF_o.CONTENT_PARTS_PATH_s,
   DB_PATH_s:             CONF_o.DB_PATH_s,
   TABLE_INPUT_PATH_s:    CONF_o.TABLE_INPUT_PATH_s,
+  IMG_RESERVE_SRC_PATH_s: CONF_o.IMG_RESERVE_SRC_PATH_s,
+  IMG_RESERVE_SITE_PATH_s: CONF_o.IMG_RESERVE_SITE_PATH_s,
 
   IMG_MAX_PATH_s:     '/full/max/0/',    //: IOR
   IMG_1024_PATH_s:    '/full/_1024/0/',    //: IOR
@@ -43,6 +46,8 @@ const C_o =
   PAINT_W_FILE_s:   '/assets/scripts/js/paint_w.min.js',
   MEDIA_DIR_s:      `${U_o.url_s}assets/media/img/`,
   RESERVE_DIR_s:    `${U_o.url_s}assets/media/img/reserve/`,
+  //... RESERVE_DIR_s:    `${U_o.url_s}reserve/`,
+  RESERVE_JSON_s:   `source/ware/assets/json/img_reserve.json`,
 
 
   //=== HTML-HEAD: HEADERS ===

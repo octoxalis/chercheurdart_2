@@ -1,14 +1,27 @@
 <section id="reserve">
   <h2>Catalogue</h2>
-    <div>
-      <p>
-        <label>{{subtitle_s}}</label>
-      </p>
-    </div>
 
   <div id="{{C_o.DIV_ID_s}}_reserve_list">
 
-{% include "parts/body/parts/reserve_" + reserve_s + ".html" %}
+    <label for={{C_o.INPUT_ID_s}}_reserve_france>France</label>
+    <input id={{C_o.INPUT_ID_s}}_reserve_france type=checkbox />
+    <ul id="{{C_o.LIST_ID_s}}_reserve_france_list">
+    {% include "parts/body/parts/reserve_france.html" %}
+    </ul>
+    
+    
+    <label for={{C_o.INPUT_ID_s}}_reserve_nord>École du Nord</label>
+    <input id={{C_o.INPUT_ID_s}}_reserve_nord type=checkbox />
+    <ul id="{{C_o.LIST_ID_s}}_reserve_nord_list">
+    {% include "parts/body/parts/reserve_nord.html" %}
+    </ul>
+    
+    
+    <label for={{C_o.INPUT_ID_s}}_reserve_sud>École du Sud</label>
+    <input id={{C_o.INPUT_ID_s}}_reserve_sud type=checkbox />
+    <ul id="{{C_o.LIST_ID_s}}_reserve_sud_list">
+    {% include "parts/body/parts/reserve_sud.html" %}
+    </ul>
 
   </div>
 

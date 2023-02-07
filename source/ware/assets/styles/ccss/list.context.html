@@ -19,18 +19,18 @@
         flex-wrap: wrap;
         justify-content: space-between;
         margin: {{S_o.PAD_2}} 0 {{S_o.PAD_2}} ;
-    <b:first-child>
+    <{{C_o.ROW_TAG_s}}:first-child>
             width: 45%;
             font-size: 80%;
     </{{C_o.ROW_TAG_s}}>
-    <b:nth-child(2)>
+    <{{C_o.ROW_TAG_s}}:nth-child(2)>
             width: 50%;
             text-align: right;
             font-family: {{S_o.FONT_BODY_s}};
             font-weight: {{S_o.FONT_BOLD_s}};
       <label[for]>
-              font-weight: {{S_o.FONT_BOLD_s}};
               margin-bottom: {{S_o.PAD_4}};
+              font-weight: {{S_o.FONT_BOLD_s}};
         </label>
       <bold>
         context( copy, next )
@@ -109,4 +109,5 @@
 +
 <ul[data-list=link_a]>
         display: block;
+        width: {{S_o.INS_WIDTH_s}};
 </ul>

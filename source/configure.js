@@ -31,11 +31,15 @@ module.exports =
   LIB_PARTS_DIR_s:      'make/lib/parts/',
   CONTENT_PARTS_DIR_s:  'matter/contents/parts/',
   CONTEXT_PARTS_DIR_s:  'source/matrix/assets/styles/css/parts/',
+  RESERVE_PARTS_DIR_s:  'source/matrix/parts/body/parts/',
   WARE_DIR_s:           'source/ware/',
 
   CONTENTS_PATH_s:      'source/matter/contents',
   DB_PATH_s:            'source/make/db/',
   TABLE_INPUT_PATH_s:   'source/make/db/table',
+  IMG_RESERVE_SRC_PATH_s:  'reserve/',
+  IMG_RESERVE_SITE_PATH_s: 'assets/media/img/reserve/',
+
   
   CONTEXT_INPUT_FILE_s: 'source/ware/assets/styles/ccss/html.context.html',
 

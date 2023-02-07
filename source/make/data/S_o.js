@@ -15,6 +15,7 @@ const S_o =
   FIGURE_BORDER_s:   '.5rem',
   PARAGRAPH_WIDTH_s: '60ch',
   INS_WIDTH_s:       '60ch',
+  HEADER_WIDTH_s:    '30vw',
 
   FONT_BOLD_s: 600,
 
