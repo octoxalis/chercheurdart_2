@@ -39,6 +39,8 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > canvas#{{C_o.CANVAS
   transform: scaleX( calc( var(--scale_x) ) );
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > canvas:not(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map) {
+  position: absolute;
+  transform: translateY( 50vh );
   border-radius: 50%;
   background: var(--{{C_o.STAT_a[0]}}_img_background);
 }
@@ -90,6 +92,9 @@ section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_I
 }
 section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}]:hover > label:not([for]):hover > span {
   background: {{S_o.light_07}};
+}
+section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > nav:not(#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_map) {
+  transform: translateY( 50vh );
 }
 canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map, canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue {
   cursor: var(--{{C_o.STAT_a[0]}}_trace_pointer);
@@ -456,49 +461,45 @@ body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:checked ) 
 }
 aside#aside_{{C_o.STAT_a[0]}}_hue_img {
   display: none;
-}
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked ):has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img {
-  position: unset;
+  position: absolute;
+  transform-origin: center;
+  transform: scale( var(--{{C_o.STAT_a[0]}}_hue_img_scale) ) translateY( var(--{{C_o.STAT_a[0]}}_hue_img_translate) );
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img {
+  --{{C_o.STAT_a[0]}}_hue_img_translate: calc(var(--{{C_o.STAT_a[0]}}_hue_img_scale) * {{C_o.BURST_TRANSLATE_MID_n}} );
   z-index: 21;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: fixed;
   background: {{S_o.bg_hi}};
   box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
-  transform-origin: center;
-  transform: scale( var(--{{C_o.STAT_a[0]}}_hue_img_scale) );
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:not(.fullsize) {
   max-width: 1000vw;
   background: var(--{{C_o.STAT_a[0]}}_img_background);
   cursor: zoom-in;
-  transition: all .5s ease;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > .fullsize {
   z-index: 100;
   position: absolute;
   cursor: move;
   box-shadow: 0 0 0 1000vmax {{S_o.light_100}};
-  transition: all .5s ease;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img {
-  position: fixed;
+  --{{C_o.STAT_a[0]}}_hue_img_scale: {{C_o.BURST_TRANSFORM_SCALE_n}};
+  --{{C_o.STAT_a[0]}}_hue_img_translate: -100%;
   top: 100vh;
   left: 0;
-  border-radius: 4px;
+  transform-origin: top left;
   box-shadow: none;
   filter: none;
-  transform-origin: top left;
-  transform: scale( {{C_o.BURST_TRANSFORM_SCALE_n}} ) translateY( -100% );
-  transition: transform .2s;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:checked ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position:not(:checked) ~ aside#aside_{{C_o.STAT_a[0]}}_hue_img > canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img {
   max-width: 100vmin;
-  transition: transform .2s;
+}
+body:has( canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img {
+  --{{C_o.STAT_a[0]}}_hue_img_translate: calc(var(--{{C_o.STAT_a[0]}}_hue_img_scale) * {{C_o.BURST_TRANSLATE_FULL_n}} );
 }
 body:has( canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize ) > section#{{C_o.STAT_a[0]}} > div[id^={{C_o.DIV_ID_s}}_stat] > aside#aside_{{C_o.STAT_a[0]}}_hue_img > div#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back {
   width: {{S_o.FULL_WIDTH_s}};

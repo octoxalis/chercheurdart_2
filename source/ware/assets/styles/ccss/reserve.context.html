@@ -62,14 +62,14 @@ context( stack, new )
           gap: 1rem;
           margin: 1rem;    /* keep space for toolset buttons */
           border: none;
-          max-height: 16rem;
+          max-height: 80vh;
           overflow-Y: auto;
     <li>
             width: 24%;            /* 4 / row */
             cursor: pointer;
       <dl>
             border-radius: 4px;
-            background: hsla( 211 28% 37.75% /1);
+            background: hsla( 210 28% 37.75% /1);
             opacity: .75;
             transition: .2s ease;
             transition-delay: .2s;
@@ -79,6 +79,7 @@ context( stack, new )
                 font-size: 90%;
                 font-weight: 500;
                 color: {{S_o.text}};
+                background: hsla( 210 28% 28% /1);
         </dt>
         <dt:hover>
                 background: {{S_o.light_05}};
@@ -88,9 +89,17 @@ context( stack, new )
                 display: flex;
                 justify-content: space-between;
                 padding: 0.5em;
-          <__star__>
-                  font-size: 70%;
-          </__star__>
+        </dd>
+        <dd:nth-of-type(1)>
+                font-size: 85%;
+                font-style: italic;
+        </dd>
+        <dd:nth-of-type(2)>
+                font-size: 75%;
+                font-weight: 500;
+        </dd>
+        <dd[data-size=large]>
+                border-left: 8px solid {{S_o.red_100}};
         </dd>
       </dl>
       <dl:hover>

@@ -70,7 +70,13 @@ Cette opération ne prend que quelques secondes
 
 ##2  Colorimétrie
 
-Répartition chromatique (échelle logarithmique)
+Répartition chromatique
+==
+visualisation spectrale
+visualisation radiale
+==
+
+
 
 
 {% end_section %}

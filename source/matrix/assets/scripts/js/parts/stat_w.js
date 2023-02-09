@@ -1720,6 +1720,31 @@ const STAT_W_o =
             =
               +'{{C_o.MAP_HEIGHT_n}}'
 
+            //;console.log( STAT_W_o.capacity_n )
+            
+            let bit_n
+            =
+              4          //: 2 << 4 = 32
+
+            while
+            (
+              2
+              <<
+              bit_n
+              <
+              STAT_W_o
+                .capacity_n
+            )
+            {
+              ++bit_n
+            }
+            //;console.log( bit_n )
+
+            bit_n
+            -=
+              +'{{C_o.MAP_SHIFT_n}}'
+
+
             const rshift_n
             =
               clamp__n
@@ -1727,11 +1752,12 @@ const STAT_W_o =
                 ~~(
                     scale_n
                     *
-                    (+'{{C_o.MAP_SHIFT_n}}')    //: '{{C_o.MAP_SHIFT_n}}'
+                    bit_n
                   )
               , +'{{C_o.MAP_CLAMP_MIN_n}}'
               , +'{{C_o.MAP_CLAMP_MAX_n}}'
               )
+            //;console.log( rshift_n )
 
             let threshold_n
             =
@@ -1777,7 +1803,7 @@ const STAT_W_o =
                 (
                   capacity_n
                   >>>
-                  (+'{{C_o.MAP_SHIFT_n}}')
+                  bit_n
                 )
                 *
                 scale_n

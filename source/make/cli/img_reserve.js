@@ -52,6 +52,7 @@ const RES_o =
   img__o
   (
     path_s
+  , size_n
   )
   {
     //;console.log( path_s )
@@ -101,6 +102,10 @@ const RES_o =
           //--  reserve/france/1594-poussin/1640-L'Adoration des Bergers.jpeg
           path_s:
             short_s
+        , size_n:
+            size_n
+            /
+            1_048_576         //: 1 Mb
         , slug_s:
             F_o
               .slug__s( subject_s )
@@ -192,6 +197,7 @@ const RES_o =
       //-- , school_s
         artistId_s
       , subject_s
+      , size_n
       }
     =
       img_o
@@ -222,6 +228,15 @@ const RES_o =
     return ''
   }
 
+    const dataSize_s
+    =
+      size_n
+      >
+      10
+      ?
+        ' data-size=large'
+      :
+        ''
     return (
       `<li>`
       + `<dl role=button tabindex=1 data-href_s="${dest_s}">`
@@ -229,6 +244,19 @@ const RES_o =
       + `<dd data-collection="${collection_s}" data-location="${location_s}">`    //!!! collection_s, location_s not yet defined
       + subject_s
       + `</dd>`
+      +  `<dd${dataSize_s}>`
+      +  new Intl
+           .NumberFormat
+           (
+             'fr-FR', 
+           )
+           .format
+           (
+              Number
+                .parseFloat( size_n )
+                  .toFixed( 1 )
+           )
+      + ` Mo</dd>`
       + `</dl>`
     )
   }
@@ -387,6 +415,9 @@ const RES_o =
                 (
                   file_o
                     .path
+                , file_o
+                    .stats
+                      .size
                 )
             )
       }

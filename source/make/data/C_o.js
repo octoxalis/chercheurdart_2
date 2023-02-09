@@ -67,7 +67,7 @@ const C_o =
     OBJECT_SRC:      '',
     SCRIPT_SRC:      `'unsafe-eval'`,
     WORKER_SRC:      `'unsafe-eval'`,
-    STYLE_SRC:       `'unsafe-inline'`,
+    STYLE_SRC:       `'unsafe-inline'`,    //: used to setAttribute
   },
 
 
@@ -206,7 +206,7 @@ const C_o =
   MAP_WIDTH_n:                  8192,
   MAP_HEIGHT_n:                 64,
 
-  MAP_SHIFT_n:                  10,     //: map scaling
+  MAP_SHIFT_n:                  12,     //: map scaling
   MAP_CLAMP_MIN_n:              4,
   MAP_CLAMP_MAX_n:              16,
 
@@ -225,6 +225,9 @@ const C_o =
   BURST_TRANSFORM_DIM_s:        '100vmin',  //!!! overriden
   BURST_TRANSFORM_MAX_SCALE_n: .85,  //: keep a tiny space for menu bar
   BURST_TRANSFORM_SCALE_n:     .33,
+  BURST_TRANSLATE_MID_n:       '100%',
+  BURST_TRANSLATE_FULL_n:      '50%',
+
   BURST_PICK_HUE_n:            0,
   BURST_PICK_SAT_n:            100,
   BURST_PICK_LUM_n:            50,

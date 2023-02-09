@@ -70,7 +70,7 @@ const BUR_o =
   , eventKey_a
     :
       [
-        'ArrowUp' //: toggle img_position checked
+        'ArrowUp'    //: toggle img_position checked
       , 'ArrowDown'  //: idem
       , '+'          //: increment scale
       , '-'          //: decrement scale
@@ -78,10 +78,12 @@ const BUR_o =
       , 'd'          //: show/hide dock
       , 'p'          //: show/hide palette
       , 'a'          //: show/hide animation
-      , 'e'          //: show/hide equalizer
-      , 'v'          //: show/hide Image
+      , 's'          //: show spectral
+      , 'r'          //: show radial
+      , 'q'          //: show/hide equalizer
+      , 'v'          //: show/hide image
       , 'z'          //: (+ ctrlKey) reset
-      , 's'          //: (+ ctrlKey) save image
+      , 'e'          //: (+ ctrlKey) export image
       , ' '          //: suspend || resume slideshow
       ]
 
@@ -1557,7 +1559,7 @@ const BUR_o =
         break
 
       case
-        's'
+        'e'
       :
         if
         (
@@ -1592,7 +1594,13 @@ const BUR_o =
         'a'    //: show/hide animation
       :
       case
-        'e'    //: show/hide equalizer
+        'r'    //: permute spectral/radial
+      :
+      case
+        's'    //: permutespectral/radial
+      :
+      case
+        'q'    //: show/hide equalizer
       :
       case
         'v'    //: show/hide Image
@@ -1603,7 +1611,9 @@ const BUR_o =
             'd': 'dock_nav'
           , 'p': 'settings'
           , 'a': 'sequencer'
-          , 'e': 'equal'
+          , 's': 'map'              //!!! spectral
+          , 'r': 'hue'              //!!! radial
+          , 'q': 'equal'
           , 'v': 'hue_img'
           }
         
@@ -1612,7 +1622,8 @@ const BUR_o =
 
         if
         (
-          event_o.key
+          event_o
+            .key
           !==
           'd'
         )
@@ -1622,13 +1633,13 @@ const BUR_o =
             '{{C_o.STAT_a[0]}}_'
         }
 
-          id_s
-          +=
-            case_o
-              [
-                event_o
-                  .key
-              ]
+        id_s
+        +=
+          case_o
+            [
+              event_o
+                .key
+            ]
 
         document
           .getElementById( id_s )

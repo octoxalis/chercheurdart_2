@@ -150,69 +150,104 @@
 		"forename_s" : "Philippe",
 		"lastname_s" : "de Champaigne",
 		"nickname_s" : "",
-		"birth_date_n" : 1575,
-		"death_date_n" : 1642,
-		"birth_place_s" : "Bologna",
-		"death_place_s" : "Bologna"
+		"birth_date_n" : 1602,
+		"death_date_n" : 1674,
+		"birth_place_s" : "Bruxelles",
+		"death_place_s" : "Paris"
 	},
 	{
 		"id_s" : "1606-la_hyre",
 		"forename_s" : "Laurent",
 		"lastname_s" : "de La Hyre",
 		"nickname_s" : "",
-		"birth_date_n" : 1575,
-		"death_date_n" : 1642,
-		"birth_place_s" : "Bologna",
-		"death_place_s" : "Bologna"
+		"birth_date_n" : 1606,
+		"death_date_n" : 1656,
+		"birth_place_s" : "Paris",
+		"death_place_s" : "Paris"
 	},
 	{
 		"id_s" : "1612-mignard",
 		"forename_s" : "Pierre",
 		"lastname_s" : "Mignard",
 		"nickname_s" : "",
-		"birth_date_n" : 1575,
-		"death_date_n" : 1642,
-		"birth_place_s" : "Bologna",
-		"death_place_s" : "Bologna"
+		"birth_date_n" : 1612,
+		"death_date_n" : 1695,
+		"birth_place_s" : "Troyes",
+		"death_place_s" : "Paris"
 	},
 	{
 		"id_s" : "1617-le_brun",
 		"forename_s" : "Charles",
 		"lastname_s" : "Le Brun",
 		"nickname_s" : "",
-		"birth_date_n" : 1575,
-		"death_date_n" : 1642,
-		"birth_place_s" : "Bologna",
-		"death_place_s" : "Bologna"
+		"birth_date_n" : 1619,
+		"death_date_n" : 1690,
+		"birth_place_s" : "Paris",
+		"death_place_s" : "v"
 	},
 	{
 		"id_s" : "1599-van_dyck",
 		"forename_s" : "Anton",
 		"lastname_s" : "van Dyck",
 		"nickname_s" : "",
-		"birth_date_n" : 1575,
-		"death_date_n" : 1642,
-		"birth_place_s" : "Bologna",
-		"death_place_s" : "Bologna"
+		"birth_date_n" : 1599,
+		"death_date_n" : 1641,
+		"birth_place_s" : "Antwerpen",
+		"death_place_s" : "London"
 	},
 	{
 		"id_s" : "1563-gentileschi",
 		"forename_s" : "Orazio",
 		"lastname_s" : "Gentileschi",
 		"nickname_s" : "",
-		"birth_date_n" : 1575,
-		"death_date_n" : 1642,
-		"birth_place_s" : "Bologna",
-		"death_place_s" : "Bologna"
+		"birth_date_n" : 1563,
+		"death_date_n" : 1639,
+		"birth_place_s" : "Pisa",
+		"death_place_s" : "London"
 	},
 	{
 		"id_s" : "1632-vermeer",
 		"forename_s" : "Johannes",
 		"lastname_s" : "Vermeer",
 		"nickname_s" : "",
-		"birth_date_n" : 1575,
-		"death_date_n" : 1642,
-		"birth_place_s" : "Bologna",
+		"birth_date_n" : 1632,
+		"death_date_n" : 1675,
+		"birth_place_s" : "Delft",
+		"death_place_s" : "Delft"
+	},
+
+
+	{
+		"id_s" : "1591-barbieri",
+		"forename_s" : "Francesco",
+		"lastname_s" : "Barbieri",
+		"nickname_s" : "Giordano",
+		"birth_date_n" : 1591,
+		"death_date_n" : 1666,
+		"birth_place_s" : "Cento",
 		"death_place_s" : "Bologna"
+	},
+	{
+		"id_s" : "1634-giordano",
+		"forename_s" : "Luca",
+		"lastname_s" : "Giordano",
+		"nickname_s" : "",
+		"birth_date_n" : 1634,
+		"death_date_n" : 1705,
+		"birth_place_s" : "Napoli",
+		"death_place_s" : "Napoli"
+	},
+
+
+
+	{
+		"id_s" : "1592-honthorst",
+		"forename_s" : "Gerrit",
+		"lastname_s" : "van Honthorst",
+		"nickname_s" : "",
+		"birth_date_n" : 1592,
+		"death_date_n" : 1656,
+		"birth_place_s" : "Utrecht",
+		"death_place_s" : "Utrecht"
 	}
 ]
