@@ -64,9 +64,9 @@ const C_o =
     MANIFEST_SRC:    '',
     SCRIPT_SRC_ELEM: '',
     OBJECT_SRC:      '',
-    IMG_SRC:         `'unsafe-eval'`,
     SCRIPT_SRC:      `'unsafe-eval'`,
     WORKER_SRC:      `'unsafe-eval'`,
+    IMG_SRC:         `'unsafe-inline'`,
     STYLE_SRC:       `'unsafe-inline'`,    //: used to setAttribute
   },
 
