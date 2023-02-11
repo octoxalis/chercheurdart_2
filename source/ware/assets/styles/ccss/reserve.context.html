@@ -1,4 +1,8 @@
 context( stack, new )
+<:root>
+        --wheel_zoom_n: {{C_o.WHEEL_ZOOM_n}};
+</:root>
+
 <section#reserve>
         padding: {{S_o.NAV_HEIGHT_s}} {{S_o.PAD_4}};
         max-width: 100vw;
@@ -139,10 +143,10 @@ context( stack, new )
           z-index: 101;
           position: absolute;
           top: -{{S_o.NAV_HEIGHT_s}};
-          background: {{S_o.light_100}};
+          /*background: {{S_o.light_100}};*/
   </label>
   <label:hover>
-          background: {{211_o.lighter}};
+          background: {{S_o.light_05}};
           cursor: pointer;
   </label>
 </div>
@@ -193,7 +197,7 @@ context( stack, new )
             visibility: hidden;
     </label>
   </nav>
-  <label#goto_{{C_o.FULL_SCREEN}}>
+  <label#goto_{{C_o.SCREEN_FULL}}>
           display: block;
   </label>
 </body>

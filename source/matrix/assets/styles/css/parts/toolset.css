@@ -10,10 +10,9 @@ nav#{{C_o.NAV_ID_s}}_toolset_zoom {
 nav#{{C_o.NAV_ID_s}}_toolset_zoom > label {
   width: 2rem;
   height: 2rem;
-  line-height: 2rem;
+  line-height: 1.9rem;
   text-align: center;
-  border: 1px solid {{S_o.dot_set_4}};
-  border-radius: 8px;
+  border-radius: 50%;
   background: transparent;
   z-index: 101;
   position: relative;

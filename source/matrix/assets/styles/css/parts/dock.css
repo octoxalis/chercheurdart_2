@@ -43,10 +43,9 @@ div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top {
 div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top > label {
   width: 2rem;
   height: 2rem;
-  line-height: 2rem;
+  line-height: 1.9rem;
   text-align: center;
-  border: 1px solid {{S_o.dot_set_4}};
-  border-radius: 8px;
+  border-radius: 50%;
   background: transparent;
 }
 div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top > label:nth-of-type( 2 ) {

@@ -1764,7 +1764,7 @@ const PAI_o =
         (
           document
             .getElementById( id_s ),
-          'goto_page_top'
+          'goto_screen_top'
         )
     }
 

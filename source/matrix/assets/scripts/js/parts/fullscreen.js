@@ -7,7 +7,7 @@ const FUL_o =
   {
     const full_e =
       document
-        .getElementById( 'goto_{{C_o.FULL_SCREEN}}' )
+        .getElementById( 'goto_{{C_o.SCREEN_FULL}}' )
 
     if
     (

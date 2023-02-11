@@ -58,13 +58,13 @@ const C_o =
     FONT_SRC:        '',
     CONNECT_SRC:     '',
     PREFETCH_SRC:    '',  //: requires 'enable-experimental-web-platform-features' flag
-    IMG_SRC:         '',
     FRAME_SRC:       '',
     FRAME_ANCESTORS: '',
     FORM_ACTION:     '',
     MANIFEST_SRC:    '',
     SCRIPT_SRC_ELEM: '',
     OBJECT_SRC:      '',
+    IMG_SRC:         `'unsafe-eval'`,
     SCRIPT_SRC:      `'unsafe-eval'`,
     WORKER_SRC:      `'unsafe-eval'`,
     STYLE_SRC:       `'unsafe-inline'`,    //: used to setAttribute
@@ -132,7 +132,7 @@ const C_o =
     stat_close:     { icon_s: `&nbsp;`, legend_s: `fermer`},
     settings_open:      { icon_s: `&nbsp;`, legend_s: `palette`},
     anim_open:      { icon_s: `&nbsp;`, legend_s: `animation`},
-    burst_equal: { icon_s: `&nbsp;`, legend_s: `égaliser`},
+    radial_equal: { icon_s: `&nbsp;`, legend_s: `égaliser`},
     burst_img: { icon_s: `&nbsp;`, legend_s: `visualiser`},
     burst_reset: { icon_s: `&nbsp;`, legend_s: `reinitialiser`},
     burst_download: { icon_s: `&nbsp;`, legend_s: `exporter`},
@@ -200,6 +200,10 @@ const C_o =
                        '<del for=div_paint hidden ></del>',    //: idem
   ],
 
+  WHEEL_ZOOM_n:                 1,
+  WHEEL_ZOOM_MIN_n:             .1,
+  WHEEL_ZOOM_DELTA_n:           .0002,
+
 
   //=== BURST TOOLS ===
   MAP_THRESHOLD_n:              2,
@@ -215,7 +219,7 @@ const C_o =
   SCREEN_DIM_n:                 1024,    //: default, set by burst.init()
   SCREEN_RATIO_n:               1,
   BURST_SCALE_n:                1,
-  BURST_EQUAL_SCALE_n:          .2,   //: default
+  RADIAL_EQUAL_SCALE_n:          .2,   //: default
   BURST_RANGE_n:                1,   //!!!  TEMPORARY //: 1 range
   BURST_THRESH_HI_n:            0,
   BURST_THRESH_LO_n:            0,
@@ -257,12 +261,12 @@ const C_o =
 
   //=== HTML-BODY ANCHORS
   //-- ANCHOR_DELIM_s : '__',
-  MAIN_DOCK:    'main_dock',
-  FULL_SCREEN:  'full_screen',
-  PAGE_TOP:     'page_top',
-  PLACE_CENTER: 'place_center',
+  MAIN_DOCK:     'main_dock',
+  SCREEN_FULL:   'screen_full',
+  SCREEN_CENTER: 'screen_center',
+  SCREEN_TOP:    'screen_top',
 
-  BURST_EQUAL: 'burst_equal',
+  RADIAL_EQUAL:  'radial_equal',
   
   //=== HTML-BODY CSS SELECTORS
   BURST_IMG_CAPTION_s: 'h1+p span[data-ins="₉"]',
@@ -309,7 +313,7 @@ const C_o =
   CLOSE_s:              '&#10005;',  //: CIRCLED DASH             ✕
   //-- MAIN_DOCK_s:          '&#9776;',   //:  TRIGRAM FOR HEAVEN       ☰
   MAIN_DOCK_s:          '&#10097;',   //:  DOUBLE RIGHT-POINTING ANGLE QUOTATION MARK   »
-  FULL_SCREEN_s:        '&#9974;',   //: square four corners       ⛶
+  SCREEN_FULL_s:        '&#9974;',   //: square four corners       ⛶
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow             ↑
   GOTO_CENTER_s:        '&#10530;',  //: NE and SW Arrow           ⤢
   SHIFT_KEY_s:          '&#8679;',   //: ARROW                     ⇧

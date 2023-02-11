@@ -4,10 +4,9 @@ section#{{C_o.SECTION_a[2]}} > input {
 section#{{C_o.SECTION_a[2]}} > label[for={{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_selectAll] {
   width: 2rem;
   height: 2rem;
-  line-height: 2rem;
+  line-height: 1.9rem;
   text-align: center;
-  border: 1px solid {{S_o.dot_set_4}};
-  border-radius: 8px;
+  border-radius: 50%;
   background: transparent;
   display: flex;
   flex-wrap: nowrap;

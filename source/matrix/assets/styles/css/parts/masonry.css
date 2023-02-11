@@ -103,6 +103,6 @@ div[id$=_masonry] > figure.selected:before {
 div[id$=_masonry] > figure > * {
   grid-area: 1/-1;
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked  ) > label#goto_{{C_o.MAIN_DOCK}}, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked  ) > label#goto_{{C_o.FULL_SCREEN}} {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked  ) > label#goto_{{C_o.MAIN_DOCK}}, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}:checked  ) > label#goto_{{C_o.SCREEN_FULL}} {
   display: block;
 }

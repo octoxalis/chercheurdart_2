@@ -22,13 +22,12 @@ body > nav {
 body > iframe {
   display: none;
 }
-body > label#goto_{{C_o.MAIN_DOCK}}, body > label#goto_{{C_o.FULL_SCREEN}}, body > label#goto_{{C_o.PAGE_TOP}}, body > label#goto_{{C_o.PLACE_CENTER}} {
+body > label#goto_{{C_o.MAIN_DOCK}}, body > label#goto_{{C_o.SCREEN_FULL}}, body > label#goto_{{C_o.SCREEN_TOP}}, body > label#goto_{{C_o.SCREEN_CENTER}} {
   width: 2rem;
   height: 2rem;
-  line-height: 2rem;
+  line-height: 1.9rem;
   text-align: center;
-  border: 1px solid {{S_o.dot_set_4}};
-  border-radius: 8px;
+  border-radius: 50%;
   background: transparent;
   z-index: 20;
   position: fixed;
@@ -38,24 +37,24 @@ body > label#goto_{{C_o.MAIN_DOCK}} {
   top: 0;
   left: 0;
 }
-body > label#goto_{{C_o.FULL_SCREEN}} {
+body > label#goto_{{C_o.SCREEN_FULL}} {
   display: none;
   top: 0;
   left: 100vw;
   transform: translateX( -126% );
 }
-body > label#goto_{{C_o.PAGE_TOP}} {
+body > label#goto_{{C_o.SCREEN_TOP}} {
   top: 100vh;
   left: 100vw;
   transform: translate( -126%, -100% );
 }
-body > label#goto_{{C_o.PLACE_CENTER}} {
+body > label#goto_{{C_o.SCREEN_CENTER}} {
   display: none;
   left: 0;
   top: 100vh;
   transform: translateY( -100% );
 }
-body > label#goto_{{C_o.FULL_SCREEN}}:hover, body > label#goto_{{C_o.PLACE_CENTER}}:hover, body > label#goto_{{C_o.PAGE_TOP}}:hover {
+body > label#goto_{{C_o.SCREEN_FULL}}:hover, body > label#goto_{{C_o.SCREEN_CENTER}}:hover, body > label#goto_{{C_o.SCREEN_TOP}}:hover {
   background: {{S_o.light_05}};
 }
 .range-separator {

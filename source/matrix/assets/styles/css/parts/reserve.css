@@ -1,3 +1,6 @@
+:root {
+  --wheel_zoom_n: {{C_o.WHEEL_ZOOM_n}};
+}
 section#reserve {
   padding: {{S_o.NAV_HEIGHT_s}} {{S_o.PAD_4}};
   max-width: 100vw;
@@ -77,9 +80,9 @@ input[id^={{C_o.INPUT_ID_s}}_reserve]:checked + ul > li > dl > dd {
   display: flex;
   justify-content: space-between;
   padding: 0.5em;
-  font-size: 85%;
 }
 input[id^={{C_o.INPUT_ID_s}}_reserve]:checked + ul > li > dl > dd:nth-of-type(1) {
+  font-size: 85%;
   font-style: italic;
 }
 input[id^={{C_o.INPUT_ID_s}}_reserve]:checked + ul > li > dl > dd:nth-of-type(2) {
@@ -119,18 +122,16 @@ input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > nav#{{
 input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > label {
   width: 2rem;
   height: 2rem;
-  line-height: 2rem;
+  line-height: 1.9rem;
   text-align: center;
-  border: 1px solid {{S_o.dot_set_4}};
-  border-radius: 8px;
+  border-radius: 50%;
   background: transparent;
   z-index: 101;
   position: absolute;
   top: -{{S_o.NAV_HEIGHT_s}};
-  background: {{S_o.light_100}};
 }
 input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > label:hover {
-  background: {{211_o.lighter}};
+  background: {{S_o.light_05}};
   cursor: pointer;
 }
 nav#{{C_o.NAV_ID_s}}_toolset_zoom:has(:not( input:checked )) + img {
@@ -156,6 +157,6 @@ nav#{{C_o.NAV_ID_s}}_toolset_zoom:has(input:checked) + img {
 body:has( #reserve ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.SECTION_a[1]}} {
   visibility: hidden;
 }
-body:has( #reserve ) > label#goto_{{C_o.FULL_SCREEN}} {
+body:has( #reserve ) > label#goto_{{C_o.SCREEN_FULL}} {
   display: block;
 }

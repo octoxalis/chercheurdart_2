@@ -314,6 +314,27 @@ var RES_o
     DOM_o
       .event__v
       (
+        'wheel'
+      , event_o =>
+          WHE_o
+            .zoom__v
+            (
+              event_o
+            )
+      )
+
+    document
+      .getElementById( 'img_reserve_img' )
+        .addEventListener
+        (
+          'wheel'
+        , WHE_o
+            .zoom__v
+        )
+
+    DOM_o
+      .event__v
+      (
         'keydown'
       , event_o =>
           RES_o
@@ -325,7 +346,7 @@ var RES_o
 
     const fullscreen_e =
       document
-        .getElementById( 'goto_{{C_o.FULL_SCREEN}}' )
+        .getElementById( 'goto_{{C_o.SCREEN_FULL}}' )
 
     fullscreen_e
     &&

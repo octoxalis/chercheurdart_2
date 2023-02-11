@@ -220,13 +220,15 @@ const DRAG_o
 
 
 
-, frame__v
+, frame__v    //: translating + scaling
   ()
   {
     DRAG_o
       .drag_e
         .style
-          .transform =
-            `translate3d(${DRAG_o.toX_n}px, ${DRAG_o.toY_n}px, 0)`
+          .transform
+    =
+      `translate3d(${DRAG_o.toX_n}px, ${DRAG_o.toY_n}px, 0)`
+      + ` scale( var(--wheel_zoom_n) )`
   }
 }

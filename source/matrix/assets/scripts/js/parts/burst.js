@@ -3284,7 +3284,7 @@ const BUR_o =
     //=== GOTO EVENTS ===
     const fullscreen_e =
       document
-        .getElementById( 'goto_{{C_o.FULL_SCREEN}}' )
+        .getElementById( 'goto_{{C_o.SCREEN_FULL}}' )
 
     fullscreen_e
     &&

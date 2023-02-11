@@ -35,6 +35,7 @@
   , 'dom.min.js'
   , 'drag.min.js'
   , 'dialog_alert.min.js'
+  , 'wheel_zoom.min.js'
   , 'reserve.min.js'
   ],
 

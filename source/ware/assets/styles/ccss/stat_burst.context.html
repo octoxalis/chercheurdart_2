@@ -10,7 +10,7 @@
 
         --{{C_o.STAT_a[0]}}_map_scale: {{C_o.BURST_SCALE_n}};
         --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
-        --{{C_o.STAT_a[0]}}_equal_scale: {{C_o.BURST_EQUAL_SCALE_n}};
+        --{{C_o.STAT_a[0]}}_equal_scale: {{C_o.RADIAL_EQUAL_SCALE_n}};
         --{{C_o.STAT_a[0]}}_equal: none;
 
         --{{C_o.STAT_a[0]}}_canvas_dim: calc( (var(--{{C_o.STAT_a[0]}}_screen_dim) * {{C_o.SCREEN_RATIO_n}}) - ({{S_o.NAV_HEIGHT_s}} * 2));
@@ -558,10 +558,10 @@ context( stack, new )
   <label#goto_{{C_o.MAIN_DOCK}}>
   context( copy, next )
   </label>
-  <label#goto_{{C_o.PLACE_CENTER}}>
+  <label#goto_{{C_o.SCREEN_CENTER}}>
   context( copy, next )
   </label>
-  <label#goto_{{C_o.FULL_SCREEN}}>
+  <label#goto_{{C_o.SCREEN_FULL}}>
           display: block;
   </label>
   <div#goto_{{C_o.STAT_a[0]}}_equal>

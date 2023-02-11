@@ -25,13 +25,13 @@ context( stack, new )
   <label#goto_{{C_o.MAIN_DOCK}}>
   context( copy, next )
   </label>
-  <label#goto_{{C_o.FULL_SCREEN}}>
+  <label#goto_{{C_o.SCREEN_FULL}}>
   context( copy, next )
   </label>
-  <label#goto_{{C_o.PAGE_TOP}}>
+  <label#goto_{{C_o.SCREEN_TOP}}>
   context( copy, next )
   </label>
-  <label#goto_{{C_o.PLACE_CENTER}}>
+  <label#goto_{{C_o.SCREEN_CENTER}}>
   context( block, top_button )
           z-index: 20;
           position: fixed;
@@ -41,31 +41,31 @@ context( stack, new )
           top: 0;
           left: 0;
   </label>
-  <label#goto_{{C_o.FULL_SCREEN}}>
+  <label#goto_{{C_o.SCREEN_FULL}}>
           display: none;
           top: 0;
           left: 100vw;
           transform: translateX( -126% );     /* +26% for window slider */
   </label>
-  <label#goto_{{C_o.PAGE_TOP}}>
+  <label#goto_{{C_o.SCREEN_TOP}}>
           top: 100vh;
           left: 100vw;
           transform: translate( -126%, -100% );     /* +26% for window slider */
   </label>
-  <label#goto_{{C_o.PLACE_CENTER}}>
+  <label#goto_{{C_o.SCREEN_CENTER}}>
           display: none;
           left: 0;
           top: 100vh;
           transform: translateY( -100% );
   </label>
   <!--variant-->
-  <label#goto_{{C_o.FULL_SCREEN}}:hover>
+  <label#goto_{{C_o.SCREEN_FULL}}:hover>
   context( copy, next )
   </label>
-  <label#goto_{{C_o.PLACE_CENTER}}:hover>
+  <label#goto_{{C_o.SCREEN_CENTER}}:hover>
   context( copy, next )
   </label>
-  <label#goto_{{C_o.PAGE_TOP}}:hover>
+  <label#goto_{{C_o.SCREEN_TOP}}:hover>
           background: {{S_o.light_05}};
   </label>
 

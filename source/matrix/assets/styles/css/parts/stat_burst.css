@@ -8,7 +8,7 @@
   --{{C_o.STAT_a[0]}}_trace_pointer: var(--{{C_o.STAT_a[0]}}_trace_pointer_s);
   --{{C_o.STAT_a[0]}}_map_scale: {{C_o.BURST_SCALE_n}};
   --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
-  --{{C_o.STAT_a[0]}}_equal_scale: {{C_o.BURST_EQUAL_SCALE_n}};
+  --{{C_o.STAT_a[0]}}_equal_scale: {{C_o.RADIAL_EQUAL_SCALE_n}};
   --{{C_o.STAT_a[0]}}_equal: none;
   --{{C_o.STAT_a[0]}}_canvas_dim: calc( (var(--{{C_o.STAT_a[0]}}_screen_dim) * {{C_o.SCREEN_RATIO_n}}) - ({{S_o.NAV_HEIGHT_s}} * 2));
   --{{C_o.STAT_a[0]}}_img_transform: 80vmin;
@@ -419,7 +419,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.ST
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi > input[type=range]:before, div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue > div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_thresh_hi > input[type=range]:after {
   transform: rotate( -180deg );
 }
-body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > label#goto_{{C_o.MAIN_DOCK}}, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > label#goto_{{C_o.PLACE_CENTER}}, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > label#goto_{{C_o.FULL_SCREEN}} {
+body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > label#goto_{{C_o.MAIN_DOCK}}, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > label#goto_{{C_o.SCREEN_CENTER}}, body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > label#goto_{{C_o.SCREEN_FULL}} {
   display: block;
 }
 body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}:checked  ) > div#goto_{{C_o.STAT_a[0]}}_equal {

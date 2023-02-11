@@ -36,6 +36,7 @@ setTimeout(() => throttledFunc(1), 200);
 //: 1
 const debounce = (callback, wait) => {
   let timeoutId = null;
+
   return (...args) => {
     window.clearTimeout(timeoutId);
     timeoutId = window.setTimeout(() => {
@@ -59,19 +60,19 @@ function debounce(callback, waitMS = 200) {
 	};
 };
 
-/*
-function func(x) {
-  console.log(x);
-}
 
-const debouncedFunc = debounce(func)
+//..  function func(x) {
+//..    console.log(x);
+//..  }
+//..  
+//..  const debouncedFunc = debounce(func)
+//..  
+//..  // Will be called
+//..  debouncedFunc(1);
+//..  
+//..  // Won't be called because of debouncing
+//..  debouncedFunc(1);
+//..  
+//..  // Will be called because it is called after the debounce limit has expired from the initial call above
+//..  setTimeout(() => debouncedFunc(1), 200);
 
-// Will be called
-debouncedFunc(1);
-
-// Won't be called because of debouncing
-debouncedFunc(1);
-
-// Will be called because it is called after the debounce limit has expired from the initial call above
-setTimeout(() => debouncedFunc(1), 200);
-*/
