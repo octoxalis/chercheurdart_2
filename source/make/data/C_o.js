@@ -66,7 +66,7 @@ const C_o =
     OBJECT_SRC:      '',
     SCRIPT_SRC:      `'unsafe-eval'`,
     WORKER_SRC:      `'unsafe-eval'`,
-    IMG_SRC:         `'unsafe-inline'`,
+    IMG_SRC:         `'data'`,
     STYLE_SRC:       `'unsafe-inline'`,    //: used to setAttribute
   },
 
