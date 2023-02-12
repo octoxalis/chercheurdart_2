@@ -46,7 +46,6 @@ const C_o =
   PAINT_W_FILE_s:   '/assets/scripts/js/paint_w.min.js',
   MEDIA_DIR_s:      `${U_o.url_s}assets/media/img/`,
   RESERVE_DIR_s:    `${U_o.url_s}assets/media/img/reserve/`,
-  //... RESERVE_DIR_s:    `${U_o.url_s}reserve/`,
   RESERVE_JSON_s:   `source/ware/assets/json/img_reserve.json`,
 
 
@@ -310,14 +309,14 @@ const C_o =
   INFO_s:               '&#8505;',   //: Information Source Emoji:  ℹ
   ZOOM_IN_s:            '&#8853;',   //: CIRCLED PLUS              ⊕
   ZOOM_OUT_s:           '&#8854;',   //: CIRCLED MINUS             ⊖
-  CLOSE_s:              '&#10005;',  //: CIRCLED DASH             ✕
-  //-- MAIN_DOCK_s:          '&#9776;',   //:  TRIGRAM FOR HEAVEN       ☰
+  CLOSE_s:              '&#10005;',  //: CIRCLED DASH              ✕
+  //-- MAIN_DOCK_s:          '&#9776;',   //:  TRIGRAM FOR HEAVEN  ☰
   MAIN_DOCK_s:          '&#10097;',   //:  DOUBLE RIGHT-POINTING ANGLE QUOTATION MARK   »
   SCREEN_FULL_s:        '&#9974;',   //: square four corners       ⛶
   GOTO_TOP_s:           '&#8593;',   //: Upwards Arrow             ↑
   GOTO_CENTER_s:        '&#10530;',  //: NE and SW Arrow           ⤢
   SHIFT_KEY_s:          '&#8679;',   //: ARROW                     ⇧
-  CTRL_KEY_s:           '&#8705;',   //:                      ⇧
+  CTRL_KEY_s:           '&#8705;',   //:                           ⇧
 
   LAYER_INDEX_s:        '&#8942;',   //: Vertical Ellipsis         ⋮
 
@@ -330,9 +329,10 @@ const C_o =
   SEE_MORE_s:           '&#8230;',   //: HORIZONTAL ELLIPSIS
   IMG_EXPO_s:           '&#8862;',   //: Squared Plus               ⊞
   IMG_PLAY_s:           '⊳',         //: CONTAINS AS NORMAL SUBGROUP    &#8883;
-  IMG_SETTINGS_s:       '&#8285;',    //:  VERTICAL ELLIPSIS      ⁝
-  IMG_MAP_s:            '&#9783;',    //: TRIGRAM FOR EARTH      ☷
-  IMG_BURST_s:          '&#10035;',   //: EIGHT SPOKED ASTERISK  ✳
+  IMG_SETTINGS_s:       '&#8285;',   //:  VERTICAL ELLIPSIS      ⁝
+  IMG_MAP_s:            '&#9783;',   //: TRIGRAM FOR EARTH       ☷
+  IMG_BURST_s:          '&#10035;',  //: EIGHT SPOKED ASTERISK   ✳
+  DIAMOND_s:            '&#10070;',   //:                         ❖
 //: &#8853;     CIRCLED PLUS    ⊕
 //: &#8854;     CIRCLED MINUS   ⊖
 

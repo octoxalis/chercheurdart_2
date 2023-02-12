@@ -1,6 +1,3 @@
-:root {
-  --wheel_zoom_n: {{C_o.WHEEL_ZOOM_n}};
-}
 section#reserve {
   padding: {{S_o.NAV_HEIGHT_s}} {{S_o.PAD_4}};
   max-width: 100vw;
@@ -116,8 +113,8 @@ input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > * {
 input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
   display: flex;
   position: absolute;
-  top: -2rem;
-  left: 2rem;
+  top: -{{S_o.NAV_HEIGHT_s}};
+  left: 4rem;
 }
 input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > label {
   width: 2rem;
@@ -129,6 +126,7 @@ input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > label 
   z-index: 101;
   position: absolute;
   top: -{{S_o.NAV_HEIGHT_s}};
+  left: calc( 100vw - 9rem );
 }
 input#{{C_o.INPUT_ID_s}}_toolset:checked + div#{{C_o.DIV_ID_s}}_toolset > label:hover {
   background: {{S_o.light_05}};

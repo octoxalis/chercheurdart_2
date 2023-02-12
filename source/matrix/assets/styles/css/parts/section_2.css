@@ -27,14 +27,14 @@ body:has( section#{{C_o.SECTION_a[2]}} ) > nav > label#{{C_o.LABEL_ID_s}}_{{C_o.
 }
 section#{{C_o.SECTION_a[2]}}:has( figure.selected ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
   display: flex;
-  left: 2rem;
+  left: 4rem;
 }
 section#{{C_o.SECTION_a[2]}}:has( figure.selected ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:not( :nth-of-type( 4 ) ) {
   display: none;
 }
 section#{{C_o.SECTION_a[2]}}:has( img.fullsize ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
   display: flex;
-  left: 2rem;
+  left: 4rem;
 }
 section#{{C_o.SECTION_a[2]}}:has( img.fullsize ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:nth-of-type( 1 ), section#{{C_o.SECTION_a[2]}}:has( img.fullsize ) > div#{{C_o.DIV_ID_s}}_toolset > nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:nth-of-type( 4 ) {
   display: block;

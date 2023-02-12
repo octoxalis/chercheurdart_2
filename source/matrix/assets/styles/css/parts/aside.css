@@ -6,22 +6,26 @@ aside > figure {
   display: none;
 }
 aside > figure > a {
-  position: relative;
-  top: {{S_o.PAD_8}};
+  width: 2rem;
+  height: 2rem;
+  line-height: 1.9rem;
+  text-align: center;
+  border-radius: 50%;
+  background: transparent;
   text-decoration: none;
   border: 0;
+  position: absolute;
+  top: 0;
+  left: calc( 100vw - 8rem );
 }
-aside > figure > a > img {
-  width: 100%;
-  max-width: {{S_o.FULL_WIDTH_s}};
-  max-height: calc( {{S_o.FULL_HEIGHT_s}} - {{S_o.NAV_HEIGHT_s}} );
-  object-fit: scale-down;
+aside > figure > a:hover {
+  background: {{S_o.light_05}};
 }
-aside > figure > a > img[src*="/gray"] {
-  cursor: url(cursor_gray.svg), auto;
+aside > figure > a[data-color] {
+  color: hsla(30 100% 61%/1);
 }
-aside > figure > a > img[src*="/color"] {
-  cursor: url(cursor_color.svg), auto;
+aside > figure > a[data-gray] {
+  color: hsla(30 0% 61%/1);
 }
 aside > figure:target {
   grid-area: 1/-1;
@@ -33,10 +37,18 @@ aside > figure:target {
   right: 0;
   bottom: 0;
   left: 0;
+  height: 100vh;
   background: {{S_o.bg}};
 }
 aside > figure:target > a:hover {
   border: 0;
+}
+aside > figure:target > img {
+  width: 100%;
+  max-width: {{S_o.FULL_WIDTH_s}};
+  max-height: calc( {{S_o.FULL_HEIGHT_s}} - {{S_o.NAV_HEIGHT_s}} );
+  object-fit: scale-down;
+  object-position: 50% 0%;
 }
 aside > figure:target > label {
   position: absolute;
@@ -50,12 +62,18 @@ aside > figure:target > label:hover {
 aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom {
   display: flex;
   top: 0;
-  left: 2rem;
+  left: 4rem;
 }
 aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom > input:checked ~ label[for]:nth-of-type( 1 ) {
   background: {{S_o.bg_lo}};
 }
-aside:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target > a > img {
+aside:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target {
+  top: unset;
+  right: unset;
+  bottom: unset;
+  left: unset;
+}
+aside:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target > img {
   width: auto;
   max-width: none;
   max-height: none;

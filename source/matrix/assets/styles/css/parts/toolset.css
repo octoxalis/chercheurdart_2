@@ -27,8 +27,8 @@ nav#{{C_o.NAV_ID_s}}_toolset_zoom > input {
 }
 nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:nth-of-type( 1 ), nav#{{C_o.NAV_ID_s}}_toolset_zoom > label:nth-of-type( 2 ) {
   position: fixed;
-  top: {{S_o.NAV_HEIGHT_s}};
-  left: calc( 50vw - 1rem );
+  top: 0;
+  left: calc( 100vw - 6rem );
 }
 nav#{{C_o.NAV_ID_s}}_toolset_zoom > input:checked ~ label[for]:nth-of-type( 1 ) {
   visibility: visible;

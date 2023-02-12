@@ -23,6 +23,25 @@ var RES_o
     event_o
   )
   {
+    DOM_o
+      .rootVar__v
+      (
+        '--wheel_zoom_n'
+      , '{{C_o.WHEEL_ZOOM_n}}'           //: reset
+      )
+
+    document
+      .getElementById( '{{C_o.INPUT_ID_s}}_toolset'  )
+        .checked
+    =
+      false           //: reset
+
+    document
+      .getElementById( '{{C_o.INPUT_ID_s}}_toolset_zoom'  )
+        .checked
+    =
+      false           //: reset
+
     document
       .getElementById( 'img_reserve_img'  )
         .src

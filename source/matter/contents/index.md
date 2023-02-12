@@ -93,9 +93,9 @@
 
 ##2 Collection
 
-||  NORD  ||
-
 ||  FRANCE  ||
+
+||  NORD  ||
 
 ||  SUD  ||
 

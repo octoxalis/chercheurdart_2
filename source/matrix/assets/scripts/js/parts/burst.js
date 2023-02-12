@@ -2928,12 +2928,12 @@ const BUR_o =
         )
   
       //== restore initial place ===
-      full_e
-        .setAttribute
-        (
-          'style'
-        , ''       //: remove drag transform
-        )
+      //-- full_e
+      //--   .setAttribute
+      //--   (
+      //--     'style'
+      //--   , ''       //: remove drag transform
+      //--   )
     }
   }
 
