@@ -60,9 +60,12 @@ context( stack, new )
   </label>
   <label#goto_{{C_o.SCREEN_CENTER}}>
           display: none;
-          left: 0;
           top: 100vh;
+          left: 0;
           transform: translateY( -100% );
+          top: 0;
+          left: 100vw;
+          transform: translateX( calc( -126% - 2rem) );     /* +26% for window slider */
   </label>
   <!--variant-->
   <label#goto_{{C_o.SCREEN_FULL}}:hover>
@@ -81,6 +84,7 @@ context( stack, new )
   context( url, dialog_work.context.html )
   context( url, nav.context.html )
   context( url, dock.context.html )
+  context( url, range.context.html )
   context( url, toolset.context.html )
   context( url, aside.context.html )
   context( url, masonry.context.html )

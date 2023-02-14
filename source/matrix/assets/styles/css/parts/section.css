@@ -55,21 +55,6 @@ pre > code {
 label[data-legend], label[for] {
   cursor: pointer;
 }
-input[type=range]:before {
-  content: attr( data-label );
-  position: relative;
-  top: -.75rem;
-  color: currentColor;
-  font-size: 95%;
-}
-input[type=range]:after {
-  content: attr( data-tip );
-  position: relative;
-  top: -.75rem;
-  z-index: 2;
-  padding: {{S_o.PAD_1}};
-  color: currentColor;
-}
 {{C_o.ROW_TAG_s}}[data--=abstract] {
   font-style: italic;
 }
@@ -102,7 +87,7 @@ span[data-wait] {
   will-change: background;
   border: 1px solid currentColor;
   border-radius: 8px;
-  box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow}};
   animation: 1s linear 0s infinite alternate data_wait;
 }
 @keyframes data_wait {

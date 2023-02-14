@@ -22,7 +22,7 @@ context( block, settings )
           display: flex;
           flex-direction: column;
           padding: {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_2}};
-          background: {{S_o.light}};
+          background: {{S_o.light_100}};
           border-radius: 4px;
           box-shadow: 0 0 0 1000vmax hsla( 211 28% 25.5% /.75);
       <label>
@@ -45,7 +45,7 @@ context( block, settings )
               position: relative;
               top: -2rem;
               left: 2rem;
-              margin-bottom: 1rem;
+              /*margin-bottom: 1rem;*/
         <label>
         context( block, top_button )
         </label>
@@ -55,19 +55,6 @@ context( block, settings )
                 transform: translateX( calc( -100% - {{S_o.PAD_2}} ) );    /* under 1rst label */
         </label>
       </div>
-      <input[type=range]>
-              align-self: center;
-              position: relative;
-              /*top: -{{S_o.PAD_4}};*/
-              width: 200px;
-              background: transparent;
-              cursor: pointer;
-              /*transform: scaleY( {{C_o.INPUT_RANGE_SCALEY_n}} );*/
-      </input>
-      <input[type=range]:focus>
-              outline: none;
-              filter: hue-rotate( -220deg );
-      </input>
     </div>
 </div[id$=_dock]>
 <div[id$=_dock]:hover>

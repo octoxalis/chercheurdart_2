@@ -55,9 +55,12 @@ body > label#goto_{{C_o.SCREEN_TOP}} {
 }
 body > label#goto_{{C_o.SCREEN_CENTER}} {
   display: none;
-  left: 0;
   top: 100vh;
+  left: 0;
   transform: translateY( -100% );
+  top: 0;
+  left: 100vw;
+  transform: translateX( calc( -126% - 2rem) );
 }
 body > label#goto_{{C_o.SCREEN_FULL}}:hover, body > label#goto_{{C_o.SCREEN_CENTER}}:hover, body > label#goto_{{C_o.SCREEN_TOP}}:hover {
   background: {{S_o.light_05}};

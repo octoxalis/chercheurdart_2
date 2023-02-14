@@ -141,6 +141,7 @@ const C_o =
 
     play_progress: { icon_s: `&nbsp;`, legend_s: `progression`},
     play_interval: { icon_s: `&nbsp;`, legend_s: `interval`},
+    play_deviation: { icon_s: `&nbsp;`, legend_s: `déviation`},
     play_slower: { icon_s: `&nbsp;`, legend_s: `&#8600;`},           //: ralentir
     play_steady: { icon_s: `&nbsp;`, legend_s: `&#10230;`},           //: constant
     play_faster: { icon_s: `&nbsp;`, legend_s: `&#8599;`},           //: accélérer
@@ -205,20 +206,20 @@ const C_o =
 
 
   //=== BURST TOOLS ===
-  MAP_THRESHOLD_n:              2,
-  MAP_WIDTH_n:                  8192,
-  MAP_HEIGHT_n:                 64,
+  LINEAR_THRESHOLD_n:              2,
+  LINEAR_WIDTH_n:                  8192,
+  LINEAR_HEIGHT_n:                 64,
 
-  MAP_SHIFT_n:                  12,     //: map scaling
-  MAP_CLAMP_MIN_n:              4,
-  MAP_CLAMP_MAX_n:              16,
+  LINEAR_SHIFT_n:                  12,     //: linear scaling
+  LINEAR_CLAMP_MIN_n:              4,
+  LINEAR_CLAMP_MAX_n:              16,
 
 
   INPUT_RANGE_SCALEY_n:         .5,
   SCREEN_DIM_n:                 1024,    //: default, set by burst.init()
   SCREEN_RATIO_n:               1,
   BURST_SCALE_n:                1,
-  RADIAL_EQUAL_SCALE_n:          .2,   //: default
+  RADIAL_EQUAL_SCALE_n:         .2,   //: default
   BURST_RANGE_n:                1,   //!!!  TEMPORARY //: 1 range
   BURST_THRESH_HI_n:            0,
   BURST_THRESH_LO_n:            0,
@@ -256,6 +257,13 @@ const C_o =
 
   //=== RESERVE TOOLS ===
   RESERVE_WRAP_n:    5,
+  RESERVE_WRAP_HTML_s: '<li data-break>&nbsp;',
+  RESERVE_SCHOOL_a:
+  [
+    'france'
+  , 'nord'
+  , 'sud'
+  ],
 
 
   //=== HTML-BODY ANCHORS
@@ -264,7 +272,6 @@ const C_o =
   SCREEN_FULL:   'screen_full',
   SCREEN_CENTER: 'screen_center',
   SCREEN_TOP:    'screen_top',
-
   RADIAL_EQUAL:  'radial_equal',
   
   //=== HTML-BODY CSS SELECTORS
@@ -330,7 +337,7 @@ const C_o =
   IMG_EXPO_s:           '&#8862;',   //: Squared Plus               ⊞
   IMG_PLAY_s:           '⊳',         //: CONTAINS AS NORMAL SUBGROUP    &#8883;
   IMG_SETTINGS_s:       '&#8285;',   //:  VERTICAL ELLIPSIS      ⁝
-  IMG_MAP_s:            '&#9783;',   //: TRIGRAM FOR EARTH       ☷
+  IMG_LINEAR_s:         '&#9783;',   //: TRIGRAM FOR EARTH       ☷
   IMG_BURST_s:          '&#10035;',  //: EIGHT SPOKED ASTERISK   ✳
   DIAMOND_s:            '&#10070;',   //:                         ❖
 //: &#8853;     CIRCLED PLUS    ⊕

@@ -8,7 +8,7 @@
         --{{C_o.STAT_a[0]}}_trace_pointer_s: url( /assets/styles/css/spot_cursor.svg ) 8 8, auto;
         --{{C_o.STAT_a[0]}}_trace_pointer: var(--{{C_o.STAT_a[0]}}_trace_pointer_s);
 
-        --{{C_o.STAT_a[0]}}_map_scale: {{C_o.BURST_SCALE_n}};
+        --{{C_o.STAT_a[0]}}_linear_scale: {{C_o.BURST_SCALE_n}};
         --{{C_o.STAT_a[0]}}_scale: {{C_o.BURST_SCALE_n}};
         --{{C_o.STAT_a[0]}}_equal_scale: {{C_o.RADIAL_EQUAL_SCALE_n}};
         --{{C_o.STAT_a[0]}}_equal: none;
@@ -47,14 +47,15 @@
             height: var(--{{C_o.STAT_a[0]}}_canvas_dim);
             border: 1px solid {{ S_o.light_05}};
     </canvas>
-    <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map>
+    <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_linear>
             position: relative;
             top: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_12}} );
+            left: {{S_o.PAD_4}};
             background: var(--{{C_o.STAT_a[0]}}_img_background);
-            --scale_x: var(--{{C_o.STAT_a[0]}}_window_width) / {{C_o.MAP_WIDTH_n}}  * .99;      /* keep tiny HZ margin */
+            --scale_x: var(--{{C_o.STAT_a[0]}}_window_width) / {{C_o.LINEAR_WIDTH_n}}  * .99;      /* keep tiny HZ margin */
             transform: scaleX( calc( var(--scale_x) ) );
     </canvas>
-    <canvas:not(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map)>
+    <canvas:not(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_linear)>
             position: absolute;
             transform: translateY( 50vh );
             border-radius: 50%;
@@ -66,7 +67,6 @@
             height: var(--{{C_o.STAT_a[0]}}_nav_dim);
             padding: {{S_o.PAD_8}};
             border-radius: 50%;
-            transition: opacity ease 2s;
       <label>
               display: flex;
               justify-content: space-between;
@@ -100,7 +100,7 @@
     </nav>
     <nav[id^={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}]:hover>
             opacity: 1;
-            transition: opacity ease .2s;
+            transition: opacity ease .25s;
             background: {{S_o.light_05}};
             box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
       <label>
@@ -119,13 +119,13 @@
         </span>
       </label>
     </nav>
-    <nav:not(#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_map)>
+    <nav:not(#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_linear)>
     transform: translateY( 50vh );
     </nav>
   </div>
 </section>
 
-<canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map>
+<canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_linear>
 context( copy, next )
 </canvas>
 <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue>
@@ -133,9 +133,9 @@ context( copy, next )
 </canvas>
 
 <!--variant-->
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked />
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_linear:checked />
 ~
-<canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_map>
+<canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_linear>
 context( copy, next )
 </canvas>
 <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue:checked />
@@ -171,17 +171,16 @@ context( copy, next )
 </nav>
 
 
-<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked />
+<input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_linear:checked />
 ~
-<nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_map>
+<nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_linear>
         display: flex;
         top: 8.5rem;
-        left: .5%;                        /*  align with map canvas */
+        left: .5%;                        /*  align with linear canvas */
         width: calc( {{S_o.SETTINGS_WIDTH}} - .5% );             /* var(--{{C_o.STAT_a[0]}}_nav_dim); */
         height: fit-content;
         padding: {{S_o.PAD_1}};
-        transition: opacity ease 2s;
-  <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map]>
+  <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear]>
           display: flex;
           justify-content: space-between;
           gap: 1rem;
@@ -219,7 +218,7 @@ context( copy, next )
       </span>
     </label>
   </div>
-  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map_all>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear_all>
           top: -130px;
           filter: brightness( .8 );
     <label>
@@ -230,17 +229,17 @@ context( copy, next )
     </label>
 
   </div>
-  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map_current>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear_current>
           top: 0;
           filter: brightness( 1.2 );
   </div>  
 </nav>
-<nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_map:hover>
+<nav#{{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_linear:hover>
         opacity: 1;
-        transition: opacity ease .2s;
+        transition: opacity ease .25s;
         background: {{S_o.light_05}};
         box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
-  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_map_current>
+  <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear_current>
     <label>
       <span>
               opacity: 1;
@@ -275,11 +274,11 @@ context( copy, next )
     </div>
   </div>
   
-  <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}:has(#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_map:checked)>
+  <div#{{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}:has(#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_linear:checked)>
     <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_dock>
       <div>
         <div#{{C_o.DIV_ID_s}}_dock_nav_top>
-          <label[for$=map]>
+          <label[for$=linear]>
                   visibility: hidden;
           </label>
         </div#{{C_o.DIV_ID_s}}_dock_nav_top>
@@ -310,9 +309,8 @@ context( stack, new )
         height: fit-content;
 context( block, settings )
         border: 1px solid {{S_o.bg_hi}};
-        /*box-shadow: 0 0 0 1000vmax {{S_o.light_07}};*/
         transform: translateX( -{{S_o.SETTINGS_WIDTH}} );
-        transition: transform .5s ease;
+        transition: transform .25s ease;
 </div>
 <!--variant-->
 <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_settings:checked />
@@ -329,6 +327,7 @@ context( block, settings )
           padding: {{S_o.PAD_2}} 0;
           width: 100%;
           height: fit-content;
+          background: {{S_o.light_100}};
     <nav>
             flex-direction: column;
             gap: {{S_o.PAD_6}};
@@ -564,7 +563,7 @@ context( stack, new )
   <label#goto_{{C_o.SCREEN_FULL}}>
           display: block;
   </label>
-  <div#goto_{{C_o.STAT_a[0]}}_equal>
+  <div#goto_{{C_o.RADIAL_EQUAL}}>
           display: var(--{{C_o.STAT_a[0]}}_equal);
           z-index: 19;
           position: absolute;
@@ -579,14 +578,14 @@ context( stack, new )
           pointer-events: none;
           transform-origin: center;
           transform: scale( var(--{{C_o.STAT_a[0]}}_equal_scale) );
-          transition: .3s ease;  /*!!!! don't set transform */
+          transition: .25s ease;  /*!!!! don't set transform */
   </div>
-  <div#goto_{{C_o.STAT_a[0]}}_equal>
+  <div#goto_{{C_o.RADIAL_EQUAL}}>
           display: none;
   </div>
   <input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_equal:checked />
   ~
-  <div#goto_{{C_o.STAT_a[0]}}_equal>
+  <div#goto_{{C_o.RADIAL_EQUAL}}>
           display: block;
   </div>
 </body>
@@ -607,8 +606,7 @@ context( stack, new )
   </section>
 
   <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_settings>
-          box-shadow: 0 0 0 1000vmax {{S_o.light_01}};
-          transition: box-shadow .5s ease;
+          box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
     <aside>
       <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_slide_hue>
               display: none;
@@ -616,9 +614,9 @@ context( stack, new )
     </aside>
   </div>
 
-  <div#goto_{{C_o.STAT_a[0]}}_equal>
+  <div#goto_{{C_o.RADIAL_EQUAL}}>
           opacity: 0;
-          transition: .3s ease;
+          transition: .25s ease;
   </div>
 </body>
 

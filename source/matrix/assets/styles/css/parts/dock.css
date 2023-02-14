@@ -14,7 +14,7 @@ div[id$=_dock] > input:checked + div {
   display: flex;
   flex-direction: column;
   padding: {{S_o.PAD_8}} {{S_o.PAD_2}} {{S_o.PAD_2}};
-  background: {{S_o.light}};
+  background: {{S_o.light_100}};
   border-radius: 4px;
   box-shadow: 0 0 0 1000vmax hsla( 211 28% 25.5% /.75);
 }
@@ -38,7 +38,6 @@ div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top {
   position: relative;
   top: -2rem;
   left: 2rem;
-  margin-bottom: 1rem;
 }
 div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top > label {
   width: 2rem;
@@ -50,17 +49,6 @@ div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top > label
 }
 div[id$=_dock] > input:checked + div > div#{{C_o.DIV_ID_s}}_dock_nav_top > label:nth-of-type( 2 ) {
   transform: translateX( calc( -100% - {{S_o.PAD_2}} ) );
-}
-div[id$=_dock] > input[type=range] {
-  align-self: center;
-  position: relative;
-  width: 200px;
-  background: transparent;
-  cursor: pointer;
-}
-div[id$=_dock] > input[type=range]:focus {
-  outline: none;
-  filter: hue-rotate( -220deg );
 }
 div[id$=_dock]:hover > nav {
   align-self: center;

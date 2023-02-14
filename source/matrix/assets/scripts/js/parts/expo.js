@@ -17,6 +17,7 @@ const EXP_o
   , '-'     //: decrement image by row
 
   , 'f'     //: full screen
+  , 'd'     //: show/hide dock
   , 'i'     //: ajouter
   , 'x'     //: retirer
   , 'm'     //: masquer
@@ -1420,6 +1421,20 @@ const EXP_o
         break
 
       case
+        'd'
+      :
+          
+        document
+          .getElementById( '{{C_o.INPUT_ID_s}}_dock_nav' )
+            .checked
+        =
+          ! document
+              .getElementById( '{{C_o.INPUT_ID_s}}_dock_nav' )
+                .checked
+
+        break
+
+      case
         's'
       :
         if
@@ -1915,7 +1930,7 @@ const EXP_o
         DOM_o
           .listener__v
           (
-            `{{C_o.INPUT_ID_s}}_{{C_o.SECTION_a[2]}}_${range_s}`
+            `{{C_o.INPUT_ID_s}}_masonry_${range_s}`
           , EXP_o
               .eventRange__v
           , event_s

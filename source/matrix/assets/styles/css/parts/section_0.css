@@ -237,7 +237,7 @@ section#{{C_o.SECTION_a[0]}} > figure > figcaption {
   border-bottom-right-radius: 18px;
   background: {{S_o.light_07}};
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity .25s;
 }
 section#{{C_o.SECTION_a[0]}} > figure > figcaption > a {
   color: currentColor;
@@ -281,5 +281,5 @@ section#{{C_o.SECTION_a[0]}} > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-ty
 section#{{C_o.SECTION_a[0]}} > figure > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
-  transition: opacity .3s;
+  transition: opacity .25s;
 }

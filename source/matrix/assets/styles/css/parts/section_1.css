@@ -34,11 +34,11 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption {
   border-bottom-right-radius: 18px;
   background: {{S_o.light_07}};
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity .25s;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] {
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity .25s ease;
 }
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[data-spec={{C_o.INS_IMG_s}}] > {{C_o.ROW_TAG_s}} {
   display: table;
@@ -76,5 +76,5 @@ section#{{C_o.SECTION_a[1]}} > figure > a > figcaption > {{C_o.TABLE_TAG_s}}[dat
 section#{{C_o.SECTION_a[1]}} > figure > a > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
-  transition: opacity .3s;
+  transition: opacity .25s;
 }

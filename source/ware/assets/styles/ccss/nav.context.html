@@ -33,7 +33,7 @@ context( stack, new )
     context( copy, next )
   </a>
   <label:hover>
-          transition: all ease .3s;
+          transition: all ease .25s;
   </label>
   <a:hover>
     context( block, link_raw )
@@ -50,7 +50,7 @@ context( stack, new )
   <label>
         opacity: 1;
         filter: brightness( {{S_o.brightness_hi}} );
-        transition: opacity .2s;
+        transition: opacity .25s;
   </label>
 </nav>
 
@@ -65,7 +65,7 @@ context( stack, new )
         font-size: 85%;    /* block round_label: line-height: .85; */
         transform: scaleX( 0 ) ;
         transform-origin: center;
-        transition: transform ease .2s;
+        transition: transform .25s ease;
 </label>
 <a[data-legend]:after>
   context( copy, next )
@@ -85,7 +85,7 @@ context( stack, new )
         /*border: 1px solid currentColor;*/
         transform: scaleX( 0 );
         transform-origin: center;
-        transition: transform ease .2s;
+        transition: transform .25s ease;
 </label>
 <!--variant-->
 <a[data-legend]:hover:before>

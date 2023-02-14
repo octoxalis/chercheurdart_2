@@ -188,6 +188,7 @@ const RES_o =
   (
     img_o
   , dest_s
+  , breakRow_b
   )
   {
     const
@@ -237,7 +238,18 @@ const RES_o =
         ' data-size=large'
       :
         ''
-    return (
+
+    let html_s
+    =
+      breakRow_b
+      ?
+        C_o
+          .RESERVE_WRAP_HTML_s
+      :
+        ''
+
+    html_s
+    +=
       `<li>`
       + `<dl role=button tabindex=1 data-href_s="${dest_s}">`
       + `<dt>${artist_o.forename_s} ${artist_o.lastname_s}</dt>`
@@ -258,7 +270,9 @@ const RES_o =
            )
       + ` Mo</dd>`
       + `</dl>`
-    )
+
+
+    return html_s
   }
   ,
 
@@ -269,11 +283,31 @@ const RES_o =
   {
     let html_o
     =
-      {
-        france: ''
-      , nord:   ''
-      , sud:    ''
-      }
+      {}
+
+    for
+    (
+      school_s
+      of
+      C_o
+        .RESERVE_SCHOOL_a
+    )
+    {
+      html_o
+        [school_s]
+      =
+        ''
+    }
+
+    let artistId_s
+
+    let atItem_n
+    =
+      0
+
+    let breakRow_b
+    =
+      false
 
     for
     (
@@ -283,6 +317,42 @@ const RES_o =
         .img_a
     )
     {
+      //;console.log( artistId_s + ' -- ' + img_o.artistId_s )
+
+      if
+      (
+        img_o
+          .artistId_s
+        !==
+        artistId_s
+      )
+      {
+        if
+        (
+          artistId_s      //: not for 1srt item
+        )
+        {
+          breakRow_b
+          =
+            true
+
+          atItem_n
+          =
+            -1    //: after increment will be 0 for next iter
+        }
+
+        artistId_s
+        =
+          img_o
+            .artistId_s
+      }
+      else
+      {
+        breakRow_b
+        =
+          false
+      }
+
       const dest_s
       =
         RES_o
@@ -295,7 +365,11 @@ const RES_o =
           (
             new RegExp
             (
-              `${C_o.IMG_RESERVE_SITE_PATH_s}(?<school>france||nord||sud)?`
+              `${C_o.IMG_RESERVE_SITE_PATH_s}`
+              + `(?<school>`
+              + `${C_o.RESERVE_SCHOOL_a[0]}`
+              + `||${C_o.RESERVE_SCHOOL_a[1]}`
+              + `||${C_o.RESERVE_SCHOOL_a[2]})?`
             )
           )
 
@@ -311,20 +385,42 @@ const RES_o =
           (
             img_o
           , dest_s
+          , breakRow_b
           )
+
+      ++atItem_n
     }
 
     for
     (
       const school_s
       of
-      [
-        'france'
-      , 'nord'
-      , 'sud'
-      ]
+      C_o
+        .RESERVE_SCHOOL_a
     )
     {
+      if
+      (
+        school_s
+        !==
+        C_o
+          .RESERVE_SCHOOL_a
+            [0]
+      )
+      {
+        html_o
+          [ school_s ]
+        =
+          html_o
+            [ school_s ]
+              .substring      //: skip RESERVE_WRAP_HTML_s at start
+              (
+                C_o
+                  .RESERVE_WRAP_HTML_s 
+                    .length
+              )
+      }
+
       const dest_s
       =
         `./${C_o.RESERVE_PARTS_DIR_s}reserve_${school_s}.html`

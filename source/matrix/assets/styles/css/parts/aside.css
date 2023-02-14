@@ -38,17 +38,20 @@ aside > figure:target {
   bottom: 0;
   left: 0;
   height: 100vh;
-  background: {{S_o.bg}};
+  background: {{S_o.shadow}};
 }
 aside > figure:target > a:hover {
   border: 0;
 }
 aside > figure:target > img {
+  position: relative;
+  top: 50vh;
+  left: 50vw;
+  transform: translate( -50%, -50%);
   width: 100%;
   max-width: {{S_o.FULL_WIDTH_s}};
   max-height: calc( {{S_o.FULL_HEIGHT_s}} - {{S_o.NAV_HEIGHT_s}} );
   object-fit: scale-down;
-  object-position: 50% 0%;
 }
 aside > figure:target > label {
   position: absolute;
@@ -67,13 +70,10 @@ aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_
 aside:has( figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target ) > nav#{{C_o.NAV_ID_s}}_toolset_zoom > input:checked ~ label[for]:nth-of-type( 1 ) {
   background: {{S_o.bg_lo}};
 }
-aside:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target {
-  top: unset;
-  right: unset;
-  bottom: unset;
-  left: unset;
-}
 aside:has( #{{C_o.INPUT_ID_s}}_toolset_zoom:checked ) > figure[id^={{C_o.ASIDE_COLOR_ID_s}}]:target > img {
+  top: calc( (100vh - 100%) * .5 );
+  left: calc( (100vw - 100%) * .5 );
+  transform: translate( 0%, 0%);
   width: auto;
   max-width: none;
   max-height: none;

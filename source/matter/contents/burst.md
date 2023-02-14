@@ -36,6 +36,7 @@
   css_a:
   [
     'stat.min.css',
+    'range.min.css',
     'dock.min.css',
     'dialog_alert.min.css',
     'stat_burst.min.css',
@@ -52,7 +53,7 @@
 
 //=== END DECLARATIONS ===//
 //  TOPICS
-‹répartition chromatique›
+Spectre chromatique›
 ‹colorimétrie›
 //
 
@@ -70,10 +71,11 @@ Cette opération ne prend que quelques secondes
 
 ##2  Colorimétrie
 
-Répartition chromatique
+Spectre chromatique
+
 ==
-visualisation spectrale
-visualisation radiale
+graphique linéaire
+graphique radial
 ==
 
 

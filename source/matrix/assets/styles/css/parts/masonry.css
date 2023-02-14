@@ -26,7 +26,6 @@ div[id$=_masonry] > figure > img {
   width: 100%;
   height: auto;
   cursor: zoom-in;
-  transition: all .5s ease;
 }
 div[id$=_masonry] > figure > .fullsize {
   z-index: 100;
@@ -35,8 +34,7 @@ div[id$=_masonry] > figure > .fullsize {
   left: 0;
   width: auto;
   cursor: move;
-  box-shadow: 0 0 0 1000vmax {{S_o.light_100}};
-  transition: all .5s ease;
+  box-shadow: 0 0 0 1000vmax {{S_o.shadow}};
 }
 div[id$=_masonry] > figure > a {
   position: absolute;
@@ -54,7 +52,6 @@ div[id$=_masonry] > figure > figcaption {
   background: {{S_o.light_07}};
   cursor: pointer;
   opacity: 0;
-  transition: opacity .3s;
 }
 div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}} {
   display: table;
@@ -79,7 +76,6 @@ div[id$=_masonry] > figure > figcaption > {{C_o.ROW_TAG_s}}:nth-of-type(4) {
 div[id$=_masonry] > figure > figcaption:hover {
   clip-path: inset( {{S_o.FIGURE_BORDER_s}} );
   opacity: 1;
-  transition: opacity .3s;
 }
 div[id$=_masonry] > figure[data-display_b=false] {
   border: 1px solid {{S_o.medium_02}};

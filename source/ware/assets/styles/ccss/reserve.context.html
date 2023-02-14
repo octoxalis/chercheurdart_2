@@ -35,7 +35,7 @@ context( stack, new )
           width: {{S_o.SETTINGS_WIDTH}};
           text-align: center;
           text-transform: uppercase;
-          background: {{S_o.light}};
+          background: {{S_o.light_100}};
           border-radius: 4px;
           border: 2px solid {{S_o.light_07}};
           font-size: 85%;
@@ -50,23 +50,28 @@ context( stack, new )
 <input[id^={{C_o.INPUT_ID_s}}_reserve] />
         display: none;
 +
-<ul>
+<ul[id^={{C_o.LIST_ID_s}}_reserve]>
         display: none;
 </ul>
 <!-- variant -->
 <input[id^={{C_o.INPUT_ID_s}}_reserve]:checked />
 +
-<ul>
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-          margin: 1rem;    /* keep space for toolset buttons */
-          border: none;
-          max-height: 80vh;
-          overflow-Y: auto;
+<ul[id^={{C_o.LIST_ID_s}}_reserve]>
+        --item_row: {{C_o.RESERVE_WRAP_n}};
+        --item_basis: calc( ((100 / var(--item_row)) - 1) * 1% );
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding:  {{S_o.PAD_4}};
+        max-height: 80vh;
+        overflow-Y: auto;
+        background: {{S_o.light_100}};
+          border: 2px solid {{S_o.light_07}};
+        border-radius: 8px;
     <li>
-            width: 24%;            /* 4 / row */
-            cursor: pointer;
+          flex-basis: var(--item_basis);
+          cursor: pointer;
       <dl>
             border-radius: 4px;
             background: hsla( 210 28% 37.75% /1);
@@ -111,6 +116,11 @@ context( stack, new )
     <li:before>
             content: '';
     </li>
+    <!-- variant -->
+    <li[data-break]>
+            flex-basis: 90%;
+            height: 4rem;
+    </li>
 </ul>
 
 
@@ -154,10 +164,11 @@ context( stack, new )
 +
 <img>
         position: relative;
-        top: {{S_o.NAV_HEIGHT_s}};
-        left: calc( 50vw - 50% );
+        top: 50vh;
+        left: 50vw;
+        transform: translate( -50%, -50% );
         width: 100%;
-        box-shadow: 0 0 0 1000vmax hsla( 211 28% 25.5% /.9);
+        box-shadow: 0 0 0 1000vmax {{S_o.shadow}};
 </img>
 
 
@@ -177,6 +188,10 @@ context( stack, new )
 </nav>
 +
 <img>
+        top: calc( (100vh - 100%) * .5 );
+        left: calc( (100vw - 100%) * .5 );
+        transform: translate( 0%, 0%);
+        margin: auto;
         width: auto;
         max-width: none;
         max-height: none;

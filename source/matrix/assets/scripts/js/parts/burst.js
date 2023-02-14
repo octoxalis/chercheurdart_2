@@ -31,7 +31,7 @@ const BUR_o =
   , scale_o
     :
     {
-      map_n: 1,
+      linear_n: 1,
       hue_n: 1,     //: C_o.BURST_SCALE_n
       sat_n: 1,
       lum_n: 1,
@@ -47,7 +47,7 @@ const BUR_o =
   , slot_o
     :
     {
-      map
+      linear
       :
         360
     , hue
@@ -78,7 +78,7 @@ const BUR_o =
       , 'd'          //: show/hide dock
       , 'p'          //: show/hide palette
       , 'a'          //: show/hide animation
-      , 's'          //: show spectral
+      , 'l'          //: show linear
       , 'r'          //: show radial
       , 'q'          //: show/hide equalizer
       , 'v'          //: show/hide image
@@ -87,7 +87,7 @@ const BUR_o =
       , ' '          //: suspend || resume slideshow
       ]
 
-  , map_o
+  , linear_o
     :
       {
         slot_a
@@ -108,17 +108,17 @@ const BUR_o =
     )
     {
       case
-        'PUT_map'
+        'PUT_linear'
       :
         BUR_o
-          .map_o
+          .linear_o
             .slot_a
         =
           payload_o
             .slot_a
 
         document
-          .getElementById( '{{C_o.STAT_a[0]}}_map_all_n'  )
+          .getElementById( '{{C_o.STAT_a[0]}}_linear_all_n'  )
             .innerHTML
         =
           payload_o
@@ -126,7 +126,7 @@ const BUR_o =
               .length
 
         document
-          .getElementById( '{{C_o.STAT_a[0]}}_map_all_ratio_n'  )
+          .getElementById( '{{C_o.STAT_a[0]}}_linear_all_ratio_n'  )
             .innerHTML
         =
           new Intl
@@ -157,14 +157,14 @@ const BUR_o =
           payload_o
             .hsl_s
           ===
-          'map'
+          'linear'
         )
         {
           payload_o
             .slot_a
           =
             BUR_o
-              .map_o
+              .linear_o
                 .slot_a
         }
 
@@ -327,7 +327,7 @@ const BUR_o =
     (
       hsl_s
       ===
-      'map'
+      'linear'
     )
     {
       if
@@ -677,11 +677,23 @@ const BUR_o =
   hsl__s
   ()
   {
-    return (
+    const id_s
+    =
       document
         ?.querySelector( `input[name="burst_nav"]:checked` )
           ?.id
-            .slice( -3 )     //: element ID ends with: 'map' || 'hue' || 'sat' || 'lum'
+
+    return (
+      id_s
+        .slice
+        (
+          id_s
+            .endsWith( 'linear' )
+          ?
+            -6
+          :
+            -3
+        )     //: element ID ends with: 'linear' || 'hue' || 'sat' || 'lum'
     )
   }
   
@@ -773,7 +785,7 @@ const BUR_o =
     (
       hsl_s
       ===
-      'map'
+      'linear'
     )
     {
       for
@@ -781,7 +793,7 @@ const BUR_o =
         let slot_o
         of
         BUR_o
-          .map_o
+          .linear_o
             .slot_a
       )
       {
@@ -918,7 +930,7 @@ const BUR_o =
       (
         hsl_s
         ===
-        'map'
+        'linear'
       )
       {
         return slot_n
@@ -980,7 +992,7 @@ const BUR_o =
 
 
   ,
-  drawMap__v
+  drawLinear__v
   ()
   {
     BUR_o
@@ -990,11 +1002,11 @@ const BUR_o =
           { 
             task_s: 'PUT_draw'
           , stat_s: '{{C_o.STAT_a[0]}}'
-          , hsl_s: 'map'
+          , hsl_s: 'linear'
           , scale_n:
               BUR_o
                 .scale_o
-                  .map_n
+                  .linear_n
           }
         )
   }
@@ -1042,7 +1054,7 @@ const BUR_o =
               //--- , scale_n:
               //---     BUR_o
               //---       .scale_o
-              //---         .map_n
+              //---         .linear_n
               //??? ,
               //??? maxpos_n: BUR_o
               //???            .scale_o
@@ -1128,13 +1140,13 @@ const BUR_o =
     (
       hsl_s
       ===
-      'map'
+      'linear'
     )
     {
       angle_n
       =
         BUR_o
-          .map_o
+          .linear_o
             .slot_a
             [
               BUR_o
@@ -1594,10 +1606,10 @@ const BUR_o =
         'a'    //: show/hide animation
       :
       case
-        'r'    //: permute spectral/radial
+        'r'    //: permute linear/radial
       :
       case
-        's'    //: permutespectral/radial
+        'l'    //: permute linear/radial
       :
       case
         'q'    //: show/hide equalizer
@@ -1611,7 +1623,7 @@ const BUR_o =
             'd': 'dock_nav'
           , 'p': 'settings'
           , 'a': 'sequencer'
-          , 's': 'map'              //!!! spectral
+          , 'l': 'linear'           //!!! linear
           , 'r': 'hue'              //!!! radial
           , 'q': 'equal'
           , 'v': 'hue_img'
@@ -1698,18 +1710,18 @@ const BUR_o =
                   )
                   {
                     case
-                      'map'
+                      'linear'
                     :
                       //--- DOM_o
                       //---   .rootVar__v
                       //---   (
-                      //---     `--{{C_o.STAT_a[0]}}_map_scale`
+                      //---     `--{{C_o.STAT_a[0]}}_linear_scale`
                       //---   , BUR_o
                       //---       .scale_o
                       //---         [ `${hsl_s}_n` ]
                       //---   )
                       BUR_o
-                        .drawMap__v()
+                        .drawLinear__v()
                       
                       break
 
@@ -2028,7 +2040,7 @@ const BUR_o =
 
 
   ,
-  eventTrace__v      //: map, hue, sat, lum trace
+  eventTrace__v      //: linear, hue, sat, lum trace
   (
     event_o
   )
@@ -2085,7 +2097,7 @@ const BUR_o =
       (
         hsl_s
         ===
-        'map'
+        'linear'
         ||
         hsl_s
         ===
@@ -2948,7 +2960,7 @@ const BUR_o =
       let hsl_s
       of
       [
-        'map'
+        'linear'
       , 'hue'
       , 'sat'
       , 'lum'
@@ -3303,7 +3315,7 @@ const BUR_o =
     DOM_o
       .rootVar__v
       (
-        `--{{C_o.STAT_a[0]}}_window_width`,    //: for map scaling
+        `--{{C_o.STAT_a[0]}}_window_width`,    //: for linear scaling
         window
           .innerWidth
       )
@@ -3351,7 +3363,7 @@ const BUR_o =
       canvas_s
     of
     [
-      'map'
+      'linear'
     , 'hue'
     , 'sat'
     , 'lum'
@@ -3368,7 +3380,7 @@ const BUR_o =
         &&
         canvas_s
         !==
-        'map'           //: map keeps html canvas width/height
+        'linear'           //: linear keeps html canvas width/height
       )
       {
         canvas_e
@@ -3483,7 +3495,7 @@ const BUR_o =
             '{{C_o.STAT_a[0]}}'
             ,
             [
-              'map'
+              'linear'
             , 'hue'
             , 'sat'
             , 'lum'
@@ -3518,7 +3530,7 @@ const BUR_o =
         )
 
     BUR_o
-      .drawMap__v()    //: draw before getting equal_a
+      .drawLinear__v()    //: draw before getting equal_a
     BUR_o
       .draw__v()    //: draw before getting equal_a
   

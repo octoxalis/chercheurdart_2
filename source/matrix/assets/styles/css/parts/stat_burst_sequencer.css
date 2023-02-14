@@ -62,7 +62,6 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > label:nth-of-type(3) {
   text-align: center;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > label:hover {
-  color: {{S_o.lighter}};
   filter: brightness( .5 );
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval {
@@ -86,7 +85,6 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > label {
   background: {{S_o.bg_hi}};
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > label:hover {
-  color: {{S_o.lighter}};
   filter: brightness( .5 );
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress {
@@ -176,16 +174,10 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color > label > span:hover {
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
 }
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > input {
-  width: 50%;
-}
-div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_picker > input:nth-of-type(1) {
-  width: 100%;
-}
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_forward > input:checked + label, div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_interval > input:checked + label {
-  color: {{S_o.lighter}};
   filter: brightness( 1.5 );
 }
 body:has(#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sequencer:checked) > nav {

@@ -34,6 +34,7 @@
   ],
   css_a:
   [
+    'range.min.css',
     'dock.min.css',
     'dialog_alert.min.css',
   ],

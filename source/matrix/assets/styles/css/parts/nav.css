@@ -25,7 +25,7 @@ nav > label > span[data-role={{C_o.STAT_s}}] {
   background: {{S_o.dot_stat}};
 }
 nav > a:hover, nav > label:hover {
-  transition: all ease .3s;
+  transition: all ease .25s;
 }
 nav > a:hover {
   text-decoration: none;
@@ -34,7 +34,7 @@ nav > a:hover {
 nav > a:hover > span[data-role], nav:hover > a, nav:hover > label {
   opacity: 1;
   filter: brightness( {{S_o.brightness_hi}} );
-  transition: opacity .2s;
+  transition: opacity .25s;
 }
 a[data-legend]:before, label[data-legend]:before {
   content: attr( data-legend );
@@ -42,7 +42,7 @@ a[data-legend]:before, label[data-legend]:before {
   font-size: 85%;
   transform: scaleX( 0 ) ;
   transform-origin: center;
-  transition: transform ease .2s;
+  transition: transform .25s ease;
 }
 a[data-legend]:after, label[data-key]:after {
   content: attr( data-key );
@@ -58,7 +58,7 @@ a[data-legend]:after, label[data-key]:after {
   border-radius: 4px;
   transform: scaleX( 0 );
   transform-origin: center;
-  transition: transform ease .2s;
+  transition: transform .25s ease;
 }
 a[data-legend]:hover:before, label[data-legend]:hover:before, a[data-key]:hover:after, label[data-key]:hover:after {
   transform: scaleX( 1 );

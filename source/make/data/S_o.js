@@ -74,11 +74,12 @@ const S_o =
 
 
   S_o.lum_hi_100 = `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * 1.0 )}%`     // = 40/40 =90%
+  S_o.lum_hi_90 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .9 )}%`      // = 30/40 =80%
   S_o.lum_hi_75 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =80%
   S_o.lum_hi_62 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .55 )}%`     // = 20/40 =70%
   S_o.lum_hi_50 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =70%
   S_o.lum_hi_25 =  `${S_o.LUM_BASE_n + ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =60%
-  S_o.lum_0 =      `${S_o.LUM_BASE_n +  0 }%`                                             // = 50%
+  S_o.lum_0 =      `${S_o.LUM_BASE_n +  0 }%`                                               // = 50%
   S_o.lum_lo_25 =  `${S_o.LUM_BASE_n - ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .25 )}%`     // = 10/40 =40%
   S_o.lum_lo_50 =  `${S_o.LUM_BASE_n - ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .50 )}%`     // = 20/40 =30%
   S_o.lum_lo_75 =  `${S_o.LUM_BASE_n - ( S_o.LUM_MODE_n * S_o.LUM_CONTRAST_n * .75 )}%`     // = 30/40 =20%
@@ -93,6 +94,7 @@ const S_o =
   S_o.bg_lo =       `hsla( ${S_o.hue_p} ${S_o.sat_lo_4} ${S_o.lum_lo_50}  /1)`
   S_o.text =        `hsla( ${S_o.hue_p} ${S_o.sat_lo_4} ${S_o.lum_lo_75}  /1)`
   S_o.text_lo =     `hsla( ${S_o.hue_p} ${S_o.sat_lo_4} ${S_o.lum_0}      /1)`
+  S_o.shadow =       `hsla( ${S_o.hue_p} ${S_o.sat_lo_4} ${S_o.lum_hi_90} /1)`
 
 
   S_o.light_100 =   `hsla( ${S_o.hue_p} ${S_o.sat_lo_4} ${S_o.lum_hi_50} /1)`
@@ -112,7 +114,9 @@ const S_o =
   S_o.green_100 =    `hsla( 120 ${S_o.sat_hi_4} ${S_o.lum_hi_25} /1)`
 
 
-   
+  //=== RANGE ===
+  S_o.range =       `hsla( ${S_o.hue_p} ${S_o.sat_lo_4} ${S_o.lum_hi_75} /1)`
+
 
   //=== NAV ===
   S_o.dot_home =    `hsla( ${S_o.hue_p}       ${S_o.sat_hi_1} ${S_o.lum_hi_25} /1)`

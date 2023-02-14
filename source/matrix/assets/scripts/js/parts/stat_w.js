@@ -1048,12 +1048,12 @@ const STAT_W_o =
     (
       hsl_s
       ===
-      'map'
+      'linear'
     )
     {
       HSL_s
       =
-        'hue'   //!!! map uses hue slot_a
+        'hue'   //!!! linear uses hue slot_a
 
       angle_n   //!!! angle_n is in rank order: change to hue as angle
       =
@@ -1121,7 +1121,7 @@ const STAT_W_o =
               .stat_o
                 .burst_o
                   [ `${hsl_s}_o` ]
-                    ?.burst_c                //!!! null if map
+                    ?.burst_c                //!!! null if linear
                       ?.equal__a( angle_n )
         }
         ,
@@ -1130,7 +1130,7 @@ const STAT_W_o =
             .stat_o
               .burst_o
                 [ `${hsl_s}_o` ]
-                  ?.burst_c                  //!!! null if map
+                  ?.burst_c                  //!!! null if linear
                     ?.equal__a( angle_n )
         ]
       )
@@ -1637,7 +1637,7 @@ const STAT_W_o =
       rangeY_n,     //: {{C_o.STAT_a[0]}} : slot arc [1, 3, 6...360]
       shift_n,      //: {{C_o.STAT_a[0]}}
       thresh_o,     //: {{C_o.STAT_a[0]}} ColorBurst
-      scale_n       //: map
+      scale_n       //: linear
       //??? maxpos_n,     //??????    //: {{C_o.STAT_a[0]}} ColorBurst
     } =
       payload_o
@@ -1704,9 +1704,9 @@ const STAT_W_o =
 
 
 
-          //=== MAP ===      
+          //=== LINEAR ===      
           case
-            'map'
+            'linear'
           :
             const slot_a
             =
@@ -1718,7 +1718,7 @@ const STAT_W_o =
 
             const height_n
             =
-              +'{{C_o.MAP_HEIGHT_n}}'
+              +'{{C_o.LINEAR_HEIGHT_n}}'
 
             //;console.log( STAT_W_o.capacity_n )
             
@@ -1742,7 +1742,7 @@ const STAT_W_o =
 
             bit_n
             -=
-              +'{{C_o.MAP_SHIFT_n}}'
+              +'{{C_o.LINEAR_SHIFT_n}}'
 
 
             const rshift_n
@@ -1754,8 +1754,8 @@ const STAT_W_o =
                     *
                     bit_n
                   )
-              , +'{{C_o.MAP_CLAMP_MIN_n}}'
-              , +'{{C_o.MAP_CLAMP_MAX_n}}'
+              , +'{{C_o.LINEAR_CLAMP_MIN_n}}'
+              , +'{{C_o.LINEAR_CLAMP_MAX_n}}'
               )
             //;console.log( rshift_n )
 
@@ -1767,7 +1767,7 @@ const STAT_W_o =
               (
                 rshift_n
                 -
-                (+'{{MAP_THRESHOLD_n}}')
+                (+'{{LINEAR_THRESHOLD_n}}')
               )
            
             let from_n
@@ -1873,7 +1873,7 @@ const STAT_W_o =
                 {
                   task_s
                   :
-                    'PUT_map'
+                    'PUT_linear'
                 , stat_s
                   :
                     '{{C_o.STAT_a[0]}}'
@@ -2004,7 +2004,7 @@ const STAT_W_o =
         (
           hsl_s
           !==
-          'map'
+          'linear'
         )
         {
           STAT_W_o
@@ -2889,7 +2889,7 @@ const STAT_W_o =
     =
       hsl_s
       ===
-      'map'
+      'linear'
       ?
         STAT_W_o
           .scan_a
