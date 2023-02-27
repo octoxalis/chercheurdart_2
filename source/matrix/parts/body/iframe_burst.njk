@@ -1,125 +1,21 @@
 <!DOCTYPE html>
 <div id={{C_o.DIV_ID_s}}_stat_{{C_o.STAT_a[0]}}>
-  <input id={{C_o.INPUT_ID_s}}_toolset type=checkbox>
-  <div id={{C_o.DIV_ID_s}}_toolset>
-    <nav id={{C_o.NAV_ID_s}}_toolset_zoom>
-      <input id={{C_o.INPUT_ID_s}}_toolset_zoom type=checkbox>
-      <label for={{C_o.INPUT_ID_s}}_toolset_zoom>{{C_o.ZOOM_OUT_s}}</label>
-      <label for={{C_o.INPUT_ID_s}}_toolset_zoom>{{C_o.ZOOM_IN_s}}</label>
-    </nav>
-  </div>
 
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_linear name={{C_o.STAT_a[0]}}_nav type=radio checked>
-  <canvas id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_linear width={{C_o.LINEAR_WIDTH_n}} height={{C_o.LINEAR_HEIGHT_n}}></canvas>
-  <nav id={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_linear>
-    <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear_all>
-      <label>{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}s      <!-- plural -->
-        <span id={{C_o.STAT_a[0]}}_linear_all_n>360</span>
-      </label>
-      <label>{{C_o.NAV_LEGEND_o.burst_rate.legend_s}}
-        <span id={{C_o.STAT_a[0]}}_linear_all_ratio_n>99,999 %</span>
-      </label>
-    </div>
-    <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear_current>
-      <label>{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}
-        <span id={{C_o.STAT_a[0]}}_linear_n>{{C_o.NAV_LEGEND_o.empty}}</span>
-      </label>
-      <label>{{C_o.NAV_LEGEND_o.burst_rate.legend_s}}
-        <span id={{C_o.STAT_a[0]}}_linear_ratio_n>{{C_o.NAV_LEGEND_o.empty}}</span>
-      </label>
-    </div>
-  </nav>
+  {% include "parts/body/iframe_burst_toolset.njk" %}
+  {% include "parts/body/iframe_burst_input.njk" %}
 
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue name={{C_o.STAT_a[0]}}_nav type=radio>
-  <canvas id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue width=1024 height=1024></canvas>  <!-- 1024: default value -->
-  <nav id={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_hue>
-    <label>{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}
-      <span id={{C_o.STAT_a[0]}}_hue_n>0</span>
-    </label>
-    <label>{{C_o.NAV_LEGEND_o.burst_rate.legend_s}}
-      <span id={{C_o.STAT_a[0]}}_hue_ratio_n>0</span>
-    </label>
-    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}">
-        <span data-icon="substat">{{C_o.NAV_LEGEND_o.empty}}</span>
-    </label>
-    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum data-legend="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}">
-      <span data-icon="substat">{{C_o.NAV_LEGEND_o.empty}}</span>
-    </label>
-  </nav>
-
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat name={{C_o.STAT_a[0]}}_nav type=radio>
-  <canvas id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_sat width=1024 height=1024></canvas>
-  <nav id={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_sat>
-    <label>{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}
-      <span id={{C_o.STAT_a[0]}}_sat_n>0</span>
-    </label>
-    <label>{{C_o.NAV_LEGEND_o.burst_rate.legend_s}}
-      <span id={{C_o.STAT_a[0]}}_sat_ratio_n>0</span>
-    </label>
-    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue data-legend="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}">
-      <span data-icon="substat">{{C_o.NAV_LEGEND_o.empty}}</span>
-    </label>
-    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum data-legend="{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}">
-      <span data-icon="substat">{{C_o.NAV_LEGEND_o.empty}}</span>
-    </label>
-  </nav>
-
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_lum name={{C_o.STAT_a[0]}}_nav type=radio>
-  <canvas id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_lum width=1024 height=1024></canvas>
-  <nav id={{C_o.NAV_ID_s}}_{{C_o.STAT_a[0]}}_lum>
-    <label>{{C_o.NAV_LEGEND_o.burst_lum.legend_s}}
-      <span id={{C_o.STAT_a[0]}}_lum_n>0</span>
-    </label>
-    <label>{{C_o.NAV_LEGEND_o.burst_rate.legend_s}}
-      <span id={{C_o.STAT_a[0]}}_lum_ratio_n>0</span>
-    </label>
-    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue data-legend="{{C_o.NAV_LEGEND_o.burst_hue.legend_s}}">
-      <span data-icon="substat">{{C_o.NAV_LEGEND_o.empty}}</span>
-    </label>
-    <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_sat data-legend="{{C_o.NAV_LEGEND_o.burst_sat.legend_s}}">
-      <span data-icon="substat">{{C_o.NAV_LEGEND_o.empty}}</span>
-    </label>
-  </nav>
-
+  {% include "parts/body/iframe_burst_linear.njk" %}
+  {% include "parts/body/iframe_burst_radial.njk" %}
 
   {% include "parts/body/iframe_burst_dock.njk" %}
 
   {% include "parts/body/iframe_burst_settings.njk" %}
-
   {% include "parts/body/iframe_burst_sequencer.njk" %}
 
+  {% include "parts/body/iframe_burst_hue_img.njk" %}
+  {% include "parts/body/iframe_burst_hue_magnifier.njk" %}
 
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_position type=checkbox>
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img type=checkbox checked>
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_reset type=checkbox>
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_download type=checkbox>
+  {% include "parts/body/iframe_burst_dialog.njk" %}
 
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_transparent name={{C_o.STAT_a[0]}}_hue_color type=radio>
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_black name={{C_o.STAT_a[0]}}_hue_color type=radio>
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_white name={{C_o.STAT_a[0]}}_hue_color type=radio>
-  <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_bg_color name={{C_o.STAT_a[0]}}_hue_color type=radio>
-
-  <aside id=aside_{{C_o.STAT_a[0]}}_hue_img>
-    <canvas id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img width={{C_o.BURST_TRANSFORM_DIM_s}} height={{C_o.BURST_TRANSFORM_DIM_s}} data-fullsize_b=true></canvas>  <!-- 1024: default value -->
-    <div id={{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back width={{C_o.BURST_TRANSFORM_DIM_s}} height={{C_o.BURST_TRANSFORM_DIM_s}}></div>
-  </aside>
-
-  <dialog id=dialog_{{C_o.STAT_a[0]}}_download>
-    <form id=form_{{C_o.STAT_a[0]}}_download method="dialog">
-      <div id={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_download>
-        <header>
-          <label control>
-          Création du fichier image
-          </label>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_download_accept type=checkbox>
-          <label for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_download_accept>&#10003;</label>
-          <input id={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_download_accept type=checkbox>
-        </header>
-        <label id={{C_o.LABEL_ID_s}}_{{C_o.STAT_a[0]}}_download></label>
-        <p>Cette opération ne prend que quelques secondes</p>
-      </div>
-    </form>
-  </dialog>
-  
   <script id=script_{{C_o.STAT_a[0]}} data-src="/assets/scripts/js/{{C_o.STAT_a[0]}}.min.js"></script>
 </div>

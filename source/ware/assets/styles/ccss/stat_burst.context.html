@@ -26,6 +26,13 @@
         --{{C_o.STAT_a[0]}}_img_label_size: 100%; /*calc( 150 / var(--{{C_o.STAT_a[0]}}_img_scale)  * 1%);*/  /* initial 150% */
         --{{C_o.STAT_a[0]}}_satlum_s: none;    /* don't display at start: no slot selected */
 
+        --{{C_o.STAT_a[0]}}_cursor_fullsize: move;
+        --{{C_o.STAT_a[0]}}_cursor_fullsize_trace: url( /assets/styles/css/magnifier_cursor.svg ) 8 8, auto;
+        --{{C_o.STAT_a[0]}}_cursor_overlayX: 0px;
+        --{{C_o.STAT_a[0]}}_cursor_overlayY: 0px;
+        --{{C_o.STAT_a[0]}}_cursor_initialX: 0;
+        --{{C_o.STAT_a[0]}}_cursor_initialY: 0;
+
         --{{C_o.STAT_a[0]}}_playback_bg: transparent;
         --{{C_o.STAT_a[0]}}_playback_pause: auto;
 
@@ -50,7 +57,7 @@
     <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_linear>
             position: relative;
             top: calc( {{S_o.NAV_HEIGHT_s}} + {{S_o.PAD_12}} );
-            left: {{S_o.PAD_4}};
+            left: 0;
             background: var(--{{C_o.STAT_a[0]}}_img_background);
             --scale_x: var(--{{C_o.STAT_a[0]}}_window_width) / {{C_o.LINEAR_WIDTH_n}}  * .99;      /* keep tiny HZ margin */
             transform: scaleX( calc( var(--scale_x) ) );
@@ -387,7 +394,7 @@ context( stack, new )
               justify-content: space-between;
               width: fit-content;
               list-style: none;
-              opacity: 1;
+              opacity: 1;F_hue_img
               filter: brightness( {{S_o.brightness_hi}} );
               transform: rotate( -90deg );
         <input[name$="_slot"]>
@@ -622,9 +629,17 @@ context( stack, new )
 
 
 
-<aside#aside_{{C_o.STAT_a[0]}}_hue_img>
+<aside[id^=aside_{{C_o.STAT_a[0]}}_hue_]>
         display: none;
         position: absolute;
+        z-index: 21;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: {{S_o.bg_hi}};
+</aside>
+
+<aside#aside_{{C_o.STAT_a[0]}}_hue_img>
         transform-origin: center;
         transform: scale( var(--{{C_o.STAT_a[0]}}_hue_img_scale) ) translateY( var(--{{C_o.STAT_a[0]}}_hue_img_translate) ); /* from burst.js */
 </aside>
@@ -635,13 +650,8 @@ context( stack, new )
     <div[id^={{C_o.DIV_ID_s}}_stat]>
       <aside#aside_{{C_o.STAT_a[0]}}_hue_img>    /* CENTER MIDDLE SIZE */
               --{{C_o.STAT_a[0]}}_hue_img_translate: calc(var(--{{C_o.STAT_a[0]}}_hue_img_scale) * {{C_o.BURST_TRANSLATE_MID_n}} );
-
-              z-index: 21;
+              
               display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              background: {{S_o.bg_hi}};
               box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
         <canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img:not(.fullsize)>
               max-width: 1000vw;  /* i.e. no max */
@@ -652,7 +662,7 @@ context( stack, new )
               z-index: 100;       /* cover all */
               position: absolute;
               /*width: auto;*/
-              cursor: move;
+              cursor: var(--{{C_o.STAT_a[0]}}_cursor_fullsize);
               box-shadow: 0 0 0 1000vmax {{S_o.light_100}};
         </canvas>
       </aside>
@@ -684,16 +694,36 @@ context( stack, new )
     <div[id^={{C_o.DIV_ID_s}}_stat]>
       <aside#aside_{{C_o.STAT_a[0]}}_hue_img>    /* CENTER FULL SIZE */
               --{{C_o.STAT_a[0]}}_hue_img_translate: calc(var(--{{C_o.STAT_a[0]}}_hue_img_scale) * {{C_o.BURST_TRANSLATE_FULL_n}} );
-
-        <div#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back>
+              display: grid;
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back>
+        context( copy, next )
+        </div>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_overlay>
+        grid-area: 1/-1;
+        </div>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back>
                 width: {{S_o.FULL_WIDTH_s}};
                 height: {{S_o.FULL_HEIGHT_s}};
                 background: var(--{{C_o.STAT_a[0]}}_img_background);
         </div>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_overlay>
+                z-index: 200;
+                position: absolute;
+                top:  calc( ({{C_o.BURST_MAGNIFIER_WIDE_n}} + {{C_o.BURST_MAGNIFIER_PIX_n}}) * -1px);
+                left: calc( {{C_o.BURST_MAGNIFIER_PIX_n}} * -1px );
+                width:  {{C_o.BURST_MAGNIFIER_WIDE_n}}px;
+                height: {{C_o.BURST_MAGNIFIER_WIDE_n}}px;
+                background: transparent;
+                border: 2px solid hsla( 0 0% 72%/.9);
+                box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
+                pointer-events: none;                               /* let hue_img take pointer event */
+                cursor: none;
+                transform: translate( var(--{{C_o.STAT_a[0]}}_cursor_overlayX), var(--{{C_o.STAT_a[0]}}_cursor_overlayY) );
+        </div>
         <ul>
                 display: none;
         </ul>
-        <div:not(#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back)>
+        <div:not([id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_])>  /* back + overlay */
                 display: none;
         </div>
       </aside>
@@ -740,6 +770,69 @@ context( stack, new )
     </div>
   </section>
 </body>
+
+
+
+
+<aside#aside_{{C_o.STAT_a[0]}}_hue_magnifier>
+        top: 100vh;
+        left: 100vw;
+        transform: translate( -102%, -100% );   /* keep place for slider */
+        background: {{S_o.light_100}};
+</aside>
+
+<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnifier:checked ):has(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_magnifier>
+              display: flex;
+          border: 1px solid  var(--{{C_o.STAT_a[0]}}_trace_color);
+          border-radius: 4px;
+        <nav>  /* <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear]> */
+          display: flex;
+          justify-content: space-between;
+          /*gap: 1rem;*/
+          /*position: absolute;*/
+          padding: .25rem;
+          width: 100%;
+          left: 0;
+          <label>
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /*width: 10rem;*/
+            height: 2em;
+            line-height: 2em;
+            text-transform: uppercase;
+            font-size: 70%;
+            <span>
+              display: flex;
+              justify-content: space-evenly;
+              margin: .5rem;
+              /*width: 9ch;*/
+              padding: 0 .25rem;
+              width: 6ch;
+              height: 2em;
+              line-height: 2em;
+              background: var(--burst_trace_color);
+              font-weight: 500;
+              text-align: center;
+              border-radius: 4px;
+              font-size: 95%;
+            </span>
+          </label>
+          <label:not(:nth-of-type(1))>
+            <span:after>
+                    content: '{{C_o.PERCENT_s}}';
+            </span>
+          </label>
+        </nav>
+      </aside>
+    </div>
+  </section>
+</body>
+
+
 
 
 

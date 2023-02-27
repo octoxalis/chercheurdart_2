@@ -37,7 +37,7 @@ zoom__v
                   *
                   -'{{C_o.WHEEL_ZOOM_DELTA_n}}'
                 )
-            , 4         //: no more than 1 for images
+            , 4         //: no more than 4 for images
             )
       
           DOM_o           //: Number cast

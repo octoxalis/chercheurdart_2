@@ -11,15 +11,18 @@ const BUR_o =
     vScale_n: 2
   , hue_n: 0           //: selected hue
   , atAngle_n: 0
-  , download_s: ''    //: download suggested file name
-  , fullsize_n: 1     //: keep scale (eventSizeFull__v + eventSizeTiny__v)
+  , download_s: ''     //: download suggested file name
+  , fullsize_n: 1      //: keep scale (eventSizeFull__v + eventSizeTiny__v)
   , freeze_b: false    //: freeze || unfreeze hue selection
+  , magnifierWide_n: +'{{C_o.BURST_MAGNIFIER_WIDE_n}}'
+  , magnifierPix_n:  +'{{C_o.BURST_MAGNIFIER_PIX_n}}'
 
   , status_o: null
   , equal_a: null
   , atEqual_o: null
   , idb_o: null
   , trace_o: {}
+  
 
   , hue_o
     :
@@ -80,6 +83,7 @@ const BUR_o =
       , 'a'          //: show/hide animation
       , 'l'          //: show linear
       , 'r'          //: show radial
+      , 'm'          //: show magnfier
       , 'q'          //: show/hide equalizer
       , 'v'          //: show/hide image
       , 'z'          //: (+ ctrlKey) reset
@@ -146,6 +150,47 @@ const BUR_o =
                 )
                 .toFixed( 3 )
             )
+
+        break
+    
+      case
+        'PUT_magnifier'
+      :
+        let at_n
+        =
+          0
+
+        for
+        (
+          let hsl_s
+          of
+          [
+            'hue'
+          , 'sat'
+          , 'lum'
+          ]
+        )
+        {
+          document
+            .getElementById( `{{C_o.STAT_a[0]}}_${hsl_s}_magnifier_n`  )
+              .innerHTML
+          =
+            at_n
+            ===
+            0
+            ?
+              payload_o
+                .hsl_a
+                  [at_n++]
+            :
+              ~~(
+                payload_o
+                  .hsl_a
+                    [at_n++]
+                *
+                100
+              )
+        }
 
         break
     
@@ -665,6 +710,7 @@ const BUR_o =
                 BUR_o
                   .src_s
             , canvas_e: offCanvas_e
+            , read_b: true
             , storeBitmap_b: false
             , pixel_n:  window.devicePixelRatio    //????
             }
@@ -757,16 +803,6 @@ const BUR_o =
       document
         .getElementById( `{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_${hsl_s}` )
 
-    const pointer_x
-    =
-      event_o
-        .offsetX
-            
-    const pointer_y
-    =
-      event_o
-        .offsetY
-            
     let x_n
     =
       event_o
@@ -1385,6 +1421,16 @@ const BUR_o =
             event_o
               .key
           )
+      ||
+      (
+        event_o
+          .key
+        ===
+        'm'
+        &&
+        ! document
+            .querySelector('#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize' )
+      )
     )
     {
       return     //: let event buble
@@ -1612,6 +1658,9 @@ const BUR_o =
         'l'    //: permute linear/radial
       :
       case
+        'm'    //:  show/hide magnifier
+      :
+      case
         'q'    //: show/hide equalizer
       :
       case
@@ -1625,6 +1674,7 @@ const BUR_o =
           , 'a': 'sequencer'
           , 'l': 'linear'           //!!! linear
           , 'r': 'hue'              //!!! radial
+          , 'm': 'hue_magnifier'
           , 'q': 'equal'
           , 'v': 'hue_img'
           }
@@ -1660,6 +1710,31 @@ const BUR_o =
           ! document
               .getElementById( id_s )
                 .checked
+
+        if
+        (
+          event_o
+            .key
+          ===
+          'm'
+        )
+        {
+          BUR_o
+            .worker_o
+              .post__v
+              (
+                { 
+                  task_s: 'PUT_magnifier_dim'
+                , stat_s: '{{C_o.STAT_a[0]}}'
+                , wide_n:
+                    BUR_o
+                      .magnifierWide_n
+                , pix_n:  
+                    BUR_o
+                      .magnifierPix_n
+                }
+              )
+        }
 
         break
 
@@ -2114,6 +2189,132 @@ const BUR_o =
     }
   }
   
+
+
+  ,
+  eventMagnifier__v
+  ()
+  {
+    let timeout_n
+
+    const canvas_e
+    =
+      document
+        .getElementById( '{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img' )
+
+    canvas_e
+      .addEventListener
+        (
+          'mousemove'
+        , event_o =>
+          {
+            if
+            (
+              ! event_o
+                  .shiftKey
+              ||
+              ! document
+                  .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnifier' )
+                    .checked
+              //?? |
+              //??  document
+              //??    .querySelector( '#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize' )
+            )
+            {
+              //?? DOM_o
+              //??   .rootVar__v
+              //??   (
+              //??     `--{{C_o.STAT_a[0]}}_cursor_fullsize`,
+              //??     'move'
+              //??   )
+
+              return
+            }
+            //-->
+	          if
+            (
+              timeout_n
+            )
+            {
+	          	window
+                .cancelAnimationFrame( timeout_n )
+	          }
+          
+            timeout_n
+            =
+              window
+                .requestAnimationFrame
+                (
+                  () =>
+                  {
+                    let x_n
+                    =
+                      event_o
+                        .offsetX
+                
+                    let y_n
+                    =
+                      event_o
+                        .offsetY
+                
+                    //;console.log( `${x_n} :: ${y_n}` )
+                    BUR_o
+                      .worker_o
+                        .post__v
+                        (
+                          { 
+                            task_s: 'PUT_magnifier'
+                          , stat_s: '{{C_o.STAT_a[0]}}'
+                          , canvas_s: ''
+                          , x_n: x_n
+                          , y_n: y_n
+                          , wide_n:
+                              BUR_o
+                                .magnifierWide_n
+                          , pix_n:  
+                              BUR_o
+                                .magnifierPix_n
+                          }
+                        )
+
+                    const rect_o
+                    =
+                      canvas_e
+                        .getBoundingClientRect()
+
+                    //--const pix_n
+                    //--=
+                    //--  +'{{C_o.BURST_MAGNIFIER_PIX_n}}'
+
+                    //: cursor at bottom right of overlay position
+                    DOM_o
+                      .rootVar__v
+                      (
+                        `--{{C_o.STAT_a[0]}}_cursor_overlayX`,
+                        `${rect_o.x + x_n}px`
+                      )
+         
+                    DOM_o
+                      .rootVar__v
+                      (
+                        `--{{C_o.STAT_a[0]}}_cursor_overlayY`,
+                        `${rect_o.y + y_n}px`
+                      )
+	                }
+                )
+
+            //?? DOM_o
+            //??   .rootVar__v
+            //??   (
+            //??     `--{{C_o.STAT_a[0]}}_cursor_fullsize`,
+            //??     'var(--{{C_o.STAT_a[0]}}_cursor_fullsize_trace)'
+            //??   )
+  
+          }
+        , false
+        )
+  }
+
 
 
   ,
@@ -3001,6 +3202,18 @@ const BUR_o =
                 .getElementById( `{{C_o.STAT_a[0]}}_${hsl_s}_ratio_n` )
     }
 
+    //-- DOM_o
+    //--   .listener__v
+    //--   (
+    //--     '{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img'
+    //--   , BUR_o
+    //--       .eventMagnifier__v
+    //--   , 'mousemove'
+    //--   )
+
+    BUR_o
+      .eventMagnifier__v()
+
     //=== CANVAS + SLIDERSEVENTS ===
     for
     (
@@ -3391,7 +3604,7 @@ const BUR_o =
           .height =
             screenDim_n
       }
-    }      
+    }  
   }
 
 
@@ -3496,6 +3709,7 @@ const BUR_o =
             ,
             [
               'linear'
+            , 'hue_magnifier'
             , 'hue'
             , 'sat'
             , 'lum'

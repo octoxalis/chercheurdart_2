@@ -146,19 +146,21 @@ const STAT_W_o =
 
   message_a:
   [
-    'GET_scan',
-    'GET_status',
-    'GET_rate',
-    'GET_equal',
-    'GET_img',
-    'GET_canvas_img',
-
-    'PUT_canvas',
-    'PUT_draw',
-    'PUT_slot',
-    'PUT_hsl',
-    'PUT_scale',
-    'PUT_slides',
+    'GET_scan'
+  , 'GET_status'
+  , 'GET_rate'
+  , 'GET_equal'
+  , 'GET_img'
+  , 'GET_canvas_img'
+  
+  , 'PUT_canvas'
+  , 'PUT_draw'
+  , 'PUT_slot'
+  , 'PUT_hsl'
+  , 'PUT_scale'
+  , 'PUT_slides'
+  , 'PUT_magnifier'
+  , 'PUT_magnifier_dim'
   ]
   ,
 
@@ -579,7 +581,8 @@ const STAT_W_o =
                 translate_n,
                 translate_n,
               )
-  },
+  }
+  ,
 
 
 
@@ -1689,7 +1692,7 @@ const STAT_W_o =
         painter_c =
           STAT_W_o
             .stat_o
-              [ `${stat_s}_o` ]   //: paint
+              [ `${stat_s}_o` ]  //: paint
                 [ `${hsl_s}_o` ] //: hue_back, hue_front...
                   .painter_c
 
@@ -2855,6 +2858,7 @@ const STAT_W_o =
     payload_o
   )
   {
+    ;console.log(STAT_W_o )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
       //;console.time( 'put_slot__v' )
       //!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -2905,7 +2909,6 @@ const STAT_W_o =
                 [ `SCAN_${hsl_s}_n` ]
             ]
 
-          
     const
     {
       context_o,
@@ -3408,6 +3411,401 @@ const STAT_W_o =
       default
       :
         break
+    }
+  }
+  ,
+
+
+
+  put_magnifier__v
+  (
+    payload_o
+  )
+  {
+    const
+      { 
+        stat_s
+      , x_n
+      , y_n
+      , wide_n
+      , pix_n
+      } =
+        payload_o
+
+    const
+    {
+      canvas_e
+    , context_o
+    , imgData_o
+    } =
+      STAT_W_o
+        .imgData_o
+          [ `${stat_s}` ]
+
+    const pixel_o
+    =
+      context_o
+        .getImageData
+        (
+          x_n
+        , y_n
+        , 1
+        , 1
+        )
+
+    const data_a
+    =
+      pixel_o
+        .data
+
+    STAT_W_o
+      .post__v
+      (
+        {
+          task_s: 'PUT_magnifier'
+        , stat_s: '{{C_o.STAT_a[0]}}'
+        , hsl_a:
+            [
+              RGB_H__n
+              (
+                ...data_a
+              )
+            ,  RGB_S__n
+              (
+                ...data_a
+              )
+            ,  RGB_L__n
+              (
+                ...data_a
+              )
+            ]
+        }
+      )
+    //....................................
+    const median_n
+    =
+      wide_n
+      >>>
+      1
+
+    const width_n
+    =
+      canvas_e
+        .width
+
+    const height_n
+    =
+      canvas_e
+        .height
+
+    const widePix_n
+    =
+      +'{{C_o.BURST_MAGNIFIER_WIDE_n}}'
+      *
+      +'{{C_o.BURST_MAGNIFIER_PIX_n}}'
+
+    let top_n
+    ,   left_n
+    ,   right_n
+    ,   bottom_n
+
+    if
+    (
+      (
+        x_n
+        -
+        median_n
+      )
+      <
+      0
+    )
+    {
+      left_n
+      =
+       0
+
+      right_n
+      =
+        wide_n
+    }
+    else
+    {
+      if
+      (
+        (
+          x_n
+          +
+          median_n
+        )
+        >
+        width_n
+      )
+      {
+        right_n
+        =
+          width_n
+
+        left_n
+        =
+          right_n
+          -
+          wide_n
+      }
+      else
+      {
+        left_n
+        =
+          x_n
+          -
+          median_n
+
+        right_n
+        =
+          x_n
+          +
+          median_n
+      }
+    }
+
+    if
+    (
+      (
+        y_n
+        -
+        median_n
+      )
+      <
+      0
+    )
+    {
+      top_n
+      =
+       0
+
+      bottom_n
+      =
+        wide_n
+    }
+    else
+    {
+      if
+      (
+        (
+          y_n
+          +
+          median_n
+        )
+        >
+        height_n
+      )
+      {
+        bottom_n
+        =
+          height_n
+
+        top_n
+        =
+          bottom_n
+          -
+          wide_n
+      }
+      else
+      {
+        top_n
+        =
+          y_n
+          -
+          median_n
+
+        bottom_n
+        =
+          y_n
+          +
+          median_n
+      }
+    }
+
+  //;console.log( `${left_n}/${top_n}--${right_n}/${bottom_n}`  )
+  const pixel_a
+  =
+    context_o
+      .getImageData
+      (
+        left_n
+      , top_n
+      , wide_n
+      , wide_n
+      )
+      .data
+
+
+  //;console.log( pixel_a  )
+
+  //; ;console.log(
+  //;       STAT_W_o
+  //;         .stat_o
+  //;         [ `${stat_s}_o` ]
+  //;         .hue_magnifier_o
+  //; )
+  //-- const painter_c
+  //-- =
+  //--   STAT_W_o
+  //--     .stat_o
+  //--     [ `${stat_s}_o` ]
+  //--     .hue_magnifier_o
+  //--       .painter_c
+  
+  const magnifierContext_o
+  =
+    STAT_W_o
+      .stat_o
+      [ `${stat_s}_o` ]
+      .hue_magnifier_o
+        .context_o
+
+
+  magnifierContext_o
+    .clearRect
+    (
+      0
+    , 0
+    , widePix_n
+    , widePix_n
+    )
+
+  for
+  (
+    let at_n
+    =
+      0
+  , atMag_n
+    =
+      0
+    ;
+    at_n
+    <
+    pixel_a
+      .length
+    ;
+    at_n
+    +=
+      4
+  , ++atMag_n
+  )
+  {
+    magnifierContext_o
+      .fillStyle
+    =
+      `rgb(${pixel_a[at_n]},${pixel_a[at_n  +1]},${pixel_a[at_n + 2]})`
+
+    magnifierContext_o
+      .fillRect
+      (
+        STAT_W_o
+          .magnifier_a
+            [atMag_n]
+              [0]
+      , STAT_W_o
+          .magnifier_a
+            [atMag_n]
+              [1]
+        , widePix_n
+        , widePix_n
+      )
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+  ,
+
+
+
+  put_magnifier_dim__v
+  (
+    payload_o
+  )
+  {
+    const
+      {
+        wide_n
+      , pix_n
+      } =
+        payload_o
+
+    STAT_W_o
+      .magnifier_a
+    =
+      []
+
+    let at_n
+    =
+      0
+
+    for
+    (
+      let atY_n
+      =
+      0
+      ;
+      atY_n
+      <
+      wide_n
+      ;
+      ++atY_n
+    )
+    {
+      for
+      (
+        let atX_n
+        =
+        0
+        ;
+        atX_n
+        <
+        wide_n
+        ;
+        ++atX_n
+      )
+      {
+        STAT_W_o
+          .magnifier_a
+            [at_n++]
+        =
+          [
+            atX_n
+            *
+            pix_n
+          , atY_n
+            *
+            pix_n
+          ]
+      }
     }
   }
   ,

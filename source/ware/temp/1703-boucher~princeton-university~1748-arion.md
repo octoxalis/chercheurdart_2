@@ -22,7 +22,7 @@
   stat_a:
   [
     'burst',
-    'aster',
+    //'aster',
     'paint',
   ],
 

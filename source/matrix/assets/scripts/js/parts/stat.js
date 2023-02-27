@@ -299,7 +299,7 @@ const STAT_o =
       of
       [            //: C_o.STAT_a
         'burst',
-        'aster',
+        //XX 'aster',
         'paint',
         'match',
       ]
