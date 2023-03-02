@@ -27,7 +27,6 @@
         --{{C_o.STAT_a[0]}}_satlum_s: none;    /* don't display at start: no slot selected */
 
         --{{C_o.STAT_a[0]}}_cursor_fullsize: move;
-        --{{C_o.STAT_a[0]}}_cursor_fullsize_trace: url( /assets/styles/css/magnifier_cursor.svg ) 8 8, auto;
         --{{C_o.STAT_a[0]}}_cursor_overlayX: 0px;
         --{{C_o.STAT_a[0]}}_cursor_overlayY: 0px;
         --{{C_o.STAT_a[0]}}_cursor_initialX: 0;
@@ -662,7 +661,7 @@ context( stack, new )
               z-index: 100;       /* cover all */
               position: absolute;
               /*width: auto;*/
-              cursor: var(--{{C_o.STAT_a[0]}}_cursor_fullsize);
+              cursor: move;
               box-shadow: 0 0 0 1000vmax {{S_o.light_100}};
         </canvas>
       </aside>
@@ -699,7 +698,7 @@ context( stack, new )
         context( copy, next )
         </div>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_overlay>
-        grid-area: 1/-1;
+                grid-area: 1/-1;
         </div>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_back>
                 width: {{S_o.FULL_WIDTH_s}};
@@ -707,12 +706,13 @@ context( stack, new )
                 background: var(--{{C_o.STAT_a[0]}}_img_background);
         </div>
         <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_overlay>
+                display: none;
                 z-index: 200;
                 position: absolute;
-                top:  calc( ({{C_o.BURST_MAGNIFIER_WIDE_n}} + {{C_o.BURST_MAGNIFIER_PIX_n}}) * -1px);
-                left: calc( {{C_o.BURST_MAGNIFIER_PIX_n}} * -1px );
-                width:  {{C_o.BURST_MAGNIFIER_WIDE_n}}px;
-                height: {{C_o.BURST_MAGNIFIER_WIDE_n}}px;
+                top:  calc( ({{C_o.BURST_MAGNIFY_WIDE_n}} + {{C_o.BURST_MAGNIFY_PIX_n}}) * -1px);
+                left: calc( {{C_o.BURST_MAGNIFY_PIX_n}} * -1px );
+                width:  {{C_o.BURST_MAGNIFY_WIDE_n}}px;
+                height: {{C_o.BURST_MAGNIFY_WIDE_n}}px;
                 background: transparent;
                 border: 2px solid hsla( 0 0% 72%/.9);
                 box-shadow: 0 0 0 1000vmax {{S_o.light_07}};
@@ -772,24 +772,24 @@ context( stack, new )
 </body>
 
 
-
-
-<aside#aside_{{C_o.STAT_a[0]}}_hue_magnifier>
+<aside#aside_{{C_o.STAT_a[0]}}_hue_magnify>
         top: 100vh;
         left: 100vw;
         transform: translate( -102%, -100% );   /* keep place for slider */
         background: {{S_o.light_100}};
 </aside>
 
-<body:has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnifier:checked ):has(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize )>
+<body:has(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize ):has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnify_img:checked )>
   <section#{{C_o.STAT_a[0]}}>
     <div[id^={{C_o.DIV_ID_s}}_stat]>
-      <aside#aside_{{C_o.STAT_a[0]}}_hue_magnifier>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_magnify>
               display: flex;
-          border: 1px solid  var(--{{C_o.STAT_a[0]}}_trace_color);
-          border-radius: 4px;
+              width: {{C_o.BURST_MAGNIFY_DIM_n}}px;
+              border: 1px solid  var(--{{C_o.STAT_a[0]}}_trace_color);
+              border-radius: 4px;
         <nav>  /* <div[id^={{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_linear]> */
           display: flex;
+          flex-wrap: wrap;
           justify-content: space-between;
           /*gap: 1rem;*/
           /*position: absolute;*/
@@ -821,12 +821,50 @@ context( stack, new )
               font-size: 95%;
             </span>
           </label>
-          <label:not(:nth-of-type(1))>
+          <label:has( span ):not(:nth-of-type(1))>
             <span:after>
                     content: '{{C_o.PERCENT_s}}';
             </span>
           </label>
+          <label[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnify_trace]>
+                  width: 25%;
+                  justify-content: center;
+                  margin: {{S_o.PAD_1}} 0;
+                  border-radius: {{S_o.PAD_1}};
+                  background: {{S_o.bg_hi}};
+          </label>
+          <label[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnify_trace]:hover>
+                  filter: brightness( .5 );
+          </label>
         </nav>
+        <canvas>
+                display: none;
+        </canvas>
+      </aside>
+    </div>
+  </section>
+</body>
+
+<body:has(canvas#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize ):has( input#{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnify_trace:checked )>
+  <section#{{C_o.STAT_a[0]}}>
+    <div[id^={{C_o.DIV_ID_s}}_stat]>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_magnify>
+        <nav>
+          <label[for={{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnify_trace]>
+                  filter: brightness( 1.5 );
+          </label>
+        </nav>
+        <canvas>
+                display: block;
+        </canvas>
+      </aside>
+      <aside#aside_{{C_o.STAT_a[0]}}_hue_img>
+        <canvas>
+                cursor: none;
+        </canvas>
+        <div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_hue_img_overlay>
+                display: block;
+        </div>
       </aside>
     </div>
   </section>

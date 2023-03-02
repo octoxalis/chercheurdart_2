@@ -159,8 +159,8 @@ const STAT_W_o =
   , 'PUT_hsl'
   , 'PUT_scale'
   , 'PUT_slides'
-  , 'PUT_magnifier'
-  , 'PUT_magnifier_dim'
+  , 'PUT_magnify'
+  , 'PUT_magnify_dim'
   ]
   ,
 
@@ -3417,7 +3417,7 @@ const STAT_W_o =
 
 
 
-  put_magnifier__v
+  put_magnify__v
   (
     payload_o
   )
@@ -3429,6 +3429,7 @@ const STAT_W_o =
       , y_n
       , wide_n
       , pix_n
+      , magnify_b
       } =
         payload_o
 
@@ -3437,7 +3438,8 @@ const STAT_W_o =
       canvas_e
     , context_o
     , imgData_o
-    } =
+    }
+    =
       STAT_W_o
         .imgData_o
           [ `${stat_s}` ]
@@ -3462,7 +3464,7 @@ const STAT_W_o =
       .post__v
       (
         {
-          task_s: 'PUT_magnifier'
+          task_s: 'PUT_magnify'
         , stat_s: '{{C_o.STAT_a[0]}}'
         , hsl_a:
             [
@@ -3481,7 +3483,15 @@ const STAT_W_o =
             ]
         }
       )
-    //....................................
+
+    if
+    (
+      ! magnify_b
+    )
+    {
+      return
+    }
+    //-->
     const median_n
     =
       wide_n
@@ -3500,9 +3510,9 @@ const STAT_W_o =
 
     const widePix_n
     =
-      +'{{C_o.BURST_MAGNIFIER_WIDE_n}}'
+      +'{{C_o.BURST_MAGNIFY_WIDE_n}}'
       *
-      +'{{C_o.BURST_MAGNIFIER_PIX_n}}'
+      +'{{C_o.BURST_MAGNIFY_PIX_n}}'
 
     let top_n
     ,   left_n
@@ -3625,128 +3635,82 @@ const STAT_W_o =
       }
     }
 
-  //;console.log( `${left_n}/${top_n}--${right_n}/${bottom_n}`  )
-  const pixel_a
-  =
-    context_o
-      .getImageData
-      (
-        left_n
-      , top_n
-      , wide_n
-      , wide_n
-      )
-      .data
-
-
-  //;console.log( pixel_a  )
-
-  //; ;console.log(
-  //;       STAT_W_o
-  //;         .stat_o
-  //;         [ `${stat_s}_o` ]
-  //;         .hue_magnifier_o
-  //; )
-  //-- const painter_c
-  //-- =
-  //--   STAT_W_o
-  //--     .stat_o
-  //--     [ `${stat_s}_o` ]
-  //--     .hue_magnifier_o
-  //--       .painter_c
+    const pixel_a
+    =
+      context_o
+        .getImageData
+        (
+          left_n
+        , top_n
+        , wide_n
+        , wide_n
+        )
+        .data
   
-  const magnifierContext_o
-  =
-    STAT_W_o
-      .stat_o
-      [ `${stat_s}_o` ]
-      .hue_magnifier_o
-        .context_o
-
-
-  magnifierContext_o
-    .clearRect
+  
+    const magnifyContext_o
+    =
+      STAT_W_o
+        .stat_o
+        [ `${stat_s}_o` ]
+        .hue_magnify_img_o
+          .context_o
+  
+    magnifyContext_o
+      .clearRect
+      (
+        0
+      , 0
+      , widePix_n
+      , widePix_n
+      )
+  
+    for
     (
-      0
-    , 0
-    , widePix_n
-    , widePix_n
+      let at_n
+      =
+        0
+    , atMag_n
+      =
+        0
+      ;
+      at_n
+      <
+      pixel_a
+        .length
+      ;
+      at_n
+      +=
+        4
+    , ++atMag_n
     )
-
-  for
-  (
-    let at_n
-    =
-      0
-  , atMag_n
-    =
-      0
-    ;
-    at_n
-    <
-    pixel_a
-      .length
-    ;
-    at_n
-    +=
-      4
-  , ++atMag_n
-  )
-  {
-    magnifierContext_o
-      .fillStyle
-    =
-      `rgb(${pixel_a[at_n]},${pixel_a[at_n  +1]},${pixel_a[at_n + 2]})`
-
-    magnifierContext_o
-      .fillRect
-      (
-        STAT_W_o
-          .magnifier_a
-            [atMag_n]
-              [0]
-      , STAT_W_o
-          .magnifier_a
-            [atMag_n]
-              [1]
-        , widePix_n
-        , widePix_n
-      )
-  }
+    {
+      magnifyContext_o
+        .fillStyle
+      =
+        `rgb(${pixel_a[at_n]},${pixel_a[at_n  +1]},${pixel_a[at_n + 2]})`
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      magnifyContext_o
+        .fillRect
+        (
+          STAT_W_o
+            .magnify_a
+              [atMag_n]
+                [0]
+        , STAT_W_o
+            .magnify_a
+              [atMag_n]
+                [1]
+          , widePix_n
+          , widePix_n
+        )
+    }
   }
   ,
 
 
 
-  put_magnifier_dim__v
+  put_magnify_dim__v
   (
     payload_o
   )
@@ -3759,7 +3723,7 @@ const STAT_W_o =
         payload_o
 
     STAT_W_o
-      .magnifier_a
+      .magnify_a
     =
       []
 
@@ -3794,7 +3758,7 @@ const STAT_W_o =
       )
       {
         STAT_W_o
-          .magnifier_a
+          .magnify_a
             [at_n++]
         =
           [

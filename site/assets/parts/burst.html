@@ -12,7 +12,8 @@
 <input id=IN_burst_hue_img type=checkbox checked>
 <input id=IN_burst_hue_img_position type=checkbox>
 
-<input id=IN_burst_hue_magnifier type=checkbox>
+<input id=IN_burst_hue_magnify_img type=checkbox>
+<input id=IN_burst_hue_magnify_trace type=checkbox>
 
 <input id=IN_burst_linear name=burst_nav type=radio checked>
 <canvas id=CA_burst_linear width=8192 height=64></canvas>
@@ -100,7 +101,7 @@
     <label for=IN_burst_settings data-key=p>palette</label>
     <label for=IN_burst_sequencer data-key=a>animation</label>
     <label for=IN_burst_hue_img data-key=v>visualiser</label>
-    <label for=IN_burst_hue_magnifier data-key=m>magnifier</label>
+    <label for=IN_burst_magnify_img data-key=m>magnify</label>
     <label for=IN_burst_equal data-key=q>égaliser</label>
     <label for=IN_burst_hue_img_reset data-key=&#8705;z>reinitialiser</label>
     <label for=IN_burst_hue_img_download data-key=&#8705;s>exporter</label>
@@ -244,19 +245,20 @@
   <div id=DI_burst_hue_img_back width=100vmin height=100vmin></div>
   <div id=DI_burst_hue_img_overlay width=100vmin height=100vmin></div>
 </aside>
-<aside id=aside_burst_hue_magnifier>
-  <nav id=NA_burst_hue_magnifier>
+<aside id=aside_burst_hue_magnify>
+  <nav id=NA_burst_hue_magnify>
     <label>tonalité
-      <span id=burst_hue_magnifier_n>123</span>
+      <span id=burst_hue_magnify_trace_n>123</span>
     </label>
     <label>intensité
-      <span id=burst_sat_magnifier_n>456</span>
+      <span id=burst_sat_magnify_trace_n>456</span>
     </label>
     <label>luminosité
-      <span id=burst_lum_magnifier_n>789</span>
+      <span id=burst_lum_magnify_trace_n>789</span>
     </label>
+    <label for=IN_burst_hue_magnify_trace data-key=g>magnify</label>
   </nav>
-  <canvas id=CA_burst_hue_magnifier width=544 height=544></canvas>
+  <canvas id=CA_burst_hue_magnify_img width=544 height=544></canvas>
 </aside>
 
 <dialog id=dialog_burst_download>

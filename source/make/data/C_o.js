@@ -125,6 +125,7 @@ const C_o =
     burst_sat:  { icon_s: `&#8728;`, legend_s: `intensité`},
     burst_lum:  { icon_s: `&#8728;`, legend_s: `luminosité`},
     burst_rate: { icon_s: `&#8728;`, legend_s: `proportion`},
+    burst_magnify: { icon_s: `&#8728;`, legend_s: `grossir`},
     
     stat_shadow_fold:     { icon_s: `&nbsp;`, legend_s: `replier`},
     stat_shadow_unfold:     { icon_s: `&nbsp;`, legend_s: `deplier`},
@@ -133,7 +134,7 @@ const C_o =
     anim_open:      { icon_s: `&nbsp;`, legend_s: `animation`},
     radial_equal: { icon_s: `&nbsp;`, legend_s: `égaliser`},
     burst_img: { icon_s: `&nbsp;`, legend_s: `visualiser`},
-    burst_magnifier: { icon_s: `&nbsp;`, legend_s: `magnifier`},
+    burst_magnify: { icon_s: `&nbsp;`, legend_s: `magnify`},
     burst_reset: { icon_s: `&nbsp;`, legend_s: `reinitialiser`},
     burst_download: { icon_s: `&nbsp;`, legend_s: `exporter`},
     burst_hi: { icon_s: `&nbsp;`, legend_s: `seuil haut`},
@@ -232,9 +233,10 @@ const C_o =
   BURST_TRANSFORM_SCALE_n:     .33,
   BURST_TRANSLATE_MID_n:       '100%',
   BURST_TRANSLATE_FULL_n:      '50%',
-  BURST_MAGNIFIER_WIDE_n:      33,     //: 8+1+8
-  BURST_MAGNIFIER_PIX_n:       16,     //: 1 px is 16x16
-  BURST_MAGNIFIER_DIM_n:       544,    //: 17*32
+  BURST_MAGNIFY_WIDE_n:      33,     //: 8+1+8
+  BURST_MAGNIFY_PIX_n:       16,     //: 1 px is 16x16
+  BURST_MAGNIFY_DIM_n:       544,    //: 17*32
+  BURST_MAGNIFY_THRESHOLD_n: 25,     //: pixel move...settings
 
   BURST_PICK_HUE_n:            0,
   BURST_PICK_SAT_n:            100,

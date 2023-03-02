@@ -14,8 +14,8 @@ const BUR_o =
   , download_s: ''     //: download suggested file name
   , fullsize_n: 1      //: keep scale (eventSizeFull__v + eventSizeTiny__v)
   , freeze_b: false    //: freeze || unfreeze hue selection
-  , magnifierWide_n: +'{{C_o.BURST_MAGNIFIER_WIDE_n}}'
-  , magnifierPix_n:  +'{{C_o.BURST_MAGNIFIER_PIX_n}}'
+  , magnifyWide_n: +'{{C_o.BURST_MAGNIFY_WIDE_n}}'
+  , magnifyPix_n:  +'{{C_o.BURST_MAGNIFY_PIX_n}}'
 
   , status_o: null
   , equal_a: null
@@ -83,7 +83,8 @@ const BUR_o =
       , 'a'          //: show/hide animation
       , 'l'          //: show linear
       , 'r'          //: show radial
-      , 'm'          //: show magnfier
+      , 't'          //: show tracer
+      , 'm'          //: show magnifier
       , 'q'          //: show/hide equalizer
       , 'v'          //: show/hide image
       , 'z'          //: (+ ctrlKey) reset
@@ -154,7 +155,7 @@ const BUR_o =
         break
     
       case
-        'PUT_magnifier'
+        'PUT_magnify'
       :
         let at_n
         =
@@ -172,7 +173,7 @@ const BUR_o =
         )
         {
           document
-            .getElementById( `{{C_o.STAT_a[0]}}_${hsl_s}_magnifier_n`  )
+            .getElementById( `{{C_o.STAT_a[0]}}_${hsl_s}_magnify_trace_n`  )
               .innerHTML
           =
             at_n
@@ -1658,7 +1659,10 @@ const BUR_o =
         'l'    //: permute linear/radial
       :
       case
-        'm'    //:  show/hide magnifier
+        't'    //:  show/hide tracer
+      :
+      case
+        'm'    //:  show/hide magnify
       :
       case
         'q'    //: show/hide equalizer
@@ -1674,7 +1678,8 @@ const BUR_o =
           , 'a': 'sequencer'
           , 'l': 'linear'           //!!! linear
           , 'r': 'hue'              //!!! radial
-          , 'm': 'hue_magnifier'
+          , 't': 'hue_magnify_trace'
+          , 'm': 'hue_magnify_img'
           , 'q': 'equal'
           , 'v': 'hue_img'
           }
@@ -1724,14 +1729,14 @@ const BUR_o =
               .post__v
               (
                 { 
-                  task_s: 'PUT_magnifier_dim'
+                  task_s: 'PUT_magnify_dim'
                 , stat_s: '{{C_o.STAT_a[0]}}'
                 , wide_n:
                     BUR_o
-                      .magnifierWide_n
+                      .magnifyWide_n
                 , pix_n:  
                     BUR_o
-                      .magnifierPix_n
+                      .magnifyPix_n
                 }
               )
         }
@@ -2192,12 +2197,18 @@ const BUR_o =
 
 
   ,
-  eventMagnifier__v
+  eventMagnify__v
   ()
   {
-    let timeout_n
+    let timeout_n  //!!! outside event handler
+    let x_n    //: i32
+    let y_n    //: i32
 
-    const canvas_e
+    const threshold_n    //: i32
+    =
+      +'{{C_o.BURST_MAGNIFY_THRESHOLD_n}}'
+
+    const canvas_e  //: Object
     =
       document
         .getElementById( '{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img' )
@@ -2210,106 +2221,107 @@ const BUR_o =
           {
             if
             (
-              ! event_o
-                  .shiftKey
-              ||
-              ! document
-                  .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnifier' )
-                    .checked
-              //?? |
-              //??  document
-              //??    .querySelector( '#{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img.fullsize' )
+              BUR_o
+                .hue_magnify_trace
+                  .checked
+              &&
+              BUR_o
+                .hue_magnify_img
+                  .checked
             )
             {
-              //?? DOM_o
-              //??   .rootVar__v
-              //??   (
-              //??     `--{{C_o.STAT_a[0]}}_cursor_fullsize`,
-              //??     'move'
-              //??   )
-
-              return
-            }
-            //-->
-	          if
-            (
+	            if
+              (
+                timeout_n
+              )
+              {
+	            	window
+                  .cancelAnimationFrame( timeout_n )
+	            }
+            
               timeout_n
-            )
-            {
-	          	window
-                .cancelAnimationFrame( timeout_n )
-	          }
-          
-            timeout_n
-            =
-              window
-                .requestAnimationFrame
-                (
-                  () =>
-                  {
-                    let x_n
-                    =
-                      event_o
-                        .offsetX
-                
-                    let y_n
-                    =
-                      event_o
-                        .offsetY
-                
-                    //;console.log( `${x_n} :: ${y_n}` )
-                    BUR_o
-                      .worker_o
-                        .post__v
+              =
+                window
+                  .requestAnimationFrame
+                  (
+                    () =>
+                    {
+                      const magnify_b
+                      =
                         (
-                          { 
-                            task_s: 'PUT_magnifier'
-                          , stat_s: '{{C_o.STAT_a[0]}}'
-                          , canvas_s: ''
-                          , x_n: x_n
-                          , y_n: y_n
-                          , wide_n:
-                              BUR_o
-                                .magnifierWide_n
-                          , pix_n:  
-                              BUR_o
-                                .magnifierPix_n
-                          }
+                          ~~(
+                            event_o
+                              .offsetX
+                            -
+                            x_n
+                          )
+                          <
+                          threshold_n
+                        )
+                        &&
+                        (
+                          ~~(
+                            event_o
+                              .offsetY
+                            -
+                            y_n
+                          )
+                          <
+                          threshold_n
                         )
 
-                    const rect_o
-                    =
-                      canvas_e
-                        .getBoundingClientRect()
-
-                    //--const pix_n
-                    //--=
-                    //--  +'{{C_o.BURST_MAGNIFIER_PIX_n}}'
-
-                    //: cursor at bottom right of overlay position
-                    DOM_o
-                      .rootVar__v
-                      (
-                        `--{{C_o.STAT_a[0]}}_cursor_overlayX`,
-                        `${rect_o.x + x_n}px`
-                      )
-         
-                    DOM_o
-                      .rootVar__v
-                      (
-                        `--{{C_o.STAT_a[0]}}_cursor_overlayY`,
-                        `${rect_o.y + y_n}px`
-                      )
-	                }
-                )
-
-            //?? DOM_o
-            //??   .rootVar__v
-            //??   (
-            //??     `--{{C_o.STAT_a[0]}}_cursor_fullsize`,
-            //??     'var(--{{C_o.STAT_a[0]}}_cursor_fullsize_trace)'
-            //??   )
+                      x_n
+                      =
+                        event_o
+                          .offsetX
+                  
+                      y_n
+                      =
+                        event_o
+                          .offsetY
+                  
+                      BUR_o
+                        .worker_o
+                          .post__v
+                          (
+                            { 
+                              task_s: 'PUT_magnify'
+                            , stat_s: '{{C_o.STAT_a[0]}}'
+                            , x_n: x_n
+                            , y_n: y_n
+                            , wide_n:
+                                BUR_o
+                                  .magnifyWide_n
+                            , pix_n:  
+                                BUR_o
+                                  .magnifyPix_n
+                            , magnify_b:
+                                magnify_b
+                            }
+                          )
   
+                      const rect_o
+                      =
+                        canvas_e
+                          .getBoundingClientRect()
+  
+                      //: cursor at bottom right of overlay position
+                      DOM_o
+                        .rootVar__v
+                        (
+                          `--{{C_o.STAT_a[0]}}_cursor_overlayX`,
+                          `${rect_o.x + x_n}px`
+                        )
+           
+                      DOM_o
+                        .rootVar__v
+                        (
+                          `--{{C_o.STAT_a[0]}}_cursor_overlayY`,
+                          `${rect_o.y + y_n}px`
+                        )
+	                  }
+                  )
+            }
           }
         , false
         )
@@ -3207,12 +3219,12 @@ const BUR_o =
     //--   (
     //--     '{{C_o.CANVAS_ID_s}}_{{C_o.STAT_a[0]}}_hue_img'
     //--   , BUR_o
-    //--       .eventMagnifier__v
+    //--       .eventMagnify__v
     //--   , 'mousemove'
     //--   )
 
     BUR_o
-      .eventMagnifier__v()
+      .eventMagnify__v()
 
     //=== CANVAS + SLIDERSEVENTS ===
     for
@@ -3709,7 +3721,7 @@ const BUR_o =
             ,
             [
               'linear'
-            , 'hue_magnifier'
+            , 'hue_magnify_img'
             , 'hue'
             , 'sat'
             , 'lum'
@@ -3761,6 +3773,18 @@ const BUR_o =
             ,
           }
         )
+
+    BUR_o
+      .hue_magnify_img
+    =
+      document
+        .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnify_img' )
+
+    BUR_o
+      .hue_magnify_trace
+    =
+      document
+        .getElementById( '{{C_o.INPUT_ID_s}}_{{C_o.STAT_a[0]}}_hue_magnify_trace' )
 
     BUR_o
      .listener__v()

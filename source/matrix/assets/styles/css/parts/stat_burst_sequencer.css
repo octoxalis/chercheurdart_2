@@ -118,7 +118,7 @@ div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:not(:nth-of-typ
   width: 1.5rem;
   height: 1.5rem;
   background: {{S_o.bg_hi}};
-  border-radius: 8px;
+  border-radius: {{S_o.PAD_2}};
   cursor: pointer;
 }
 div#{{C_o.DIV_ID_s}}_{{C_o.STAT_a[0]}}_playback_progress > label:nth-of-type(2) {
