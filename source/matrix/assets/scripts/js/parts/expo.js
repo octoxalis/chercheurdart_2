@@ -409,7 +409,7 @@ const EXP_o
 
 
   ,
-  async add__v  //: add PRO_FILE_s
+  async add__v  //: add PRO_LOCAL_s
   ()
   {
     //=== display file picker
@@ -487,7 +487,7 @@ const EXP_o
 
       const key_s
       =
-        '{{C_o.PRO_FILE_s}}'
+        '{{C_o.PRO_LOCAL_s}}'
         +
         DATE_o
           .dataTimeNumeric__s()

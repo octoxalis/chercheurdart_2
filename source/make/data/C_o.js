@@ -55,7 +55,7 @@ const C_o =
     DEFAULT_SRC:     'none',
     BASE_URI:        '',
     FONT_SRC:        '',
-    CONNECT_SRC:     '',
+    CONNECT_SRC:     'data:',
     PREFETCH_SRC:    '',  //: requires 'enable-experimental-web-platform-features' flag
     FRAME_SRC:       '',
     FRAME_ANCESTORS: '',
@@ -425,7 +425,7 @@ const C_o =
   //=== DB ===
   PRO_SITE_s:     'IND:',    //: site page (not reserve)
   PRO_RESERVE_s:  'RES:',    //: site reserve
-  PRO_FILE_s:     'LOC:',    //: local file system
+  PRO_LOCAL_s:    'LOC:',    //: local file system
 
   DB_a:    //: db tables names
   [

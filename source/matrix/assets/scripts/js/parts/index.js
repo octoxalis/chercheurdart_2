@@ -425,7 +425,7 @@ const IND_o =
               .substring( 1 )       //: skip # = figure:target
         ) 
           .querySelector( 'img' )
-  
+
     sessionStorage
       .setItem
       (
