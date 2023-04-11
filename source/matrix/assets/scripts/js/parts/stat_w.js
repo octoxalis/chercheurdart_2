@@ -588,6 +588,15 @@ const STAT_W_o =
             .startsWith( '{{C_o.PRO_LOCAL_s}}' )
       )
       {
+        if
+        (
+          ! url_s
+              .startsWith( '{{C_o.BASE64_JPEG_s}}' )
+        )
+        {
+          return void console.log( 'Only data:image/jpeg is allowed' )   //: for CSP check
+        }
+        //-->
         STAT_W_o
           .url_o
             [ payload_o.src_s ]

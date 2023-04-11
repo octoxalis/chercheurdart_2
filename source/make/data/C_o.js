@@ -309,7 +309,7 @@ const C_o =
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
 
-
+  BASE64_JPEG_s:    'data:image/jpeg;base64',
 
   //=== HTML-BODY: CLASSES ===
   SELECTED_CLASS_s: 'selected',
