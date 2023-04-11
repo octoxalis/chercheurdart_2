@@ -55,7 +55,7 @@ const C_o =
     DEFAULT_SRC:     'none',
     BASE_URI:        '',
     FONT_SRC:        '',
-    CONNECT_SRC:     'data:image/jpeg',    //: for local images
+    CONNECT_SRC:     'data:',    //: for local images
     PREFETCH_SRC:    '',  //: requires 'enable-experimental-web-platform-features' flag
     FRAME_SRC:       '',
     FRAME_ANCESTORS: '',
