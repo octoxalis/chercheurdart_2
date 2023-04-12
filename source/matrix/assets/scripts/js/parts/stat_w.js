@@ -25,6 +25,75 @@ const clamp__n
       )
 
 
+
+const b64ToBlob__o
+=
+(
+  b64_s
+, mime_s='{{C_o.IMG_MIME_s}}'
+) =>
+{
+  const char_a
+  =
+    atob
+    (
+      b64_s
+        .substring
+        (
+          `data:${mime_s};base64,`
+            .length
+        )
+    )
+
+  const number_a
+  =
+    new Array
+    (
+      char_a
+        .length
+    )
+
+  for
+  (
+    let at_n = 0;
+    at_n < char_a.length;
+    ++at_n
+  )
+  {
+    number_a
+      [
+        at_n
+      ]
+    =
+      char_a
+        .charCodeAt( at_n )
+  }
+
+  return (
+    new Blob
+    (
+      [
+        new Uint8Array( number_a )
+      ]
+    , {
+        type: mime_s
+      }
+    )
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 //=== STAT_W_o ===
 
 const STAT_W_o =
@@ -581,6 +650,8 @@ const STAT_W_o =
               .src_s
           )
 
+      let blob_o
+
       if
       (
         payload_o
@@ -588,29 +659,37 @@ const STAT_W_o =
             .startsWith( '{{C_o.PRO_LOCAL_s}}' )
       )
       {
-        if
-        (
-          ! url_s
-              .startsWith( '{{C_o.BASE64_JPEG_s}}' )
-        )
-        {
-          return void console.log( 'Only data:image/jpeg is allowed' )   //: for CSP check
-        }
-        //-->
+        //-- if
+        //-- (
+        //--   ! url_s
+        //--       .startsWith( 'data:{{C_o.IMG_MIME_s}};base64' )
+        //-- )
+        //-- {
+        //--   return void console.log( 'Only data:{{C_o.IMG_MIME_s}} is allowed' )   //: for CSP check
+        //-- }
+        //-- //-->
         STAT_W_o
           .url_o
             [ payload_o.src_s ]
         =
           url_s
+
+        blob_o
+        =
+          b64ToBlob__o( url_s )
+      }
+      else
+      {
+        const response_o
+        =
+          await fetch( url_s )
+        
+        blob_o
+        =
+          await response_o
+            .blob()
       }
 
-      const response_o =
-        await fetch( url_s )
-      
-      const blob_o =
-        await response_o
-          .blob()
-      
       const bitmap_o =
         await createImageBitmap( blob_o )
       

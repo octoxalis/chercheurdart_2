@@ -55,7 +55,7 @@ const C_o =
     DEFAULT_SRC:     'none',
     BASE_URI:        '',
     FONT_SRC:        '',
-    CONNECT_SRC:     'data:',    //: for local images
+    CONNECT_SRC:     '',
     PREFETCH_SRC:    '',  //: requires 'enable-experimental-web-platform-features' flag
     FRAME_SRC:       '',
     FRAME_ANCESTORS: '',
@@ -309,7 +309,8 @@ const C_o =
   ROW_TAG_s:        'b',
   IOR_DIM_TAG_s:    'i',
 
-  BASE64_JPEG_s:    'data:image/jpeg;base64',
+  IMG_MIME_s:       'image/jpeg',      //: default type for scan
+  //XX BASE64_JPEG_s:    'data:image/jpeg;base64',
 
   //=== HTML-BODY: CLASSES ===
   SELECTED_CLASS_s: 'selected',
