@@ -385,6 +385,8 @@ const STAT_W_o =
         rect_s
           .split( ' ' )
 
+      let blob_o
+
       if        //: imported src_s
       (
         //-- url_s
@@ -398,16 +400,22 @@ const STAT_W_o =
           STAT_W_o
             .url_o
               [ url_s ]
+
+        blob_o
+        =
+          b64ToBlob__o( url_s )
       }
-    
-      const response_o =
-        await
-        fetch( url_s )
-    
-      const blob_o =
-        await
-        response_o
-          .blob()
+      else
+      {
+        const response_o
+        =
+          await fetch( url_s )
+        
+        blob_o
+        =
+          await response_o
+            .blob()
+      }
     
       const bitmap_o =
         await
